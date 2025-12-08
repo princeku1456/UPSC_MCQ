@@ -16,30 +16,6 @@
             <a class="navbar-brand fw-bold" href="#" onclick="showHome()">
                 <span style="font-size: 1.5rem;">✨ MCQ Practice</span>
             </a>
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#" onclick="showHome()">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </nav>
 
@@ -68,7 +44,7 @@
 
     <section id="subjects-section" class="topics py-5" style="display: none; min-height:90vh;">
         <div class="container">
-            <button class="btn btn-outline-secondary rounded-pill mb-4 px-4" onclick="showHome()">← Back to Home</button>
+            <button class="btn btn-primary-custom  px-5 py-3 shadow-lg" onclick="showHome()">← Back to Home</button>
             <div class="text-center mb-5">
                 <h2 class="fw-bold section-title">Select a Subject</h2>
                 <div class="title-underline mx-auto"></div>
@@ -80,7 +56,7 @@
 
     <section id="chapters-section" class="chapters py-5" style="display: none; min-height:90vh;">
         <div class="container">
-            <button class="btn btn-outline-secondary rounded-pill mb-4 px-4" onclick="showSubjects()">← Back to Subjects</button>
+            <button class="btn btn-primary-custom  px-5 py-3 shadow-lg" onclick="showSubjects()">← Back to Subjects</button>
             <div class="text-center mb-5">
                 <h2 class="fw-bold section-title" id="chapters-title">Choose a Chapter</h2>
                 <div class="title-underline mx-auto"></div>
@@ -92,7 +68,7 @@
 
     <section id="quiz-section" class="quiz-section py-5" style="display: none;">
         <div class="container">
-            <button class="btn btn-outline-secondary rounded-pill mb-4 px-4" onclick="goBackToChapters()">← Back to Chapters</button>
+            <button class="btn btn-primary-custom  px-5 mb-4 shadow-lg " onclick="goBackToChapters()">← Back to Chapters</button>
             <div class="row">
                 <div class="col-lg-8 mb-4">
                     <div id="quiz-content" class="quiz-box h-100">
@@ -105,10 +81,6 @@
             </div>
         </div>
     </section>
-
-    <footer class="mt-auto main-footer text-white text-center py-4">
-        <p class="mb-0 small opacity-75">© 2024 MCQ Practice. Designed for Excellence.</p>
-    </footer>
 
     <script src="config.js"></script>
     <script src="quizData.js"></script>

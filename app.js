@@ -152,7 +152,7 @@ function renderQuizLayout(chapterName) {
         <h4 class="text-center mb-4 fw-bold text-primary">${chapterName}</h4>
         <div id="question-container"></div>
         <div class="d-flex justify-content-between mt-4">
-            <button id="prev-btn" class="btn btn-outline-secondary px-4 rounded-pill">Previous</button>
+            <button id="prev-btn" class="btn btn-primary-custom px-4 rounded-pill">Previous</button>
             <button id="clear-btn" class="btn btn-outline-warning px-4 rounded-pill">Clear</button>
             <button id="next-btn" class="btn btn-primary-custom px-4 rounded-pill">Next</button>
         </div>
