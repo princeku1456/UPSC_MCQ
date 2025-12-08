@@ -1,97 +1,116 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Mastery MCQ</title>
+    <title>Practice MCQs by Topic</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="styles.css" rel="stylesheet" />
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark main-navbar sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="#" onclick="showHome()">
-                <span class="brand-logo">⚡</span> Mastery MCQ
+            <a class="navbar-brand fw-bold" href="#" onclick="showHome()">
+                <span style="font-size: 1.5rem;">✨ MCQ Practice</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+            >
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="#" onclick="showHome()">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Topics</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="showHome()">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <section id="hero-section" class="hero-section d-flex align-items-center">
-        <div class="container text-center">
-            <div class="hero-content fade-in-up">
-                <span class="badge rounded-pill bg-primary-subtle text-primary mb-3 px-3 py-2">Boost your knowledge</span>
-                <h1 class="display-3 fw-bold mb-4">Master Any Subject <br><span class="text-gradient">One Question at a Time</span></h1>
-                <p class="lead mb-5 text-muted mx-auto" style="max-width: 600px;">
-                    Access thousands of topic-wise MCQs designed to help you prepare for exams and sharpen your skills.
+    <section
+        id="hero-section"
+        class="hero text-center justify-content-center align-items-center"
+        style="min-height:90vh; display: grid; place-items: center;"
+    >
+        <div class="container">
+            <div class="hero-content p-5 rounded-4 animate-fade-in">
+                <h1 class="display-3 fw-bold mb-3 text-gradient">
+                    Master Your Topics
+                </h1>
+                <p class="lead fs-5 mb-5 text-muted">
+                    Elevate your preparation with topic-wise multiple-choice questions designed for success.
                 </p>
-                <button class="btn btn-primary btn-lg btn-glow px-5 py-3" onclick="showSubjects()">
-                    Start Practicing 🚀
-                </button>
+                <a
+                    href="#"
+                    class="btn btn-primary-custom btn-lg px-5 py-3 shadow-lg"
+                    onclick="showSubjects()"
+                    >Start Practicing 🚀</a
+                >
             </div>
         </div>
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
     </section>
 
-    <section id="subjects-section" class="section-padding" style="display: none;">
+    <section id="subjects-section" class="topics py-5" style="display: none; min-height:90vh;">
         <div class="container">
-            <div class="section-header text-center mb-5">
-                <button class="btn btn-outline-secondary btn-sm mb-3 back-btn-top" onclick="showHome()">← Back Home</button>
-                <h2 class="fw-bold">Explore Topics</h2>
-                <p class="text-muted">Select a subject to view available chapters</p>
+            <button class="btn btn-outline-secondary rounded-pill mb-4 px-4" onclick="showHome()">← Back to Home</button>
+            <div class="text-center mb-5">
+                <h2 class="fw-bold section-title">Select a Subject</h2>
+                <div class="title-underline mx-auto"></div>
             </div>
-            <div class="row g-4 justify-content-center" id="subjects-container">
+            <div class="row justify-content-center" id="subjects-container">
                 </div>
         </div>
     </section>
 
-    <section id="chapters-section" class="section-padding" style="display: none;">
+    <section id="chapters-section" class="chapters py-5" style="display: none; min-height:90vh;">
         <div class="container">
-            <div class="section-header text-center mb-5">
-                <button class="btn btn-outline-secondary btn-sm mb-3 back-btn-top" onclick="showSubjects()">← Back to Subjects</button>
-                <h2 class="fw-bold" id="chapters-title">Select Chapter</h2>
-                <p class="text-muted">Pick a specific chapter to start your quiz</p>
+            <button class="btn btn-outline-secondary rounded-pill mb-4 px-4" onclick="showSubjects()">← Back to Subjects</button>
+            <div class="text-center mb-5">
+                <h2 class="fw-bold section-title" id="chapters-title">Choose a Chapter</h2>
+                <div class="title-underline mx-auto"></div>
             </div>
-            <div class="row g-4" id="chapters-container">
+            <div class="row" id="chapters-container">
                 </div>
         </div>
     </section>
 
-    <section id="quiz-section" class="quiz-section" style="display: none;">
-        <div class="container-fluid h-100">
-            <div class="row h-100">
-                <div class="col-lg-9 col-md-8 h-100 overflow-auto p-0">
-                    <div class="quiz-main-wrapper p-4 p-md-5">
-                        <button class="btn btn-link text-decoration-none text-muted mb-3 p-0" onclick="goBackToChapters()">
-                            ← Exit Quiz
-                        </button>
-                        <div id="quiz-content" class="quiz-card">
-                            </div>
-                    </div>
+    <section id="quiz-section" class="quiz-section py-5" style="display: none;">
+        <div class="container">
+            <button class="btn btn-outline-secondary rounded-pill mb-4 px-4" onclick="goBackToChapters()">← Back to Chapters</button>
+            <div class="row">
+                <div class="col-lg-8 mb-4">
+                    <div id="quiz-content" class="quiz-box h-100">
+                        </div>
                 </div>
-                
-                <div class="col-lg-3 col-md-4 quiz-sidebar border-start bg-white h-100 overflow-auto">
-                    <div class="p-4">
-                        <div id="quiz-nav">
-                            </div>
-                    </div>
+                <div class="col-lg-4">
+                    <div id="quiz-nav" class="quiz-nav-sidebar">
+                        </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <footer class="mt-auto main-footer text-white text-center py-4">
+        <p class="mb-0 small opacity-75">© 2024 MCQ Practice. Designed for Excellence.</p>
+    </footer>
+
+    <script src="config.js"></script>
     <script src="quizData.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="app.js"></script>
