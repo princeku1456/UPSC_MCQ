@@ -1,1 +1,1 @@
-# UPSC_MCQ
+# 71th_BPSC_MCQ
