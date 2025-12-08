@@ -15,29 +15,26 @@ function generateSubjectCards() {
     const subjectsContainer = document.getElementById('subjects-container');
     subjectsContainer.innerHTML = '';
 
+    // Define icons for subjects (you can expand this map)
+    const icons = {
+        'Current Affairs': '🌍',
+        'Modern History': '📜',
+        'Science': '🧬',
+        'Bihar Special': '🏛️',
+        'default': '📚'
+    };
+
     Object.keys(allQuizData).forEach((subjectKey) => {
-        const subject = {
-            name: subjectKey,
-            icon: '📚', // You might want to define icons elsewhere, for now let's use a default
-            description: `Quizzes on ${subjectKey}`,
-            color: 'dark', // Default color, you can define this in a config.js file if needed
-            chapters: Object.keys(allQuizData[subjectKey]).map(chapterName => ({
-                name: chapterName,
-                id: chapterName
-            }))
-        };
         const chapterCount = Object.keys(allQuizData[subjectKey]).length;
+        const icon = icons[subjectKey] || icons['default'];
 
         const subjectCard = document.createElement('div');
-        subjectCard.className = 'col-md-4 col-lg-3 mb-4';
+        subjectCard.className = 'col-md-6 col-lg-4 col-xl-3';
         subjectCard.innerHTML = `
-            <div class="card topic-card h-100 shadow border-${subject.color}" onclick="showChapters('${subjectKey}')">
-                <div class="card-body text-center">
-                    <div class="display-4 mb-3">${subject.icon}</div>
-                    <h5 class="card-title text-${subject.color}">${subject.name}</h5>
-                    <p class="card-text">${subject.description}</p>
-                    <small class="text-muted">${chapterCount} chapter${chapterCount > 1 ? 's' : ''} available</small>
-                </div>
+            <div class="topic-card p-4 text-center cursor-pointer" onclick="showChapters('${subjectKey}')">
+                <div class="card-icon mb-3">${icon}</div>
+                <h5 class="card-title mb-2">${subjectKey}</h5>
+                <p class="text-muted small mb-0">${chapterCount} Chapters</p>
             </div>
         `;
         subjectsContainer.appendChild(subjectCard);
@@ -47,43 +44,34 @@ function generateSubjectCards() {
 // Show chapters on subject click
 function showChapters(subjectKey) {
     currentSubject = subjectKey;
-
-    const subject = {
-        name: subjectKey,
-        color: 'dark',
-        chapters: Object.keys(allQuizData[subjectKey]).map(chapterName => ({
-            name: chapterName,
-            id: chapterName
-        }))
-    };
+    const chapters = Object.keys(allQuizData[subjectKey]);
 
     document.getElementById('hero-section').style.display = 'none';
     document.getElementById('subjects-section').style.display = 'none';
     document.getElementById('chapters-section').style.display = 'block';
     document.getElementById('quiz-section').style.display = 'none';
 
-    document.getElementById('chapters-title').textContent = `${subject.name} - Choose a Chapter`;
+    document.getElementById('chapters-title').innerHTML = `<span class="text-primary">${subjectKey}</span> Chapters`;
 
     const chaptersContainer = document.getElementById('chapters-container');
     chaptersContainer.innerHTML = '';
 
-    subject.chapters.forEach((chapter) => {
+    chapters.forEach((chapterName, index) => {
         const chapterCard = document.createElement('div');
-        chapterCard.className = 'col-md-6 col-lg-4 mb-4';
+        chapterCard.className = 'col-md-6 col-lg-4';
         chapterCard.innerHTML = `
-            <div class="card chapter-card h-100 shadow">
-                <div class="card-body d-flex flex-column">
-                    <h5 class="card-title">${chapter.name}</h5>
-                    <p class="card-text flex-grow-1">Practice MCQs for this chapter</p>
-                    <div class="mt-auto">
-                        <button class="btn btn-${subject.color} w-100 quiz-start-btn" 
-                            data-subject="${subjectKey}"
-                            data-chapter-id="${chapter.id}"
-                            data-chapter-name="${encodeURIComponent(chapter.name)}" 
-                            type="button">
-                            Start Quiz
-                        </button>
-                    </div>
+            <div class="chapter-card p-4 d-flex flex-column h-100">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="badge bg-light text-primary border border-primary-subtle">Chapter ${index + 1}</span>
+                </div>
+                <h5 class="card-title mb-3">${chapterName}</h5>
+                <div class="mt-auto">
+                    <button class="btn btn-primary w-100 quiz-start-btn rounded-pill" 
+                        data-subject="${subjectKey}"
+                        data-chapter-id="${chapterName}"
+                        type="button">
+                        Start Quiz
+                    </button>
                 </div>
             </div>
         `;
@@ -91,22 +79,23 @@ function showChapters(subjectKey) {
     });
 }
 
-// Back to subjects from chapters
+// Navigation Functions
 function showSubjects() {
     document.getElementById('hero-section').style.display = 'none';
     document.getElementById('subjects-section').style.display = 'block';
     document.getElementById('chapters-section').style.display = 'none';
     document.getElementById('quiz-section').style.display = 'none';
+    window.scrollTo(0,0);
 }
 
 function showHome() {
-    document.getElementById('hero-section').style.display = 'block';
+    document.getElementById('hero-section').style.display = 'flex'; // Hero is flex
     document.getElementById('subjects-section').style.display = 'none';
     document.getElementById('chapters-section').style.display = 'none';
     document.getElementById('quiz-section').style.display = 'none';
+    window.scrollTo(0,0);
 }
 
-// Back to chapters from quiz
 function goBackToChapters() {
     if (currentSubject) {
         showChapters(currentSubject);
@@ -115,29 +104,32 @@ function goBackToChapters() {
     }
 }
 
+// Event Delegation for Quiz Start
 document.addEventListener('click', function (e) {
     if (e.target.matches('.quiz-start-btn')) {
         const subjectKey = e.target.dataset.subject;
         const chapterId = e.target.dataset.chapterId;
-        const chapterName = decodeURIComponent(e.target.dataset.chapterName);
-        loadQuiz(subjectKey, chapterId, chapterName);
+        loadQuiz(subjectKey, chapterId);
     }
 });
 
-function loadQuiz(subjectKey, chapterId, chapterName) {
+function loadQuiz(subjectKey, chapterId) {
     currentSubject = subjectKey;
     currentChapterId = chapterId;
     currentQuizData = allQuizData[subjectKey][chapterId];
     currentQuestionIndex = 0;
-    Object.keys(userAnswers).forEach(key => delete userAnswers[key]);
+    
+    // Clear previous session data
+    for (const key in userAnswers) delete userAnswers[key];
     quizSubmitted = false;
 
+    // View Switching
     document.getElementById('hero-section').style.display = 'none';
     document.getElementById('subjects-section').style.display = 'none';
     document.getElementById('chapters-section').style.display = 'none';
     document.getElementById('quiz-section').style.display = 'block';
 
-    renderQuizLayout(chapterName);
+    renderQuizLayout(chapterId);
     renderQuestion();
     renderNav();
 }
@@ -145,92 +137,107 @@ function loadQuiz(subjectKey, chapterId, chapterName) {
 function renderQuizLayout(chapterName) {
     const quizContent = document.getElementById('quiz-content');
     quizContent.innerHTML = `
-        <h3 class="text-center">${chapterName}</h3>
-        <div id="question-container"></div>
-        <div class="d-flex justify-content-between mt-3">
-            <button id="prev-btn" class="btn btn-secondary">Previous</button>
-            <button id="clear-btn" class="btn btn-warning">Clear Selection</button>
-            <button id="next-btn" class="btn btn-primary">Next</button>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="mb-0 text-primary">${chapterName}</h4>
+            <span class="badge bg-light text-dark border">Q. ${currentQuestionIndex + 1} / ${currentQuizData.length}</span>
         </div>
-        <div id="result" class="mt-3 text-center"></div>
+        
+        <div id="question-container"></div>
+        
+        <div class="d-flex gap-2 mt-4 pt-3 border-top">
+            <button id="prev-btn" class="btn btn-outline-secondary px-4">Previous</button>
+            <button id="clear-btn" class="btn btn-outline-danger">Clear</button>
+            <button id="next-btn" class="btn btn-primary px-4 ms-auto">Next</button>
+        </div>
+        
+        <div id="result-container"></div>
     `;
 
     const quizNav = document.getElementById('quiz-nav');
     quizNav.innerHTML = `
-        <div class="nav-header">Questions</div>
+        <div class="nav-header">Question Navigator</div>
         <div id="nav-container" class="nav-grid"></div>
-        <button id="final-submit-btn" class="btn btn-success w-100 mt-3">Submit All</button>
+        
+        <div class="mt-4 pt-3 border-top">
+            <div class="d-flex justify-content-between text-muted small mb-3">
+                <span><span class="badge bg-primary p-1 rounded-circle me-1"> </span> Attempted</span>
+                <span><span class="badge bg-light border p-1 rounded-circle me-1"> </span> Skipped</span>
+            </div>
+            <button id="final-submit-btn" class="btn btn-success w-100 py-2 fw-semibold shadow-sm">Submit Quiz</button>
+        </div>
     `;
 
-    document.getElementById('prev-btn').addEventListener('click', navigateQuestions.bind(null, -1));
+    document.getElementById('prev-btn').addEventListener('click', () => navigateQuestions(-1));
     document.getElementById('clear-btn').addEventListener('click', clearSelection);
-    document.getElementById('next-btn').addEventListener('click', navigateQuestions.bind(null, 1));
+    document.getElementById('next-btn').addEventListener('click', () => navigateQuestions(1));
     document.getElementById('final-submit-btn').addEventListener('click', submitAll);
-}
-
-function clearSelection() {
-    if (!quizSubmitted) {
-        const selectedOption = document.querySelector(`input[name="q${currentQuestionIndex}"]:checked`);
-        if (selectedOption) {
-            selectedOption.checked = false;
-        }
-        delete userAnswers[currentQuestionIndex];
-        updateNavHighlights();
-    }
 }
 
 function renderQuestion() {
     const questionContainer = document.getElementById('question-container');
-    questionContainer.innerHTML = '';
     const question = currentQuizData[currentQuestionIndex];
 
-    const questionDiv = document.createElement('div');
-    questionDiv.className = 'question';
-    questionDiv.innerHTML = `<p><strong>${currentQuestionIndex + 1}. ${question.text}</strong></p>`;
+    // Update question number badge
+    const badge = document.querySelector('.quiz-card .badge');
+    if(badge) badge.innerText = `Q. ${currentQuestionIndex + 1} / ${currentQuizData.length}`;
 
-    question.options.forEach((option, optIndex) => {
-        const label = document.createElement('label');
-        label.className = 'option';
-        label.innerHTML = `
-            <input type="radio" name="q${currentQuestionIndex}" value="${optIndex}" />
-            ${option}
+    let html = `
+        <p class="question-text">${question.text}</p>
+        <div class="options-list">
+    `;
+
+    question.options.forEach((option, index) => {
+        const isChecked = userAnswers[currentQuestionIndex]?.answer === index ? 'checked' : '';
+        html += `
+            <label class="option-label" id="opt-label-${index}">
+                <input type="radio" name="q${currentQuestionIndex}" value="${index}" ${isChecked}>
+                <span class="ms-2">${String.fromCharCode(65 + index)}. ${option}</span>
+            </label>
         `;
-        
-        const radioInput = label.querySelector('input');
-        radioInput.addEventListener('change', (e) => {
+    });
+
+    html += `</div>`; // Close options list
+
+    // Explanation Area (Initially Hidden)
+    html += `
+        <div id="explanation-box" class="explanation-box" style="display: none;">
+            <strong><i class="bi bi-info-circle"></i> Explanation:</strong><br>
+            ${question.explanation}
+        </div>
+    `;
+
+    questionContainer.innerHTML = html;
+
+    // Event Listeners for Options
+    const radioInputs = questionContainer.querySelectorAll('input[type="radio"]');
+    radioInputs.forEach(input => {
+        input.addEventListener('change', (e) => {
             if (!quizSubmitted) {
-                userAnswers[currentQuestionIndex] = { answer: parseInt(e.target.value), isCorrect: false };
+                userAnswers[currentQuestionIndex] = { 
+                    answer: parseInt(e.target.value), 
+                    isCorrect: false 
+                };
                 updateNavHighlights();
             }
         });
-        
-        questionDiv.appendChild(label);
     });
 
-    const explanationDiv = document.createElement('div');
-    explanationDiv.className = 'explanation';
-    explanationDiv.id = `explanation${currentQuestionIndex}`;
-    explanationDiv.style.display = 'none';
-    explanationDiv.innerHTML = `<strong>Explanation:</strong> ${question.explanation}`;
-    questionDiv.appendChild(explanationDiv);
-
-    questionContainer.appendChild(questionDiv);
-
+    // Button States
     document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
     document.getElementById('next-btn').disabled = currentQuestionIndex === currentQuizData.length - 1;
 
-    if (userAnswers[currentQuestionIndex] !== undefined) {
-        const selectedOption = document.querySelector(`input[name="q${currentQuestionIndex}"][value="${userAnswers[currentQuestionIndex].answer}"]`);
-        if (selectedOption) {
-            selectedOption.checked = true;
-        }
-    }
-    
-    // Only show feedback if the quiz has been submitted
+    // Show feedback if submitted
     if (quizSubmitted) {
         showFeedback();
-    } else {
-        hideFeedback();
+    }
+}
+
+function clearSelection() {
+    if (!quizSubmitted) {
+        const checked = document.querySelector(`input[name="q${currentQuestionIndex}"]:checked`);
+        if (checked) checked.checked = false;
+        delete userAnswers[currentQuestionIndex];
+        updateNavHighlights();
     }
 }
 
@@ -238,45 +245,39 @@ function renderNav() {
     const navContainer = document.getElementById('nav-container');
     navContainer.innerHTML = '';
 
-    currentQuizData.forEach((q, i) => {
-        const navItem = document.createElement('div');
-        navItem.className = 'nav-item';
-        navItem.textContent = i + 1;
-        navItem.dataset.index = i;
-
-        navItem.addEventListener('click', (e) => {
-            currentQuestionIndex = parseInt(e.currentTarget.dataset.index, 10);
+    currentQuizData.forEach((_, i) => {
+        const btn = document.createElement('div');
+        btn.className = 'nav-item-box';
+        btn.innerText = i + 1;
+        btn.dataset.index = i;
+        btn.onclick = () => {
+            currentQuestionIndex = i;
             renderQuestion();
             updateNavHighlights();
-        });
-
-        navContainer.appendChild(navItem);
+        };
+        navContainer.appendChild(btn);
     });
-
     updateNavHighlights();
 }
 
 function updateNavHighlights() {
-    const navItems = document.querySelectorAll('.nav-item');
-    navItems.forEach((item) => {
-        item.classList.remove('active', 'correct-nav', 'incorrect-nav', 'unattempted', 'attempted');
-        const itemIndex = parseInt(item.dataset.index, 10);
+    const items = document.querySelectorAll('.nav-item-box');
+    items.forEach(item => {
+        item.className = 'nav-item-box'; // Reset
+        const idx = parseInt(item.dataset.index);
 
-        if (itemIndex === currentQuestionIndex) {
-            item.classList.add('active');
-        }
-        
+        if (idx === currentQuestionIndex) item.classList.add('active');
+
         if (quizSubmitted) {
-            if (userAnswers[itemIndex] === undefined) {
-                item.classList.add('unattempted');
+            const userAnswer = userAnswers[idx];
+            if (userAnswer) {
+                const isCorrect = userAnswer.answer === currentQuizData[idx].correctAnswer;
+                item.classList.add(isCorrect ? 'correct' : 'incorrect');
             } else {
-                const isCorrect = userAnswers[itemIndex].answer === currentQuizData[itemIndex].correctAnswer;
-                item.classList.add(isCorrect ? 'correct-nav' : 'incorrect-nav');
+                item.classList.add('unattempted-final');
             }
         } else {
-             if (userAnswers[itemIndex] !== undefined) {
-                item.classList.add('attempted');
-            }
+            if (userAnswers[idx] !== undefined) item.classList.add('attempted');
         }
     });
 }
@@ -290,101 +291,88 @@ function navigateQuestions(direction) {
     }
 }
 
-function showFeedback() {
-    const resultDiv = document.getElementById('result');
-    const question = currentQuizData[currentQuestionIndex];
-    const explanationDiv = document.getElementById(`explanation${currentQuestionIndex}`);
-    const options = document.querySelectorAll('.option');
-
-    options.forEach(option => option.style.pointerEvents = 'none');
-    
-    const selectedAnswer = userAnswers[currentQuestionIndex]?.answer;
-    const isCorrect = selectedAnswer !== undefined && selectedAnswer === question.correctAnswer;
-
-    if (userAnswers[currentQuestionIndex]) {
-        userAnswers[currentQuestionIndex].isCorrect = isCorrect;
-    }
-
-    if (isCorrect) {
-        resultDiv.innerHTML = `<h5 class="text-success">Correct!</h5>`;
-    } else if (selectedAnswer !== undefined) {
-        resultDiv.innerHTML = `<h5 class="text-danger">Incorrect.</h5>`;
-    } else {
-        // No penalty for unattempted questions, so no "Incorrect" message
-        resultDiv.innerHTML = `<h5>Unattempted.</h5>`;
-    }
-    
-    if (question.correctAnswer !== undefined) {
-        options[question.correctAnswer].classList.add('correct-answer-label');
-    }
-
-    if (selectedAnswer !== undefined && !isCorrect) {
-        options[selectedAnswer].classList.add('incorrect-answer-label');
-    }
-    
-    if (explanationDiv) {
-        explanationDiv.style.display = 'block';
-    }
-}
-
-function hideFeedback() {
-    document.getElementById('result').textContent = "";
-    const explanationDiv = document.getElementById(`explanation${currentQuestionIndex}`);
-    if (explanationDiv) {
-        explanationDiv.style.display = 'none';
-    }
-    const options = document.querySelectorAll('.option');
-    options.forEach(option => {
-        option.style.pointerEvents = 'auto';
-        option.classList.remove('correct-answer-label', 'incorrect-answer-label');
-    });
-}
-
 function submitAll() {
-    let finalScore = 0;
-    let correctCount = 0;
-    let incorrectCount = 0;
-    let unattemptedCount = 0;
+    if(!confirm("Are you sure you want to submit the quiz?")) return;
+
     quizSubmitted = true;
-    
-    // First, evaluate all answers and update the userAnswers object
-    currentQuizData.forEach((question, index) => {
-        if (userAnswers[index] !== undefined) {
-            userAnswers[index].isCorrect = userAnswers[index].answer === question.correctAnswer;
-        }
-    });
+    let score = 0;
+    let correct = 0;
+    let wrong = 0;
 
-    // Then, calculate the final score and counts based on the updated userAnswers
-    currentQuizData.forEach((question, index) => {
-        if (userAnswers[index] !== undefined) {
-            if (userAnswers[index].isCorrect) {
-                finalScore += 1;
-                correctCount += 1;
+    // Calculate Score
+    currentQuizData.forEach((q, i) => {
+        if (userAnswers[i]) {
+            if (userAnswers[i].answer === q.correctAnswer) {
+                score += 1;
+                correct++;
             } else {
-                finalScore -= 1/3;
-                incorrectCount += 1;
+                score -= 0.33; // 1/3 negative marking
+                wrong++;
             }
-        } else {
-            unattemptedCount += 1;
         }
     });
-    
-    const totalQuestions = currentQuizData.length;
 
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = `
-        <h5>Quiz Complete!</h5>
-        <p>Correct Answers: ${correctCount}</p>
-        <p>Incorrect Answers: ${incorrectCount}</p>
-        <p>Your score: ${finalScore.toFixed(1)} / ${totalQuestions}</p>
-    `;
-
-    document.querySelectorAll('input[type="radio"]').forEach(radio => radio.disabled = true);
+    // Disable inputs
+    const inputs = document.querySelectorAll('input[type="radio"]');
+    inputs.forEach(inp => inp.disabled = true);
     
-    // We update the navigation highlights here to reflect the results
+    // Disable submit/clear buttons
+    document.getElementById('final-submit-btn').disabled = true;
+    document.getElementById('clear-btn').disabled = true;
+
+    // Update Nav colors
     updateNavHighlights();
+
+    // Show current question feedback
+    showFeedback();
+
+    // Show Score Card
+    const resultContainer = document.getElementById('result-container');
+    resultContainer.innerHTML = `
+        <div class="result-card fade-in-up">
+            <h4 class="text-muted">Quiz Results</h4>
+            <div class="score-display">${score.toFixed(2)} <span class="fs-6 text-muted">/ ${currentQuizData.length}</span></div>
+            <div class="row text-center mt-3">
+                <div class="col-4 border-end">
+                    <div class="text-success fw-bold">${correct}</div>
+                    <small class="text-muted">Correct</small>
+                </div>
+                <div class="col-4 border-end">
+                    <div class="text-danger fw-bold">${wrong}</div>
+                    <small class="text-muted">Wrong</small>
+                </div>
+                <div class="col-4">
+                    <div class="text-secondary fw-bold">${currentQuizData.length - (correct + wrong)}</div>
+                    <small class="text-muted">Skipped</small>
+                </div>
+            </div>
+        </div>
+    `;
     
-    // Disable the navigation buttons after submission
-    document.getElementById('prev-btn').disabled = true;
-    document.getElementById('next-btn').disabled = true;
+    // Scroll to results
+    resultContainer.scrollIntoView({ behavior: 'smooth' });
+}
+
+function showFeedback() {
+    const question = currentQuizData[currentQuestionIndex];
+    const explanationBox = document.getElementById('explanation-box');
+    const labels = document.querySelectorAll('.option-label');
+
+    // Highlight options
+    labels.forEach((label, index) => {
+        label.classList.remove('correct-answer', 'incorrect-answer');
+        
+        // Always highlight the correct answer
+        if (index === question.correctAnswer) {
+            label.classList.add('correct-answer');
+        }
+
+        // Highlight user's wrong answer
+        if (userAnswers[currentQuestionIndex]?.answer === index && index !== question.correctAnswer) {
+            label.classList.add('incorrect-answer');
+        }
+    });
+
+    // Show Explanation
+    if (explanationBox) explanationBox.style.display = 'block';
 }
