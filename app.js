@@ -35,6 +35,21 @@ function getCorrectIndex(question) {
     return -1; // Fallback error case
 }
 
+function showHome() {
+    // Hide all other sections
+    document.getElementById('subjects-section').style.display = 'none';
+    document.getElementById('chapters-section').style.display = 'none';
+    document.getElementById('quiz-section').style.display = 'none';
+
+    // Show the landing page (Hero Section)
+    // We use 'grid' because your HTML defines it as display: grid for centering
+    document.getElementById('hero-section').style.display = 'grid';
+    
+    // Optional: Reset variables if needed
+    currentSubject = '';
+    currentChapterId = '';
+}
+
 // --- NAVIGATION & UI ---
 
 function generateSubjectCards() {
