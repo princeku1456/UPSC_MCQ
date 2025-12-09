@@ -1,11 +1,13 @@
 :root {
-    --primary-color: #4e54c8;
-    --secondary-color: #8f94fb;
-    --accent-color: #ff6b6b;
-    --text-color: #333;
-    --bg-light: #f4f6f9;
-    --card-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    --hover-shadow: 0 15px 30px rgba(78, 84, 200, 0.15);
+    /* Theme: Royal Navy & Gold */
+    --primary-color: #1e3a8a;   /* Deep Navy Blue */
+    --secondary-color: #3b82f6; /* Bright Royal Blue */
+    --accent-color: #f59e0b;    /* Gold/Amber */
+    --text-color: #1f2937;      /* Dark Slate Grey */
+    --bg-light: #eff6ff;        /* Very light Blue-White background */
+    
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --hover-shadow: 0 20px 25px -5px rgba(30, 58, 138, 0.15), 0 10px 10px -5px rgba(30, 58, 138, 0.04);
 }
 
 body {
@@ -16,20 +18,30 @@ body {
 
 /* Navbar Styling */
 .main-navbar {
-    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    background: #1e3a8a; 
+    background: linear-gradient(160deg, #1e3a8a 0%, #172554 100%);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
 .navbar-brand {
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
+    color: #fff !important;
 }
 
 /* Hero Section */
 .hero {
     background: white;
-    background-image: radial-gradient(circle at 10% 20%, rgba(143, 148, 251, 0.1) 0%, transparent 20%),
-                      radial-gradient(circle at 90% 80%, rgba(78, 84, 200, 0.1) 0%, transparent 20%);
+    background-image: radial-gradient(#3b82f6 0.5px, transparent 0.5px), radial-gradient(#3b82f6 0.5px, #eff6ff 0.5px);
+    background-size: 20px 20px;
+    background-position: 0 0, 10px 10px;
+    background-color: #eff6ff;
+}
+
+.hero-content {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .text-gradient {
@@ -40,86 +52,95 @@ body {
 
 /* Buttons */
 .btn-primary-custom {
-    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    background: linear-gradient(to right, #f59e0b, #d97706);
     border: none;
     color: white;
-    border-radius: 50px;
-    font-weight: 500;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
 }
 
 .btn-primary-custom:hover {
-    background: linear-gradient(to right, #3f44a5, #7a7fe0);
+    background: linear-gradient(to right, #d97706, #b45309);
     transform: translateY(-2px);
     color: white;
+    box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.3);
 }
 
 .back-btn {
     border-radius: 50px;
 }
 
+/* --- FEEDBACK COLORS --- */
 
-/* Green style for the correct answer */
 .correct-answer-label {
-    background-color: #d4edda !important; /* Light Green */
-    border: 2px solid #28a745 !important; /* Dark Green Border */
-    color: #155724 !important;
+    background-color: #f0fdf4 !important;
+    border: 2px solid #16a34a !important;
+    color: #14532d !important;
 }
 
-/* Red style for the wrong answer selected by user */
 .incorrect-answer-label {
-    background-color: #f8d7da !important; /* Light Red */
-    border: 2px solid #dc3545 !important; /* Dark Red Border */
-    color: #721c24 !important;
+    background-color: #fef2f2 !important;
+    border: 2px solid #dc2626 !important;
+    color: #7f1d1d !important;
 }
 
-/* Make sure the explanation box is styled nicely */
+/* Explanation Box */
 .explanation {
-    margin-top: 15px;
-    padding: 15px;
-    background-color: #e2e3e5;
-    border-left: 5px solid #007bff;
-    border-radius: 4px;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-left: 4px solid var(--accent-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    font-size: 0.95rem;
+    color: #374151;
 }
-
 
 /* Cards (Subject & Chapter) */
 .topic-card, .chapter-card {
-    border: none;
-    border-radius: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
     background: white;
     box-shadow: var(--card-shadow);
-    transition: all 0.3s ease;
-    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .topic-card:hover, .chapter-card:hover {
-    transform: translateY(-8px);
+    transform: translateY(-5px);
     box-shadow: var(--hover-shadow);
+    border-color: var(--secondary-color);
 }
 
 .card-title {
-    font-weight: 600;
-    margin-bottom: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--primary-color);
 }
 
 /* Section Titles */
 .section-title {
     color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1.75rem;
 }
 
 .title-underline {
-    width: 60px;
+    width: 80px;
     height: 4px;
-    background: var(--secondary-color);
+    background: var(--accent-color);
     border-radius: 2px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 /* Quiz Section Layout */
 .quiz-box {
     background: #fff;
     padding: 2.5rem;
-    border-radius: 15px;
+    border-radius: 12px;
     box-shadow: var(--card-shadow);
     border-top: 5px solid var(--primary-color);
 }
@@ -127,100 +148,115 @@ body {
 .quiz-nav-sidebar {
     background: #fff;
     padding: 1.5rem;
-    border-radius: 15px;
+    border-radius: 12px;
     box-shadow: var(--card-shadow);
     position: sticky;
     top: 2rem;
-    max-height: calc(100vh - 4rem);
-    overflow-y: auto;
+    border: 1px solid #e5e7eb;
 }
 
 .nav-header {
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-color);
     margin-bottom: 1.5rem;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
+    border-bottom: 2px solid #f3f4f6;
+    padding-bottom: 10px;
 }
+
+/* --- UPDATED NAVIGATION GRID FOR SMALLER BOXES --- */
 
 .nav-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0.8rem;
+    /* Creates 5 columns that fit the content (small boxes), effectively centering them */
+    grid-template-columns: repeat(5, 60px); 
+    justify-content: center; /* Center the grid in the sidebar */
+    gap: 8px; /* Space between boxes */
 }
 
 .nav-item {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 40px;
-    height: 40px;
-    background-color: #f1f3f5;
-    border-radius: 8px; /* Softer corners */
+    
+    /* Fixed smaller dimensions */
+    width: 60px;
+    height: 60px;
+    
+    background-color: #f1f5f9;
+    border-radius: 6px;
     cursor: pointer;
-    font-weight: 500;
-    font-size: 0.9rem;
+    font-weight: 600;
+    
+    /* Smaller font size */
+    font-size: 0.8rem;
+    
     transition: all 0.2s ease;
-    color: #666;
+    color: #64748b;
+    border: 1px solid transparent;
 }
 
+/* ------------------------------------------------ */
+
 .nav-item:hover {
-    background-color: #e2e6ea;
-    transform: scale(1.05);
+    background-color: #e2e8f0;
+    color: var(--primary-color);
+    border-color: var(--secondary-color);
 }
 
 /* Quiz Navigation States */
 .nav-item.active {
     background-color: var(--primary-color);
     color: #fff;
-    box-shadow: 0 4px 10px rgba(78, 84, 200, 0.3);
+    box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.3);
 }
 
 .nav-item.attempted {
-    background-color: #ffd43b; /* Yellow/Amber */
-    color: #000;
+    background-color: var(--accent-color);
+    color: #fff;
 }
 
 .nav-item.correct-nav {
-    background-color: #20c997; /* Teal/Green */
+    background-color: #16a34a;
     color: #fff;
 }
 
 .nav-item.incorrect-nav {
-    background-color: #ff6b6b; /* Soft Red */
+    background-color: #dc2626;
     color: #fff;
 }
 
 .nav-item.unattempted {
-    background-color: #adb5bd; /* Gray */
+    background-color: #cbd5e1;
     color: #fff;
 }
 
 /* Question & Option Styling */
 .question {
     margin-bottom: 30px;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
 }
 
 .option {
     cursor: pointer;
     padding: 1rem 1.25rem;
-    margin-bottom: 0.8rem;
+    margin-bottom: 1rem;
     display: block;
     background-color: white;
-    border: 1px solid #e9ecef;
-    border-radius: 10px;
+    border: 2px solid #f1f5f9;
+    border-radius: 8px;
     font-weight: 500;
-    color: #495057;
+    color: #475569;
     transition: all 0.2s ease;
     position: relative;
-    padding-left: 3rem; /* Space for radio */
+    padding-left: 3.5rem; 
 }
 
 .option:hover {
-    background-color: #f8f9fa;
+    background-color: #eff6ff;
     border-color: var(--secondary-color);
     color: var(--primary-color);
 }
@@ -228,51 +264,32 @@ body {
 /* Custom Radio Button styling inside options */
 .option input[type="radio"] {
     position: absolute;
-    left: 1rem;
+    left: 1.2rem;
     top: 50%;
     transform: translateY(-50%);
     margin: 0;
+    width: 1.2rem;
+    height: 1.2rem;
     accent-color: var(--primary-color);
 }
 
 .option input[type="radio"]:checked + span {
     color: var(--primary-color);
-}
-
-/* Correct/Incorrect Answer States */
-.correct-answer-label {
-    background-color: #d1e7dd !important;
-    border-color: #badbcc !important;
-    color: #0f5132 !important;
-}
-
-.incorrect-answer-label {
-    background-color: #f8d7da !important;
-    border-color: #f5c6cb !important;
-    color: #842029 !important;
-}
-
-.explanation {
-    background-color: #e7f5ff;
-    border-left: 4px solid var(--primary-color);
-    padding: 1rem;
-    border-radius: 4px;
-    margin-top: 1rem;
-    font-size: 0.95rem;
-    color: #495057;
+    font-weight: 700;
 }
 
 /* Footer */
 .main-footer {
-    background: #2d3436;
+    background: #0f172a;
+    color: #94a3b8;
 }
 
 /* Animations */
 .animate-fade-in {
-    animation: fadeIn 0.8s ease-out;
+    animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
