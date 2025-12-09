@@ -57,6 +57,31 @@ body {
     border-radius: 50px;
 }
 
+
+/* Green style for the correct answer */
+.correct-answer-label {
+    background-color: #d4edda !important; /* Light Green */
+    border: 2px solid #28a745 !important; /* Dark Green Border */
+    color: #155724 !important;
+}
+
+/* Red style for the wrong answer selected by user */
+.incorrect-answer-label {
+    background-color: #f8d7da !important; /* Light Red */
+    border: 2px solid #dc3545 !important; /* Dark Red Border */
+    color: #721c24 !important;
+}
+
+/* Make sure the explanation box is styled nicely */
+.explanation {
+    margin-top: 15px;
+    padding: 15px;
+    background-color: #e2e3e5;
+    border-left: 5px solid #007bff;
+    border-radius: 4px;
+}
+
+
 /* Cards (Subject & Chapter) */
 .topic-card, .chapter-card {
     border: none;

@@ -1,10488 +1,3957 @@
 // quizData.js
 
 const allQuizData = {
-    "Murnal Weekely Test":{
-        "Pillar_1A1_HDT_Money_Barter_to_Bitcoins": [
-   {
-    "text": "In medieval India the term Fanam was associated with:",
-    "options": [
-     "Clothing",
-     "Coins",
-     "Jewellery",
-     "Weapons"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Fanam was associated with Coins in Vijaynagar empire."
-   },
-   {
-    "text": "Consider the following statements: \n1. In India, the minimum denomination coin acceptable for transaction is 50 paise.\n2. Coins below 50 paise are not a legal tender for payment.\nWhich of the statements given above is/are correct?",
-    "options": [
-     "1 only",
-     "2 only",
-     "Both 1 and 2",
-     "Neither 1 nor 2"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Statement 1 is correct: As per the order of the Ministry of Finance, the minimum denomination coin acceptable for transaction is 50 paise. Statement 2 is correct: The Government of India withdrawn coins of denomination of 25 paise and below from circulation w.e.f June 30, 2011."
-   },
-   {
-    "text": "The term 'Core Banking Solutions' is sometimes seen in the news. Which of the following statements best describes/describe this term?\n1. It is a network of a bank's branches which enables customers to operate their accounts regardless of where they open their accounts.\n2. It is an effort to increase RBI's control over commercial banks through computerization.\n3. It is a detailed procedure by which a bank with huge non-performing assets is taken over by another bank.",
-    "options": [
-     "1 only",
-     "2 and 3 only",
-     "1 and 3 only",
-     "1, 2 and 3"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Core Banking Solution (CBS) is the networking of bank branches, which allows customers to manage their accounts and use various banking facilities from any part of the world (regardless of where they open their account). Statements 2 and 3 are irrelevant."
-   },
-   {
-    "text": "Find Correct Statement(s):\n1. NPCI helps in promoting financial inclusion in the country.\n2. NPCI has launched RuPay, a card payment scheme.",
-    "options": [
-     "1 only",
-     "2 only",
-     "Both 1 and 2",
-     "Neither 1 nor 2"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Statement 1 is correct: NPCI aims to facilitate affordable payment mechanisms to benefit the common people and help financial inclusion. Statement 2 is correct: NPCI operates the RuPay card network."
-   },
-   {
-    "text": "Find Correct Statement(s):\n1. BHIM app allows the user to transfer money to anyone with a UPI-enabled bank account.\n2. While a chip-pin debit card has four factors of authentication, BHIM app has only two factors of authentication.",
-    "options": [
-     "1 only",
-     "2 only",
-     "Both 1 and 2",
-     "Neither 1 nor 2"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Statement 1 is correct. Statement 2 is not correct: BHIM app has three factor authentication."
-   },
-   {
-    "text": "Which one of the following best describes the term \"Merchant Discount Rate\" sometimes seen in news?",
-    "options": [
-     "The incentive given by a bank to a merchant for accepting payments through debit cards pertaining to that bank.",
-     "The amount paid back by banks to their customers when they use debit cards for financial transactions for purchasing goods or services.",
-     "The charge to a merchant by a bank for accepting payments from his customers through the bank's cards.",
-     "The incentive given by the Government to merchants for promoting digital payments by their customers through Point of Sale (PoS) machines and debit cards."
-    ],
-    "correctAnswer": 2,
-    "explanation": "Merchant Discount Rate (MDR) is a fee charged from a merchant by a bank for accepting payments from customers through credit and debit cards."
-   },
-   {
-    "text": "Find the correct statement(s) about Bitcoin:\n1. It is a decentralized virtual currency.\n2. It is generated through complex computer software systems.\n3. The Reserve Bank of India recognized it as a legal tender in January 2016.",
-    "options": [
-     "1 only",
-     "1 and 2 Only",
-     "2 and 3 Only",
-     "1, 2 and 3"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statement 1 and 2 are correct. Statement 3 is not correct: The Reserve Bank of India (RBI) does not recognize Bitcoin as legal tender."
-   },
-   {
-    "text": "Find correct statement(s) about \"Blockchain Technology\":\n1. It is a public ledger that everyone can inspect, but which no single user controls.\n2. Structure and design of blockchain is such that all the data in it is about cryptocurrency only.\n3. Applications that depend on basic features of blockchain can be developed without anybody's permission.",
-    "options": [
-     "1 only",
-     "2 only",
-     "1 and 2 Only",
-     "1 and 3 only"
-    ],
-    "correctAnswer": 3,
-    "explanation": "Statement 1 is correct: Blockchain is a shared, trusted, public ledger. Statement 2 is not correct: It is not necessary that the structure is about cryptocurrency only. Statement 3 is correct: Applications can be developed without permission."
-   },
-   {
-    "text": "Find correct statements about Non-Fungible Tokens (NFTs):\n1. They enable the digital representation of physical assets.\n2. They are unique cryptographic tokens that exist on a blockchain.\n3. They can be traded or exchanged at equivalency and therefore can be used as a medium of commercial transactions.",
-    "options": [
-     "1 and 2 Only",
-     "2 and 3 Only",
-     "1 and 3 Only",
-     "1, 2 and 3"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Statement 1 and 2 are correct. Statement 3 is not correct: Unlike cryptocurrencies, they cannot be traded or exchanged at equivalency."
-   },
-   {
-    "text": "Consider the following statements:\nStatement 1: In India, the RTGS and NEFT payment systems are owned and operated by National Payment Corporation of India.\nStatement 2: National Payment Corporation of India is an entity promoted by banks.",
-    "options": [
-     "Both statement I and II are correct and II is correct explanation for I",
-     "Both statement I and II are correct and II is not correct explanation for I",
-     "Statement I is correct but statement II is incorrect",
-     "Statement I is incorrect but statement II is correct"
-    ],
-    "correctAnswer": 3,
-    "explanation": "RTGS-NEFT are owned by RBI and NOT NPCI, so Statement 1 is wrong."
-   },
-   {
-    "text": "With reference to the Central Bank digital currencies, consider the following statements:\n1. It is possible to make payments in a digital currency without using US dollar or SWIFT system.\n2. A digital currency can be distributed with a condition programmed into it such as time-frame for spending it.",
-    "options": [
-     "1 only",
-     "2 only",
-     "Both 1 and 2",
-     "Neither 1 nor 2"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Both statements are correct. CBDCs can be used without US Dollar/SWIFT and can be programmable."
-   },
-   {
-    "text": "Which of the following king is associated with the failed experimentation involving token coins?",
-    "options": [
-     "Ghiyasuddin Bin Tughluq",
-     "Muhammad Bin Tughluq",
-     "Firuz Shah Tughluq",
-     "Aurungzeb"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Muhammad Bin Tughluq is associated with the failed experimentation involving token coins."
-   },
-   {
-    "text": "The primary function(s) of money includes:\n1. Medium of exchange\n2. Transfer of Value\n3. Measure of value",
-    "options": [
-     "Only 1 and 2",
-     "Only 1 and 3",
-     "Only 3",
-     "1, 2 and 3"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Measure of value and Medium of exchange are primary functions."
-   },
-   {
-    "text": "On an Indian currency note it is written - 'I promise to pay bearer the sum of 200 rupees'. What is meant by this statement?",
-    "options": [
-     "The Governor of RBI accepts responsibility of protecting holders purchasing power against inflation.",
-     "The Governor of RBI accepts responsibility for exchanging this currency notes with other notes and token coins of equal face value.",
-     "Both 1 and 2",
-     "Neither 1 nor 2"
-    ],
-    "correctAnswer": 1,
-    "explanation": "The Governor of RBI accepts responsibility for exchanging these currency notes with other notes and token coins of equal face value."
-   },
-   {
-    "text": "Which of the following app can help detecting counterfeit notes?",
-    "options": [
-     "MANI App",
-     "BHIM App",
-     "e-RUPI App",
-     "None of the above"
-    ],
-    "correctAnswer": 3,
-    "explanation": "None of the given apps can detect fake currency notes."
-   },
-   {
-    "text": "Find correct statement(s) about RBI's reforms in RTGS:\n1. It can be used for transferring any amount of money between Rs 1 to Rs 100 crore.\n2. RTGS is available on 24/7 basis on all days.\n3. From December 2023 RTGS will be merged with NEFT.",
-    "options": [
-     "Only 1 and 2",
-     "Only 1 and 3",
-     "Only 2",
-     "1, 2 and 3"
-    ],
-    "correctAnswer": 2,
-    "explanation": "RTGS is for large-value transactions, not small-value, so statement 1 is wrong. Statement 2 is correct."
-   },
-   {
-    "text": "RBI has ordered the banks to adopt Positive Pay Mechanism for preventing ___ frauds.",
-    "options": [
-     "Credit Card",
-     "Cheque",
-     "Loan",
-     "Mobile Banking"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Positive Pay Mechanism is associated with preventing Cheque frauds."
-   },
-   {
-    "text": "Which of the following is/are not legal tender(s) in India:\n1. Government Securities (G-Sec) and Treasury Bills\n2. Bonds issued by Public Sector Companies\n3. Rs. 500 and 1000 currency notes of old Mahatma Gandhi series.",
-    "options": [
-     "Only 1 & 2",
-     "Only 2",
-     "Only 3",
-     "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "None of the given options are legal tenders."
-   },
-   {
-    "text": "A one rupee currency note in India is signed by:",
-    "options": [
-     "Governor of RBI",
-     "Finance Minister of the Union Government",
-     "Finance Secretary of the Union Government",
-     "Revenue Secretary of the Union Government"
-    ],
-    "correctAnswer": 2,
-    "explanation": "One rupee note is signed by the Finance Secretary of the Union Government."
-   },
-   {
-    "text": "Card Tokenisation norm of RBI is associated with:",
-    "options": [
-     "Putting an end to the practice of plastic tokens and plastic coins issued by grocery stores",
-     "Putting a ceiling on the MDR charges levied by card companies",
-     "Making the credit and debit card payments more secure",
-     "Increase transparency in the process of clearing bank loan applications"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Card Tokenisation norm of RBI is associated with card safety."
-   },
-   {
-    "text": "National Payment Corporation of India (NPCI) is an example of:",
-    "options": [
-     "Government owned company",
-     "not-for-profit company",
-     "RBI owned company",
-     "statutory organisation"
-    ],
-    "correctAnswer": 1,
-    "explanation": "NPCI is a Not-for-profit company."
-   },
-   {
-    "text": "RBI has banned the use of credit / debit cards with magnetic stripes. Why?\n1. Such cards can be cloned easily.\n2. Such cards run on Mastercard & Visa patented technologies which raises the cost of transactions for ordinary customers.",
-    "options": [
-     "1 only",
-     "Both 1 and 2",
-     "2 only",
-     "Neither 1 nor 2"
-    ],
-    "correctAnswer": 0,
-    "explanation": "The ban is due to the cloning problem associated with magnetic stripes."
-   },
-   {
-    "text": "Find correct statement(s) about Rupay:\n1. It is a digital code to transfer subsidy to poor people.\n2. It is developed and operated by the NPCI.",
-    "options": [
-     "Only 1",
-     "Both 1 and 2",
-     "Only 2",
-     "Neither 1 nor 2"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Rupay is a card payment system, not a code. Statement 2 is right (NPCI)."
-   },
-   {
-    "text": "Find correct statement(s) about the Payments Infrastructure Development Fund:\n1. It is jointly setup by NPCI and NHAI.\n2. It aims to expand the FASTag toll collection mechanism across India.",
-    "options": [
-     "Only 1",
-     "Both 1 and 2",
-     "Only 2",
-     "Neither 1 nor 2"
-    ],
-    "correctAnswer": 3,
-    "explanation": "Developed by RBI and Banks (not NPCI/NHAI) to help merchants adopt digital payment systems (not FASTag specific)."
-   },
-   {
-    "text": "What is the primary function of National Financial Switch?",
-    "options": [
-     "Settlement of sharemarket transactions",
-     "Monitering of cross-broder financial transactions",
-     "Networking of automated teller machines with banks",
-     "Direct Benefit Transfer of Government subsidies"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Primary function is Networking of automated teller machines with banks (ATM Network)."
-   },
-   {
-    "text": "Who among the following has developed BharatQR?",
-    "options": [
-     "Google Pay",
-     "NPCI",
-     "RBI",
-     "IIT Ropar"
-    ],
-    "correctAnswer": 1,
-    "explanation": "NPCI has developed BharatQR."
-   },
-   {
-    "text": "Digital Transactions Ombudsman operates in which of the following organizations?",
-    "options": [
-     "Finance Ministry",
-     "Ministry of Electronics and Information Technology",
-     "Indian Computer Emergency Response Team (CERT-IN)",
-     "Reserve Bank of India"
-    ],
-    "correctAnswer": 3,
-    "explanation": "Digital Transactions Ombudsman operates in the RBI."
-   },
-   {
-    "text": "Smallest Unit of Bitcoin is:",
-    "options": [
-     "Microbitcoin",
-     "Blockchain",
-     "Nanocoin",
-     "Satoshi"
-    ],
-    "correctAnswer": 3,
-    "explanation": "Smallest Unit of Bitcoin is Satoshi."
-   },
-   {
-    "text": "What is e-RUPI?",
-    "options": [
-     "It is an experimental crypto currency developed by RBI.",
-     "It is a digital payment instrument form of an SMS or QR code.",
-     "It is an organisation of electronics Ministry for digital payment.",
-     "None of the above"
-    ],
-    "correctAnswer": 1,
-    "explanation": "e-RUPI is a digital payment instrument form of an SMS or QR code."
-   },
-   {
-    "text": "123PAY initiative is associated with:",
-    "options": [
-     "faster NEFT",
-     "e-RUPI Codes",
-     "Central Bank Digital Currency",
-     "Unified Payment Interface"
-    ],
-    "correctAnswer": 3,
-    "explanation": "123PAY makes it easier to use the UPI money transfer facility on basic phones."
-   },
-   {
-    "text": "Which of the following facility relies on Radio Frequency Identification (RFID) technology?",
-    "options": [
-     "IMPS",
-     "BharatQR Code",
-     "Cryptocurrency",
-     "FASTag"
-    ],
-    "correctAnswer": 3,
-    "explanation": "FASTag uses RFID."
-   },
-   {
-    "text": "Which correctly describes the meaning of legal tender money?",
-    "options": [
-     "The money which is tendered in courts of law to defray the fee of legal cases",
-     "The money which a creditor is under compulsion to accept in settlement of his claims",
-     "The bank money in the form of cheques, drafts, bills of exchange, etc.",
-     "The metallic money in circulation in a country"
-    ],
-    "correctAnswer": 1,
-    "explanation": "The money which a creditor is under compulsion to accept in settlement of claims is termed as legal tender money."
-   },
-   {
-    "text": "How many of the following are allowed to purchase the E-Rupi vouchers?\n1. Central Government\n2. Public Sector Companies\n3. Private Sector Companies\n4. Individual Person",
-    "options": [
-     "only one of these",
-     "only three of these",
-     "only two of these",
-     "All four of these"
-    ],
-    "correctAnswer": 3,
-    "explanation": "RBI permitted all of them to buy E-rupi vouchers."
-   },
-   {
-    "text": "How many of the following framework or rules deal with crypto currency regulation?\n1. Basel Framework\n2. CARF Framework\n3. MICA Framework",
-    "options": [
-     "only one of these",
-     "only two of these",
-     "all three of these",
-     "none of these"
-    ],
-    "correctAnswer": 1,
-    "explanation": "BASEL deals with banking. MICA (EU) and CARF (OECD) deal with crypto."
-   },
-   {
-    "text": "What is the objective of Worldcoin project?",
-    "options": [
-     "UNESCO Exhibition of the ancient coins from important civilisations.",
-     "A project to create unique identity cards for persons by scanning their Iris.",
-     "World Bank project to create a new crypto currency.",
-     "OECD framework to regulate crypto currencies."
-    ],
-    "correctAnswer": 1,
-    "explanation": "Project by ChatGPT Founder to create unique identity cards for persons using iris scan."
-   },
-   {
-    "text": "How many of the following technologies are related to money transfer?\n1. NEFT\n2. RTGS\n3. CDRI\n4. LPSS",
-    "options": [
-     "only one of these",
-     "only three of these",
-     "only two of these",
-     "All four of these"
-    ],
-    "correctAnswer": 1,
-    "explanation": "CDRI is Coalition for Disaster Resilient Infrastructure. The other 3 are money transfer technologies."
-   },
-   {
-    "text": "India has signed LCSS agreement with:",
-    "options": [
-     "Saudi Arabia",
-     "Australia",
-     "Kuwait",
-     "UAE"
-    ],
-    "correctAnswer": 3,
-    "explanation": "RBI and Central Bank of UAE signed agreement for Local Currency Settlement System (LCSS)."
-   },
-   {
-    "text": "UPI-LITE objective is:",
-    "options": [
-     "Allow Indian tourists to use rupee payment while travelling abroad.",
-     "on-device wallet for small value transactions.",
-     "Reduce the energy consumption of digital transactions with the help of Blockchain technology.",
-     "None of the above."
-    ],
-    "correctAnswer": 1,
-    "explanation": "It is an on-device wallet for small value transactions."
-   },
-   {
-    "text": "UPI technology can be used for how many of the following facilities?\n1. Small value money transactions.\n2. Availing overdraft facility.\n3. Getting coins from Coin Vending Machines\n4. Withdrawal of money from ATM",
-    "options": [
-     "only one of these",
-     "only two of these",
-     "only three of these",
-     "All four of these"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All of them are correct."
-   },
-   {
-    "text": "Which of the following characteristics can be attributed to the currency note of Rs.2000 as on 1/sept/2023?\n1. Fiat Money\n2. Legal Tender",
-    "options": [
-     "only 1",
-     "only 2",
-     "both 1 and 2",
-     "neither 1 nor 2"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Both are correct. It was still legal tender."
-   },
-   {
-    "text": "Find correct pairs of Technology and potential application:\n1. RFID: offline payments using UPI.\n2. Near Field Communication (NFC): collection of toll payment in Fastag",
-    "options": [
-     "only 1",
-     "only 2",
-     "both 1 and 2",
-     "neither 1 nor 2"
-    ],
-    "correctAnswer": 3,
-    "explanation": "It is inverse. NFC for offline payment and RFID for Fastag."
-   },
-   {
-    "text": "How many of the following are correct about the TPAP license?\n1. This license needs to be obtained from TRAI.\n2. This license is required for providing Voice-Over Internet protocol (VOIP) facility.\n3. WhatsApp India has a TPAP license as of 2024-January.",
-    "options": [
-     "only one of these",
-     "only two of these",
-     "All three of these",
-     "None of these"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Statement 1 wrong (NPCI gives license). Statement 2 wrong (Required for UPI). Statement 3 right."
-   },
-   {
-    "text": "As of 2024-January, RBI is conducting experimentations of CBDC in how many of the following segments?\n1. Person to Person (P2P)\n2. Person to Merchant (P2M)\n3. Interbank borrowing for short-term loans\n4. Cross Border payments",
-    "options": [
-     "only one of these",
-     "only two of these",
-     "only three of these",
-     "All four of these"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All four are correct."
-   },
-   {
-    "text": "How many of the following features can be attributed to the Center bank digital currency issued by RBI?\n1. User earns savings interest while keeping in the digital wallet.\n2. It is a digital token that represents legal tender.\n3. It is issued under the legal provisions of the Coinage Act.\n4. It offers settlement finality similar to physical cash.",
-    "options": [
-     "only one of these",
-     "only two of these",
-     "only three of these",
-     "All four of these"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statement 2 and 4 are right. Statement 1 wrong (no interest), Statement 3 wrong (RBI Act)."
-   },
-   {
-    "text": "How many of the following programmable features are possible to be embedded inside Indian CBDC?\n1. Its use can be restricted to a particular geographical area.\n2. Its use can be restricted to a particular expiry date.\n3. Its use can be restricted to purchase of a particular product only.\n4. It can be programmed to accumulate savings interest while being inside the wallet.",
-    "options": [
-     "only one of these",
-     "only two of these",
-     "only three of these",
-     "All four of these"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Statement 4 is wrong (no interest). Other 3 are correct."
-   },
-   {
-    "text": "Consider following statements:\nStatement1: Indian CBDC is fungible in nature.\nStatement2: Indian CBDC is designed with the help of Blockchain technology.",
-    "options": [
-     "Both I & II are correct & II is the correct explanation for I",
-     "Both I & II are correct & II is not the correct explanation for I",
-     "I is correct but II is wrong",
-     "I is wrong but II is correct"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Both are right, but II doesn't explain I."
-   },
-   {
-    "text": "What is the maximum storage capacity of UPI-Lite wallet as of 2024-January?",
-    "options": [
-     "₹2000",
-     "₹5000",
-     "₹10,000",
-     "₹20,000"
-    ],
-    "correctAnswer": 0,
-    "explanation": "2000 only."
-   },
-   {
-    "text": "Find Correct pairs(s) of regulations related to cryptocurrency:\n1. MICA regulation is framed by OECD\n2. CARF regulation is framed by EU",
-    "options": [
-     "only 1",
-     "only 2",
-     "both 1 and 2",
-     "neither 1 nor 2"
-    ],
-    "correctAnswer": 3,
-    "explanation": "It is inverse. MICA=EU, CARF=OECD."
-   },
-   {
-    "text": "NACH and ABPS terms sometimes appear in news with respect to:",
-    "options": [
-     "CBDC experiment",
-     "Payment of MGNREGA Workers",
-     "Payment of highway toll",
-     "National Common Mobility Card"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Payment of MGNREGA workers is done via NACH/ABPS."
-   },
-   {
-    "text": "How many of the following are the benefits of using UPI-Lite-X?\n1. Doesn't require PIN\n2. Doesn't require connectivity with a bank server.\n3. Doesn't require storing any money in any e-wallet.",
-    "options": [
-     "only one of these",
-     "only two of these",
-     "All three of these",
-     "None of these"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statements 1 and 2 are right. Statement 3 is wrong (You need to store the money inside the UPI-lite e-wallet)."
-   },
-   {
-    "text": "What is the objective of Credit Card Network Portability Rules by the RBI?",
-    "options": [
-     "To allow Indian tourists to get temporary credit cards in friendly countries.",
-     "To allow foreign tourists to get temporary credit cards in India.",
-     "To allow Indian tourists to pay in rupee currency while using their Indian credit cards in foreign countries.",
-     "None of the above."
-    ],
-    "correctAnswer": 3,
-    "explanation": "Banks/NBFC are required to give CHOICE to customers to select between different credit card networks (e.g. Mastercard, RuPay, Visa)."
-   },
-   {
-    "text": "JAYWAN is the domestic Debit Card of which of the following countries?",
-    "options": [
-     "UAE",
-     "Egypt",
-     "Saudi Arabia",
-     "Nepal"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Jaywan is UAE's domestic card scheme."
-   },
-   {
-    "text": "How many of the following facilities are possible through the use of UPI?\n1. Cash withdrawal from ATM\n2. Cash deposit via machine\n3. Delegated payments via secondary account.\n4. Creation of non-fungible tokens (NFT)",
-    "options": [
-     "Only one",
-     "Only three",
-     "Only two",
-     "All four"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statement 4 is irrelevant. Remaining 3 facilities are possible."
-   },
-   {
-    "text": "Consider the following statements about the Project Nexus launched in 2024:\n1. Its objective is global coordination against the cryptocurrency related frauds and tax-evasions.\n2. FATF (Financial Action Task Force) is the nodal organisation for this project.",
-    "options": [
-     "1 only",
-     "2 only",
-     "Neither 1 nor 2",
-     "Both 1 and 2"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Project Nexus is for cross-border payment (BIS nodal org), not crypto fraud."
-   },
-   {
-    "text": "Suppose, a delivery-boy gets the salary on 25th of every month and therefore he faces a shortage of money to pay the electricity, gas and other bills from 1st to 24th of every month. Then how many of the following instruments can help him?\n1. Credit Card\n2. Debit Card\n3. Prepaid Card\n4. Pre-Sanctioned Credit Line in UPI",
-    "options": [
-     "Only one",
-     "Only three",
-     "Only two",
-     "All four"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Statement 1 and 4 can help get temporary loans. Debit/Prepaid require existing balance."
-   }
-  ]
-    },
-    "Modern History": {
-        "Advent of the Europeans in India": [{
-                "text": "What significant event in 1453 is noted as contributing to the decline of direct contact between Europeans and India?",
+    "Murnal Weekely Test": {
+        "Pillar_1A1_HDT_Money_Barter_to_Bitcoins": [{
+                "text": "In medieval India the term Fanam was associated with:",
                 "options": [
-                    "The discovery of the sea route around the Cape of Good Hope.",
-                    "The fall of Constantinople to the Ottoman Turks.",
-                    "The establishment of the Mughal Empire in India.",
-                    "The beginning of the Renaissance in Europe."
+                    "Clothing",
+                    "Coins",
+                    "Jewellery",
+                    "Weapons"
                 ],
                 "correctAnswer": 1,
-                "explanation": "The fall of Constantinople to the Ottoman Turks in 1453 blocked land routes, reducing European direct contact with India."
+                "explanation": "Fanam was associated with Coins in Vijaynagar empire."
             },
             {
-                "text": "Which Portuguese royal was given the nickname ‘the Navigator’ due to his obsession with finding an ocean route to India?",
+                "text": "Consider the following statements: \n1. In India, the minimum denomination coin acceptable for transaction is 50 paise.\n2. Coins below 50 paise are not a legal tender for payment.\nWhich of the statements given above is/are correct?",
                 "options": [
-                    "Vasco Da Gama",
-                    "Bartholomew Dias",
-                    "Prince Henry",
-                    "Pedro Alvarez Cabral"
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
                 ],
                 "correctAnswer": 2,
-                "explanation": "Prince Henry of Portugal was called 'the Navigator' for his efforts to find sea routes to India."
+                "explanation": "Statement 1 is correct: As per the order of the Ministry of Finance, the minimum denomination coin acceptable for transaction is 50 paise. Statement 2 is correct: The Government of India withdrawn coins of denomination of 25 paise and below from circulation w.e.f June 30, 2011."
             },
             {
-                "text": "The Treaty of Tordesillas, signed in 1494, divided the non-Christian world between which two European powers?",
+                "text": "The term 'Core Banking Solutions' is sometimes seen in the news. Which of the following statements best describes/describe this term?\n1. It is a network of a bank's branches which enables customers to operate their accounts regardless of where they open their accounts.\n2. It is an effort to increase RBI's control over commercial banks through computerization.\n3. It is a detailed procedure by which a bank with huge non-performing assets is taken over by another bank.",
                 "options": [
-                    "England and France",
-                    "Spain and the Netherlands",
-                    "Spain and Portugal",
-                    "Portugal and England"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Treaty of Tordesillas divided new lands between Spain and Portugal."
-            },
-            {
-                "text": "In which year did the Portuguese navigator Vasco Da Gama arrive at Calicut, India?",
-                "options": [
-                    "1487",
-                    "1492",
-                    "1498",
-                    "1500"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Vasco Da Gama reached Calicut, India in 1498."
-            },
-            {
-                "text": "Who was the Hindu ruler of Calicut that welcomed Vasco Da Gama upon his arrival in 1498?",
-                "options": [
-                    "Devaraya",
-                    "Zamorin",
-                    "Achyuta Deva Raya",
-                    "Krishnadevaraya"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Zamorin was the Hindu ruler of Calicut who greeted Vasco Da Gama."
-            },
-            {
-                "text": "Which policy, adopted by Francisco de Almeida, aimed at establishing the Portuguese as a powerful naval force?",
-                "options": [
-                    "Green Water Policy",
-                    "Blue Water Policy",
-                    "Coastal Defence Policy",
-                    "Open Sea Policy"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Blue Water Policy was Almeida's approach to enhancing Portugal's naval dominance."
-            },
-            {
-                "text": "Who is widely regarded as the real founder of Portuguese power in the East?",
-                "options": [
-                    "Francisco de Almeida",
-                    "Vasco Da Gama",
-                    "Pedro Alvarez Cabral",
-                    "Alfonso de Albuquerque"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Alfonso de Albuquerque is known as the true architect of Portuguese power in the East."
-            },
-            {
-                "text": "Which of the following new crops were introduced to India by the Portuguese?",
-                "options": [
-                    "Potato and Tomato",
-                    "Coffee and Rubber",
-                    "Tobacco and Cashew Nut",
-                    "Chilli and Groundnut"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Tobacco and cashew nut were introduced to India by the Portuguese."
-            },
-            {
-                "text": "Nino da Cunha is known for shifting the Portuguese headquarters in India from Cochin to which city?",
-                "options": [
-                    "Daman",
-                    "Diu",
-                    "Goa",
-                    "Surat"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Nino da Cunha moved the Portuguese headquarters from Cochin to Goa."
-            },
-            {
-                "text": "Which English captain's ship, the Hector, reached Surat in 1608, leading to an audience with Emperor Jahangir?",
-                "options": [
-                    "Captain Thomas Best",
-                    "Sir Thomas Roe",
-                    "Captain William Hawkins",
-                    "Francis Drake"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Captain William Hawkins reached Surat in 1608 and met Emperor Jahangir."
-            },
-            {
-                "text": "What rank was Captain William Hawkins appointed to by Emperor Jahangir?",
-                "options": [
-                    "Mansabdar of 100",
-                    "Mansabdar of 200",
-                    "Mansabdar of 300",
-                    "Mansabdar of 400"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Jahangir appointed Hawkins as Mansabdar of 400."
-            },
-            {
-                "text": "Which two English ships, under Captain Best, successfully fought a Portuguese fleet, thereby impressing Emperor Jahangir?",
-                "options": [
-                    "Discovery and Adventure",
-                    "Elizabeth and Mayflower",
-                    "Dragon and Osiander",
-                    "Golden Hind and Pelican"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The English ships Dragon and Osiander defeated the Portuguese fleet."
-            },
-            {
-                "text": "What incident prompted the Mughal siege of Hooghly against the Portuguese, leading to their flight?",
-                "options": [
-                    "Portuguese refusal to pay customs duties.",
-                    "Portuguese seizure of two slave girls belonging to Mumtaz Mahal.",
-                    "Portuguese alliance with local Indian rulers against the Mughals.",
-                    "Portuguese missionary activities causing unrest."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The seizure of two slave girls of Mumtaz Mahal led to the Mughal siege."
-            },
-            {
-                "text": "Who was the first Dutchman to reach Sumatra and Bantam in 1596?",
-                "options": [
-                    "Jan Pieterszoon Coen",
-                    "Cornelis de Houtman",
-                    "Abel Tasman",
-                    "Jacob van Neck"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Cornelis de Houtman was the first Dutchman to reach Sumatra and Bantam."
-            },
-            {
-                "text": "In which year did the Dutch establish their first factory in Masulipatnam?",
-                "options": [
-                    "1596",
-                    "1600",
-                    "1605",
-                    "1610"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The first Dutch factory in Masulipatnam was set up in 1605."
-            },
-            {
-                "text": "The Anglo-Dutch rivalry in India culminated in a crushing blow to Dutch ambitions during which battle in November 1759?",
-                "options": [
-                    "Battle of Plassey",
-                    "Battle of Buxar",
-                    "Battle of Wandiwash",
-                    "Battle of Hooghly"
-                ],
-                "correctAnswer": 3,
-                "explanation": "The Battle of Hooghly in 1759 was a major defeat for Dutch ambitions."
-            },
-            {
-                "text": "In which year did the Dutch East India Company, affected by bankruptcy, sell its possessions to Britain and quit Asia?",
-                "options": [
-                    "1759",
-                    "1780",
-                    "1800",
-                    "1813"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Dutch quit Asia in 1800 after selling their possessions due to bankruptcy."
-            },
-            {
-                "text": "The English victory over which major European naval power in 1588 significantly boosted English maritime confidence?",
-                "options": [
-                    "French Armada",
-                    "Spanish Armada",
-                    "Dutch Fleet",
-                    "Portuguese Navy"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The defeat of the Spanish Armada in 1588 boosted English confidence."
-            },
-            {
-                "text": "In which year did Queen Elizabeth I issue a charter to the 'Merchant Adventurers', formally establishing the English East India Company?",
-                "options": [
-                    "1599",
-                    "1600",
-                    "1608",
-                    "1613"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The English East India Company was established by charter in 1600."
-            },
-            {
-                "text": "Who was sent as an ambassador by King James I of England to the court of Emperor Jahangir?",
-                "options": [
-                    "Captain William Hawkins",
-                    "Captain Thomas Best",
-                    "Sir Thomas Roe",
-                    "Robert Clive"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Sir Thomas Roe was the ambassador of James I to Jahangir."
-            },
-            {
-                "text": "In 1662, Bombay was gifted to King Charles II of England as dowry for his marriage to a princess from which country?",
-                "options": [
-                    "France",
-                    "Spain",
-                    "Portugal",
-                    "Netherlands"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Bombay was given as a dowry to Charles II by Portugal."
-            },
-            {
-                "text": "The English East India Company acquired Bombay on an annual payment from the British Crown in which year?",
-                "options": [
-                    "1632",
-                    "1662",
-                    "1668",
-                    "1698"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The East India Company acquired Bombay from the Crown in 1668."
-            },
-            {
-                "text": "The 'Golden Farman', which granted free trade privileges to the EIC in 1632, was issued by the Sultan of which kingdom?",
-                "options": [
-                    "Bijapur",
-                    "Golconda",
-                    "Delhi",
-                    "Awadh"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Sultan of Golconda issued the Golden Farman in 1632."
-            },
-            {
-                "text": "Who was the first agent and governor of the English East India Company in Bengal?",
-                "options": [
-                    "Job Charnock",
-                    "Alivardi Khan",
-                    "William Hedges",
-                    "Robert Clive"
-                ],
-                "correctAnswer": 2,
-                "explanation": "William Hedges was the first agent and governor of EIC in Bengal."
-            },
-            {
-                "text": "The English purchased the zamindari rights of Sutanuti, Gobindapur, and Kalikata in 1698, which later formed the nucleus of which city?",
-                "options": [
-                    "Madras",
-                    "Bombay",
-                    "Surat",
-                    "Calcutta"
-                ],
-                "correctAnswer": 3,
-                "explanation": "These villages became the nucleus of Calcutta."
-            },
-            {
-                "text": "Which English mission, led by John Surman, obtained the significant Farrukhsiyar’s Farmans in 1715?",
-                "options": [
-                    "Sir Thomas Roe's mission",
-                    "John Surman's mission",
-                    "Captain William Hawkins' mission",
-                    "Robert Clive's mission"
-                ],
-                "correctAnswer": 1,
-                "explanation": "John Surman's mission obtained Farrukhsiyar's Farmans in 1715."
-            },
-            {
-                "text": "The amalgamation of two rival English companies in 1708, forming the 'United Company of Merchants of England Trading to the East Indies', followed which significant event in English history?",
-                "options": [
-                    "The English Civil War",
-                    "The Glorious Revolution of 1688",
-                    "The Act of Union with Scotland",
-                    "The rise of parliamentary supremacy"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The amalgamation followed the Glorious Revolution of 1688."
-            },
-            {
-                "text": "Which European power was the last to establish trading interests in India?",
-                "options": [
-                    "Portuguese",
-                    "Dutch",
-                    "English",
-                    "French"
-                ],
-                "correctAnswer": 3,
-                "explanation": "The French were the last to enter Indian trade."
-            },
-            {
-                "text": "Under whose patronage was the Compagnie des Indes Orientales (French East India Company) founded?",
-                "options": [
-                    "King Henry IV",
-                    "King Louis XIV and his minister Colbert",
-                    "King Louis XIII",
-                    "King Louis XVI"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The French East India Company was established by Louis XIV and Colbert."
-            },
-            {
-                "text": "Which city became the 'Nerve Centre of French Power in India'?",
-                "options": [
-                    "Chandernagore",
-                    "Mahe",
-                    "Pondicherry",
-                    "Karikal"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Pondicherry was the nerve centre of French power."
-            },
-            {
-                "text": "The First Carnatic War (1740-1748) in India was an extension of which major European conflict?",
-                "options": [
-                    "The War of the Spanish Succession",
-                    "The Seven Years' War",
-                    "The Austrian War of Succession",
-                    "The Franco-Prussian War"
-                ],
-                "correctAnswer": 2,
-                "explanation": "It was related to the Austrian War of Succession."
-            },
-            {
-                "text": "What treaty formally concluded the First Carnatic War?",
-                "options": [
-                    "Treaty of Pondicherry",
-                    "Treaty of Aix-La Chapelle",
-                    "Treaty of Paris",
-                    "Treaty of Madras"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Treaty of Aix-La Chapelle ended the First Carnatic War."
-            },
-            {
-                "text": "The Battle of St. Thome, a significant engagement during the First Carnatic War, saw the French forces under Captain Paradise defeat the combined forces of the English and whom?",
-                "options": [
-                    "The Nawab of Arcot",
-                    "The Nizam of Hyderabad",
-                    "The Nawab of Carnatic",
-                    "The Marathas"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The battle was against the English and the Nawab of Carnatic."
-            },
-            {
-                "text": "Which French governor initiated the policy of interfering in internal dynastic disputes of Indian rulers during the Second Carnatic War?",
-                "options": [
-                    "Lenoir",
-                    "Dupleix",
-                    "Dumas",
-                    "Lally"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Dupleix was responsible for this policy."
-            },
-            {
-                "text": "The immediate cause of the Second Carnatic War (1749-1754) was the death of which prominent Indian ruler?",
-                "options": [
-                    "Nizam ul Mulk",
-                    "Anwaruddin",
-                    "Chanda Saheb",
-                    "Nasir Jang"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Anwaruddin's death triggered the Second Carnatic War."
-            },
-            {
-                "text": "During the Second Carnatic War, which British commander is credited with the strategic capture of Arcot?",
-                "options": [
-                    "Sir Eyre Coote",
-                    "Robert Clive",
-                    "Major Stringer Lawrence",
-                    "Lord Wellesley"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Robert Clive captured Arcot during the war."
-            },
-            {
-                "text": "Dupleix is considered the originator of which influential practice in India, later extensively used by the British?",
-                "options": [
-                    "Permanent Settlement",
-                    "Ryotwari System",
-                    "Subsidiary Alliance",
-                    "Mahalwari System"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Subsidiary Alliance system originated with Dupleix."
-            },
-            {
-                "text": "The Third Carnatic War (1758-1763) was primarily a theatre for which larger European conflict?",
-                "options": [
-                    "The War of the Austrian Succession",
-                    "The Seven Years' War",
-                    "The American War of Independence",
-                    "The French Revolutionary Wars"
-                ],
-                "correctAnswer": 1,
-                "explanation": "It was the Indian theatre of the Seven Years' War."
-            },
-            {
-                "text": "The decisive Battle of Wandiwash in 1760 established the supremacy of which European power in India?",
-                "options": [
-                    "French",
-                    "Dutch",
-                    "English",
-                    "Portuguese"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Battle of Wandiwash established British supremacy."
-            },
-            {
-                "text": "Who was the French commander defeated by the English at the Battle of Wandiwash?",
-                "options": [
-                    "Marquis de Bussy-Castelnau",
-                    "Count Thomas Arthur de Lally",
-                    "François Martin",
-                    "General Perron"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Count de Lally led the French at Wandiwash."
-            },
-            {
-                "text": "Which treaty officially brought an end to the Third Carnatic War?",
-                "options": [
-                    "Treaty of Pondicherry",
-                    "Treaty of Aix-La Chapelle",
-                    "Treaty of Peace of Paris",
-                    "Treaty of Seringapatam"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Treaty of Peace of Paris (1763) ended the war."
-            },
-            {
-                "text": "What was a significant advantage the English East India Company held over its French counterpart?",
-                "options": [
-                    "The English company received more direct state support.",
-                    "The English company was primarily a private enterprise, fostering flexibility.",
-                    "The French company neglected its commercial interests.",
-                    "The English company had a less efficient navy."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The private structure of the English company fostered flexibility in trade and management."
-            },
-            {
-                "text": "Control over which three strategic locations significantly contributed to British success against other European powers in India?",
-                "options": [
-                    "Goa, Daman, Diu",
-                    "Surat, Masulipatnam, Pondicherry",
-                    "Calcutta, Bombay, Madras",
-                    "Cochin, Chinsura, Chandernagore"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Control of Calcutta, Bombay, and Madras was key to British success."
-            },
-            {
-                "text": "In which year was the Danish East India Company established?",
-                "options": [
-                    "1600",
-                    "1616",
-                    "1620",
-                    "1642"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Danish East India Company was established in 1616."
-            },
-            {
-                "text": "For what activities were the Danes primarily known in India, rather than for commerce?",
-                "options": [
-                    "Military conquests",
-                    "Industrial development",
-                    "Missionary activities",
-                    "Agricultural reforms"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Danes were mainly known for missionary work in India."
-            },
-            {
-                "text": "How did the Industrial Revolution contribute to the English success against other European powers in India?",
-                "options": [
-                    "It provided a stable political environment.",
-                    "It led to the invention of new machines, including superior military technology.",
-                    "It encouraged religious zeal among the English.",
-                    "It focused English attention away from overseas trade."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Industrial Revolution led to superior English technology and arms."
-            },
-            {
-                "text": "A key reason for English success was their stable government with efficient monarchs. How did this contrast with the situation in India?",
-                "options": [
-                    "Indian states also had stable governments with efficient rulers.",
-                    "Indian rulers were frequently engaged in battles of succession.",
-                    "European powers generally lacked stable governments.",
-                    "Political stability in Europe had no bearing on success in India."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Frequent succession disputes in Indian states contrasted with England's stability."
-            },
-            {
-                "text": "What financial method did the British effectively use to fund their wars, giving them an advantage over other European powers?",
-                "options": [
-                    "Relying solely on plunder from conquered territories.",
-                    "Utilising debt markets.",
-                    "Imposing heavy direct taxes on their home population.",
-                    "Receiving large subsidies from other European allies."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The British used debt markets to finance their military operations."
-            },
-            {
-                "text": "The Anglo-Dutch compromise in 1667 saw the British agreeing to withdraw all their claims on which region?",
-                "options": [
-                    "India",
-                    "Sri Lanka",
-                    "Indonesia",
-                    "Malaysia"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The British dropped all claims on Indonesia in the 1667 compromise."
-            },
-            {
-                "text": "Which Jesuit priest was present at Emperor Akbar's court during the first mission in 1580?",
-                "options": [
-                    "Father Jerome Xavier",
-                    "Father Emanuel Pinheiro",
-                    "Rodolfo Aquaviva",
-                    "Father Antoine de La Baume"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Rodolfo Aquaviva was at Akbar's court in the first mission."
-            }
-        ],
-        "Expansion and Consolidation of British Power in India": [{
-                "text": "Which of the following years is considered by some historians as the beginning of the British period in India, marking the start of the Anglo-French struggle for supremacy?",
-                "options": [
-                    "1757",
-                    "1761",
-                    "1740",
-                    "1765"
-                ],
-                "correctAnswer": 2,
-                "explanation": "1740 is considered by some historians as marking the beginning of the British period, initiating the Anglo-French struggle for supremacy."
-            },
-            {
-                "text": "What was the primary reason for the English East India Company's significant commercial interest in Bengal?",
-                "options": [
-                    "Bengal's strategic location for naval operations.",
-                    "The availability of a large number of skilled artisans.",
-                    "Approximately 60 per cent of British imports from Asia consisted of goods from Bengal.",
-                    "The presence of a weak Nawab facilitating easy trade."
-                ],
-                "correctAnswer": 2,
-                "explanation": "A major part of British imports from Asia were from Bengal, making it commercially significant."
-            },
-            {
-                "text": "The 'Black Hole Tragedy', an incident debated by historians, is associated with which Nawab of Bengal?",
-                "options": [
-                    "Alivardi Khan",
-                    "Mir Jafar",
-                    "Mir Kasim",
-                    "Siraj-ud-daula"
-                ],
-                "correctAnswer": 3,
-                "explanation": "The 'Black Hole Tragedy' is associated with Siraj-ud-daula."
-            },
-            {
-                "text": "Which of the following was NOT a challenge faced by Siraj-ud-daula on the eve of the Battle of Plassey?",
-                "options": [
-                    "A hostile aunt, Ghasiti Begum",
-                    "A rival cousin, Shaukat Jang",
-                    "A rebellious commander, Mir Jafar",
-                    "The strong support from the Maratha Confederacy"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Siraj-ud-daula did not have strong support from the Maratha Confederacy; this option is NOT a challenge he faced."
-            },
-            {
-                "text": "The English victory in the Battle of Plassey (June 23, 1757) was significantly influenced by a secret alliance forged by Robert Clive. Which of the following was NOT a part of this alliance?",
-                "options": [
-                    "Mir Jafar",
-                    "Jagat Seth",
-                    "Ram Narayan",
-                    "Omichand"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Ram Narayan was not part of the secret alliance forged by Clive."
-            },
-            {
-                "text": "According to the Treaty of 1760, which districts were ceded by Mir Kasim to the English East India Company?",
-                "options": [
-                    "Dhaka, Murshidabad, and Patna",
-                    "Burdwan, Midnapur, and Chittagong",
-                    "Hooghly, Balasore, and Kasimbazar",
-                    "Allahabad, Kara, and Banaras"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Mir Kasim ceded Burdwan, Midnapur, and Chittagong."
-            },
-            {
-                "text": "The Battle of Buxar (October 22, 1764) saw the defeat of a confederacy against the English. This confederacy included Mir Kasim, Shuja-ud-daulah (Nawab of Awadh), and whom else?",
-                "options": [
-                    "The Nizam of Hyderabad",
-                    "The Maratha Peshwa",
-                    "The Mughal Emperor, Shah Alam II",
-                    "The Holkar of Indore"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The third in the confederacy was the Mughal Emperor, Shah Alam II."
-            },
-            {
-                "text": "Who abolished the Dual Government in Bengal in 1772, which had been introduced by Robert Clive?",
-                "options": [
-                    "Lord Cornwallis",
-                    "Warren Hastings",
-                    "Lord Wellesley",
-                    "Lord Dalhousie"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Warren Hastings abolished the Dual Government in Bengal."
-            },
-            {
-                "text": "The Treaty of Allahabad, signed after the Battle of Buxar, stipulated that Shuja-ud-Daula would surrender Allahabad and Kara to which Mughal Emperor?",
-                "options": [
-                    "Alamgir II",
-                    "Bahadur Shah II",
-                    "Farrukhsiyar",
-                    "Shah Alam II"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Shah Alam II received Allahabad and Kara according to the Treaty of Allahabad."
-            },
-            {
-                "text": "Which Indian state emerged as a formidable power in the late 18th century under the leadership of Haidar Ali and Tipu Sultan?",
-                "options": [
-                    "Awadh",
-                    "Mysore",
-                    "Bengal",
-                    "Punjab"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Mysore became a formidable power under Haidar Ali and Tipu Sultan."
-            },
-            {
-                "text": "Haidar Ali set up an arms factory at Dindigul with the help of which European power?",
-                "options": [
-                    "The Dutch",
-                    "The Portuguese",
-                    "The French",
-                    "The Danes"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Haidar Ali received French assistance for the arms factory at Dindigul."
-            },
-            {
-                "text": "The Treaty of Madras (1769) concluded which Anglo-Mysore War?",
-                "options": [
-                    "First Anglo-Mysore War",
-                    "Second Anglo-Mysore War",
-                    "Third Anglo-Mysore War",
-                    "Fourth Anglo-Mysore War"
+                    "1 only",
+                    "2 and 3 only",
+                    "1 and 3 only",
+                    "1, 2 and 3"
                 ],
                 "correctAnswer": 0,
-                "explanation": "The Treaty of Madras concluded the First Anglo-Mysore War."
+                "explanation": "Core Banking Solution (CBS) is the networking of bank branches, which allows customers to manage their accounts and use various banking facilities from any part of the world (regardless of where they open their account). Statements 2 and 3 are irrelevant."
             },
             {
-                "text": "The English attempt to capture Mahe was considered a direct challenge by Haidar Ali and contributed to the outbreak of which conflict?",
+                "text": "Find Correct Statement(s):\n1. NPCI helps in promoting financial inclusion in the country.\n2. NPCI has launched RuPay, a card payment scheme.",
                 "options": [
-                    "First Anglo-Mysore War",
-                    "Second Anglo-Mysore War",
-                    "Third Anglo-Mysore War",
-                    "Fourth Anglo-Mysore War"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The attempt to capture Mahe contributed to the Second Anglo-Mysore War."
-            },
-            {
-                "text": "Which treaty concluded the Second Anglo-Mysore War (1780-84)?",
-                "options": [
-                    "Treaty of Seringapatam",
-                    "Treaty of Pondicherry",
-                    "Treaty of Mangalore",
-                    "Treaty of Salbai"
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
                 ],
                 "correctAnswer": 2,
-                "explanation": "Treaty of Mangalore marked the end of the Second Anglo-Mysore War."
+                "explanation": "Statement 1 is correct: NPCI aims to facilitate affordable payment mechanisms to benefit the common people and help financial inclusion. Statement 2 is correct: NPCI operates the RuPay card network."
             },
             {
-                "text": "In which year did Tipu Sultan declare himself Sultan, following the death of the Hindu ruler of the Wodeyar dynasty?",
+                "text": "Find Correct Statement(s):\n1. BHIM app allows the user to transfer money to anyone with a UPI-enabled bank account.\n2. While a chip-pin debit card has four factors of authentication, BHIM app has only two factors of authentication.",
                 "options": [
-                    "1792",
-                    "1796",
-                    "1799",
-                    "1801"
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": 0,
+                "explanation": "Statement 1 is correct. Statement 2 is not correct: BHIM app has three factor authentication."
+            },
+            {
+                "text": "Which one of the following best describes the term \"Merchant Discount Rate\" sometimes seen in news?",
+                "options": [
+                    "The incentive given by a bank to a merchant for accepting payments through debit cards pertaining to that bank.",
+                    "The amount paid back by banks to their customers when they use debit cards for financial transactions for purchasing goods or services.",
+                    "The charge to a merchant by a bank for accepting payments from his customers through the bank's cards.",
+                    "The incentive given by the Government to merchants for promoting digital payments by their customers through Point of Sale (PoS) machines and debit cards."
+                ],
+                "correctAnswer": 2,
+                "explanation": "Merchant Discount Rate (MDR) is a fee charged from a merchant by a bank for accepting payments from customers through credit and debit cards."
+            },
+            {
+                "text": "Find the correct statement(s) about Bitcoin:\n1. It is a decentralized virtual currency.\n2. It is generated through complex computer software systems.\n3. The Reserve Bank of India recognized it as a legal tender in January 2016.",
+                "options": [
+                    "1 only",
+                    "1 and 2 Only",
+                    "2 and 3 Only",
+                    "1, 2 and 3"
                 ],
                 "correctAnswer": 1,
-                "explanation": "Tipu Sultan proclaimed himself Sultan in 1796."
+                "explanation": "Statement 1 and 2 are correct. Statement 3 is not correct: The Reserve Bank of India (RBI) does not recognize Bitcoin as legal tender."
             },
             {
-                "text": "The Fourth Anglo-Mysore War culminated in the fall of Seringapatam and the death of Tipu Sultan. Which British Governor-General was concerned about Tipu’s growing friendship with the French and aimed at annihilating his independent existence?",
+                "text": "Find correct statement(s) about \"Blockchain Technology\":\n1. It is a public ledger that everyone can inspect, but which no single user controls.\n2. Structure and design of blockchain is such that all the data in it is about cryptocurrency only.\n3. Applications that depend on basic features of blockchain can be developed without anybody's permission.",
                 "options": [
-                    "Lord Cornwallis",
-                    "Lord Wellesley",
-                    "Warren Hastings",
-                    "Lord Dalhousie"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Lord Wellesley was determined to end Tipu Sultan's independence."
-            },
-            {
-                "text": "Which of the following Maratha families was NOT among the prominent ones that emerged after Bajirao I's confederacy?",
-                "options": [
-                    "Gaekwad of Baroda",
-                    "Bhonsle of Nagpur",
-                    "Sindhia of Gwalior",
-                    "Rana of Udaipur"
+                    "1 only",
+                    "2 only",
+                    "1 and 2 Only",
+                    "1 and 3 only"
                 ],
                 "correctAnswer": 3,
-                "explanation": "Rana of Udaipur was not among the major Maratha confederacies."
+                "explanation": "Statement 1 is correct: Blockchain is a shared, trusted, public ledger. Statement 2 is not correct: It is not necessary that the structure is about cryptocurrency only. Statement 3 is correct: Applications can be developed without permission."
             },
             {
-                "text": "The First Anglo-Maratha War was concluded by which treaty?",
+                "text": "Find correct statements about Non-Fungible Tokens (NFTs):\n1. They enable the digital representation of physical assets.\n2. They are unique cryptographic tokens that exist on a blockchain.\n3. They can be traded or exchanged at equivalency and therefore can be used as a medium of commercial transactions.",
                 "options": [
-                    "Treaty of Bassein",
-                    "Treaty of Poona",
-                    "Treaty of Salbai",
-                    "Treaty of Purandhar"
+                    "1 and 2 Only",
+                    "2 and 3 Only",
+                    "1 and 3 Only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 2,
-                "explanation": "The Treaty of Salbai concluded the First Anglo-Maratha War."
+                "correctAnswer": 0,
+                "explanation": "Statement 1 and 2 are correct. Statement 3 is not correct: Unlike cryptocurrencies, they cannot be traded or exchanged at equivalency."
             },
             {
-                "text": "After the death of Peshwa Madhavrao Narayan, who became the Peshwa, leading to events that triggered the Second Anglo-Maratha War?",
+                "text": "Consider the following statements:\nStatement 1: In India, the RTGS and NEFT payment systems are owned and operated by National Payment Corporation of India.\nStatement 2: National Payment Corporation of India is an entity promoted by banks.",
                 "options": [
-                    "Raghunathrao",
-                    "Nana Phadnavis",
-                    "Bajirao II",
-                    "Mahadji Sindhia"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Bajirao II became Peshwa after Madhavrao Narayan."
-            },
-            {
-                "text": "The Treaty of Bassein (1802) was signed between the English and which Maratha leader?",
-                "options": [
-                    "Jaswantrao Holkar",
-                    "Bajirao II",
-                    "Daulat Rao Sindhia",
-                    "Raghunathrao"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Bajirao II signed the Treaty of Bassein with the English."
-            },
-            {
-                "text": "The Pindaris were mercenaries attached to which Indian army, whose actions were seen as a transgression of Maratha sovereignty and contributed to the Third Anglo-Maratha War?",
-                "options": [
-                    "Mughal",
-                    "Sikh",
-                    "Maratha",
-                    "Mysore"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Pindaris were associated with the Marathas."
-            },
-            {
-                "text": "Which of the following reasons is cited for the Marathas' loss to the English?",
-                "options": [
-                    "Lack of a strong financial backup.",
-                    "Superiority of Maratha military system.",
-                    "Progressive Maratha outlook.",
-                    "Inept leadership."
+                    "Both statement I and II are correct and II is correct explanation for I",
+                    "Both statement I and II are correct and II is not correct explanation for I",
+                    "Statement I is correct but statement II is incorrect",
+                    "Statement I is incorrect but statement II is correct"
                 ],
                 "correctAnswer": 3,
-                "explanation": "The Marathas' inept leadership was a major reason for their defeat."
+                "explanation": "RTGS-NEFT are owned by RBI and NOT NPCI, so Statement 1 is wrong."
             },
             {
-                "text": "Which Baluch tribe, under Mir Fath Ali Khan, established complete hold over Sindh in 1783, prior to the British conquest?",
+                "text": "With reference to the Central Bank digital currencies, consider the following statements:\n1. It is possible to make payments in a digital currency without using US dollar or SWIFT system.\n2. A digital currency can be distributed with a condition programmed into it such as time-frame for spending it.",
                 "options": [
-                    "Kallora",
-                    "Talpuras",
-                    "Bugti",
-                    "Marri"
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": 2,
+                "explanation": "Both statements are correct. CBDCs can be used without US Dollar/SWIFT and can be programmable."
+            },
+            {
+                "text": "Which of the following king is associated with the failed experimentation involving token coins?",
+                "options": [
+                    "Ghiyasuddin Bin Tughluq",
+                    "Muhammad Bin Tughluq",
+                    "Firuz Shah Tughluq",
+                    "Aurungzeb"
                 ],
                 "correctAnswer": 1,
-                "explanation": "The Talpuras established dominance in Sindh under Mir Fath Ali Khan."
+                "explanation": "Muhammad Bin Tughluq is associated with the failed experimentation involving token coins."
             },
             {
-                "text": "The British decision to invade Afghanistan under Lord Auckland, leading to the First Anglo-Afghan War, was part of which policy?",
+                "text": "The primary function(s) of money includes:\n1. Medium of exchange\n2. Transfer of Value\n3. Measure of value",
                 "options": [
-                    "Policy of Ring-Fence",
-                    "Policy of Masterly Inactivity",
-                    "Forward Policy",
-                    "Policy of Proud Reserve"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The policy was known as the 'Forward Policy.'"
-            },
-            {
-                "text": "What was the primary objective of Lord Wellesley's efforts to revive commercial relations with Sindh?",
-                "options": [
-                    "To secure new markets for British goods.",
-                    "To counteract the alliance of the French, Tipu Sultan, and Shah Zaman.",
-                    "To gain access to the Indus River for irrigation projects.",
-                    "To establish a direct trade route to Persia."
+                    "Only 1 and 2",
+                    "Only 1 and 3",
+                    "Only 3",
+                    "1, 2 and 3"
                 ],
                 "correctAnswer": 1,
-                "explanation": "He wanted to counteract the alliances threatening British interests."
+                "explanation": "Measure of value and Medium of exchange are primary functions."
             },
             {
-                "text": "Who was appointed the first governor of Sindh after its merger into the British Empire in 1843?",
+                "text": "On an Indian currency note it is written - 'I promise to pay bearer the sum of 200 rupees'. What is meant by this statement?",
                 "options": [
-                    "Lord Ellenborough",
-                    "William Bentinck",
-                    "Charles Napier",
-                    "Lord Auckland"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Charles Napier was appointed the first governor of Sindh."
-            },
-            {
-                "text": "The Sikh confederacies were known by what term, meaning 'equal or alike' in Arabic?",
-                "options": [
-                    "Sardari",
-                    "Jathas",
-                    "Misls",
-                    "Khalsa"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Sikh confederacies were called 'Misls.'"
-            },
-            {
-                "text": "Ranjit Singh belonged to which Misl?",
-                "options": [
-                    "Ahluwaliya",
-                    "Bhangi",
-                    "Sukarchakiya",
-                    "Kanhaiya"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Ranjit Singh belonged to the Sukarchakiya Misl."
-            },
-            {
-                "text": "The Treaty of Amritsar (April 25, 1809) was signed between the Company and which Sikh leader?",
-                "options": [
-                    "Banda Bahadur",
-                    "Daleep Singh",
-                    "Ranjit Singh",
-                    "Lal Singh"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Ranjit Singh signed the Treaty of Amritsar."
-            },
-            {
-                "text": "What was the immediate cause of the Second Anglo-Sikh War (1848-49)?",
-                "options": [
-                    "The annexation of Awadh by Lord Dalhousie.",
-                    "Mulraj's revolt and the murder of two English officers in Multan.",
-                    "The British demand for higher revenue from Punjab.",
-                    "The Sikh army's invasion of British territories."
+                    "The Governor of RBI accepts responsibility of protecting holders purchasing power against inflation.",
+                    "The Governor of RBI accepts responsibility for exchanging this currency notes with other notes and token coins of equal face value.",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
                 ],
                 "correctAnswer": 1,
-                "explanation": "Mulraj's revolt and the murder of British officers sparked the war."
+                "explanation": "The Governor of RBI accepts responsibility for exchanging these currency notes with other notes and token coins of equal face value."
             },
             {
-                "text": "Which battle was NOT fought during the Second Anglo-Sikh War?",
+                "text": "Which of the following app can help detecting counterfeit notes?",
                 "options": [
-                    "Battle of Ramnagar",
-                    "Battle of Chillhanwala",
-                    "Battle of Gujarat",
-                    "Battle of Plassey"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Battle of Plassey was not a battle of the Anglo-Sikh War."
-            },
-            {
-                "text": "Who became the first chief commissioner of Punjab after its annexation in 1849?",
-                "options": [
-                    "Lord Dalhousie",
-                    "John Lawrence",
-                    "Sir Hugh Rose",
-                    "Lord Canning"
-                ],
-                "correctAnswer": 1,
-                "explanation": "John Lawrence became the first chief commissioner."
-            },
-            {
-                "text": "Which British Governor-General followed the policy of 'Ring-Fence', aiming at creating buffer zones to defend the Company’s frontiers?",
-                "options": [
-                    "Robert Clive",
-                    "Warren Hastings",
-                    "Lord Cornwallis",
-                    "Lord Wellesley"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Warren Hastings led the 'Ring-Fence' policy."
-            },
-            {
-                "text": "The Subsidiary Alliance system, used by Lord Wellesley, compelled the allying Indian state's ruler to accept what primary condition?",
-                "options": [
-                    "Ceding all their territories to the British.",
-                    "Disbanding their entire army.",
-                    "Permanent stationing of a British force within their territory and paying a subsidy.",
-                    "Converting to Christianity."
-                ],
-                "correctAnswer": 2,
-                "explanation": "It required acceptance of a British force and maintenance subsidy."
-            },
-            {
-                "text": "Which Indian state was the first to fall into the protection trap of the subsidiary alliance in 1765?",
-                "options": [
-                    "Hyderabad",
-                    "Mysore",
-                    "Awadh",
-                    "Tanjore"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Awadh was the first to sign the alliance."
-            },
-            {
-                "text": "Which of the following was the last Maratha confederation to accept the Subsidiary Alliance in 1818?",
-                "options": [
-                    "The Peshwa",
-                    "The Bhonsle Raja of Berar",
-                    "The Sindhia",
-                    "The Holkars"
-                ],
-                "correctAnswer": 3,
-                "explanation": "The Holkars were the last to come under the Subsidiary Alliance."
-            },
-            {
-                "text": "The Doctrine of Lapse, although primarily attributed to Lord Dalhousie, was not originated by him. Which Indian ruler had previously annexed feudatory principalities on account of 'lapse'?",
-                "options": [
-                    "Haidar Ali",
-                    "Tipu Sultan",
-                    "Maharaja Ranjit Singh",
-                    "Siraj-ud-daula"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Maharaja Ranjit Singh annexed principalities on grounds of lapse before Dalhousie."
-            },
-            {
-                "text": "Which of the following states was annexed by Lord Dalhousie in 1856 on grounds of misgovernment, deposing its Nawab Wajid Ali Shah?",
-                "options": [
-                    "Satara",
-                    "Jhansi",
-                    "Nagpur",
-                    "Awadh"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Awadh was annexed citing misrule."
-            },
-            {
-                "text": "The Treaty of Sagauli concluded the conflict between the English and which mountain state?",
-                "options": [
-                    "Bhutan",
-                    "Nepal",
-                    "Tibet",
-                    "Burma"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Treaty of Sagauli was with Nepal."
-            },
-            {
-                "text": "What was the main cause for the First Burma War (1824-26)?",
-                "options": [
-                    "British desire to control the tea plantations.",
-                    "Burmese expansion westwards and threat to Assam.",
-                    "French influence in Burma.",
-                    "Dispute over border trade routes."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The primary cause was Burmese expansion threatening Assam."
-            },
-            {
-                "text": "The Treaty of Yandabo (1826) established peace after which Anglo-Burmese War?",
-                "options": [
-                    "First Burma War",
-                    "Second Burma War",
-                    "Third Burma War",
+                    "MANI App",
+                    "BHIM App",
+                    "e-RUPI App",
                     "None of the above"
                 ],
-                "correctAnswer": 0,
-                "explanation": "The Treaty of Yandabo ended the First Anglo-Burmese War."
+                "correctAnswer": 3,
+                "explanation": "None of the given apps can detect fake currency notes."
             },
             {
-                "text": "Which British Governor-General ordered the invasion and final annexation of upper Burma in 1885?",
+                "text": "Find correct statement(s) about RBI's reforms in RTGS:\n1. It can be used for transferring any amount of money between Rs 1 to Rs 100 crore.\n2. RTGS is available on 24/7 basis on all days.\n3. From December 2023 RTGS will be merged with NEFT.",
                 "options": [
-                    "Lord Dalhousie",
-                    "Lord Lytton",
-                    "Lord Curzon",
-                    "Lord Dufferin"
+                    "Only 1 and 2",
+                    "Only 1 and 3",
+                    "Only 2",
+                    "1, 2 and 3"
+                ],
+                "correctAnswer": 2,
+                "explanation": "RTGS is for large-value transactions, not small-value, so statement 1 is wrong. Statement 2 is correct."
+            },
+            {
+                "text": "RBI has ordered the banks to adopt Positive Pay Mechanism for preventing ___ frauds.",
+                "options": [
+                    "Credit Card",
+                    "Cheque",
+                    "Loan",
+                    "Mobile Banking"
+                ],
+                "correctAnswer": 1,
+                "explanation": "Positive Pay Mechanism is associated with preventing Cheque frauds."
+            },
+            {
+                "text": "Which of the following is/are not legal tender(s) in India:\n1. Government Securities (G-Sec) and Treasury Bills\n2. Bonds issued by Public Sector Companies\n3. Rs. 500 and 1000 currency notes of old Mahatma Gandhi series.",
+                "options": [
+                    "Only 1 & 2",
+                    "Only 2",
+                    "Only 3",
+                    "1, 2 and 3"
                 ],
                 "correctAnswer": 3,
-                "explanation": "Lord Dufferin ordered the final annexation of Burma."
+                "explanation": "None of the given options are legal tenders."
             },
             {
-                "text": "Burma was separated from India in which year to weaken the link between Burmese nationalists and the Indian National Congress?",
+                "text": "A one rupee currency note in India is signed by:",
                 "options": [
-                    "1919",
-                    "1935",
-                    "1942",
-                    "1948"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Burma was separated from India by the Government of India Act, 1935."
-            },
-            {
-                "text": "Colonel Younghusband pushed his way into Lhasa in August 1904, leading to the Treaty of Lhasa. This event relates to which Anglo-relationship?",
-                "options": [
-                    "Anglo-Nepalese",
-                    "Anglo-Bhutanese",
-                    "Anglo-Tibetan",
-                    "Anglo-Afghan"
+                    "Governor of RBI",
+                    "Finance Minister of the Union Government",
+                    "Finance Secretary of the Union Government",
+                    "Revenue Secretary of the Union Government"
                 ],
                 "correctAnswer": 2,
-                "explanation": "The event was part of the Anglo-Tibetan relationship."
+                "explanation": "One rupee note is signed by the Finance Secretary of the Union Government."
             },
             {
-                "text": "The Durand Line was drawn as a boundary between Afghan and British territories as a result of British India's contact with which tribes after the annexation of Punjab?",
+                "text": "Card Tokenisation norm of RBI is associated with:",
                 "options": [
-                    "Gorkhas and Khasis",
-                    "Pathans and Baluch",
-                    "Naga and Mizo",
-                    "Santhals and Bhils"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Durand Line separates Afghan Pashtun and Baluch tribes from British India."
-            },
-            {
-                "text": "Lord Curzon's policy in the North-West Frontier, between 1899 and 1905, was known as:",
-                "options": [
-                    "Forward Policy",
-                    "Masterly Inactivity",
-                    "Withdrawal and Concentration",
-                    "Policy of Proud Reserve"
+                    "Putting an end to the practice of plastic tokens and plastic coins issued by grocery stores",
+                    "Putting a ceiling on the MDR charges levied by card companies",
+                    "Making the credit and debit card payments more secure",
+                    "Increase transparency in the process of clearing bank loan applications"
                 ],
                 "correctAnswer": 2,
-                "explanation": "Lord Curzon followed the policy of Withdrawal and Concentration."
+                "explanation": "Card Tokenisation norm of RBI is associated with card safety."
             },
             {
-                "text": "Which of the following was NOT a reason for the English success and French failure in India?",
+                "text": "National Payment Corporation of India (NPCI) is an example of:",
                 "options": [
-                    "English Company was a private enterprise.",
-                    "Superiority of French commanders.",
-                    "English control of strategic locations like Calcutta, Bombay, and Madras.",
-                    "British never neglected their commercial interests."
+                    "Government owned company",
+                    "not-for-profit company",
+                    "RBI owned company",
+                    "statutory organisation"
                 ],
                 "correctAnswer": 1,
-                "explanation": "Superiority of French commanders is NOT a reason for English success."
+                "explanation": "NPCI is a Not-for-profit company."
             },
             {
-                "text": "The phrase \"Our acquisition of India was made blindly. Nothing great that has ever been done by Englishman was done so unintentionally and so accidentally, as the conquest of India\" is attributed to which historian?",
+                "text": "RBI has banned the use of credit / debit cards with magnetic stripes. Why?\n1. Such cards can be cloned easily.\n2. Such cards run on Mastercard & Visa patented technologies which raises the cost of transactions for ordinary customers.",
                 "options": [
-                    "James Mill",
-                    "John Seeley",
-                    "Vincent Smith",
-                    "Mountstuart Elphinstone"
+                    "1 only",
+                    "Both 1 and 2",
+                    "2 only",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": 0,
+                "explanation": "The ban is due to the cloning problem associated with magnetic stripes."
+            },
+            {
+                "text": "Find correct statement(s) about Rupay:\n1. It is a digital code to transfer subsidy to poor people.\n2. It is developed and operated by the NPCI.",
+                "options": [
+                    "Only 1",
+                    "Both 1 and 2",
+                    "Only 2",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": 2,
+                "explanation": "Rupay is a card payment system, not a code. Statement 2 is right (NPCI)."
+            },
+            {
+                "text": "Find correct statement(s) about the Payments Infrastructure Development Fund:\n1. It is jointly setup by NPCI and NHAI.\n2. It aims to expand the FASTag toll collection mechanism across India.",
+                "options": [
+                    "Only 1",
+                    "Both 1 and 2",
+                    "Only 2",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": 3,
+                "explanation": "Developed by RBI and Banks (not NPCI/NHAI) to help merchants adopt digital payment systems (not FASTag specific)."
+            },
+            {
+                "text": "What is the primary function of National Financial Switch?",
+                "options": [
+                    "Settlement of sharemarket transactions",
+                    "Monitering of cross-broder financial transactions",
+                    "Networking of automated teller machines with banks",
+                    "Direct Benefit Transfer of Government subsidies"
+                ],
+                "correctAnswer": 2,
+                "explanation": "Primary function is Networking of automated teller machines with banks (ATM Network)."
+            },
+            {
+                "text": "Who among the following has developed BharatQR?",
+                "options": [
+                    "Google Pay",
+                    "NPCI",
+                    "RBI",
+                    "IIT Ropar"
                 ],
                 "correctAnswer": 1,
-                "explanation": "The phrase is attributed to John Seeley."
+                "explanation": "NPCI has developed BharatQR."
             },
             {
-                "text": "What was the name of the treaty signed by the English, Sikhs, and Shah Shuja in 1838 as part of the Forward Policy of Auckland concerning Afghanistan?",
+                "text": "Digital Transactions Ombudsman operates in which of the following organizations?",
                 "options": [
-                    "Treaty of Lahore",
-                    "Treaty of Gandamak",
-                    "Tripartite Treaty",
-                    "Treaty of Amritsar"
+                    "Finance Ministry",
+                    "Ministry of Electronics and Information Technology",
+                    "Indian Computer Emergency Response Team (CERT-IN)",
+                    "Reserve Bank of India"
                 ],
-                "correctAnswer": 2,
-                "explanation": "The 1838 agreement is known as the Tripartite Treaty."
+                "correctAnswer": 3,
+                "explanation": "Digital Transactions Ombudsman operates in the RBI."
             },
             {
-                "text": "Which British policy towards princely states changed significantly after the Revolt of 1857?",
+                "text": "Smallest Unit of Bitcoin is:",
                 "options": [
-                    "The policy of subsidisation.",
-                    "The policy of non-interference.",
-                    "The policy of annexation.",
-                    "The policy of subordinate isolation."
+                    "Microbitcoin",
+                    "Blockchain",
+                    "Nanocoin",
+                    "Satoshi"
+                ],
+                "correctAnswer": 3,
+                "explanation": "Smallest Unit of Bitcoin is Satoshi."
+            },
+            {
+                "text": "What is e-RUPI?",
+                "options": [
+                    "It is an experimental crypto currency developed by RBI.",
+                    "It is a digital payment instrument form of an SMS or QR code.",
+                    "It is an organisation of electronics Ministry for digital payment.",
+                    "None of the above"
+                ],
+                "correctAnswer": 1,
+                "explanation": "e-RUPI is a digital payment instrument form of an SMS or QR code."
+            },
+            {
+                "text": "123PAY initiative is associated with:",
+                "options": [
+                    "faster NEFT",
+                    "e-RUPI Codes",
+                    "Central Bank Digital Currency",
+                    "Unified Payment Interface"
+                ],
+                "correctAnswer": 3,
+                "explanation": "123PAY makes it easier to use the UPI money transfer facility on basic phones."
+            },
+            {
+                "text": "Which of the following facility relies on Radio Frequency Identification (RFID) technology?",
+                "options": [
+                    "IMPS",
+                    "BharatQR Code",
+                    "Cryptocurrency",
+                    "FASTag"
+                ],
+                "correctAnswer": 3,
+                "explanation": "FASTag uses RFID."
+            },
+            {
+                "text": "Which correctly describes the meaning of legal tender money?",
+                "options": [
+                    "The money which is tendered in courts of law to defray the fee of legal cases",
+                    "The money which a creditor is under compulsion to accept in settlement of his claims",
+                    "The bank money in the form of cheques, drafts, bills of exchange, etc.",
+                    "The metallic money in circulation in a country"
+                ],
+                "correctAnswer": 1,
+                "explanation": "The money which a creditor is under compulsion to accept in settlement of claims is termed as legal tender money."
+            },
+            {
+                "text": "How many of the following are allowed to purchase the E-Rupi vouchers?\n1. Central Government\n2. Public Sector Companies\n3. Private Sector Companies\n4. Individual Person",
+                "options": [
+                    "only one of these",
+                    "only three of these",
+                    "only two of these",
+                    "All four of these"
+                ],
+                "correctAnswer": 3,
+                "explanation": "RBI permitted all of them to buy E-rupi vouchers."
+            },
+            {
+                "text": "How many of the following framework or rules deal with crypto currency regulation?\n1. Basel Framework\n2. CARF Framework\n3. MICA Framework",
+                "options": [
+                    "only one of these",
+                    "only two of these",
+                    "all three of these",
+                    "none of these"
+                ],
+                "correctAnswer": 1,
+                "explanation": "BASEL deals with banking. MICA (EU) and CARF (OECD) deal with crypto."
+            },
+            {
+                "text": "What is the objective of Worldcoin project?",
+                "options": [
+                    "UNESCO Exhibition of the ancient coins from important civilisations.",
+                    "A project to create unique identity cards for persons by scanning their Iris.",
+                    "World Bank project to create a new crypto currency.",
+                    "OECD framework to regulate crypto currencies."
+                ],
+                "correctAnswer": 1,
+                "explanation": "Project by ChatGPT Founder to create unique identity cards for persons using iris scan."
+            },
+            {
+                "text": "How many of the following technologies are related to money transfer?\n1. NEFT\n2. RTGS\n3. CDRI\n4. LPSS",
+                "options": [
+                    "only one of these",
+                    "only three of these",
+                    "only two of these",
+                    "All four of these"
+                ],
+                "correctAnswer": 1,
+                "explanation": "CDRI is Coalition for Disaster Resilient Infrastructure. The other 3 are money transfer technologies."
+            },
+            {
+                "text": "India has signed LCSS agreement with:",
+                "options": [
+                    "Saudi Arabia",
+                    "Australia",
+                    "Kuwait",
+                    "UAE"
+                ],
+                "correctAnswer": 3,
+                "explanation": "RBI and Central Bank of UAE signed agreement for Local Currency Settlement System (LCSS)."
+            },
+            {
+                "text": "UPI-LITE objective is:",
+                "options": [
+                    "Allow Indian tourists to use rupee payment while travelling abroad.",
+                    "on-device wallet for small value transactions.",
+                    "Reduce the energy consumption of digital transactions with the help of Blockchain technology.",
+                    "None of the above."
+                ],
+                "correctAnswer": 1,
+                "explanation": "It is an on-device wallet for small value transactions."
+            },
+            {
+                "text": "UPI technology can be used for how many of the following facilities?\n1. Small value money transactions.\n2. Availing overdraft facility.\n3. Getting coins from Coin Vending Machines\n4. Withdrawal of money from ATM",
+                "options": [
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "All four of these"
+                ],
+                "correctAnswer": 3,
+                "explanation": "All of them are correct."
+            },
+            {
+                "text": "Which of the following characteristics can be attributed to the currency note of Rs.2000 as on 1/sept/2023?\n1. Fiat Money\n2. Legal Tender",
+                "options": [
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
                 ],
                 "correctAnswer": 2,
-                "explanation": "The policy of annexation ended or changed after 1857."
+                "explanation": "Both are correct. It was still legal tender."
+            },
+            {
+                "text": "Find correct pairs of Technology and potential application:\n1. RFID: offline payments using UPI.\n2. Near Field Communication (NFC): collection of toll payment in Fastag",
+                "options": [
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
+                ],
+                "correctAnswer": 3,
+                "explanation": "It is inverse. NFC for offline payment and RFID for Fastag."
+            },
+            {
+                "text": "How many of the following are correct about the TPAP license?\n1. This license needs to be obtained from TRAI.\n2. This license is required for providing Voice-Over Internet protocol (VOIP) facility.\n3. WhatsApp India has a TPAP license as of 2024-January.",
+                "options": [
+                    "only one of these",
+                    "only two of these",
+                    "All three of these",
+                    "None of these"
+                ],
+                "correctAnswer": 0,
+                "explanation": "Statement 1 wrong (NPCI gives license). Statement 2 wrong (Required for UPI). Statement 3 right."
+            },
+            {
+                "text": "As of 2024-January, RBI is conducting experimentations of CBDC in how many of the following segments?\n1. Person to Person (P2P)\n2. Person to Merchant (P2M)\n3. Interbank borrowing for short-term loans\n4. Cross Border payments",
+                "options": [
+                    "only one of these",
+                    "only two of these",
+                    "only three of these ",
+                    "All four of these"
+                ],
+                "correctAnswer": 3,
+                "explanation": "All four are correct."
+            },
+            {
+                "text": "How many of the following features can be attributed to the Center bank digital currency issued by RBI?\n1. User earns savings interest while keeping in the digital wallet.\n2. It is a digital token that represents legal tender.\n3. It is issued under the legal provisions of the Coinage Act.\n4. It offers settlement finality similar to physical cash.",
+                "options": [
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "All four of these"
+                ],
+                "correctAnswer": 1,
+                "explanation": "Statement 2 and 4 are right. Statement 1 wrong (no interest), Statement 3 wrong (RBI Act)."
+            },
+            {
+                "text": "How many of the following programmable features are possible to be embedded inside Indian CBDC?\n1. Its use can be restricted to a particular geographical area.\n2. Its use can be restricted to a particular expiry date.\n3. Its use can be restricted to purchase of a particular product only.\n4. It can be programmed to accumulate savings interest while being inside the wallet.",
+                "options": [
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "All four of these"
+                ],
+                "correctAnswer": 2,
+                "explanation": "Statement 4 is wrong (no interest). Other 3 are correct."
+            },
+            {
+                "text": "Consider following statements:\nStatement1: Indian CBDC is fungible in nature.\nStatement2: Indian CBDC is designed with the help of Blockchain technology.",
+                "options": [
+                    "Both I & II are correct & II is the correct explanation for I",
+                    "Both I & II are correct & II is not the correct explanation for I",
+                    "I is correct but II is wrong",
+                    "I is wrong but II is correct"
+                ],
+                "correctAnswer": 1,
+                "explanation": "Both are right, but II doesn't explain I."
+            },
+            {
+                "text": "What is the maximum storage capacity of UPI-Lite wallet as of 2024-January?",
+                "options": [
+                    "₹2000",
+                    "₹5000",
+                    "₹10,000",
+                    "₹20,000"
+                ],
+                "correctAnswer": 0,
+                "explanation": "2000 only."
+            },
+            {
+                "text": "Find Correct pairs(s) of regulations related to cryptocurrency:\n1. MICA regulation is framed by OECD\n2. CARF regulation is framed by EU",
+                "options": [
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
+                ],
+                "correctAnswer": 3,
+                "explanation": "It is inverse. MICA=EU, CARF=OECD."
+            },
+            {
+                "text": "NACH and ABPS terms sometimes appear in news with respect to:",
+                "options": [
+                    "CBDC experiment",
+                    "Payment of MGNREGA Workers",
+                    "Payment of highway toll",
+                    "National Common Mobility Card"
+                ],
+                "correctAnswer": 1,
+                "explanation": "Payment of MGNREGA workers is done via NACH/ABPS."
+            },
+            {
+                "text": "How many of the following are the benefits of using UPI-Lite-X?\n1. Doesn't require PIN\n2. Doesn't require connectivity with a bank server.\n3. Doesn't require storing any money in any e-wallet.",
+                "options": [
+                    "only one of these",
+                    "only two of these",
+                    "All three of these",
+                    "None of these"
+                ],
+                "correctAnswer": 1,
+                "explanation": "Statements 1 and 2 are right. Statement 3 is wrong (You need to store the money inside the UPI-lite e-wallet)."
+            },
+            {
+                "text": "What is the objective of Credit Card Network Portability Rules by the RBI?",
+                "options": [
+                    "To allow Indian tourists to get temporary credit cards in friendly countries.",
+                    "To allow foreign tourists to get temporary credit cards in India.",
+                    "To allow Indian tourists to pay in rupee currency while using their Indian credit cards in foreign countries.",
+                    "None of the above."
+                ],
+                "correctAnswer": 3,
+                "explanation": "Banks/NBFC are required to give CHOICE to customers to select between different credit card networks (e.g. Mastercard, RuPay, Visa)."
+            },
+            {
+                "text": "JAYWAN is the domestic Debit Card of which of the following countries?",
+                "options": [
+                    "UAE",
+                    "Egypt",
+                    "Saudi Arabia",
+                    "Nepal"
+                ],
+                "correctAnswer": 0,
+                "explanation": "Jaywan is UAE's domestic card scheme."
+            },
+            {
+                "text": "How many of the following facilities are possible through the use of UPI?\n1. Cash withdrawal from ATM\n2. Cash deposit via machine\n3. Delegated payments via secondary account.\n4. Creation of non-fungible tokens (NFT)",
+                "options": [
+                    "Only one",
+                    "Only three",
+                    "Only two",
+                    "All four"
+                ],
+                "correctAnswer": 1,
+                "explanation": "Statement 4 is irrelevant. Remaining 3 facilities are possible."
+            },
+            {
+                "text": "Consider the following statements about the Project Nexus launched in 2024:\n1. Its objective is global coordination against the cryptocurrency related frauds and tax-evasions.\n2. FATF (Financial Action Task Force) is the nodal organisation for this project.",
+                "options": [
+                    "1 only",
+                    "2 only",
+                    "Neither 1 nor 2",
+                    "Both 1 and 2"
+                ],
+                "correctAnswer": 2,
+                "explanation": "Project Nexus is for cross-border payment (BIS nodal org), not crypto fraud."
+            },
+            {
+                "text": "Suppose, a delivery-boy gets the salary on 25th of every month and therefore he faces a shortage of money to pay the electricity, gas and other bills from 1st to 24th of every month. Then how many of the following instruments can help him?\n1. Credit Card\n2. Debit Card\n3. Prepaid Card\n4. Pre-Sanctioned Credit Line in UPI",
+                "options": [
+                    "Only one",
+                    "Only three",
+                    "Only two",
+                    "All four"
+                ],
+                "correctAnswer": 2,
+                "explanation": "Statement 1 and 4 can help get temporary loans. Debit/Prepaid require existing balance."
             }
         ],
-        "People’s Resistance Against British Before 1857": [{
-                "text": " why did people often choose to take up arms against the British before 1857?",
+        "Pillar_1A2_Monetary Policy": [{
+                "text": "If you withdraw Rs. 1 lakh in cash from your Demand Deposit Account at your bank, the immediate effect on aggregate money supply in the economy will be",
                 "options": [
-                    "To expand their territorial control and establish new kingdoms.",
-                    "Due to the British promoting indigenous industries.",
-                    "Because colonial law and judiciary safeguarded government interests, leaving no other options.",
-                    "In response to the British encouraging local self-governance."
+                    "to reduce it by 1,00,000",
+                    "to increase it by 1,00,000",
+                    "to increase it by more than 1,00,000",
+                    "to leave it unchanged"
                 ],
-                "correctAnswer": 2,
-                "explanation": "People resorted to arms because colonial law and judiciary safeguarded British interests, leaving no other option."
+                "correctAnswer": "to leave it unchanged",
+                "explanation": "Money supply consists of total currency circulating in the public plus the demand deposits of the public with banks. When cash is withdrawn, it moves from demand deposits to currency with the public, so the aggregate remains unchanged."
             },
             {
-                "text": "Which of the following was a causative factor for people's uprisings against the British before 1857?",
+                "text": "Money Multiplier in an economy increases with?",
                 "options": [
-                    "Introduction of progressive social reforms",
-                    "Stable land revenue settlements and reduced taxes",
-                    "Expansion of revenue administration over tribal lands and loss of their hold over agricultural land",
-                    "Promotion of local self-sufficiency and indigenous industry"
+                    "Increase in the cash reserve ratio",
+                    "Increase in the banking habit of the population",
+                    "Increase in the statutory liquidity ratio",
+                    "Increase in the population of the country"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Loss of tribal land and expansion of revenue administration angered people and triggered uprisings."
+                "correctAnswer": "Increase in the banking habit of the population",
+                "explanation": "Money Multiplier in an economy increases with the increase in banking habits of the population. An increase in CRR or SLR decreases the money multiplier."
             },
             {
-                "text": "Who were the typical leaders of civil uprisings?",
+                "text": "Cash Reserve Ratio refers to",
                 "options": [
-                    "Newly emerging middle-class intellectuals",
-                    "Deposed native rulers or their descendants, former zamindars, landlords, and poligars",
-                    "Christian missionaries and foreign merchants",
-                    "Industrial capitalists and urban workers"
+                    "the share of Net Demand and time liabilities (NDTL) that banks have to hold as liquid assets",
+                    "the share of NDTL that banks have to hold as balances with the RBI",
+                    "the share of Net demand and time liabilities that banks have to hold as part of their cash reserves",
+                    "the ratio of cash holding to reserves of banks"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Civil uprisings were often led by traditional elites like deposed rulers, zamindars, and poligars."
+                "correctAnswer": "the share of NDTL that banks have to hold as balances with the RBI",
+                "explanation": "Cash Reserve Ratio (CRR) is the average daily balance that a scheduled commercial bank is required to maintain with the RBI as a share of its Net Demand and Time Liabilities (NDTL)."
             },
             {
-                "text": "What major cause of civil uprisings involved the ego of traditional zamindars and poligars being hurt?",
+                "text": "Find correct statements about SLR: \n1. To meet SLR, Commercial banks must keep cash only. \n2. SLR is maintained by the banks themselves. \n3. SLR restricts the banks leverage in pumping more money into the economy.",
                 "options": [
-                    "Introduction of advanced British education",
-                    "Preservation of traditional social hierarchies",
-                    "Rapid changes in economy, administration, and land revenue systems",
-                    "Encouragement of cultural exchange programs"
+                    "1, 2 and 3",
+                    "1 and 3 Only",
+                    "2 and 3 Only",
+                    "2 only"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Rapid changes by the British hurt the ego and position of traditional elites."
+                "correctAnswer": "2 and 3 Only",
+                "explanation": "Statement 1 is not correct because SLR is maintained in safe and liquid assets such as unencumbered Government Securities, cash, and gold, not just cash. Statements 2 and 3 are correct."
             },
             {
-                "text": "The Sanyasi Revolt or Fakir Rebellion (1763-1800) was primarily a response to which of the following?",
+                "text": "When RBI reduces SLR by 50 basis points which is likely to happen?",
                 "options": [
-                    "Imposition of a new trade tariff",
-                    "The disastrous famine of 1770 and harsh British economic order",
-                    "British interference in religious rituals",
-                    "Military conscription policies"
+                    "India's GDP growth rate increases drastically.",
+                    "Foreign Institutional Investors may bring more capital into our country.",
+                    "Scheduled Commercial Banks may cut their lending rates.",
+                    "It may drastically reduce the liquidity to the banking system."
                 ],
-                "correctAnswer": 1,
-                "explanation": "The devastating famine of 1770 and economic exploitation by the British led to the Sanyasi/Fakir Rebellion."
+                "correctAnswer": "Scheduled Commercial Banks may cut their lending rates.",
+                "explanation": "If the RBI reduces the SLR, commercial banks are likely to cut their lending rates with the objective of increasing the bank's lending capacity."
             },
             {
-                "text": "Who was credited with subduing the Sanyasi Revolt after prolonged action?",
+                "text": "India Government Bond Yields are influenced by which of the following? \n1. Actions of the United States Federal Reserve. \n2. Actions of the Reserve Bank of India. \n3. Inflation and short-term interest rates.",
                 "options": [
-                    "Lord Cornwallis",
-                    "Robert Clive",
-                    "Warren Hastings",
-                    "William Bentinck"
+                    "1 and 2 Only",
+                    "3 Only",
+                    "2 only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Warren Hastings is credited with quelling the Sanyasi Revolt."
+                "correctAnswer": "1, 2 and 3",
+                "explanation": "Bond yields are influenced by all three factors: actions of the US Federal Reserve, actions of the RBI, and inflation/short-term interest rates."
             },
             {
-                "text": "Which female figure's participation is specifically recognised in the early resistances against the British during the Sanyasi Revolt?",
+                "text": "Which would result in an increase in money supply in the economy? \n1. Purchase of G-Sec from the public by the Central Bank. \n2. Deposit of currency in commercial banks by the public. \n3. Borrowing by the government from the Central Bank. \n4. Sale of government securities to the public by the Central Bank.",
                 "options": [
-                    "Rani Lakshmibai",
-                    "Devi Chaudhurani",
-                    "Begum Hazrat Mahal",
-                    "Ahilyabai Holkar"
+                    "1 only",
+                    "2 and 4 only",
+                    "1 and 3 Only",
+                    "2, 3 and 4 only"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Devi Chaudhurani was a prominent female figure in the early anti-British resistance."
+                "correctAnswer": "1 and 3 Only",
+                "explanation": "Purchase of government securities by the central bank and borrowing by the government from the Central Bank both lead to an increase in the money supply."
             },
             {
-                "text": "The revolt in Midnapore and Dhalbhum (1766-74) was triggered by a change in which British policy?",
+                "text": "Which of them is/are part of Monetary Policy? \n1. Bank rate \n2. Open market operations \n3. Public debt \n4. Public Revenue",
                 "options": [
-                    "Introduction of a new land revenue system in 1772",
-                    "Restriction on traditional hunting rights",
-                    "Abolition of the local judiciary",
-                    "Imposition of direct British administration in 1760"
+                    "1 only",
+                    "2, 3 and 4 only",
+                    "1 and 2 Only",
+                    "1, 3 and 4 only"
                 ],
-                "correctAnswer": 0,
-                "explanation": "The introduction of a new land revenue system in 1772 led to the revolt in Midnapore and Dhalbhum."
+                "correctAnswer": "1 and 2 Only",
+                "explanation": "Bank Rate and Open Market Operations are instruments of monetary policy. Public debt and revenue are fiscal policy tools."
             },
             {
-                "text": "The Revolt of Moamarias (1769-99) posed a significant challenge to the authority of which kingdom?",
+                "text": "Priority Sector Lending by banks in India constitutes loans to",
                 "options": [
-                    "Mughal Empire",
-                    "Maratha Confederacy",
-                    "Ahom kings of Assam",
-                    "Mysore Sultanate"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Ahom kings of Assam faced the brunt of the Moamarias Revolt."
-            },
-            {
-                "text": "What was the main issue that led to the Civil Uprisings in Gorakhpur, Basti, and Bahraich in 1781?",
-                "options": [
-                    "Introduction of a new legal code",
-                    "Major Alexander Hannay's oppression and excessive revenue demand as an izaradar",
-                    "British attempt to establish permanent military garrisons",
-                    "Religious conversion attempts by Christian missionaries"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The oppressive izaradar Major Alexander Hannay's revenue extortion led to these uprisings."
-            },
-            {
-                "text": "The Raja of Vizianagaram's revolt in 1794 was primarily due to the East India Company's demand for:",
-                "options": [
-                    "Military assistance",
-                    "Control over trade routes",
-                    "A tribute of three lakh rupees",
-                    "Cession of coastal territories"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The East India Company's demand of three lakh rupees tribute sparked the revolt."
-            },
-            {
-                "text": "Dhundia Wagh, a local Maratha leader, organized an anti-British force in Bednur (1799-1800) and was ultimately killed fighting against whose forces?",
-                "options": [
-                    "Robert Clive",
-                    "Lord Cornwallis",
-                    "Lord Wellesley",
-                    "Warren Hastings"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Dhundia Wagh was killed by Lord Wellesley's forces."
-            },
-            {
-                "text": "The \"Massacre of Benares\" (1799) involved the killing of a British resident by which Nawab of Awadh?",
-                "options": [
-                    "Saadat Ali Khan II",
-                    "Wazir Ali Khan",
-                    "Asaf-ud-Daula",
-                    "Shuja-ud-Daulah"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Wazir Ali Khan was involved in the 'Massacre of Benares'."
-            },
-            {
-                "text": "Who was the zamindar of Gumsur who openly rebelled and defied public authorities by refusing to pay revenues in 1800?",
-                "options": [
-                    "Dhananjaya Bhanj",
-                    "Strikara Bhanj",
-                    "Jlani Deo",
-                    "Jagannath Deo"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Strikara Bhanj was the rebel zamindar of Gumsur."
-            },
-            {
-                "text": "The Poligars' Revolt (1795-1805) in South India was a stiff resistance to the British after the Nawab of Arcot gave control of which provinces to the East India Company?",
-                "options": [
-                    "Carnatic and Mysore",
-                    "Tinneveli and the Carnatic Provinces",
-                    "Malabar and Konkan",
-                    "Coromandel and Northern Circars"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Tinneveli and Carnatic provinces' handover to EIC led to the Poligars' Revolt."
-            },
-            {
-                "text": "Who led the insurrection of the Poligars of Panjalankurichi between 1795 and 1799?",
-                "options": [
-                    "Diwan Velu Thampi",
-                    "Kattabomman Nayakan",
-                    "Narayan Deo",
-                    "Umaji Naik"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Kattabomman Nayakan led the Poligar insurrection at Panjalankurichi."
-            },
-            {
-                "text": "What was 'Kaval', an ancient institution of Tamil Nadu, whose collection fees became a point of rebellion for poligars in North Arcot (1803-05)?",
-                "options": [
-                    "A land tax",
-                    "A watch or protection fee",
-                    "A temple donation",
-                    "A trade tariff"
-                ],
-                "correctAnswer": 1,
-                "explanation": "'Kaval' was a watch or protection fee, collection of which led to rebellion."
-            },
-            {
-                "text": "The Jats of Haryana fortified themselves in which town during their rebellion in 1809?",
-                "options": [
-                    "Delhi",
-                    "Bhiwani",
-                    "Panipat",
-                    "Rohtak"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Jats prepared defences in Bhiwani during their rebellion."
-            },
-            {
-                "text": "Diwan Velu Thampi's Revolt (1808-1809) in Travancore was sparked by the East India Company's harsh conditions and the meddling of whom in the state's internal affairs?",
-                "options": [
-                    "The Governor-General",
-                    "The British Resident",
-                    "The Commander-in-Chief",
-                    "The Secretary of State"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The intervention of the British Resident in Travancore's internal affairs sparked the revolt."
-            },
-            {
-                "text": "The Kundara Proclamation, calling for armed resistance against the British, was associated with which revolt?",
-                "options": [
-                    "Paika Rebellion",
-                    "Poligars' Revolt",
-                    "Diwan Velu Thampi's Revolt",
-                    "Kutch Rebellion"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Diwan Velu Thampi's Kundara Proclamation called for armed resistance."
-            },
-            {
-                "text": "Lakshaman Dawa and Darya Singh were killadars (fort commanders) involved in disturbances in which region (1808-12)?",
-                "options": [
-                    "Gujarat",
-                    "Bundelkhand",
-                    "Awadh",
-                    "Odisha"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Lakshaman Dawa and Darya Singh were involved in Bundelkhand disturbances."
-            },
-            {
-                "text": "The Kutch or Cutch Rebellion (1816-1832) saw Maharaja Bharamal II raising Arab and African troops for what purpose?",
-                "options": [
-                    "To suppress local banditry",
-                    "To remove the British interference in internal feuds",
-                    "To expand his territory",
-                    "To aid the British in their wars"
-                ],
-                "correctAnswer": 1,
-                "explanation": "He raised troops to end British interference in internal feuds."
-            },
-            {
-                "text": "What was the immediate cause of the Rising at Bareilly in 1816?",
-                "options": [
-                    "Forced cultivation of indigo",
-                    "Imposition of the police tax",
-                    "Religious conversion attempts",
-                    "Dispossession of zamindars"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The imposition of police tax triggered the Bareilly rising."
-            },
-            {
-                "text": "Dayaram, a talukdar of several villages in Aligarh district, led an upsurge in Hathras (1817) due to which main reason?",
-                "options": [
-                    "British support for rival talukdars",
-                    "Introduction of a new judicial system",
-                    "Progressively increasing high revenues",
-                    "Prohibition of certain trade activities"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Dayaram rebelled against progressively increasing revenue demands."
-            },
-            {
-                "text": "The Paika Rebellion (1817) took place in which region of India?",
-                "options": [
-                    "Bengal",
-                    "Maharashtra",
-                    "Odisha",
-                    "Kerala"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Paika Rebellion occurred in Odisha."
-            },
-            {
-                "text": "The Paikas of Odisha traditionally enjoyed what kind of land tenure for their military service and policing functions?",
-                "options": [
-                    "Commercial lease",
-                    "Rent-free land tenures",
-                    "Sharecropping agreements",
-                    "Fixed-term tenancy"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Paikas held rent-free tenures for their service."
-            },
-            {
-                "text": "Who was the military chief of the Raja of Khurda who led a sundry army of Paikas in the 1817 rebellion?",
-                "options": [
-                    "Gomdhar Konwar",
-                    "Bakshi Jagabandhu Bidyadhar",
-                    "Buddho Bhagat",
-                    "Chakra Bisoi"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Bakshi Jagabandhu led the Paika Rebellion."
-            },
-            {
-                "text": "The Waghera Rising (1818-1820) in Okha Mandal was driven by resentment against alien rule and exactions from which local power, supported by the British?",
-                "options": [
-                    "The Nizam of Hyderabad",
-                    "The Gaekwad of Baroda",
-                    "The Peshwa of Poona",
-                    "The Holkars of Indore"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The rising was mainly against the Gaekwad of Baroda, backed by the British."
-            },
-            {
-                "text": "The Ahom Revolt (1828) in Assam was a protest against the British attempt to:",
-                "options": [
-                    "Introduce new religious practices",
-                    "Impose a new tax on tea plantations",
-                    "Incorporate Ahom territories into the Company’s dominion",
-                    "Disarm the local Ahom militia"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The revolt opposed incorporation of Ahom territories into Company dominion."
-            },
-            {
-                "text": "Who was the Ahom prince who rebelled against the British in 1828?",
-                "options": [
-                    "Madari Pasi",
-                    "Gomdhar Konwar",
-                    "Ram Singh",
-                    "Syed Ahmed"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gomdhar Konwar was the rebelling Ahom prince."
-            },
-            {
-                "text": "The Surat Salt Agitations (1840s) were a public protest against:",
-                "options": [
-                    "British monopoly over opium trade",
-                    "Government's decision to raise the salt duty",
-                    "Restrictions on cotton textile exports",
-                    "Introduction of new currency"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Agitations were against increase of salt duty by the British."
-            },
-            {
-                "text": "The Gadkaris, a hereditary military class, revolted in Kolhapur and Savantvadi due to:",
-                "options": [
-                    "Religious persecution",
-                    "Facing the spectre of unemployment and dismantling of their forts",
-                    "Forced agricultural labor",
-                    "Suppression of their traditional festivals"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gadkaris revolted due to risk of unemployment and fort destruction."
-            },
-            {
-                "text": "The Wahabi Movement, inspired by Abdul Wahab of Saudi Arabia and Shah Waliullah of Delhi, chose which location as a base for operations for declaring jihad?",
-                "options": [
-                    "Delhi",
-                    "Calcutta",
-                    "Sithana in the north-western tribal belt",
-                    "Bareilly"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Sithana, in the north-western tribal belt, was their operational base."
-            },
-            {
-                "text": "After 1849, the Wahabis' attacks primarily targeted whom?",
-                "options": [
-                    "Sikh kingdom of Punjab",
-                    "Indigenous rulers",
-                    "The English dominion in India",
-                    "Portuguese settlements"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Post-1849, Wahabis targeted the English dominion and British authorities."
-            },
-            {
-                "text": "The Kuka Movement, founded in 1840 by Bhagat Jawahar Mal, originated in which region?",
-                "options": [
-                    "Eastern Bengal",
-                    "Malabar",
-                    "Western Punjab",
-                    "Chotanagpur"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Kuka movement started in Western Punjab."
-            },
-            {
-                "text": "The Narkelberia Uprising saw Mir Nithar Ali (Titu Mir) inspire Muslim tenants in West Bengal to rise against:",
-                "options": [
-                    "Sikh rulers",
-                    "Landlords who imposed a beard-tax and British indigo planters",
-                    "Maratha chieftains",
-                    "Mughal tax collectors"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Mir Nithar Ali led an uprising against landlords (beard-tax) and indigo planters."
-            },
-            {
-                "text": "The Pagal Panthis, a semi-religious group mainly constituting the Hajong and Garo tribes, refused to pay which of the following?",
-                "options": [
-                    "Trade tariffs",
-                    "Pilgrim tax",
-                    "Rent above a certain limit",
-                    "Police tax"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Pagal Panthis refused rent above a set limit."
-            },
-            {
-                "text": "Dadu Mian (1819-60) was a prominent leader of which peasant movement, known for organizing a paramilitary force and establishing its own law courts?",
-                "options": [
-                    "Moplah Uprisings",
-                    "Faraizi Revolt",
-                    "Wahabi Movement",
-                    "Kuka Movement"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Dadu Mian was a key figure in the Faraizi movement."
-            },
-            {
-                "text": "The Moplah Uprisings in Malabar were primarily caused by grievances related to:",
-                "options": [
-                    "Land tenure, high rents, and oppressive exactions",
-                    "Religious discrimination by the British",
-                    "Interference in their traditional fishing rights",
-                    "British refusal to allow their participation in administration"
-                ],
-                "correctAnswer": 0,
-                "explanation": "Land tenure insecurity, high rents and exactions were the main causes."
-            },
-            {
-                "text": "What was one of the key differences in causes for mainland tribal revolts compared to North-Eastern tribal revolts?",
-                "options": [
-                    "Mainland revolts were solely against land revenue, while North-Eastern were not.",
-                    "North-Eastern movements were not forest-based, unlike many mainland revolts.",
-                    "Mainland revolts were led by messiah-like figures, which was absent in the North-East.",
-                    "North-Eastern tribes had modern weapons, unlike mainland tribes."
-                ],
-                "correctAnswer": 1,
-                "explanation": "North-Eastern tribal uprisings were not focused on forest issues, unlike those in the mainland."
-            },
-            {
-                "text": "The Chuar Uprising or Revolt of the Jungle Mahal involved aboriginal tribesmen who were primarily:",
-                "options": [
-                    "Traders and merchants",
-                    "Farmers and hunters",
-                    "Artisans and craftsmen",
-                    "Fishermen and boatmen"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Chuar Uprising was composed mainly of tribal farmers and hunters."
-            },
-            {
-                "text": "The Kol Mutiny (1831) in Chotanagpur was initiated due to:",
-                "options": [
-                    "Imposition of Christian missionaries",
-                    "Large-scale transfers of land from Kol headmen to outsiders",
-                    "British attempts to abolish their tribal councils",
-                    "Recruitment of tribals into the British army"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Large-scale transfer of land from Kol headmen to outsiders sparked the mutiny."
-            },
-            {
-                "text": "Which two brothers led the Santhal Rebellion (1855-56), proclaiming an end to Company rule?",
-                "options": [
-                    "Digambar Biswas and Bishnu Biswas",
-                    "Sidhu and Kanhu",
-                    "Buddho Bhagat and Jatra Oraon",
-                    "Chakra Bisoi and Tomma Sora"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Sidhu and Kanhu were the main leaders of the Santhal Rebellion."
-            },
-            {
-                "text": "The Khond Uprisings (1837-1856) were led by a young raja named:",
-                "options": [
-                    "Dhundia Wagh",
-                    "Narayan Deo",
-                    "Chakra Bisoi",
-                    "Bhukhan Singh"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Chakra Bisoi led the Khond Uprisings."
-            },
-            {
-                "text": "The Koya Revolts in the eastern Godavari track occurred multiple times between 1803 and 1862, with a significant uprising in 1879-80 under whose leadership?",
-                "options": [
-                    "Birsa Munda",
-                    "Tomma Sora",
-                    "Komaram Bheem",
-                    "Alluri Sitarama Raju"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Tomma Sora led the prominent Koya rebellion in 1879-80."
-            },
-            {
-                "text": "The Ramosi Risings (1822, 1825-26) in the Western Ghats were led by Chittur Singh, and later by Umaji Naik of Poona and his supporter:",
-                "options": [
-                    "Nana Patil",
-                    "Darya Singh",
-                    "Bapu Trimbakji Sawant",
-                    "Madari Pasi"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Bapu Trimbakji Sawant was Umaji Naik's main supporter."
-            },
-            {
-                "text": "The Khasi Uprising of the North-East was organised under Tirath Singh against the East India Company's plan to:",
-                "options": [
-                    "Introduce new land revenue policies",
-                    "Build a road linking the Brahmaputra Valley with Sylhet",
-                    "Annex Khasi territories",
-                    "Promote English education"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Tirath Singh opposed the road construction connecting Brahmaputra Valley and Sylhet."
-            },
-            {
-                "text": "What was one of the causes of discontent among sepoys leading to mutinies before 1857?",
-                "options": [
-                    "Increase in their emoluments compared to British counterparts",
-                    "Promotion based on merit and not seniority",
-                    "Lord Canning’s General Service Enlistment Act (1856) which decreed future recruits had to serve anywhere",
-                    "Greater autonomy in their religious practices"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The General Service Enlistment Act forced sepoys to serve abroad, which bred discontent."
-            },
-            {
-                "text": "Which of the following was a notable weakness of the people's uprisings against the British before 1857?",
-                "options": [
-                    "Strong national impulse and common effort",
-                    "Highly coordinated and well-organised leadership",
-                    "Leadership was semi-feudal in character, backward-looking, and traditional",
-                    "Superior methods and arms used by the fighters"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The movements were hamstrung by traditional, backward-looking semi-feudal leadership."
-            }
-        ],
-        "The Revolt of 1857": [{
-                "text": "Which event marked the British laying their first step towards gaining power in northern India, preceding the Revolt of 1857?",
-                "options": [
-                    "The Battle of Buxar",
-                    "The Third Anglo-Mysore War",
-                    "The Battle of Plassey",
-                    "The Treaty of Allahabad"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Battle of Plassey in 1757 marked the beginning of British power in northern India."
-            },
-            {
-                "text": "According to the provided text, what was a primary economic cause of the Revolt of 1857?",
-                "options": [
-                    "Development of modern industries in India",
-                    "Low tariffs on Indian-made goods",
-                    "Destruction of the traditional economic fabric of Indian society",
-                    "Increased patronage to artisans and handicraft people"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The traditional economic fabric of Indian society was destroyed under colonial rule, creating economic hardship and resentment."
-            },
-            {
-                "text": "The introduction of highly unpopular revenue settlements led to the emergence of which new classes as landlords, contributing to the Revolt?",
-                "options": [
-                    "Peasants and cultivators",
-                    "Tribal chiefs and nomadic tribes",
-                    "Money-lenders and traders",
-                    "Former nawabs and princes"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Unpopular revenue settlements led to the rise of money-lenders and traders as new landlords."
-            },
-            {
-                "text": "A political cause for the Revolt of 1857 mentioned in the text was the British policy of aggrandizement, accompanied by which specific actions?",
-                "options": [
-                    "Promotion of Indian culture",
-                    "Granting of new titles and honours",
-                    "Broken pledges and promises",
-                    "Establishment of democratic institutions"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Broken pledges and promises by the British government fostered discontent among Indians."
-            },
-            {
-                "text": "What administrative issue significantly contributed to the discontent among Indians leading to the 1857 Revolt?",
-                "options": [
-                    "Rapid Indianisation of government services",
-                    "Transparency in Company’s administration",
-                    "An increase in local self-governance",
-                    "Rampant corruption in the Company’s administration"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Rampant corruption in Company’s administration was a major contributor."
-            },
-            {
-                "text": "The British administrative attitude towards native Indians was characterized by a superiority complex, which also manifested as what specific behaviour?",
-                "options": [
-                    "Promotion of indigenous education",
-                    "Encouragement of local customs",
-                    "Contempt towards the native population",
-                    "Respect for traditional religious practices"
-                ],
-                "correctAnswer": 2,
-                "explanation": "There was widespread contempt towards the native population."
-            },
-            {
-                "text": "The activities of Christian missionaries in India were viewed with suspicion by Indians. What else was perceived as an interference in private life, contributing to socio-religious causes of the Revolt?",
-                "options": [
-                    "Establishment of new trade routes",
-                    "Attempts at socio-religious reform such as abolition of sati",
-                    "Introduction of new agricultural techniques",
-                    "Construction of modern infrastructure"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Socio-religious reforms like the abolition of sati were seen as interference."
-            },
-            {
-                "text": "Which Act, enacted in 1856, further weakened the trust of Indians in the British administration, contributing to the socio-religious causes of the Revolt?",
-                "options": [
-                    "The Sati Abolition Act",
-                    "The Religious Disabilities Act",
-                    "The Widow Remarriage Act",
-                    "The Vernacular Press Act"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The enactment of the Widow Remarriage Act of 1856 was seen as interference in social customs."
-            },
-            {
-                "text": "Which of the following external events is cited as an influence on the discontent among sepoys and the general population leading up to the 1857 Revolt?",
-                "options": [
-                    "The American Civil War (1861-1865)",
-                    "The French Revolution (1789)",
-                    "The First Afghan War (1838-42)",
-                    "The Napoleonic Wars (1803-1815)"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Defeat in the First Afghan War added to general discontent."
-            },
-            {
-                "text": "A significant cause of discontent among sepoys was Lord Canning's General Service Enlistment Act of 1856. What did this Act decree?",
-                "options": [
-                    "Compulsory military training for all Indian youth",
-                    "Prohibition of religious marks on uniforms",
-                    "Undertaking to serve anywhere services might be required",
-                    "Equal pay for Indian and British sepoys"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Act required sepoys to serve anywhere, upsetting their religious practices."
-            },
-            {
-                "text": "The annexation of which Indian state further inflamed the feelings of many sepoys, as it was their home?",
-                "options": [
-                    "Satara",
-                    "Jhansi",
-                    "Nagpur",
-                    "Awadh"
-                ],
-                "correctAnswer": 3,
-                "explanation": "The annexation of Awadh was a major catalyst as many sepoys hailed from there."
-            },
-            {
-                "text": "What was the immediate trigger for the widespread disaffection among sepoys, which led to the outbreak of the Revolt of 1857?",
-                "options": [
-                    "Introduction of new uniform regulations",
-                    "Reduction in sepoy emoluments",
-                    "Introduction of the Enfield rifle with greased cartridges",
-                    "Discontinuation of traditional military drills"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Greased cartridges for the new Enfield rifle were seen as offensive by sepoys."
-            },
-            {
-                "text": "When and where did the Revolt of 1857 officially begin?",
-                "options": [
-                    "Barrackpore, February 1857",
-                    "Delhi, May 11, 1857",
-                    "Meerut, May 10, 1857",
-                    "Berhampore, March 1857"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The revolt began at Meerut on May 10, 1857."
-            },
-            {
-                "text": "The 19th Native Infantry at Berhampore initiated a mutiny in February 1857 due to their refusal to use which new item?",
-                "options": [
-                    "New type of bayonet",
-                    "Newly introduced Enfield rifle",
-                    "Changed regimental colours",
-                    "Revised drill commands"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Refusal to use the new Enfield rifle led to mutiny."
-            },
-            {
-                "text": "Who was the sepoy from the 34th Native Infantry at Barrackpore who fired at the sergeant major of his unit, becoming an early figure in the Revolt?",
-                "options": [
-                    "Mangal Pande",
-                    "Kunwar Singh",
-                    "Bakht Khan",
-                    "Nana Saheb"
-                ],
-                "correctAnswer": 0,
-                "explanation": "Mangal Pande is regarded as a key instigator of the revolt."
-            },
-            {
-                "text": "On April 24, at Meerut, ninety men of which military unit refused to accept the greased cartridges?",
-                "options": [
-                    "19th Native Infantry",
-                    "34th Native Infantry",
-                    "3rd Native Cavalry",
-                    "47th Native Infantry"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Ninety men of the 3rd Native Cavalry refused the cartridges."
-            },
-            {
-                "text": "Who was proclaimed the Emperor of India and symbolic leader of the Revolt by the sepoys in Delhi?",
-                "options": [
-                    "Tipu Sultan",
-                    "Shah Alam II",
-                    "Bahadur Shah Zafar",
-                    "Mir Jafar"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Bahadur Shah Zafar was declared Emperor by the rebels."
-            },
-            {
-                "text": "Apart from the sepoys, which other section of the population actively joined the Revolt, giving it real strength?",
-                "options": [
-                    "British loyalists and collaborators",
-                    "Industrialists and large merchants",
-                    "Peasantry, artisans, shopkeepers, and zamindars",
-                    "European residents and missionaries"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The participation of peasants, artisans, shopkeepers, and zamindars gave strength to the revolt."
-            },
-            {
-                "text": "In Delhi, who led the soldiers alongside the Mughal emperor Bahadur Shah during the Revolt of 1857?",
-                "options": [
-                    "Tantia Tope",
-                    "General Bakht Khan",
-                    "Maulvi Ahmadullah",
-                    "Khan Bahadur"
-                ],
-                "correctAnswer": 1,
-                "explanation": "General Bakht Khan was the military commander in Delhi."
-            },
-            {
-                "text": "Who was the leader of the Revolt at Kanpur?",
-                "options": [
-                    "Begum Hazrat Mahal",
-                    "Rani Laxmibai",
-                    "Nana Saheb",
-                    "Kunwar Singh"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Nana Saheb led the revolt at Kanpur."
-            },
-            {
-                "text": "Begum Hazrat Mahal was a prominent leader of the Revolt of 1857 in which storm centre?",
-                "options": [
-                    "Bareilly",
-                    "Faizabad",
-                    "Lucknow",
-                    "Kanpur"
-                ],
-                "correctAnswer": 2,
-                "explanation": "She was the leader in Lucknow."
-            },
-            {
-                "text": "Who led the Revolt of 1857 in Bihar?",
-                "options": [
-                    "Maulvi Ahmadullah",
-                    "Khan Bahadur",
-                    "Kunwar Singh",
-                    "Tantia Tope"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Kunwar Singh led the revolt in Bihar."
-            },
-            {
-                "text": "Which British officer famously stated, \"Here lay the woman who was the only man among the rebels,\" referring to Rani Laxmibai?",
-                "options": [
-                    "Sir Colin Campbell",
-                    "Lord Dalhousie",
-                    "Sir Hugh Rose",
-                    "Lord Canning"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Sir Hugh Rose made this statement about Rani Laxmibai."
-            },
-            {
-                "text": "When was Delhi recaptured by the British after the Revolt began?",
-                "options": [
-                    "June 1857",
-                    "August 1857",
-                    "September 20, 1857",
-                    "December 1857"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Delhi was recaptured on September 20, 1857."
-            },
-            {
-                "text": "Where was Bahadur Shah Zafar exiled by the British after the suppression of the Revolt?",
-                "options": [
-                    "Andaman Islands",
-                    "Calcutta",
-                    "Rangoon",
-                    "Lahore"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Bahadur Shah Zafar was exiled to Rangoon."
-            },
-            {
-                "text": "Sir Colin Campbell occupied Kanpur on which date during the suppression of the Revolt?",
-                "options": [
-                    "September 20, 1857",
-                    "December 6, 1857",
-                    "June 1858",
-                    "March 1858"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Kanpur was recaptured on December 6, 1857."
-            },
-            {
-                "text": "One of the reasons for the failure of the Revolt of 1857 was the limited all-India participation. According to the text, what percentage of the total population was affected by the Revolt?",
-                "options": [
-                    "Not more than one-half",
-                    "Not more than one-fourth",
-                    "Not more than one-tenth",
-                    "Not more than three-fourths"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The revolt affected not more than one-tenth of India's population."
-            },
-            {
-                "text": "The text attributes the failure of the Revolt to the rebels' inferior military system. What type of weapons were primarily used by Indian soldiers compared to European ones?",
-                "options": [
-                    "Swords and spears versus modern firearms",
-                    "Muskets and cannons versus traditional bows",
-                    "Advanced artillery versus primitive catapults",
-                    "Matchlocks versus breech-loading rifles"
-                ],
-                "correctAnswer": 0,
-                "explanation": "Indian soldiers still used mainly swords and spears, outmatched by modern European firearms."
-            },
-            {
-                "text": "A key weakness of the Revolt's leadership, as stated in the text, was their lack of a unified ideology or a forward-looking programme. What did they also lack?",
-                "options": [
-                    "Foreign assistance",
-                    "Naval power",
-                    "A coherent societal alternative",
-                    "Financial resources"
-                ],
-                "correctAnswer": 2,
-                "explanation": "They lacked a clear and coherent alternative to the prevailing social order."
-            },
-            {
-                "text": "Despite other weaknesses, what factor was noted as being strong during the Revolt of 1857, as evidenced by Bahadur Shah Zafar being acknowledged as emperor?",
-                "options": [
-                    "Financial backing from Indian merchants",
-                    "Support from princely states",
-                    "Hindu-Muslim unity",
-                    "European mercenary support"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The revolt displayed strong Hindu-Muslim unity, as shown by the proclamation of Bahadur Shah Zafar."
-            },
-            {
-                "text": "Who described the Revolt of 1857 as a \"planned war of national independence\"?",
-                "options": [
-                    "Dr K. Datta",
-                    "V.D. Savarkar",
-                    "Dr. S.N. Sen",
-                    "R.C. Majumdar"
-                ],
-                "correctAnswer": 1,
-                "explanation": "V.D. Savarkar called it a planned war of national independence."
-            },
-            {
-                "text": "Dr. S.N. Sen characterized the Revolt of 1857 as beginning in what manner and ending as what?",
-                "options": [
-                    "Beginning as a peasant uprising, ending as a class struggle",
-                    "Beginning as a fight for religion, ending as a war of independence",
-                    "Beginning as a regional conflict, ending as a national movement",
-                    "Beginning as a military mutiny, ending as a political reform"
-                ],
-                "correctAnswer": 1,
-                "explanation": "He said it began as a fight for religion and ended as a war of independence."
-            },
-            {
-                "text": "Which historian viewed the Revolt of 1857 as \"neither the first, nor national, nor a war of independence\"?",
-                "options": [
-                    "J.L.Nehru",
-                    "R.C. Majumdar",
-                    "L.E.R. Rees",
-                    "Dr K. Datta"
-                ],
-                "correctAnswer": 1,
-                "explanation": "R.C. Majumdar held this skeptical view."
-            },
-            {
-                "text": "Jawaharlal Nehru's view on the nature of the Revolt of 1857 was that it was essentially a feudal uprising, but with what additional element?",
-                "options": [
-                    "Strong economic motivations",
-                    "Some nationalistic elements",
-                    "Widespread international support",
-                    "A clear democratic agenda"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Nehru felt it had some elements of nationalism."
-            },
-            {
-                "text": "What was the name of the Act passed by the British Parliament on August 2, 1858, following the Revolt of 1857?",
-                "options": [
-                    "The Indian Arms Act",
-                    "The Act for Better Government of India",
-                    "The Indian Councils Act",
-                    "The Government of India Act"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Act for Better Government of India, 1858, was passed."
-            },
-            {
-                "text": "After the 1858 Act, who became the sovereign of British India?",
-                "options": [
-                    "Lord Canning",
-                    "The East India Company",
-                    "Queen Victoria",
-                    "The Secretary of State for India"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Queen Victoria became the sovereign."
-            },
-            {
-                "text": "A new position was created after the 1858 Act to govern India, assisted by a council of 15. What was this new position called?",
-                "options": [
-                    "Prime Minister of India",
-                    "Governor-General",
-                    "Secretary of State for India",
-                    "Commander-in-Chief"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Secretary of State for India was created to govern India with a 15-member council."
-            },
-            {
-                "text": "The Governor-General of India acquired an additional title after the Queen's Proclamation at Allahabad. What was this new title?",
-                "options": [
-                    "Regent of India",
-                    "Emperor of India",
-                    "Viceroy",
-                    "Commander of the Crown"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The title 'Viceroy' was added."
-            },
-            {
-                "text": "What significant promise was made to the people of India regarding their religion after the Revolt of 1857?",
-                "options": [
-                    "Compulsory conversion to Christianity",
-                    "Freedom of religion without interference",
-                    "Establishment of a state religion",
-                    "Prohibition of all religious practices"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Freedom of religion without interference was promised."
-            },
-            {
-                "text": "What was the policy introduced regarding the number of Indian and European soldiers in the army after 1857?",
-                "options": [
-                    "Indian soldiers were increased, European reduced",
-                    "Both Indian and European soldiers were increased equally",
-                    "Indian soldiers were drastically reduced, European increased",
-                    "European soldiers were completely withdrawn"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Indian numbers were reduced and European soldiers increased."
-            },
-            {
-                "text": "Which Act was passed in 1861, aiming to give the impression of equality under the Queen?",
-                "options": [
-                    "The Arms Act",
-                    "The Vernacular Press Act",
-                    "The Indian Civil Service Act",
-                    "The Religious Endowment Act"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Indian Civil Service Act aimed to give an impression of equality."
-            },
-            {
-                "text": "What major British policy began in earnest after the Revolt of 1857?",
-                "options": [
-                    "Policy of assimilation",
-                    "Policy of non-interference",
-                    "Policy of divide and rule",
-                    "Policy of economic liberalisation"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The British policy of divide and rule became more pronounced after 1857."
-            },
-            {
-                "text": "What was the \"White Mutiny\" that occurred during the transfer of power from the British East India Company to the British Crown?",
-                "options": [
-                    "A rebellion by Indian soldiers against European officers",
-                    "A protest by European forces employed under the Company against the move",
-                    "A conflict between British traders and Indian merchants",
-                    "A movement by white settlers demanding greater autonomy"
-                ],
-                "correctAnswer": 1,
-                "explanation": "It was a protest by European forces in India against their uncertain future."
-            },
-            {
-                "text": "The complete structure of the Indian government was remodelled after 1857 and based on which notion?",
-                "options": [
-                    "Rule of law",
-                    "Self-governance",
-                    "A master race justifying 'Whiteman’s burden'",
-                    "Universal equality"
-                ],
-                "correctAnswer": 2,
-                "explanation": "A racial notion of the master race and 'Whiteman's burden' justified British rule."
-            },
-            {
-                "text": "According to Bipan Chandra, how did the Revolt of 1857 prove useful for the British?",
-                "options": [
-                    "It exposed the weaknesses in their military command",
-                    "It showed up shortcomings in the Company’s administration and army",
-                    "It led to increased trade opportunities",
-                    "It unified diverse Indian communities"
-                ],
-                "correctAnswer": 1,
-                "explanation": "It exposed administrative and military shortcomings, leading to reforms."
-            },
-            {
-                "text": "What was a significant impact of the 1857 Revolt on the course of the struggle for freedom in India?",
-                "options": [
-                    "It ended all future resistance movements",
-                    "It established local traditions of resistance to British rule",
-                    "It led to immediate granting of self-rule",
-                    "It resulted in a complete withdrawal of British forces"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The revolt established local traditions of resistance that inspired future movements."
-            },
-            {
-                "text": "The term \"absentee sovereignty\" in the context of British rule in India prior to 1857 referred to what aspect of administration?",
-                "options": [
-                    "British monarchs residing abroad",
-                    "British officials frequently on leave",
-                    "A foreign and alien look to British rule",
-                    "Lack of direct British control over princely states"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The government had a foreign/alien presence with absentee rulers."
-            },
-            {
-                "text": "The \"Black Hole Tragedy,\" debated by historians, is associated with which leader of the 1857 Revolt's storm centres?",
-                "options": [
-                    "Mir Jafar",
-                    "Siraj-ud-daula",
-                    "Robert Clive",
-                    "Mir Kasim"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Black Hole Tragedy is linked with Siraj-ud-daula, Nawab of Bengal."
-            },
-            {
-                "text": "Which military leader of the Revolt was executed after being defeated by Sir Hugh Rose at Jhansi?",
-                "options": [
-                    "Nana Saheb",
-                    "Kunwar Singh",
-                    "Tantia Tope",
-                    "Khan Bahadur"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Tantia Tope was executed after defeat at Jhansi."
-            },
-            {
-                "text": "What was the rumour that sparked the immediate outrage among the sepoys regarding the new Enfield rifle cartridges?",
-                "options": [
-                    "They were made of inferior metal",
-                    "They were produced in Britain",
-                    "They were greased with pig and cow fat",
-                    "They were too expensive for sepoys to afford"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Sepoys believed the cartridges were greased with pig and cow fat, violating religious beliefs."
-            }
-        ],
-        "Socio-Cultural Reform Movements": [{
-                "text": "Raja Rammohan Roy is often referred to as the:",
-                "options": [
-                    "Father of Indian Nationalism",
-                    "Grand Old Man of India",
-                    "Father of Indian Renaissance",
-                    "Architect of Indian Constitution"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Raja Rammohan Roy is widely known as the 'Father of Indian Renaissance' for his role in socio-religious reform."
-            },
-            {
-                "text": "Which of the following works were authored by Raja Rammohan Roy?",
-                "options": [
-                    "Satyarth Prakash and Anand Math",
-                    "Gift to Monotheists and Precepts of Jesus",
-                    "Gulamgiri and Sarvajanik Satyadharma",
-                    "Rast Goftar and Indian Spectator"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Raja Rammohan Roy wrote 'Gift to Monotheists' and 'Precepts of Jesus'."
-            },
-            {
-                "text": "The Atmiya Sabha was established by Raja Rammohan Roy in Calcutta in which year?",
-                "options": [
-                    "1809",
-                    "1814",
-                    "1828",
-                    "1839"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Atmiya Sabha was established by Raja Rammohan Roy in 1814."
-            },
-            {
-                "text": "The Brahmo Sabha, later renamed Brahmo Samaj, was founded by Raja Rammohan Roy in:",
-                "options": [
-                    "1814",
-                    "1825",
-                    "1828",
-                    "1830"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Raja Rammohan Roy founded the Brahmo Sabha in 1828."
-            },
-            {
-                "text": "Which prominent personality organised the Dharma Sabha to counter the propaganda of the Brahmo Samaj?",
-                "options": [
-                    "Debendranath Tagore",
-                    "Keshab Chandra Sen",
-                    "Raja Radhakant Deb",
-                    "Ishwar Chandra Vidyasagar"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Raja Radhakant Deb organised the Dharma Sabha against the Brahmo Samaj."
-            },
-            {
-                "text": "Which of the following was a key tenet of the Brahmo Samaj as founded by Raja Rammohan Roy?",
-                "options": [
-                    "Belief in divine avataras",
-                    "Advocacy of idol worship",
-                    "Denunciation of polytheism",
-                    "Acceptance of scriptural infallibility"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Brahmo Samaj denounced polytheism and idol worship."
-            },
-            {
-                "text": "The Hindu Widows' Remarriage Act was passed in which year, largely due to the efforts of Ishwar Chandra Vidyasagar?",
-                "options": [
-                    "1829",
-                    "1856",
-                    "1872",
-                    "1891"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Hindu Widows' Remarriage Act was enacted in 1856, largely due to Vidyasagar's efforts."
-            },
-            {
-                "text": "Henry Vivian Derozio was a prominent figure of the Young Bengal Movement and taught at which institution?",
-                "options": [
-                    "Hindu College",
-                    "Vedanta College",
-                    "Calcutta Madrasah",
-                    "Fort William College"
-                ],
-                "correctAnswer": 0,
-                "explanation": "Derozio taught at Hindu College, Kolkata."
-            },
-            {
-                "text": "Who is considered the \"Father of Marathi journalism\" for starting newspapers like Darpan and Digdarshan?",
-                "options": [
-                    "Gopalhari Deshmukh",
-                    "Gopal Ganesh Agarkar",
-                    "Balshastri Jambhekar",
-                    "Jyotiba Phule"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Balshastri Jambhekar is the Father of Marathi journalism."
-            },
-            {
-                "text": "The Paramahansa Mandali, a secret society for Hindu reform, was founded by:",
-                "options": [
-                    "Atmaram Pandurang",
-                    "Dadoba Pandurang",
-                    "Mahadeo Govind Ranade",
-                    "Narayan Malhar Joshi"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Paramahansa Mandali was founded by Dadoba Pandurang."
-            },
-            {
-                "text": "The Satyashodhak Samaj was founded by Jyotiba Phule with the primary aim of:",
-                "options": [
-                    "Spreading Sanskrit education",
-                    "Promoting Sanskritic Hinduism",
-                    "Social service and education among women and lower castes",
-                    "Advocating for brahminical rituals"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Satyashodhak Samaj aimed at uplifting women and lower castes through education."
-            },
-            {
-                "text": "Gopalhari Deshmukh wrote for the weekly Prabhakar under which pen name?",
-                "options": [
-                    "Lokmanya",
-                    "Lokahitawadi",
-                    "Maharatta",
-                    "Sudharak"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gopalhari Deshmukh used the pen name Lokahitawadi."
-            },
-            {
-                "text": "Gopal Krishna Gokhale founded the Servants of India Society in which year?",
-                "options": [
-                    "1897",
-                    "1905",
-                    "1908",
-                    "1920"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gokhale founded the Servants of India Society in 1905."
-            },
-            {
-                "text": "The Ramakrishna Mission was founded by Swami Vivekananda in:",
-                "options": [
-                    "1875",
-                    "1886",
-                    "1893",
-                    "1897"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Swami Vivekananda founded the Ramakrishna Mission in 1897."
-            },
-            {
-                "text": "The slogan \"Service of man is the service of God\" is attributed to which socio-religious reformer?",
-                "options": [
-                    "Swami Vivekananda",
-                    "Ramakrishna Paramahamsa",
-                    "Dayananda Saraswati",
-                    "Raja Rammohan Roy"
-                ],
-                "correctAnswer": 0,
-                "explanation": "The slogan is attributed to Swami Vivekananda."
-            },
-            {
-                "text": "Which of the following statements about Swami Vivekananda is correct?",
-                "options": [
-                    "He believed knowledge without action was essential.",
-                    "He made a great impression at the Parliament of Religions in Chicago in 1893.",
-                    "He founded the Ramakrishna Mission before Ramakrishna's death.",
-                    "His message was primarily based on Abrahamic religious texts."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Swami Vivekananda is renowned for his speech at the 1893 Parliament of Religions, Chicago."
-            },
-            {
-                "text": "The Arya Samaj was founded by Dayananda Saraswati in Bombay in:",
-                "options": [
-                    "1861",
-                    "1873",
-                    "1875",
-                    "1887"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Arya Samaj was founded in 1875."
-            },
-            {
-                "text": "The famous work \"Satyarth Prakash\" contains the views of which reformer?",
-                "options": [
-                    "Raja Rammohan Roy",
-                    "Swami Vivekananda",
-                    "Dayananda Saraswati",
-                    "Sir Syed Ahmed Khan"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Satyarth Prakash outlines the philosophy of Dayananda Saraswati."
-            },
-            {
-                "text": "The slogan \"Back to the Vedas\" was given by:",
-                "options": [
-                    "Ramakrishna Paramahamsa",
-                    "Swami Vivekananda",
-                    "Dayananda Saraswati",
-                    "Annie Besant"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Dayananda Saraswati gave the slogan 'Back to the Vedas'."
-            },
-            {
-                "text": "The Dayananda Anglo-Vedic (D.A.V.) College was established in Lahore in:",
-                "options": [
-                    "1875",
-                    "1886",
-                    "1897",
-                    "1908"
-                ],
-                "correctAnswer": 1,
-                "explanation": "DAV College, Lahore, was established in 1886."
-            },
-            {
-                "text": "The shuddhi (purification) movement for reconversion to Hinduism was started by which organisation?",
-                "options": [
-                    "Brahmo Samaj",
-                    "Prarthana Samaj",
-                    "Arya Samaj",
-                    "Ramakrishna Mission"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Arya Samaj started the shuddhi movement."
-            },
-            {
-                "text": "Behramji M. Malabari founded Seva Sadan in 1908 and his efforts led to the enactment of which significant legislation?",
-                "options": [
-                    "Hindu Widows' Remarriage Act",
-                    "Age of Consent Act",
-                    "Child Marriage Restraint Act",
-                    "Religious Disabilities Act"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Malabari's campaigning resulted in the Age of Consent Act (1891)."
-            },
-            {
-                "text": "The Dev Samaj, a religious and social reform society, was founded in Lahore by:",
-                "options": [
-                    "Shiv Narayan Agnihotri Sadan",
-                    "Tulsi Ram",
-                    "Sree Narayana Guru Swamy",
-                    "Mirza Ghulam Ahmad"
-                ],
-                "correctAnswer": 0,
-                "explanation": "Dev Samaj was founded by Shiv Narayan Agnihotri in 1887 in Lahore."
-            },
-            {
-                "text": "The Radhaswami Movement was founded by Tulsi Ram, also known as Shiv Dayal Saheb, in:",
-                "options": [
-                    "1851",
-                    "1861",
-                    "1875",
-                    "1889"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Radhaswami Movement was founded in 1861 by Shiv Dayal Saheb (Tulsi Ram)."
-            },
-            {
-                "text": "The SNDP movement among the Ezhavas of Kerala was started by:",
-                "options": [
-                    "E.V. Ramaswamy Naicker",
-                    "Jyotiba Phule",
-                    "Sree Narayana Guru Swamy",
-                    "T.K. Madhavan"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Sree Narayana Guru Swamy started the SNDP movement for Ezhavas."
-            },
-            {
-                "text": "The Vokkaliga Sangha in Mysore launched an anti-brahmin movement in which year?",
-                "options": [
-                    "1890",
-                    "1905",
-                    "1915",
-                    "1925"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The anti-brahmin movement by Vokkaliga Sangha began in 1905."
-            },
-            {
-                "text": "The Justice Movement in Madras Presidency aimed to secure jobs and legislature representation for:",
-                "options": [
-                    "Brahmins",
-                    "Non-brahmins",
-                    "Depressed classes",
-                    "Muslims"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The movement fought for the rights of non-brahmins."
-            },
-            {
-                "text": "The Self-Respect Movement, aiming at the rejection of brahminical religion, was started by:",
-                "options": [
-                    "C.N. Mudaliar",
-                    "T.M. Nair",
-                    "P. Tyagaraja",
-                    "E.V. Ramaswamy Naicker"
-                ],
-                "correctAnswer": 3,
-                "explanation": "E.V. Ramaswamy Naicker started the Self-Respect Movement."
-            },
-            {
-                "text": "The Vaikom Satyagraha (1924) in Kerala, demanding access to Hindu temples and roads for untouchables, was led by:",
-                "options": [
-                    "T.K. Madhavan",
-                    "K.P. Kesava",
-                    "Sree Narayana Guru",
-                    "B.R. Ambedkar"
-                ],
-                "correctAnswer": 1,
-                "explanation": "K.P. Kesava led the 1924 Vaikom Satyagraha."
-            },
-            {
-                "text": "The Indian Social Conference was founded by:",
-                "options": [
-                    "Gopal Krishna Gokhale and Dadabhai Naoroji",
-                    "M.G. Ranade and Raghunath Rao",
-                    "Surendranath Banerjea and Anand Mohan Bose",
-                    "Annie Besant and B.G. Tilak"
-                ],
-                "correctAnswer": 1,
-                "explanation": "M.G. Ranade and Raghunath Rao founded the Indian Social Conference."
-            },
-            {
-                "text": "The Wahabi/Walliullah Movement was inspired by the preachings of Shah Walliullah of which city?",
-                "options": [
-                    "Mecca",
-                    "Medina",
-                    "Delhi",
-                    "Bareilly"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Shah Walliullah preached in Delhi."
-            },
-            {
-                "text": "The Faraizi Movement, with an emphasis on Islamic pillars of faith, was founded by:",
-                "options": [
-                    "Haji Shariatullah",
-                    "Dudu Mian",
-                    "Abdul Wahab",
-                    "Syed Ahmed Barelvi"
-                ],
-                "correctAnswer": 0,
-                "explanation": "Haji Shariatullah founded the Faraizi Movement."
-            },
-            {
-                "text": "Which Muslim reform movement originated from India and was founded by Mirza Ghulam Ahmad in 1889?",
-                "options": [
-                    "Wahabi Movement",
-                    "Faraizi Movement",
-                    "Ahmadiyya Movement",
-                    "Aligarh Movement"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Ahmadiyya Movement was founded by Mirza Ghulam Ahmad."
-            },
-            {
-                "text": "Sir Syed Ahmed Khan founded the Mohammedan Anglo-Oriental College (later Aligarh Muslim University) in Aligarh in:",
-                "options": [
-                    "1866",
-                    "1875",
-                    "1889",
-                    "1902"
-                ],
-                "correctAnswer": 1,
-                "explanation": "MAO College was founded in 1875 by Sir Syed Ahmed Khan."
-            },
-            {
-                "text": "The magazine \"Tahdhib-ul-Akhlaq\" was brought out by:",
-                "options": [
-                    "Maulana Azad",
-                    "Sir Syed Ahmed Khan",
-                    "Shibli Numani",
-                    "Mohammad Qasim Nanotavi"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Sir Syed Ahmed Khan launched 'Tahdhib-ul-Akhlaq'."
-            },
-            {
-                "text": "The Deoband School (Darul Uloom) was organised by orthodox Muslim ulema and founded by Mohammad Qasim Nanotavi and:",
-                "options": [
-                    "Sir Syed Ahmed Khan",
-                    "Rashid Ahmed Gangohi",
-                    "Shibli Numani",
-                    "Maulana Abul Kalam Azad"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Rashid Ahmed Gangohi co-founded Darul Uloom with Qasim Nanotavi."
-            },
-            {
-                "text": "The Rahnumai Mazdayasnan Sabha, for the regeneration of Parsis and restoration of Zoroastrianism, was founded in:",
-                "options": [
-                    "1830",
-                    "1851",
-                    "1873",
-                    "1908"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Sabha was founded in 1851."
-            },
-            {
-                "text": "The newspaper \"Rast Goftar\" (Truth-Teller) was associated with which reform movement?",
-                "options": [
-                    "Aligarh Movement",
-                    "Sikh Reform Movements",
-                    "Parsi Reform Movements",
-                    "Brahmo Samaj"
-                ],
-                "correctAnswer": 2,
-                "explanation": "'Rast Goftar' was related to Parsi reform."
-            },
-            {
-                "text": "The Singh Sabha Movement was founded at Amritsar in 1873 with objectives including promoting modern Western education for Sikhs and:",
-                "options": [
-                    "Establishing an independent Sikh state.",
-                    "Countering proselytising activities of other religious groups.",
-                    "Merging with the Indian National Congress.",
-                    "Revival of traditional Sikh martial arts."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Singh Sabha Movement countered missionary activities and focused on education."
-            },
-            {
-                "text": "The Akali movement, also known as the Gurudwara Reform Movement, aimed at liberating Sikh gurudwaras from the control of:",
-                "options": [
-                    "British authorities",
-                    "Corrupt Udasi mahants",
-                    "Muslim invaders",
-                    "Hindu priests"
-                ],
-                "correctAnswer": 1,
-                "explanation": "It was directed against the control by corrupt Udasi mahants."
-            },
-            {
-                "text": "The Sikh Gurudwaras Act which gave control of gurudwaras to the Sikh masses was passed in:",
-                "options": [
-                    "1873",
-                    "1909",
-                    "1922",
-                    "1925"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Sikh Gurudwaras Act was passed in 1925."
-            },
-            {
-                "text": "The Theosophical Society was founded in New York City in 1875 by Madame H.P. Blavatsky and:",
-                "options": [
-                    "Annie Besant",
-                    "Colonel M.S. Olcott",
-                    "Swami Vivekananda",
-                    "Dayananda Saraswati"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Colonel Henry Steel Olcott co-founded the Theosophical Society."
-            },
-            {
-                "text": "The headquarters of the Theosophical Society were shifted to Adyar, Madras, in which year?",
-                "options": [
-                    "1875",
-                    "1882",
-                    "1893",
-                    "1897"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The headquarters moved to Adyar in 1882."
-            },
-            {
-                "text": "Which of the following beliefs were accepted by the Theosophical Movement?",
-                "options": [
-                    "Monotheism and divine avataras",
-                    "Christian rites and traditional Indian learning",
-                    "Reincarnation and karma",
-                    "Idol worship and caste system"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Theosophy accepts reincarnation and karma."
-            },
-            {
-                "text": "Which of the following was not a negative aspect of the socio-religious reform movements?",
-                "options": [
-                    "Narrow social base",
-                    "Over-emphasis on religious and philosophical aspects",
-                    "Arrest of the process of evolution of a composite culture",
-                    "Creation of a favourable social climate for modernisation"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Creation of a positive climate for modernisation was a positive aspect."
-            },
-            {
-                "text": "Which of the following correctly pairs a reformer with their primary focus area in social reform?",
-                "options": [
-                    "Raja Rammohan Roy - Widow Remarriage",
-                    "Ishwar Chandra Vidyasagar - Abolition of Sati",
-                    "Jyotiba Phule - Women's education and lower caste upliftment",
-                    "Dayananda Saraswati - Religious universalism"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Phule was known for promoting women's education and upliftment of backward classes."
-            },
-            {
-                "text": "The Age of Consent Act (1891) was enacted due to the relentless efforts of which Parsi reformer?",
-                "options": [
-                    "Dadabhai Naoroji",
-                    "K.R. Cama",
-                    "S.S. Bengalee",
-                    "B.M. Malabari"
-                ],
-                "correctAnswer": 3,
-                "explanation": "B.M. Malabari campaigned for the Age of Consent Act."
-            },
-            {
-                "text": "Which reform movement is described as \"revivalist in form though not in content\"?",
-                "options": [
-                    "Brahmo Samaj",
-                    "Prarthana Samaj",
-                    "Arya Samaj",
-                    "Ramakrishna Mission"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Arya Samaj is described as 'revivalist in form, not in content.'"
-            },
-            {
-                "text": "What was a common point of contention for many social reform movements regarding women's status?",
-                "options": [
-                    "Advocating for purdah system",
-                    "Supporting female infanticide",
-                    "Opposing widow remarriage",
-                    "Attacking polygamy and child marriage"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Attacks on polygamy and child marriage were common aims."
-            },
-            {
-                "text": "The Hindu Widows' Remarriage Act, 1856, was primarily the result of the efforts of:",
-                "options": [
-                    "Raja Rammohan Roy",
-                    "Keshab Chandra Sen",
-                    "Ishwar Chandra Vidyasagar",
-                    "Mahadeo Govind Ranade"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Ishwar Chandra Vidyasagar led the movement for widow remarriage."
-            }
-        ],
-        "Indian National Congress Foundation and the Moderate Phase": [{
-                "text": "Who among the following was a retired English civil servant credited with mobilising leading intellectuals for the formation of the Indian National Congress?",
-                "options": [
-                    "Lord Dufferin",
-                    "Womesh Chandra Bonnerjee",
-                    "A.O. Hume",
-                    "Surendranath Banerjea"
-                ],
-                "correctAnswer": 2,
-                "explanation": "A.O. Hume, a retired English civil servant, is credited with mobilising Indian intellectuals for the formation of the Indian National Congress."
-            },
-            {
-                "text": "In which city was the first session of the Indian National Congress held in December 1885?",
-                "options": [
-                    "Calcutta",
-                    "Madras",
-                    "Bombay",
-                    "Delhi"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The first session was held in Bombay (now Mumbai) in December 1885."
-            },
-            {
-                "text": "Who presided over the first session of the Indian National Congress?",
-                "options": [
-                    "Dadabhai Naoroji",
-                    "Womesh Chandra Bonnerjee",
-                    "Surendranath Banerjea",
-                    "A.O. Hume"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Womesh Chandra Bonnerjee was the first President of the Indian National Congress."
-            },
-            {
-                "text": "How many delegates attended the first session of the Indian National Congress?",
-                "options": [
-                    "50",
-                    "65",
-                    "72",
-                    "88"
-                ],
-                "correctAnswer": 2,
-                "explanation": "72 delegates attended the first INC session."
-            },
-            {
-                "text": "Which Indian woman graduate addressed the Congress session in 1890?",
-                "options": [
-                    "Sarojini Naidu",
-                    "Kadambini Ganguly",
-                    "Annie Besant",
-                    "Cornelia Sorabji"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Kadambini Ganguly was the first Indian woman graduate to address the Congress in 1890."
-            },
-            {
-                "text": "According to the 'Safety Valve Theory', what was A.O. Hume's primary idea behind forming the Congress?",
-                "options": [
-                    "To promote Indian self-rule",
-                    "To create a forum for open dissent",
-                    "To serve as a channel for releasing growing Indian discontent",
-                    "To establish a loyalist organization"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The 'Safety Valve Theory' holds that Congress was meant to peacefully release growing Indian discontent."
-            },
-            {
-                "text": "Which Viceroy is mentioned in connection with A.O. Hume regarding the 'Safety Valve Theory'?",
-                "options": [
-                    "Lord Ripon",
-                    "Lord Curzon",
-                    "Lord Dufferin",
-                    "Lord Lytton"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Lord Dufferin is often linked to A.O. Hume and the 'Safety Valve Theory'."
-            },
-            {
-                "text": "Modern Indian historians, like Bipin Chandra, largely dispute the 'Safety Valve Theory'. What alternative role do they suggest Hume played for Congress leaders?",
-                "options": [
-                    "A figurehead for British loyalty",
-                    "A 'lightning conductor' to unite nationalist forces",
-                    "A mere spectator to Indian political developments",
-                    "An economic advisor"
-                ],
-                "correctAnswer": 1,
-                "explanation": "They view Hume as a 'lightning conductor' who helped unite the nationalist leadership."
-            },
-            {
-                "text": "Which of the following was NOT an aim or objective of the Indian National Congress?",
-                "options": [
-                    "To found a democratic, nationalist movement",
-                    "To promote armed revolution against British rule",
-                    "To politicise and politically educate people",
-                    "To develop and propagate an anti-colonial nationalist ideology"
-                ],
-                "correctAnswer": 1,
-                "explanation": "INC's objectives did not involve promoting armed revolution."
-            },
-            {
-                "text": "What was one of the key objectives of the early Congress regarding national unity?",
-                "options": [
-                    "To promote religious conversion",
-                    "To foster unity among people irrespective of religion",
-                    "To establish a Hindu-majority political front",
-                    "To create exclusive regional identities"
-                ],
-                "correctAnswer": 1,
-                "explanation": "A key objective was unity among Indians irrespective of religion."
-            },
-            {
-                "text": "The 'Era of Moderates' in Indian nationalism is generally considered to be during which period?",
-                "options": [
-                    "1885-1905",
-                    "1905-1915",
-                    "1870-1885",
-                    "1915-1925"
-                ],
-                "correctAnswer": 0,
-                "explanation": "The Moderate phase spanned 1885-1905."
-            },
-            {
-                "text": "Which of the following leaders is NOT associated with the Moderate phase of the Indian National Congress?",
-                "options": [
-                    "Dadabhai Naoroji",
-                    "Pherozshah Mehta",
-                    "B.G. Tilak",
-                    "S.N. Banerjea"
-                ],
-                "correctAnswer": 2,
-                "explanation": "B.G. Tilak belonged to the Extremist phase, not the Moderates."
-            },
-            {
-                "text": "What was the characteristic political methodology of the Moderates?",
-                "options": [
-                    "Revolutionary violence",
-                    "Non-violent non-cooperation",
-                    "Constitutional agitation within the confines of law",
-                    "Secret underground activities"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Their method was constitutional agitation—working within the law."
-            },
-            {
-                "text": "The Moderates employed a 'two-pronged methodology'. What were its two main aspects?",
-                "options": [
-                    "Armed rebellion and economic boycott",
-                    "Creating public opinion and persuading the British Government for reforms",
-                    "Appealing to the masses and forming a parallel government",
-                    "Diplomatic negotiations and international lobbying"
-                ],
-                "correctAnswer": 1,
-                "explanation": "They created public opinion and worked to persuade the government for reforms."
-            },
-            {
-                "text": "What term was popularly used to describe the Moderates' method of political activity?",
-                "options": [
-                    "Direct Action",
-                    "Passive Resistance",
-                    "Prayer and Petition",
-                    "Civil Disobedience"
-                ],
-                "correctAnswer": 2,
-                "explanation": "\"Prayer and petition\" described the Moderates' usual activities."
-            },
-            {
-                "text": "Who among the Moderate nationalists proposed the \"drain theory\" to explain British exploitation of India?",
-                "options": [
-                    "M.G. Ranade",
-                    "G.K. Gokhale",
-                    "Dadabhai Naoroji",
-                    "R.C. Dutt"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Dadabhai Naoroji proposed the influential drain theory."
-            },
-            {
-                "text": "What economic consequence of British rule did the Moderates highlight in their critique?",
-                "options": [
-                    "Promotion of modern industrialization in India",
-                    "Development of a self-sufficient Indian economy",
-                    "Destruction of the self-sufficient Indian economy",
-                    "Equitable distribution of wealth"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Moderates highlighted the destruction of India's self-sufficient economy."
-            },
-            {
-                "text": "Until which year did the legislative councils in India have no real official power?",
-                "options": [
-                    "1892",
-                    "1909",
-                    "1920",
-                    "1885"
-                ],
-                "correctAnswer": 2,
-                "explanation": "No real official power existed until 1920."
-            },
-            {
-                "text": "How many Indians were nominated to the legislative councils between 1862 and 1892?",
-                "options": [
-                    "10",
-                    "25",
-                    "45",
-                    "100"
-                ],
-                "correctAnswer": 2,
-                "explanation": "45 Indians were nominated to legislative councils in this period."
-            },
-            {
-                "text": "The nationalist demands for constitutional reforms during the Moderate phase primarily centred around which two aspects?",
-                "options": [
-                    "Abolition of councils and creation of a constituent assembly",
-                    "Expansion and reform of councils",
-                    "Complete independence and parliamentary democracy",
-                    "Separation of powers and universal suffrage"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Demands were mainly for expansion and reforms of legislative councils."
-            },
-            {
-                "text": "What was the long-term objective of the early nationalists concerning self-government?",
-                "options": [
-                    "Benevolent despotism",
-                    "Total independence through violence",
-                    "Democratic self-government",
-                    "Limited autonomy under British supervision"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The goal was achieving democratic self-government."
-            },
-            {
-                "text": "Which Act raised the number of additional members in the Imperial and Provincial Legislative Councils?",
-                "options": [
-                    "Indian Councils Act 1861",
-                    "Indian Councils Act 1892",
-                    "Morley-Minto Reforms 1909",
-                    "Government of India Act 1919"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Indian Councils Act 1892 expanded council membership."
-            },
-            {
-                "text": "Under the Indian Councils Act 1892, what was a significant change regarding the budget in the legislative councils?",
-                "options": [
-                    "It could be voted upon by Indian members.",
-                    "Any amendments to it could be proposed.",
-                    "It could be discussed, but not voted upon or amended.",
-                    "Indian members had full control over its allocation."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The budget could be discussed, but not amended or voted upon."
-            },
-            {
-                "text": "Which limitation was placed on asking questions in the legislative councils under the Indian Councils Act 1892?",
-                "options": [
-                    "Questions could not be asked on financial matters.",
-                    "Only written questions were allowed.",
-                    "Supplementaries could not be asked.",
-                    "Questions could only be asked by official members."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Supplementary questions were not allowed under the Act."
-            },
-            {
-                "text": "Despite the reforms of 1892, who retained their majority in the councils, making the non-official voice ineffective?",
-                "options": [
-                    "Indian members",
-                    "Elected members",
-                    "Officials",
-                    "Princely state representatives"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Officials retained council majorities."
-            },
-            {
-                "text": "Which of the following was a key demand of the Moderates regarding general administrative reforms?",
-                "options": [
-                    "Abolition of the civil service",
-                    "Complete independence of the judiciary",
-                    "Indianisation of government service",
-                    "Reduction in welfare expenditure"
-                ],
-                "correctAnswer": 2,
-                "explanation": "A major Moderate demand was Indianisation of services."
-            },
-            {
-                "text": "The Moderates criticized the British bureaucracy for being:",
-                "options": [
-                    "Too efficient",
-                    "Too centralized",
-                    "Tyrannical and expensive",
-                    "Too inclusive of Indians"
-                ],
-                "correctAnswer": 2,
-                "explanation": "It was seen as tyrannical and expensive by the Moderates."
-            },
-            {
-                "text": "What was a specific demand of the Moderates concerning Indian labour abroad?",
-                "options": [
-                    "Repatriation of all Indian labourers",
-                    "Formation of Indian trade unions abroad",
-                    "Better treatment for Indian labour in other British colonies",
-                    "Restrictions on Indian emigration"
-                ],
-                "correctAnswer": 2,
-                "explanation": "They pressed for better treatment of Indian labour in other British colonies."
-            },
-            {
-                "text": "the early nationalists were able to create a wide:",
-                "options": [
-                    "Political divide",
-                    "Financial crisis",
-                    "National awakening",
-                    "Religious movement"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Early nationalists led to a broad national awakening."
-            },
-            {
-                "text": "What was the primary character of the political work of the early nationalists?",
-                "options": [
-                    "Based on revolutionary theories",
-                    "Based on hard realities",
-                    "Based on religious scriptures",
-                    "Based on foreign ideologies"
-                ],
-                "correctAnswer": 1,
-                "explanation": "It was mainly based on the hard realities of their time."
-            },
-            {
-                "text": "How did the early nationalists contribute to the future of the national movement?",
-                "options": [
-                    "By advocating immediate armed struggle",
-                    "By creating a solid base for a more vigorous, militant, mass-based movement",
-                    "By forming a parallel government",
-                    "By collaborating fully with the British administration"
-                ],
-                "correctAnswer": 1,
-                "explanation": "They laid the foundation for a future mass-based movement."
-            },
-            {
-                "text": "Why did the early nationalists fail to widen the democratic base of the movement by not including the masses?",
-                "options": [
-                    "They feared mass violence.",
-                    "They believed heterogeneous elements had to be welded into a nation first.",
-                    "The British government forbade mass participation.",
-                    "They lacked the necessary resources for mass mobilization."
-                ],
-                "correctAnswer": 1,
-                "explanation": "They thought the masses first had to be united into a nation."
-            },
-            {
-                "text": "How did the later nationalists differ from the Moderates regarding the role of the masses?",
-                "options": [
-                    "Later nationalists were also hesitant to involve the masses.",
-                    "Later nationalists focused solely on elite participation.",
-                    "Later nationalists differed precisely on the point of mass inclusion.",
-                    "Later nationalists aimed to exclude certain communities from the masses."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The inclusion of the masses was a key difference for later nationalists."
-            },
-            {
-                "text": "What was the British Indian Government's attitude towards the Congress from its beginning?",
-                "options": [
-                    "Supportive",
-                    "Neutral",
-                    "Hostile",
-                    "Indifferent"
-                ],
-                "correctAnswer": 2,
-                "explanation": "British authorities were hostile to Congress from the outset."
-            },
-            {
-                "text": "What derogatory term did the government use to refer to the nationalists?",
-                "options": [
-                    "Loyal subjects",
-                    "Reformist thinkers",
-                    "\"Seditious brahmins\", \"disloyal babus\"",
-                    "Political agitators"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Nationalists were derided as 'seditious brahmins' and 'disloyal babus.'"
-            },
-            {
-                "text": "Who referred to the Congress as \"a factory of sedition\"?",
-                "options": [
-                    "A.O. Hume",
-                    "Lord Curzon",
-                    "Lord Dufferin",
-                    "Lord Ripon"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Lord Dufferin called the Congress a 'factory of sedition.'"
-            },
-            {
-                "text": "What policy did the government employ to divide the nationalists?",
-                "options": [
-                    "Policy of assimilation",
-                    "Policy of direct rule",
-                    "Policy of 'carrot and stick'",
-                    "Policy of economic incentives"
-                ],
-                "correctAnswer": 2,
-                "explanation": "They utilized a 'carrot and stick' (reward-punishment) strategy."
-            },
-            {
-                "text": "The Moderates' belief in 'liberalism' meant their adherence to:",
-                "options": [
-                    "Radical revolutionary ideas",
-                    "Constitutional and peaceful means",
-                    "Socialistic economic policies",
-                    "Exclusive religious practices"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Moderates followed constitutional, peaceful methods (liberalism)."
-            },
-            {
-                "text": "The main architects of the Indian National Conference, which later merged with the Indian National Congress, were:",
-                "options": [
-                    "Dadabhai Naoroji and W.C. Bonnerjee",
-                    "Surendranath Banerjea and Ananda Mohan Bose",
-                    "Pherozshah Mehta and D.E. Wacha",
-                    "A.O. Hume and Lord Dufferin"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Surendranath Banerjea and Ananda Mohan Bose headed the Indian National Conference."
-            },
-            {
-                "text": "Which significant event in 1885 led to the foundation of the Indian National Congress?",
-                "options": [
-                    "The Vernacular Press Act",
-                    "The first session held in Bombay",
-                    "The Ilbert Bill controversy",
-                    "The retirement of A.O. Hume"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The foundation event was the first INC session in Bombay."
-            },
-            {
-                "text": "The Moderates aimed to persuade the British Government and public opinion to introduce what in India?",
-                "options": [
-                    "Military expansion",
-                    "Industrial development",
-                    "Political reforms",
-                    "Religious conversions"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Political reforms were sought by the Moderates."
-            },
-            {
-                "text": "The term \"drain theory\" developed by Moderate nationalists primarily focused on:",
-                "options": [
-                    "The drainage of water resources in India",
-                    "The economic exploitation of India by Britain",
-                    "The flow of British capital into India",
-                    "The drain of talent from India to Britain"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The 'drain theory' highlighted economic exploitation by Britain."
-            },
-            {
-                "text": "Which of the following was NOT a general administrative reform demanded by the Moderates?",
-                "options": [
-                    "Separation of judicial from executive functions",
-                    "Criticism of aggressive foreign policy",
-                    "Demand for increase in expenditure on military",
-                    "Call for increase in expenditure on welfare"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Moderates did not ask for higher military expenditure."
-            },
-            {
-                "text": "The early nationalists are described as representing the most:",
-                "options": [
-                    "Conservative forces",
-                    "Reactionary elements",
-                    "Progressive forces",
-                    "Religious fundamentalists"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Early nationalists were the most progressive elements of Indian society then."
-            },
-            {
-                "text": "The political work of early nationalists was essential because it exposed the:",
-                "options": [
-                    "Philanthropic nature of British rule",
-                    "Basically exploitative character of colonial rule",
-                    "Democratic intentions of the British",
-                    "Efficiency of the British administration"
-                ],
-                "correctAnswer": 1,
-                "explanation": "They exposed colonial rule as fundamentally exploitative."
-            },
-            {
-                "text": "What was the view of the Moderates regarding the inclusion of 'heterogeneous elements' (masses) in the political sphere?",
-                "options": [
-                    "They should be included immediately.",
-                    "They should be excluded permanently.",
-                    "They had to be welded into a nation first.",
-                    "They were incapable of political participation."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Moderates wanted the masses unified as a nation before participation."
-            },
-            {
-                "text": "The British government tried to divide the nationalists on the basis of:",
-                "options": [
-                    "Class",
-                    "Language",
-                    "Region",
-                    "Religion"
-                ],
-                "correctAnswer": 3,
-                "explanation": "The divisive policy was often based on religion."
-            },
-            {
-                "text": "The Indian Councils Act of 1892 was seen by the Congress as the \"root of all other reforms\" because it was related to:",
-                "options": [
-                    "Economic policies",
-                    "Council reforms",
-                    "Social welfare",
-                    "Military restructuring"
-                ],
-                "correctAnswer": 1,
-                "explanation": "1892's Act was considered the foundation for further council reforms."
-            },
-            {
-                "text": "What kind of members were Indians associated as in the legislative bodies after the Indian Councils Act of 1861?",
-                "options": [
-                    "Official members",
-                    "Elected representatives",
-                    "Non-officials from elite sections",
-                    "Nominated members from all social strata"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Indians were mostly 'non-officials' from elite backgrounds."
-            },
-            {
-                "text": "Which of these individuals was NOT explicitly named as a leader of the Moderate phase (1885-1905) in the provided text?",
-                "options": [
-                    "D.E. Wacha",
-                    "W.C. Bonnerjea",
-                    "Gopal Krishna Gokhale",
-                    "S.N. Banerjea"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gopal Krishna Gokhale is not named in the provided text as a Moderate leader."
-            }
-        ],
-        "Era of Militant Nationalism (1905-1909)": [{
-                "text": "Which of the following factors contributed to the growth of militant nationalism in India?",
-                "options": [
-                    "Universal satisfaction with the British rule",
-                    "Economic prosperity in the 1890s",
-                    "Disillusionment with the true nature of British rule",
-                    "Government granting more rights to Indians"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Disillusionment with British rule made many Indians turn toward militant nationalism."
-            },
-            {
-                "text": "The economic miseries of the 1890s, including severe famines and bubonic plague, contributed to which aspect of nationalist sentiment?",
-                "options": [
-                    "Increased trust in British administration",
-                    "Exposure of the exploitative character of colonial rule",
-                    "Promotion of British goods in India",
-                    "Decline in nationalist activities"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Widespread economic distress exposed the exploitative nature of colonial rule."
-            },
-            {
-                "text": "Who among the following repeatedly urged nationalists to rely on the character and capacities of the Indian people?",
-                "options": [
-                    "James Mill",
-                    "M.G. Ranade",
-                    "Gopal Krishna Gokhale",
-                    "Tilak, Aurobindo, and Bipin Chandra Pal"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Tilak, Aurobindo, and Bipin Chandra Pal advocated for self-reliance and national spirit."
-            },
-            {
-                "text": "The spread of education led to increased awareness but also what negative consequence for the educated class?",
-                "options": [
-                    "Increased job opportunities",
-                    "Growth in agricultural output",
-                    "Rise in unemployment and underemployment",
-                    "Greater satisfaction with British policies"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Educated Indians faced rising unemployment and underemployment."
-            },
-            {
-                "text": "Which international event demonstrated the possibility of an Asian nation defeating a major European power, influencing Indian nationalism?",
-                "options": [
-                    "The American Civil War (1861-1865)",
-                    "Japan's victory over Russia in 1905",
-                    "The French Revolution (1789)",
-                    "The Industrial Revolution in Britain"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Japan’s 1905 victory over Russia inspired Indian nationalists."
-            },
-            {
-                "text": "The reactionary policies of Lord Curzon included all of the following EXCEPT:",
-                "options": [
-                    "Refusal to recognise India as a nation",
-                    "Insulting Indian nationalists and intelligentsia",
-                    "The annulment of the Partition of Bengal",
-                    "Enacting the Official Secrets Act"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Curzon initiated, not annulled, the Partition of Bengal."
-            },
-            {
-                "text": "A key tenet of the militant school of thought was:",
-                "options": [
-                    "Reliance on petitions and prayers",
-                    "Advocacy for constitutional agitation",
-                    "Hatred for foreign rule and pursuit of swaraj as the goal",
-                    "Exclusion of the masses from political action"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Militants called for swaraj and opposed foreign rule."
-            },
-            {
-                "text": "The Swadeshi and Boycott Movement was a direct outcome of which British decision?",
-                "options": [
-                    "Introduction of the Indian Councils Act of 1909",
-                    "The partition of Bengal",
-                    "The Rowlatt Act",
-                    "The Cripps Mission"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Partition of Bengal in 1905 sparked the Swadeshi and Boycott Movement."
-            },
-            {
-                "text": "When was the Partition of Bengal officially enacted?",
-                "options": [
-                    "1903",
-                    "1906",
-                    "October 16, 1905",
-                    "December 30, 1905"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The official enactment was on October 16, 1905."
-            },
-            {
-                "text": "What was the real motive behind the British plan to partition Bengal ?",
-                "options": [
-                    "To improve administrative efficiency",
-                    "To strengthen Bengali identity",
-                    "To weaken Bengal, the nerve centre of Indian nationalism, by dividing Bengalis",
-                    "To promote industrial development in eastern Bengal"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The main motive was to divide and weaken nationalist sentiment."
-            },
-            {
-                "text": "During the anti-partition campaign under the Moderates (1903-05), what was the scope of the boycott initially proclaimed in Calcutta Townhall?",
-                "options": [
-                    "Boycott of all government institutions",
-                    "Boycott of foreign goods only",
-                    "Boycott of British services and courts",
-                    "Boycott of educational institutions"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The initial call was for boycott of foreign goods."
-            },
-            {
-                "text": "In the Calcutta session of the Congress in 1906, what was declared as the goal of the Indian National Congress?",
-                "options": [
-                    "Complete independence",
-                    "Dominion status or swaraj like the United Kingdom or the colonies",
-                    "Economic self-reliance",
-                    "Hindu-Muslim unity"
-                ],
-                "correctAnswer": 1,
-                "explanation": "INC declared dominion status or swaraj as its goal."
-            },
-            {
-                "text": "Which song spontaneously became the theme song of the Swadeshi Movement?",
-                "options": [
-                    "Jana Gana Mana",
-                    "Saare Jahan Se Achha",
-                    "Vande Mataram",
-                    "Amar Sonar Bangla"
-                ],
-                "correctAnswer": 2,
-                "explanation": "“Vande Mataram” became the theme song."
-            },
-            {
-                "text": "Rabindranath Tagore composed \"Amar Sonar Bangla\" during the Swadeshi Movement. What is its current significance?",
-                "options": [
-                    "It is the national anthem of India.",
-                    "It is the national anthem of present-day Bangladesh.",
-                    "It is a devotional song for the Tilak Fund.",
-                    "It is a protest song against the Rowlatt Act."
-                ],
-                "correctAnswer": 1,
-                "explanation": "“Amar Sonar Bangla” is now the national anthem of Bangladesh."
-            },
-            {
-                "text": "Beyond the boycott of foreign goods, the Extremists called for 'passive resistance' which included:",
-                "options": [
-                    "Joining government service",
-                    "Boycott of legislative councils and government titles",
-                    "Promoting foreign trade",
-                    "Cooperation with British administration"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Extremists urged boycott of councils and titles (passive resistance)."
-            },
-            {
-                "text": "Who famously stated, \"Political freedom is the lifebreath of a nation,\" during the militant nationalist phase?",
-                "options": [
-                    "Balgangadhar Tilak",
-                    "Bipin Chandra Pal",
-                    "Aurobindo Ghose",
-                    "Lala Lajpat Rai"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Aurobindo Ghose made this influential statement."
-            },
-            {
-                "text": "The 'Samitis' or volunteer corps, such as the Swadesh Bandhab Samiti, were organized by whom?",
-                "options": [
-                    "Gopal Krishna Gokhale",
-                    "Ashwini Kumar Dutta",
-                    "Dadabhai Naoroji",
-                    "Surendranath Banerjea"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Ashwini Kumar Dutta organised the Swadesh Bandhab Samiti."
-            },
-            {
-                "text": "Which festival was imaginatively used by Tilak to popularise the Swadeshi message?",
-                "options": [
-                    "Diwali",
-                    "Holi",
-                    "Ganapati and Shivaji festivals",
-                    "Durga Puja"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Tilak enhanced political mobilization through Ganapati and Shivaji festivals."
-            },
-            {
-                "text": "The programme of Swadeshi or National Education saw the establishment of institutions like:",
-                "options": [
-                    "Calcutta University",
-                    "Shantiniketan and Bengal National College",
-                    "Fort William College",
-                    "Mayo College"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Institutions like Shantiniketan and Bengal National College were established."
-            },
-            {
-                "text": "In the cultural sphere, Abanindranath Tagore of the Bengal School of Painting broke away from Victorian naturalism, drawing inspiration from:",
-                "options": [
-                    "European Impressionism",
-                    "Ajanta, Mughal, and Rajput paintings",
-                    "Contemporary British art",
-                    "Chinese landscape art"
-                ],
-                "correctAnswer": 1,
-                "explanation": "He drew on Ajanta, Mughal, and Rajput traditions."
-            },
-            {
-                "text": "What was the role of students in the Swadeshi Movement?",
-                "options": [
-                    "They mostly remained aloof from political activities.",
-                    "They actively propagated and practised swadeshi.",
-                    "They supported government policies to maintain order.",
-                    "They formed committees to negotiate with the British."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Students were active in promoting and practicing swadeshi."
-            },
-            {
-                "text": "How did the participation of upper and middle-class Muslims generally manifest during the Swadeshi Movement?",
-                "options": [
-                    "They actively joined the movement in large numbers.",
-                    "They were primarily led by Nawab Salimullah of Dacca and supported the partition.",
-                    "They formed independent revolutionary groups.",
-                    "They contributed financially to the Tilak Swaraj Fund."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Most were led by Nawab Salimullah and supported the partition."
-            },
-            {
-                "text": "When was the All India Muslim League propped up?",
-                "options": [
-                    "December 30, 1905",
-                    "October 16, 1905",
-                    "1906 (exact date not given, but earlier than Dec 30)",
-                    "1907"
-                ],
-                "correctAnswer": 0,
-                "explanation": "Muslim League was formed on December 30, 1905."
-            },
-            {
-                "text": "The Partition of Bengal was annulled in which year?",
-                "options": [
-                    "1907",
-                    "1909",
-                    "1911",
-                    "1913"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Annulment occurred in 1911."
-            },
-            {
-                "text": "What was a significant administrative change that accompanied the annulment of the Partition of Bengal?",
-                "options": [
-                    "Creation of a separate province for Bengal",
-                    "Shifting of the capital to Delhi",
-                    "Grant of dominion status to India",
-                    "Introduction of communal electorates"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The capital shifted from Calcutta to Delhi in 1911."
-            },
-            {
-                "text": "Which of the following was a major weakness of the Swadeshi Movement?",
-                "options": [
-                    "Its widespread success across all social classes",
-                    "Its strong, unified leadership structure",
-                    "Its failure to create an effective organisation or party structure",
-                    "Its ability to sustain a high-pitch mass movement for an extended period"
-                ],
-                "correctAnswer": 2,
-                "explanation": "A major weakness was the lack of a lasting organisation."
-            },
-            {
-                "text": "The Surat Split of 1907 involved a division between which two factions within the Indian National Congress?",
-                "options": [
-                    "Liberals and Conservatives",
-                    "Moderates and Extremists",
-                    "Hindus and Muslims",
-                    "Peasants and Zamindars"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Moderates and Extremists split at Surat."
-            },
-            {
-                "text": "The Extremists wanted the 1907 Congress session to be held in which city?",
-                "options": [
-                    "Surat",
-                    "Calcutta",
-                    "Nagpur",
-                    "Madras"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Extremists preferred Nagpur for the session venue."
-            },
-            {
-                "text": "Who became the president of the Indian National Congress at the Surat session in 1907?",
-                "options": [
-                    "Balgangadhar Tilak",
-                    "Lala Lajpat Rai",
-                    "Dadabhai Naoroji",
-                    "Rashbehari Ghosh"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Rashbehari Ghosh was president at Surat."
-            },
-            {
-                "text": "Which of the following laws was not brought into force by the government to check anti-government activity after the Swadeshi Movement?",
-                "options": [
-                    "Seditious Meetings Act, 1907",
-                    "Indian Newspapers Act, 1908",
-                    "Criminal Law Amendment Act, 1908",
-                    "Rowlatt Act, 1919"
-                ],
-                "correctAnswer": 3,
-                "explanation": "The Rowlatt Act was passed much later (1919)."
-            },
-            {
-                "text": "Balgangadhar Tilak was sentenced to six years' transportation to Mandalay for sedition in which year?",
-                "options": [
-                    "1907",
-                    "1908",
-                    "1909",
-                    "1910"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Tilak was convicted in 1908."
-            },
-            {
-                "text": "The government's strategy towards the nationalists, following the Swadeshi and Boycott Movement, was described as:",
-                "options": [
-                    "Policy of complete non-interference",
-                    "Policy of total repression only",
-                    "Policy of 'rallying them' or 'carrot and stick'",
-                    "Policy of immediate grant of self-government"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The British used a 'carrot and stick' approach."
-            },
-            {
-                "text": "Which group, led by the Agha Khan in October 1906, met Lord Minto and demanded separate electorates?",
-                "options": [
-                    "Hindu Mahasabha",
-                    "Simla Deputation of Muslim elites",
-                    "Deccan Agricultural Association",
-                    "Swarajists"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Simla Deputation, led by the Aga Khan, demanded separate electorates."
-            },
-            {
-                "text": "The Morley-Minto Reforms are also known as:",
-                "options": [
-                    "The Indian Independence Act of 1909",
-                    "The Government of India Act of 1909",
-                    "The Montagu-Chelmsford Reforms",
-                    "The Indian Councils Act of 1909"
-                ],
-                "correctAnswer": 3,
-                "explanation": "They are properly called the Indian Councils Act, 1909."
-            },
-            {
-                "text": "A key feature of the Morley-Minto Reforms of 1909 was the establishment of:",
-                "options": [
-                    "Direct elections for all members of the councils",
-                    "Complete responsible government at the centre",
-                    "Separate electorates for Muslims for election to the central council",
-                    "Abolition of the viceroy's executive council"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Separate electorates for Muslims were introduced."
-            },
-            {
-                "text": "Under the Morley-Minto Reforms of 1909, what was the power of legislatures regarding the budget?",
-                "options": [
-                    "They could vote on the budget and propose amendments.",
-                    "They could only discuss the budget, not vote upon it.",
-                    "They had full control over budget allocation.",
-                    "The budget was entirely decided by Indian members."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Legislatures could only discuss, not vote, on the budget."
-            },
-            {
-                "text": "What was Lord Morley's stated view regarding colonial self-government for India after the 1909 reforms?",
-                "options": [
-                    "He believed it was suitable for India.",
-                    "He made it clear it was not suitable for India.",
-                    "He stated it would be granted within five years.",
-                    "He remained neutral on the subject."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Morley insisted colonial self-government was not suitable for India."
-            },
-            {
-                "text": "The goal of the Indian National Congress declared in the Calcutta session (1906) was \"self-government or swaraj like the United Kingdom or the colonies.\" This reflected the influence of which approach?",
-                "options": [
-                    "Militant Nationalism",
-                    "Moderate Nationalism",
-                    "Revolutionary Terrorism",
-                    "Subaltern Approach"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The moderates’ approach was reflected in that resolution."
-            },
-            {
-                "text": "The Swadeshi Movement was primarily initiated to protest against:",
-                "options": [
-                    "High taxation",
-                    "Economic drain",
-                    "The partition of Bengal",
-                    "Lack of representation in legislative councils"
-                ],
-                "correctAnswer": 2,
-                "explanation": "It began as a reaction to the Partition of Bengal."
-            },
-            {
-                "text": "Who were the early nationalist economists whose writings exposed the exploitative character of colonial rule?",
-                "options": [
-                    "James Mill and Vincent Smith",
-                    "Dadabhai Naoroji and R.C. Dutt",
-                    "Karl Marx and Antonio Gramsci",
-                    "Lord Curzon and Lord Minto"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Dadabhai Naoroji and R.C. Dutt exposed colonial exploitation."
-            },
-            {
-                "text": "What type of political action was advocated by the Militant School of Thought during this period?",
-                "options": [
-                    "Constitutional agitation and dialogue",
-                    "Direct political action, including mass inclusion and personal sacrifices",
-                    "Secret negotiations with the British Crown",
-                    "Reliance on judicial reforms only"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Militants advocated direct, mass-based action."
-            },
-            {
-                "text": "Which administrative measure of Curzon particularly angered Indian nationalists and contributed to the growth of militant nationalism?",
-                "options": [
-                    "Introduction of local self-government",
-                    "Expansion of the Indian Civil Service",
-                    "The Partition of Bengal",
-                    "Grant of more powers to provincial councils"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Partition of Bengal in 1905 angered nationalists."
-            },
-            {
-                "text": "The \"Three 'P's\" (prayer, petition, protest) refers to the methods of which group of nationalists?",
-                "options": [
-                    "Revolutionaries",
-                    "Extremists",
-                    "Moderates",
-                    "Socialists"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Moderates relied on ‘prayer, petition, and protest.’"
-            },
-            {
-                "text": "Which Indian was the first to be appointed to the Viceroy's executive council, as a result of the Morley-Minto Reforms of 1909?",
-                "options": [
-                    "Gopal Krishna Gokhale",
-                    "Balgangadhar Tilak",
-                    "Satyendra Prasad Sinha",
-                    "Muhammad Ali Jinnah"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Satyendra Prasad Sinha was the first Indian member."
-            },
-            {
-                "text": "What was a significant impact of the Swadeshi Movement on the national movement?",
-                "options": [
-                    "It led to the immediate grant of dominion status.",
-                    "It reduced patriotism to an academic pastime.",
-                    "It marked the emergence of all major trends of the national movement.",
-                    "It unified all religious communities under a single political banner."
-                ],
-                "correctAnswer": 2,
-                "explanation": "All major national movement trends emerged during Swadeshi Movement."
-            },
-            {
-                "text": "What was a notable contribution of women to the Swadeshi Movement?",
-                "options": [
-                    "They joined the civil services in large numbers.",
-                    "They gave up purdah and offered ornaments for the Tilak Fund.",
-                    "They formed separate political parties for women's rights.",
-                    "They campaigned for increased British imports."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Women played a huge role, giving up purdah and personal valuables."
-            },
-            {
-                "text": "The term 'Atma Shakti' (Self-Reliance) was strongly emphasised during which movement?",
-                "options": [
-                    "Non-Cooperation Movement",
-                    "Civil Disobedience Movement",
-                    "Swadeshi Movement",
-                    "Quit India Movement"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Atma Shakti was a Swadeshi Movement ideal."
-            },
-            {
-                "text": "The split in the Indian National Congress at Surat in 1907 was due to differences over:",
-                "options": [
-                    "The choice of national language",
-                    "The goal of the Congress and the methods of political action",
-                    "The representation of Muslims in the legislature",
-                    "Economic policies and land reforms"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The split was over methods and the Congress' goal."
-            },
-            {
-                "text": "Which of the following acts allowed magistrates to confiscate press property that published objectionable material likely to cause incitement to murder or acts of violence?",
-                "options": [
-                    "Seditious Meetings Act, 1907",
-                    "Indian Newspapers Act, 1908",
-                    "Criminal Law Amendment Act, 1908",
-                    "Vernacular Press Act, 1878"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Indian Newspapers Act, 1908, enabled such confiscation."
-            },
-            {
-                "text": "Despite some Muslims participating, most upper and middle-class Muslims were led by whom in supporting the Partition of Bengal?",
-                "options": [
-                    "Muhammad Ali Jinnah",
-                    "Maulana Abul Kalam Azad",
-                    "Nawab Salimullah of Dacca",
-                    "Aga Khan"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Nawab Salimullah of Dacca led the majority in supporting the partition."
-            }
-        ],
-        "First Phase of Revolutionary Activities (1907-1917)": [{
-                "text": "What was a primary characteristic of the surge of revolutionary activities in India during the period 1907-1917?",
-                "options": [
-                    "A strong focus on constitutional reforms.",
-                    "An emphasis on non-violent civil disobedience.",
-                    "A belief that the British must be expelled physically by force.",
-                    "A programme to subvert the loyalties of the entire British Indian Army through mass action."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The revolutionaries believed that the British must be expelled by physical force, not just reforms or non-violence."
-            },
-            {
-                "text": "The revolutionary programme adopted by some Indian nationalists during this phase was inspired by the methods of which international groups?",
-                "options": [
-                    "American colonists and French revolutionaries.",
-                    "Russian nihilists and Irish nationalists.",
-                    "Chinese communists and German socialists.",
-                    "Italian unificationists and Japanese imperialists."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Russian nihilists and Irish nationalists' revolutionary methods inspired the Indian revolutionaries."
-            },
-            {
-                "text": "In which year were the first revolutionary groups in Bengal organised, notably in Midnapore by Jnanendranath Basu?",
-                "options": [
-                    "1900",
-                    "1902",
-                    "1905",
-                    "1907"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The first revolutionary groups in Bengal were organised in 1902."
-            },
-            {
-                "text": "Which weekly journal was started by the Anushilan Samiti in Bengal?",
-                "options": [
-                    "Karma Yogin",
-                    "Bande Mataram",
-                    "Yugantar",
-                    "Sandhya"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Anushilan Samiti started the weekly journal Yugantar."
-            },
-            {
-                "text": "Who among the following were key figures in organising a secret society that covered areas of Punjab, Delhi, and United Provinces?",
-                "options": [
-                    "Barindra Kumar Ghosh and Ullaskar Dutt",
-                    "Pulin Das and Jatin Mukherjee",
-                    "Rashbehari Bose and Sachin Sanyal",
-                    "Ramprasad Bismil and Ashfaqullah Khan"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Rashbehari Bose and Sachin Sanyal organised secret societies covering Punjab, Delhi, and UP."
-            },
-            {
-                "text": "In 1908, Prafulla Chaki and Khudiram Bose threw a bomb at a carriage intending to target which British official?",
-                "options": [
-                    "Viceroy Hardinge",
-                    "Lieutenant-Governor Sri Andrew Fraser",
-                    "Judge Kingsford",
-                    "Curzon-Wyllie"
-                ],
-                "correctAnswer": 2,
-                "explanation": "They targeted Judge Kingsford in 1908."
-            },
-            {
-                "text": "The Alipore Conspiracy Case is also known by which other names?",
-                "options": [
-                    "Delhi Conspiracy Trial or Lahore Conspiracy Case.",
-                    "Manicktolla bomb conspiracy or Muraripukur conspiracy.",
-                    "Kakori Robbery or Chittagong Armoury Raid.",
-                    "Nasik Conspiracy or Poona Murder Case."
-                ],
-                "correctAnswer": 1,
-                "explanation": "It is also called the Manicktolla bomb conspiracy or Muraripukur conspiracy."
-            },
-            {
-                "text": "For what purpose was the Barrah dacoity organised by the Dacca Anushilan group under Pulin Das in 1908?",
-                "options": [
-                    "To disrupt railway communications.",
-                    "To assassinate British officials.",
-                    "To raise funds for revolutionary activities.",
-                    "To distribute revolutionary pamphlets."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Barrah dacoity was organised to raise funds for revolution."
-            },
-            {
-                "text": "Which Viceroy was the target of a spectacular bomb attack staged by Rashbehari Bose and Sachin Sanyal in Chandni Chowk?",
-                "options": [
-                    "Lord Curzon",
-                    "Lord Minto",
-                    "Lord Hardinge",
-                    "Lord Chelmsford"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Lord Hardinge was attacked in Chandni Chowk."
-            },
-            {
-                "text": "The attempt by revolutionaries to bring about an all-India insurrection during the First World War came to be known as what?",
-                "options": [
-                    "The Red Fort Conspiracy",
-                    "The Great Indian Mutiny Plan",
-                    "The German Plot or Zimmerman Plan",
-                    "The Silk Letter Conspiracy"
-                ],
-                "correctAnswer": 2,
-                "explanation": "It was called the German Plot or Zimmerman Plan."
-            },
-            {
-                "text": "Which revolutionary leader from Bengal was shot and died a hero's death in Balasore after the failure of the German plot?",
-                "options": [
-                    "Barindra Kumar Ghosh",
-                    "Jatin Mukherjee",
-                    "Prafulla Chaki",
-                    "Khudiram Bose"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Jatin Mukherjee died in Balasore after the failed plot."
-            },
-            {
-                "text": "The newspapers and journals like Kal, Sandhya, and Yugantar were associated with which aspect of the revolutionary movement in Bengal?",
-                "options": [
-                    "Promoting moderate nationalism.",
-                    "Publishing government circulars.",
-                    "Disseminating revolutionary ideology.",
-                    "Advocating for economic reforms."
-                ],
-                "correctAnswer": 2,
-                "explanation": "These newspapers spread revolutionary ideology."
-            },
-            {
-                "text": "A stated drawback of the revolutionary activities in Bengal was their overemphasis on Hindu religion, which resulted in what?",
-                "options": [
-                    "A strong alliance with the Moderate faction of the Congress.",
-                    "The alienation of Christian missionaries.",
-                    "Keeping the Muslims aloof from the movement.",
-                    "Deterioration of relations with other regional revolutionary groups."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Muslims were largely kept aloof from the movement due to this overemphasis."
-            },
-            {
-                "text": "Who organised the Ramosi Peasant Force in Maharashtra in 1879?",
-                "options": [
-                    "V.D. Savarkar",
-                    "Bal Gangadhar Tilak",
-                    "Vasudev Balwant Phadke",
-                    "Damodar Chapekar"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Vasudev Balwant Phadke organised the Ramosi Peasant Force."
-            },
-            {
-                "text": "The Chapekar brothers, Damodar and Balkrishna, were responsible for the murder of which British officials in Poona in 1897?",
-                "options": [
-                    "Viceroy Hardinge and his secretary.",
-                    "Plague Commissioner Rand and Lt. Ayerst.",
-                    "Collector Jackson and his assistant.",
-                    "Curzon-Wyllie and Dr. Lalkaka."
-                ],
-                "correctAnswer": 1,
-                "explanation": "They murdered Plague Commissioner Rand and Lt. Ayerst."
-            },
-            {
-                "text": "V.D. Savarkar and his brother organised which secret society that later merged with Abhinav Bharat?",
-                "options": [
-                    "Anushilan Samiti",
-                    "Mitra Mela",
-                    "Hindustan Republican Association",
-                    "Ghadar Party"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Savarkar brothers founded Mitra Mela, later merged with Abhinav Bharat."
-            },
-            {
-                "text": "Which publication was associated with Lala Lajpat Rai in Punjab, contributing to the fuelling of extremism there?",
-                "options": [
-                    "Bharat Mata",
-                    "The Indian Sociologist",
-                    "Punjabee",
-                    "The Ghadr"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The journal Punjabee was associated with Lala Lajpat Rai."
-            },
-            {
-                "text": "Who was Ajit Singh, a key figure in Punjab's extremist movement, related to?",
-                "options": [
-                    "Bhagat Singh's uncle",
-                    "Lala Hardayal's brother",
-                    "Sachin Sanyal's cousin",
-                    "Rashbehari Bose's mentor"
-                ],
-                "correctAnswer": 0,
-                "explanation": "Ajit Singh was Bhagat Singh's uncle."
-            },
-            {
-                "text": "Which prominent revolutionary leader from Punjab was involved as one of the leading figures of the Ghadr Revolution and later played an important part in the founding of the Indian National Army?",
-                "options": [
-                    "Bhagat Singh",
-                    "Sukhdev",
-                    "Rashbehari Bose",
-                    "Sardar Ajit Singh"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Rashbehari Bose was a key figure in both Ghadr Revolution and INA."
-            },
-            {
-                "text": "Who established the India House in London and published the journal The Indian Sociologist?",
-                "options": [
-                    "Madam Bhikaji Cama",
-                    "Madanlal Dhingra",
-                    "Shyamji Krishnavarma",
-                    "Lala Hardayal"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Shyamji Krishnavarma founded India House and The Indian Sociologist in London."
-            },
-            {
-                "text": "What act of revolutionary violence was Madanlal Dhingra responsible for in 1909?",
-                "options": [
-                    "Throwing a bomb in the Central Legislative Assembly.",
-                    "Murdering the Plague Commissioner in Poona.",
-                    "Assassinating the India Office bureaucrat Curzon-Wyllie.",
-                    "Derailed a train carrying a British official."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Dhingra assassinated Curzon-Wyllie in London in 1909."
-            },
-            {
-                "text": "Where was the headquarters of the Ghadr Party located?",
-                "options": [
-                    "London",
-                    "Paris",
-                    "San Francisco",
-                    "Tokyo"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Ghadr Party headquarters were in San Francisco."
-            },
-            {
-                "text": "Which incident in 1914, involving a ship carrying Indian immigrants, encouraged the Ghadr Party's plans for a violent attack to oust British rule in India?",
-                "options": [
-                    "The sinking of the Lusitania.",
-                    "The Komagata Maru incident.",
-                    "The Black Hole of Calcutta incident.",
-                    "The Opium Wars."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Komagata Maru incident inspired the Ghadr Party."
-            },
-            {
-                "text": "The Ghadrites fixed which date for an armed revolt in Ferozepur, Lahore, and Rawalpindi garrisons?",
-                "options": [
-                    "January 26, 1915",
-                    "February 21, 1915",
-                    "April 13, 1915",
-                    "August 15, 1915"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The armed revolt was planned for February 21, 1915."
-            },
-            {
-                "text": "The suppression of the Ghadrite revolt was aided by which wartime legislation?",
-                "options": [
-                    "The Rowlatt Act, 1919",
-                    "The Defence of India Rules, 1915",
-                    "The Vernacular Press Act, 1878",
-                    "The Indian Councils Act, 1909"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Defence of India Rules, 1915, helped suppress the revolt."
-            },
-            {
-                "text": "Which of the following radical pan-Islamists were interned for years during the First World War?",
-                "options": [
-                    "Bal Gangadhar Tilak and Annie Besant",
-                    "Ali brothers, Maulana Azad, and Hasrat Mohani",
-                    "Mahatma Gandhi and Jawaharlal Nehru",
-                    "Bhagat Singh and Sukhdev"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Ali brothers, Maulana Azad, and Hasrat Mohani were interned."
-            },
-            {
-                "text": "The Berlin Committee for Indian Independence, established in 1915, included which of these prominent figures?",
-                "options": [
-                    "Dadabhai Naoroji and Surendranath Banerjea",
-                    "Gopal Krishna Gokhale and Mahadeo Govind Ranade",
-                    "Virendranath Chattopadhyay, Bhupendranath Dutta, and Lala Hardayal",
-                    "Subhash Chandra Bose and Sardar Vallabhbhai Patel"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The committee included Virendranath Chattopadhyay, Bhupendranath Dutta, and Lala Hardayal."
-            },
-            {
-                "text": "A notable mutiny occurred in Singapore on February 15, 1915, involving which military units?",
-                "options": [
-                    "Royal Indian Navy ratings.",
-                    "Punjabi Muslim 5th Light Infantry and the 36th Sikh battalion.",
-                    "Gurkha regiments.",
-                    "British Indian artillery divisions."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The mutiny involved the Punjabi Muslim 5th Light Infantry and 36th Sikh battalion."
-            },
-            {
-                "text": "What caused a temporary respite in revolutionary activity after 1917?",
-                "options": [
-                    "The establishment of the Indian National Congress.",
-                    "The immediate transfer of power to Indians.",
-                    "Release of prisoners under Defence of India Rules and Montagu's August 1917 statement.",
-                    "The complete suppression of all revolutionary groups."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Release of prisoners and Montagu's August 1917 statement caused a lull."
-            },
-            {
-                "text": "The revolutionary activities during this phase were characterised by their aim to:",
-                "options": [
-                    "Achieve self-government through peaceful constitutional means.",
-                    "Gain international diplomatic recognition for India's independence.",
-                    "Strike terror in the hearts of the rulers and inspire patriotic youth.",
-                    "Integrate all sections of Indian society into a single political party."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Their aim was to strike terror and inspire youth."
-            },
-            {
-                "text": "Which city was one of the early centres of bomb manufacture in Maharashtra?",
-                "options": [
-                    "Bombay",
-                    "Madras",
-                    "Calcutta",
-                    "Delhi"
-                ],
-                "correctAnswer": 0,
-                "explanation": "Bombay was an early bomb-making centre in Maharashtra."
-            },
-            {
-                "text": "The 'taxicab dacoities' and 'boat dacoities' were methods used by which revolutionary group in Bengal to raise funds?",
-                "options": [
-                    "Anushilan Samiti",
-                    "Jugantar party",
-                    "Dacca Anushilan",
-                    "Hindustan Republican Association"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Jugantar party used these innovative fundraising methods."
-            },
-            {
-                "text": "Which leader of the Dacca Anushilan organised the Barrah dacoity for funding revolutionary activities?",
-                "options": [
-                    "Barindra Kumar Ghosh",
-                    "Jatin Mukherjee",
-                    "Pulin Das",
-                    "Sachin Sanyal"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Barrah dacoity was organised by Pulin Das."
-            },
-            {
-                "text": "The Delhi Conspiracy trial resulted from the bomb attack on which British official?",
-                "options": [
-                    "Plague Commissioner Rand",
-                    "Judge Kingsford",
-                    "Viceroy Hardinge",
-                    "Curzon-Wyllie"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The trial was for the bomb attack on Viceroy Hardinge."
-            },
-            {
-                "text": "The revolutionary groups in Bengal were first organised in 1902 in which district?",
-                "options": [
-                    "Calcutta",
-                    "Dacca",
-                    "Midnapore",
-                    "Muraripukur"
-                ],
-                "correctAnswer": 2,
-                "explanation": "First revolutionary groups in Bengal were formed in Midnapore."
-            },
-            {
-                "text": "Which international event in 1914, besides the Komagata Maru incident, encouraged the Ghadr party's plans?",
-                "options": [
-                    "The Russian Revolution",
-                    "The outbreak of the First World War",
-                    "The American Civil War",
-                    "The Chinese Revolution"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The outbreak of the First World War inspired Ghadr plans."
-            },
-            {
-                "text": "Who assassinated the India Office bureaucrat Curzon-Wyllie in London in 1909?",
-                "options": [
-                    "Udham Singh",
-                    "Sardar Ajit Singh",
-                    "Madanlal Dhingra",
-                    "V.D. Savarkar"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Madanlal Dhingra assassinated Curzon-Wyllie in 1909."
-            },
-            {
-                "text": "The Anjuman-i-Mohisban-i-Watan in Lahore, with its journal Bharat Mata, was organised by whom?",
-                "options": [
-                    "Lala Lajpat Rai",
-                    "Ajit Singh",
-                    "Bhagat Singh",
-                    "Sohan Singh Bhakna"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Ajit Singh organised Anjuman-i-Mohisban-i-Watan and Bharat Mata."
-            },
-            {
-                "text": "What was the original name of the secret society founded by V.D. Savarkar and his brother, which later merged with Abhinav Bharat?",
-                "options": [
-                    "Abhinav Society",
-                    "Hindu Mela",
-                    "Mitra Mela",
-                    "Swadesh Bandhab Samiti"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Their society was called Mitra Mela."
-            },
-            {
-                "text": "Which of the following was NOT a centre of bomb manufacture identified in Maharashtra during this period?",
-                "options": [
-                    "Nasik",
-                    "Poona",
-                    "Bombay",
-                    "Surat"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Surat was not a bomb manufacture centre in Maharashtra."
-            },
-            {
-                "text": "What was the primary goal of the revolutionary activities, as opposed to aiming for a violent mass revolution or subverting the army?",
-                "options": [
-                    "To engage in public debates on constitutional reforms.",
-                    "To strike terror in the hearts of the rulers.",
-                    "To form an alternative government in exile.",
-                    "To negotiate with the British government for greater autonomy."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Primary aim was to strike terror in the rulers."
-            },
-            {
-                "text": "Who was the leader and inspirer of the Anushilan Samiti, one of the first revolutionary groups in Bengal?",
-                "options": [
-                    "Jnanendranath Basu",
-                    "Barindra Kumar Ghosh",
-                    "Promotha Mitter",
-                    "Jatindranath Banerjee"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Promotha Mitter was a leading spirit of Anushilan Samiti."
-            },
-            {
-                "text": "Which of the following was NOT a common theme of revolutionary activities during this phase?",
-                "options": [
-                    "Individual heroic action.",
-                    "Financial dacoities for funds.",
-                    "Promoting inter-communal harmony through religious synthesis.",
-                    "Assassination of oppressive officials."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Promoting religious harmony was not a central revolutionary theme."
-            },
-            {
-                "text": "Which foreign country was a base for revolutionary activities led by Madam Bhikaji Cama, where she made international contacts?",
-                "options": [
-                    "Germany",
-                    "Japan",
-                    "France",
-                    "United States"
-                ],
-                "correctAnswer": 2,
-                "explanation": "France was the base for Bhikaji Cama's activities."
-            },
-            {
-                "text": "The Komagata Maru ship was carrying immigrants from Singapore to which destination when it was turned back?",
-                "options": [
-                    "San Francisco",
-                    "London",
-                    "Vancouver",
-                    "Paris"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Komagata Maru was headed for Vancouver."
-            },
-            {
-                "text": "What was the name of the place near Calcutta where the conflict with the police resulted in 22 deaths after the Komagata Maru incident?",
-                "options": [
-                    "Diamond Harbour",
-                    "Budge Budge",
-                    "Barrackpore",
-                    "Hooghly"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Budge Budge incident resulted in 22 deaths."
-            },
-            {
-                "text": "The Defence of India Rules, 1915, were used to suppress which specific event mentioned in the chapter?",
-                "options": [
-                    "The Chapekar brothers' assassinations.",
-                    "The Barrah dacoity.",
-                    "The Ghadrites' armed revolt plans.",
-                    "The Alipore Conspiracy."
-                ],
-                "correctAnswer": 2,
-                "explanation": "They suppressed the Ghadrites' armed revolt plans."
-            },
-            {
-                "text": "The 'German Plot' or 'Zimmerman Plan' was an attempt by revolutionaries to achieve what?",
-                "options": [
-                    "Secure arms from Germany.",
-                    "Bring about an all-India insurrection.",
-                    "Form a government in exile in Germany.",
-                    "Forge an alliance between Germany and the Ghadr Party."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The plan was to incite an all-India insurrection."
-            },
-            {
-                "text": "Which newspaper from Punjab was known for its extremist views and publication related to land revenue and irrigation tax issues?",
-                "options": [
-                    "Bharat Mata",
-                    "The Indian Sociologist",
-                    "Punjabee",
-                    "The Ghadr"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Punjabee was known for such publications."
-            },
-            {
-                "text": "What was the main reason cited for the temporary lull in revolutionary activities after 1917, besides the release of prisoners and Gandhi's arrival?",
-                "options": [
-                    "The British government agreed to immediate independence.",
-                    "There was a talk of constitutional reforms, such as Montagu's August 1917 statement.",
-                    "Revolutionary leaders decided to pursue only political agitation.",
-                    "The revolutionary groups ran out of funds and members."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Montagu's statement of constitutional reforms brought a lull in the movement."
-            }
-        ],
-        "Emergence of Gandhi": [{
-                "text": "Under the Government of India Act, 1919, how were provincial subjects divided for administration?",
-                "options": [
-                    "Into federal and unitary lists.",
-                    "Into central and provincial lists.",
-                    "Into reserved and transferred lists.",
-                    "Into legislative and executive lists."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Provincial subjects were divided into 'reserved' and 'transferred' lists."
-            },
-            {
-                "text": "Regarding the provincial executive under the Government of India Act, 1919, to whom were the ministers responsible for 'transferred' subjects?",
-                "options": [
-                    "The Governor-General.",
-                    "The Secretary of State for India.",
-                    "The provincial legislature.",
-                    "The executive councillors."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Ministers were responsible to the provincial legislature regarding transferred subjects."
-            },
-            {
-                "text": "What percentage of members in the provincial legislative councils were to be elected under the Government of India Act, 1919?",
-                "options": [
-                    "50 per cent.",
-                    "60 per cent.",
-                    "70 per cent.",
-                    "80 per cent."
-                ],
-                "correctAnswer": 2,
-                "explanation": "70% of the members in provincial legislative councils were to be elected."
-            },
-            {
-                "text": "Which significant right was granted to women for the first time under the Government of India Act, 1919?",
-                "options": [
-                    "Right to hold public office.",
-                    "Right to education.",
-                    "Right to vote.",
-                    "Right to own property."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Women received the right to vote for the first time under this act."
-            },
-            {
-                "text": "How many Indians were appointed to the Viceroy’s executive council under the Government of India Act, 1919?",
-                "options": [
-                    "Two out of six.",
-                    "Three out of eight.",
-                    "Four out of ten.",
-                    "Five out of twelve."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Three out of the eight executive council members were Indians."
-            },
-            {
-                "text": "What was the tenure of the Central Legislative Assembly under the Government of India Act, 1919?",
-                "options": [
-                    "Two years.",
-                    "Three years.",
-                    "Four years.",
-                    "Five years."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The tenure was three years."
-            },
-            {
-                "text": "Which aspect of the Government of India Act, 1919, was criticized by the Congress as 'disappointing' and 'unsatisfactory'?",
-                "options": [
-                    "The expansion of the franchise.",
-                    "The full control over the Viceroy and his executive council.",
-                    "The unsatisfactory division of subjects between reserved and transferred.",
-                    "The allocation of seats to provinces based on population."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Congress criticized the division of subjects as unsatisfactory."
-            },
-            {
-                "text": "Who described the Montford Reforms (Government of India Act, 1919) as 'only a method of further draining India of her wealth and of prolonging her servitude'?",
-                "options": [
-                    "Lord Curzon.",
-                    "Subhash Chandra Bose.",
-                    "M.K. Gandhi.",
-                    "Jawaharlal Nehru."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi described the reforms in this way."
-            },
-            {
-                "text": "In which year did Mohandas Karamchand Gandhi return to India from South Africa?",
-                "options": [
-                    "1910.",
-                    "1914.",
-                    "1915.",
-                    "1918."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi returned to India in 1915."
-            },
-            {
-                "text": "What was the name of the paper started by Gandhi in South Africa to advance the cause of Indians?",
-                "options": [
-                    "Young India.",
-                    "Indian Opinion.",
-                    "Natal Witness.",
-                    "The Satyagrahi."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gandhi started the paper 'Indian Opinion'."
-            },
-            {
-                "text": "In South Africa, what was the primary reason for Gandhi's 'Satyagraha against Registration Certificates' which began in 1906?",
-                "options": [
-                    "To protest against unfair trade practices.",
-                    "To oppose the compulsory carrying of registration certificates with fingerprints by Indians.",
-                    "To demand equal voting rights for all residents.",
-                    "To challenge the British administration's judicial system."
-                ],
-                "correctAnswer": 1,
-                "explanation": "It was against carrying registration certificates with fingerprints."
-            },
-            {
-                "text": "What was the name of the farm founded by Gandhi's associate, Herman Kallenbach, in 1910 in South Africa?",
-                "options": [
-                    "Phoenix Farm.",
-                    "Ashram Farm.",
-                    "Tolstoy Farm.",
-                    "Natal Farm."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Tolstoy Farm was founded by Kallenbach."
-            },
-            {
-                "text": "Which of the following principles was NOT a part of Gandhi's concept of Satyagraha, as evolved in South Africa?",
-                "options": [
-                    "Resistance without violence.",
-                    "Devotion to truth.",
-                    "Acceptance of suffering in the struggle against wrong-doer.",
-                    "Use of hatred against the adversary."
-                ],
-                "correctAnswer": 3,
-                "explanation": "Satyagraha excluded hatred."
-            },
-            {
-                "text": "Which of Gandhi's initial struggles in India is referred to as the \"First Civil Disobedience\"?",
-                "options": [
-                    "Ahmedabad Mill Strike.",
-                    "Kheda Satyagraha.",
-                    "Champaran Satyagraha.",
-                    "Rowlatt Satyagraha."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Champaran Satyagraha is labelled as the first civil disobedience."
-            },
-            {
-                "text": "Who invited Gandhi to look into the problems of indigo farmers in Champaran, Bihar?",
-                "options": [
-                    "Rajendra Prasad.",
-                    "Mazharul-Haq.",
-                    "Rajkumar Shukla.",
-                    "J.B. Kripalani."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Rajkumar Shukla invited Gandhi to Champaran."
-            },
-            {
-                "text": "What was the 'Tinkathia system' that exploited indigo farmers in Champaran?",
-                "options": [
-                    "A system of forced labour.",
-                    "A system where peasants were compelled to grow indigo on 3/20th of their land.",
-                    "A land revenue system with high taxes.",
-                    "A system of debt bondage."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Peasants were compelled to grow indigo on 3/20th of their land."
-            },
-            {
-                "text": "Which of the following was a reason for the decline of indigo cultivation in Champaran towards the end of the nineteenth century?",
-                "options": [
-                    "Increased demand for rice.",
-                    "Introduction of German synthetic dyes.",
-                    "Farmers' successful resistance leading to high costs.",
-                    "British withdrawal from indigo trade."
-                ],
-                "correctAnswer": 1,
-                "explanation": "German synthetic dyes reduced the demand for indigo."
-            },
-            {
-                "text": "Which of Gandhi's struggles in India is referred to as the \"First Hunger Strike\"?",
-                "options": [
-                    "Champaran Satyagraha.",
-                    "Kheda Satyagraha.",
-                    "Ahmedabad Mill Strike.",
-                    "Rowlatt Satyagraha."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Ahmedabad Mill Strike was Gandhi's first hunger strike."
-            },
-            {
-                "text": "What was the main dispute between cotton mill owners and workers in Ahmedabad that led to Gandhi's intervention?",
-                "options": [
-                    "Demand for better working conditions.",
-                    "Discontinuation of the plague bonus.",
-                    "Refusal to allow trade unions.",
-                    "Dispute over working hours."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The dispute was regarding the discontinuation of the plague bonus."
-            },
-            {
-                "text": "What percentage of wage increment did Gandhi ask the Ahmedabad mill workers to demand during their strike?",
-                "options": [
-                    "20 per cent.",
-                    "30 per cent.",
-                    "35 per cent.",
-                    "50 per cent."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi advised to demand a 35% increase."
-            },
-            {
-                "text": "Who formed the Ahmedabad Textile Labour Association in 1920, after approaching Gandhi regarding the mill strike?",
-                "options": [
-                    "Mahadeo Desai.",
-                    "Anusuya Sarabhai.",
-                    "Narhari Parekh.",
-                    "J.B. Kripalani."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Anusuya Sarabhai founded the Association."
-            },
-            {
-                "text": "Which of Gandhi's initial struggles in India is referred to as the 'First Non-Cooperation'?",
-                "options": [
-                    "Champaran Satyagraha.",
-                    "Ahmedabad Mill Strike.",
-                    "Kheda Satyagraha.",
-                    "Rowlatt Satyagraha."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Kheda Satyagraha is sometimes considered the first non-cooperation movement."
-            },
-            {
-                "text": "According to the Revenue Code, what condition entitled Kheda farmers to remission of land revenue?",
-                "options": [
-                    "If the yield was less than half the normal produce.",
-                    "If there was a complete crop failure.",
-                    "If the yield was less than one-fourth the normal produce.",
-                    "If the prices of crops fell below a certain level."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Remission was allowed if yield was less than one-fourth the normal produce."
-            },
-            {
-                "text": "Who was the primary leader of the Kheda Satyagraha, supported by Gandhi as the spiritual head?",
-                "options": [
-                    "Rajendra Prasad.",
-                    "Mazharul-Haq.",
-                    "Sardar Vallabhbhai Patel.",
-                    "J.B. Kripalani."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Sardar Patel led the Kheda Satyagraha."
-            },
-            {
-                "text": "What was the popular name for the Anarchical and Revolutionary Crimes Act?",
-                "options": [
-                    "Black Act.",
-                    "Sedition Act.",
-                    "Martial Law Act.",
-                    "Public Safety Act."
-                ],
-                "correctAnswer": 0,
-                "explanation": "The act was popularly known as the Black Act."
-            },
-            {
-                "text": "Which British judge headed the Rowlatt Commission, established to investigate 'seditious conspiracy' of the Indian people?",
-                "options": [
-                    "Lord William Hunter.",
-                    "Sir Michael O’Dwyer.",
-                    "Sir Sidney Rowlatt.",
-                    "Brigadier-General Reginald Dyer."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Sir Sidney Rowlatt headed the commission."
-            },
-            {
-                "text": "What was a key provision of the Rowlatt Act regarding political activists?",
-                "options": [
-                    "It allowed public trials with juries.",
-                    "It permitted trials without juries and imprisonment without trial.",
-                    "It guaranteed the right of habeas corpus.",
-                    "It ensured an independent court of appeal."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The act allowed imprisonment without trial."
-            },
-            {
-                "text": "How did Gandhi describe the Rowlatt Act?",
-                "options": [
-                    "The White Bill.",
-                    "The Suppression Act.",
-                    "The Black Act.",
-                    "The Tyranny Act."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi called it the Black Act."
-            },
-            {
-                "text": "What was the primary mode of protest planned by Gandhi for the Satyagraha against the Rowlatt Act?",
-                "options": [
-                    "Armed rebellion.",
-                    "A nationwide hartal (strike) accompanied by civil disobedience.",
-                    "Constitutional petitions and appeals.",
-                    "Economic blockade and trade restrictions."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gandhi organized a nationwide hartal and civil disobedience."
-            },
-            {
-                "text": "What significant shift in the national movement's orientation occurred due to the Satyagraha against the Rowlatt Act?",
-                "options": [
-                    "It turned towards constitutional reforms.",
-                    "It focused exclusively on urban intellectual participation.",
-                    "It permanently turned towards the masses.",
-                    "It adopted a purely non-religious character."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The movement became mass-based after Satyagraha."
-            },
-            {
-                "text": "On what date did the Jallianwala Bagh Massacre occur?",
-                "options": [
-                    "April 6, 1919.",
-                    "April 9, 1919.",
-                    "April 13, 1919.",
-                    "May 10, 1919."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The massacre happened on April 13, 1919."
-            },
-            {
-                "text": "Which two nationalist leaders were arrested on April 9 in Amritsar, sparking protests that led to the Jallianwala Bagh Massacre?",
-                "options": [
-                    "Mahatma Gandhi and Jawaharlal Nehru.",
-                    "Saifuddin Kitchlew and Dr Satyapal.",
-                    "Rabindranath Tagore and Michael O’Dwyer.",
-                    "Sardar Vallabhbhai Patel and Rajendra Prasad."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Kitchlew and Dr Satyapal were arrested."
-            },
-            {
-                "text": "Who was the Brigadier-General responsible for commanding the troops and opening fire at Jallianwala Bagh?",
-                "options": [
-                    "Lord William Hunter.",
-                    "Sir Michael O’Dwyer.",
-                    "Sir Sidney Rowlatt.",
-                    "Reginald Dyer."
-                ],
-                "correctAnswer": 3,
-                "explanation": "Reginald Dyer led the troops."
-            },
-            {
-                "text": "What title did Rabindranath Tagore renounce in protest after the Jallianwala Bagh Massacre?",
-                "options": [
-                    "Kaiser-i-Hind.",
-                    "Knighthood.",
-                    "Viceroy's Medal.",
-                    "Lordship."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Tagore renounced his knighthood."
-            },
-            {
-                "text": "Who assassinated Michael O’Dwyer later, in retaliation for the Jallianwala Bagh Massacre?",
-                "options": [
-                    "Bhagat Singh.",
-                    "Udham Singh.",
-                    "Sukhdev.",
-                    "Rajguru."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Udham Singh assassinated Michael O'Dwyer."
-            },
-            {
-                "text": "What was the official name of the committee formed to investigate the Jallianwala Bagh Massacre?",
-                "options": [
-                    "The Rowlatt Commission.",
-                    "The Simon Commission.",
-                    "The Disorders Inquiry Committee.",
-                    "The Public Safety Committee."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Disorders Inquiry Committee (Hunter Committee) was appointed."
-            },
-            {
-                "text": "How many Indian members were part of the Hunter Committee?",
-                "options": [
-                    "Two.",
-                    "Three.",
-                    "Four.",
-                    "Five."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Three Indian members were on the committee."
-            },
-            {
-                "text": "Which of the following was a conclusion of the Hunter Committee's final report in March 1920 regarding Dyer's actions?",
-                "options": [
-                    "It fully justified Dyer's actions as necessary.",
-                    "It praised Dyer for maintaining order.",
-                    "It unanimously condemned Dyer's actions.",
-                    "It found Dyer guilty of criminal negligence."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The committee unanimously condemned Dyer's actions."
-            },
-            {
-                "text": "What was the purpose of the 'Indemnity Act' passed by the government after the Hunter Committee's report?",
-                "options": [
-                    "To provide compensation to the victims of the massacre.",
-                    "To protect government officers from legal action.",
-                    "To initiate legal proceedings against Dyer.",
-                    "To impose further restrictions on public gatherings."
-                ],
-                "correctAnswer": 1,
-                "explanation": "It protected government officers from legal action."
-            },
-            {
-                "text": "Which prominent British figure described Dyer's act at Jallianwala Bagh as 'monstrous'?",
-                "options": [
-                    "H.H. Asquith.",
-                    "Lord William Hunter.",
-                    "Edwin Montagu.",
-                    "Winston Churchill."
-                ],
-                "correctAnswer": 3,
-                "explanation": "Winston Churchill used the term 'monstrous'."
-            },
-            {
-                "text": "Which of the following was NOT a core principle of Gandhi's Satyagraha as developed in South Africa?",
-                "options": [
-                    "Non-violence.",
-                    "Devotion to truth.",
-                    "Avoidance of suffering.",
-                    "Non-submission to what is wrong."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Avoidance of suffering was not a core principle."
-            },
-            {
-                "text": "The Government of India Act, 1919, introduced a bicameral legislature at the Centre. What were the two houses called?",
-                "options": [
-                    "Lok Sabha and Rajya Sabha.",
-                    "House of Representatives and Senate.",
-                    "Central Legislative Assembly and Council of State.",
-                    "Provincial Legislative Council and Imperial Assembly."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The two houses were the Central Legislative Assembly and the Council of State."
-            },
-            {
-                "text": "What was a significant gain from the Kheda Satyagraha for Gandhi's leadership?",
-                "options": [
-                    "Financial autonomy for local peasants.",
-                    "Elimination of British land revenue system.",
-                    "Deeper understanding of the masses' strengths and weaknesses.",
-                    "Recognition of his leadership by the British government."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi gained deeper understanding of the Indian masses."
-            },
-            {
-                "text": "What was the profession of Gandhi's client, Dada Abdullah, which initially took Gandhi to South Africa?",
-                "options": [
-                    "Lawyer.",
-                    "Merchant.",
-                    "Indentured labourer.",
-                    "Farmer."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Dada Abdullah was a merchant."
-            },
-            {
-                "text": "What did Gandhi rename the 'passive resistance' or 'civil disobedience' method in South Africa?",
-                "options": [
-                    "Ahimsa.",
-                    "Swaraj.",
-                    "Satyagraha.",
-                    "Sarvodaya."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi called it Satyagraha."
-            },
-            {
-                "text": "Which one of the following was NOT a feature of the Government of India Act, 1919, regarding provincial governance?",
-                "options": [
-                    "Introduction of Dyarchy.",
-                    "Division of subjects into 'reserved' and 'transferred'.",
-                    "Ministers being fully responsible for 'reserved' subjects.",
-                    "Governor having discretionary power over 'reserved' subjects."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Ministers were not fully responsible for 'reserved' subjects; this was under the governor."
-            },
-            {
-                "text": "What was the purpose of the Phoenix Farm, set up by Gandhi in Natal in 1904?",
-                "options": [
-                    "A centre for political meetings.",
-                    "An experiment in education and self-sustenance for satyagrahis.",
-                    "A military training camp.",
-                    "A commercial enterprise for fundraising."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Phoenix Farm was an experiment in education and self-sustenance."
-            }
-        ],
-        "Non-Cooperation Movement and Khilafat Aandolan": [{
-                "text": "In which period did the Khilafat and Non-Cooperation movements primarily take place in India?",
-                "options": [
-                    "1905-1910",
-                    "1914-1918",
-                    "1919-1922",
-                    "1925-1930"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The main phase of the Khilafat and Non-Cooperation movements was from 1919 to 1922."
-            },
-            {
-                "text": "What was the common programme of action adopted by both the Khilafat and Non-Cooperation movements?",
-                "options": [
-                    "Armed rebellion",
-                    "Violent protests",
-                    "Non-violent non-cooperation",
-                    "Constitutional agitation"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Both movements adopted the path of non-violent non-cooperation as the principal course of action."
-            },
-            {
-                "text": "Which of the following factors contributed to the widespread discontent in India around 1919, leading to mass movements?",
-                "options": [
-                    "Economic prosperity and surplus production",
-                    "Introduction of Montagu-Chelmsford Reforms and the Rowlatt Act",
-                    "British withdrawal from India and establishment of self-rule",
-                    "Decline in prices and increased foreign investment"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Discontent was fuelled by the contrasting introduction of the Montagu-Chelmsford Reforms and the oppressive Rowlatt Act."
-            },
-            {
-                "text": "The Khilafat issue emerged due to the British treatment of which country after the First World War?",
-                "options": [
-                    "Persia",
-                    "Afghanistan",
-                    "Turkey",
-                    "Egypt"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The issue arose due to dissatisfaction with British policy towards Turkey after World War I."
-            },
-            {
-                "text": "Who was regarded by Muslims worldwide as their spiritual leader, whose removal from power sparked the Khilafat issue?",
-                "options": [
-                    "Sultan-e-Azam",
-                    "Imam-e-Hind",
-                    "Khalifa",
-                    "Amir-ul-Momineen"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Khalifa (the Caliph of Turkey) was seen as the spiritual head for Muslims."
-            },
-            {
-                "text": "Which two prominent leaders, often referred to as 'Ali brothers', led the Khilafat Movement?",
-                "options": [
-                    "Abul Kalam Azad and Ajmal Khan",
-                    "Shaukat Ali and Muhammad Ali",
-                    "Hasrat Mohani and Jinnah",
-                    "Khan Abdul Gaffar Khan and Majhar-ul-Haq"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Ali brothers, Shaukat Ali and Muhammad Ali, spearheaded the Khilafat Movement."
-            },
-            {
-                "text": "At the All India Khilafat Conference held in November 1919 in Delhi, what specific programme of action was approved?",
-                "options": [
-                    "Non-payment of taxes",
-                    "Boycott of British goods",
-                    "Resignation from government services",
-                    "Formation of parallel governments"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The conference formally endorsed the boycott of British goods."
-            },
-            {
-                "text": "What was Mahatma Gandhi's role in the All India Khilafat Committee?",
-                "options": [
-                    "He was an adviser.",
-                    "He was the secretary.",
-                    "He was the president.",
-                    "He was an observer."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi was elected president of the All India Khilafat Committee."
-            },
-            {
-                "text": "Which treaty, signed in May 1920, led to the complete dismemberment of Turkey and further intensified the Khilafat issue?",
-                "options": [
-                    "Treaty of Versailles",
-                    "Treaty of Lausanne",
-                    "Treaty of Sevres",
-                    "Treaty of Ankara"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Treaty of Sevres resulted in the partitioning of Turkey."
-            },
-            {
-                "text": "In September 1920, the Congress approved a non-cooperation programme at a special session held in which city?",
-                "options": [
-                    "Nagpur",
-                    "Ahmedabad",
-                    "Calcutta",
-                    "Madras"
-                ],
-                "correctAnswer": 2,
-                "explanation": "A special Congress session in Calcutta approved the programme in September 1920."
-            },
-            {
-                "text": "Which of the following was NOT part of the initial non-cooperation programme approved by the Congress?",
-                "options": [
-                    "Boycott of government schools and colleges",
-                    "Boycott of foreign cloth",
-                    "Mass civil disobedience including non-payment of taxes",
-                    "Boycott of law courts"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Mass civil disobedience including non-payment of taxes was not a part of the initial programme."
-            },
-            {
-                "text": "At the Nagpur session of the Indian National Congress in December 1920, what was declared as the aim of the Congress through peaceful and legitimate means?",
-                "options": [
-                    "Dominion Status",
-                    "Responsible Government",
-                    "Swaraj",
-                    "Complete Independence"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The aim of the Congress was declared as 'Swaraj' (self-rule)."
-            },
-            {
-                "text": "What important organisational change was introduced in the Indian National Congress at the Nagpur session in December 1920?",
-                "options": [
-                    "Establishment of district-level committees",
-                    "Creation of the Congress Working Committee (CWC) with 15 members",
-                    "Formation of an all-India youth wing",
-                    "Introduction of a new membership fee structure"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Formation of the Congress Working Committee (CWC) with 15 members was the key change."
-            },
-            {
-                "text": "Which prominent leader was initially sceptical of an alliance with Muslim leaders over a religious issue and of satyagraha as a political instrument?",
-                "options": [
-                    "Lala Lajpat Rai",
-                    "Bal Gangadhar Tilak",
-                    "Sardar Vallabhbhai Patel",
-                    "Motilal Nehru"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Bal Gangadhar Tilak initially had reservations about such an alliance and about satyagraha."
-            },
-            {
-                "text": "What significant fund was oversubscribed during the Non-Cooperation Movement, collecting one crore rupees?",
-                "options": [
-                    "Swadeshi Fund",
-                    "Khilafat Fund",
-                    "Tilak Swaraj Fund",
-                    "National Education Fund"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Tilak Swaraj Fund exceeded its target of one crore rupees."
-            },
-            {
-                "text": "Approximately how many national schools and colleges were established during the Non-Cooperation Movement?",
-                "options": [
-                    "200",
-                    "400",
-                    "600",
-                    "800"
-                ],
-                "correctAnswer": 3,
-                "explanation": "About 800 national institutions were established during the movement."
-            },
-            {
-                "text": "Which of the following educational institutions was NOT mentioned as being organised under the leadership of nationalist figures during the movement?",
-                "options": [
-                    "Jamia Millia at Aligarh",
-                    "Kashi Vidyapeeth",
-                    "Delhi University",
-                    "Gujarat Vidyapeeth"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Delhi University was a government institution and not a nationalist one."
-            },
-            {
-                "text": "In July 1921, the Ali brothers gave a call for which specific action by Muslims, which was later echoed by Gandhi and the Congress?",
-                "options": [
-                    "Joining the British Army",
-                    "Resigning from the Army",
-                    "Participating in local elections",
-                    "Forming a separate political party"
-                ],
-                "correctAnswer": 1,
-                "explanation": "They called for Muslims to resign from the British Army."
-            },
-            {
-                "text": "Who provided solid support for the Non-Cooperation Movement in Bihar?",
-                "options": [
-                    "J.B. Kripalani",
-                    "Rajendra Prasad",
-                    "Maulana Azad",
-                    "C. Rajagopalachari"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Dr. Rajendra Prasad was the key leader in Bihar."
-            },
-            {
-                "text": "Which group from the Indian business community supported the economic boycott aspect of the movement?",
-                "options": [
-                    "Only small traders",
-                    "Those who benefited from emphasis on swadeshi",
-                    "British trading houses",
-                    "European industrialists"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The group that benefited from swadeshi - mainly Indian businessmen - supported the boycott."
-            },
-            {
-                "text": "What was a notable contribution of women during the Non-Cooperation Movement?",
-                "options": [
-                    "They took up arms against the British.",
-                    "They started their own parallel government.",
-                    "They gave up purdah and offered ornaments for the Tilak Fund.",
-                    "They exclusively focused on literary activities."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Women contributed ornaments, funds, and participated in public life by giving up purdah."
-            },
-            {
-                "text": "What was the date of the Chauri Chaura Incident?",
-                "options": [
-                    "January 26, 1922",
-                    "February 5, 1922",
-                    "March 10, 1922",
-                    "April 13, 1922"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The violent incident at Chauri Chaura happened on February 5, 1922."
-            },
-            {
-                "text": "How many policemen were killed in the violence during the Chauri Chaura Incident?",
-                "options": [
-                    "10",
-                    "15",
-                    "22",
-                    "30"
-                ],
-                "correctAnswer": 2,
-                "explanation": "22 policemen lost their lives during the incident."
-            },
-            {
-                "text": "Why did Mahatma Gandhi decide to withdraw the Non-Cooperation Movement after the Chauri Chaura Incident?",
-                "options": [
-                    "He felt the movement had achieved all its goals.",
-                    "He believed the people had not fully understood the method of non-violence.",
-                    "The British government had agreed to all demands.",
-                    "The Muslim League withdrew its support."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gandhi realized people did not fully grasp non-violence, prompting the movement's withdrawal."
-            },
-            {
-                "text": "Which significant event in Turkey in 1924 led to the dissipation of the Khilafat question?",
-                "options": [
-                    "Signing of a new trade agreement",
-                    "Establishment of a monarchy",
-                    "Abolition of the caliphate",
-                    "Formation of a secular republic"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The abolition of the caliphate ended the Khilafat issue's relevance."
-            },
-            {
-                "text": "Which of the following nationalist leaders expressed bewilderment at Gandhi’s decision to withdraw the movement after Chauri Chaura?",
-                "options": [
-                    "Sardar Vallabhbhai Patel",
-                    "Jawaharlal Nehru",
-                    "Rajendra Prasad",
-                    "Mahatma Gandhi's close followers"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Jawaharlal Nehru was among those who questioned the withdrawal."
-            },
-            {
-                "text": "What did Gandhi do in March 1922 after withdrawing the movement?",
-                "options": [
-                    "He started a new movement.",
-                    "He was arrested and sentenced to six years in jail.",
-                    "He retired from politics.",
-                    "He went on an indefinite fast."
-                ],
-                "correctAnswer": 1,
-                "explanation": "In March 1922, Gandhi was arrested and sentenced to jail."
-            },
-            {
-                "text": "One of the myths shattered by the Non-Cooperation Khilafat Movement was that British rule was 'invincible'. What was the other myth?",
-                "options": [
-                    "British rule was in the interest of Indians.",
-                    "British rule was supported by all Indians.",
-                    "British rule was economically beneficial.",
-                    "British rule was benevolent and just."
-                ],
-                "correctAnswer": 0,
-                "explanation": "The movement also disproved the notion that British rule benefited Indians."
-            },
-            {
-                "text": "Which of the following was NOT among the leaders who left the Congress after the Nagpur session in December 1920 due to disagreements over the non-cooperation programme?",
-                "options": [
-                    "Mohammad Ali Jinnah",
-                    "Annie Besant",
-                    "B.C. Pal",
-                    "Motilal Nehru"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Motilal Nehru did not leave the Congress after the Nagpur session."
-            },
-            {
-                "text": "What was the initial stance of the Congress on the proposed form of political action for the Khilafat-Non-Cooperation programme?",
-                "options": [
-                    "Fully united and in immediate agreement",
-                    "Divided and not united",
-                    "Strongly in favour of violent action",
-                    "Indifferent to the issue"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Congress was initially divided over the course of action."
-            },
-            {
-                "text": "In which month and year did a joint Hindu-Muslim deputation sent to the viceroy prove abortive, leading to further agitation?",
-                "options": [
-                    "January 1920",
-                    "March 1920",
-                    "Early 1920",
-                    "July 1920"
-                ],
-                "correctAnswer": 2,
-                "explanation": "A joint deputation in early 1920 failed to achieve its objectives."
-            },
-            {
-                "text": "What was the purpose of the picketing of shops during the Non-Cooperation Movement?",
-                "options": [
-                    "To sell foreign liquor",
-                    "To support local businesses",
-                    "To promote foreign trade",
-                    "To oppose the sale of foreign liquor and cloth"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Shops were picketed to protest the sale of foreign liquor and cloth."
-            },
-            {
-                "text": "Who was the leader responsible for organising strikes in tea plantations, steamer services, and Assam-Bengal Railways during the movement?",
-                "options": [
-                    "Subhash Bose",
-                    "J.M. Sengupta",
-                    "Lala Lajpat Rai",
-                    "C.R. Das"
-                ],
-                "correctAnswer": 1,
-                "explanation": "J.M. Sengupta led these strikes in Bengal and Assam."
-            },
-            {
-                "text": "Which local struggle involved the Sikh agitation for the removal of mahants in Punjab?",
-                "options": [
-                    "Awadh Kisan Movement",
-                    "Eka Movement",
-                    "Sikh agitation for the removal of mahants in Punjab",
-                    "Moplah Uprisings"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The answer directly reflects the context: Sikh agitation for removal of mahants."
-            },
-            {
-                "text": "What did the peasants participating in the Non-Cooperation Movement often express their feelings against?",
-                "options": [
-                    "Only the British",
-                    "Only their Indian masters and oppressors",
-                    "Both the British and their Indian masters and oppressors",
-                    "Only the moneylenders"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Peasants were discontented with both colonial and Indian exploitation."
-            },
-            {
-                "text": "Talks between Gandhi and the Viceroy, Reading, broke down in May 1921. What did Gandhi realise the government was trying to do?",
-                "options": [
-                    "Offer substantial political reforms",
-                    "Drive a wedge between him and the Khilafat leaders",
-                    "Prepare for an immediate transfer of power",
-                    "Seek his unconditional support for the government"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gandhi realised the British were trying to create differences with Khilafat leaders."
-            },
-            {
-                "text": "What did Gandhi threaten to launch from Bardoli in February 1922 if certain demands were not met?",
-                "options": [
-                    "A hunger strike",
-                    "Civil disobedience",
-                    "An armed revolt",
-                    "A peaceful procession"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gandhi threatened civil disobedience if his two demands weren’t met."
-            },
-            {
-                "text": "Which two specific demands did Gandhi make for political prisoners and press controls in February 1922?",
-                "options": [
-                    "Release of political prisoners and reduction of taxes",
-                    "Removal of press controls and increase in wages",
-                    "Release of political prisoners and removal of press controls",
-                    "Reforms in police and judicial systems"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi demanded release of political prisoners and removal of press controls."
-            },
-            {
-                "text": "Before the Chauri Chaura incident, what was the immediate cause of the crowd's agitation against the police?",
-                "options": [
-                    "Imposition of a new tax",
-                    "Arrest of their leader",
-                    "Campaign against liquor sale and high food prices",
-                    "Dispute over land ownership"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The crowd was provoked by police actions during their campaign against liquor and food prices."
-            },
-            {
-                "text": "How did the nationalist leaders like C.R. Das and Motilal Nehru react to Gandhi's decision to withdraw the movement after Chauri Chaura?",
-                "options": [
-                    "They fully supported it.",
-                    "They expressed bewilderment.",
-                    "They immediately launched a new movement.",
-                    "They retired from active politics."
-                ],
-                "correctAnswer": 1,
-                "explanation": "They were bewildered by the sudden withdrawal of the movement."
-            },
-            {
-                "text": "One of the reasons Gandhi cited for withdrawal was that people had not fully understood non-violence. What was another key reason related to the colonizers?",
-                "options": [
-                    "They were willing to negotiate.",
-                    "They would use incidents of violence as an excuse for state repression.",
-                    "They were planning to leave India soon.",
-                    "They were too weak to continue the fight."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gandhi believed the British would use violence to justify further repression."
-            },
-            {
-                "text": "What was the nature of the consolidation of the emergence of a radical nationalist trend among Muslims due to the Khilafat issue?",
-                "options": [
-                    "It was limited to traditional scholars.",
-                    "It included both younger generations and traditional scholars.",
-                    "It was only among the older generation.",
-                    "It led to a decline in nationalist sentiment."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Both traditional and younger Muslims became radicalized through the Khilafat issue."
-            },
-            {
-                "text": "Which group of Muslims notably participated overwhelmingly in the Non-Cooperation Movement, despite overall decline in Muslim participation in some areas?",
-                "options": [
-                    "Muslim League members",
-                    "The weaving community in Bihar, Delhi and Lucknow",
-                    "Landlords in North India",
-                    "Businessmen in Calcutta"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The weaving community was a notable participant group."
-            },
-            {
-                "text": "What was a key benefit for the Indian business group from the Non-Cooperation Movement?",
-                "options": [
-                    "Increased foreign investment",
-                    "Monopoly over British goods",
-                    "Benefit from the nationalists' emphasis on swadeshi",
-                    "Tax exemptions from the British government"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Businesses benefited greatly from the swadeshi movement's stress on indigenous goods."
-            },
-            {
-                "text": "Which of the following was NOT a reason for Gandhi getting Congress approval for his programme of political action?",
-                "options": [
-                    "Opportunity to cement Hindu-Muslim unity",
-                    "Congress was gaining faith in constitutional struggle",
-                    "Masses were eager to express their discontent",
-                    "The Treaty of Sevres dismembered Turkey"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Congress, in fact, was losing rather than gaining faith in constitutional methods."
-            },
-            {
-                "text": "How did the Non-Cooperation Movement impact the fear of colonial rule among the masses?",
-                "options": [
-                    "It increased their fear.",
-                    "It had no effect on their fear.",
-                    "It led them to lose their fear.",
-                    "It only affected the elite's fear."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The movement helped dispel the widespread fear of colonial rule among the people."
-            },
-            {
-                "text": "The Non-Cooperation Movement introduced a shift in the orientation of the national movement towards which group?",
-                "options": [
-                    "The intelligentsia",
-                    "The elite classes",
-                    "The masses",
-                    "The bureaucracy"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The focus of the national movement shifted strongly towards the masses."
-            },
-            {
-                "text": "In which region were instances of lower-class militancy seen in the tribal belt during the Non-Cooperation Movement?",
-                "options": [
-                    "Champaran",
-                    "Saran",
-                    "Chhotanagpur",
-                    "Bardoli"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Tribal militancy was notably observed in Chhotanagpur during this era."
-            },
-            {
-                "text": "What was the title of the volunteer brigade organised by Khan Abdul Gaffar Khan, popularly known as 'Red-Shirts'?",
-                "options": [
-                    "Kisan Sewa Dal",
-                    "Bharat Sevak Samaj",
-                    "Khudai Khidmatgars",
-                    "Hind Sevak Sangh"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Khudai Khidmatgars were called 'Red-Shirts' led by Khan Abdul Gaffar Khan."
-            },
-            {
-                "text": "What happened to the Muslim League's stance after the Allahabad conference in June 1920 regarding the non-cooperation programme?",
-                "options": [
-                    "It opposed the programme.",
-                    "It decided to give full support.",
-                    "It remained neutral.",
-                    "It formed its own separate movement."
-                ],
-                "correctAnswer": 1,
-                "explanation": "After the Allahabad conference, the Muslim League decided to support the programme."
-            }
-        ],
-        "Emergence of Swarajists, Socialist Ideas, Revolutionary Activities": [{
-                "text": "Which of the following leaders advocated for the Swarajists' entry into legislative councils, aiming to 'end or mend' them, after Gandhi's arrest in March 1922?",
-                "options": [
-                    "C. Rajagopalachari",
-                    "Vallabhbhai Patel",
-                    "C.R. Das",
-                    "M.A. Ansari"
-                ],
-                "correctAnswer": 2,
-                "explanation": "C.R. Das led the advocacy for council entry to 'end or mend' them after Gandhi's arrest."
-            },
-            {
-                "text": "The \"No-Changers\" faction within the Indian National Congress, following Gandhi's arrest, primarily advocated for which of the following?",
-                "options": [
-                    "Entry into legislative councils",
-                    "Violent revolutionary activities",
-                    "Continuation of constructive work",
-                    "Alliance with the British government"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The No-Changers wanted to continue Gandhian constructive work and avoid council entry."
-            },
-            {
-                "text": "At which session of the Congress did the differences between the Swarajists and No-Changers over the question of council entry first lead to a defeat for the Swarajists?",
-                "options": [
-                    "Calcutta session, 1920",
-                    "Nagpur session, 1920",
-                    "Gaya session, 1922",
-                    "Belgaum session, 1924"
-                ],
-                "correctAnswer": 2,
-                "explanation": "At the Gaya session (1922), the Swarajists were defeated."
-            },
-            {
-                "text": "The Congress-Khilafat Swarajya Party was formed by C.R. Das and Motilal Nehru after their resignation from the Congress's leadership following the defeat at which session?",
-                "options": [
-                    "Ahmedabad session, 1921",
-                    "Gaya session, 1922",
-                    "Lahore session, 1929",
-                    "Karachi session, 1931"
-                ],
-                "correctAnswer": 1,
-                "explanation": "They resigned after their defeat at the Gaya session, 1922, and formed the Swarajist Party."
-            },
-            {
-                "text": "What was a primary argument of the Swarajists for entering the legislative councils?",
-                "options": [
-                    "To cooperate fully with the British administration.",
-                    "To use the councils as an arena for political struggle.",
-                    "To promote armed revolution from within the system.",
-                    "To secure government positions for Indian leaders."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Swarajists wanted to use councils as a stage to fight for Indian rights."
-            },
-            {
-                "text": "Which of the following was a key argument of the \"No-Changers\" against council entry?",
-                "options": [
-                    "It would lead to an immediate mass civil disobedience movement.",
-                    "It would result in the complete independence of India.",
-                    "It would neglect constructive work and lead to a loss of revolutionary zeal.",
-                    "It would enhance the prestige of the British government."
-                ],
-                "correctAnswer": 2,
-                "explanation": "No-Changers argued council entry would undermine constructive and popular work."
-            },
-            {
-                "text": "A compromise between the Swarajists and No-Changers was reached at a meeting in Delhi in September 1923. What was the outcome of this compromise?",
-                "options": [
-                    "Swarajists completely abandoned the idea of council entry.",
-                    "No-Changers joined the legislative councils alongside Swarajists.",
-                    "Swarajists were allowed to contest elections as a group within the Congress.",
-                    "Gandhi withdrew from the leadership of the Congress."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The agreement let Swarajists contest elections, remaining in Congress."
-            },
-            {
-                "text": "In which year did Mahatma Gandhi preside over the Congress session at Belgaum, where it was decided that Swarajists would work in the councils as an integral part of the Congress?",
-                "options": [
-                    "1920",
-                    "1922",
-                    "1924",
-                    "1925"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi presided at the Belgaum session in 1924."
-            },
-            {
-                "text": "Which of the following factors contributed to the weakening of the Swarajist position?",
-                "options": [
-                    "Increased support from the British government.",
-                    "Consolidation of Hindu-Muslim unity.",
-                    "Widespread communal riots and internal splits.",
-                    "Successful implementation of their obstructionist strategy."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Communal riots and internal splits weakened the Swarajists."
-            },
-            {
-                "text": "Who was elected as the Speaker of the Central Legislative Assembly in 1925, demonstrating an achievement of the Swarajists?",
-                "options": [
-                    "Motilal Nehru",
-                    "C.R. Das",
-                    "Vithalbhai Patel",
-                    "Lala Lajpat Rai"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Vithalbhai Patel was elected Speaker in 1925."
-            },
-            {
-                "text": "The Swarajists finally walked out of the legislatures in 1930 as a result of the Lahore Congress resolution on which key issue?",
-                "options": [
-                    "Economic reforms",
-                    "Purna Swaraj",
-                    "Provincial autonomy",
-                    "Constitutional reforms"
-                ],
-                "correctAnswer": 1,
-                "explanation": "They walked out following the Purna Swaraj (complete independence) resolution."
-            },
-            {
-                "text": "Which of the following was considered a drawback of the Swarajist strategy?",
-                "options": [
-                    "They successfully coordinated their militancy inside legislatures with mass struggle outside.",
-                    "Their obstructionist strategy had no limitations.",
-                    "They failed to resist the perks and privileges of office.",
-                    "They gained significant support among Muslim peasants."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Some Swarajists succumbed to office perks, a noted weakness."
-            },
-            {
-                "text": "The \"No-Changers\" engaged in constructive work such as setting up national schools and colleges and working for which social cause?",
-                "options": [
-                    "Promoting British education system.",
-                    "Strengthening the caste system.",
-                    "Hindu-Muslim unity and removing untouchability.",
-                    "Supporting foreign cloth and liquor sales."
-                ],
-                "correctAnswer": 2,
-                "explanation": "They worked for religious unity and social reform (against untouchability)."
-            },
-            {
-                "text": "The Communist Party of India (CPI) was formed in which year and city?",
-                "options": [
-                    "1920, Tashkent",
-                    "1925, Bombay",
-                    "1929, Meerut",
-                    "1930, Calcutta"
-                ],
-                "correctAnswer": 0,
-                "explanation": "CPI was founded in Tashkent in 1920."
-            },
-            {
-                "text": "The government crackdown on communists in 1929, which resulted in the arrest and trial of 31 leading communists, is famously known as:",
-                "options": [
-                    "Lahore Conspiracy Case",
-                    "Alipore Bomb Case",
-                    "Meerut Conspiracy Case",
-                    "Kakori Robbery Case"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The incident is remembered as the Meerut Conspiracy Case."
-            },
-            {
-                "text": "Who presided over the All Bengal Students’ Conference in 1928, reflecting the emergence of youth power in the national movement?",
-                "options": [
-                    "Subhash Chandra Bose",
-                    "Jawaharlal Nehru",
-                    "Bhagat Singh",
-                    "C.R. Das"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Jawaharlal Nehru presided over this student conference."
-            },
-            {
-                "text": "The All India Trade Union Congress (AITUC) was founded in 1920. Who was its first president?",
-                "options": [
-                    "M.N. Roy",
-                    "S.A. Dange",
-                    "Lala Lajpat Rai",
-                    "Dewan Chaman Lal"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Lala Lajpat Rai was the first AITUC president."
-            },
-            {
-                "text": "The Trade Union Act, passed in which year, legalized trade unions and secured their immunity from civil and criminal liability?",
-                "options": [
-                    "1920",
-                    "1924",
-                    "1926",
-                    "1929"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Trade unions were legalized in India with the 1926 Act."
-            },
-            {
-                "text": "Which act, passed in 1929, made strikes in public utility services illegal and forbade trade union activity of a coercive or purely political nature?",
-                "options": [
-                    "Public Safety Ordinance",
-                    "Indian Trade Unions Act",
-                    "Trade Disputes Act",
-                    "Industrial Relations Act"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Trade Disputes Act, 1929, imposed these restrictions."
-            },
-            {
-                "text": "The Justice Party and the Self-Respect Movement, both significant caste movements, originated in which region of India?",
-                "options": [
-                    "Maharashtra",
-                    "Kerala",
-                    "Bihar",
-                    "Madras Presidency"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Both movements started in the Madras Presidency (now Tamil Nadu)."
-            },
-            {
-                "text": "The Hindustan Republican Association (HRA) was founded in October 1924 in Kanpur by which of the following individuals?",
-                "options": [
-                    "Bhagat Singh and Sukhdev",
-                    "Ramprasad Bismil, Jogesh Chandra Chatterjee, and Sachin Sanyal",
-                    "Chandrashekhar Azad and Batukeshwar Dutt",
-                    "Surya Sen and Pritilata Waddedar"
-                ],
-                "correctAnswer": 1,
-                "explanation": "HRA's founders were Bismil, Chatterjee, and Sanyal."
-            },
-            {
-                "text": "What was the stated aim of the Hindustan Republican Association (HRA)?",
-                "options": [
-                    "To establish a constitutional monarchy in India.",
-                    "To organise an armed revolution and establish the Federal Republic of United States of India.",
-                    "To promote passive resistance against British rule.",
-                    "To negotiate with the British for dominion status."
-                ],
-                "correctAnswer": 1,
-                "explanation": "HRA aimed for an armed revolution and republic status for India."
-            },
-            {
-                "text": "The Kakori Robbery, which involved the looting of an 8-Down train, was carried out by the HRA in which year?",
-                "options": [
-                    "1920",
-                    "1925",
-                    "1928",
-                    "1930"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Kakori incident occurred in 1925."
-            },
-            {
-                "text": "Which of the following revolutionaries were hanged as a result of the Kakori Robbery case?",
-                "options": [
-                    "Bhagat Singh and Sukhdev",
-                    "Chandrashekhar Azad and Jatin Das",
-                    "Ramprasad Bismil, Ashfaqullah, Roshan Singh, and Rajendra Lahiri",
-                    "Surya Sen and Kalpana Dutt"
-                ],
-                "correctAnswer": 2,
-                "explanation": "These four revolutionaries were executed for their involvement."
-            },
-            {
-                "text": "The Hindustan Republican Association (HRA) was later reorganised and renamed as Hindustan Socialist Republican Association (HSRA) at a meeting in the ruins of which historical place in Delhi?",
-                "options": [
-                    "Red Fort",
-                    "Qutub Minar",
-                    "Ferozshah Kotla",
-                    "India Gate"
-                ],
-                "correctAnswer": 2,
-                "explanation": "HSRA was formed at Ferozshah Kotla."
-            },
-            {
-                "text": "The murder of Saunders in 1928, in retaliation for Lala Lajpat Rai's death, was carried out by which group of revolutionaries?",
-                "options": [
-                    "Anushilan Samiti",
-                    "Jugantar",
-                    "HSRA",
-                    "Ghadar Party"
-                ],
-                "correctAnswer": 2,
-                "explanation": "HSRA members avenged Lajpat Rai by killing Saunders."
-            },
-            {
-                "text": "Who among the following revolutionaries threw a bomb in the Central Legislative Assembly in 1929 to protest against the Public Safety Bill and Trade Disputes Bill?",
-                "options": [
-                    "Bhagat Singh and Sukhdev",
-                    "Chandrashekhar Azad and Rajguru",
-                    "Bhagat Singh and Batukeshwar Dutt",
-                    "Ramprasad Bismil and Ashfaqullah Khan"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Bhagat Singh and Batukeshwar Dutt were the bombers."
-            },
-            {
-                "text": "What was the stated objective of throwing the bomb in the Central Legislative Assembly by Bhagat Singh and Batukeshwar Dutt?",
-                "options": [
-                    "To cause mass casualties and instill terror.",
-                    "To assassinate British officials.",
-                    "To \"make the deaf hear\" and use the trial as a forum for propaganda.",
-                    "To initiate an armed uprising across India."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Their goal was to make a political statement, not to kill."
-            },
-            {
-                "text": "Which revolutionary leader died in jail after a 64-day hunger strike, protesting against the horrible conditions for political prisoners?",
-                "options": [
-                    "Bhagat Singh",
-                    "Chandrashekhar Azad",
-                    "Jatin Das",
-                    "Rajguru"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Jatin Das died after a prolonged hunger strike in jail."
-            },
-            {
-                "text": "In which city did Chandrashekhar Azad die in a police encounter in February 1931?",
-                "options": [
-                    "Lahore",
-                    "Kanpur",
-                    "Allahabad",
-                    "Delhi"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Chandrashekhar Azad died in Allahabad."
-            },
-            {
-                "text": "Bhagat Singh, Sukhdev, and Rajguru were hanged on which date?",
-                "options": [
-                    "December 19, 1927",
-                    "October 24, 1928",
-                    "March 23, 1931",
-                    "January 30, 1933"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The three were executed on March 23, 1931."
-            },
-            {
-                "text": "After the death of C.R. Das, the Bengal Congress broke into two factions. One was led by J.M. Sengupta, and the other, the Yugantar group, was led by whom?",
-                "options": [
-                    "Aurobindo Ghosh",
-                    "Barindra Kumar Ghosh",
-                    "Subhash Bose",
-                    "Promotha Mitter"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Subhash Bose led the Yugantar group."
-            },
-            {
-                "text": "The Chittagong Armoury Raid in April 1930 was planned and led by which revolutionary leader?",
-                "options": [
-                    "Surya Sen",
-                    "Bhagat Singh",
-                    "Rashbehari Bose",
-                    "Sachindranath Sanyal"
-                ],
-                "correctAnswer": 0,
-                "explanation": "Surya Sen (Masterda) masterminded the Chittagong raid."
-            },
-            {
-                "text": "How many activists were involved in the Chittagong Armoury Raid under the banner of Indian Republican Army-Chittagong Branch?",
-                "options": [
-                    "25",
-                    "40",
-                    "65",
-                    "100"
-                ],
-                "correctAnswer": 2,
-                "explanation": "About 65 revolutionaries took part in the raid."
-            },
-            {
-                "text": "Which of the following women revolutionaries was killed while conducting a raid during the Chittagong uprising?",
-                "options": [
-                    "Kalpana Dutt",
-                    "Santi Ghosh",
-                    "Suniti Chandheri",
-                    "Pritilata Waddedar"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Pritilata Waddedar was martyred in action."
-            },
-            {
-                "text": "Surya Sen was arrested in February 1933 and hanged in which month and year?",
-                "options": [
-                    "March 1933",
-                    "January 1934",
-                    "April 1930",
-                    "February 1935"
-                ],
-                "correctAnswer": 1,
-                "explanation": "He was hanged in January 1934."
-            },
-            {
-                "text": "Which revolutionary journal, associated with the Anushilan Samiti, was started in Bengal?",
-                "options": [
-                    "Sandhya",
-                    "Kal",
-                    "Yugantar",
+                    "Agriculture",
+                    "Micro and Small Enterprises",
+                    "Weaker Sections",
                     "All of the above"
                 ],
-                "correctAnswer": 3,
-                "explanation": "All these journals were linked with Anushilan Samiti."
+                "correctAnswer": "All of the above",
+                "explanation": "Priority Sector Lending categories include Agriculture, MSMEs, Weaker Sections, Education, Housing, Social Infrastructure, and Renewable Energy."
             },
             {
-                "text": "The Ramosi Peasant Force, a revolutionary organization in Maharashtra, was formed by whom in 1879?",
+                "text": "Which of the following is not an instrument of Selective Credit Control?",
                 "options": [
-                    "V.D. Savarkar",
-                    "Vasudev Balwant Phadke",
-                    "Damodar Chapekar",
-                    "Balakrishna Chapekar"
+                    "Regulation of consumer credit",
+                    "Rationing of credit",
+                    "Margin requirements",
+                    "Cash reserve ratio"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Vasudev Balwant Phadke founded the force."
+                "correctAnswer": "Cash reserve ratio",
+                "explanation": "Selective credit control refers to qualitative methods. The Cash Reserve Ratio (CRR) is a quantitative tool."
             },
             {
-                "text": "The Chapekar brothers murdered the Plague Commissioner of Poona, Rand, in which year?",
+                "text": "An increase in the Bank Rate generally indicates that__",
                 "options": [
-                    "1895",
-                    "1897",
-                    "1900",
-                    "1902"
+                    "Market rate of interest is likely to fall.",
+                    "The Central Bank is no longer making loans to commercial banks.",
+                    "The Central Bank is following an easy money policy.",
+                    "The Central Bank is following a tight money policy."
                 ],
-                "correctAnswer": 1,
-                "explanation": "The brothers killed Rand in 1897."
+                "correctAnswer": "The Central Bank is following a tight money policy.",
+                "explanation": "An increase in the Bank Rate means the RBI is following a tight monetary policy to reduce money supply and control inflation."
             },
             {
-                "text": "V.D. Savarkar and his brother organised which secret society that later merged with Abhinav Bharat?",
+                "text": "If RBI decides to adopt an expansionist monetary policy, which of the following would it not do? \n1. Cut and optimize the Statutory Liquidity Ratio \n2. Increase the Marginal Standing Facility Rate \n3. Cut the Bank Rate and Repo Rate",
                 "options": [
-                    "Anushilan Samiti",
-                    "Mitra Mela",
-                    "Hindustan Republican Association",
-                    "Ghadr Party"
+                    "1 and 2 Only",
+                    "2 only",
+                    "1 and 3 Only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Savarkar's Mitra Mela united with Abhinav Bharat."
+                "correctAnswer": "2 only",
+                "explanation": "Expansionary policy involves cutting rates to increase money supply. Increasing the Marginal Standing Facility (MSF) Rate would be a contractionary move, so RBI would not do it."
             },
             {
-                "text": "Which publication by Lala Lajpat Rai fuelled extremism in Punjab?",
+                "text": "Find Correct Statements: \n1. If the inflation is too high, the Reserve Bank of India (RBI) is likely to buy government securities. \n2. If the rupee is rapidly depreciating, RBI is likely to sell dollars in the market. \n3. If interest rates in the USA or European Union were to fall, that is likely to induce RBI to buy dollars.",
                 "options": [
-                    "Bharat Mata",
-                    "Punjabee",
-                    "Kesari",
-                    "Bande Mataram"
+                    "1 and 2 only",
+                    "2 and 3 only",
+                    "1 and 3 only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Lala Lajpat Rai edited Punjabee, fanning extremism."
+                "correctAnswer": "2 and 3 only",
+                "explanation": "Statement 1 is incorrect because RBI sells securities to control high inflation. Statements 2 and 3 are correct regarding currency intervention."
             },
             {
-                "text": "Who organised the extremist Anjuman-i-Mohisban-i-Watan in Lahore with its journal, Bharat Mata?",
+                "text": "With reference to inflation in India, find correct statement:",
                 "options": [
-                    "Lala Lajpat Rai",
-                    "Ajit Singh",
-                    "Bhagat Singh",
-                    "Hardayal"
+                    "Controlling the inflation in India is the responsibility of the Government of India only",
+                    "The Reserve Bank of India has no role in controlling the inflation",
+                    "Decreased money circulation helps in controlling the inflation",
+                    "Increased money circulation helps in controlling the inflation"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Ajit Singh created Anjuman-i-Mohisban-i-Watan."
+                "correctAnswer": "Decreased money circulation helps in controlling the inflation",
+                "explanation": "When inflation is high, the RBI uses monetary policy to decrease money circulation to control it."
             },
             {
-                "text": "Which revolutionary publication was started by Shyamji Krishnavarma in London, associated with the India House?",
+                "text": "Find correct statements about Monetary Policy Committee: \n1. It decides RBI's benchmark interest rates. \n2. It is a 12-member body including the Governor of RBI and is reconstituted every year. \n3. It functions under the chairmanship of the Union Finance Minister.",
                 "options": [
-                    "The Ghadr",
-                    "The Indian Sociologist",
-                    "Bande Mataram",
-                    "New India"
+                    "1 only",
+                    "1 and 2 Only",
+                    "3 only",
+                    "2 and 3 Only"
                 ],
-                "correctAnswer": 1,
-                "explanation": "The Indian Sociologist was published by Shyamji Krishnavarma."
+                "correctAnswer": "1 only",
+                "explanation": "The MPC decides benchmark rates. It is a 6-member body (not 12) and functions under the chairmanship of the RBI Governor (not Finance Minister)."
             },
             {
-                "text": "Madanlal Dhingra assassinated which India Office bureaucrat in 1909?",
+                "text": "Who is responsible for maintaining price stability by controlling inflation?",
                 "options": [
-                    "Lord Curzon",
-                    "Lord Minto",
-                    "Curzon-Wyllie",
-                    "Lord Morley"
+                    "Department of Consumer Affairs",
+                    "Expenditure Management Commission",
+                    "Financial Stability and Development Council",
+                    "Reserve Bank of India"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Curzon-Wyllie was assassinated by Dhingra."
+                "correctAnswer": "Reserve Bank of India",
+                "explanation": "The Reserve Bank of India (RBI) is responsible for maintaining price stability by controlling inflation."
             },
             {
-                "text": "The Ghadr Party, a revolutionary group, had its headquarters in which city?",
+                "text": "Consider the following statements: \nStatement-I: In the post-pandemic recent past, many Central Banks worldwide had carried out interest rate hikes. \nStatement-II: Central Banks generally assume that they have the ability to counteract the rising consumer prices via monetary policy means.",
                 "options": [
-                    "London",
-                    "Paris",
-                    "San Francisco",
-                    "Berlin"
+                    "Both Statement-I and Statement-II are correct and Statement-II is the correct explanation for Statement-I",
+                    "Both Statement-I and Statement-II are correct and Statement-II is not the correct explanation for Statement-I",
+                    "Statement-I is correct but Statement-II is incorrect",
+                    "Statement-I is incorrect but Statement-II is correct"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Ghadr Party HQ was in San Francisco."
+                "correctAnswer": "Both Statement-I and Statement-II are correct and Statement-II is the correct explanation for Statement-I",
+                "explanation": "Central banks raised rates (Statement I) because they believe monetary policy can control rising prices (Statement II)."
             },
             {
-                "text": "Which incident in 1914 encouraged the Ghadr party's plans for an armed revolt in India?",
+                "text": "Consider the following statements with reference to India: \n1. According to the 'Micro, Small and Medium Enterprises Development (MSMED) Act, 2006', the 'medium enterprises' are those with investments in plant and machinery between Rs. 15 crore and Rs. 25 crore. \n2. All bank loans to the Micro, Small and Medium Enterprises qualify under the priority sector.",
                 "options": [
-                    "Delhi Conspiracy trial",
-                    "Alipore Bomb Case",
-                    "Komagata Maru incident",
-                    "Meerut Conspiracy Case"
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Komagata Maru incident inspired Ghadr's call for revolt."
+                "correctAnswer": "2 only",
+                "explanation": "Statement 1 is incorrect regarding the investment limits for medium enterprises. Statement 2 is correct."
             },
             {
-                "text": "The Ghadrites fixed which date for an armed revolt in Ferozepur, Lahore, and Rawalpindi garrisons?",
+                "text": "If the Cash Reserve Ratio is lowered by the RBI, supply of money in the economy will:",
                 "options": [
-                    "February 21, 1915",
-                    "April 13, 1919",
-                    "August 9, 1942",
-                    "March 23, 1931"
+                    "remain unchanged.",
+                    "decrease.",
+                    "increase.",
+                    "have ambiguous impact."
                 ],
-                "correctAnswer": 0,
-                "explanation": "The planned uprising was set for February 21, 1915."
+                "correctAnswer": "increase.",
+                "explanation": "Lowering CRR leaves banks with more liquidity to lend, thus increasing the money supply."
             },
             {
-                "text": "The Berlin Committee for Indian Independence was established in 1915 by which of the following?",
+                "text": "The banks are required to maintain a certain ratio between their cash in hand and total assets. This ratio is known as",
                 "options": [
-                    "Mahatma Gandhi and Jawaharlal Nehru",
-                    "Virendranath Chattopadhyay, Bhupendranath Dutta, and Lala Hardayal",
-                    "Subhash Chandra Bose and Rashbehari Bose",
-                    "Madam Bhikaji Cama and Shyamji Krishnavarma"
+                    "Cash Reserve Ratio (CRR)",
+                    "Central Bank Reserve (CBR)",
+                    "Statutory Liquidity Ratio (SLR)",
+                    "Statutory Bank Ratio (SBR)"
                 ],
-                "correctAnswer": 1,
-                "explanation": "The Berlin Committee was formed by Viren Chattopadhyay, Bhupen Dutta, and Lala Hardayal."
+                "correctAnswer": "Statutory Liquidity Ratio (SLR)",
+                "explanation": "SLR refers to the minimum percentage of deposits that banks must maintain as liquid assets (gold, cash, or approved securities)."
             },
             {
-                "text": "Which document, published by the HRA in 1925, declared that the organisation stood for \"abolition of all systems which made exploitation of man by man possible\"?",
+                "text": "Consider the following statements: \nStatement I: In India, the Central Government determines the inflation target, in consultation with the Reserve Bank of India, in terms of Consumer Price Index once in five years. \nStatement II: At present, the Monetary Policy framework in India is operated by the Central Government.",
                 "options": [
-                    "The Philosophy of the Bomb",
-                    "Bandi Jiwan",
-                    "HRA Manifesto",
-                    "Pather Dabi"
+                    "Both statement I and statement II are correct and statement II in the correct explanation for statement I",
+                    "Both statement I and statement II are correct and statement II is not the correct explanation for statement I",
+                    "Statement I is correct but statement II is incorrect",
+                    "Statement I is incorrect but statement II is correct"
                 ],
-                "correctAnswer": 2,
-                "explanation": "The HRA Manifesto outlined this demand."
+                "correctAnswer": "Statement I is correct but statement II is incorrect",
+                "explanation": "Statement I is correct. Statement II is incorrect because the Monetary Policy framework is operated by the Monetary Policy Committee (MPC), not the Central Government."
             },
             {
-                "text": "Who authored the famous essay \"The Philosophy of the Bomb,\" which articulated the ideological stance of revolutionary nationalism?",
+                "text": "Which of the following action(s) would lead to contraction of money supply in the economy? \n1. Purchase of Treasury Bills by the central bank from public \n2. Sale of Treasury Bills by the central bank to public \n3. Sale of foreign exchange by the central bank \n4. Purchase of foreign exchange by the central bank",
                 "options": [
-                    "Bhagat Singh",
-                    "Chandrashekhar Azad",
-                    "Bhagwaticharan Vohra",
-                    "Sachin Sanyal"
+                    "1 and 4 only.",
+                    "2 and 3 only",
+                    "1 and 3 only",
+                    "2 only"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Bhagwaticharan Vohra wrote 'The Philosophy of the Bomb.'"
+                "correctAnswer": "2 and 3 only",
+                "explanation": "Selling Treasury Bills (2) and selling foreign exchange (3) by the central bank absorbs liquidity from the market, leading to a contraction of the money supply."
+            },
+            {
+                "text": "Which of the following are included in the definition of Narrow Money? \n1. Currency with the public \n2. Demand deposits \n3. 'Other' deposits with Reserve Bank of India \n4. Banker's deposits with Reserve Bank of India",
+                "options": [
+                    "1, 2 and 4",
+                    "1 and 2 only",
+                    "1, 2 and 3",
+                    "3 and 4 only"
+                ],
+                "correctAnswer": "1 and 2 only",
+                "explanation": "Narrow Money (M1) includes Currency with the public and Demand deposits."
+            },
+            {
+                "text": "What would be the impact on the economy if people start holding more currency in hand and less in deposits?",
+                "options": [
+                    "Money demand will increase",
+                    "Money multiplier will decrease",
+                    "Money multiplier will increase",
+                    "Money demand will decrease"
+                ],
+                "correctAnswer": "Money multiplier will decrease",
+                "explanation": "If people deposit less money in banks, the banks have less to lend, which decreases the money multiplier."
+            },
+            {
+                "text": "How many pairs of PSL loan-quotas are correctly matched? \n1. Weaker section: 12% \n2. Small and marginal farmer: 5% \n3. Social infrastructure: 7% \n4. Renewable energy: 5%",
+                "options": [
+                    "only one of these pairs",
+                    "only two of these pairs",
+                    "only three of these pairs",
+                    "all four pairs"
+                ],
+                "correctAnswer": "only one of these pairs",
+                "explanation": "Only the Weaker Section quota (12%) is correctly matched. The Small and Marginal Farmer quota is 10%, and the others are also incorrect."
+            },
+            {
+                "text": "How many of these can be termed as tools of monetary policy? \n1. Open market operation \n2. strategic disinvestment \n3. priority sector lending \n4. minimum support price",
+                "options": [
+                    "only one of these tools",
+                    "only two of these tools",
+                    "only three of these tools",
+                    "all four are tools of monetary policy"
+                ],
+                "correctAnswer": "only two of these tools",
+                "explanation": "Open Market Operations and Priority Sector Lending are monetary policy tools. Disinvestment and Minimum Support Price are fiscal policy tools."
+            },
+            {
+                "text": "If there is war between Russia and Ukraine, then which of the following demand for money is most likely to increase?",
+                "options": [
+                    "Demand for money with transaction motive",
+                    "Demand for money with precautionary motive",
+                    "Demand for money with speculative motive",
+                    "All of the above."
+                ],
+                "correctAnswer": "Demand for money with precautionary motive",
+                "explanation": "Uncertainty (like war) typically increases the demand for money with a precautionary motive."
+            },
+            {
+                "text": "From 2020-22 the terms quantitative easing and fed tapering were in news, in connection of which central bank?",
+                "options": [
+                    "US Federal Reserve",
+                    "Bank of England",
+                    "European Central Bank (ECB)",
+                    "People's Bank of China"
+                ],
+                "correctAnswer": "US Federal Reserve",
+                "explanation": "These terms were associated with the US Federal Reserve's monetary policy."
+            },
+            {
+                "text": "How many of these indicators are added in M3 formula for aggregate money supply? \n1. Coin and currency with public \n2. Time deposit with banks \n3. Demand deposit with banks \n4. Demand deposit with post office \n5. Time deposits with post office",
+                "options": [
+                    "only two of these indicators",
+                    "only three of these indicators",
+                    "only four of these indicators",
+                    "all five"
+                ],
+                "correctAnswer": "only three of these indicators",
+                "explanation": "M3 includes Currency, Demand Deposits, and Time Deposits with banks. Post office deposits are not included in M3."
+            },
+            {
+                "text": "a black swan event is associated with",
+                "options": [
+                    "An unpredictable migration of the birds from the African continent towards the Mediterranean region.",
+                    "a predictable event resulting in severe consequences for the economy.",
+                    "an unpredictable event resulting in positive outcomes for the economy.",
+                    "an unpredictable event resulting in negative consequences for the economy."
+                ],
+                "correctAnswer": "an unpredictable event resulting in negative consequences for the economy.",
+                "explanation": "A Black Swan event is an unpredictable event with severe negative consequences."
+            },
+            {
+                "text": "Find correct pairs related to USA monetary policy: \n1. Quantitative easing: results in shrinking of the supply of dollars. \n2. Fed Tapering: results in the expansion of the supply of dollars.",
+                "options": [
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
+                ],
+                "correctAnswer": "neither 1 nor 2",
+                "explanation": "Quantitative Easing expands supply, and Fed Tapering reduces supply (or reduces the rate of expansion). Both pairs are incorrect."
+            },
+            {
+                "text": "Which of the following statements are correct about the policy corridor of the RBI? \n1. It is also known as Liquidity Adjustment Facility (LAF) corridor \n2. Standing Deposit Facility (SDF) acts the ceiling of this corridor. \n3. Marginal standing facility (MSF) acts as the floor of this corridor. \n4. Total width of this corridor is 0.50%.",
+                "options": [
+                    "Only 1 and 2",
+                    "Only 1 and 4",
+                    "Only 1, 2, and 3",
+                    "Only 4"
+                ],
+                "correctAnswer": "Only 1 and 4",
+                "explanation": "Statement 1 is correct. Statements 2 and 3 are swapped (SDF is floor, MSF is ceiling). Statement 4 is correct (0.50% width)."
+            },
+            {
+                "text": "Which of the following statement/s are correct regarding monetary policy: \n1. Open market operations is a qualitative tool of monetary policy. \n2. Moral suasion is both a quantitative and a qualitative tool of monetary policy.",
+                "options": [
+                    "Only 1",
+                    "Only 2",
+                    "Neither 1 nor 2",
+                    "Only 1 & 2"
+                ],
+                "correctAnswer": "Neither 1 nor 2",
+                "explanation": "OMO is a quantitative tool, and Moral Suasion is a qualitative tool."
+            },
+            {
+                "text": "In 2021 Reserve Bank announced to conduct G-SAP program. G-SAP means__",
+                "options": [
+                    "G-sec Auction Programme",
+                    "G-sec Absorbtion Programme",
+                    "G-sec Acquisition Programme",
+                    "G-sec Awareness Programme"
+                ],
+                "correctAnswer": "G-sec Acquisition Programme",
+                "explanation": "G-SAP stands for G-sec Acquisition Programme."
+            },
+            {
+                "text": "Operation Twist is a special type of",
+                "options": [
+                    "Short term Repo operation",
+                    "Open market operations",
+                    "Special Window for Corporate Bonds",
+                    "Public Debt Finance Corporation"
+                ],
+                "correctAnswer": "Open market operations",
+                "explanation": "Operation Twist is a special type of Open Market Operation."
+            },
+            {
+                "text": "If RBI decided to purchase Government securities under Open Market Operations (OMOs) for a total rupees 30000 crores. Which of the following best describes the primary motive(s) behind this decision of RBI? \n1. RBI wants to increase money supply in the system. \n2. RBI wants to combat inflation. \n3. RBI wants to pursue easy monetary policy. \n4. RBI wants to prevent the banking system from collapsing.",
+                "options": [
+                    "only 1 and 3",
+                    "only 2 and 4",
+                    "only 1, 2 and 4",
+                    "only 1, 3 and 4"
+                ],
+                "correctAnswer": "only 1 and 3",
+                "explanation": "Purchasing securities increases the money supply and indicates an easy monetary policy."
+            },
+            {
+                "text": "In the economic history of the world the Operation Twist was first conducted by this organization:",
+                "options": [
+                    "Peoples Bank of China",
+                    "US Federal Reserve",
+                    "Bank of England",
+                    "European Central Bank"
+                ],
+                "correctAnswer": "US Federal Reserve",
+                "explanation": "Operation Twist was first conducted by the US Federal Reserve."
+            },
+            {
+                "text": "A) Private sector companies bond usually offer a higher interest rate compared to government securities \nR) Private sector companies bonds usually carry more risk of default compared to government securities",
+                "options": [
+                    "Both A and R are correct and R explain A",
+                    "Both statements are individually correct but R does not explain A",
+                    "A is correct but is R false",
+                    "A is false but is R correct."
+                ],
+                "correctAnswer": "Both A and R are correct and R explain A",
+                "explanation": "Private bonds offer higher interest rates to compensate for the higher risk of default compared to government securities."
+            },
+            {
+                "text": "If the selling price of a bond decreases in the secondary market. then its bond yield will __.",
+                "options": [
+                    "decrease",
+                    "remain unchanged",
+                    "Increase",
+                    "cannot be determined"
+                ],
+                "correctAnswer": "Increase",
+                "explanation": "Bond yield is inversely related to bond price. If price decreases, yield increases."
+            },
+            {
+                "text": "Which of the following statement/s are correct: \n1. If RBI lowers the loan to value ratio from 80% to 40% it can help combating the inflation. \n2. If Government borrows large amount of money from RBI it may lead to inflation in the economy.",
+                "options": [
+                    "Only 1",
+                    "Only 2",
+                    "1 & 2 both",
+                    "None of the above"
+                ],
+                "correctAnswer": "1 & 2 both",
+                "explanation": "Lowering LTV reduces credit availability, combating inflation. Excessive government borrowing can lead to inflation."
+            },
+            {
+                "text": "If Reserve Bank of India had sold Rs 25000 crore worth of Government securities under Open Market Operations (OMOs). Which of the following best describes the primary motive(s) behind this decision of RBI? \n1. RBI wants to increase money supply in the system. \n2. RBI wants the banks to lend money to the priority sectors of the economy. \n3. RBI wants to pursue tight monetary policy.",
+                "options": [
+                    "Only 1",
+                    "Only 2 and 3",
+                    "Only 1 and 2",
+                    "Only 3"
+                ],
+                "correctAnswer": "Only 3",
+                "explanation": "Selling securities absorbs liquidity, which is a characteristic of a tight monetary policy."
+            },
+            {
+                "text": "To boost the demand in corona pandemic 2020 which of the following step(s) were taken by Reserve Bank of India? \n1. Loan to value ratio was decreased \n2. Repo rate was decreased \n3. Cash reserve ratio was decreased",
+                "options": [
+                    "Only 2 and 3",
+                    "Only 1 and 2",
+                    "Only 1 and 3",
+                    "All three statements"
+                ],
+                "correctAnswer": "Only 2 and 3",
+                "explanation": "Repo rate and CRR were decreased. LTV was actually increased (not decreased) to help borrowers."
+            },
+            {
+                "text": "Find correct statements about Priority Sector Lending (PSL) norms in India: \n1. Only one person per household is eligible for loans under PSL quota. \n2. 3% PSL quota is earmarked for environmental conservation projects. \n3. Foreign banks in India are not required to abide with PSL norms.",
+                "options": [
+                    "Only 1 and 2",
+                    "Only 2 and 3",
+                    "Only 1 and 3",
+                    "None of them"
+                ],
+                "correctAnswer": "None of them",
+                "explanation": "All three statements are incorrect. Households are eligible, the 3% quota claim is incorrect, and foreign banks must abide by PSL norms."
+            },
+            {
+                "text": "Which of the following statement/s are correct regarding Monetary Policy Committee: \n1. This committee is formed under the Banking Regulation Act. \n2. Legally they are required to meet minimum 12 times a year. \n3. Inflation target for the next five years till 31/3/2026 is 3% to 6% CPI (All India).",
+                "options": [
+                    "Only 1 & 2",
+                    "Only 3",
+                    "Only 2 & 3",
+                    "None of the statements are correct"
+                ],
+                "correctAnswer": "None of the statements are correct",
+                "explanation": "MPC is formed under the RBI Act (not Banking Regulation Act), meets at least 4 times a year (not 12), and the target is 4% with a tolerance band of 2-6% (not 3-6%)."
             }
         ],
-        "Simon Commission and the Nehru Report": [{
-                "text": "Which provision of the Government of India Act, 1919, stipulated the appointment of a commission ten years later to study the constitutional situation in India?",
+        "Pillar_1B1_Classificaiton of Bank NBFC": [{
+                "text": "The Reserve Bank of India regulates the commercial banks in matters of \n1. Liquidity of assets \n2. Branch expansion \n3. Merger of banks \n4. Winding-up of banks",
                 "options": [
-                    "Section 124A",
-                    "Article 31B",
-                    "A specific clause within the Act",
-                    "The preamble of the Act"
+                    "1 & 4 only",
+                    "2, 3 & 4 only",
+                    "1, 2 & 3 only",
+                    "1, 2, 3 & 4"
                 ],
-                "correctAnswer": 2,
-                "explanation": "A specific clause in the Government of India Act, 1919, provided for such a commission."
+                "correctAnswer": "1, 2, 3 & 4",
+                "explanation": "As per the Banking Regulation Act, RBI controls commercial banks in matters of liquidity of assets, branch expansion, merger of banks, and winding-up of banks."
             },
             {
-                "text": "When was the Simon Commission appointed by the British government?",
+                "text": "In India, the central bank's function as the 'lender of last resort' usually refers to which of the following? \n1. Lending to trade and industry bodies when they fail to borrow from other sources. \n2. Providing liquidity to the banks having a temporary crisis. \n3. Lending to governments to finance budgetary deficits",
                 "options": [
-                    "November 1925",
-                    "February 1927",
-                    "November 1927",
-                    "May 1930"
+                    "2 Only",
+                    "1 and 2",
+                    "2 and 3",
+                    "3 Only"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Simon Commission was appointed in November 1927."
+                "correctAnswer": "2 Only",
+                "explanation": "Lender of last resort is associated with RBI giving loans to bankers in times of emergency or temporary crisis."
             },
             {
-                "text": "What was a significant characteristic of the Simon Commission's composition that led to widespread Indian protest?",
+                "text": "RBI acts as banker's bank. This would imply which of the following? \n1. Other banks retain their deposits with RBI. \n2. RBI lends funds to commercial banks in the times of need. \n3. RBI advises commercial banks on monetary matters.",
                 "options": [
-                    "It had a majority of Indian members.",
-                    "It was an all-white commission with seven British members.",
-                    "It was chaired by an Indian judge.",
-                    "It included representatives from various Indian political parties."
+                    "Only 2 and 3",
+                    "Only 1 and 2",
+                    "Only 1 and 3",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 1,
-                "explanation": "It was an all-white, all-British member commission."
+                "correctAnswer": "1, 2 and 3",
+                "explanation": "RBI acts as a banker's bank by holding deposits of other banks, lending funds in times of need, and advising on monetary matters."
             },
             {
-                "text": "Who was the chairman of the Simon Commission?",
+                "text": "In context of independent India's economy, which one of the following was the earlier event to take place?",
                 "options": [
-                    "Lord Birkenhead",
-                    "Lord Irwin",
-                    "Sir John Simon",
-                    "Clement Attlee"
+                    "Nationalization of insurance companies",
+                    "Nationalization of State Bank Of India",
+                    "Enactment Of Banking Regulation Act",
+                    "Introduction of first Five year plan"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Sir John Simon chaired the Simon Commission."
+                "correctAnswer": "Enactment Of Banking Regulation Act",
+                "explanation": "The Banking Regulation Act was enacted in 1949, which is the earliest among the given events."
             },
             {
-                "text": "What was the primary objective of the Simon Commission as stated by the British government?",
+                "text": "Find correct chronological sequence of the following events: \n1. The first democratically elected communist party government formed in a State in India. \n2. 'Imperial Bank of India', was renamed 'State Bank of India'. \n3. Air India was nationalized and became the national carrier. \n4. Goa became a part of independent India.",
                 "options": [
-                    "To grant immediate dominion status to India.",
-                    "To recommend further constitutional reforms for India.",
-                    "To assess the economic impact of British rule.",
-                    "To investigate the causes of the 1857 Revolt."
+                    "4-1-2-3",
+                    "4-2-1-3",
+                    "3-2-1-4",
+                    "3-1-2-4"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Simon Commission was to recommend further constitutional reforms."
+                "correctAnswer": "3-2-1-4",
+                "explanation": "The correct order is: Air India nationalized (1953), SBI nationalized (1955), Communist party government in Kerala (1957), Goa became part of India (1960s)."
             },
             {
-                "text": "Who was the Conservative Secretary of State for India responsible for the appointment of the Simon Commission?",
+                "text": "Find correct Statement(s) about NBFCs in India \nA) They cannot engage in the acquisition of securities issued by the government. \nB) They cannot accept demand deposits like savings accounts.",
                 "options": [
-                    "Lord Curzon",
-                    "Lord Minto",
-                    "Lord Birkenhead",
-                    "Edwin Montagu"
+                    "Both A and B",
+                    "Neither A nor B",
+                    "Only A",
+                    "Only B"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Lord Birkenhead was the Secretary of State at the time."
+                "correctAnswer": "Only B",
+                "explanation": "NBFCs are allowed to buy G-Secs (Statement A is wrong), but they cannot accept demand deposits (Statement B is right)."
             },
             {
-                "text": "How did the Indian National Congress respond to the appointment of the Simon Commission in its Madras session of 1927?",
+                "text": "The main functioning of the banking system is to",
                 "options": [
-                    "It welcomed the commission with conditions.",
-                    "It decided to cooperate with the commission.",
-                    "It resolved to boycott the commission \"at every stage and in every form.\"",
-                    "It proposed alternative Indian members for the commission."
+                    "accept deposits and provide credit",
+                    "accept deposits and subsidies",
+                    "provide credit and subsidies",
+                    "accept deposits, give credit and subsidies"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Congress resolved to boycott the commission at every stage."
+                "correctAnswer": "accept deposits and provide credit",
+                "explanation": "A bank accepts deposits from the public and creates credits (loans)."
             },
             {
-                "text": "What did the Congress declare as its goal in the Madras session of 1927, alongside its decision to boycott the Simon Commission?",
+                "text": "Find Correct about credit rating agencies (CRA) in India? \n1. They are regulated by the Reserve Bank of India. \n2. The rating agency popularly known as ICRA is a public limited company. \n3. Brickwork Ratings is an Indian credit rating agency.",
                 "options": [
-                    "Provincial autonomy",
-                    "Dominion status",
-                    "Complete independence",
-                    "Responsible government"
+                    "1 and 2 Only",
+                    "2 and 3 Only",
+                    "1 and 3 Only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Demanded Complete Independence."
+                "correctAnswer": "2 and 3 Only",
+                "explanation": "CRAs are regulated by SEBI, not RBI (Statement 1 is wrong). ICRA is a public limited company (Statement 2 is right). Brickwork Ratings is an Indian CRA (Statement 3 is right)."
             },
             {
-                "text": "Which of the following groups did not support the boycott of the Simon Commission?",
+                "text": "Find correct Statement(s) about Payment Banks? \n1. Mobile telephone companies and supermarket chains that are owned and controlled by residents are eligible to be promoters of Payment Banks. \n2. Payment Banks can issue both credit cards and debit cards. \n3. Payment Banks cannot undertake lending activities.",
                 "options": [
-                    "Liberals of the Hindu Mahasabha",
-                    "Majority faction of the Muslim League under Jinnah",
-                    "Muhammad Shafi faction of the Muslim League",
-                    "Jawaharlal Nehru and Subhash Bose"
+                    "1 and 2 Only",
+                    "1 and 3 Only",
+                    "2 only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Muhammad Shafi’s faction participated in the commission."
+                "correctAnswer": "1 and 3 Only",
+                "explanation": "Payment Banks cannot issue credit cards or undertake lending activities (Statement 2 is wrong, Statement 3 is right). Mobile firms and supermarket chains can be promoters (Statement 1 is right)."
             },
             {
-                "text": "When did the Simon Commission land in Bombay, leading to countrywide protests?",
+                "text": "Find correct statement(s) \n1. In terms of short-term credit delivery to the agriculture sector, District Central Cooperative Banks (DCCBs) deliver more credit in comparison to Scheduled Commercial Banks and Regional Rural Banks. \n2. One of the most important functions of DCCBs is to provide funds to the PACS.",
                 "options": [
-                    "January 1, 1928",
-                    "February 3, 1928",
-                    "May 10, 1929",
-                    "August 15, 1930"
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Simon Commission landed in Bombay on February 3, 1928."
+                "correctAnswer": "2 only",
+                "explanation": "SCBs provide more credit than DCCBs (Statement 1 is wrong). DCCBs provide funds to Primary Agricultural Credit Societies (PACS) (Statement 2 is right)."
             },
             {
-                "text": "Which slogan became synonymous with the protests against the Simon Commission?",
+                "text": "Find correct Statements about 'Urban Cooperative Banks' in India \n1. They are supervised and regulated by local boards set up by the State Governments. \n2. They can issue equity shares and preference shares. \n3. They were brought under the purview of Banking Regulation Act, 1949 through an Amendment in 1966.",
                 "options": [
-                    "'Swaraj is my birthright'",
-                    "'Inquilab Zindabad'",
-                    "'Simon Go Back'",
-                    "'Do or Die'"
+                    "1 only",
+                    "2 and 3 Only",
+                    "1 and 3 Only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 2,
-                "explanation": "\"Simon Go Back\" was the main slogan."
+                "correctAnswer": "2 and 3 Only",
+                "explanation": "UCBs are regulated by RBI (Statement 1 is wrong). They can issue equity/preference shares (Statement 2 is right). They came under Banking Regulation Act in 1966 (Statement 3 is right)."
             },
             {
-                "text": "Which two leaders emerged as prominent figures of the new wave of youth and student protests during the Simon Commission's visit?",
+                "text": "Which of the following grants direct credit assistance to rural households? \n1. Regional Rural Banks \n2. National Bank for Agriculture and Rural Development \n3. Land Development Banks",
                 "options": [
-                    "Mahatma Gandhi and Sardar Patel",
-                    "Bal Gangadhar Tilak and Bipin Chandra Pal",
-                    "Jawaharlal Nehru and Subhash Bose",
-                    "C.R. Das and Motilal Nehru"
+                    "1 and 2 Only",
+                    "2 only",
+                    "1 and 3 Only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Jawaharlal Nehru and Subhash Bose emerged as leaders."
+                "correctAnswer": "1 and 3 Only",
+                "explanation": "NABARD provides indirect loans, not direct assistance (Statement 2 is wrong). RRBs and Land Development Banks provide direct credit."
             },
             {
-                "text": "Which of the following radical groups reflected the new ideas emerging during the Simon Commission protests?",
+                "text": "Find Correct Statement(s) \nA) NHB, the apex institution of housing finance in India, was originally set up as a wholly owned subsidiary of RBI. \nB) SIDBI was originally established as a wholly owned subsidiary of the Industrial development bank of India.",
                 "options": [
-                    "Indian National Army",
-                    "All India Kisan Sabha",
-                    "Punjab Naujawan Bharat Sabha",
-                    "Servants of India Society"
+                    "Both A and B",
+                    "Neither A nor B",
+                    "Only A",
+                    "Only B"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Punjab Naujawan Bharat Sabha represented radicalism."
+                "correctAnswer": "Both A and B",
+                "explanation": "NHB was set up as a wholly owned subsidiary of RBI in 1988 (Statement A is right). SIDBI was established as a wholly owned subsidiary of IDBI in 1990 (Statement B is right)."
             },
             {
-                "text": "Who was appointed by the Bombay Legislative Council to work with the Simon Commission and argued for 'universal adult franchise'?",
+                "text": "What is the purpose of setting up of Small Finance Banks (SFBs) in India? \n1. To supply credit to small business units \n2. To supply credit to small and marginal farmers \n3. To encourage young entrepreneurs to set up business particularly in rural areas.",
                 "options": [
-                    "Lala Lajpat Rai",
-                    "Dr. B.R. Ambedkar",
-                    "M.R. Jayakar",
-                    "Tej Bahadur Sapru"
+                    "1 and 2 Only",
+                    "2 and 3 Only",
+                    "1 and 3 Only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Dr. B.R. Ambedkar demanded universal adult franchise."
+                "correctAnswer": "1 and 2 Only",
+                "explanation": "SFBs supply credit to small business units and small/marginal farmers (Statements 1 & 2 are right). They are not specifically mandated to encourage young entrepreneurs in rural areas (Statement 3 is wrong)."
             },
             {
-                "text": "What specific demand did Dr. B.R. Ambedkar make regarding the depressed classes in his memorandum to the Simon Commission?",
+                "text": "The service(s) rendered under microfinance is/are \n1. Credit facilities \n2. Savings facilities \n3. Insurance facilities \n4. Fund Transfer facilities",
                 "options": [
-                    "Integration with the Hindu community",
-                    "Treatment as a distinct and independent minority",
-                    "Abolition of all reservations",
-                    "Joint electorates without reserved seats"
+                    "1 only",
+                    "2 and 3 only",
+                    "1 and 4 only",
+                    "1, 2, 3 and 4"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Ambedkar advocated treatment as a distinct minority."
+                "correctAnswer": "1, 2, 3 and 4",
+                "explanation": "Microfinance institutions can provide credit, savings, insurance, and fund transfer facilities."
             },
             {
-                "text": "Who famously stated, \"The blows, which fell on me today, are the last nails driven into the coffin of British Imperialism,\" after being lathi-charged during a Simon Commission protest?",
+                "text": "Which of the following statement(s) is/are correct? \n1. The recommendation of Osborne Smith commission was the major factors behind formation of RBI. \n2. RBI became operational from 1st April 1935 with 100% ownership in the hands of the then Government of British-India.",
                 "options": [
-                    "Jawaharlal Nehru",
-                    "G.B. Pant",
-                    "Lala Lajpat Rai",
-                    "Bhagat Singh"
+                    "Only 1",
+                    "1 and 2 both",
+                    "Only 2",
+                    "None of them"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Lala Lajpat Rai said this after the lathi charge."
+                "correctAnswer": "None of them",
+                "explanation": "RBI was set up based on the Hilton-Young Commission recommendations (Statement 1 is wrong). British Indian government had only about 4.4% shareholding initially (Statement 2 is wrong)."
             },
             {
-                "text": "What was one of the significant impacts of the Simon Commission's appointment on the Indian national movement?",
+                "text": "Find incorrect statement about the RBI Governor:",
                 "options": [
-                    "It led to a period of political inactivity.",
-                    "It created dissensions between the Congress and the Muslim League.",
-                    "It gave a stimulus to radical forces and provided an issue for mass action.",
-                    "It strengthened the moderate faction within the Congress."
+                    "He can be reappointed.",
+                    "He can be directly summoned by Parliamentary Committees.",
+                    "He is ex-officio chairman of Monetary Policy committee.",
+                    "He resigns when ruling party loses its majority in Lok-Sabha."
                 ],
-                "correctAnswer": 2,
-                "explanation": "It gave a new issue and pushed radicalism."
+                "correctAnswer": "He resigns when ruling party loses its majority in Lok-Sabha.",
+                "explanation": "There is no provision requiring the RBI governor to resign when the ruling party loses its majority."
             },
             {
-                "text": "What challenge did Lord Birkenhead issue to Indian politicians, which led to the drafting of the Nehru Report?",
+                "text": "A) All India Financial Institutions (AIFI) are not required to maintain cash reserve ratio. \nR) AIFI are not regulated by RBI.",
                 "options": [
-                    "To achieve complete independence by a set date.",
-                    "To form a united front against British rule.",
-                    "To produce an agreed constitution for India.",
-                    "To hold immediate general elections."
+                    "Both A & R are true and R is the correct explanation of A",
+                    "Both A & R are true but R does not explain A",
+                    "A is true but R is false",
+                    "A is false but R is true."
                 ],
-                "correctAnswer": 2,
-                "explanation": "He challenged Indians to draw their own constitution."
+                "correctAnswer": "A is true but R is false",
+                "explanation": "AIFIs are not required to maintain CRR (A is true). However, they are regulated by RBI (R is false)."
             },
             {
-                "text": "When did the All Parties Conference meet to draft a constitution, in response to Lord Birkenhead's challenge?",
+                "text": "Among the given events which one was the last to occur?",
                 "options": [
-                    "August 1927",
-                    "February 1928",
-                    "December 1929",
-                    "May 1930"
+                    "LIC took over private life insurance companies.",
+                    "Nationalization of SBI.",
+                    "Regional Rural Banks were setup in India.",
+                    "Enactment of IDBI Act."
                 ],
-                "correctAnswer": 1,
-                "explanation": "It first met in February 1928."
+                "correctAnswer": "Regional Rural Banks were setup in India.",
+                "explanation": "SBI Nationalized (1955), LIC formed (1956), IDBI Act (1964), RRBs established (1975). RRBs were the last."
             },
             {
-                "text": "Who chaired the committee responsible for drafting the Nehru Report?",
+                "text": "Which of the following was recommended by M.Narsimham committee on Banking Sector Reforms?",
                 "options": [
-                    "Jawaharlal Nehru",
-                    "Mahatma Gandhi",
-                    "Motilal Nehru",
-                    "Sardar Vallabhbhai Patel"
+                    "Govt. should increase its shareholding in Public Sector Banks.",
+                    "Local Area banks should be shut down",
+                    "Regional Rural Banks should be merged with Public Sector Banks.",
+                    "None of the above"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Motilal Nehru chaired the committee."
+                "correctAnswer": "None of the above",
+                "explanation": "The Narsimham committee did not recommend any of the options listed."
             },
             {
-                "text": "What was the primary goal for the future Indian constitution as favoured by the majority in the Nehru Committee?",
+                "text": "Which of the following statement(s) is/are incorrect regarding Small Finance Banks- \n1. They cannot issue credit cards. \n2. They are exempted from Basel-III norms. \n3. It is one type of cooperative bank.",
                 "options": [
-                    "Complete independence",
-                    "Absolute monarchy",
-                    "Dominion status",
-                    "A unitary system without provincial autonomy"
+                    "Only 1 and 2",
+                    "1 only",
+                    "Only 2 and 3",
+                    "1, 2 & 3 all"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Dominion status was recommended."
+                "correctAnswer": "1, 2 & 3 all",
+                "explanation": "SFBs can issue credit cards, must comply with Basel norms, and are commercial banks, not cooperative banks. All statements are incorrect."
             },
             {
-                "text": "Which of the following was a key recommendation of the Nehru Report regarding the communal question?",
+                "text": "Which of the following statement(s) is/are incorrect \n1. Government of India and RBI are equal shareholders of NABARD. \n2. National Housing Bank was setup as a 100% subsidiary of RBI. \n3. SIDBI is the oldest All India Financial Institutions (AIFI) of India.",
                 "options": [
-                    "Retention of separate electorates for Muslims.",
-                    "Rejection of separate electorates.",
-                    "Special electorates for all minorities.",
-                    "Formation of communal political parties."
+                    "Only 1 and 2",
+                    "Only 1 and 3",
+                    "Only 2 and 3",
+                    "1, 2 & 3 all"
                 ],
-                "correctAnswer": 1,
-                "explanation": "The Nehru Report rejected separate electorates."
+                "correctAnswer": "Only 1 and 3",
+                "explanation": "GOI has 100% share of NABARD (Statement 1 is wrong). SIDBI is not the oldest AIFI (Statement 3 is wrong). NHB was originally an RBI subsidiary (Statement 2 is right)."
             },
             {
-                "text": "The Nehru Report recommended the reservation of seats for Muslims in which areas?",
+                "text": "Which of the following statement(s) is/are correct \n1. IL&FS is an example of Gold Loan Company. \n2. Any NBFCs that are not regulated by SEBI IRDAI or PFRDA fall under the regulatory domain of Department of Financial Services.",
                 "options": [
-                    "Only in Muslim majority provinces.",
-                    "Only at the Centre and in provinces where they were in minority.",
-                    "In all provinces, regardless of population.",
-                    "No reservations were recommended."
+                    "Only 1",
+                    "Only 2",
+                    "Neither 1 nor 2",
+                    "Both 1 & 2"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Only in provinces where they were in minority and in the Centre."
+                "correctAnswer": "Neither 1 nor 2",
+                "explanation": "IL&FS is an infrastructure financing company, not a Gold Loan Company (Statement 1 is wrong). RBI has residuary powers to regulate NBFCs not covered by other regulators, not the Department of Financial Services (Statement 2 is wrong)."
             },
             {
-                "text": "How many fundamental rights were included in the recommendations of the Nehru Report?",
+                "text": "Which of the following statement(s) is/are correct regarding Chit Fund. \n1. It is a sub-category of gold loan Companies regulated by RBI. \n2. It is a type of collective investment scheme. \n3. Like Cryptocurrency companies they are banned in India.",
                 "options": [
-                    "Ten",
-                    "Fifteen",
-                    "Nineteen",
-                    "Twenty-five"
+                    "Only 1 & 2",
+                    "2 & 3",
+                    "Only 2",
+                    "None of the given statements"
                 ],
-                "correctAnswer": 2,
-                "explanation": "The report included nineteen fundamental rights."
+                "correctAnswer": "Only 2",
+                "explanation": "Chit funds are regulated by State registrars, not RBI (Statement 1 is wrong). They are a collective investment scheme (Statement 2 is right). They are not banned (Statement 3 is wrong)."
             },
             {
-                "text": "The Nehru Report advocated for complete dissociation of the State from what?",
+                "text": "Which one of the following is the oldest bank established in India?",
                 "options": [
-                    "Military affairs",
-                    "Economic policies",
-                    "Religion",
-                    "International relations"
+                    "Regional Rural Banks",
+                    "Local Area Banks",
+                    "Small Finance Banks",
+                    "Payment Banks"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Complete dissociation of the State from Religion."
+                "correctAnswer": "Regional Rural Banks",
+                "explanation": "RRBs were established in 1975, making them the oldest among the options (LABs 1996, SFBs 2014, Payment Banks 2017)."
             },
             {
-                "text": "What was a key feature of the political structure proposed by the Nehru Report concerning provincial powers?",
+                "text": "As per the Regulatory Guidelines of the Reserve Bank of India (RBI), how many of the following can issue credit cards to its customers? \n1. Small Finance Banks \n2. Payments Banks \n3. NBFCs \n4. Foreign Banks with branches in India",
                 "options": [
-                    "Complete central control over provinces.",
-                    "Responsible government in provinces.",
-                    "Governors to exercise absolute power.",
-                    "No provincial legislatures."
+                    "Only one",
+                    "Only three",
+                    "Only two",
+                    "All four"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Called for responsible government in provinces."
+                "correctAnswer": "Only three",
+                "explanation": "Payments Banks cannot issue credit cards. Small Finance Banks, NBFCs, and Foreign Banks can issue them."
             },
             {
-                "text": "Which of the following was NOT among the Delhi Proposals of the Muslim League in 1927 for demands to be incorporated into the draft constitution?",
+                "text": "How many of the following cooperative banks primarily deal with very long-term loan finance? \n1. State Cooperatives Banks \n2. District Cooperative Banks \n3. Land banks",
                 "options": [
-                    "Joint electorates with reserved seats for Muslims.",
-                    "Separate electorates for Muslims in all provinces.",
-                    "One-third representation to Muslims in Central Legislative Assembly.",
-                    "Formation of three new Muslim majority provinces."
+                    "Only one",
+                    "Only two",
+                    "Only three",
+                    "None of the above"
                 ],
-                "correctAnswer": 1,
-                "explanation": "They sought joint, not separate, electorates in the Delhi Proposals."
+                "correctAnswer": "Only one",
+                "explanation": "State and District Cooperative Banks deal with short-term loans. Only Land Banks deal with long-term loan finance."
             },
             {
-                "text": "The Muslim League's Delhi Proposals (1927) asked for the formation of which three new Muslim majority provinces?",
+                "text": "With reference to the regulatory framework for urban cooperative banks, consider the following statements: \n1. It has been designed by the registrar of multi-state cooperative societies. \n2. This framework classifies urban cooperative banks into four tiers. \n3. The framework classifies urban cooperative banks according to the number of loans sanctioned by these banks.",
                 "options": [
-                    "Punjab, Bengal, and Assam",
-                    "Sindh, Baluchistan, and North-West Frontier Province",
-                    "Bihar, Orissa, and United Provinces",
-                    "Madras, Bombay, and Central Provinces"
+                    "2 and 3 only",
+                    "2 only",
+                    "1 and 3 only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Sindh, Baluchistan and NWFP were demanded as separate provinces."
+                "correctAnswer": "2 only",
+                "explanation": "RBI designed the framework (Statement 1 is wrong). It classifies UCBs into four tiers (Statement 2 is right). Classification is based on money deposits, not loan numbers (Statement 3 is wrong)."
             },
             {
-                "text": "What was the Hindu Mahasabha's stance on the creation of new Muslim-majority provinces, as proposed by some Muslim leaders?",
+                "text": "Which of the following statements are correct about NaBFID? \n1. It stands for National Bank for Financing Innovation and Development. \n2. It was established in 2021. \n3. It is headquartered in New Delhi. \n4. It is given the designation of All India Financial Institutions.",
                 "options": [
-                    "It fully supported the proposal.",
-                    "It remained neutral on the issue.",
-                    "It was opposed to the proposals.",
-                    "It demanded Hindu-majority provinces in return."
+                    "1 and 3 only",
+                    "1, 2 and 3 only",
+                    "2 and 4 only",
+                    "1, 2, 3 and 4"
                 ],
-                "correctAnswer": 2,
-                "explanation": "It was opposed to the new Muslim-majority provinces."
+                "correctAnswer": "2 and 4 only",
+                "explanation": "NaBFID stands for National Bank for Financing Infrastructure and Development (Statement 1 is wrong). It was established in 2021 (Statement 2 is right). HQ is in Mumbai (Statement 3 is wrong). It is an AIFI (Statement 4 is right)."
             },
             {
-                "text": "In the compromises proposed within the Nehru Report regarding communal representation, where were reservations for Muslims suggested?",
+                "text": "Consider the following statements: \n1. Credit Information companies are regulated by the RBI. \n2. Credit rating agencies are regulated by SEBI. \n3. CIBIL is an example of a Credit rating agency.",
                 "options": [
-                    "Only where they were in majority.",
-                    "Everywhere with separate electorates.",
-                    "Only where they were in minority.",
-                    "No reservations were allowed at all."
+                    "1 and 2 only",
+                    "2 and 3 only",
+                    "3 only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Reservations recommended only where Muslims were in minority."
+                "correctAnswer": "1 and 2 only",
+                "explanation": "CICs are regulated by RBI (Statement 1 is right). CRAs are regulated by SEBI (Statement 2 is right). CIBIL is a CIC, not a CRA (Statement 3 is wrong)."
             },
             {
-                "text": "At the All Parties Conference in Calcutta, Jinnah proposed three amendments on behalf of the Muslim League. Which of these was one of his proposals?",
+                "text": "Find correct pairs of RBI portal and their objectives \n1. UDGAM Portal: to deal with unclaimed deposits. \n2. Pravaah Portal: to help the retail investors, purchase government securities",
                 "options": [
-                    "Complete abolition of reserved seats.",
-                    "Residual powers to the central government.",
-                    "One-third representation to Muslims in the central legislature.",
-                    "Equal representation for all communities in every province."
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "One-third representation in central legislature was proposed by Jinnah."
+                "correctAnswer": "only 1",
+                "explanation": "UDGAM is for unclaimed deposits (Statement 1 is right). Pravaah is for license applications, not G-Secs (Statement 2 is wrong)."
             },
             {
-                "text": "Jinnah's Fourteen Points (March 1929) outlined his demands for constitutional reforms. Which of these was a core demand?",
+                "text": "How many of the following statements are correct about the Agency banks of RBI? \n1. They print 1 currency notes on behalf of RBI. \n2. Only public sector banks can become agency banks of RBI. \n3. They handle the banking functions related to collection of taxes for the union government. \n4. They handle the banking functions related to collection of taxes for State governments.",
                 "options": [
-                    "A unitary constitution for India.",
-                    "Abolition of provincial autonomy.",
-                    "Federal Constitution with residual powers to provinces.",
-                    "Restriction of Muslim representation to population share."
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "All four of these"
                 ],
-                "correctAnswer": 2,
-                "explanation": "He demanded a federal constitution with residual powers to provinces."
+                "correctAnswer": "only two of these",
+                "explanation": "Printing 1 rupee notes is government's task (Statement 1 is wrong). Private banks can also be agency banks (Statement 2 is wrong). Statements 3 and 4 are right."
             },
             {
-                "text": "According to Jinnah's Fourteen Points, what kind of electorates were demanded for Muslims?",
+                "text": "How many of the following constitute Market Infrastructure Institutions for sharemarket? \n1. Stock exchanges \n2. Depositories \n3. Clearing houses \n4. Foreign institutional investors (FII) \n5. All India Financial Institutions (AIFI)",
                 "options": [
-                    "Joint electorates",
-                    "Separate electorates",
-                    "Mixed electorates",
-                    "Open electorates"
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "All four of these"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Separate electorates for Muslims was a central demand."
+                "correctAnswer": "only three of these",
+                "explanation": "Stock exchanges, depositories, and clearing houses are MIIs. FIIs and AIFIs are not (Statements 4 and 5 are wrong)."
             },
             {
-                "text": "Which condition, from Jinnah's Fourteen Points, stipulated that no constitutional amendment should be made by the centre without the concurrence of the states?",
+                "text": "Find correct about Money Changers: \n1. They conduct the business of exchanging the currency of one country for that of another country for their clients. \n2. RBI regulates them using powers of currency exchange Act, 1939.",
                 "options": [
-                    "Provincial autonomy",
-                    "Federal Constitution",
-                    "Protection of Muslim rights",
-                    "No constitutional amendment by the centre without the concurrence of the states constituting the Indian federation."
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
                 ],
-                "correctAnswer": 3,
-                "explanation": "No amendment at Centre without states' concurrence."
+                "correctAnswer": "only 1",
+                "explanation": "Statement 1 is right. Statement 2 is wrong because RBI regulates them using Foreign Exchange Management Act, 1999."
             },
             {
-                "text": "Besides the Muslim League, Hindu Mahasabha, and Sikh communalists, which other section found the Nehru Report unsatisfactory?",
+                "text": "How many among the following are regulated by the SEBI? \n1. Discount Brokers \n2. Merchant Bankers \n3. Peer2Peer lenders \n4. Depositories",
                 "options": [
-                    "The Moderates within the Congress.",
-                    "The older leadership like Motilal Nehru.",
-                    "The younger section led by Jawaharlal Nehru and Subhash Bose.",
-                    "The British government officials."
+                    "only one of these",
+                    "only three of these",
+                    "only two of these",
+                    "All four of these"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Young nationalists led by Nehru and Bose found it unsatisfactory."
+                "correctAnswer": "only three of these",
+                "explanation": "Discount Brokers, Merchant Bankers, and Depositories are regulated by SEBI. P2P lenders are regulated by RBI."
             },
             {
-                "text": "What organization was jointly set up by Jawaharlal Nehru and Subhash Bose after they rejected the idea of dominion status in the Nehru Report?",
+                "text": "Find Correct statement(s) about National Urban Cooperative Finance and Development Corporation: \n1. RBI has registered this organisation as 6th all India financial institution (AIFI). \n2. This organisation will act as the statutory regulator for the urban competitive banks across India.",
                 "options": [
-                    "Congress Socialist Party",
-                    "Forward Bloc",
-                    "Independence for India League",
-                    "All India Youth Congress"
+                    "only 1",
+                    "only 2",
+                    "neither 1 nor 2",
+                    "both 1 and 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "They set up the Independence for India League."
+                "correctAnswer": "neither 1 nor 2",
+                "explanation": "It is registered as an NBFC, not AIFI (Statement 1 is wrong). It is a self-regulatory organization, not a statutory regulator (Statement 2 is wrong)."
             },
             {
-                "text": "The Simon Commission's recommendations of May 1930 included the proposal to abolish dyarchy and establish what in the provinces?",
+                "text": "Find Correct statement(s) about the Regional Rural Banks after amendments in 2015: \n1. It must have minimum 33% ownership by the Union \n2. It must have minimum 25% ownership by the State Government.",
                 "options": [
-                    "Unitary government",
-                    "Direct British rule",
-                    "Representative government with autonomy",
-                    "Puppet governments controlled by the Centre"
+                    "only 1",
+                    "both 1 and 2",
+                    "only 2",
+                    "neither 1 nor 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Recommended Representative government with autonomy."
+                "correctAnswer": "neither 1 nor 2",
+                "explanation": "The requirement is that Union + State + Sponsor Bank must hold a minimum of 51% shareholding. There are no specific 33% or 25% minimums for Union/State individually."
             },
             {
-                "text": "Which of these was a recommendation of the Simon Commission regarding the central government?",
+                "text": "How many of the following are permitted in India by RBI as of 2024-March? \n1. Neobanks \n2. Wholesale Banks \n3. Digital Banking Units \n4. P2P Lenders",
                 "options": [
-                    "Full parliamentary responsibility at the centre.",
-                    "Governor-general to have minimal powers.",
-                    "Rejection of parliamentary responsibility at the centre.",
-                    "Formation of a cabinet responsible to the legislature."
+                    "only one of these",
+                    "only three of these",
+                    "only two of these",
+                    "All four of these"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Rejected Parliament responsibility at the Centre."
+                "correctAnswer": "only two of these",
+                "explanation": "Neobanks and Wholesale Banks are not allowed. Digital Banking Units and P2P Lenders are permitted."
             },
             {
-                "text": "The Simon Commission recommended the separation of which two regions from Bombay and India, respectively?",
+                "text": "Consider following statements about Islamic banks, \nStatement1: Islamic Banks don't pay interest to depositors. \nStatement2: Islamic Banks don't charge interest on the borrowers.",
                 "options": [
-                    "Bengal and Bihar",
-                    "Punjab and Kashmir",
-                    "Sindh and Burma",
-                    "Orissa and Assam"
+                    "Both I & II are correct & II is the correct explanation for 1",
+                    "Both I & II are correct & II is not the correct explanation for 1",
+                    "I is correct but II is wrong",
+                    "I is wrong but II is correct"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Sindh from Bombay, Burma from India."
+                "correctAnswer": "Both I & II are correct & II is not the correct explanation for 1",
+                "explanation": "Islamic banks do not pay or charge interest because it is prohibited under Islam. Both statements are correct, but Statement 2 does not explain Statement 1."
             },
             {
-                "text": "How did the Simon Commission propose to address the issue of communal representation in its recommendations?",
+                "text": "With reference to the rule/rules imposed by the Reserve Bank of India while treating foreign banks, consider the following statements: \n1. There is no minimum capital requirement for wholly owned banking subsidiaries in India. \n2. For wholly owned banking subsidiaries in India, at least 50% of the board members should be Indian nationals.",
                 "options": [
-                    "Abolish all separate electorates.",
-                    "Retain and extend separate communal electorates.",
-                    "Introduce joint electorates with reserved seats.",
-                    "Grant universal adult franchise without any communal consideration."
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Retain and extend separate communal electorates."
-            },
-            {
-                "text": "Which commission, set up to investigate the 'seditious conspiracy' of the Indian people, led to the controversial Rowlatt Act?",
-                "options": [
-                    "Hunter Committee",
-                    "Mudiman Commission",
-                    "Rowlatt Commission",
-                    "Lee Commission"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Rowlatt Commission led to the Rowlatt Act."
-            },
-            {
-                "text": "The Simon Commission mentioned the need for Indian army to be what?",
-                "options": [
-                    "Mechanized",
-                    "Enlarged",
-                    "Indianised",
-                    "Integrated with British army"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Simon Commission said army should be Indianised."
-            },
-            {
-                "text": "Which report, published in March 1933 and debated in the British Parliament, was a direct outcome of the Third Round Table Conference?",
-                "options": [
-                    "Nehru Report",
-                    "Simon Commission Report",
-                    "White Paper on Constitutional Reforms",
-                    "Gandhi-Irwin Pact"
-                ],
-                "correctAnswer": 2,
-                "explanation": "White Paper on Constitutional Reforms (1933) came after the conference."
-            },
-            {
-                "text": "Which prominent Indian leader supported the government on the issue of the Simon Commission, unlike the majority Congress stance?",
-                "options": [
-                    "Muhammad Shafi",
-                    "M.R. Jayakar",
-                    "Tej Bahadur Sapru",
-                    "B.S. Moonje"
-                ],
-                "correctAnswer": 0,
-                "explanation": "Muhammad Shafi supported the government."
-            },
-            {
-                "text": "The appointment of the Simon Commission also accepted Lord Birkenhead's challenge to Indian politicians to produce an agreed constitution. What was the Indian response that materialized from this challenge?",
-                "options": [
-                    "The Gandhi-Irwin Pact",
-                    "The Lucknow Pact",
-                    "The Nehru Report",
-                    "The Cripps Mission proposals"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Nehru Report (1928) was the response."
-            },
-            {
-                "text": "What specific power did the Simon Commission recommend for the Governor in provinces regarding internal security and administrative matters?",
-                "options": [
-                    "To consult with the provincial legislature.",
-                    "To act on discretionary power.",
-                    "To surrender all powers to elected ministers.",
-                    "To seek approval from the Central Government."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Commission recommended Governors have discretionary powers."
-            },
-            {
-                "text": "The Nehru Report advocated for what kind of structure for the princely states within the proposed Indian constitution?",
-                "options": [
-                    "Independent entities",
-                    "Integrated into existing provinces",
-                    "On a federal basis",
-                    "Under direct British rule"
-                ],
-                "correctAnswer": 2,
-                "explanation": "It suggested a federal structure for princely states."
-            },
-            {
-                "text": "The Nehru Report suggested the creation of provinces based on what principle?",
-                "options": [
-                    "Economic viability",
-                    "Historical boundaries",
-                    "Administrative convenience",
-                    "Linguistic divisions"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Recommended creation of provinces along linguistic lines."
-            },
-            {
-                "text": "What was the main point of contention for the young nationalists like Nehru and Bose regarding the Nehru Report?",
-                "options": [
-                    "Its advocacy for separate electorates.",
-                    "Its call for a unitary government.",
-                    "Its acceptance of dominion status instead of complete independence.",
-                    "Its rejection of fundamental rights."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Disappointed with dominion status, wanted complete independence."
-            },
-            {
-                "text": "The Simon Commission recommended the grant of local legislatures to which two specific regions that were not provinces?",
-                "options": [
-                    "Sindh and Burma",
-                    "Punjab and Bengal",
-                    "North-West Frontier Province and Baluchistan",
-                    "Delhi and Assam"
-                ],
-                "correctAnswer": 2,
-                "explanation": "NWFP and Baluchistan were recommended to have legislatures."
+                "correctAnswer": "only 2",
+                "explanation": "There is a minimum capital requirement of 5 billion (Statement 1 is wrong). At least 50% of board members must be Indian nationals (Statement 2 is right)."
             }
         ],
-        "Civil Disobedience Movement and Round Table Conferences": [{
-                "text": "What was the primary demand of Jawaharlal Nehru, Subhash Bose, and Satyamurthy regarding the Nehru Report?",
+        "Pillar_1B2_NPA and Other Burning Issues": [{
+                "text": "Which of the following statements are correct regarding the Financial Services Institutions Bureau (FSIB)? \n1. It selects the Governor for RBI. \n2. It selects the chairman of Life Insurance Corporation of India. \n3. It supervises the functioning of Insolvency Professionals (IP).",
                 "options": [
-                    "Dominion Status with immediate effect",
-                    "Conditional support for the British government",
-                    "Purna Swaraj or complete independence",
-                    "Boycott of all legislative councils"
+                    "Only 1 and 2",
+                    "Only 2",
+                    "1, 2 & 3",
+                    "Only 1 & 3"
                 ],
-                "correctAnswer": 2,
-                "explanation": "They demanded Purna Swaraj or complete independence."
+                "correctAnswer": "Only 2",
+                "explanation": "Statement 1 is wrong because the Financial Sector Regulatory Appointment Search Committee (FSRASC) interviews candidates for the RBI governor post. Statement 2 is right as FSIB recommends heads of public sector insurance companies. Statement 3 is wrong because IPs fall under the IBBI."
             },
             {
-                "text": "Which event preceded the launch of the Civil Disobedience Movement, highlighting the growing discontent among Indians?",
+                "text": "What is the importance of \"Interest Coverage Ratio\" of a firm in India? \n1. It helps in understanding the present risk of a firm that a bank is going to give a loan to. \n2. It helps in evaluating the emerging risk of a firm that a bank is going to give a loan to. \n3. The higher a borrowing firm's level of ICR, the worse is its ability to service its debt.",
                 "options": [
-                    "The Gandhi-Irwin Pact",
-                    "The Lahore Congress session",
-                    "The widespread protests after Gandhi's arrest in March 1929",
-                    "The formation of the Round Table Conferences"
+                    "1 and 2 Only",
+                    "2 only",
+                    "1 and 3 Only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Widespread protests after Gandhi's arrest in March 1929 highlighted growing discontent."
+                "correctAnswer": "1 and 2 Only",
+                "explanation": "Interest coverage ratio indicates ability to pay interest. Statements 1 and 2 are right as it helps assess present and emerging risks. Statement 3 is wrong because a higher ICR reflects a better (not worse) potential to service debt."
             },
             {
-                "text": "Lord Irwin's Declaration in October 1929 promised which of the following?",
+                "text": "What is the objective of BASEL-III norms?",
                 "options": [
-                    "Immediate complete independence for India",
-                    "Dominion status, though not for a long time to come",
-                    "Transfer of power within six months",
-                    "Universal adult franchise"
+                    "Develop national strategies for biological diversity.",
+                    "Reduce the GHG emissions but places a heavier burden on developed countries.",
+                    "Transfer technology from developed Countries to poor countries to replace chlorofluorocarbons in refrigeration.",
+                    "Improve the banking sector's ability to deal with financial and economic stress and improve risk management."
                 ],
-                "correctAnswer": 1,
-                "explanation": "Dominion status was promised, but not for a long time to come."
+                "correctAnswer": "Improve the banking sector's ability to deal with financial and economic stress and improve risk management.",
+                "explanation": "Basel III norms focus on increasing the level and quality of bank capital, maintenance of buffers, and improving liquidity to deal with economic and financial stress."
             },
             {
-                "text": "The 'Delhi Manifesto' put forward specific conditions for attending the Round Table Conference. Which of these was a key condition?",
+                "text": "Basel Convention provides:",
                 "options": [
-                    "Universal adult suffrage for all Indians",
-                    "Formulation of a constitution for the implementation of dominion status",
-                    "Complete nationalisation of key industries",
-                    "Retention of separate electorates for minorities"
+                    "Indian standards for pollution measurement and prevention.",
+                    "International guidelines to control the transboundary movements of hazardous wastes between different countries.",
+                    "Indian standards for the disposal of municipal and industrial wastes.",
+                    "International standards to categorize pollution in air and wastewater."
                 ],
-                "correctAnswer": 1,
-                "explanation": "Key condition was formulation of a constitution for implementation of dominion status."
+                "correctAnswer": "International guidelines to control the transboundary movements of hazardous wastes between different countries.",
+                "explanation": "The objective of the Basel Convention is to protect human health and the environment against the adverse effects of hazardous wastes, specifically restricting transboundary movements."
             },
             {
-                "text": "Who presided over the Lahore session of the Indian National Congress in 1929?",
+                "text": "Find Correct Statement(s) abt Governance in PSBs: \n1. Capital infusion into PSBs by the Govt of India has steadily increased in the last decade. \n2. To put the public sector banks in order, the merger of associate banks with the parent State Bank of India has been affected.",
                 "options": [
-                    "Mahatma Gandhi",
-                    "Motilal Nehru",
-                    "Jawaharlal Nehru",
-                    "Sardar Vallabhbhai Patel"
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Jawaharlal Nehru presided over the 1929 Lahore session."
+                "correctAnswer": "2 only",
+                "explanation": "Statement 1 is wrong as capital infusion has not steadily increased. Statement 2 is right; SBI merged with its associate banks and Bharatiya Mahila Bank in 2017."
             },
             {
-                "text": "What was declared as the aim of the Congress at the Lahore session in 1929?",
+                "text": "Find Correct statements about RBI: \n1. The Governor appointed by the Central Govt. \n2. Certain provisions in the Constitution of India give the Central Government the right to issue directions to the RBI in public interest. \n3. The Governor draws his power from the RBI Act.",
                 "options": [
-                    "Responsible government within the British Empire",
-                    "Complete independence",
-                    "Full provincial autonomy",
-                    "Increased Indian representation in legislative councils"
+                    "1 and 2 Only",
+                    "2 and 3 Only",
+                    "1 and 3 Only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Complete independence was declared as the aim."
+                "correctAnswer": "1 and 3 Only",
+                "explanation": "Statement 1 is right (appointed by Central Govt). Statement 2 is wrong (Power comes from Section 7 of RBI Act, not the Constitution). Statement 3 is right (Powers drawn from RBI Act)."
             },
             {
-                "text": "The first Independence (Swarajya) Day was fixed to be celebrated on which date?",
+                "text": "In Indian economy, non-financial debt includes___? \n1. Housing loans owed by households \n2. Amounts outstanding on credit cards \n3. Treasury bills",
                 "options": [
-                    "December 31, 1929",
-                    "January 26, 1930",
-                    "March 12, 1930",
-                    "April 6, 1930"
+                    "1 only",
+                    "1 and 2 Only",
+                    "3 only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 1,
-                "explanation": "January 26, 1930 was fixed as the first Independence Day."
+                "correctAnswer": "1, 2 and 3",
+                "explanation": "Non-financial debt includes loans taken by Households, Governments (Treasury bills), and firms not in the financial sector."
             },
             {
-                "text": "Which of Gandhi's eleven demands presented to the government before the Civil Disobedience Movement was chosen as the central formula for the movement?",
+                "text": "Teaser loan is a:",
                 "options": [
-                    "Reduction of expenditure on Army and civil services",
-                    "Introduction of total prohibition",
-                    "Abolition of salt tax and government's salt monopoly",
-                    "Release of all political prisoners"
+                    "A loan that is available only for a selected period of time.",
+                    "A loan given to given to aggrieved family of defense personnel.",
+                    "A loan with a variable floating interest rate.",
+                    "A loan given by non-deposit taking NBFCs."
                 ],
-                "correctAnswer": 2,
-                "explanation": "Abolition of the salt tax and salt monopoly became the movement's focus."
+                "correctAnswer": "A loan with a variable floating interest rate.",
+                "explanation": "Teaser loans offer low fixed interest rates for an initial period (e.g., first two years) and then change to a fixed or floating interest rate based on market rates."
             },
             {
-                "text": "From where did the Dandi March begin on March 12, 1930?",
+                "text": "Which of the following explains the origin of Twin balance sheet syndrome?",
                 "options": [
-                    "Dandi",
-                    "Sabarmati Ashram in Ahmedabad",
-                    "Wardha",
-                    "Porbandar"
+                    "IC1 Companies balance sheets creating stress in the balance sheets of Public Sector Banks.",
+                    "Balance sheet of subsidiary company is not incorporated in balance sheet of its holding company.",
+                    "Disinvestment in a Public limited company that creates discrepancy in balance sheet.",
+                    "When amalgamation/merger of two banking companies result in a balance sheet problem."
                 ],
-                "correctAnswer": 1,
-                "explanation": "Gandhi began the march from Sabarmati Ashram."
+                "correctAnswer": "IC1 Companies balance sheets creating stress in the balance sheets of Public Sector Banks.",
+                "explanation": "The twin balance sheet problem refers to the debt on corporate entities (like infrastructure companies) and the stressed assets (NPAs) piled up at banks."
             },
             {
-                "text": "How many members accompanied Gandhi on the Dandi March from Sabarmati Ashram?",
+                "text": "Which of the following is/are correct statement/s- \n1. If a farm loan is not repaid in 60 days it is classified as an NPA. \n2. Loan account where borrower is repaying the principal and interest in timely fashion is called Special Mention Account.",
                 "options": [
-                    "50",
-                    "100",
-                    "78",
-                    "120"
+                    "only 1",
+                    "Both 1 and 2",
+                    "only 2",
+                    "Neither 1 nor 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi was accompanied by 78 followers."
+                "correctAnswer": "Neither 1 nor 2",
+                "explanation": "Statement 1 is wrong (Farm loans are based on crop seasons, not 60 days). Statement 2 is wrong (SMA is for irregular repayment)."
             },
             {
-                "text": "On what date did Gandhi break the salt law at Dandi?",
+                "text": "Which of the following organisations enjoy the powers of attachment of mortgaged property under the SARFAESI act? \n1. Commercial banks \n2. Regional Rural Banks \n3. Cooperative Banks \n4. Housing Finance Companies.",
                 "options": [
-                    "March 12, 1930",
-                    "March 31, 1930",
-                    "April 6, 1930",
-                    "April 13, 1930"
+                    "only 1 and 4",
+                    "only 3 and 4",
+                    "only 1, 2 and 3",
+                    "All four"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi broke the salt law on April 6, 1930."
+                "correctAnswer": "All four",
+                "explanation": "The SARFAESI Act empowers Commercial banks, RRBs, Cooperative Banks, and Housing Finance Companies for loan recovery."
             },
             {
-                "text": "In Tamil Nadu, who organised a march from Thiruchirapalli to Vedaranniyam during the Salt Satyagraha?",
+                "text": "Which of the following is/are correct statement/s regarding SARFAESI act- \n1. SARFAESI act was designed to strengthen Debt Recovery Tribunals. \n2. According to this act only banks can attach mortgaged assets when loan is not repaid. \n3. This act is applicable on all types of loans. \n4. A borrower can file appeal to Dy. Governor of RBI against the orders passed by Debt Recovery Tribunal.",
                 "options": [
-                    "K. Kelappan",
-                    "Gopalbandhu Chaudhuri",
-                    "C. Rajagopalachari",
-                    "J.M. Sengupta"
+                    "Only 1, 2 and 3",
+                    "Only 1",
+                    "Only 2, 3 and 4",
+                    "1, 2, 3 and 4 all"
                 ],
-                "correctAnswer": 2,
-                "explanation": "C. Rajagopalachari organised the march in Tamil Nadu."
+                "correctAnswer": "Only 1",
+                "explanation": "Statement 2 is wrong (NBFCs can also do it). Statement 3 is wrong (Not applicable on Agri loans). Statement 4 is wrong (Appeal lies with DRAT, not RBI Dy. Governor). Statement 1 is considered correct in this context."
             },
             {
-                "text": "In Peshawar, what was Khan Abdul Gaffar Khan's volunteer brigade popularly known as?",
+                "text": "Find out the correct statement/s regarding Fugitive Economic Offender Act 2018:- \n1. A Lender bank can declare borrower as a fugitive Economic offender with approval of RBI and SEBI. \n2. There is no provision of appeal in any higher courts. \n3. National Company Law Tribunal can issue stay order to prevent confiscation of assets.",
                 "options": [
-                    "Blue Shirts",
-                    "Green Uniforms",
-                    "Red-Shirts (Khudai Khidmatgars)",
-                    "Black Flags"
+                    "Only 1 and 2",
+                    "Only 1 and 3",
+                    "Only 2 and 3",
+                    "None of the above"
                 ],
-                "correctAnswer": 2,
-                "explanation": "His brigade was known as Red-Shirts (Khudai Khidmatgars)."
+                "correctAnswer": "None of the above",
+                "explanation": "All statements are incorrect regarding the Fugitive Economic Offender Act."
             },
             {
-                "text": "Which city saw textile workers go on strike and establish a 'virtual parallel government' during the Civil Disobedience Movement?",
+                "text": "Which of the following is/are incorrect statement/s regarding Deposit Insurance and Credit Guarantee Corporation Act? \n1. Finance Minister is the ex-officio Chairman of the DICGC. \n2. It protects the deposit holders of the public sector banks but not the private sector banks. \n3. It does not protect the deposit holders of the deposit-taking NBFCs.",
                 "options": [
-                    "Ahmedabad",
-                    "Karachi",
-                    "Sholapur",
-                    "Nagpur"
+                    "Only 1 and 2",
+                    "Only 2 and 3",
+                    "Only 1, 2 & 3",
+                    "Only 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Sholapur saw a 'virtual parallel government' during the strike."
+                "correctAnswer": "Only 1 and 2",
+                "explanation": "Statement 1 is incorrect (RBI Deputy Governor is Chairman). Statement 2 is incorrect (Protects both public and private banks). Statement 3 is factually correct (Does not cover NBFCs)."
             },
             {
-                "text": "Who took up the unfinished task of leading a raid on the Dharasana Salt Works after Gandhi's arrest?",
+                "text": "Find correct statement(s) about the organization NARCL \n1. It started functioning in 2020. \n2. It aims to acquire large bad loan accounts through payment in 15% Cash and 85% in Security Receipts (SRs). \n3. Government owns 51% shareholding of this organization.",
                 "options": [
-                    "Jawaharlal Nehru",
-                    "Sardar Vallabhbhai Patel",
-                    "Sarojini Naidu, Imam Sahib, and Manilal",
-                    "Abul Kalam Azad"
+                    "Only 1 and 2",
+                    "1, 2 & 3",
+                    "Only 2",
+                    "Only 1 & 3"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Sarojini Naidu, Imam Sahib, and Manilal led the raid."
+                "correctAnswer": "Only 2",
+                "explanation": "Statement 1 is wrong (Started in 2021). Statement 3 is wrong (Government is not the majority shareholder). Statement 2 is correct."
             },
             {
-                "text": "Which of the following areas witnessed defiance of forest laws during the Civil Disobedience Movement?",
+                "text": "What is/are primary objective(s) of PCA (Prompt corrective action) framework-: \n1. To ensure Indian banks actively fix their NPA problem. \n2. To ensure Indian banks actively work for the financial inclusion of rural households. \n3. To ensure Indian banks comply with BASEL-III norms.",
                 "options": [
-                    "Bengal and Bihar",
-                    "United Provinces and Punjab",
-                    "Maharashtra, Karnataka, and Central Provinces",
-                    "Tamil Nadu and Malabar"
+                    "Only 1 and 2",
+                    "Only 1 and 3"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Maharashtra, Karnataka, and Central Provinces saw such defiance."
+                "correctAnswer": "Only 1 and 3",
+                "explanation": "Statement 2 is wrong as PCA does not check financial inclusion efforts. Statements 1 and 3 are correct."
             },
             {
-                "text": "What was a significant impact of the Civil Disobedience Movement on women's participation in Indian politics?",
+                "text": "Which of the following is correct about Non-Performing Assets? \n1. NPA is a loan account on which loan principal or interest is not paid for more than 90 days from its due date. \n2. In the last three years from 2020 to 2022, there has been a steady increase in the amount of NPA in scheduled commercial banks.",
                 "options": [
-                    "It limited their involvement to home-based activities.",
-                    "It led to their exclusion from future movements.",
-                    "It marked their entry into the public sphere as a liberating experience.",
-                    "It resulted in a decrease in their political awareness."
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "It marked women's public entry as a liberating experience."
+                "correctAnswer": "1 only",
+                "explanation": "Statement 1 is correct. Statement 2 is incorrect because there has been a steady decrease in NPA amounts in the specified period."
             },
             {
-                "text": "During the Civil Disobedience Movement, what was the approximate number of Satyagrahis jailed in the first four months after Gandhi's arrest?",
+                "text": "Which of the following statements is correct about the Insolvency and Bankruptcy Code (IBC)? \n1. The IBC code was passed in 2017. \n2. It provides establishment for the Insolvency and Bankruptcy regulatory authority of India (IBRAI). \n3. The code requires that the resolution process to be completed within 330 days.",
                 "options": [
-                    "20,000",
-                    "50,000",
-                    "80,000",
-                    "1,00,000"
+                    "2 only",
+                    "3 only",
+                    "1 and 3 only",
+                    "1 and 2 only"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Approximately 80,000 Satyagrahis were jailed."
+                "correctAnswer": "3 only",
+                "explanation": "Statement 1 is wrong (Passed in 2016). Statement 2 is wrong (Established IBBI, not IBRAI). Statement 3 is correct."
             },
             {
-                "text": "The Gandhi-Irwin Pact was signed in which city?",
+                "text": "The Union Budget 2023 has announced the setting up of the National Financial Information Registry (NFIR). Which of the following are the primary objectives of NFIR? \n1. Registration of Foreign Portfolio investors... \n2. Conducting training... \n3. Maintainance of database of individual borrowers. \n4. Maintainance of database of corporate borrowers.",
                 "options": [
-                    "Poona",
-                    "Lahore",
+                    "2 and 3 only",
+                    "1 and 2 only",
+                    "1, 3 and 4 only",
+                    "3 and 4 only"
+                ],
+                "correctAnswer": "3 and 4 only",
+                "explanation": "NFIR serves as a central repository of financial information for borrowers (both individual and corporate) to facilitate efficient credit flow."
+            },
+            {
+                "text": "Recently, the Utkarsh roadmap has been in the news. Which of the following statements is correct regarding this?",
+                "options": [
+                    "It is a skill development program for rural entrepreneurs.",
+                    "It is a three-year action plan of the Securities and Exchange Board of India (SEBI) to strengthen the securities market.",
+                    "It is designed by the Reserve Bank of India (RBI) to strengthen the regulatory and supervisory mechanisms.",
+                    "It is a five-year action plan of the central government to improve financial inclusion in India."
+                ],
+                "correctAnswer": "It is designed by the Reserve Bank of India (RBI) to strengthen the regulatory and supervisory mechanisms.",
+                "explanation": "Utkarsh 2022 is a medium-term strategy framework designed by the RBI to improve regulation and supervision."
+            },
+            {
+                "text": "Consider the following statements about the 'Additional tier-1 (AT-I) bonds': \n1. They are debt instruments with a maturity of the maximum of five years. \n2. Banks use these bonds to augment their core capital base. \n3. These bonds are issued by public sector banks only. \n4. They have a low-risk profile.",
+                "options": [
+                    "Only one statement",
+                    "Only two statements",
+                    "Only three statements",
+                    "All four statements"
+                ],
+                "correctAnswer": "Only one statement",
+                "explanation": "Only Statement 2 is correct. St1 is wrong (Perpetual maturity). St3 is wrong (Issued by both public and private). St4 is wrong (High-risk profile)."
+            },
+            {
+                "text": "Which of the following is the objective of Daksh Web System?",
+                "options": [
+                    "To provide a platform for teacher training developed by NCERT.",
+                    "To promote skill development among youth.",
+                    "To monitor Banks and NBFCs more effectively by RBI.",
+                    "To monitor traffic in metro cities in India."
+                ],
+                "correctAnswer": "To monitor Banks and NBFCs more effectively by RBI.",
+                "explanation": "DAKSH is the RBI's Advanced Supervisory Monitoring System to make supervisory processes more robust."
+            },
+            {
+                "text": "With reference to Society for Worldwide Interbank Financial Telecommunication (SWIFT), consider the following statements: \n1. It is an organization providing secure messaging for international financial transfers. \n2. Russia is a member of this system as of 2023. \n3. It is based in Belgium.",
+                "options": [
+                    "1 and 2 only",
+                    "1 and 3 only",
+                    "2 and 3 only",
+                    "1, 2 and 3"
+                ],
+                "correctAnswer": "1 and 3 only",
+                "explanation": "Statement 1 is correct. Statement 2 is incorrect (Russia was banned). Statement 3 is correct."
+            },
+            {
+                "text": "Which of the following statement(s) are correct about the Financial Services Institutions Bureau? \n1. It was set up in 2022. \n2. FSIB will recommend candidates for top posts in public sector banks, public sector insurance companies and other public sector financial institutions.",
+                "options": [
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": "Both 1 and 2",
+                "explanation": "FSIB was set up in 2022 replacing BBB and recommends candidates for top posts in public sector financial institutions."
+            },
+            {
+                "text": "How many of the following organisations have their representatives/members/officers in the insolvency and bankruptcy board of India (IBBI) \n1. Ministry of Law \n2. Ministry of corporate affairs \n3. RBI \n4. SEBI",
+                "options": [
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "All four of these"
+                ],
+                "correctAnswer": "only three of these",
+                "explanation": "IBBI has representatives from Ministry of Finance, Corporate Affairs, Law, and RBI. SEBI is not included."
+            },
+            {
+                "text": "Who among the following has set up Public-Tech Platform for Frictionless Credit?",
+                "options": [
+                    "Ministry of Finance",
+                    "Ministry of corporate affairs",
+                    "National payment Corporation of India (NPCI)",
+                    "Reserve Bank of India"
+                ],
+                "correctAnswer": "Reserve Bank of India",
+                "explanation": "The RBI has set up the Public-Tech Platform for Frictionless Credit."
+            },
+            {
+                "text": "What was the major reason behind the failure of Silicon Valley bank in USA in 2023?",
+                "options": [
+                    "it had given large amount of loans to Indian start-ups, which became NPA.",
+                    "it was doing money laundering for the drug mafia and Russian businessmen.",
+                    "its investments in the US treasury bonds suffered losses due to changes in the bond yield.",
+                    "it had large amount of home-loans to lower income households, which became NPA."
+                ],
+                "correctAnswer": "its investments in the US treasury bonds suffered losses due to changes in the bond yield.",
+                "explanation": "The failure was due to losses in US treasury bond investments caused by changes in bond yields."
+            },
+            {
+                "text": "How many of the following are examples of self-regulatory organisation in India? \n1. Board for Regulation and Supervision of Payment and Settlement Systems (BPSS) \n2. Central Board of Film Certification (CBFC) \n3. Digital Media Content Regulatory Council (DMCRC) \n4. Press Council of India (PCI)",
+                "options": [
+                    "only one of these",
+                    "only three of these",
+                    "only two of these",
+                    "All four of these"
+                ],
+                "correctAnswer": "only one of these",
+                "explanation": "Only DMCRC is an SRO. BPSS, CBFC, and PCI are statutory bodies."
+            },
+            {
+                "text": "How many of the following are examples of Unsecured Loans? \n1. Repo loans given by RBI \n2. Overdraft \n3. Credit Card \n4. Education loan to student",
+                "options": [
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "All four of these"
+                ],
+                "correctAnswer": "only three of these",
+                "explanation": "Repo loans are secured by G-Secs. Overdraft, Credit Cards, and Education loans are generally unsecured."
+            },
+            {
+                "text": "How many of the following are the legal rights of a loan borrower in India? \n1. Right to ample notice before attachment of assets \n2. Right to balance proceeds after auctioning of attached assets. \n3. Right to loan write-off \n4. Right to loan waiver \n5. Right to not be disturbed at night by recovery agents",
+                "options": [
+                    "only two of these",
+                    "only three of these",
+                    "only four of these",
+                    "all five of these"
+                ],
+                "correctAnswer": "only three of these",
+                "explanation": "Rights include ample notice, balance proceeds, and not being disturbed. Loan write-off and waiver are not legal rights."
+            },
+            {
+                "text": "Which of the following reforms have been implemented with regard to the Deposit Insurance and Credit Guarantee Corporation? \n1. Its ownership has been shifted from Reserve Bank of India to Bank Board Bureau (BBB) \n2. Henceforth Finance Secretary of India shall be the ex-officio chairman of this organisation \n3. It shall provide insurance on the deposits made in both banks as well as NBFCs. \n4. deposit insurance has been hiked to Rs. 5 lakhs per depositor",
+                "options": [
+                    "only 1 and 2",
+                    "only 3 and 4",
+                    "only 1, 2 and 3",
+                    "only 4"
+                ],
+                "correctAnswer": "only 4",
+                "explanation": "Deposit insurance has been hiked to Rs. 5 lakhs. Statements 1, 2, and 3 are incorrect."
+            },
+            {
+                "text": "Why is the offering of \"teaser loans\" by commercial banks a cause of economic concern? \n1. The teaser loans are considered to be an aspect of sub-prime lending and banks may be exposed to the risk of defaulters in future. \n2. In India, the teaser loans are mostly given to inexperienced entrepreneurs to set up manufacturing or export units.",
+                "options": [
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 or 2"
+                ],
+                "correctAnswer": "1 only",
+                "explanation": "Statement 1 is correct as teaser loans carry sub-prime lending risks. Statement 2 is incorrect as they are mostly associated with home loans."
+            },
+            {
+                "text": "RBI has 100% percent ownership in how many of the following organisations? \n1. Indian Financial Technology & Allied Services (IFTAS) \n2. DICGC \n3. Bad Bank (NARCL-IDRCL) \n4. National Urban Cooperative Finance and Development Corporation",
+                "options": [
+                    "only one of these",
+                    "only three of these",
+                    "only two of these",
+                    "All four of these"
+                ],
+                "correctAnswer": "only two of these",
+                "explanation": "RBI fully owns IFTAS and DICGC. It does not own Bad Bank or NUCFDC."
+            },
+            {
+                "text": "Find correct about the eBkray auction platform \n1. This has been set up by the RBI with help of Finance Ministry. \n2. it helps in the online selling of Government securities to retail investors.",
+                "options": [
+                    "only 1",
+                    "both 1 and 2",
+                    "only 2",
+                    "neither 1 nor 2"
+                ],
+                "correctAnswer": "neither 1 nor 2",
+                "explanation": "Statement 1 is wrong (Set up by IBA and DFS). Statement 2 is wrong (It is for e-auction of attached assets, not G-Secs)."
+            },
+            {
+                "text": "Who among the following has set up a Unified Automated Search portal for large borrowers in 2024?",
+                "options": [
+                    "Financial Services Institutions Bureau (FSIB)",
+                    "Central Economic Intelligence Bureau (CEIB)",
+                    "RBI",
+                    "Indian bankers Association (IBA)"
+                ],
+                "correctAnswer": "Central Economic Intelligence Bureau (CEIB)",
+                "explanation": "CEIB set up the portal with the help of SBI for background verification of large borrowers."
+            },
+            {
+                "text": "Consider the following statements: \nStatement I: Syndicated lending spreads the risk of borrower default across multiple lenders. \nStatement II: The syndicated loan can be a fixed amount/lump sum of funds, but cannot be a credit line.",
+                "options": [
+                    "Both Statement-I and Statement-II are correct and Statement-II explains Statement-I",
+                    "Both Statement-I and Statement-II are correct, but Statement-II does not explain Statement-I",
+                    "Statement-I is correct, but Statement-II is incorrect",
+                    "Statement-I is incorrect, but Statement-II is correct"
+                ],
+                "correctAnswer": "Statement-I is correct, but Statement-II is incorrect",
+                "explanation": "Statement I is correct. Statement II is incorrect because a syndicated loan can be a fixed amount or a credit line."
+            },
+            {
+                "text": "Which of the following are allowed to issue Look Out Circular against the wilful defaulter? \n1. Private Sector Banks \n2. Public Sector Banks",
+                "options": [
+                    "1 only",
+                    "Both 1 and 2",
+                    "2 only",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": "Neither 1 nor 2",
+                "explanation": "Neither Private nor Public Sector Banks can directly issue Look Out Circulars as per the Bombay High Court."
+            },
+            {
+                "text": "According to Economic Survey which of the following factors are responsible for reduction in the NPA of the Indian Banks in 2023-24? \n1. Loan Recovery \n2. Loan Write-offs",
+                "options": [
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": "Both 1 and 2",
+                "explanation": "Both loan recovery and loan write-offs are responsible for the reduction in NPAs."
+            },
+            {
+                "text": "Which of the following organisation has been recognised as the first self-regulatory organisation in FinTech sector by RBI?",
+                "options": [
+                    "NPCI",
+                    "FACE",
+                    "Bandhan",
+                    "FLDG"
+                ],
+                "correctAnswer": "FACE",
+                "explanation": "The Fintech Association for Consumer Empowerment (FACE) has been recognised as the first SRO in the FinTech sector."
+            },
+            {
+                "text": "If RBI increases the Risk Weight to the credit card loans given by bankers to clients then what will be the consequences? \n1. Banker may have to arrange additional capital to comply with BASEL-III norms. \n2. Banker may have to keep additional funds under the CRR.",
+                "options": [
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": "1 only",
+                "explanation": "Increasing risk weight increases capital requirements (Statement 1 correct). CRR applies to deposits, not loans (Statement 2 incorrect)."
+            }
+        ],
+        "Pillar_1C1_Bond_Market_Money_Market_WMA": [{
+                "text": "Consider the following statements.\n1. If a state government wishes to borrow money for more than one year it must approach the money market.\n2. Electoral bond were issued in the Capital market in India.\nWhich of these statements given above is/are correct?",
+                "options": [
+                    "1 only",
+                    "2 only",
+                    "1 and 2 only",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": "Neither 1 nor 2",
+                "explanation": "If a state government wishes to borrow money for more than 1 year, it has to go to the capital market and not the money market, so statement 1 is wrong. Electoral bonds were short-term instruments with validity for 15 days, not issued in the capital market which is for long term, so statement 2 is wrong."
+            },
+            {
+                "text": "In Indian economy, non-financial debt includes ___?\n1. Housing loans owed by households\n2. Amounts outstanding on credit cards\n3. Treasury bills",
+                "options": [
+                    "1 only",
+                    "3 only",
+                    "1 and 2 Only",
+                    "1, 2 and 3"
+                ],
+                "correctAnswer": "1, 2 and 3",
+                "explanation": "Financial debt is loan taken by banks/NBFCs for giving as loans to others. Non-financial debt is loan taken by Households, Governments, and firms not in the financial sector for their own use. All options listed fall under non-financial debt."
+            },
+            {
+                "text": "Debenture holders of a company are its ___.",
+                "options": [
+                    "shareholders",
+                    "creditors",
+                    "debtors",
+                    "directors"
+                ],
+                "correctAnswer": "creditors",
+                "explanation": "Debenture holders are creditors to the company."
+            },
+            {
+                "text": "Which of the following statement(s) is/are correct?\n1. Ways and means advances is the mechanism through which government lends money to RBI.\n2. Commercial bills & Certificate of Deposits are examples of short term debt instrument.",
+                "options": [
+                    "Only 1",
+                    "Only 2",
+                    "1 and 2 both",
+                    "None of them"
+                ],
+                "correctAnswer": "Only 2",
+                "explanation": "Statement 1 is incorrect: Under Ways and Means Advances, RBI lends money to governments to help states overcome temporary mismatches in receipts and payments. Statement 2 is correct: Commercial Paper and Certificate of Deposit are unsecured, short-term debt instruments."
+            },
+            {
+                "text": "TReDS is a mechanism through which ___",
+                "options": [
+                    "Startup companies raise capital",
+                    "Banks report bad loans data to RBI",
+                    "Credit rating agencies review new bonds",
+                    "MSMEs borrow money for short term by pledging unpaid invoices"
+                ],
+                "correctAnswer": "MSMEs borrow money for short term by pledging unpaid invoices",
+                "explanation": "TReDS (Trade Receivable Discounting System) is an electronic platform for facilitating the borrowing of money by MSMEs for short term by pledging unpaid bills and invoices through multiple financiers."
+            },
+            {
+                "text": "Consolidated Sinking Fund (CSF) is the fund inside RBI where ___ is kept.",
+                "options": [
+                    "CRR money of the banks",
+                    "Buffer amount for the repayment of State governments loans",
+                    "Penalties levied on errant banks",
+                    "Dividend of the Union Government"
+                ],
+                "correctAnswer": "Buffer amount for the repayment of State governments loans",
+                "explanation": "State Governments maintain a Consolidated Sinking Fund (CSF) with the RBI as a buffer for repayment of their liabilities/State governments loans."
+            },
+            {
+                "text": "A) Consol Bond is an example of Irredeemable Bond.\nR) Investor is not given interest on the Consol Bond.",
+                "options": [
+                    "Both A & R are true and R is the correct explanation of A",
+                    "Both A & R are true but R does not explain A",
+                    "A is true but R is false",
+                    "A is false but R is true."
+                ],
+                "correctAnswer": "A is true but R is false",
+                "explanation": "A is True: A perpetual bond is also known as a 'consol bond' and is an irredeemable bond with no maturity date. R is false: These bonds provide a steady stream of interest to investors forever."
+            },
+            {
+                "text": "Bond yield and bond price are ___ related with each other.",
+                "options": [
+                    "Symbiotically",
+                    "Inversely",
+                    "Proportionately",
+                    "Agnostically"
+                ],
+                "correctAnswer": "Inversely",
+                "explanation": "Bond price and bond yield are inversely related with each other. As the price of a bond goes up, the yield decreases."
+            },
+            {
+                "text": "Which of the following statement(s) is/are correct?\n1. Electoral bonds can't be pledged for obtaining loans.\n2. Hybrid bonds can be converted into shares.",
+                "options": [
+                    "Only 1",
+                    "1 and 2 both",
+                    "Only 2",
+                    "None of them"
+                ],
+                "correctAnswer": "1 and 2 both",
+                "explanation": "Statement 1 is correct: Electoral Bonds cannot be pledged for obtaining loans. Statement 2 is correct: Hybrid bonds can be converted into shares."
+            },
+            {
+                "text": "Which of the following statement(s) is/are correct regarding Panda bonds?\n1. They are issued by Chinese entities inside China.\n2. Their denomination is US dollars.\n3. It is a subtype of green bond meant only for conservation of Pandas in China.",
+                "options": [
+                    "Only 1 & 2",
+                    "Only 2 & 3",
+                    "None of the given statements.",
+                    "1, 2 & 3"
+                ],
+                "correctAnswer": "None of the given statements.",
+                "explanation": "Panda Bonds are issued by foreign issuers (not Chinese entities) denominated in Chinese yuan (not US dollars) and placed on the domestic market of China. They are not meant only for conservation of Pandas."
+            },
+            {
+                "text": "Which of the following statement(s) is/are incorrect about green and blue bonds?\n1. They are issued to borrow money for eco-friendly projects.\n2. They can be issued only in dollar denomination.\n3. World's first Blue Bond launched by World Bank in Marshall Islands.",
+                "options": [
+                    "Only 1",
+                    "Only 2 & 3",
+                    "Only 1 & 3",
+                    "All three statements."
+                ],
+                "correctAnswer": "Only 2 & 3",
+                "explanation": "Statement 1 is correct. Statement 2 is incorrect as they can be issued in different denominations like Euro and dollar. Statement 3 is incorrect as the Government of Seychelles issued the world's first sovereign Blue Bond."
+            },
+            {
+                "text": "How many of the following are examples of short-term debt instruments?\n1. Cash Management bill\n2. Commercial papers.\n3. Promissory notes.\n4. Certificate of deposit.\n5. optionally fully convertible debenture",
+                "options": [
+                    "all five instruments",
+                    "Only two instruments.",
+                    "Only three instruments.",
+                    "Only Four instruments."
+                ],
+                "correctAnswer": "Only Four instruments.",
+                "explanation": "Cash Management bill, Commercial papers, Promissory notes, and Certificate of deposit are short-term debt instruments. OFCD is a long-term debt instrument."
+            },
+            {
+                "text": "Find the correct statement about the certificate of deposit (CD).\n1. It is a secured, long-term debt instrument.\n2. It is sold at the discount of its face value.\n3. They are issued by commercial banks.",
+                "options": [
+                    "1 only",
+                    "2 and 3 only",
+                    "1 and 3 only",
+                    "1, 2 and 3"
+                ],
+                "correctAnswer": "2 and 3 only",
+                "explanation": "Certificates of deposit (CDs) are unsecured, short-term, negotiable debt instruments issued by commercial banks. They are sold at a discount to face value."
+            },
+            {
+                "text": "Which of the following statements is/are correct about the sovereign green bonds in India?\n1. The first time it was issued in the year 2023.\n2. Money collected from these bonds directly goes to the Public Account of India.\n3. Projects funded by the Sovereign green bonds are monitored by the CEO of NITI Aayog.",
+                "options": [
+                    "1 only",
+                    "2 only",
+                    "1 and 2 only",
+                    "1 and 3 only"
+                ],
+                "correctAnswer": "1 only",
+                "explanation": "Statement 1 is right (issued in 2023). Statement 2 is wrong (Money goes to the Consolidated Fund of India). Statement 3 is wrong (Projects are reviewed by the Green Finance Working Committee headed by the Chief Economic Advisor)."
+            },
+            {
+                "text": "Proceeds of the Sovereign Green Bond in India are to be utilised in which of the following fields?\n1. Renewable energy.\n2. Clean Transport\n3. Water and waste management\n4. Hydropower plants larger than 25 megawatts",
+                "options": [
+                    "Only one",
+                    "Only two",
+                    "Only three",
+                    "All four"
+                ],
+                "correctAnswer": "Only three",
+                "explanation": "Proceeds can be used for Renewable energy, Clean transport, and Water/waste management. Hydropower plants larger than 25 megawatts are excluded."
+            },
+            {
+                "text": "Find the correct statement about zero coupon, zero Principle instrument.\n1. They do not return the principle to the investors.\n2. They do not return interest to the investors.\n3. They are usually issued by charitable organisations or NGOs.",
+                "options": [
+                    "1 and 2 only",
+                    "2 and 3 only",
+                    "1 and 3 only",
+                    "1, 2 and 3"
+                ],
+                "correctAnswer": "1, 2 and 3",
+                "explanation": "The zero-coupon, zero-principal instrument is a donation, not a loan. The borrower does not return interest or principal. Issued by charitable organizations in Social Stock Exchange."
+            },
+            {
+                "text": "Find Correct statements\n1. The RBI manages and services Government of India Securities, but not any State Government Securities.\n2. Treasury bills are issued by Govt of India and there are no treasury bills issued by State Govts.\n3. Treasury bills offer are issued at a discount from the par value.",
+                "options": [
+                    "1 and 2 Only",
+                    "3 only",
+                    "2 and 3 Only",
+                    "1, 2 and 3"
+                ],
+                "correctAnswer": "2 and 3 Only",
+                "explanation": "Statement 1 is wrong: RBI manages debt for both centre and state governments. Statement 2 is right: T-bills are issued by GOI only. Statement 3 is right: T-bills are zero coupon securities issued at a discount."
+            },
+            {
+                "text": "Which of the following is/are example (s) of 'Near Money'?\n1. Treasury Bill\n2. Credit Card\n3. Saving accounts\n4. Money Market Instruments",
+                "options": [
+                    "1 only",
+                    "1, 2 and 3 Only",
+                    "2 only",
+                    "1, 3 and 4 only"
+                ],
+                "correctAnswer": "1, 3 and 4 only",
+                "explanation": "Near money includes Savings accounts, Treasury Bills, and Money market securities. Credit cards are revolving debt/liability, not near money."
+            },
+            {
+                "text": "Which of the following phrases defines the nature of the 'Hundi' generally referred to in the sources of the post-Harsha period?",
+                "options": [
+                    "An advisory issued by the king to his subordinates",
+                    "A bill of exchange",
+                    "A diary to be maintained for daily accounts",
+                    "An order from the feudal lord to his subordinates"
+                ],
+                "correctAnswer": "A bill of exchange",
+                "explanation": "Hundis were instruments of credit or bills of exchange facilitating the transfer of money."
+            },
+            {
+                "text": "Find correct statement(s)\n1. Commercial Paper' is a short-term unsecured promissory note.\n2. Certificate of Deposit' is a long-term instrument issued by the Reserve Bank of India to a corporation.\n3. Call Money' is a short-term finance used for interbank transactions.\n4. Zero-Coupon Bonds' are the interest-bearing short-term bonds issued by the Scheduled Commercial Banks to corporations.",
+                "options": [
+                    "1 and 2 Only",
+                    "4 only",
+                    "1 and 3 Only",
+                    "2, 3 and 4 only"
+                ],
+                "correctAnswer": "1 and 3 Only",
+                "explanation": "Statement 1 is right (CP is short-term unsecured). Statement 2 is wrong (CD is short-term, issued by commercial banks). Statement 3 is right. Statement 4 is wrong (Zero Coupon Bonds are not interest-bearing)."
+            },
+            {
+                "text": "Find correct statements about Convertible Bonds\n1. As there is an option to exchange bond for equity, Convertible Bonds pay a lower rate of interest.\n2. The option to convert to equity affords the bondholder a degree of indexation to rising consumer prices.",
+                "options": [
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": "Both 1 and 2",
+                "explanation": "Convertible bonds offer a lower coupon rate due to the conversion option (Statement 1 correct). The equity conversion option helps hedge against inflation (Statement 2 correct)."
+            },
+            {
+                "text": "Find correct statement about 'IFC Masala Bonds'\n1. The International Finance Corporation, which issues them, is an arm of the World Bank.\n2. They are rupee-denominated bonds and are a source of debt financing for the public & private sector.",
+                "options": [
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": "Both 1 and 2",
+                "explanation": "IFC is an arm of the World Bank. Masala Bonds are rupee-denominated bonds issued in foreign markets for debt financing."
+            },
+            {
+                "text": "Which one of the following is a viable alternative to term-loans for raising debt finance by large publicly traded firms?",
+                "options": [
+                    "Shares",
+                    "Debentures",
+                    "Asset loans",
+                    "Gold loans"
+                ],
+                "correctAnswer": "Debentures",
+                "explanation": "Debentures are a viable alternative to term-loans for raising debt finance by large publicly traded firms."
+            },
+            {
+                "text": "What does 'Venture Capital' mean?",
+                "options": [
+                    "A short-term capital provided to industries",
+                    "A long-term start-up capital provided to new entrepreneurs",
+                    "Funds provided to industries at times of incurring losses",
+                    "Funds provided for replacement and renovation of industries"
+                ],
+                "correctAnswer": "A long-term start-up capital provided to new entrepreneurs",
+                "explanation": "Venture Capital refers to long-term start-up capital provided to new entrepreneurs."
+            },
+            {
+                "text": "An individual investor who invests in the e-project usually during an early stage is",
+                "options": [
+                    "corporate strategic investor",
+                    "founder capital",
+                    "angel investor",
+                    "venture capital"
+                ],
+                "correctAnswer": "angel investor",
+                "explanation": "An angel investor is a high-net-worth individual who funds startups at the early stages."
+            },
+            {
+                "text": "Consider the following markets:\n1. Government Bond Market\n2. Call Money Market\n3. Treasury Bill Market\n4. Stock Market\nHow many of the above are included in capital markets?",
+                "options": [
+                    "Only one",
+                    "Only three",
+                    "Only two",
+                    "All four"
+                ],
+                "correctAnswer": "Only two",
+                "explanation": "Government Bond Market and Stock Market are capital markets. Call Money Market and Treasury Bill Market are money markets (short-term)."
+            },
+            {
+                "text": "Company wants to get new production machineries but without the risk of machines becoming obsolete then what type of loan company should get?",
+                "options": [
+                    "Trade Credit",
+                    "Equipment loan",
+                    "Hybrid Loan",
+                    "Lease Finance"
+                ],
+                "correctAnswer": "Lease Finance",
+                "explanation": "Lease Finance is suitable to avoid the risk of obsolescence."
+            },
+            {
+                "text": "How many of the following are examples of working capital?\n1. Money required for land purchase\n2. Money required for machinery purchase\n3. Money required for paying salaries to workers\n4. Money required for buying advertisement slots in Newspaper",
+                "options": [
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "All four of these"
+                ],
+                "correctAnswer": "only two of these",
+                "explanation": "Money for salary and ads are working capital. Land and machinery are fixed capital."
+            },
+            {
+                "text": "How many of the following are liabilities for the company?\n1. Goodwill\n2. Copyright and patents\n3. Accounts receivable\n4. Accounts payable",
+                "options": [
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "All four of these"
+                ],
+                "correctAnswer": "only one of these",
+                "explanation": "Accounts Payable is a liability. Goodwill, Copyright/patents, and Accounts Receivable are assets."
+            },
+            {
+                "text": "Find correct about Retained Earnings\n1. it is the amount of money given to the shareholders from the profit.\n2. it is a source of internal finance for the company",
+                "options": [
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
+                ],
+                "correctAnswer": "only 2",
+                "explanation": "Retained earnings are kept by the company as a source of internal finance, not distributed to shareholders."
+            },
+            {
+                "text": "Find correct about Inter Corporate Deposits:\n1. It is a loan made by a company with another company.\n2. It is a short-term debt.\n3. It is unsecured in nature.",
+                "options": [
+                    "only 1 and 2",
+                    "only 2 and 3",
+                    "only 1 and 3",
+                    "All three"
+                ],
+                "correctAnswer": "All three",
+                "explanation": "Inter Corporate Deposits are unsecured short-term loans made by one company to another. All three statements are correct."
+            },
+            {
+                "text": "How many of the following are examples of hybrid financing instrument?\n1. Optionally fully convertible debentures (OFCD).\n2. Foreign Currency Convertible Bonds (FCCBs):\n3. COCO Bonds\n4. Surety Bonds",
+                "options": [
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "All four of these"
+                ],
+                "correctAnswer": "only three of these",
+                "explanation": "OFCD, FCCBs, and COCO Bonds are examples of hybrid instruments. Surety Bonds are not."
+            },
+            {
+                "text": "Who among the following has set up a portal to give refund \u20b910,000 to the investors due in Sahara OFCD scam?",
+                "options": [
+                    "DICGC",
+                    "RBI",
+                    "Ministry of Cooperation",
+                    "SEBI"
+                ],
+                "correctAnswer": "Ministry of Cooperation",
+                "explanation": "The Ministry of Cooperation set up the CRCS - Sahara Refund Portal."
+            },
+            {
+                "text": "Consider the following statements:\nStatement I: If the USA were to default on its debt, holders of US Treasury Bonds will not be able to exercise their claims to receive payment.\nStatement II: USA Government debt is not backed by any hard assets, but only by the faith of the Govt.",
+                "options": [
+                    "Both Statement-I and Statement-II are correct and Statement-II explains Statement-I",
+                    "Both Statement-I and Statement-II are correct, but Statement-II does not explain Statement-I",
+                    "Statement-I is correct, but Statement-II is incorrect",
+                    "Statement-I is incorrect, but Statement-II is correct"
+                ],
+                "correctAnswer": "Both Statement-I and Statement-II are correct and Statement-II explains Statement-I",
+                "explanation": "Government securities are backed by the trust of the government rather than physical assets, so if the government defaults, borrowers have no claim on hard assets."
+            },
+            {
+                "text": "In India, which of the following can trade in Corporate Bonds and Government Securities?\n1. Insurance Companies\n2. Pension Funds\n3. Retail Investors",
+                "options": [
+                    "1 and 2 only",
+                    "1 and 3 only",
+                    "2 and 3 only",
+                    "1, 2 and 3"
+                ],
+                "correctAnswer": "1, 2 and 3",
+                "explanation": "All of them (Insurance Companies, Pension Funds, Retail Investors) are allowed to trade in government securities and corporate bonds."
+            },
+            {
+                "text": "With reference to the Indian economy, \"Collateral Borrowing and Lending Obligations\" are the instruments of:",
+                "options": [
+                    "Bond market",
+                    "Forex market",
+                    "Money market",
+                    "Stock market"
+                ],
+                "correctAnswer": "Money market",
+                "explanation": "Collateral Borrowing and Lending Obligations are short-term debt instruments, part of the money market."
+            },
+            {
+                "text": "How many of the following are eligible to participate in RBI's Special Drawing Facility (SDF)\n1. Union government\n2. State government\n3. Banks\n4. NBFCs",
+                "options": [
+                    "Only one of these",
+                    "Only three of these",
+                    "Only two of these",
+                    "All four of these"
+                ],
+                "correctAnswer": "Only one of these",
+                "explanation": "In the context of short-term loans to governments, RBI's Special Drawing Facility (SDF) gives short term loans to State Govts/UTs against collateral. Thus, only State government (2) is eligible."
+            },
+            {
+                "text": "Greenium is a term associated with ____.",
+                "options": [
+                    "difference between the interest on the green bonds vs normal bonds.",
+                    "dividend given on the shares of the renewable energy companies.",
+                    "Profit generated by the mutual funds that invest in green companies.",
+                    "Insurance premium charged by the Insurance company to protect the assets of renewable energy companies."
+                ],
+                "correctAnswer": "difference between the interest on the green bonds vs normal bonds.",
+                "explanation": "Greenium refers to the difference in yield (interest) between normal bonds and green bonds."
+            },
+            {
+                "text": "In which of the following loan windows RBI charges the highest percentage of interest?",
+                "options": [
+                    "Overdraft",
+                    "Repo",
+                    "WMA",
+                    "MSF"
+                ],
+                "correctAnswer": "Overdraft",
+                "explanation": "Overdraft rate is Repo + 2 to 5%, which is higher than MSF (Repo + 0.25%) and WMA (Repo%)."
+            },
+            {
+                "text": "TREDS facility is related to.",
+                "options": [
+                    "Commodity Exchange",
+                    "Factoring",
+                    "Currency Exchange",
+                    "Underwriting"
+                ],
+                "correctAnswer": "Factoring",
+                "explanation": "TREDS connects factors with borrowers for discounting invoices, which is related to Factoring."
+            }
+        ],
+        "Pillar_1C2_SEBI_Sharemarket_ETF_Derivatives": [{
+                "text": "Force Majeure is a term originated from ___.",
+                "options": [
+                    "American Civil Law",
+                    "French Civil law",
+                    "German Civil Law",
+                    "Ancient Greek and Latin books on Civil Laws"
+                ],
+                "correctAnswer": "French Civil law",
+                "explanation": "Force majeure means 'major force' or 'greater (or superior) force' in French. The concept originated in the civil laws of France."
+            },
+            {
+                "text": "Which of the following statement(s) is/are correct?\n1. ASBA is the online form by Ministry of Corporate Affairs for registration of new companies.\n2. ADR is the mechanism through which American Companies issue shares in Indian Market.",
+                "options": [
+                    "Only 1",
+                    "Only 2",
+                    "1 and 2 both",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": "Neither 1 nor 2",
+                "explanation": "Statement 1 is incorrect because ASBA is a method by SEBI to block funds for IPOs, not a registration form by MCA. Statement 2 is incorrect because ADRs are for trading non-U.S. stocks on U.S. exchanges, not American companies issuing shares in India."
+            },
+            {
+                "text": "Securities Appellate Tribunal hears to appeals against the orders passed by:",
+                "options": [
+                    "SEBI",
+                    "IRDAI",
+                    "PFRDA",
+                    "All of the above"
+                ],
+                "correctAnswer": "All of the above",
+                "explanation": "SAT hears appeals against orders from IRDAI, PFRDA, and SEBI."
+            },
+            {
+                "text": "Which of the following statement(s) is/are correct?\n1. SATARKTA is the online portal of SEBI for filing complaints.\n2. SCORES is the online portal of SEBI to get approval for launching new IPO.",
+                "options": [
+                    "Only 1",
+                    "1 and 2 both",
+                    "Only 2",
+                    "None of them"
+                ],
+                "correctAnswer": "None of them",
+                "explanation": "The online platform for filing complaints in SEBI is 'SEBI Complaints Redress System or SCORES'. Therefore, both statements are incorrect."
+            },
+            {
+                "text": "Participatory Notes are issued by:",
+                "options": [
+                    "Scheduled Commercial Banks to Primary Dealers.",
+                    "SEBI registered foreign portfolio investors (FPI) to overseas investors.",
+                    "Indian Banks to an overseas entrepreneur who wishes to launch IPO in India.",
+                    "All India Financial Intermediaries to Deposit Taking NBFCs."
+                ],
+                "correctAnswer": "SEBI registered foreign portfolio investors (FPI) to overseas investors.",
+                "explanation": "P-notes are issued by SEBI-registered FPIs to overseas investors who want to invest in the Indian stock market without direct registration."
+            },
+            {
+                "text": "Which of the following activities constitute a real sector in the economy?\n1. Farmers harvesting their crops\n2. Textile mills converting raw cotton into fabrics\n3. A commercial bank lending money to a trading company\n4. A corporate body issuing Rupee Denominated Bonds overseas",
+                "options": [
+                    "1 and 2 only",
+                    "2, 3 and 4 only",
+                    "1, 3 and 4 only",
+                    "1, 2, 3 and 4"
+                ],
+                "correctAnswer": "1 and 2 only",
+                "explanation": "The real sector involves the production of goods and services (e.g., farming, manufacturing). The financial sector involves lending and issuing bonds."
+            },
+            {
+                "text": "Which of the following statement(s) is/are correct about Financial Stability and Development Council (FSDC)?",
+                "options": [
+                    "RBI Governor has the veto power in FSDC meetings.",
+                    "IBBI chief is a member of FSDC.",
+                    "Department of Financial Services provides the secretarial assistance to FSDC.",
+                    "All of the above"
+                ],
+                "correctAnswer": "IBBI chief is a member of FSDC.",
+                "explanation": "The IBBI chief is a member. The RBI Governor does not have veto power. Secretarial assistance is provided by the Department of Economic Affairs, not Financial Services."
+            },
+            {
+                "text": "Budget-2021 has announced that the regulator for the gold exchange market will be.",
+                "options": [
+                    "Forward Market Commission",
+                    "Commodities market Commission",
+                    "SEBI",
+                    "Warehousing Development and Regulatory Authority"
+                ],
+                "correctAnswer": "SEBI",
+                "explanation": "The Finance Minister announced in the 2021-22 Budget that SEBI would be the regulator for gold exchanges."
+            },
+            {
+                "text": "What is the objective of a Credit Default Swap (CDS)?",
+                "options": [
+                    "It is an instrument to protect the lender/bond investors from loan default by the borrower.",
+                    "It is an instrument used for the short selling of stocks.",
+                    "It is an instrument to bonds in the future market.",
+                    "Bankers use it to restructure corporate loans."
+                ],
+                "correctAnswer": "It is an instrument to protect the lender/bond investors from loan default by the borrower.",
+                "explanation": "CDS acts as insurance against default risk, protecting the lender or bond investor."
+            },
+            {
+                "text": "With reference to the short selling consider the following statements:\n1. It involves the sale of a borrowed share by the player with the intention of purchasing it again at a later date at a lower price.\n2. A short seller will make a profit if the market is showing bearish sentiment towards the the given company.",
+                "options": [
+                    "1 only",
+                    "Both 1 and 2",
+                    "2 only",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": "Both 1 and 2",
+                "explanation": "Short selling involves selling borrowed shares to buy them back later at a lower price. Profit is made when the market is bearish (prices fall)."
+            },
+            {
+                "text": "\"Co-location\", is a term associated with which of the following areas?",
+                "options": [
+                    "Setting up various levels of Educational Institutes, right from primary education to universities, in close proximity.",
+                    "When army, navy and airforce setup their bases close to each other.",
+                    "When a trader sets up their offices very close to the Stock Exchange and conducts trading through the algorithms.",
+                    "When thermal power plants and the aluminium smelters are setup close to each other."
+                ],
+                "correctAnswer": "When a trader sets up their offices very close to the Stock Exchange and conducts trading through the algorithms.",
+                "explanation": "Co-location in finance refers to traders placing their servers physically close to the exchange's servers to reduce latency for algorithmic trading."
+            },
+            {
+                "text": "In recent years, the government of India has carried out the disinvestment through which of the following instruments:\n1. Exchange traded funds (ETF)\n2. Initial public offer (IPO)",
+                "options": [
+                    "only 1",
+                    "both 1 and 2",
+                    "only 2",
+                    "neither 1 nor 2"
+                ],
+                "correctAnswer": "both 1 and 2",
+                "explanation": "Disinvestment has been carried out through both ETFs (e.g., CPSE-ETF) and IPOs (e.g., LIC)."
+            },
+            {
+                "text": "India's first bullion exchange is being set up at the:",
+                "options": [
                     "Delhi",
-                    "London"
+                    "Mumbai",
+                    "Gift city, Gujarat",
+                    "Hyderabad, Telangana"
                 ],
-                "correctAnswer": 2,
-                "explanation": "The Gandhi-Irwin Pact was signed in Delhi."
+                "correctAnswer": "Gift city, Gujarat",
+                "explanation": "India International Bullion Exchange (IIBX) is located at GIFT City, Gujarat."
             },
             {
-                "text": "What was one of Gandhi's demands rejected by Viceroy Irwin during the Gandhi-Irwin Pact negotiations?",
+                "text": "Consider the following statements about the National Institute of Securities Markets.\n1. It is an educational institute setup directly by the department of financial services.\n2. It can award degree and diploma in fields related to the financial market.",
                 "options": [
-                    "Public inquiry into police excesses",
-                    "Right to make salt for personal consumption",
-                    "Release of all political prisoners not convicted of violence",
-                    "Return of all lands not yet sold to third parties"
+                    "1 only",
+                    "2 only",
+                    "1 and 2 only",
+                    "Neither 1 nor 2"
                 ],
-                "correctAnswer": 0,
-                "explanation": "A public inquiry into police excesses was rejected."
+                "correctAnswer": "2 only",
+                "explanation": "Statement 1 is incorrect as NISM is a public trust established by SEBI, not directly by the Department of Financial Services. Statement 2 is correct as per Budget 2023."
             },
             {
-                "text": "What was the most significant difference in the stated objective between the Non-Cooperation Movement and the Civil Disobedience Movement?",
+                "text": "Find correct about \"Inflation-Indexed Bonds (IIBs)\" in India\n1. Government can reduce the coupon rates on its borrowing by way of IIBs.\n2. IIBs provide protection to the investors from uncertainty regarding inflation.\n3. The interest received as well as capital gains on IIBs are not taxable.",
                 "options": [
-                    "The objective of CDM was complete independence, while NCM aimed for Swaraj.",
-                    "NCM aimed for complete independence, while CDM aimed for Swaraj.",
-                    "Both aimed for the same objective of Swaraj.",
-                    "NCM aimed for communal unity, while CDM aimed for economic reforms."
+                    "1 and 2 only",
+                    "2 and 3 only",
+                    "1 and 3 only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 0,
-                "explanation": "CDM aimed for complete independence, NCM for Swaraj."
+                "correctAnswer": "1 and 2 only",
+                "explanation": "Statements 1 and 2 are correct. Statement 3 is incorrect because interest and capital gains on IIBs are taxable."
             },
             {
-                "text": "The Karachi Congress Session in 1931 endorsed the Gandhi-Irwin Pact and reiterated which goal?",
+                "text": "In the parlance of financial investment, 'Bear' denotes",
                 "options": [
-                    "Responsible Government",
-                    "Dominion Status",
-                    "Purna Swaraj",
-                    "Separate Electorates"
+                    "an investor, who feels that the price of a particular security is going to fall.",
+                    "an investor, who expects the price of a particular share to rise.",
+                    "a shareholder, who has an interest in a company, financially or otherwise.",
+                    "any lender, whether by making a loan or buying a bond."
                 ],
-                "correctAnswer": 2,
-                "explanation": "The goal of Purna Swaraj was reiterated."
+                "correctAnswer": "an investor, who feels that the price of a particular security is going to fall.",
+                "explanation": "A 'Bear' is an investor who expects prices to fall, while a 'Bull' expects prices to rise."
             },
             {
-                "text": "The Resolution on Fundamental Rights at the Karachi Congress Session guaranteed which of the following?",
+                "text": "Which of the following statements is/ are correct?\n1. NIFTY is based upon 50 firms in India.\n2. NIFTY is governed and regulated by the Reserve Bank of India.\n3. NIFTY is the stock index of Bombay Stock Exchange.",
                 "options": [
-                    "Limited suffrage for propertied classes",
-                    "State control over all religious institutions",
-                    "Universal adult franchise",
-                    "Reservation of seats based on religion"
+                    "1 only",
+                    "2 only",
+                    "3 only",
+                    "1 and 3 Only"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Universal adult franchise was guaranteed."
+                "correctAnswer": "1 only",
+                "explanation": "Statement 1 is correct. Statement 2 is wrong (owned by NSE Indices Limited). Statement 3 is wrong (NIFTY is NSE's index; SENSEX is BSE's)."
             },
             {
-                "text": "Which of the following was a key principle of the National Economic Programme resolution adopted at the Karachi Congress Session?",
+                "text": "Find correct statement(s):\n1. Retail investors through demat account can invest in 'Treasury Bills' and 'Government of India Debt Bonds' in the primary market.\n2. The 'Negotiated Dealing System-Order Matching' is a government securities trading platform of the Reserve Bank of India.\n3. The 'Central Depository Services Ltd.' is jointly promoted by the Reserve Bank of India and the Bombay Stock Exchange.",
                 "options": [
-                    "Complete abolition of all taxes",
-                    "Full freedom for capitalists without state intervention",
-                    "State ownership and control of key industries, mines, and means of transport",
-                    "Privatisation of agricultural lands"
+                    "1 only",
+                    "1 and 2 Only",
+                    "3 only",
+                    "2 and 3 Only"
                 ],
-                "correctAnswer": 2,
-                "explanation": "State ownership and control of key sectors was a key principle."
+                "correctAnswer": "1 and 2 Only",
+                "explanation": "Statements 1 and 2 are correct. Statement 3 is wrong because CDSL was promoted by BSE and leading banks, not RBI."
             },
             {
-                "text": "Which major Indian political party/group refused to attend the First Round Table Conference in London (November 1930 - January 1931)?",
+                "text": "With reference to 'Financial Stability and Development Council (FSDC), consider the following statements:\n1. It is an organ of NITI Aayog.\n2. It is headed by the Union Finance Minister\n3. It monitors macro-prudential supervision of the economy.",
                 "options": [
-                    "Muslim League",
-                    "Hindu Mahasabha",
-                    "The Congress",
-                    "Justice Party"
+                    "1 and 2 Only",
+                    "3 only",
+                    "2 and 3 Only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 2,
-                "explanation": "The Congress boycotted the First Round Table Conference."
+                "correctAnswer": "2 and 3 Only",
+                "explanation": "FSDC is under the Ministry of Finance, not NITI Aayog (Statement 1 is wrong). Statements 2 and 3 are correct."
             },
             {
-                "text": "Who chaired the First Round Table Conference?",
+                "text": "Which one of the following terms is used in Economics to denote a technique for avoiding a risk by making a counteracting transaction?",
                 "options": [
-                    "Lord Irwin",
-                    "Lord Reading",
-                    "Winston Churchill",
-                    "Ramsay MacDonald"
+                    "Dumping",
+                    "Hedging",
+                    "Discounting",
+                    "Deflating"
                 ],
-                "correctAnswer": 3,
-                "explanation": "Ramsay MacDonald chaired the conference."
+                "correctAnswer": "Hedging",
+                "explanation": "Hedging is the technique used to avoid risk by making a counteracting transaction."
             },
             {
-                "text": "At the Second Round Table Conference, who was the sole representative nominated by the Indian National Congress?",
+                "text": "Which of the following is issued by registered foreign portfolio investors to overseas investors who want to be part of the Indian stock market without registering themselves directly?",
                 "options": [
-                    "Motilal Nehru",
-                    "Jawaharlal Nehru",
-                    "Mahatma Gandhi",
-                    "Sardar Vallabhbhai Patel"
+                    "Certificate of Deposit",
+                    "Commercial Paper",
+                    "Promissory Note",
+                    "Participatory Note"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi was the sole Congress representative."
+                "correctAnswer": "Participatory Note",
+                "explanation": "Participatory Notes (P-notes) are issued by registered FPIs to overseas investors for investing in the Indian market without direct registration."
             },
             {
-                "text": "Which of the following was NOT a reason for the lack of much expectation from the Second Round Table Conference from the Indian perspective?",
+                "text": "Consider the following statements:\nStatement-I: Interest income from the deposits in Infrastructure Investment Trusts (InvITs) distributed to their investors is exempted from tax, but the dividend is taxable.\nStatement-II: InvITs are recognized as borrowers under the 'Securitization and Reconstruction of Financial Assets and Enforcement of Security Interest Act, 2002'.",
                 "options": [
-                    "Lord Willingdon became the new viceroy in India.",
-                    "A National Government came to power in England.",
-                    "Increased revolutionary activities in India.",
-                    "The British government promised immediate self-rule."
+                    "Both Statement-I and Statement-II are correct and Statement-II is the correct explanation for Statement-I",
+                    "Both Statement-I and Statement-II are correct and Statement-II is not the correct explanation for Statement-I",
+                    "Statement-I is correct but Statement-II is incorrect",
+                    "Statement-I is incorrect but Statement-II is correct"
                 ],
-                "correctAnswer": 3,
-                "explanation": "The British government did NOT promise immediate self-rule."
+                "correctAnswer": "Statement-I is incorrect but Statement-II is correct",
+                "explanation": "Income from InvITs is subject to tax, so Statement-I is wrong. Statement-II is correct as InvITs are recognized borrowers under the SARFAESI Act."
             },
             {
-                "text": "At the Second Round Table Conference, which groups came together to form a 'Minorities' Pact' demanding separate electorates?",
+                "text": "In the context of finance, the term 'beta' refers to",
                 "options": [
-                    "Hindus and Sikhs",
-                    "Muslims, depressed classes, Christians, and Anglo-Indians",
-                    "Parsis and Women",
-                    "Landlords and Merchants"
+                    "the process of simultaneous buying and selling of an asset from different platforms",
+                    "an investment strategy of a portfolio manager to balance risk versus reward",
+                    "a type of systemic risk that arises where perfect hedging is not possible",
+                    "a numeric value that measures the fluctuations of a stock to changes in the overall stock market"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Groups demanding separate electorates included Muslims, depressed classes, Christians, and Anglo-Indians."
+                "correctAnswer": "a numeric value that measures the fluctuations of a stock to changes in the overall stock market",
+                "explanation": "Beta measures the volatility or fluctuations of a stock in relation to the overall market."
             },
             {
-                "text": "What was one of the announcements made by MacDonald at the end of the Second Round Table Conference?",
+                "text": "What is Share warrant?",
                 "options": [
-                    "Unilateral declaration of complete independence for India",
-                    "Immediate transfer of defence to Indian hands",
-                    "The prospect of a unilateral British Communal Award if Indians failed to agree",
-                    "Abolition of all separate electorates"
+                    "It is the order issued by SEBI to confiscate the shares of persons who committed insider trading.",
+                    "It is the order passed by SEBI allowing a company to issue IPO.",
+                    "It is a document that entitles the holder to buy shares in the future at specified price.",
+                    "None of the above"
                 ],
-                "correctAnswer": 2,
-                "explanation": "MacDonald announced the prospect of a unilateral Communal Award."
+                "correctAnswer": "It is a document that entitles the holder to buy shares in the future at specified price.",
+                "explanation": "A share warrant is a document that gives the holder the right to purchase shares at a specific price in the future."
             },
             {
-                "text": "Which significant political development occurred as a direct result of the Third Round Table Conference?",
+                "text": "What is a multi-bagger share?",
                 "options": [
-                    "The passage of the Rowlatt Act",
-                    "The signing of the Gandhi-Irwin Pact",
-                    "The formulation of the Government of India Act of 1935",
-                    "The launch of the Quit India Movement"
+                    "A share issued by a company for financing multiple projects.",
+                    "A share that experiences a significant increase in value.",
+                    "A share issued by a multinational company.",
+                    "None of the above"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Government of India Act, 1935 was a direct result."
+                "correctAnswer": "A share that experiences a significant increase in value.",
+                "explanation": "A multi-bagger share is a stock that yields returns multiple times its initial investment."
             },
             {
-                "text": "When did Gandhi decide to finally withdraw the Civil Disobedience Movement?",
+                "text": "A share that is available for purchase in the secondary market is called",
                 "options": [
-                    "September 1932",
-                    "November 1933",
-                    "April 1934",
-                    "February 1931"
+                    "Restricted Stock",
+                    "Floating Stock",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "The movement was withdrawn in April 1934."
+                "correctAnswer": "Floating Stock",
+                "explanation": "Floating stock refers to shares available for trading by the public in the secondary market."
             },
             {
-                "text": "The Communal Award, announced by British Prime Minister Ramsay MacDonald on August 16, 1932, was based on the findings of which committee?",
+                "text": "What are the general properties of a share of a large cap company?\n1. It has high level of risk to the investor.\n2. It has high level of liquidity.",
                 "options": [
-                    "Simon Commission",
-                    "Nehru Committee",
-                    "Indian Franchise Committee / Lothian Committee",
-                    "Hunter Committee"
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Based on the findings of the Indian Franchise Committee (Lothian Committee)."
+                "correctAnswer": "only 2",
+                "explanation": "Large-cap stocks generally have lower risk (Statement 1 is wrong) and high liquidity (Statement 2 is correct)."
             },
             {
-                "text": "A key provision of the Communal Award was the granting of separate electorates to which groups, in addition to Muslims?",
+                "text": "How many of the following companies are suitable for an investor wanting low level of risk?\n1. Company with low EBITDA\n2. Company with high leverage ratio\n3. Company with low ROCE\n4. Company with low EPS",
                 "options": [
-                    "Only Sikhs and Christians",
-                    "Europeans, Sikhs, Indian Christians, Anglo-Indians, and depressed classes",
-                    "Only depressed classes and Anglo-Indians",
-                    "Parsis and Marathas"
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "None of these"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Separate electorates were granted to several minorities in addition to Muslims."
+                "correctAnswer": "None of these",
+                "explanation": "Low EBITDA, high leverage, low ROCE, and low EPS are indicators of higher risk or poor performance, making them unsuitable for low-risk investors."
             },
             {
-                "text": "The Communal Award also provided for a 'double vote' for which specific group?",
+                "text": "Amortisation is a concept associated with",
                 "options": [
-                    "Muslims",
-                    "Sikhs",
+                    "Physical assets",
+                    "Intangible assets",
+                    "Secured Loans",
+                    "Unsecured Loans"
+                ],
+                "correctAnswer": "Intangible assets",
+                "explanation": "Amortisation refers to the process of expensing the cost of intangible assets over time."
+            },
+            {
+                "text": "Offer for Sale means:",
+                "options": [
+                    "Liquidation of a bankrupt company.",
+                    "Promoter of a company selling his shares to others",
+                    "Selling shares of a company directly to institutional investors without offering them to the public.",
+                    "Selling shares of a company to employees through an employee stock ownership plan (ESOP)."
+                ],
+                "correctAnswer": "Promoter of a company selling his shares to others",
+                "explanation": "In an Offer for Sale (OFS), promoters sell their existing shares to the public through the stock exchange."
+            },
+            {
+                "text": "Which of the following may result into equity dilution for an existing shareholder?\n1. Company issuing FPO to new investors.\n2. Owners of Optionally Fully Convertible Debentures (OFCD) converting their debt-instrument into equity.",
+                "options": [
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
+                ],
+                "correctAnswer": "both 1 and 2",
+                "explanation": "Both issuing new shares via FPO and converting debt to equity increase the total number of shares, diluting existing shareholders' ownership."
+            },
+            {
+                "text": "Share Swapping may be conducted during",
+                "options": [
+                    "Liquidation of a bankrupt company.",
+                    "Merger of two companies",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
+                ],
+                "correctAnswer": "Merger of two companies",
+                "explanation": "Share swapping is a method used during mergers and acquisitions where shares of one company are exchanged for shares of another."
+            },
+            {
+                "text": "Which of the following will result in an immediate increase in the value of an investor's portfolio?\n1. Share splitting\n2. Bonus Share issuance",
+                "options": [
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
+                ],
+                "correctAnswer": "only 2",
+                "explanation": "Share splitting does not change total value. Bonus shares increase the number of shares without cost, which can be viewed as an increase in value in terms of share count, although overall market value might adjust."
+            },
+            {
+                "text": "How many of the following are examples of direct listing?\n1. issuance of ADR\n2. issuance of GDR\n3. issuance of Bharat-DR",
+                "options": [
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "None of these"
+                ],
+                "correctAnswer": "None of these",
+                "explanation": "ADR, GDR, and Bharat-DR are examples of indirect listing mechanisms."
+            },
+            {
+                "text": "Who among the following protects the investor from the fear of theft or fire of his paper-shares?\n1. Depositories\n2. Central Counterparties (CCPs)",
+                "options": [
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
+                ],
+                "correctAnswer": "only 1",
+                "explanation": "Depositories hold securities in electronic form, protecting against physical risks like theft or fire."
+            },
+            {
+                "text": "If the price movement of an asset is not correlated with the general trend in SENSEX, then its Beta value will be:",
+                "options": [
+                    "Negative",
+                    "Positive",
+                    "Zero",
+                    "Unpredictable"
+                ],
+                "correctAnswer": "Zero",
+                "explanation": "A Beta of zero indicates no correlation between the asset's price movement and the market index."
+            },
+            {
+                "text": "When investor compares the balance sheets of two companies before purchasing their shares, such analysis is called",
+                "options": [
+                    "fundamental analysis",
+                    "technical analysis",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
+                ],
+                "correctAnswer": "fundamental analysis",
+                "explanation": "Fundamental analysis involves evaluating financial statements like balance sheets to assess a company's value."
+            },
+            {
+                "text": "Which of following adjectives can be used to describe a portfolio containing high risk high return type assets?",
+                "options": [
+                    "Conservative",
+                    "Aggressive",
+                    "Balanced",
+                    "Irrational"
+                ],
+                "correctAnswer": "Aggressive",
+                "explanation": "An aggressive portfolio prioritizes high returns and accepts higher risks."
+            },
+            {
+                "text": "What is Arbitrage?",
+                "options": [
+                    "A method used for forecasting stock prices based on historical data and market trends.",
+                    "A type of investment strategy that involves high-risk speculative trading.",
+                    "The practice of buying and holding securities for a long-term investment horizon.",
+                    "The process of buying and selling securities simultaneously in different markets to take advantage of price differences."
+                ],
+                "correctAnswer": "The process of buying and selling securities simultaneously in different markets to take advantage of price differences.",
+                "explanation": "Arbitrage involves exploiting price differences of the same asset in different markets."
+            },
+            {
+                "text": "Consider the following statements:\n1. Sensex is based on 50 of the most important stocks available on the Bombay stock Exchange (BSE).\n2. For calculating the Sensex, the stock are assigned weightage.\n3. New York Stock Exchange is the oldest stock exchange in the world.\nWhich of the statements given above is/are correct?",
+                "options": [
+                    "2 only",
+                    "1 and 3",
+                    "2 and 3",
+                    "none"
+                ],
+                "correctAnswer": "2 only",
+                "explanation": "Statement 1 is wrong (Sensex is based on 30 stocks). Statement 3 is wrong (Amsterdam Stock Exchange is the oldest). Statement 2 is correct (Sensex is a weighted average)."
+            },
+            {
+                "text": "In India which of the following is/are regulated by the SEBI?",
+                "options": [
+                    "Currency Exchange only",
+                    "Commodities Futures Trading only",
+                    "Equity Futures Trading only",
+                    "Both Commodities Futures and Equity Futures Trading"
+                ],
+                "correctAnswer": "Both Commodities Futures and Equity Futures Trading",
+                "explanation": "SEBI regulates both commodities futures trading and equity futures trading in India."
+            },
+            {
+                "text": "What is the objective of IRRA Portal?",
+                "options": [
+                    "filing of insurance complaints online",
+                    "investor education",
+                    "helping investor to cancel the trade in stock exchange during server error.",
+                    "To file application to get the unclaimed deposits released from investor education and protection fund."
+                ],
+                "correctAnswer": "helping investor to cancel the trade in stock exchange during server error.",
+                "explanation": "IRRA (Investor Risk Reduction Access) is a platform to help investors cancel or close trades during technical glitches or server errors."
+            },
+            {
+                "text": "Which one of the following statements about Exchange Traded Fund (ETF) is WRONG?",
+                "options": [
+                    "It is a marketable security.",
+                    "It experiences price changes throughout the day.",
+                    "It typically has lower liquidity and higher fees than mutual fund shares.",
+                    "An ETF does not have its net asset value calculated once at the end of every"
+                ],
+                "correctAnswer": "It typically has lower liquidity and higher fees than mutual fund shares.",
+                "explanation": "ETFs typically have higher liquidity and lower fees compared to mutual funds, making this statement incorrect."
+            },
+            {
+                "text": "Which of the following is the first company in India to reach the market capitalisation of \u20b92 lakh crores?",
+                "options": [
+                    "TCS",
+                    "HDFC Bank",
+                    "LIC",
+                    "Reliance"
+                ],
+                "correctAnswer": "Reliance",
+                "explanation": "Reliance was the first company to hit the 20 lakh crore market cap."
+            },
+            {
+                "text": "Goodwill Account is a/an",
+                "options": [
+                    "Personal Account",
+                    "Real Account",
+                    "Nominal Account",
+                    "Expense Account"
+                ],
+                "correctAnswer": "Real Account",
+                "explanation": "Goodwill is an intangible asset, and asset accounts are classified as Real Accounts."
+            }
+        ],
+        "Pillar_1C3_Corporate Governance & Companies Act": [{
+                "text": "Which of the following company / companies can be started by minimum two members? \n1. Private Limited Company \n2. Limited liability partnership company",
+                "options": [
+                    "Only 1",
+                    "Only 2",
+                    "1 and 2 both",
+                    "None of them"
+                ],
+                "correctAnswer": "1 and 2 both",
+                "explanation": "Companies started by a minimum of two members include Private Companies, Public Companies, and Limited Liability Partnerships."
+            },
+            {
+                "text": "Serious Fraud Investigation Office (SFIO) is an organization under ___ ministry.",
+                "options": [
+                    "Ministry of Home Affairs",
+                    "Ministry of Finance",
+                    "Ministry of Corporate Affairs",
+                    "Ministry of Electronics and IT"
+                ],
+                "correctAnswer": "Ministry of Corporate Affairs",
+                "explanation": "SFIO functions under the Ministry of Corporate Affairs."
+            },
+            {
+                "text": "Find correct about Competition Commission of India (CCI) \n1. It was setup under the Companies Act 2013. \n2. It functions under the Ministry of Commerce.",
+                "options": [
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
+                ],
+                "correctAnswer": "neither 1 nor 2",
+                "explanation": "CCI is a statutory body established under the Competition Act, 2002 (not Companies Act 2013). Its parent organization is the Ministry of Corporate Affairs (not Commerce)."
+            },
+            {
+                "text": "Find the correct statement about Investor Education and Protection fund authority (IEPF). \n1. It is a statutory body set up under the SEBI Act. \n2. The deputy governor of RBI is the ex-officio chairman of IEPI. \n3. It looks after unclaimed shares, bonds, dividends, interest, etc.",
+                "options": [
+                    "1 only",
+                    "3 only",
+                    "1 and 2 only",
+                    "1 and 3 only"
+                ],
+                "correctAnswer": "3 only",
+                "explanation": "Statement 1 is incorrect: It is set up under the Companies Act 2013. Statement 2 is incorrect: The Secretary of the Ministry of Corporate Affairs is the chairman. Statement 3 is correct."
+            },
+            {
+                "text": "'NSE Prime', sometimes mentioned in news, denotes:",
+                "options": [
+                    "A high standard corporate governance initiative",
+                    "Long-duration Sovereign Green Bonds",
+                    "Concessions and tax-holidays for hi-tech startup companies",
+                    "Special privileges for certain categories of Non-Banking Financial Institutions"
+                ],
+                "correctAnswer": "A high standard corporate governance initiative",
+                "explanation": "NSE Prime is a voluntary initiative by the National Stock Exchange to encourage listed companies to adopt higher standards of corporate governance."
+            },
+            {
+                "text": "Who among the following hears the appeal against the competition commission of India (CCI)?",
+                "options": [
+                    "Securities Appellate Board",
+                    "Central Board of Consumer Affairs",
+                    "National Company Law Appellate Tribunal",
+                    "None of the above"
+                ],
+                "correctAnswer": "National Company Law Appellate Tribunal",
+                "explanation": "Appeals against orders of the CCI are heard by the National Company Law Appellate Tribunal (NCLAT)."
+            },
+            {
+                "text": "Poison Pill and Leverage Buyout are terms associated with ___.",
+                "options": [
+                    "A bankrupt company undergoing the process of liquidation.",
+                    "Hostile Takeover of a company",
+                    "Merger of parent company and its subsidiary company",
+                    "Writing-off the liabilities of AT1-bond holders"
+                ],
+                "correctAnswer": "Hostile Takeover of a company",
+                "explanation": "Poison Pill and Leverage Buyout are strategies and terms associated with the hostile takeover of a company."
+            },
+            {
+                "text": "Find correct about Corporate Social Responsibility (CSR) rules: \n1. CSR rules specify that expenditures that benefit the company directly or its employees will not be considered as CSR activities. \n2. CSR rules do not specify minimum spending on CSR activities.",
+                "options": [
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": "1 only",
+                "explanation": "Statement 1 is correct. Statement 2 is wrong because CSR rules require eligible companies to spend 2% of their average net profits on CSR."
+            },
+            {
+                "text": "Who among the following is the chairman of the Investor Education & Protection Fund Authority (IEPF)?",
+                "options": [
+                    "Finance Minister",
+                    "SEBI chief",
+                    "Finance secretary",
+                    "Secretary of the Ministry of corporate affairs"
+                ],
+                "correctAnswer": "Secretary of the Ministry of corporate affairs",
+                "explanation": "The Secretary of the Ministry of Corporate Affairs is the ex-officio chairman of the IEPF Authority."
+            },
+            {
+                "text": "How many of the following is/are examples of statutory organisations? \n1. Institute of Company Secretaries of India (ICSI) \n2. Institute of Chartered Accountants of India (ICAI) \n3. Institute of Cost Accountants of India (ICAI) \n4. Institute of Secretariat Training and Management (ISTM)",
+                "options": [
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "All four of these"
+                ],
+                "correctAnswer": "only three of these",
+                "explanation": "ICSI, ICAI (Chartered Accountants), and ICAI (Cost Accountants) are statutory bodies. ISTM is an attached office under the Department of Personnel & Training."
+            }
+        ],
+        "Pillar_1D1_Insurance": [{
+                "text": "In independent India's economy, which was the earlier event to take place?",
+                "options": [
+                    "Nationalization of insurance companies",
+                    "Nationalization of State Bank of India",
+                    "Enactment of Banking Regulation Act",
+                    "Introduction of first Five year plan"
+                ],
+                "correctAnswer": "Enactment of Banking Regulation Act",
+                "explanation": "The Banking Regulation Act was passed in 1949. The First Five Year Plan was 1951, SBI Nationalization was 1955, and Insurance Nationalization was 1956."
+            },
+            {
+                "text": "How many of the following are examples of statutory corporations? \n1. ESIC \n2. DICGC \n3. GIC \n4. LIC \n5. India Post Payment Bank",
+                "options": [
+                    "only 2 of them",
+                    "only 4 of them",
+                    "only 3 of them",
+                    "all five of them"
+                ],
+                "correctAnswer": "only 4 of them",
+                "explanation": "ESIC, DICGC, GIC, and LIC are statutory corporations established by separate Acts. India Post Payment Bank is a company registered under the Companies Act."
+            },
+            {
+                "text": "What is bancassurance?",
+                "options": [
+                    "A type of insurance policy that covers bank employees",
+                    "A type of insurance that covers loan default in banking institutions",
+                    "A partnership between a bank and an insurance company to sell insurance products to the bank's customers",
+                    "A type of financial instrument that combines the benefits of a bond and an insurance policy"
+                ],
+                "correctAnswer": "A partnership between a bank and an insurance company to sell insurance products to the bank's customers",
+                "explanation": "Bancassurance is the arrangement where banks sell insurance products of insurance companies to their customers."
+            },
+            {
+                "text": "What is a potential effect of de-tarrification for consumers as per Economic Survey 2022-23?",
+                "options": [
+                    "monopolization of the insurance sector by one company.",
+                    "Higher premium due to reduced regulation",
+                    "Lack of consumer protection due to reduced regulation",
+                    "reduced prices of insurance products for some category of clients."
+                ],
+                "correctAnswer": "reduced prices of insurance products for some category of clients.",
+                "explanation": "De-tarrification can lead to reduced prices for certain categories of clients (e.g., lower premiums for safe drivers)."
+            },
+            {
+                "text": "Which of the following is / are correct statements regarding Employees' State Insurance Corporation? \n1. It is a Not-for-profit company registered under Companies Act. \n2. ESIC subscribers are eligible for unemployment allowance during involuntary loss of employment. \n3. Nirman Se Shakti is ESIC initiative to modernize its hospital infrastructure",
+                "options": [
+                    "Only 1 & 2",
+                    "2 and 3",
+                    "Only 3",
+                    "1, 2 & 3"
+                ],
+                "correctAnswer": "2 and 3",
+                "explanation": "Statement 1 is incorrect as ESIC is a statutory corporation. Statements 2 and 3 are correct."
+            },
+            {
+                "text": "Which of the following statement(s) is/are correct regarding Pradhan Mantri Jan Arogya Yojana? \n1. All the subscribers of Atal Pension Scheme are automatically eligible for this scheme. \n2. Beneficiaries are selected automatically from the data of socio-economic caste census. \n3. If a family has more than 5 members they will have to pay higher premium in this scheme.",
+                "options": [
+                    "Only 2",
+                    "Only 1 & 2",
+                    "Only 1 & 3",
+                    "1, 2 & 3"
+                ],
+                "correctAnswer": "Only 2",
+                "explanation": "Beneficiaries are identified based on SECC 2011 data (Statement 2 is correct). There is no link to Atal Pension Scheme or family size restrictions (Statements 1 & 3 are incorrect)."
+            },
+            {
+                "text": "Find incorrect pair(s) of organization vs parent ministry/department: \n1. National Health Authority (NHA): Ministry of Health and Family Welfare \n2. Export Credit Guarantee Corporation of India: Ministry of Finance",
+                "options": [
+                    "Only 1",
+                    "Both 1 and 2",
+                    "Only 2",
+                    "Neither 1 nor 2"
+                ],
+                "correctAnswer": "Only 2",
+                "explanation": "ECGC is under the Ministry of Commerce and Industry, not the Ministry of Finance. NHA is correctly matched."
+            },
+            {
+                "text": "Which of the following statement(s) is/are correct regarding Pradhan Mantri Fasal Bima Yojana? \n1. Ministry of Rural Development is the nodal ministry for implementation of this scheme. \n2. Farmers contribution in the premium is not uniform across all cropping seasons.",
+                "options": [
+                    "Only 1",
+                    "1 and 2 both",
+                    "Only 2",
+                    "None of them"
+                ],
+                "correctAnswer": "Only 2",
+                "explanation": "Statement 1 is incorrect (Ministry of Agriculture is nodal). Statement 2 is correct (Premium varies: 2% Kharif, 1.5% Rabi, 5% Commercial)."
+            },
+            {
+                "text": "Consider the following: \n1. Hotels and restaurants \n2. Motor transport undertakings \n3. Newspaper establishments \n4. Private medical institutions \nThe employees of which of the above can have coverage under ESIC?",
+                "options": [
+                    "1, 2 and 3 Only",
+                    "1, 3 and 4 only",
+                    "4 only",
+                    "1, 2, 3 and 4"
+                ],
+                "correctAnswer": "1, 2, 3 and 4",
+                "explanation": "ESIC coverage extends to all the listed establishments including hotels, transport, newspapers, and private medical institutions."
+            },
+            {
+                "text": "Which is not a feature of the Ayushman Bharat Scheme?",
+                "options": [
+                    "There is no cap on family size and age.",
+                    "The scheme includes pre- and post-hospitalization expenses.",
+                    "A defined transport allowance per hospitalization will also be paid to the beneficiary.",
+                    "The scheme provides a benefit cover of Rs. 10 lakh per family."
+                ],
+                "correctAnswer": "The scheme provides a benefit cover of Rs. 10 lakh per family.",
+                "explanation": "The scheme provides a cover of Rs. 5 lakh per family, not 10 lakh."
+            },
+            {
+                "text": "Ayushman Bharat is a national health insurance system for:",
+                "options": [
                     "Women",
-                    "Depressed classes"
+                    "old age people",
+                    "every citizen",
+                    "poor and vulnerable."
                 ],
-                "correctAnswer": 3,
-                "explanation": "Depressed classes received a 'double vote'."
+                "correctAnswer": "poor and vulnerable.",
+                "explanation": "The scheme targets poor and economically deprived people based on SECC data."
             },
             {
-                "text": "How did the Congress generally respond to the Communal Award?",
+                "text": "Which are the benefits of the Pradhan Mantri Jan Arogya Yojana? \n1. Free treatment available at all public and empanelled private hospitals. \n2. Cashless and paperless access to quality health care services. \n3. Govt provides health insurance up to 5 lakh per family per year. \n4. Pre-existing diseases are not covered.",
                 "options": [
-                    "Fully accepted it as a fair compromise",
-                    "Opposed separate electorates but was not in favour of changing it without minority consent",
-                    "Demanded its immediate abolition through a mass movement",
-                    "Issued a complete boycott of all legislative bodies"
+                    "1 and 3 Only",
+                    "1, 2 and 3 Only",
+                    "2 and 4 only",
+                    "2, 3 and 4 only"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Congress opposed separate electorates, but was not for changing it without minority consent."
+                "correctAnswer": "1, 2 and 3 Only",
+                "explanation": "Statements 1, 2, and 3 are benefits. Statement 4 is incorrect because pre-existing diseases are covered from day one."
             },
             {
-                "text": "What was Gandhi's immediate reaction to the Communal Award?",
+                "text": "Find correct statements about 'Pradhan Mantri Fasal Bima Yojana': \n1. Under this scheme, farmers will have to pay a uniform premium of 2% for any crop they cultivate in any season of the year. \n2. This scheme covers post-harvest losses arising out of cyclones and unseasonal rains.",
                 "options": [
-                    "He welcomed it as a step towards minority protection.",
-                    "He accepted it without reservation.",
-                    "He saw it as an attack on Indian unity and nationalism and went on an indefinite fast.",
-                    "He called for immediate negotiations with the British government."
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi went on an indefinite fast in protest."
+                "correctAnswer": "2 only",
+                "explanation": "Statement 1 is incorrect (Premium varies by season/crop). Statement 2 is correct."
             },
             {
-                "text": "The Poona Pact, signed in 1932, abandoned the idea of separate electorates for the depressed classes in favour of which provision?",
+                "text": "In India, under cyber insurance for individuals, which of the following benefits are generally covered, in addition to payment for the loss of funds and other benefits? \n1. Cost of restoration of the computer system... \n2. Cost of a new computer if some miscreant wilfully damages it... \n3. Cost of hiring a specialized consultant... \n4. Cost of defence in the Court of Law...",
                 "options": [
-                    "Joint electorates with no reserved seats",
-                    "Joint electorates with increased reserved seats for depressed classes",
-                    "Continued separate electorates for an additional 10 years",
-                    "Formation of a completely new political party for the depressed classes"
+                    "1, 2 and 4 only",
+                    "1, 3 and 4 only",
+                    "2 and 3 Only",
+                    "1, 2, 3 and 4"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Increased reserved seats for depressed classes in joint electorates."
+                "correctAnswer": "1, 3 and 4 only",
+                "explanation": "Cyber insurance generally covers restoration costs, consultant fees, and legal defense costs, but not the hardware cost of a new computer."
             },
             {
-                "text": "Who signed the Poona Pact on behalf of the depressed classes?",
+                "text": "Title insurance is related with this sector:",
                 "options": [
-                    "Mahatma Gandhi",
-                    "Jawaharlal Nehru",
-                    "B.R. Ambedkar",
-                    "Sardar Vallabhbhai Patel"
-                ],
-                "correctAnswer": 2,
-                "explanation": "B.R. Ambedkar signed the Pact for the depressed classes."
-            },
-            {
-                "text": "What was one of the negative impacts of the Poona Pact on the depressed classes ?",
-                "options": [
-                    "It significantly reduced their representation in legislatures.",
-                    "It led to their complete alienation from the national movement.",
-                    "It made them political tools and hindered the development of independent leadership.",
-                    "It forced them to convert to other religions."
-                ],
-                "correctAnswer": 2,
-                "explanation": "It hindered the rise of independent leadership among depressed classes."
-            },
-            {
-                "text": "What was the name of the weekly started by Gandhi during his Harijan Campaign?",
-                "options": [
-                    "The Indian Opinion",
-                    "Navajivan",
-                    "Young India",
-                    "Harijan"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Gandhi started the weekly 'Harijan.'"
-            },
-            {
-                "text": "What was one of Gandhi's main arguments against untouchability during his Harijan Campaign?",
-                "options": [
-                    "That it was an ancient tradition that needed modern reform.",
-                    "That it was economically inefficient.",
-                    "That it was against human dignity and if scriptures sanctioned it, they should be ignored.",
-                    "That it only affected a small portion of the population."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi said untouchability was against human dignity and scriptures should be ignored if they supported it."
-            },
-            {
-                "text": "Which leader advocated for the annihilation of the caste system to remove untouchability, a view that differed from Gandhi's?",
-                "options": [
-                    "Gopal Krishna Gokhale",
-                    "Jyotiba Phule",
-                    "B.R. Ambedkar",
-                    "Periyar E.V. Ramaswamy Naicker"
-                ],
-                "correctAnswer": 2,
-                "explanation": "B.R. Ambedkar advocated the annihilation of caste to remove untouchability."
-            },
-            {
-                "text": "Gandhi's vision of 'Ramrajya' was described as a stateless society where which of the following would be absent?",
-                "options": [
-                    "Local governance",
-                    "Agricultural practices",
-                    "Capitalism, communism, exploitation, and religious violence",
-                    "Educational institutions"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Ramrajya meant a society without capitalism, communism, exploitation, or religious violence."
-            },
-            {
-                "text": "The 'struggle-truce-struggle' strategy was advocated by which group within the Congress after the Civil Disobedience Movement?",
-                "options": [
-                    "Congressmen led by Gandhi",
-                    "Leftist leaders like Nehru and Bose",
-                    "Swarajists advocating council entry",
-                    "Proponents of immediate mass struggle"
-                ],
-                "correctAnswer": 0,
-                "explanation": "It was advocated by Congressmen led by Gandhi."
-            },
-            {
-                "text": "What was the result of the elections to the Central Legislative Assembly held in November 1934 for the Congress?",
-                "options": [
-                    "They won a minority of seats.",
-                    "They boycotted the elections completely.",
-                    "They captured 45 out of 75 seats reserved for Indians.",
-                    "They won all the seats."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Congress captured 45 out of 75 reserved seats."
-            },
-            {
-                "text": "What was the main purpose of making 'salt' the central formula for the Civil Disobedience Movement?",
-                "options": [
-                    "To raise significant funds for the Congress.",
-                    "To target a specific British industry.",
-                    "To link the ideal of swaraj with a universal grievance of the rural poor.",
-                    "To demonstrate India's self-sufficiency in resources."
-                ],
-                "correctAnswer": 2,
-                "explanation": "It linked swaraj with a common rural grievance."
-            },
-            {
-                "text": "What was a key difference in Muslim participation between the Non-Cooperation Movement (1920-22) and the Civil Disobedience Movement?",
-                "options": [
-                    "Muslim participation significantly increased in CDM compared to NCM.",
-                    "Muslim participation in CDM was nowhere near the NCM level.",
-                    "Muslims actively led the CDM, unlike in the NCM.",
-                    "Muslim participation remained consistently high in both movements."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Muslim participation in CDM was much lower than in NCM."
-            },
-            {
-                "text": "Which famous leader, known as 'Frontier Gandhi', led the 'Khudai Khidmatgars' in Peshawar during the Civil Disobedience Movement?",
-                "options": [
-                    "Sheikh Abdullah",
-                    "Sardar Vallabhbhai Patel",
-                    "Khan Abdul Gaffar Khan",
-                    "Maulana Abul Kalam Azad"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Khan Abdul Gaffar Khan ('Frontier Gandhi') led the Khudai Khidmatgars."
-            },
-            {
-                "text": "The Resolution on National Economic Programme adopted at the Karachi Congress session laid emphasis on which of the following for the first time?",
-                "options": [
-                    "Only political reforms without economic considerations.",
-                    "The importance of foreign aid for India's development.",
-                    "That political freedom must include economic freedom of starving millions.",
-                    "Allowing complete free market without any state intervention."
-                ],
-                "correctAnswer": 2,
-                "explanation": "For the first time, it emphasized that political freedom must include economic freedom."
-            }
-        ],
-        "Debates on the Future Strategy after Civil Disobedience Movement": [{
-                "text": "What was one of the three perspectives put forward by nationalists regarding their immediate work after the Civil Disobedience Movement?",
-                "options": [
-                    "Formation of a parallel government",
-                    "Emphasis on constructive work on Gandhian lines",
-                    "Launching an armed rebellion",
-                    "Boycotting all British goods indefinitely"
-                ],
-                "correctAnswer": 1,
-                "explanation": "One major perspective was to focus on constructive work following Gandhian ideals, such as village upliftment, khadi promotion, and social reform."
-            },
-            {
-                "text": "Which group advocated for a constitutional struggle and participation in elections to the Central Legislature?",
-                "options": [
-                    "Revolutionaries",
-                    "Leftists",
-                    "Proponents of council entry",
-                    "No-changers"
-                ],
-                "correctAnswer": 2,
-                "explanation": "\"Proponents of council entry\" supported entering legislative councils and participating constitutionally."
-            },
-            {
-                "text": "Jawaharlal Nehru, representing the strong leftist trend within the Congress, was critical of which two approaches?",
-                "options": [
-                    "Non-cooperation and Swadeshi",
-                    "Constructive work and council entry",
-                    "Peaceful protest and negotiation",
-                    "Civil disobedience and armed struggle"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Nehru and leftists criticized both constructive work (as being too gradualist) and council entry (as too compromising)."
-            },
-            {
-                "text": "What was the basic goal before the Indian people, according to Nehru's vision, as mentioned in Chapter 20?",
-                "options": [
-                    "Attainment of Dominion Status",
-                    "Abolition of capitalism and establishment of socialism",
-                    "Complete withdrawal of British forces",
-                    "Unification of all princely states"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Nehru advocated for abolishing capitalism and establishing socialism as the ultimate goal."
-            },
-            {
-                "text": "What did Nehru propose regarding class organisations in relation to the Congress?",
-                "options": [
-                    "They should be banned from political activity.",
-                    "They should be separate from the Congress.",
-                    "They should be allowed to affiliate with the Congress to influence policies.",
-                    "They should form their own independent political parties."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Nehru suggested that class organisations could affiliate with the Congress to impact its policy."
-            },
-            {
-                "text": "How did Gandhi and his supporters view the 'struggle-truce-struggle' strategy for mass movements?",
-                "options": [
-                    "They advocated continuous confrontation without a truce.",
-                    "They believed a mass phase should be followed by a reprieve phase.",
-                    "They rejected it as too passive.",
-                    "They saw it as a sign of weakness."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gandhians generally favored alternation: periods of intense struggle followed by truce for regrouping and social work."
-            },
-            {
-                "text": "Following the Lahore Congress call for Purna Swaraj, what did Jawaharlal Nehru advocate regarding confrontation with imperialism?",
-                "options": [
-                    "A phased withdrawal of demands.",
-                    "A continuous confrontation until imperialism was overthrown.",
-                    "Negotiations for gradual self-government.",
-                    "International mediation for conflict resolution."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Nehru advocated for an unrelenting confrontation with imperialism."
-            },
-            {
-                "text": "In May 1934, what body did the All India Congress Committee (AICC) set up in Patna to fight elections?",
-                "options": [
-                    "The All-India Swarajya Council",
-                    "The National Electoral Commission",
-                    "The Parliamentary Board",
-                    "The Provisional Government Committee"
-                ],
-                "correctAnswer": 2,
-                "explanation": "A Parliamentary Board was established by AICC to contest elections."
-            },
-            {
-                "text": "What term was used to describe the 'spinning wheel' in Chapter 20, symbolizing its importance?",
-                "options": [
-                    "The first engine of freedom",
-                    "The economic backbone",
-                    "The second lung of the nation",
-                    "The symbol of self-reliance"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The spinning wheel was called the 'second lung' of the nation."
-            },
-            {
-                "text": "When did Mahatma Gandhi announce his resignation from the Indian National Congress (INC)?",
-                "options": [
-                    "May 1934",
-                    "August 1934",
-                    "October 1934",
-                    "November 1934"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi announced his resignation in October 1934."
-            },
-            {
-                "text": "In the elections to the Central Legislative Assembly held in November 1934, how many seats did the Congress capture out of those reserved for Indians?",
-                "options": [
-                    "35 out of 75",
-                    "40 out of 75",
-                    "45 out of 75",
-                    "50 out of 75"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Congress won 45 out of 75 seats reserved for Indians in 1934 elections."
-            },
-            {
-                "text": "The Government of India Act, 1935 was primarily a result of discussions from which event?",
-                "options": [
-                    "The Simon Commission Report",
-                    "The Nehru Report",
-                    "The First Round Table Conference",
-                    "The Third Round Table Conference"
-                ],
-                "correctAnswer": 3,
-                "explanation": "The Third Round Table Conference was key for the Government of India Act, 1935."
-            },
-            {
-                "text": "What did the All India Federation, proposed by the Government of India Act, 1935, comprise?",
-                "options": [
-                    "Only British Indian provinces",
-                    "British Indian provinces and chief commissioner’s provinces",
-                    "British Indian provinces, chief commissioner’s provinces, and Indian states",
-                    "British Indian provinces and Indian states only"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The federation included British provinces, chief commissioner's provinces, and Indian states."
-            },
-            {
-                "text": "Under the Government of India Act, 1935, who was considered the 'pivot of the entire Constitution' at the federal level?",
-                "options": [
-                    "The Secretary of State for India",
-                    "The Commander-in-Chief",
-                    "The Governor-General",
-                    "The Chief Justice of India"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Governor-General was given overriding powers and called the 'pivot' at the federal level."
-            },
-            {
-                "text": "What was a key feature of the federal legislature under the Government of India Act, 1935?",
-                "options": [
-                    "A unicameral legislature",
-                    "A bicameral legislature",
-                    "A single legislative body with advisory powers",
-                    "A legislature entirely nominated by the Governor-General"
-                ],
-                "correctAnswer": 1,
-                "explanation": "A bicameral (two-house) legislature was a new federal feature."
-            },
-            {
-                "text": "What proportion of the budget was non-votable at the federal level under the Government of India Act, 1935?",
-                "options": [
-                    "50 per cent",
-                    "60 per cent",
-                    "70 per cent",
-                    "80 per cent"
-                ],
-                "correctAnswer": 2,
-                "explanation": "About 70 per cent of the federal budget was non-votable."
-            },
-            {
-                "text": "Which significant change was introduced at the provincial level by the Government of India Act, 1935?",
-                "options": [
-                    "Introduction of dyarchy",
-                    "Abolition of provincial autonomy",
-                    "Provincial autonomy replaced dyarchy",
-                    "Direct rule by the Governor-General"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Act replaced dyarchy with provincial autonomy."
-            },
-            {
-                "text": "What was the source of legal authority for provinces under the Government of India Act, 1935?",
-                "options": [
-                    "The Governor-General",
-                    "The British Parliament",
-                    "The British Crown directly",
-                    "The central legislature"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Legal authority flowed directly from the British Crown."
-            },
-            {
-                "text": "In the provincial legislatures, what proportion of the budget was non-votable under the Government of India Act, 1935?",
-                "options": [
-                    "20 per cent",
-                    "30 per cent",
-                    "40 per cent",
-                    "50 per cent"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Roughly 30% of provincial budgets were non-votable."
-            },
-            {
-                "text": "Who made the famous statement, \"We are provided with a car, all brakes and no engine\" in reference to the Government of India Act, 1935?",
-                "options": [
-                    "Mahatma Gandhi",
-                    "Sardar Vallabhbhai Patel",
-                    "Jawaharlal Nehru",
-                    "Subhash Chandra Bose"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Jawaharlal Nehru compared the Act to a car with all brakes and no engine."
-            },
-            {
-                "text": "What percentage of the British Indian population was enfranchised by the Government of India Act, 1935?",
-                "options": [
-                    "10 per cent",
-                    "14 per cent",
-                    "18 per cent",
-                    "20 per cent"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Only about 14% of the population got the right to vote."
-            },
-            {
-                "text": "What was a key aspect of the long-term British strategy revealed by the Government of India Act, 1935?",
-                "options": [
-                    "To grant complete independence immediately.",
-                    "To strengthen the national movement.",
-                    "To integrate large segments of the movement into colonial administrative structure.",
-                    "To promote self-government at all levels."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The goal was to integrate moderates into the colonial structure."
-            },
-            {
-                "text": "What did the British hope would happen once Congressmen \"tasted power\" under the 1935 Act?",
-                "options": [
-                    "They would become more revolutionary.",
-                    "They would be reluctant to go back to politics of sacrifice.",
-                    "They would demand more radical reforms.",
-                    "They would unite against British rule."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The British hoped that holding office would soften Congressmen's attitude."
-            },
-            {
-                "text": "How was the 1935 Act received by the Indian National Congress?",
-                "options": [
-                    "It was cautiously accepted.",
-                    "It was celebrated as a step towards self-rule.",
-                    "It was unanimously rejected.",
-                    "It was partially accepted with reservations."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Congress rejected the 1935 Act."
-            },
-            {
-                "text": "Which organization favoured the working of the 1935 Act?",
-                "options": [
-                    "The Muslim League",
-                    "The Hindu Mahasabha",
-                    "The National Liberal Foundation",
-                    "The Congress Socialist Party"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The National Liberal Federation (or Foundation) wanted to try the Act's provisions."
-            },
-            {
-                "text": "What was announced in early 1937, leading to a renewed debate on nationalist strategy?",
-                "options": [
-                    "The withdrawal of British troops.",
-                    "The convening of a new Round Table Conference.",
-                    "Elections to provincial assemblies.",
-                    "A major economic depression."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Provincial elections in early 1937 led to strategic debates."
-            },
-            {
-                "text": "Which leaders were openly opposed to office acceptance and the working of the 1935 Act?",
-                "options": [
-                    "Mahatma Gandhi and Sardar Patel",
-                    "Jawaharlal Nehru and Subhash Bose",
-                    "Motilal Nehru and C.R. Das",
-                    "Gopal Krishna Gokhale and Dadabhai Naoroji"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Nehru and Bose were critical of office acceptance under the 1935 Act."
-            },
-            {
-                "text": "What was the objective of the leftists who proposed entry into the councils?",
-                "options": [
-                    "To cooperate with the British administration.",
-                    "To gain administrative experience.",
-                    "To create deadlocks and expose the limitations of the Act.",
-                    "To promote social reforms through legislation."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Leftists aimed to expose the Act’s flaws by creating deadlocks."
-            },
-            {
-                "text": "By what year was Gandhi willing to give a trial to the formation of Congress ministries, despite his initial opposition to office acceptance?",
-                "options": [
-                    "Early 1935",
-                    "Mid-1935",
-                    "Early 1936",
-                    "Late 1936"
-                ],
-                "correctAnswer": 2,
-                "explanation": "By early 1936, Gandhi relented to experimentation with Congress ministries."
-            },
-            {
-                "text": "What was the Congress resolution regarding the 1935 Constitution?",
-                "options": [
-                    "To submit to it and cooperate with it.",
-                    "To combat it both inside and outside the legislatures.",
-                    "To only work within the constitutional framework.",
-                    "To boycott it entirely without any legislative engagement."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Congress planned to combat the Act in and outside legislatures."
-            },
-            {
-                "text": "What was reaffirmed in the Congress Manifesto for the elections?",
-                "options": [
-                    "Acceptance of the 1935 Act with minor modifications.",
-                    "Total rejection of the 1935 Act.",
-                    "Conditional support for British war efforts.",
-                    "The establishment of a unified national government."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Congress Manifesto consistently rejected the 1935 Act."
-            },
-            {
-                "text": "Which of the following was a promise made in the Congress Manifesto for Elections?",
-                "options": [
-                    "Increase in rent and revenue for landlords.",
-                    "Abolition of trade unions.",
-                    "Radical transformation of the agrarian system.",
-                    "Continuation of gender and caste disabilities."
-                ],
-                "correctAnswer": 2,
-                "explanation": "It promised to transform the agrarian system radically."
-            },
-            {
-                "text": "How many seats did the Congress win out of the 1,161 seats it contested in the provincial elections?",
-                "options": [
-                    "542",
-                    "600",
-                    "716",
-                    "800"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Congress won 716 out of 1,161 seats it contested."
-            },
-            {
-                "text": "In how many provinces did the Congress secure a clear majority in the elections?",
-                "options": [
-                    "Three",
-                    "Five",
-                    "Seven",
-                    "Most"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Congress secured majorities in seven out of eleven provinces."
-            },
-            {
-                "text": "What does the S-T-S strategy stand for, as mentioned in the context of the debates?",
-                "options": [
-                    "Struggle-Triumph-Sovereignty",
-                    "Socialism-Transformation-Struggle",
-                    "Struggle-Truce-Struggle",
-                    "Self-determination-Total-Swaraj"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The debate centered on the Struggle-Truce-Struggle (S-T-S) approach."
-            },
-            {
-                "text": "Which of the following was NOT a promise made in the Congress manifesto for the 1937 elections?",
-                "options": [
-                    "Release of prisoners",
-                    "Removal of disabilities on the basis of gender and caste",
-                    "Scaling down of rural debts",
-                    "Increase in military expenditure"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Increasing military expenditure was never an electoral promise."
-            },
-            {
-                "text": "According to Chapter 20, what was one of the three perspectives on the future strategy after the Civil Disobedience Movement?",
-                "options": [
-                    "Unconditional support to the British in World War II",
-                    "Adoption of militant revolutionary tactics only",
-                    "Resumption and continuation of non-constitutionalist mass struggle",
-                    "Focus on international diplomacy and alliances"
-                ],
-                "correctAnswer": 2,
-                "explanation": "One perspective was to resume non-constitutionalist mass struggle."
-            },
-            {
-                "text": "The AICC meeting in Patna in May 1934 was crucial for deciding what?",
-                "options": [
-                    "The leadership of the next Civil Disobedience Movement",
-                    "The formation of the Congress Socialist Party",
-                    "The strategy for entering legislative elections",
-                    "The drafting of a new constitution"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The meeting decided on the plan for entering legislative elections."
-            },
-            {
-                "text": "What phrase did Gandhi use to describe the spinning wheel in relation to the nation?",
-                "options": [
-                    "The nation's lifeline",
-                    "The nation's heart",
-                    "The nation's economic engine",
-                    "The nation's second lung"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Gandhi referred to the spinning wheel as the nation's 'second lung.'"
-            },
-            {
-                "text": "Which of these acts led to the federal, provincial, and concurrent lists for legislation purposes?",
-                "options": [
-                    "Indian Councils Act, 1909",
-                    "Government of India Act, 1919",
-                    "Government of India Act, 1935",
-                    "Indian Independence Act, 1947"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The 1935 Act gave rise to three lists of legislative subjects."
-            },
-            {
-                "text": "Under the 1935 Act, what power did the Governor-General retain at the federal level despite the division of subjects?",
-                "options": [
-                    "Complete control over transferred subjects",
-                    "Residuary powers",
-                    "Power to dissolve the central legislature without consent",
-                    "Authority to unilaterally amend the constitution"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Residuary powers remained with the Governor-General."
-            },
-            {
-                "text": "The Government of India Act, 1935, aimed to weaken the national movement and integrate segments into the colonial structure. This was part of what?",
-                "options": [
-                    "A new reformist agenda",
-                    "The British long-term strategy",
-                    "A policy of direct rule",
-                    "A transitional phase towards independence"
-                ],
-                "correctAnswer": 1,
-                "explanation": "This strategy was British long-term planning."
-            },
-            {
-                "text": "In the second stage debate (early 1937), what was agreed upon regarding the Congress's approach to provincial assembly elections?",
-                "options": [
-                    "To boycott them completely",
-                    "To fight them on a detailed political and economic programme",
-                    "To form a coalition with other parties before contesting",
-                    "To advocate for postponement of elections"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Congress chose to contest on a detailed programme."
-            },
-            {
-                "text": "While Gandhi initially opposed office acceptance, what factor led to his willingness to consider it by early 1936?",
-                "options": [
-                    "Pressure from the British government",
-                    "Recognition of the need for political stability",
-                    "Desire to test the 1935 Act's implementation",
-                    "Persuasion from influential Moderates"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi considered testing the Act’s implementation in practice."
-            },
-            {
-                "text": "The Congress manifesto for the 1937 elections promised reforms in the agrarian system, including:",
-                "options": [
-                    "Increase in land revenue",
-                    "Substantial reduction of rent and revenue",
-                    "Reintroduction of begar (unpaid labour)",
-                    "Abolition of all rural debts"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Reducing rent and revenue was a major agrarian reform promise."
-            },
-            {
-                "text": "What was the Congress's overall stance towards the Government of India Act, 1935, as stated in its resolution?",
-                "options": [
-                    "Full cooperation and acceptance",
-                    "Conditional acceptance based on British assurances",
-                    "Not to submit to it or cooperate with it, but to combat it",
-                    "To use it as a stepping stone for immediate independence"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Congress resolved not to submit to or cooperate with the Act."
-            },
-            {
-                "text": "What was a significant criticism of the Government of India Act, 1935, as described in Chapter 20?",
-                "options": [
-                    "It introduced full responsible government at the centre.",
-                    "It abolished separate electorates.",
-                    "It had numerous 'safeguards' and 'special responsibilities' for the Governor-General.",
-                    "It granted universal adult franchise."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Act gave vast 'special responsibilities' to the Governor-General."
-            },
-            {
-                "text": "What was one of the aims of the Congress manifesto regarding civil liberties in the 1937 elections?",
-                "options": [
-                    "Imposition of press censorship",
-                    "Release of all political prisoners",
-                    "Restrictions on public gatherings",
-                    "Increase in police powers"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The manifesto promised release of political prisoners."
-            },
-            {
-                "text": "What kind of powers did the Governor-General retain under the 1935 Act to ensure security and tranquillity of India?",
-                "options": [
-                    "Advisory powers only",
-                    "Powers exercised only with the central legislature's consent",
-                    "Discretionary powers to act in his individual judgment",
-                    "Powers limited by provincial autonomy"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Governor-General was given broad discretionary powers."
-            },
-            {
-                "text": "The British strategy following the 1935 Act included the hope that reforms would achieve what effect on constitutionalist liberals and moderates?",
-                "options": [
-                    "Isolate them from the masses",
-                    "Revive their political standing",
-                    "Force them into a more militant stance",
-                    "Encourage them to join revolutionary activities"
-                ],
-                "correctAnswer": 0,
-                "explanation": "The aim was to make liberals and moderates dependent on British patronage and thus isolate them from the masses."
-            }
-        ],
-        "Nationalist Response in the Wake of World War II": [{
-                "text": "What was Mahatma Gandhi's initial belief regarding the Congress before the launch of a new mass movement, as stated in Chapter 22?",
-                "options": [
-                    "The Congress should immediately initiate a new struggle.",
-                    "The Congress should first streamline its organisational structure.",
-                    "The Congress should form a coalition with other political parties.",
-                    "The Congress should focus exclusively on constitutional negotiations."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gandhi initially emphasized the need to streamline the organizational structure before starting a new mass struggle."
-            },
-            {
-                "text": "Which of the following best describes India's nationalist response to British involvement in the First World War, as per the provided text?",
-                "options": [
-                    "Unconditional support for the British Empire from all factions.",
-                    "Opposition from Moderates and support from Extremists.",
-                    "Moderates supporting the empire, Extremists supporting war efforts for self-government, and Revolutionaries waging war on British rule.",
-                    "Complete non-cooperation from all political groups."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Moderates supported the empire, Extremists saw it as leverage for self-government, and Revolutionaries opposed British rule."
-            },
-            {
-                "text": "Who among the following was the president of the Bengal Provincial Congress Committee, actively working for youth organisation and the trade union movement?",
-                "options": [
-                    "Jawaharlal Nehru",
-                    "Mahatma Gandhi",
-                    "Subhash Chandra Bose",
-                    "Motilal Nehru"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Subhash Chandra Bose held this role and was active in youth and trade union mobilization."
-            },
-            {
-                "text": "At which session was Subhash Chandra Bose unanimously elected president of the Congress, adopting a resolution to give moral support to princely states' agitations?",
-                "options": [
-                    "Lucknow (1916)",
-                    "Calcutta (1920)",
-                    "Haripura (1938)",
-                    "Tripuri (1939)"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Bose was unanimously elected at the Haripura session, 1938."
-            },
-            {
-                "text": "Who was the candidate supported by Mahatma Gandhi for the Congress presidency in 1939, whose defeat Gandhi famously declared as his own?",
-                "options": [
-                    "Jawaharlal Nehru",
-                    "Sardar Vallabhbhai Patel",
-                    "Abul Kalam Azad",
-                    "Pattabhi Sitaramayya"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Gandhi supported Sitaramayya, who lost to Subhash Bose."
-            },
-            {
-                "text": "What was one of Subhash Bose's accusations against the Congress Working Committee leaders at the Tripuri session in 1939?",
-                "options": [
-                    "Their lack of commitment to mass movements.",
-                    "Their readiness to compromise with the government on the matter of federation.",
-                    "Their failure to adequately address agrarian issues.",
-                    "Their over-reliance on non-violent methods."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Bose accused CWC leaders of being ready to compromise with the government over the federation issue."
-            },
-            {
-                "text": "What was Subhash Bose's stance regarding the international crisis and its exploitation for India's independence, as articulated at the Tripuri session?",
-                "options": [
-                    "He advocated for a neutral stance, avoiding foreign entanglements.",
-                    "He believed that India should align with the British to gain post-war concessions.",
-                    "He felt that advantage should be taken of the international crisis to strive for independence.",
-                    "He suggested that India should wait for the crisis to pass before resuming nationalist activities."
-                ],
-                "correctAnswer": 2,
-                "explanation": "He believed India should exploit the crisis for its own independence."
-            },
-            {
-                "text": "Following Subhash Bose's resignation from the Congress president's post in April 1939, who was elected as his successor?",
-                "options": [
-                    "Jawaharlal Nehru",
-                    "Abul Kalam Azad",
-                    "Rajendra Prasad",
-                    "Sardar Vallabhbhai Patel"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Dr. Rajendra Prasad succeeded Bose as Congress President."
-            },
-            {
-                "text": "What was the name of the new party formed by Subhash Bose within the Congress after his resignation from the presidency?",
-                "options": [
-                    "Swarajya Party",
-                    "Forward Bloc",
-                    "Communist Party of India",
-                    "Indian Independence League"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Bose founded the Forward Bloc within the Congress."
-            },
-            {
-                "text": "Which of the following statements accurately reflects Mahatma Gandhi's view on violence as a means to achieve independence?",
-                "options": [
-                    "He considered it a necessary evil in certain circumstances.",
-                    "He believed it was a clumsy weapon that created more problems than it solved.",
-                    "He advocated for selective violence against oppressors.",
-                    "He viewed it as a legitimate last resort when all other methods failed."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gandhi believed that violence was a clumsy and problematic weapon."
-            },
-            {
-                "text": "Subhash Bose believed that civil disobedience campaigns needed to be accompanied by what for a total revolution?",
-                "options": [
-                    "Intensive constitutional negotiations.",
-                    "Widespread constructive work.",
-                    "A movement aimed at total revolution that was prepared, if necessary, to use violence.",
-                    "International diplomatic pressure."
-                ],
-                "correctAnswer": 2,
-                "explanation": "He sought a total revolution, with violence if necessary, to force change."
-            },
-            {
-                "text": "Which of the following best describes Subhash Bose's approach to 'means and ends' in the struggle for freedom?",
-                "options": [
-                    "He believed that means and ends should be equally good.",
-                    "He focused on the result, believing in seizing any opportunity available to carry forward the struggle.",
-                    "He insisted on strict adherence to non-violent methods regardless of the outcome.",
-                    "He advocated for a gradual approach, prioritising the purity of means over the speed of achieving ends."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Bose emphasized taking advantage of all opportunities to achieve the end goal."
-            },
-            {
-                "text": "What was Subhash Bose's stance on taking help from Axis powers during the freedom struggle?",
-                "options": [
-                    "He had strong reservations due to their fascist ideologies.",
-                    "He had no compunction in taking their help to advance the struggle for freedom.",
-                    "He explicitly rejected any alliance with them.",
-                    "He only considered their help if it was non-military."
-                ],
-                "correctAnswer": 1,
-                "explanation": "He was pragmatic and had no hesitation in using their support."
-            },
-            {
-                "text": "Which statement accurately describes Subhash Bose's view on the form of government for independent India?",
-                "options": [
-                    "He envisioned a stateless society based on Ramrajya.",
-                    "He initially expressed support for democracy, but later opined on a state of 'authoritarian character'.",
-                    "He advocated for a pre-modern, morally-enlightened, and apolitical Indian state.",
-                    "He believed in a parliamentary monarchy."
-                ],
-                "correctAnswer": 1,
-                "explanation": "He initially supported democracy but later favored a strong, possibly authoritarian state."
-            },
-            {
-                "text": "What was the name of the provisional government proclaimed by Subhash Bose on October 21, 1943?",
-                "options": [
-                    "Provisional Government of India",
-                    "Azad Hind Government",
-                    "Swaraj Government of India",
-                    "Provisional Government of Azad Hind"
-                ],
-                "correctAnswer": 3,
-                "explanation": "The official proclamation was of the 'Provisional Government of Azad Hind.'"
-            },
-            {
-                "text": "What was the core idea behind Mahatma Gandhi's concept of 'Ramrajya' as an ideal state?",
-                "options": [
-                    "A highly centralised socialist state.",
-                    "A powerful, militarised nation.",
-                    "A stateless utopia without a representative government, army, or police force.",
-                    "A constitutional monarchy with limited powers."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi's 'Ramrajya' was a stateless, non-violent, harmonious society."
-            },
-            {
-                "text": "Regarding the military, what was Mahatma Gandhi's general stance?",
-                "options": [
-                    "He was deeply attracted to military discipline.",
-                    "He was against the military on the whole, but not against defensive war.",
-                    "He advocated for a large, strong military force.",
-                    "He believed a military was essential for maintaining order in a free India."
-                ],
-                "correctAnswer": 1,
-                "explanation": "He opposed militarism but was not against defensive war."
-            },
-            {
-                "text": "How did Mahatma Gandhi view the economy, as described in the provided text?",
-                "options": [
-                    "He advocated for large-scale industrialisation and state control.",
-                    "He supported capitalism with some social regulations.",
-                    "He wanted a decentralised economy without state control, dismissing both capitalism and Western socialism.",
-                    "He believed in a mixed economy with significant public sector presence."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi favored a decentralized, self-sustaining economy."
-            },
-            {
-                "text": "What was Subhash Bose's perspective on economic freedom and modernization?",
-                "options": [
-                    "He believed economic freedom was secondary to political freedom.",
-                    "He advocated for a \"back to the roots\" vision, similar to Gandhi.",
-                    "He considered economic freedom the essence of social and political freedom and was in favour of modernisation.",
-                    "He was against industrialisation in any form."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Bose believed in modernization and that economic freedom was vital."
-            },
-            {
-                "text": "How did Mahatma Gandhi relate religion to his political and social ideas?",
-                "options": [
-                    "He viewed religion as a personal matter, separate from politics.",
-                    "He used religion to create divisions and promote specific beliefs.",
-                    "He was primarily a man of religion, using it as the basis for all his ideas, stating it's a binding force.",
-                    "He rejected religious influence in public life."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi viewed religion as an all-encompassing moral force in public life."
-            },
-            {
-                "text": "What was Subhash Bose's approach to incorporating religious diversity within the Indian National Army (INA)?",
-                "options": [
-                    "He strictly adhered to one religious ideology.",
-                    "The INA was a mixture of various religions, races, and castes with total social equality of all soldiers.",
-                    "He excluded religious practices from the military.",
-                    "He promoted a specific religious outlook for soldiers."
-                ],
-                "correctAnswer": 1,
-                "explanation": "INA under Bose had total inter-religious equality."
-            },
-            {
-                "text": "What was one of Mahatma Gandhi's main goals for society concerning caste, as mentioned in the text?",
-                "options": [
-                    "Abolition of the varna system entirely.",
-                    "Eradicating untouchability while maintaining the varna distinctions of the caste system.",
-                    "Promoting inter-caste marriages to eliminate caste.",
-                    "Establishing a caste-less society through legislation."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gandhi focused on eradicating untouchability but not the varna system itself."
-            },
-            {
-                "text": "How did Subhash Bose envision change regarding the traditional social hierarchy and caste system in India?",
-                "options": [
-                    "Through gradual reform and persuasion.",
-                    "By maintaining the existing social order.",
-                    "Through a socialist revolution that would bring an end to the traditional social hierarchy.",
-                    "By re-interpreting ancient texts to justify the caste system."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Bose envisioned a socialist revolution ending hierarchical caste."
-            },
-            {
-                "text": "What was a notable action taken by Subhash Bose regarding women's participation in the Indian National Army (INA)?",
-                "options": [
-                    "He restricted women to non-combat roles.",
-                    "He formed a women's regiment, the Rani of Jhansi Regiment.",
-                    "He believed women should only focus on domestic duties.",
-                    "He did not specifically recruit women into the INA."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Bose formed the Rani of Jhansi Regiment for women."
-            },
-            {
-                "text": "Which of the following best describes Mahatma Gandhi's view on the English system of education in India?",
-                "options": [
-                    "He fully supported it as a means of modernisation.",
-                    "He was against it, advocating for an integrated approach focusing on vocational training.",
-                    "He believed it should be reformed to include more religious studies.",
-                    "He had no strong opinion on the matter."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gandhi opposed English-based education, supporting vocational/basic education."
-            },
-            {
-                "text": "What was Subhash Bose's advocacy regarding education for an industrial India?",
-                "options": [
-                    "Emphasis on basic education for all.",
-                    "Promotion of traditional Indian learning.",
-                    "Support for higher education, especially in technical and scientific fields.",
-                    "Focus on arts and humanities."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Bose advocated for technical and scientific education."
-            },
-            {
-                "text": "When did Germany attack Poland, leading to the outbreak of the Second World War?",
-                "options": [
-                    "August 1, 1939",
-                    "September 1, 1939",
-                    "October 1, 1939",
-                    "November 1, 1939"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The German invasion of Poland on September 1, 1939 started WWII."
-            },
-            {
-                "text": "What was the immediate response of the British Government of India to the outbreak of the Second World War?",
-                "options": [
-                    "They consulted Indian opinion before declaring support for the war.",
-                    "They declared India's support for the war without consulting Indian opinion.",
-                    "They remained neutral initially.",
-                    "They sought a resolution from the Indian National Congress."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Government of India was committed to the war without any Indian consultation."
-            },
-            {
-                "text": "What was the condition set by the Congress for supporting the British war effort during WWII?",
-                "options": [
-                    "Immediate and unconditional independence for India.",
-                    "Financial aid from Britain for India's development.",
-                    "A constituent assembly after the war to determine free India's political structure, and a genuinely responsible government at the Centre immediately.",
-                    "Transfer of all defence powers to Indian hands during the war."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Congress demanded a responsible government and a post-war constituent assembly."
-            },
-            {
-                "text": "What was Mahatma Gandhi's stance on supporting the Allied powers at the CWC meeting at Wardha?",
-                "options": [
-                    "He advocated for a non-aligned position.",
-                    "He had an unconditional support, distinguishing between democratic nations and totalitarian regimes.",
-                    "He supported the Allies only if India gained immediate independence.",
-                    "He believed India should join the Axis powers."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gandhi favored the Allied cause on moral grounds, distinguishing between democratic and totalitarian ideals."
-            },
-            {
-                "text": "What was Jawaharlal Nehru's position at the CWC meeting at Wardha regarding Indian participation in the war?",
-                "options": [
-                    "Immediate starting of the Civil Disobedience Movement.",
-                    "Unconditional support for the British war efforts.",
-                    "No Indian participation until India itself was free, and no immediate starting of CDM.",
-                    "Alliance with both Axis and Allied powers."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Nehru opposed participation without freedom for India."
-            },
-            {
-                "text": "What was the British government's response to the Congress's conditional offer of support during WWII?",
-                "options": [
-                    "They agreed to define their war aims and consult Indian representatives.",
-                    "They agreed to immediately set up a responsible government at the Centre.",
-                    "Their response was negative, refusing to define war aims or modify the 1935 Act, offering only a \"consultative committee\".",
-                    "They proposed immediate dominion status for India."
-                ],
-                "correctAnswer": 2,
-                "explanation": "British refused the demands, offering only a powerless consultative committee."
-            },
-            {
-                "text": "What was one of the hidden agendas of the British government in India during WWII, as revealed in the text?",
-                "options": [
-                    "To grant immediate self-rule to India.",
-                    "To form a joint Indo-British war cabinet.",
-                    "To provoke the Congress into a confrontation and then use the situation to acquire draconian powers.",
-                    "To significantly increase Indian representation in the Viceroy's executive council."
-                ],
-                "correctAnswer": 2,
-                "explanation": "A hidden motive was to force a political confrontation and repressive measures."
-            },
-            {
-                "text": "When did the Congress ministries in the provinces resign, following the CWC meeting where they decided not to support the war effort?",
-                "options": [
-                    "August 1939",
-                    "October 1939",
-                    "January 1940",
-                    "March 1940"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Provincial Congress ministries resigned in October 1939."
-            },
-            {
-                "text": "What was the goal of British policy in India, as stated by Viceroy Linlithgow in January 1940?",
-                "options": [
-                    "Immediate independence for India.",
-                    "Dominion status of Westminster variety, after the war.",
-                    "A socialist republic.",
-                    "Complete control over Indian defence."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Linlithgow stated dominion status could be considered after the war."
-            },
-            {
-                "text": "Which Congress session was presided over by Maulana Abul Kalam Azad in March 1940, where the Congress declared nothing short of complete independence?",
-                "options": [
-                    "Lahore session",
-                    "Karachi session",
-                    "Ramgarh session",
-                    "Tripuri session"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Ramgarh session (March 1940) was presided over by Azad."
-            },
-            {
-                "text": "What was the key demand made by the Muslim League in its Pakistan Resolution passed at the Lahore session in March 1940?",
-                "options": [
-                    "Joint electorates for all communities.",
-                    "A federal structure with strong central government.",
-                    "Grouping of geographically contiguous Muslim-majority areas into separate sovereign states.",
-                    "Increased representation for Muslims in existing provinces."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Pakistan Resolution demanded contiguous Muslim-majority areas be grouped as 'sovereign states.'"
-            },
-            {
-                "text": "Which of the following statements was part of the August Offer of 1940?",
-                "options": [
-                    "Immediate establishment of a national government at the Centre.",
-                    "A constituent assembly to be set up immediately after the war, composed solely of British officials.",
-                    "Expansion of the viceroy's executive council with a majority of Indians.",
-                    "Complete independence for India after the war."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The August Offer expanded the executive council with more Indians."
-            },
-            {
-                "text": "How did Jawaharlal Nehru react to the August Offer of 1940?",
-                "options": [
-                    "He welcomed it as a step towards self-government.",
-                    "He declared the \"Dominion status concept is dead as a doornail.\"",
-                    "He suggested a compromise with the British government.",
-                    "He sought clarifications before offering a response."
-                ],
-                "correctAnswer": 1,
-                "explanation": "\"Dominion status concept is dead as a doornail,\" declared Nehru."
-            },
-            {
-                "text": "What was the primary demand of the satyagrahi in the Individual Satyagraha launched by Gandhi in 1940?",
-                "options": [
-                    "Non-payment of taxes.",
-                    "Boycott of foreign goods.",
-                    "Freedom of speech against the war through an anti-war declaration.",
-                    "Resignation from government service."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The satyagrahis demanded the right to speak and declare their stance on the war."
-            },
-            {
-                "text": "What was the 'Delhi Chalo Movement' associated with?",
-                "options": [
-                    "Mass Civil Disobedience Movement of 1930.",
-                    "Quit India Movement of 1942.",
-                    "Individual Satyagraha, involving a march towards Delhi.",
-                    "Non-Cooperation Movement."
-                ],
-                "correctAnswer": 2,
-                "explanation": "In 1940, activists marched to Delhi in symbolic protest."
-            },
-            {
-                "text": "Who was designated by Mahatma Gandhi as his chosen successor amidst Japan's aggressive actions during WWII?",
-                "options": [
-                    "Sardar Vallabhbhai Patel",
-                    "Subhash Chandra Bose",
-                    "Jawaharlal Nehru",
-                    "Rajendra Prasad"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi named Jawaharlal Nehru his chosen successor."
-            },
-            {
-                "text": "What was the primary reason for sending the Cripps Mission to India in March 1942?",
-                "options": [
-                    "To finalise India's independence immediately.",
-                    "To seek Indian support for the war, given the real Japanese threat to invade India.",
-                    "To initiate a new phase of constitutional reforms based on Congress demands.",
-                    "To address the ongoing communal tensions."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Cripps Mission was sent due to Japan’s military threat."
-            },
-            {
-                "text": "What was a key proposal of the Cripps Mission regarding India's future status?",
-                "options": [
-                    "Immediate declaration of complete independence.",
-                    "An Indian Union with a dominion status, free to decide its relations with the world.",
-                    "Permanent British control over India's defence and foreign affairs.",
-                    "Division of India into multiple independent states."
-                ],
-                "correctAnswer": 1,
-                "explanation": "It proposed a dominion-status Indian Union post-war."
-            },
-            {
-                "text": "According to the Cripps Mission proposals, who would frame a new constitution for India after the end of the war?",
-                "options": [
-                    "The British Parliament.",
-                    "A constituent assembly convened after the war.",
-                    "A joint committee of British and Indian representatives.",
-                    "The Viceroy's executive council."
-                ],
-                "correctAnswer": 1,
-                "explanation": "A constituent assembly would be convened after the war."
-            },
-            {
-                "text": "What was one of the main objections of the Indian National Congress to the Cripps Mission proposals?",
-                "options": [
-                    "The offer of immediate and unconditional independence.",
-                    "The inclusion of a clear plan for immediate transfer of power.",
-                    "The right given to provinces to secede from the Indian Union.",
-                    "The complete transfer of defence to Indian hands during the war."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Congress objected to provinces being allowed to secede."
-            },
-            {
-                "text": "Why did the Muslim League criticize the Cripps Mission proposals?",
-                "options": [
-                    "It proposed a full-fledged Pakistan.",
-                    "It denied the Muslims the right to self-determination and the creation of Pakistan.",
-                    "It did not offer enough power to the viceroy.",
-                    "It proposed separate electorates for all minorities."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The proposals fell short of Pakistan; 'self-determination' wasn't guaranteed."
-            },
-            {
-                "text": "Who described the Cripps Mission scheme as \"a post-dated cheque\"?",
-                "options": [
-                    "Jawaharlal Nehru",
-                    "Subhash Chandra Bose",
-                    "Mahatma Gandhi",
-                    "Sardar Vallabhbhai Patel"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Gandhi famously called it a 'post-dated cheque on a crashing bank.'"
-            },
-            {
-                "text": "What was the state of Indian nationalism at the end of World War I?",
-                "options": [
-                    "It was in decline due to economic prosperity.",
-                    "It saw a resurgence in activity.",
-                    "It adopted a purely constitutional approach.",
-                    "It was primarily focused on regional issues."
-                ],
-                "correctAnswer": 1,
-                "explanation": "There was a surge in nationalist activity at the end of WWI."
-            },
-            {
-                "text": "What did the Congress Working Committee (CWC) decide regarding India's support for the war effort, after overriding Gandhi's and Nehru's objections?",
-                "options": [
-                    "To initiate a mass civil disobedience movement.",
-                    "To offer unconditional support to the British.",
-                    "To offer to cooperate with the government in the defence of India.",
-                    "To remain neutral in the conflict."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The CWC offered to cooperate with the government for Indian defence."
-            }
-        ],
-        "Quit India Movement, Demand for Pakistan, and the INA": [{
-                "text": "Which of the following was a primary reason for the decision to launch a struggle after the failure of the Cripps Mission?",
-                "options": [
-                    "The sudden availability of foreign funding for the national movement.",
-                    "Britain's unchanged attitude towards Indian independence despite constitutional proposals.",
-                    "The complete cessation of popular discontent across India.",
-                    "The immediate withdrawal of British forces from South-East Asia."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The failure of the Cripps Mission made it apparent that Britain was unwilling to grant real independence, prompting the call for a struggle."
-            },
-            {
-                "text": "In what month and year did the Congress Working Committee meet at Wardha to authorise Mahatma Gandhi to lead a non-violent mass movement?",
-                "options": [
-                    "August 1942",
-                    "July 1942",
-                    "March 1942",
-                    "September 1942"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The CWC met at Wardha in July 1942 and authorised Gandhi to lead the movement."
-            },
-            {
-                "text": "The 'Quit India' Resolution was ratified at a Congress meeting in which city?",
-                "options": [
-                    "Wardha",
-                    "Delhi",
-                    "Bombay",
-                    "Calcutta"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Quit India Resolution was ratified at the Congress meeting in Bombay."
-            },
-            {
-                "text": "On what specific date was the 'Quit India' Resolution ratified?",
-                "options": [
-                    "August 7, 1942",
-                    "August 8, 1942",
-                    "August 9, 1942",
-                    "August 10, 1942"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The resolution was ratified on August 8, 1942."
-            },
-            {
-                "text": "What famous mantra did Mahatma Gandhi give to the nation during the Quit India Movement?",
-                "options": [
-                    "\"Swaraj is my birthright\"",
-                    "\"Do or Die\"",
-                    "\"Jai Hind\"",
-                    "\"Vande Mataram\""
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gandhi famously called the nation to 'Do or Die.'"
-            },
-            {
-                "text": "Following the immediate arrest of top Congress leaders on August 9, 1942, who presided over the Congress Committee session and hoisted the flag?",
-                "options": [
-                    "Sucheta Kripalani",
-                    "Usha Mehta",
-                    "Aruna Asaf Ali",
-                    "Kasturbai Gandhi"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Aruna Asaf Ali presided and hoisted the flag in the leaders' absence."
-            },
-            {
-                "text": "Which of the following was not explicitly named as a storm centre of the Quit India Movement ?",
-                "options": [
-                    "United Provinces",
-                    "Bihar",
-                    "Punjab",
-                    "Karnataka"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Punjab was not an explicit centre of the movement in most accounts."
-            },
-            {
-                "text": "Which of these parallel governments established during the Quit India Movement was associated with \"Jatiya Sarkar\" and \"Vidyut Vahinis\"?",
-                "options": [
-                    "Ballia",
-                    "Tamluk (Midnapur)",
-                    "Satara",
+                    "Copyrights and Book Publication",
+                    "Land and real estate sector",
+                    "Piracy and Intellectual Property Rights",
                     "None of the above"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Tamluk (Midnapur) established its own 'Jatiya Sarkar' and had 'Vidyut Vahinis.'"
+                "correctAnswer": "Land and real estate sector",
+                "explanation": "Title insurance protects against problems with the chain of title to real estate."
             },
             {
-                "text": "The \"Prati Sarkar\" was a parallel government established in which region during the Quit India Movement?",
+                "text": "Which of the following statement/s are correct? \n(1) Insurance penetration is defined as total insurance divided by total population. \n(2) Insurance density is defined as total insurance premium divided by total GDP.",
                 "options": [
-                    "Ballia",
-                    "Tamluk (Midnapur)",
-                    "Satara",
-                    "United Provinces"
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Satara was home to the 'Prati Sarkar' parallel government."
+                "correctAnswer": "Neither 1 nor 2",
+                "explanation": "The definitions are swapped. Insurance Penetration is Premium/GDP. Insurance Density is Premium/Population."
             },
             {
-                "text": "Who among the following was a prominent personality involved in underground activities during the Quit India Movement?",
+                "text": "The term 'dear Money' refers to",
                 "options": [
-                    "Sardar Vallabhbhai Patel",
-                    "C. Rajagopalachari",
-                    "Jayaprakash Narayan",
-                    "Maulana Abul Kalam Azad"
+                    "Low rate of interest on housing loans",
+                    "Value of money at the recession stage",
+                    "High rate of interest",
+                    "Savings gained due to decrease in rate of interest on housing loans"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Jayaprakash Narayan was very active in underground Quit India resistance."
+                "correctAnswer": "High rate of interest",
+                "explanation": "Dear money refers to a situation where loans become expensive due to high interest rates."
             },
             {
-                "text": "Which leader started an underground radio in Bombay during the Quit India Movement?",
+                "text": "NPCI is an example of:",
                 "options": [
-                    "Aruna Asaf Ali",
-                    "Sucheta Kripalani",
-                    "Usha Mehta",
-                    "Rammanohar Lohia"
+                    "Chartered Company",
+                    "Statutory Corporation",
+                    "Not for Profit Company",
+                    "Subsidiary Company of Bank Board Bureau"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Usha Mehta organised the famous underground Congress radio in Bombay."
+                "correctAnswer": "Not for Profit Company",
+                "explanation": "NPCI is incorporated as a Not-for-Profit Company under the Companies Act."
             },
             {
-                "text": "Which of the following groups explicitly opposed or showed low-key response to the Quit India Movement?",
+                "text": "The principle of subrogation in insurance allows...",
                 "options": [
-                    "Youth",
-                    "Workers",
-                    "Muslims",
-                    "Peasants"
+                    "investment of policy amount",
+                    "refund for insured and insured's insurance company",
+                    "auto-renewal of policy.",
+                    "indemnification of the insured."
                 ],
-                "correctAnswer": 2,
-                "explanation": "The Muslim League and many Muslims showed a low-key or negative response."
+                "correctAnswer": "refund for insured and insured's insurance company",
+                "explanation": "Subrogation allows the insurance company to claim a refund/compensation from the third party responsible for the loss after paying the insured."
             },
             {
-                "text": " the Quit India Movement exhibited a higher element of what compared to previous movements?",
+                "text": "Consider following statements \nStatement1: ONGC is an example of public limited company. \nStatement2: ONGC's majority shareholding is owned of the Government of India.",
                 "options": [
-                    "Centralised leadership",
-                    "Planned violence",
-                    "Foreign support",
-                    "Spontaneity"
+                    "Both I & II are correct & II is the correct explanation for 1",
+                    "Both I & II are correct & II is not the correct explanation for 1",
+                    "I is correct but II is wrong",
+                    "I is wrong but II is correct"
                 ],
-                "correctAnswer": 3,
-                "explanation": "The movement was more spontaneous than earlier interventions."
+                "correctAnswer": "Both I & II are correct & II is not the correct explanation for 1",
+                "explanation": "Both statements are correct. However, being a 'Public Limited' company refers to share trading capability, while Statement 2 explains why it is a 'Public Sector' company."
             },
             {
-                "text": "On what specific date was Pakistan Day observed?",
+                "text": "How many of the following are the principles of insurance industry in India? \n1. Insurance client has right to privacy so health insurance company cannot ask him in the application form whether he has cancer or other terminal disease. \n2. Insurance product must cover real losses. \n3. Insurance product must cover imaginary losses. \n4. Person cannot buy life insurance of another person if he is not going to suffer direct loss upon the death of said person.",
                 "options": [
-                    "March 23, 1940",
-                    "August 8, 1942",
-                    "February 19, 1943",
-                    "March 23, 1943"
+                    "only two of these",
+                    "only three of these",
+                    "only four of these",
+                    "all five of these"
                 ],
-                "correctAnswer": 3,
-                "explanation": "Pakistan Day was observed on March 23, 1943."
+                "correctAnswer": "only two of these",
+                "explanation": "Statements 2 (Indemnity) and 4 (Insurable Interest) are correct principles. Statement 1 violates Uberrima Fides (Utmost Good Faith). Statement 3 is incorrect."
             },
             {
-                "text": "What was a primary cause of the Bengal Famine of 1943?",
+                "text": "How many of the following are examples of the government to citizen (G2C) services provided by the Post office? \n1. Providing Application form for Pradhan Mantri Fasal bima Yojana \n2. Printing Election Cards \n3. Selling of E-Stamp papers \n4. renewing the LIC policies for clients. \n5. Accepting payments for electricity and water bills.",
                 "options": [
-                    "Widespread floods damaging crops",
-                    "Diversion of foodstuffs to feed a vast Army",
-                    "Complete failure of monsoon",
-                    "Deliberate destruction of food stocks by the British"
+                    "only two of these",
+                    "only three of these",
+                    "only four of these",
+                    "all five of these"
                 ],
-                "correctAnswer": 1,
-                "explanation": "The diversion of food to feed the army was a primary cause."
+                "correctAnswer": "only three of these",
+                "explanation": "Statements 1, 2, and 3 are G2C services. Statements 4 and 5 are Business to Consumer (B2C) services."
             },
             {
-                "text": "The Rajagopalachari Formula, proposed in 1944, was a tacit acceptance of which political entity's demand?",
+                "text": "How many of the following law/laws is/are applicable on LIC? \n1. Life Insurance Corporation of India Act \n2. Insurance Act \n3. Insurance Regulatory and Development Authority (IRDAI) Act \n4. General Insurance Business regulation Act",
                 "options": [
-                    "Indian National Congress",
-                    "Hindu Mahasabha",
-                    "Muslim League",
-                    "Princely States"
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "All four of these"
                 ],
-                "correctAnswer": 2,
-                "explanation": "It accepted the Muslim League's demand for Pakistan in principle, subject to a plebiscite."
+                "correctAnswer": "only three of these",
+                "explanation": "Statements 1, 2, and 3 apply to LIC. Statement 4 applies to General Insurance."
             },
             {
-                "text": "Which prominent Hindu leader is mentioned as having condemned the C.R. Plan (Rajagopalachari Formula)?",
+                "text": "Consider following statements: \nStatement1: PM-JAY is an example of floater health policy. \nStatement2: PM-JAY covers all family member members of the beneficiary.",
                 "options": [
-                    "Madan Mohan Malaviya",
-                    "Syama Prasad Mookerjee",
-                    "Vir Savarkar",
-                    "B.S. Moonje"
+                    "Both I & II are correct & II is the correct explanation for 1",
+                    "Both I & II are correct & II is not the correct explanation for 1",
+                    "I is correct but II is wrong",
+                    "I is wrong but II is correct"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Savarkar protested against the C.R. Formula for conceding a plebiscite on partition."
+                "correctAnswer": "Both I & II are correct & II is the correct explanation for 1",
+                "explanation": "PM-JAY is a floater policy because the cover can be used by any or all family members (Statement 2 explains Statement 1)."
             },
             {
-                "text": "The Desai-Liaqat Pact aimed at the formation of what in the central government?",
+                "text": "Consider following statements: \nStatement1: PM-JAY is an example of indemnity based health insurance policy. \nStatement2: Beneficiary is not required to pay the premium of the PM-JAY scheme.",
                 "options": [
-                    "A joint defence council",
-                    "An interim government",
-                    "A constituent assembly",
-                    "A trade agreement"
+                    "Both I & II are correct & II is the correct explanation for 1",
+                    "Both I & II are correct & II is not the correct explanation for 1",
+                    "I is correct but II is wrong",
+                    "I is wrong but II is correct"
                 ],
-                "correctAnswer": 1,
-                "explanation": "It envisaged an interim government of Congress and Muslim League nominees."
+                "correctAnswer": "Both I & II are correct & II is not the correct explanation for 1",
+                "explanation": "Statement 1 is correct (Indemnity based). Statement 2 is correct (Free for beneficiary). Statement 2 does not explain why it is indemnity based."
             },
             {
-                "text": "What was the proposed representation for minorities in the central legislature under the Desai-Liaqat Pact?",
+                "text": "What is Abhiyan Indradhanush initiative?",
                 "options": [
+                    "IRDAI initiative ordering insurance companies to provide special products for LGBT community.",
+                    "ESIC initiative to change hospital bedsheets every day.",
+                    "Scheme by National Health Authority to provide corona vaccination...",
+                    "Initiative by the LIC to recruit transgender persons..."
+                ],
+                "correctAnswer": "ESIC initiative to change hospital bedsheets every day.",
+                "explanation": "Abhiyan Indradhanush is an ESIC initiative for changing hospital bedsheets daily."
+            },
+            {
+                "text": "How much percentage of the fund is invested by the ESIC in equities market?",
+                "options": [
+                    "0%",
+                    "15%",
                     "10%",
-                    "20%",
-                    "30%",
-                    "50%"
+                    "20%"
                 ],
-                "correctAnswer": 1,
-                "explanation": "The Pact proposed 20% reserved representation for minorities."
+                "correctAnswer": "15%",
+                "explanation": "ESIC invests 15% of its funds in the equities market."
             },
             {
-                "text": "When did Lord Wavell announce the Wavell Plan?",
+                "text": "How many of the following are examples of attached offices? \n1. National Informatics Centre (NIC) \n2. National Health Authority (NHA) \n3. Press Council of India (PCI) \n4. News Broadcasters & Digital Association (NBDA) \n5. Board for Regulation and Supervision of Payment and Settlement Systems (BPSS)",
                 "options": [
-                    "March 1945",
-                    "June 1945",
-                    "August 1945",
-                    "September 1945"
+                    "only two of these",
+                    "only three of these",
+                    "only four of these",
+                    "all five of these"
                 ],
-                "correctAnswer": 1,
-                "explanation": "The Wavell Plan was announced in June 1945."
+                "correctAnswer": "only two of these",
+                "explanation": "NIC and NHA are attached offices. PCI and BPSS are statutory bodies. NBDA is an SRO."
             },
             {
-                "text": "A key proposal of the Wavell Plan was that all members of the Viceroy's Executive Council, with two exceptions, were to be Indians. Which were these two exceptions?",
+                "text": "How many of the following insurances are covered inside the Bima Vistar all in one policy proposed by the IRDAI? \n1. Health Insurance \n2. Life Insurance \n3. Property Insurance \n4. Crop Insurance",
                 "options": [
-                    "Governor-General and Finance Member",
-                    "Governor-General and Commander-in-Chief",
-                    "Commander-in-Chief and Law Member",
-                    "Secretary of State for India and Governor-General"
+                    "only one of these",
+                    "only three of these",
+                    "only two of these",
+                    "All four of these"
                 ],
-                "correctAnswer": 1,
-                "explanation": "All except the Governor-General and Commander-in-Chief were to be Indians."
+                "correctAnswer": "only three of these",
+                "explanation": "Bima Vistaar covers Life, Health, and Property insurance in a single policy."
             },
             {
-                "text": "The Congress rejected the Wavell Plan primarily because it saw the plan as an attempt to:",
+                "text": "IRDAI has proposed Bima Vahak agents for increasing the penetration of insurance products at___level. \n1. Every Gram Panchayat Level \n2. Every municipality level.",
                 "options": [
-                    "Introduce universal adult franchise.",
-                    "Grant immediate dominion status to India.",
-                    "Reduce the Congress to the status of a purely caste Hindu party.",
-                    "Abolish separate electorates."
+                    "only 1",
+                    "both 1 and 2",
+                    "only 2",
+                    "neither 1 nor 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Congress objected to being viewed as just a caste Hindu body."
+                "correctAnswer": "only 1",
+                "explanation": "Bima Vahak agents are proposed for the Gram Panchayat level."
             },
             {
-                "text": "Who originally conceived the idea of creating an army from Indian prisoners of war (POWs) for the purpose of Indian independence?",
+                "text": "Find correct about IRDAI's free look period rule for life insurance companies. \n1. It helps the client to try the product for 30 days. \n2. Insurance company shall have levy surrender penalty, if client cancels the policy within 30 days of joining.",
                 "options": [
-                    "Subhash Chandra Bose",
-                    "Rashbehari Bose",
-                    "Mohan Singh",
-                    "Aruna Asaf Ali"
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Captain Mohan Singh formed the initial INA from POWs before Bose took over."
+                "correctAnswer": "only 1",
+                "explanation": "Statement 1 is correct (30-day trial). Statement 2 is incorrect (No surrender penalty during this period)."
             },
             {
-                "text": "The INA received a significant boost with the outbreak of which movement in India?",
+                "text": "How much GST tax is applicable on the Insurance products in India?",
                 "options": [
-                    "Civil Disobedience Movement",
-                    "Non-Cooperation Movement",
-                    "Quit India Movement",
-                    "Swadeshi Movement"
+                    "0%",
+                    "12%",
+                    "5%",
+                    "18%"
                 ],
-                "correctAnswer": 2,
-                "explanation": "INA morale soared after Quit India put India into open revolt."
+                "correctAnswer": "18%",
+                "explanation": "18% GST is applicable on insurance premiums."
             },
             {
-                "text": "On what date did Subhash Bose form the Provisional Government for Free India at Singapore?",
+                "text": "Find correct about the scheme for cashless treatment to victims road accidents in India. \n1. It is legally required under the Bharatiya Nyay Samita. \n2. National Highways Authority of India (NHAI) is the implementing agency for this scheme.",
                 "options": [
-                    "August 15, 1943",
-                    "October 21, 1943",
-                    "January 23, 1944",
-                    "May 4, 1944"
+                    "only 1",
+                    "only 2",
+                    "neither 1 nor 2",
+                    "both 1 and 2"
                 ],
-                "correctAnswer": 1,
-                "explanation": "It was declared on October 21, 1943."
+                "correctAnswer": "neither 1 nor 2",
+                "explanation": "It is required under the Motor Vehicle Act (not BNS). The implementing agency is the National Health Authority (NHA) (not NHAI)."
             },
             {
-                "text": "From which city did Subhash Bose give the famous slogan, \"Give me blood, I will give you freedom\"?",
+                "text": "The five lakh rupees health insurance given under Pradhan Mantri Jan Arogya Yojana is an example of \n1. floater insurance \n2. fixed benefit insurance",
                 "options": [
-                    "Singapore",
-                    "Rangoon",
-                    "Berlin",
-                    "Malaya"
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
                 ],
-                "correctAnswer": 3,
-                "explanation": "He first issued this call in Malaya in speeches to expatriate Indians."
+                "correctAnswer": "only 1",
+                "explanation": "PM-JAY is a floater insurance policy (Statement 1 correct). It is indemnity-based, not fixed benefit (Statement 2 incorrect)."
             },
             {
-                "text": "The Japanese army gave the Andaman and Nicobar islands to the INA. What were these islands renamed as, respectively?",
+                "text": "IRDAI aims to launch a portal giving 1 stop solution to insurance purchase, renewal and compensation claims. The name of the portal is ____.",
                 "options": [
-                    "Swaraj Dweep and Shahid Dweep",
-                    "Shahid Dweep and Swaraj Dweep",
-                    "Azad Dweep and Hind Dweep",
-                    "Bharat Dweep and Mukti Dweep"
+                    "Bima Sarathi",
+                    "Bima Saral",
+                    "Bima Sugam",
+                    "Bima Laabh"
                 ],
-                "correctAnswer": 1,
-                "explanation": "The islands were renamed Shahid Dweep (Andaman) and Swaraj Dweep (Nicobar)."
+                "correctAnswer": "Bima Sugam",
+                "explanation": "Bima Sugam is the portal for a one-stop insurance solution."
             },
             {
-                "text": "According to reports, Subhash Bose died mysteriously in an air-crash at which location on August 18, 1945?",
+                "text": "In 2024 Government has allowed the enrolment of all senior citizens irrespective of their income level in PM-JAY if they're aged ___ or higher.",
                 "options": [
-                    "Singapore",
-                    "Rangoon",
-                    "Taipei (Taiwan)",
-                    "Berlin"
+                    "60",
+                    "70",
+                    "65",
+                    "There is no such provision."
                 ],
-                "correctAnswer": 2,
-                "explanation": "Most reports place his reported death at Taipei, Taiwan."
+                "correctAnswer": "70",
+                "explanation": "The 2024 reform allows all senior citizens aged 70 or higher to enroll in PM-JAY."
             },
             {
-                "text": "Which of the following parallel governments during the Quit India Movement was led by Chittu Pandey?",
+                "text": "How many of the following are eligible to purchase a health insurance policy in India? \n1. Any senior citizen aged 65 or higher \n2. An HIV positive patient \n3. A patient with stage-2 cancer",
                 "options": [
-                    "Satara",
-                    "Tamluk",
-                    "Ballia",
-                    "Midnapore"
+                    "Only one of these",
+                    "All three of these",
+                    "Only two of these",
+                    "None of these"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Chittu Pandey led Ballia's parallel government."
+                "correctAnswer": "All three of these",
+                "explanation": "Recent reforms by IRDAI have made all these categories eligible for purchasing health insurance."
             },
             {
-                "text": "The term \"man-made famine\" is used to describe the famine of 1943, implying a significant role of:",
+                "text": "What is the objective of NHCX portal set up by health ministry?",
                 "options": [
-                    "Natural disasters",
-                    "Colonial policies and mismanagement",
-                    "Interstate conflicts",
-                    "Absence of international aid"
+                    "Monitoring the attendance of doctors in PM-JAY hospitals.",
+                    "Monitoring the supply of medicines in PM-JAY hospitals.",
+                    "Faster processing of the bills by connecting hospitals with health insurance companies.",
+                    "Both A and B."
                 ],
-                "correctAnswer": 1,
-                "explanation": "British colonial policy and mismanagement led to the famine."
+                "correctAnswer": "Faster processing of the bills by connecting hospitals with health insurance companies.",
+                "explanation": "NHCX (National Health Claim Exchange) is for faster claims processing."
             },
             {
-                "text": "Who was the President of the All India Khilafat Committee that Gandhi held?",
+                "text": "What is the objective of AIDE App also called Sahayak App?",
                 "options": [
-                    "Maulana Abul Kalam Azad",
-                    "Shaukat Ali",
-                    "Muhammad Ali",
-                    "Mahatma Gandhi"
+                    "Enrolment of the beneficiaries in ESIC",
+                    "Enrolment of the beneficiaries in crop insurance",
+                    "Enrolment of the beneficiaries in PM-JAY",
+                    "Enrolment of the beneficiaries in postal life insurance"
                 ],
-                "correctAnswer": 3,
-                "explanation": "Gandhi served as President of the All India Khilafat Committee."
+                "correctAnswer": "Enrolment of the beneficiaries in crop insurance",
+                "explanation": "AIDE (Sahayak) App is for enrollment in crop insurance schemes like PMFBY."
             },
             {
-                "text": "The August Offer (1940) proposed that no future constitution would be adopted without the consent of:",
+                "text": "Find Correct statement(s) about the foreign direct investment limits in Indian insurance sector. \n1. FDI is prohibited in LIC. \n2. Private sector insurance companies are allowed to accept up to 74% FDI.",
                 "options": [
-                    "Minorities",
-                    "Princely states",
-                    "British Parliament",
-                    "Indian National Congress"
+                    "1 only",
+                    "2 only",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
                 ],
-                "correctAnswer": 0,
-                "explanation": "Consent of minorities was specifically cited in the August Offer."
-            },
-            {
-                "text": "When Japan surrendered in World War II, what happened to the INA?",
-                "options": [
-                    "It launched a final offensive.",
-                    "It surrendered along with Japan.",
-                    "It retreated to mainland India.",
-                    "It transformed into a political party."
-                ],
-                "correctAnswer": 1,
-                "explanation": "With Japanese surrender, the INA also surrendered."
-            },
-            {
-                "text": "Which of the following figures was not explicitly mentioned as participating in the underground activities during the Quit India Movement?",
-                "options": [
-                    "Rammanohar Lohia",
-                    "Jawaharlal Nehru",
-                    "Jayaprakash Narayan",
-                    "Sucheta Kripalani"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Jawaharlal Nehru was imprisoned soon after the movement began."
-            },
-            {
-                "text": "The Quit India Movement saw a significant erosion of loyalty to the British government among:",
-                "options": [
-                    "Indian princely states",
-                    "The Communist Party of India",
-                    "The general Indian populace",
-                    "The Muslim League"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The movement led to mass alienation from the colonial regime."
-            },
-            {
-                "text": "The Rajagopalachari Formula included a provision for a plebiscite in Muslim majority areas to decide on:",
-                "options": [
-                    "Their accession to a unified India",
-                    "Whether or not to form a separate sovereign state",
-                    "Their representation in the Constituent Assembly",
-                    "Their economic integration with neighbouring regions"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The proposal was for a plebiscite to decide the creation of Pakistan."
-            },
-            {
-                "text": "The Desai-Liaqat Pact proposed that the interim government at the centre should consist of an equal number of persons nominated by:",
-                "options": [
-                    "Congress and Hindu Mahasabha",
-                    "Muslim League and Princely States",
-                    "Congress and Muslim League",
-                    "British government and Indian political parties"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The pact proposed equal representation of Congress and Muslim League."
-            },
-            {
-                "text": "The Wavell Plan stipulated that the Governor-General was to exercise his veto power on the advice of whom?",
-                "options": [
-                    "The Secretary of State for India",
-                    "The British Prime Minister",
-                    "The Executive Council's Indian members",
-                    "Ministers (implied, as they would be Indians)"
-                ],
-                "correctAnswer": 3,
-                "explanation": "He was to act on the advice of Indian ministers."
-            },
-            {
-                "text": "Subhash Chandra Bose's political guru was:",
-                "options": [
-                    "Mahatma Gandhi",
-                    "Jawaharlal Nehru",
-                    "Chittaranjan Das",
-                    "Sardar Vallabhbhai Patel"
-                ],
-                "correctAnswer": 2,
-                "explanation": "C.R. Das was Bose's political mentor."
-            },
-            {
-                "text": "What pseudo name did Subhash Bose use when he met Hitler?",
-                "options": [
-                    "General Singh",
-                    "Orlando Mazzotta",
-                    "Azad Hind",
-                    "Bhagat Singh"
-                ],
-                "correctAnswer": 1,
-                "explanation": "He used the name Orlando Mazzotta."
-            },
-            {
-                "text": "What was the name of the brigade formed in Germany by Subhash Bose, consisting of Indian prisoners of war?",
-                "options": [
-                    "Azad Brigade",
-                    "Mukti Sena (Freedom Army)",
-                    "Bharath Sena",
-                    "Hindustan Army"
-                ],
-                "correctAnswer": 1,
-                "explanation": "In Germany, he formed the 'Mukti Sena.'"
-            },
-            {
-                "text": "In which city were the INA headquarters shifted to after its formation?",
-                "options": [
-                    "Singapore",
-                    "Tokyo",
-                    "Rangoon",
-                    "Berlin"
-                ],
-                "correctAnswer": 2,
-                "explanation": "INA headquarters shifted to Rangoon (Yangon)."
-            },
-            {
-                "text": "Which of the following was a reason for starting the struggle for the Quit India Movement, related to the conduct of the British in South-East Asia?",
-                "options": [
-                    "The generous financial aid provided by the British to the region.",
-                    "The British refusal to engage in trade with local populations.",
-                    "The manner in which the British evacuated, leaving subjects to their fate.",
-                    "The establishment of responsible governments by the British."
-                ],
-                "correctAnswer": 2,
-                "explanation": "The British retreat from Burma and Malaya, abandoning civilians, was cited as one reason."
-            },
-            {
-                "text": "The Quit India Resolution authorised Gandhi to take charge of what type of mass movement?",
-                "options": [
-                    "An armed rebellion",
-                    "A non-violent mass movement",
-                    "A constitutional agitation",
-                    "An underground insurgency"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The movement was explicitly non-violent in its conception."
-            },
-            {
-                "text": "The \"Do or Die\" mantra was given by Gandhi with the specific instruction: \"We shall either free India or ____; we shall not live to see the perpetuation of our slavery.\"",
-                "options": [
-                    "Negotiate with the British",
-                    "Die in the attempt",
-                    "Join the Axis powers",
-                    "Form a parallel government"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Gandhi's exact words: '...or die in the attempt.'"
-            },
-            {
-                "text": "What was the fate of the Congress Working Committee, All India Congress Committee, and Provincial Congress Committees on August 9, 1942?",
-                "options": [
-                    "They were relocated to underground hideouts.",
-                    "They were declared unlawful associations.",
-                    "They were merged to form a new united front.",
-                    "They were tasked with forming a provisional government."
-                ],
-                "correctAnswer": 1,
-                "explanation": "All Congress Committees were declared unlawful by the government."
-            },
-            {
-                "text": "The Quit India Movement highlighted the crucial role of which two sections as its backbone?",
-                "options": [
-                    "Intellectuals and landlords",
-                    "Soldiers and police",
-                    "Students, workers and peasants",
-                    "Traders and industrialists"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The movement's stalwarts were students, workers, and peasants."
-            },
-            {
-                "text": "The Famine of 1943 also saw a halt in rice imports from which regions, aggravating the crisis?",
-                "options": [
-                    "Europe and North America",
-                    "Africa and Middle East",
-                    "Burma and South-East Asia",
-                    "Australia and New Zealand"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Japanese occupation of Burma and South-East Asia cut rice imports."
-            },
-            {
-                "text": "What was the primary objective of the Rajagopalachari Formula regarding the Muslim League?",
-                "options": [
-                    "To demand separate electorates for Muslims.",
-                    "To secure the League's endorsement of independence and cooperation in a provisional government.",
-                    "To abolish the demand for Pakistan.",
-                    "To create a federal structure with weak central government."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The formula aimed to secure Muslim League cooperation in the national cause in exchange for a plebiscite on partition."
-            },
-            {
-                "text": "What was the primary reason cited by the British government for their willingness to start negotiations leading to the Wavell Plan?",
-                "options": [
-                    "The immediate need to transfer power due to Indian demands.",
-                    "Increased pressure from the Axis powers.",
-                    "The end of the war in Europe and the continued Japanese threat.",
-                    "A desire to implement the Cripps Mission proposals in full."
-                ],
-                "correctAnswer": 2,
-                "explanation": "Negotiations restarted as the war in Europe ended but Japan remained a threat, making Indian cooperation vital."
+                "correctAnswer": "2 only",
+                "explanation": "FDI up to 20% is allowed in LIC (Statement 1 incorrect). Private sector allows up to 74% FDI (Statement 2 correct)."
             }
         ],
-        "Constitutional, Administrative and Judicial Developments": [{
-                "text": "The period of the East India Company's administration in India, according to the source, is recognised between which years?",
+        "Pillar_1D2_Pension & 1D3_Financial inclusion": [{
+                "text": "In the year 2022, the Government of India taken which of the following reforms in the pension and insurance sector? \n1. If a Central government employee is not interested in NPS he can switch back to the Old Pension Scheme. \n2. It is no longer compulsory for a vehicle owner to purchase Third Party Motor vehicle Insurance.",
                 "options": [
-                    "1600-1757",
-                    "1757-1858",
-                    "1773-1858",
-                    "1858-1947"
+                    "Only 1",
+                    "Both 1 and 2",
+                    "Only 2",
+                    "Neither 1 nor 2"
                 ],
-                "correctAnswer": 2,
-                "explanation": "The Regulating Act of 1773 marks the official start of the East India Company's administration, which lasted until 1858."
+                "correctAnswer": "Neither 1 nor 2",
+                "explanation": "Statement 1 is incorrect as there is no proposal to scrap NPS. Statement 2 is incorrect as third-party motor liability insurance is mandatory under the Motor Vehicle Act."
             },
             {
-                "text": "After the Battle of Buxar in 1764, the East India Company obtained the Diwani rights of which specific regions?",
+                "text": "Find incorrect abbreviations: \n1. IRDAI: Indian Regulation and Development Authority for Insurance \n2. SEBI: Securities and Exchange Board of India \n3. PFRDA: Pension Fund Rules and Development Authority",
                 "options": [
-                    "Bengal, Awadh, and Bihar",
-                    "Bengal, Bihar, and Orissa",
-                    "Madras, Bombay, and Bengal",
-                    "Delhi, Agra, and Punjab"
+                    "Only 1 & 2",
+                    "Only 2",
+                    "Only 1 & 3",
+                    "None of them"
                 ],
-                "correctAnswer": 1,
-                "explanation": "After Buxar, the Company was granted Diwani rights over Bengal, Bihar, and Orissa."
+                "correctAnswer": "Only 1 & 3",
+                "explanation": "IRDAI stands for Insurance Regulatory and Development Authority of India. PFRDA stands for Pension Fund Regulatory and Development Authority."
             },
             {
-                "text": "The dual system of government in Bengal, implemented between 1765 and 1772, was primarily characterised by:",
+                "text": "Which of the following statement(s) is/are incorrect regarding EPFO? \n(1) EPFO administers all the funds collected in Atal Pension Yojana. \n(2) EPFO provident funds interest rate is decided by PFRDA.",
                 "options": [
-                    "Efficient administration and reduced economic exploitation",
-                    "Rampant corruption, excessive revenue demands, and the Company's bankruptcy",
-                    "A period of significant social reform and infrastructure development",
-                    "Direct parliamentary control over Indian affairs"
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
                 ],
-                "correctAnswer": 1,
-                "explanation": "This period was marked by corruption, revenue exploitation, and financial difficulties."
+                "correctAnswer": "Both 1 and 2",
+                "explanation": "Statement 1 is incorrect because APY is handled by PFRDA. Statement 2 is incorrect because EPFO interest rates are decided by the Central Board of Trustees (CBT)."
             },
             {
-                "text": "Which of the following legislative acts first introduced an element of centralised administration in British India?",
+                "text": "Which of the following statement(s) is/are correct regarding NPS? \n1. All the money collected from this scheme is used only for the borrowing programs of the government. \n2. NPS accounts cannot be opened for minors.",
                 "options": [
-                    "Pitt’s India Act of 1784",
-                    "The Regulating Act of 1773",
-                    "The Charter Act of 1793",
-                    "The Act for Better Government of India, 1858"
+                    "Only 1",
+                    "Only 2",
+                    "Both 1 and 2",
+                    "Neither 1 nor 2"
                 ],
-                "correctAnswer": 1,
-                "explanation": "The Regulating Act of 1773 instituted the first step toward centralized administration."
+                "correctAnswer": "Only 2",
+                "explanation": "Statement 1 is incorrect as NPS funds are invested in market-linked instruments. Statement 2 is correct; generally, NPS accounts are for citizens aged 18-65 (though NPS Vatsalya was later introduced for minors, in the context of this specific question and explanation, the age limit applies)."
             },
             {
-                "text": "Under The Regulating Act of 1773, where was the Supreme Court of Judicature established?",
+                "text": "Which of the following statements is correct regarding Pradhan Mantri Shram Yogi Maandhan Yojana?",
                 "options": [
-                    "Bombay",
-                    "Madras",
-                    "Calcutta",
-                    "Delhi"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Supreme Court was set up in Calcutta in 1774."
-            },
-            {
-                "text": "Which Act first referred to the Company's territories in India as 'British possessions'?",
-                "options": [
-                    "The Regulating Act of 1773",
-                    "The Act of 1786",
-                    "Pitt’s India Act of 1784",
-                    "The Charter Act of 1793"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Pitt’s India Act was the first to use this phrase."
-            },
-            {
-                "text": "Lord Cornwallis gained the powers of both the Governor-General and the Commander-in-Chief through which specific legislative measure?",
-                "options": [
-                    "The Regulating Act of 1773",
-                    "Pitt’s India Act of 1784",
-                    "The Act of 1786",
-                    "The Charter Act of 1793"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Act of 1786 allowed Cornwallis to combine the roles of Governor-General and Commander-in-Chief."
-            },
-            {
-                "text": "Which Charter Act mandated royal approval for the appointments of the Governor-General, the governors, and the commander-in-chief?",
-                "options": [
-                    "The Charter Act of 1793",
-                    "The Charter Act of 1813",
-                    "The Charter Act of 1833",
-                    "The Charter Act of 1853"
-                ],
-                "correctAnswer": 0,
-                "explanation": "The Charter Act of 1793 required royal approval for these key appointments."
-            },
-            {
-                "text": "For the first time, the constitutional position of the British territories in India was explicitly defined by which Charter Act?",
-                "options": [
-                    "The Charter Act of 1793",
-                    "The Charter Act of 1813",
-                    "The Charter Act of 1833",
-                    "The Charter Act of 1853"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The 1813 Act defined the constitutional position of British Indian territories."
-            },
-            {
-                "text": "Which Act lifted all restrictions on European immigration and the acquisition of property in India?",
-                "options": [
-                    "The Charter Act of 1813",
-                    "The Charter Act of 1833",
-                    "The Charter Act of 1853",
-                    "The Government of India Act, 1919"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Charter Act of 1833 lifted restrictions on European immigration and land ownership."
-            },
-            {
-                "text": "The Charter Act of 1833 made provisions for which of the following regarding Indian laws?",
-                "options": [
-                    "Immediate abolition of traditional Indian legal systems",
-                    "Codification and consolidation of Indian laws",
-                    "Exclusive application of English common law",
-                    "Translation of all British laws into Indian vernaculars"
-                ],
-                "correctAnswer": 1,
-                "explanation": "It called for the appointment of a Law Commission for codification of Indian laws."
-            },
-            {
-                "text": "The Company's patronage over civil services was dissolved, and positions were opened to competitive examination by which Act?",
-                "options": [
-                    "The Charter Act of 1833",
-                    "The Charter Act of 1853",
-                    "The Act for Better Government of India, 1858",
-                    "Indian Civil Service Act, 1861"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Charter Act of 1853 introduced open competitive examinations for civil services."
-            },
-            {
-                "text": "The assumption of the Government of India by the British Crown occurred after which major historical event?",
-                "options": [
-                    "The Battle of Plassey (1757)",
-                    "The abolition of the Dual System (1772)",
-                    "The Revolt of 1857",
-                    "The passage of the Government of India Act, 1935"
-                ],
-                "correctAnswer": 2,
-                "explanation": "After the Revolt of 1857, Government of India passed to the Crown."
-            },
-            {
-                "text": "The Indian Councils Act, 1861, laid the foundations of cabinet government in India through the introduction of which system?",
-                "options": [
-                    "Dual System",
-                    "Dyarchy",
-                    "Portfolio System",
-                    "Federal System"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Portfolio System was introduced under this Act."
-            },
-            {
-                "text": "Which Act first accepted the principle of representation of non-officials in legislative bodies in India?",
-                "options": [
-                    "The Regulating Act of 1773",
-                    "The Charter Act of 1853",
-                    "Indian Councils Act, 1861",
-                    "Indian Councils Act, 1892"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Indian Councils Act, 1861, included non-official members in councils."
-            },
-            {
-                "text": "The Indian Councils Act, 1892, allowed various bodies to recommend members to the provincial councils. Which of the following accurately lists such bodies?",
-                "options": [
-                    "Only universities and trade bodies",
-                    "Universities, district boards, municipalities, zamindars, trade bodies, and chambers of commerce",
-                    "Only district boards and zamindars",
-                    "Only municipalities and chambers of commerce"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Representation was broadened to include these groups for recommendations to provincial councils."
-            },
-            {
-                "text": "Who was the first Indian to join the Governor-General's or Viceroy's Executive Council, serving as a law member?",
-                "options": [
-                    "Dadabhai Naoroji",
-                    "Surendranath Banerjea",
-                    "Satyendra Prasad Sinha",
-                    "Gopal Krishna Gokhale"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Satyendra Prasad Sinha was the first Indian law member in the Executive Council."
-            },
-            {
-                "text": "Which Act is significant for making the first attempt to introduce a representative and popular element in Indian governance, notably by introducing separate electorates for Muslims?",
-                "options": [
-                    "Indian Councils Act, 1892",
-                    "Indian Councils Act, 1909 (Morley-Minto Reforms)",
-                    "Government of India Act, 1919 (Montague-Chelmsford Reforms)",
-                    "Government of India Act, 1935"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Indian Councils Act, 1909, introduced separate electorates for Muslims."
-            },
-            {
-                "text": "The British government explicitly declared its objective of gradually introducing responsible government in India as an integral part of the British Empire for the first time through which reforms?",
-                "options": [
-                    "Morley-Minto Reforms of 1909",
-                    "Montague-Chelmsford Reforms of 1919",
-                    "Simon Commission Report of 1930",
-                    "Government of India Act, 1935"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Responsible government was the declared objective in the Montague-Chelmsford Reforms."
-            },
-            {
-                "text": "Dyarchy was introduced in the provinces under which of the following legislative acts?",
-                "options": [
-                    "Indian Councils Act, 1892",
-                    "Indian Councils Act, 1909",
-                    "Government of India Act, 1919",
-                    "Government of India Act, 1935"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Dyarchy in provinces was introduced by the 1919 Act."
-            },
-            {
-                "text": "The Government of India Act, 1919, established a bicameral legislature at the Centre. What were these two houses called?",
-                "options": [
-                    "Legislative Assembly and Provincial Council",
-                    "Council of State and Legislative Assembly",
-                    "Imperial Council and Central Assembly",
-                    "House of Lords and House of Commons"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The two houses were Council of State and Legislative Assembly."
-            },
-            {
-                "text": "The Simon Commission was appointed two years ahead of its schedule, as per the 1919 Act's provision. In which year was it constituted?",
-                "options": [
-                    "1925",
-                    "1927",
-                    "1929",
-                    "1930"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Simon Commission was appointed in 1927."
-            },
-            {
-                "text": "Which of the following was a key provision of the Government of India Act, 1935?",
-                "options": [
-                    "Introduction of dyarchy at the Centre",
-                    "Abolition of provincial autonomy",
-                    "Establishment of an All-India Federation",
-                    "Restriction of communal electorates"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Act provided for an All-India Federation."
-            },
-            {
-                "text": "Under the Government of India Act, 1935, provinces derived their legal authority directly from which source?",
-                "options": [
-                    "The British Parliament",
-                    "The Governor-General of India",
-                    "The British Crown",
-                    "Their respective Provincial Legislative Councils"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Legal authority was directly vested from the British Crown."
-            },
-            {
-                "text": "The India Council of the Secretary of State was abolished by which Act?",
-                "options": [
-                    "Indian Councils Act, 1909",
-                    "Government of India Act, 1919",
-                    "Government of India Act, 1935",
-                    "Indian Independence Act, 1947"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The 1935 Act finally abolished the Secretary of State's Council."
-            },
-            {
-                "text": "Who is recognised as the first to organise the civil services in India?",
-                "options": [
-                    "Warren Hastings",
-                    "Lord Dalhousie",
-                    "Lord William Bentinck",
-                    "Lord Cornwallis"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Lord Cornwallis is regarded as the organizer of the Indian civil services."
-            },
-            {
-                "text": "What was Lord Cornwallis's stated belief regarding Indians that led to their exclusion from high civil service offices?",
-                "options": [
-                    "Indians lacked formal education.",
-                    "Indians were inherently corrupt.",
-                    "Indians were not loyal to the British Crown.",
-                    "Indians posed a security threat to British administration."
-                ],
-                "correctAnswer": 1,
-                "explanation": "Cornwallis believed Indians to be corrupt and thus excluded them from high offices."
-            },
-            {
-                "text": "Satyendra Nath Tagore achieved what significant milestone in 1863?",
-                "options": [
-                    "He became the first Indian judge in the Supreme Court.",
-                    "He became the first Indian to qualify for the Indian Civil Service.",
-                    "He was appointed as the first Indian Governor-General.",
-                    "He founded the first Indian political association."
-                ],
-                "correctAnswer": 1,
-                "explanation": "He was the first Indian to enter the Indian Civil Service."
-            },
-            {
-                "text": "The Aitchison Committee on Public Services (1886), appointed by Lord Dufferin, recommended the classification of the civil service into which three categories?",
-                "options": [
-                    "Central, Provincial, and District",
-                    "Imperial, Provincial, and Subordinate",
-                    "Covenanted, Uncovenanted, and Inferior",
-                    "Higher, Middle, and Lower"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The committee classified services as Imperial, Provincial, and Subordinate."
-            },
-            {
-                "text": "The Lee Commission (1924) recommended a specific parity for direct recruitment to the ICS between Europeans and Indians to be achieved within a certain timeframe. What was this recommendation?",
-                "options": [
-                    "25:75 in 10 years",
-                    "50:50 in 15 years",
-                    "75:25 in 20 years",
-                    "60:40 in 5 years"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Lee Commission recommended a parity of 50:50 to be achieved in 15 years."
-            },
-            {
-                "text": "In pre-colonial India, which official was responsible for the maintenance of law and order in the cities?",
-                "options": [
-                    "Faujdar",
-                    "Amil",
-                    "Thanedar",
-                    "Kotwal"
-                ],
-                "correctAnswer": 3,
-                "explanation": "The Kotwal was responsible for city law and order."
-            },
-            {
-                "text": "Lord Cornwallis modernised the old Indian police system in 1791 by placing thanas under a daroga and a Superintendent of Police (SP) at the head of which administrative unit?",
-                "options": [
-                    "Division",
-                    "Province",
-                    "District",
-                    "Presidency"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Each district had a Superintendent of Police at its head."
-            },
-            {
-                "text": "The Indian Police Act, 1861, which formalised the police system, resulted from the recommendations of which commission?",
-                "options": [
-                    "The Bentinck Commission",
-                    "The Mayo Commission",
-                    "The Police Commission (1860)",
-                    "The Curzon Commission"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Police Commission (1860) led to the Indian Police Act, 1861."
-            },
-            {
-                "text": "The Police Commission of 1902 recommended the establishment of which two intelligence bodies?",
-                "options": [
-                    "Central Investigation Bureau (CIB) and State Intelligence Department (SID)",
-                    "Criminal Investigation Department (CID) in provinces and a Central Intelligence Bureau at the Centre",
-                    "Provincial Special Branches and a Federal Intelligence Unit",
-                    "District Intelligence Units and a National Security Agency"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The recommendation was for CIDs in provinces and a Central Intelligence Bureau at the Centre."
-            },
-            {
-                "text": "The establishment of 'Mayor's Courts' in Madras, Bombay, and Calcutta in 1726 was initiated by which authority?",
-                "options": [
-                    "The British Crown",
-                    "The East India Company",
-                    "The Mughal Emperor",
-                    "The local Nawabs"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The East India Company set up Mayor's Courts in the presidency towns."
-            },
-            {
-                "text": "Under Warren Hastings' judicial reforms, what were the courts established in districts to try civil disputes called?",
-                "options": [
-                    "District Fauzdari Adalats",
-                    "Sadar Diwani Adalats",
-                    "District Diwani Adalats",
-                    "Supreme Court of Judicature"
-                ],
-                "correctAnswer": 2,
-                "explanation": "District Diwani Adalats were set up for civil disputes."
-            },
-            {
-                "text": "Which of the following was a significant reform introduced by Lord Cornwallis in the judicial system through his Code?",
-                "options": [
-                    "Abolition of the Supreme Court at Calcutta",
-                    "Introduction of trial by jury for all cases",
-                    "Separation of revenue and justice administration",
-                    "Allowing Indian judges to try European subjects"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Cornwallis Code separated revenue collection and justice administration."
-            },
-            {
-                "text": "The Cornwallis Code primarily aimed to establish which fundamental principle in the judicial system?",
-                "options": [
-                    "Divine right of rulers",
-                    "Rule of military might",
-                    "Sovereignty of law",
-                    "Arbitrary justice"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Code's foundation was the rule of law, not arbitrary authority."
-            },
-            {
-                "text": "Under William Bentinck's judicial reforms, where were the Sadar Diwani Adalat and Sadar Nizamat Adalat relocated or newly set up?",
-                "options": [
-                    "Calcutta",
-                    "Bombay",
-                    "Madras",
-                    "Allahabad"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Bentinck relocated these courts to Allahabad."
-            },
-            {
-                "text": "Who headed the Law Commission that was set up in 1833 for the codification of Indian laws?",
-                "options": [
-                    "Lord Bentinck",
-                    "Lord Macaulay",
-                    "Sir Charles Metcalfe",
-                    "Lord Hastings"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Lord Macaulay was chair of the first Law Commission for codification."
-            },
-            {
-                "text": "After the Revolt of 1857, what significant change occurred regarding the Governor-General's title and status?",
-                "options": [
-                    "The office was abolished.",
-                    "The Governor-General acquired the additional title of 'Viceroy'.",
-                    "The Governor-General's power was reduced to advisory.",
-                    "The Governor-General became directly elected by the Indian public."
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Governor-General also became the Viceroy of India."
-            },
-            {
-                "text": "As per the Act for Better Government of India, 1858, the Secretary of State for India was to be assisted by a council of how many members?",
-                "options": [
-                    "5 members",
-                    "10 members",
-                    "15 members",
-                    "20 members"
-                ],
-                "correctAnswer": 2,
-                "explanation": "A council of 15 was created to aid the Secretary of State."
-            },
-            {
-                "text": "Lord Mayo was responsible for taking the first step towards bifurcating central and provincial finances in which year?",
-                "options": [
-                    "1861",
-                    "1870",
-                    "1882",
-                    "1909"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The first division of finances was begun in 1870 by Lord Mayo."
-            },
-            {
-                "text": "By 1882, the sources of revenue were divided into three categories. Which category of revenue entirely went to the Centre?",
-                "options": [
-                    "Provincial",
-                    "General",
-                    "Shared",
+                    "It guarantees same amount of pension to spouse upon the death of subscriber.",
+                    "It guarantees higher amount of pension than any subscriber of Atal Pension Yojana.",
+                    "No Income Tax payer can join this scheme.",
                     "None of the above"
                 ],
-                "correctAnswer": 1,
-                "explanation": "General revenues went wholly to the Centre."
+                "correctAnswer": "No Income Tax payer can join this scheme.",
+                "explanation": "The scheme is for unorganized workers with monthly income up to Rs 15,000 who are not income tax payers and not engaged in the organized sector."
             },
             {
-                "text": "Who is famously known as the 'father of local self-government' in India?",
+                "text": "Which of the following is/are not the feature(s) of the Pradhan Mantri Jan Dhan Yojana Bank account? \n1. Rupay Credit card having inbuilt COVID-19 insurance cover of Rs. 50000 is given. \n2. Overdraft facility upto 1 lakh rupees is given. \n3. Account can be opened even with zero rupees balance.",
                 "options": [
-                    "Lord Mayo",
-                    "Lord Ripon",
-                    "Lord Dufferin",
-                    "Lord Curzon"
+                    "Only 1 and 2",
+                    "Only 2 and 3",
+                    "Only 1 and 3",
+                    "Only 3"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Lord Ripon's 1882 resolution earned him this title."
+                "correctAnswer": "Only 1 and 2",
+                "explanation": "Statement 1 is incorrect (Accidental insurance is given, not Covid). Statement 2 is incorrect (Overdraft is up to Rs 10,000). Statement 3 is correct."
             },
             {
-                "text": "Lord Ripon's resolution of 1882 primarily aimed to develop local bodies as an instrument of what?",
+                "text": "Under Atma Nirbhar Bharat economic revival package the Government has launched Emergency Credit Line Guarantee Scheme (ECLGS) for",
                 "options": [
-                    "Economic exploitation",
-                    "Military recruitment",
-                    "Political and popular education",
-                    "Revenue collection"
+                    "Commercial Sector Banks which are unable to borrow from MSF window of RBI.",
+                    "State Governments which have exhausted the WMA quota.",
+                    "Large NBFC Companies",
+                    "None of the above"
                 ],
-                "correctAnswer": 2,
-                "explanation": "The aim was political and popular education through local self-government."
+                "correctAnswer": "None of the above",
+                "explanation": "ECLGS was launched to help businesses including MSMEs meet operational liabilities."
             },
             {
-                "text": "The Royal Commission on Decentralisation (1908) made a key recommendation regarding village panchayats. What was it?",
+                "text": "An Indian citizen girl aged 18 is eligible to join which of the following schemes?",
                 "options": [
-                    "Village panchayats should be abolished.",
-                    "Village panchayats should be entrusted with more powers and adequate sources of income.",
-                    "Village panchayats should be controlled directly by the central government.",
-                    "Village panchayats should focus only on judicial functions."
+                    "Sukanya Samriddhi Yojana",
+                    "Pradhan Mantri Vay Vandana Yojana",
+                    "Pradhan Mantri Suraksha Bima Yojana",
+                    "All of the above"
                 ],
-                "correctAnswer": 1,
-                "explanation": "It recommended more powers and local income sources for panchayats."
+                "correctAnswer": "Pradhan Mantri Suraksha Bima Yojana",
+                "explanation": "Sukanya Samriddhi is for girls 0-10 years. Vaya Vandana is for senior citizens (60+). PMSBY is for 18-70 years."
             },
             {
-                "text": "Under the Government of India Act, 1919 (Montagu-Chelmsford Reforms), local self-government was classified as which type of subject?",
+                "text": "Which of the following statement(s) is/are incorrect about MUDRA ltd? \n1. MUDRA scheme provides loans upto 1 crore to entrepreneurs. \n2. MUDRA shareholding pattern is Government of India (49%) and SIDBI (51%). \n3. Stand up India scheme is a brainchild of MUDRA ltd. \n4. Small & Marginal Farmers are not eligible to get crop loans from Mudra.",
                 "options": [
-                    "Reserved subject",
-                    "Transferred subject",
-                    "Central subject",
-                    "Concurrent subject"
+                    "Only 1, 2 and 3",
+                    "1, 3 and 4",
+                    "Only 2, 3 and 4",
+                    "Only 4"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Local self-government was listed as a transferred subject under dyarchy."
+                "correctAnswer": "Only 1, 2 and 3",
+                "explanation": "Statement 1 is incorrect (Max loan 10 lakh). Statement 2 is incorrect (Subsidiary of SIDBI). Statement 3 is incorrect (Stand Up India is DFS initiative). Statement 4 is correct."
             },
             {
-                "text": "Despite the provincial autonomy under the Government of India Act, 1935, what was a notable criticism regarding the development of local self-governing institutions?",
+                "text": "Consider the following passage about a scheme: \nIt was launched to provide social security during old age and to protect elderly persons aged 60 years and above... Identify the scheme.",
                 "options": [
-                    "They were granted excessive financial resources.",
-                    "Provincial governments ignored the liberal policy of granting wide powers of taxation to local institutions.",
-                    "Local bodies became completely independent of government control.",
-                    "Elections to local bodies were abolished."
+                    "Pradhan Mantri Swasthya Suraksha Yojana",
+                    "Pradhan Mantri Vaya Vandana Yojana",
+                    "Liveability Index Programme",
+                    "Rashtriya Vayoshri Yojana"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Provinces rarely granted sufficient taxation powers to local bodies."
+                "correctAnswer": "Pradhan Mantri Vaya Vandana Yojana",
+                "explanation": "PMVVY is a pension scheme for senior citizens aged 60 years or above with assured return."
             },
             {
-                "text": "Which parts of the Constitution of free India are aimed at organising village panchayats as effective organs of local self-government, including their later amendments?",
+                "text": "Find correct statement(s) regarding 'Atal Pension Yojana': \n1. It is a minimum guaranteed pension scheme mainly targeted at unorganized sector workers. \n2. Only one member of a family can join the scheme. \n3. Same amount of pension is guaranteed for the spouse for life after subscriber's death.",
                 "options": [
-                    "Article 324",
-                    "Article 40",
-                    "Articles 20 and 21",
-                    "Article 40, and the Seventy-third and Seventy-fourth Amendments"
+                    "1 only",
+                    "2 and 3 Only",
+                    "1 and 3 Only",
+                    "1, 2 and 3"
                 ],
-                "correctAnswer": 3,
-                "explanation": "Article 40 and the 73rd & 74th Amendments promote village panchayats as self-government units."
-            }
-        ],
-        "Development of Indian Press": [{
-                "text": "Which was the first newspaper published in India?",
-                "options": [
-                    "The Calcutta Gazette",
-                    "The Bengal Herald",
-                    "The Bengal Gazette or Calcutta General Advertiser",
-                    "The Hindu"
-                ],
-                "correctAnswer": 2,
-                "explanation": "The Bengal Gazette or Calcutta General Advertiser, started in 1780, was the first newspaper published in India."
+                "correctAnswer": "1 and 3 Only",
+                "explanation": "Statement 1 is correct. Statement 2 is incorrect (all eligible adults can join). Statement 3 is correct."
             },
             {
-                "text": "Who was the founder of the Bengal Gazette or Calcutta General Advertiser?",
+                "text": "Service Area Approach was implemented under the purview of",
                 "options": [
-                    "Sisir Kumar Ghosh",
-                    "James Augustus Hickey",
-                    "G. Subramaniya Aiyar",
-                    "N.N. Sen"
+                    "Integrated Rural Development Programme",
+                    "Lead Bank Scheme",
+                    "Mahatma Gandhi National Rural Employment Guarantee Scheme",
+                    "National Skill Development Mission"
                 ],
-                "correctAnswer": 1,
-                "explanation": "James Augustus Hickey founded the Bengal Gazette or Calcutta General Advertiser."
+                "correctAnswer": "Lead Bank Scheme",
+                "explanation": "The Service Area Approach was introduced in 1989 as part of the Lead Bank Scheme."
             },
             {
-                "text": "The Censorship of Press Act, 1799 was introduced by which Governor-General?",
+                "text": "'Pradhan Mantri Jan-Dhan Yojana' has been launched for:",
                 "options": [
-                    "Lord Lytton",
-                    "Lord Metcalfe",
-                    "Lord Wellesley",
-                    "Lord Dalhousie"
+                    "providing housing loan to poor people at cheaper interest rates",
+                    "promoting women's Self-Help Groups in backward areas",
+                    "promoting financial inclusion in the country",
+                    "providing financial help to the marginalized communities"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Lord Wellesley enacted the Censorship of Press Act, 1799 to control press freedom during the Napoleonic wars."
+                "correctAnswer": "promoting financial inclusion in the country",
+                "explanation": "PMJDY aims to promote financial inclusion by providing access to financial services."
             },
             {
-                "text": "The Licensing Regulations, 1823 affected which notable publication by Raja Rammohan Roy?",
+                "text": "Pradhan Mantri MUDRA Yojana is aimed at",
                 "options": [
-                    "Sambad Kaumudi",
-                    "Mirat-ul-Akbar",
-                    "Bangadoot",
-                    "Bengali Weekly"
+                    "bringing the small entrepreneurs into formal financial system",
+                    "providing loans to poor farmers for cultivating particular crops.",
+                    "providing pensions to old and destitute persons.",
+                    "funding the voluntary orgs involved in the promotion of skill development and employment generation."
                 ],
-                "correctAnswer": 1,
-                "explanation": "It affected Mirat-ul-Akbar (Persian weekly), published by Raja Rammohan Roy."
+                "correctAnswer": "bringing the small entrepreneurs into formal financial system",
+                "explanation": "MUDRA aims to provide loans to non-corporate, non-farm small/micro enterprises."
             },
             {
-                "text": "What major step did the Press Act of 1835 (Metcalfe Act) undertake?",
+                "text": "Under the Kisan Credit Card scheme, short-term credit support is given to farmers for which of the following purposes ? \n1. Working capital for maintenance of farm assets \n2. Purchase of combine harvesters, tractors and mini trucks \n3. Consumption requirements of farm households \n4. Post-harvest expenses \n5. Construction of family house and setting up of village cold storage facility",
                 "options": [
-                    "Imposed severe restrictions on Indian press",
-                    "Repealed the 1823 ordinance and loosened press controls",
-                    "Introduced vernacular censorship",
-                    "Regulated seditious meetings"
+                    "1, 2 and 5 only",
+                    "1, 3 and 4 only",
+                    "2, 3, 4 and 5 only",
+                    "1, 2, 3, 4 and 5"
                 ],
-                "correctAnswer": 1,
-                "explanation": "The Metcalfe Act repealed the restrictive 1823 ordinance and significantly loosened press controls."
+                "correctAnswer": "1, 3 and 4 only",
+                "explanation": "Construction of cold storage and purchase of machinery are investment credits (long term), not short-term credit support."
             },
             {
-                "text": "Who earned the title “liberator of the Indian Press” for repealing harsh press regulations?",
+                "text": "Under Sukanya Samriddhi Yojana, what is the maximum amount that can be deposited during a financial year?",
                 "options": [
-                    "Lord Hastings",
-                    "Lord Metcalfe",
-                    "Lord Lytton",
-                    "Lord Ripon"
+                    "1.5 lakh",
+                    "2 lakh",
+                    "1 lakh",
+                    "2.5 lakh"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Lord Metcalfe is known as the liberator of the Indian Press for repealing restrictive laws."
+                "correctAnswer": "1.5 lakh",
+                "explanation": "The maximum annual deposit limit for Sukanya Samriddhi Yojana is Rs. 1.5 lakh."
             },
             {
-                "text": "Under which Act was licensing re-imposed on the press during the 1857 revolt?",
+                "text": "What is the correct minimum and maximum age to join Atal Pension Scheme",
                 "options": [
-                    "Licensing Act, 1857",
-                    "Press Act, 1835",
-                    "Censorship Act, 1799",
-                    "Registration Act, 1867"
+                    "21 years and 58 years respectively",
+                    "18 years and 40 years respectively",
+                    "18 years and 50 years respectively",
+                    "21 years and 60 years respectively"
                 ],
-                "correctAnswer": 0,
-                "explanation": "Licensing Act, 1857 re-imposed restrictions on press during the revolt."
+                "correctAnswer": "18 years and 40 years respectively",
+                "explanation": "The entry age for Atal Pension Yojana is 18 to 40 years."
             },
             {
-                "text": "The Registration Act of 1867 was mainly:",
+                "text": "Consider the following statements: \n1. The Self-Help Group (SHG) Programme was originally initiated by the State Bank of India by providing microcredit to the financial deprived. \n2. In an SHG, all members of a group take responsibility for a loan that an individual member takes. \n3. The Regional Rural Banks and Scheduled Commercial Banks support SHGs.",
                 "options": [
-                    "Restrictive against press",
-                    "Regulatory, not prohibitive",
-                    "Focused on vernaculars only",
-                    "Meant for censorship only"
+                    "Only one",
+                    "All three",
+                    "Only two",
+                    "None"
                 ],
-                "correctAnswer": 1,
-                "explanation": "This Act was regulatory and not prohibitive, focusing on registration."
+                "correctAnswer": "Only two",
+                "explanation": "Statement 1 is incorrect (Initiated by NABARD). Statements 2 and 3 are correct."
             },
             {
-                "text": "Which newspaper was founded by Balgangadhar Tilak in Marathi?",
+                "text": "Which one of the following schemes is not a Social Security Scheme under the Unorganised Workers' Social Security Act, 2008?",
                 "options": [
-                    "Bengali",
-                    "Kesari",
-                    "Indian Mirror",
-                    "Amrita Bazar Patrika"
+                    "National Family Benefit Scheme",
+                    "Employees' Pension Scheme",
+                    "Janshree Bima Yojana",
+                    "Rashtriya Swasthya Bima Yojana"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Kesari was founded by Balgangadhar Tilak in Marathi."
+                "correctAnswer": "Employees' Pension Scheme",
+                "explanation": "Employees' Pension Scheme (EPS) is for the organized sector, not the unorganized sector."
             },
             {
-                "text": "The Vernacular Press Act of 1878 was enacted under which Viceroy?",
+                "text": "Consider following statements: \nStatement1: NPS is an example of Defined Benefit type of pension scheme. \nStatement2: NPS pension amount depends on the performance of the equities market.",
                 "options": [
-                    "Lord Ripon",
-                    "Lord Lytton",
-                    "Lord Wellesley",
-                    "Lord John Adams"
+                    "Both I & II are correct & II is the correct explanation for 1",
+                    "I is correct but II is wrong",
+                    "Both I & II are correct & II is not the correct explanation for 1",
+                    "I is wrong but II is correct"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Lord Lytton enacted the Vernacular Press Act, 1878."
+                "correctAnswer": "I is wrong but II is correct",
+                "explanation": "NPS is a Defined Contribution scheme (Statement 1 incorrect). Returns depend on market performance (Statement 2 correct)."
             },
             {
-                "text": "The primary aim of the Vernacular Press Act, 1878 was to:",
+                "text": "National Credit Guarantee Trustee Company (NCGTC) provides credit guarantee on how many of the following loans? \n1. Loans given by Microfinance institutions to poor people. \n2. Loans for skill development and higher education. \n3. Loans given under PM-MUDRA scheme \n4. Loans under Standup India Scheme \n5. Loans to exporters",
                 "options": [
-                    "Encourage Indian journalism",
-                    "Repress criticism against government in vernacular press",
-                    "Promote English newspapers",
-                    "Introduce compulsory registration"
+                    "only two of these",
+                    "only four of these",
+                    "only three of these",
+                    "all five of these"
                 ],
-                "correctAnswer": 1,
-                "explanation": "The Act aimed to repress anti-government criticism in vernacular newspapers."
+                "correctAnswer": "only four of these",
+                "explanation": "Loans to exporters are covered by ECGC, not NCGTC. The other four are covered by NCGTC."
             },
             {
-                "text": "Which section of IPC deals with the offence of ‘causing disaffection’ against the government?",
+                "text": "Find correct about Financial Inclusion Index published in India \n1. It is published by the Reserve Bank of India \n2. Present score for India is more than 50%",
                 "options": [
-                    "Section 124A",
-                    "Section 153A",
-                    "Section 420",
-                    "Section 505"
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
                 ],
-                "correctAnswer": 0,
-                "explanation": "Section 124A of IPC deals with sedition, including causing disaffection."
+                "correctAnswer": "both 1 and 2",
+                "explanation": "The FI-Index is published by RBI and the score is above 50."
             },
             {
-                "text": "Who founded the Amrita Bazar Patrika?",
+                "text": "If a client has complaints in NPS then to whom should he complain in the first stage?",
                 "options": [
-                    "G.K. Gokhale and R.C. Dutt",
-                    "Sisir Kumar Ghosh & Motilal Ghosh",
-                    "Surendranath Banerjea",
-                    "Mahadev Govind Ranade"
+                    "PFRDA",
+                    "NSDL",
+                    "Department of financial services",
+                    "assistant commissioner in EPFO"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Amrita Bazar Patrika was founded by Sisir Kumar Ghosh and Motilal Ghosh."
+                "correctAnswer": "NSDL",
+                "explanation": "The first stage for complaints is the Central Recordkeeping Agency (NSDL/CAMS)."
             },
             {
-                "text": "The Hindu newspaper was established by:",
+                "text": "How many of the following are part of RBI is one nation one ombudsman scheme? \n1. NBFC Ombudsman \n2. Banking Ombudsman \n3. Digital transactions ombudsman \n4. Insurance Ombudsman",
                 "options": [
-                    "Subramaniya Bharathi",
-                    "G. Subramaniya Aiyar",
-                    "Gopal Ganesh Agarkar",
-                    "Lala Lajpat Rai"
+                    "only one of these",
+                    "only three of these",
+                    "only two of these",
+                    "All four of these"
                 ],
-                "correctAnswer": 1,
-                "explanation": "G. Subramaniya Aiyar was among the founders of The Hindu."
+                "correctAnswer": "only three of these",
+                "explanation": "Banking, NBFC, and Digital Transactions ombudsmen were merged. Insurance Ombudsman is separate."
             },
             {
-                "text": "Which act first provided the government the right to confiscate presses and property?",
+                "text": "How many among the following monitor the Kisan credit card scheme? \n1. RBI \n2. NABARD \n3. MUDRA \n4. registrar of multistate cooperative societies",
                 "options": [
-                    "Press Act of 1835",
-                    "Newspapers (Incitement to Offences) Act, 1908",
-                    "Licensing Act, 1857",
-                    "Vernacular Press Act, 1878"
+                    "only one of these",
+                    "only two of these",
+                    "only three of these",
+                    "All four of these"
                 ],
-                "correctAnswer": 1,
-                "explanation": "The Newspapers (Incitement to Offences) Act, 1908 allowed confiscation of presses/property."
+                "correctAnswer": "only two of these",
+                "explanation": "RBI monitors commercial banks, and NABARD monitors cooperative banks and RRBs."
             },
             {
-                "text": "The Bengalee newspaper is associated with which nationalist leader?",
+                "text": "Pension Sanchay is a dedicated website for increasing financial literacy with special emphasis on concepts of pension and retirement. This website is developed by",
                 "options": [
-                    "Surendranath Banerjea",
-                    "Dadabhai Naoroji",
-                    "Balgangadhar Tilak",
-                    "Motilal Ghosh"
+                    "EPFO",
+                    "department of financial services",
+                    "Investors protection and education fund",
+                    "None of the above"
                 ],
-                "correctAnswer": 0,
-                "explanation": "Surendranath Banerjea was associated with The Bengalee."
+                "correctAnswer": "None of the above",
+                "explanation": "The website is developed by PFRDA."
             },
             {
-                "text": "Who among the following edited both Kesari and Mahratta?",
+                "text": "NPS is compulsory for Central government employees since the year",
                 "options": [
-                    "Annie Besant",
-                    "Balgangadhar Tilak",
-                    "Firoz Shah Mehta",
-                    "G.K. Gokhale"
+                    "2009",
+                    "2004",
+                    "2014",
+                    "2013"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Balgangadhar Tilak edited both Kesari (Marathi) and Mahratta (English)."
+                "correctAnswer": "2004",
+                "explanation": "NPS was made mandatory for new central government recruits from January 1, 2004."
             },
             {
-                "text": "What was a key provision of the Vernacular Press Act?",
+                "text": "Which of the following statements are correct? \n1. if person wants \u20b95,000 pension he should apply for Atal Pension Scheme. \n2. if person wants 25 lakh rupees loan for his micro enterprise, he should apply for MUDRA loan.",
                 "options": [
-                    "Press required to submit proofs before publication",
-                    "Enforcement restricted to English papers",
-                    "Complete ban on political content",
-                    "Direct central government censorship"
+                    "only 1",
+                    "only 2",
+                    "both 1 and 2",
+                    "neither 1 nor 2"
                 ],
-                "correctAnswer": 0,
-                "explanation": "Press was required to submit proofs to authorities before publication under VPA."
+                "correctAnswer": "only 1",
+                "explanation": "Statement 1 is correct (APY pension up to 5000). Statement 2 is incorrect (Mudra loan max 10 lakh, though Tarun plus may be higher now, traditional limit was 10L; however explanation says max 20L now, but 25L is still wrong)."
             },
             {
-                "text": "The Voice of India was founded by:",
+                "text": "What is the objective of Jan Samarth Portal?",
                 "options": [
-                    "Surendranath Banerjea",
-                    "G.K. Gokhale",
-                    "Dadabhai Naoroji",
-                    "Lala Lajpat Rai"
+                    "To help poor people obtain digital literacy lessons.",
+                    "To promote investor education and protection",
+                    "To enable greater ease and convenience to all beneficiaries of various credit-linked government sponsored schemes of the Government of India.",
+                    "To help beneficiaries of the government sponsored pension and Insurance schemes to lodge complaints."
                 ],
-                "correctAnswer": 2,
-                "explanation": "Dadabhai Naoroji founded Voice of India."
+                "correctAnswer": "To enable greater ease and convenience to all beneficiaries of various credit-linked government sponsored schemes of the Government of India.",
+                "explanation": "It facilitates application for government-sponsored loans."
             },
             {
-                "text": "Tilak was sentenced to Mandalay for sedition under the charges related to which act?",
+                "text": "The basic aim of Lead Bank Scheme is that",
                 "options": [
-                    "Newspapers Act, 1908",
-                    "Registration Act, 1867",
-                    "Vernacular Press Act, 1878",
-                    "Defence of India Rules"
+                    "big banks should try to open offices in each district",
+                    "there should be stiff competition among the various nationalized banks",
+                    "A bank adopts particular district for intensive development",
+                    "all the banks should make intensive efforts to mobilize deposits"
                 ],
-                "correctAnswer": 0,
-                "explanation": "He was tried under the Newspapers Act, 1908 for sedition."
+                "correctAnswer": "A bank adopts particular district for intensive development",
+                "explanation": "Under the Lead Bank Scheme, a specific bank is assigned the responsibility for development in a district."
             },
             {
-                "text": "What did the Indian Press Act, 1910 empower local governments to do?",
+                "text": "How many of the following instruments are given exemption from payment of income tax? \n1. Political party receiving funds through electoral bonds \n2. Retail investor earning interest from government securities \n3. Retail investor earning dividend from a company. \n4. Interest earned from Sukanya Samruddhi Yojana bank deposit",
                 "options": [
-                    "Arrest editors without trial",
-                    "Demand security at time of registration",
-                    "Ban English newspapers only",
-                    "Nationalize all printing presses"
+                    "only one of these",
+                    "only three of these",
+                    "only two of these",
+                    "All four of these"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Local governments could demand security at the time of press registration."
+                "correctAnswer": "only two of these",
+                "explanation": "Income from Electoral Bonds (for parties) and Sukanya Samriddhi Yojana interest are exempt. Interest on G-Secs and Dividends are taxable."
             },
             {
-                "text": "In which year was the Vernacular Press Act repealed?",
+                "text": "Which of the following organisation has launched SARATHI portal for improving the penetration of insurance products in rural areas?",
                 "options": [
-                    "1867",
-                    "1882",
-                    "1908",
-                    "1910"
+                    "Ministry of rural development",
+                    "Ministry of agriculture",
+                    "IRDAI",
+                    "department of financial services."
                 ],
-                "correctAnswer": 1,
-                "explanation": "The Vernacular Press Act was repealed in 1882."
+                "correctAnswer": "Ministry of agriculture",
+                "explanation": "The Ministry of Agriculture launched the SARTHI portal."
             },
             {
-                "text": "The Amrita Bazar Patrika was known for transitioning from:",
+                "text": "What is the objective of Penny drop test proposed by the PFRDA?",
                 "options": [
-                    "English to Bengali",
-                    "Bengali to English overnight",
-                    "Urdu to Hindi",
-                    "Persian to English"
+                    "Increasing the awareness about pension schemes in India.",
+                    "Reactivation of the deactivated NPS accounts of workers who lost job during Corona.",
+                    "Ensuring that the NPS pensioner receives the money in correct bank account.",
+                    "ensuring that the employers are submitting, the money collected from workers into EPFO account in timely fashion."
                 ],
-                "correctAnswer": 1,
-                "explanation": "It switched from Bengali to English overnight due to restrictions."
+                "correctAnswer": "Ensuring that the NPS pensioner receives the money in correct bank account.",
+                "explanation": "A small amount is transferred to verify the beneficiary's bank account details."
             },
             {
-                "text": "Which act, during and after World Wars, enabled provincial governments to suppress propaganda?",
+                "text": "Rashtriya Udyamita Vikas Pariyojana is launched as part of which of the following scheme?",
                 "options": [
-                    "Indian Press (Emergency Powers) Act, 1931",
-                    "Press Act of 1835",
-                    "Registration Act, 1867",
-                    "Newspapers Act, 1908"
+                    "PM MUDRA Loan scheme",
+                    "PM Svanidhi scheme",
+                    "National rural livelihood Mission.",
+                    "Stand up India scheme"
                 ],
-                "correctAnswer": 0,
-                "explanation": "Indian Press (Emergency Powers) Act, 1931 enabled these suppressions."
+                "correctAnswer": "PM Svanidhi scheme",
+                "explanation": "It provides entrepreneurship training to PM Svanidhi beneficiaries."
             },
             {
-                "text": "An important reason for the growth of nationalist press was:",
+                "text": "Find correct about the PM-SURAJ portal launched in 2024? \n1. it is launched by Ministry of New and renewable energy \n2. it provides subsidised loans for families to purchase solar panels.",
                 "options": [
-                    "Support of British rulers",
-                    "Spread of literacy and political consciousness",
-                    "Grants from British Government",
-                    "Press laws only favored Indians"
+                    "only 1",
+                    "both 1 and 2",
+                    "only 2",
+                    "neither 1 nor 2"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Literacy and growing national consciousness aided nationalist press."
+                "correctAnswer": "neither 1 nor 2",
+                "explanation": "Launched by Ministry of Social Justice for loans to disadvantaged communities."
             },
             {
-                "text": "Who is considered the first Indian journalist to be imprisoned in 1883?",
+                "text": "With reference to the Pradhan Mantri Shram Yogi Maan-dhan (PM-SYM) Yojana, consider the following statements: \n1. The entry age group for enrolment in the scheme is 21 to 40 years. \n2. Age specific contribution shall be made by the beneficiary. \n3. Each subscriber shall receive a minimum pension of 3,000 per month after attaining the age of 60 years. \n4. Family pension is applicable to the spouse and unmarried daughters.",
                 "options": [
-                    "Ganesh Shankar Vidyarthi",
-                    "Surendranath Banerjea",
-                    "Mahadev Govind Ranade",
-                    "Tej Bahadur Sapru"
+                    "1, 3 and 4",
+                    "2 only",
+                    "2 and 3 only",
+                    "1, 2 and 4"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Surendranath Banerjea was the first imprisoned Indian journalist in 1883."
+                "correctAnswer": "2 and 3 only",
+                "explanation": "Statement 1 is wrong (18-40). Statement 4 is wrong (Spouse only). Statements 2 and 3 are correct."
             },
             {
-                "text": "The Sudharak was edited by:",
+                "text": "What changes have been made for the Mudra loan scheme under General Budget 2024? \n1. The maximum loan size has been increased to Rs. 25 lakhs. \n2. Government will provide interest subsidy of 3% to all the borrowers who repay the loans promptly.",
                 "options": [
-                    "Gopal Ganesh Agarkar",
-                    "Dadabhai Naoroji",
-                    "C.R. Das",
-                    "Lala Hardayal"
+                    "1 only",
+                    "2 only",
+                    "Neither 1 nor 2",
+                    "Both 1 and 2"
                 ],
-                "correctAnswer": 0,
-                "explanation": "Gopal Ganesh Agarkar was the editor of Sudharak."
+                "correctAnswer": "Neither 1 nor 2",
+                "explanation": "The maximum loan limit was increased to 20 Lakhs, not 25 Lakhs."
             },
             {
-                "text": "Which Act replaced Metcalfe’s Act of 1835 as a regulatory (not restrictive) measure?",
+                "text": "How many of the following provisions are correct with regards to Employment Link Incentive Scheme (ELI) proposed in the General Budget-2024? \n1. This scheme will provide one-month wage to all persons newly entering the workforce in all formal sectors upto \u20b920,000. \n2. An incentive will be provided... in manufacturing and services sector. \n3. Government will reimburse to employers up to Rs. 3,000 per month towards their EPFO contribution for each additional employee. \n4. Government will contribute in the ESIC accounts...",
                 "options": [
-                    "Licensing Act, 1857",
-                    "Registration Act, 1867",
-                    "Press Act of 1908",
-                    "Newspapers Act, 1931"
+                    "Only one of these",
+                    "Only three of these",
+                    "Only two of these",
+                    "All four of these"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Registration Act, 1867 replaced the Metcalfe Act with regulatory measures."
+                "correctAnswer": "Only one of these",
+                "explanation": "Only Statement 3 is correct. St1 (up to 15k). St2 (Manufacturing only). St4 (Incorrect)."
             },
             {
-                "text": "The term “Gagging Act” referred to laws that:",
+                "text": "What is the objective of the NPS-Vatsalya Scheme announced in the General Budget-2024?",
                 "options": [
-                    "Promoted Indian-language press",
-                    "Silenced the vernacular press by strict censorship",
-                    "Funded anti-British publications",
-                    "Gave subsidies to printers"
+                    "Government will contribute money in the NPS account of working mothers",
+                    "Government will contribute additional money in the Aasha workers NPS accounts.",
+                    "NPS subscriber person and their spouses will be eligible for pregnancy-related checkups...",
+                    "None of the above."
                 ],
-                "correctAnswer": 1,
-                "explanation": "\"Gagging Act\" was applied to strict censorship acts on the Indian press, especially vernacular."
+                "correctAnswer": "None of the above.",
+                "explanation": "NPS-Vatsalya is for minors, where parents/guardians contribute."
             },
             {
-                "text": "Which influential leader used his newspapers for public mobilisation in Maharashtra?",
+                "text": "CITES is an IT modernisation project started by ___?",
                 "options": [
-                    "Jyotiba Phule",
-                    "Gopal Ganesh Agarkar",
-                    "Balgangadhar Tilak",
-                    "Dadabhai Naoroji"
+                    "EPFO",
+                    "ESIC",
+                    "PFRDA",
+                    "Department of Financial Services"
                 ],
-                "correctAnswer": 2,
-                "explanation": "Tilak used Kesari and Mahratta for mass mobilisation."
+                "correctAnswer": "EPFO",
+                "explanation": "CITES is the Centralised IT Enabled System project of EPFO."
             },
             {
-                "text": "Vernacular Press Act was opposed and ultimately repealed by:",
+                "text": "What is the objective of CPPS initiative of EPFO?",
                 "options": [
-                    "Lord Lytton",
-                    "Lord Hastings",
-                    "Lord Ripon",
-                    "Lord Metcalfe"
+                    "Decentralisation of the pension release system to the zonal offices.",
+                    "Centralisation of the pension release system through IT-Enabled Systems.",
+                    "Greater investment in corporate bonds and equities...",
+                    "Issuance of digital life certificates for the pensioners."
                 ],
-                "correctAnswer": 2,
-                "explanation": "The VPA was repealed by Lord Ripon."
+                "correctAnswer": "Centralisation of the pension release system through IT-Enabled Systems.",
+                "explanation": "CPPS stands for Centralised Pension Payments System."
             },
             {
-                "text": "Section 153A of IPC made it a criminal offence to:",
+                "text": "How many of the following statements are correct with regards to the Unified Pension Scheme for central govt employees? \n1. Every current NPS subscriber... compulsorily migrated... \n2. Government shall co-contribute... 15%... \n3. ...15 years of service... minimum pension of \u20b915,000. \n4. After the death of the pensioner, the spouse will be eligible for 60% of the pension per month.",
                 "options": [
-                    "Offend the British monarchy",
-                    "Create hatred among different classes",
-                    "Print news without registration",
-                    "Use non-English languages"
+                    "Only one of these",
+                    "Only three of these",
+                    "Only two of these",
+                    "All four of these"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Section 153A deals with offences promoting enmity between groups."
+                "correctAnswer": "Only one of these",
+                "explanation": "Only Statement 4 is correct. St1 (Optional). St2 (18.5%). St3 (10 years/10k)."
             },
             {
-                "text": "Which newspaper was edited by N.N. Sen?",
+                "text": "Find Correct statement(s) about the Coal Mines Provident Fund Organisation (CMPFO) \n1. It is an attached-office under the EPFO... \n2. It has launched a portal called SARTHI.",
                 "options": [
-                    "Indian Mirror",
-                    "Hindustan Times",
-                    "The Leader",
-                    "Calcutta Gazette"
+                    "1 only",
+                    "2 only",
+                    "Neither 1 nor 2",
+                    "Both 1 and 2"
                 ],
-                "correctAnswer": 0,
-                "explanation": "N.N. Sen was the editor of Indian Mirror."
+                "correctAnswer": "Neither 1 nor 2",
+                "explanation": "CMPFO is under Ministry of Coal (not EPFO). SARTHI is for agriculture/insurance."
             },
             {
-                "text": "The Defence of India Rules were enacted mainly during which period?",
+                "text": "Under the Unified Pension Scheme for government employees, the pension amount is linked with which of the following inflation indicators?",
                 "options": [
-                    "During the First and Second World Wars",
-                    "During the Revolt of 1857",
-                    "During the Non-Cooperation Movement",
-                    "During the Quit India Movement"
+                    "CPI-Service Sector",
+                    "CPI-Urban",
+                    "CPI-All India",
+                    "CPI-IW"
                 ],
-                "correctAnswer": 0,
-                "explanation": "The Defence of India Rules were war-time acts during both World Wars."
+                "correctAnswer": "CPI-IW",
+                "explanation": "Dearness Relief is calculated based on All India Consumer Price Index for Industrial Workers (AICPI-IW)."
             },
             {
-                "text": "The primary means of spreading Congress resolutions in early nationalist phase was:",
+                "text": "Which of the following are the offerings of 'MUDRA' organisation? \n1. Portfolio Credit Guarantee \n2. Credit for large industries \n3. MUDRA Card \n4. Credit Enhancement",
                 "options": [
-                    "Government circulars",
-                    "Newspapers and journals",
-                    "Public meetings only",
-                    "School textbooks"
+                    "1, 2 and 3 only",
+                    "1, 3 and 4 only",
+                    "1, 2 and 4 only",
+                    "2, 3 and 4 only"
                 ],
-                "correctAnswer": 1,
-                "explanation": "Resolutions were spread via newspapers/journals."
-            },
-            {
-                "text": "Which government act provided for pre-censorship and official scrutiny during war time?",
-                "options": [
-                    "Indian Press (Emergency Powers) Act, 1931",
-                    "Newspapers Act 1908",
-                    "Licensing Act, 1857",
-                    "Defence of India Rules"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Defence of India Rules enabled pre-censorship during war."
-            },
-            {
-                "text": "Who published Voice of India?",
-                "options": [
-                    "Dadabhai Naoroji",
-                    "Lala Lajpat Rai",
-                    "Aurobindo Ghose",
-                    "S.N. Bannerjee"
-                ],
-                "correctAnswer": 0,
-                "explanation": "Voice of India was published by Dadabhai Naoroji."
-            },
-            {
-                "text": "Which of the following was not a punitive law against the press in colonial India?",
-                "options": [
-                    "Registration Act, 1867",
-                    "Newspapers (Incitement to Offences) Act, 1908",
-                    "Vernacular Press Act, 1878",
-                    "Indian Press Act, 1910"
-                ],
-                "correctAnswer": 0,
-                "explanation": "Registration Act, 1867 was a regulatory, not punitive, measure."
-            },
-            {
-                "text": "Who among these was not directly involved with a nationalist newspaper?",
-                "options": [
-                    "Motilal Ghosh",
-                    "Surendranath Banerjea",
-                    "Lala Hardayal",
-                    "Lord Lytton"
-                ],
-                "correctAnswer": 3,
-                "explanation": "Lord Lytton was a British Viceroy, not involved with nationalist press."
-            },
-            {
-                "text": "On what charge was Tilak sent to Mandalay in Burma?",
-                "options": [
-                    "Charges under Section 153A and sedition",
-                    "Failure to pay taxes",
-                    "Participating in Congress session",
-                    "Preaching religious freedom"
-                ],
-                "correctAnswer": 0,
-                "explanation": "Tilak was charged under Section 153A IPC and sedition (124A)."
-            },
-            {
-                "text": "What method did nationalist newspapers use to bypass British restrictions?",
-                "options": [
-                    "Publishing in English only",
-                    "Printing news abroad",
-                    "Circulating through local libraries where contents were read aloud",
-                    "Using coded language only"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Reading newspapers aloud in libraries helped bypass literacy/bans."
-            },
-            {
-                "text": "In which language was Kesari published?",
-                "options": [
-                    "Hindi",
-                    "Marathi",
-                    "Bengali",
-                    "English"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Kesari was published in Marathi."
-            },
-            {
-                "text": "Section 124A of IPC, which was used against the press, relates to:",
-                "options": [
-                    "Freedom of speech",
-                    "Sedition",
-                    "Defamation",
-                    "Official secrets"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Section 124A charges relate to sedition."
-            },
-            {
-                "text": "The term “transported for life” in colonial press law meant:",
-                "options": [
-                    "Lifetime imprisonment at another place (penal settlement)",
-                    "Retraining of editors",
-                    "Exile to England",
-                    "Award of scholarship abroad"
-                ],
-                "correctAnswer": 0,
-                "explanation": "It meant deportation to a penal settlement for life."
-            },
-            {
-                "text": "During which movement did press repression reach its peak, especially through Defence of India Rules?",
-                "options": [
-                    "Swadeshi Movement",
-                    "Non-Cooperation Movement",
-                    "Civil Disobedience and Quit India Movement",
-                    "Home Rule Movement"
-                ],
-                "correctAnswer": 2,
-                "explanation": "Press repression peaked during Civil Disobedience and Quit India Movements."
-            },
-            {
-                "text": "What typical punishment was imposed on publications under colonial laws?",
-                "options": [
-                    "Monetary fine only",
-                    "Immediate closure and confiscation of press assets",
-                    "Public apology",
-                    "Suspension for a month"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Confiscation and closure of printing assets was a common punishment."
-            },
-            {
-                "text": "Which prominent newspaper was forced to switch from Bengali to English overnight due to the VPA?",
-                "options": [
-                    "Sudharak",
-                    "Amrita Bazar Patrika",
-                    "Kesari",
-                    "Indian Sociologist"
-                ],
-                "correctAnswer": 1,
-                "explanation": "The Amrita Bazar Patrika switched to English overnight to avoid VPA penalties."
-            },
-            {
-                "text": "The Indian Press Act of 1910 required publishers to:",
-                "options": [
-                    "Submit two copies of each issue to local authorities",
-                    "Print only government notices",
-                    "Publish in English only",
-                    "Take government censorship before printing"
-                ],
-                "correctAnswer": 1,
-                "explanation": "It required publishers to deposit security (not English only); answer matches answers provided."
-            },
-            {
-                "text": "The purpose of the Newspaper (Incitement to Offences) Act, 1908, was to:",
-                "options": [
-                    "Encourage Indian media houses",
-                    "Confiscate the press properties publishing objectionable materials",
-                    "Promote nationalist journals",
-                    "Provide subsidies to press"
-                ],
-                "correctAnswer": 1,
-                "explanation": "It allowed the government to confiscate properties of publishers of objectionable material."
-            },
-            {
-                "text": "Which leader’s imprisonment underscored the growing crackdown on editors in colonial India?",
-                "options": [
-                    "Annie Besant",
-                    "Surendranath Banerjea",
-                    "Mahatma Gandhi",
-                    "Pt. Madan Mohan Malaviya"
-                ],
-                "correctAnswer": 1,
-                "explanation": "Surendranath Banerjea's imprisonment underscored the crackdown on editors."
+                "correctAnswer": "1, 3 and 4 only",
+                "explanation": "MUDRA does not provide credit for large industries."
             }
         ]
     }

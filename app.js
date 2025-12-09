@@ -5,12 +5,17 @@ let currentQuestionIndex = 0;
 const userAnswers = {};
 let quizSubmitted = false;
 
-// Initialize the application
+// Initialize
 document.addEventListener('DOMContentLoaded', function () {
-    generateSubjectCards();
+    if (typeof allQuizData !== 'undefined') {
+        generateSubjectCards();
+    } else {
+        console.error("allQuizData not loaded.");
+    }
 });
 
-// Generate subject cards dynamically
+// --- NAVIGATION & UI ---
+
 function generateSubjectCards() {
     const subjectsContainer = document.getElementById('subjects-container');
     subjectsContainer.innerHTML = '';
@@ -18,9 +23,9 @@ function generateSubjectCards() {
     Object.keys(allQuizData).forEach((subjectKey) => {
         const subject = {
             name: subjectKey,
-            icon: '📖', // Updated icon
+            icon: '📖',
             description: `Master the concepts of ${subjectKey}`,
-            color: 'primary', // CHANGED: Changed from 'dark' to 'primary' to match new theme
+            color: 'primary',
             chapters: Object.keys(allQuizData[subjectKey]).map(chapterName => ({
                 name: chapterName,
                 id: chapterName
@@ -30,7 +35,6 @@ function generateSubjectCards() {
 
         const subjectCard = document.createElement('div');
         subjectCard.className = 'col-md-4 col-lg-3 mb-4';
-        // Removed border-{color} class to use custom CSS shadow instead
         subjectCard.innerHTML = `
             <div class="card topic-card h-100" onclick="showChapters('${subjectKey}')">
                 <div class="card-body text-center p-4">
@@ -47,13 +51,10 @@ function generateSubjectCards() {
     });
 }
 
-// Show chapters on subject click
 function showChapters(subjectKey) {
     currentSubject = subjectKey;
-
     const subject = {
         name: subjectKey,
-        color: 'primary', // CHANGED: Consistent color scheme
         chapters: Object.keys(allQuizData[subjectKey]).map(chapterName => ({
             name: chapterName,
             id: chapterName
@@ -64,7 +65,6 @@ function showChapters(subjectKey) {
     document.getElementById('subjects-section').style.display = 'none';
     document.getElementById('chapters-section').style.display = 'block';
     document.getElementById('quiz-section').style.display = 'none';
-
     document.getElementById('chapters-title').textContent = `${subject.name}`;
 
     const chaptersContainer = document.getElementById('chapters-container');
@@ -94,7 +94,6 @@ function showChapters(subjectKey) {
     });
 }
 
-// Back to subjects from chapters
 function showSubjects() {
     document.getElementById('hero-section').style.display = 'none';
     document.getElementById('subjects-section').style.display = 'block';
@@ -102,21 +101,11 @@ function showSubjects() {
     document.getElementById('quiz-section').style.display = 'none';
 }
 
-function showHome() {
-    document.getElementById('hero-section').style.display = 'block';
-    document.getElementById('subjects-section').style.display = 'none';
-    document.getElementById('chapters-section').style.display = 'none';
-    document.getElementById('quiz-section').style.display = 'none';
+function goBackToChapters() {
+    currentSubject ? showChapters(currentSubject) : showSubjects();
 }
 
-// Back to chapters from quiz
-function goBackToChapters() {
-    if (currentSubject) {
-        showChapters(currentSubject);
-    } else {
-        showSubjects();
-    }
-}
+// --- QUIZ LOGIC ---
 
 document.addEventListener('click', function (e) {
     if (e.target.matches('.quiz-start-btn')) {
@@ -132,9 +121,12 @@ function loadQuiz(subjectKey, chapterId, chapterName) {
     currentChapterId = chapterId;
     currentQuizData = allQuizData[subjectKey][chapterId];
     currentQuestionIndex = 0;
-    Object.keys(userAnswers).forEach(key => delete userAnswers[key]);
+    
+    // Reset answers
+    for (let key in userAnswers) delete userAnswers[key];
     quizSubmitted = false;
 
+    // Switch view
     document.getElementById('hero-section').style.display = 'none';
     document.getElementById('subjects-section').style.display = 'none';
     document.getElementById('chapters-section').style.display = 'none';
@@ -146,8 +138,7 @@ function loadQuiz(subjectKey, chapterId, chapterName) {
 }
 
 function renderQuizLayout(chapterName) {
-    const quizContent = document.getElementById('quiz-content');
-    quizContent.innerHTML = `
+    document.getElementById('quiz-content').innerHTML = `
         <h4 class="text-center mb-4 fw-bold text-primary">${chapterName}</h4>
         <div id="question-container"></div>
         <div class="d-flex justify-content-between mt-4">
@@ -156,86 +147,130 @@ function renderQuizLayout(chapterName) {
             <button id="next-btn" class="btn btn-primary-custom px-4 rounded-pill">Next</button>
         </div>
         <div id="question-feedback" class="mt-3 text-center"></div>
-        
         <div id="result" class="mt-4 text-center"></div>
     `;
 
-    const quizNav = document.getElementById('quiz-nav');
-    quizNav.innerHTML = `
+    document.getElementById('quiz-nav').innerHTML = `
         <div class="nav-header">Question Palette</div>
         <div id="nav-container" class="nav-grid"></div>
         <button id="final-submit-btn" class="btn btn-success w-100 mt-4 rounded-pill py-2 fw-bold">Submit Test</button>
     `;
 
-    document.getElementById('prev-btn').addEventListener('click', navigateQuestions.bind(null, -1));
+    document.getElementById('prev-btn').addEventListener('click', () => navigateQuestions(-1));
     document.getElementById('clear-btn').addEventListener('click', clearSelection);
-    document.getElementById('next-btn').addEventListener('click', navigateQuestions.bind(null, 1));
+    document.getElementById('next-btn').addEventListener('click', () => navigateQuestions(1));
     document.getElementById('final-submit-btn').addEventListener('click', submitAll);
 }
 
 function clearSelection() {
     if (!quizSubmitted) {
         const selectedOption = document.querySelector(`input[name="q${currentQuestionIndex}"]:checked`);
-        if (selectedOption) {
-            selectedOption.checked = false;
-        }
+        if (selectedOption) selectedOption.checked = false;
         delete userAnswers[currentQuestionIndex];
         updateNavHighlights();
     }
 }
 
+// --- RENDERING QUESTIONS ---
+
 function renderQuestion() {
     const questionContainer = document.getElementById('question-container');
     questionContainer.innerHTML = '';
     const question = currentQuizData[currentQuestionIndex];
+    
+    // SAFETY: Convert correctAnswer to a Number to prevent "1" == 1 type errors
+    const correctIndex = Number(question.correctAnswer);
 
     const questionDiv = document.createElement('div');
     questionDiv.className = 'question';
-    questionDiv.innerHTML = `<p class="mb-3 lead"><strong>Q${currentQuestionIndex + 1}. ${question.text}</strong></p>`;
+    
+    // Text formatting
+    const formattedText = question.text ? question.text.replace(/\n/g, '<br>') : '';
+    questionDiv.innerHTML = `<p class="mb-3 lead"><strong>Q${currentQuestionIndex + 1}. ${formattedText}</strong></p>`;
 
+    // Render Options
     question.options.forEach((option, optIndex) => {
         const label = document.createElement('label');
         label.className = 'option shadow-sm';
+        
         label.innerHTML = `
             <input type="radio" name="q${currentQuestionIndex}" value="${optIndex}" />
             ${option}
         `;
         
         const radioInput = label.querySelector('input');
-        radioInput.addEventListener('change', (e) => {
-            if (!quizSubmitted) {
+        const userAnswerObj = userAnswers[currentQuestionIndex];
+
+        // 1. If user previously selected this, check the box
+        if (userAnswerObj && userAnswerObj.answer === optIndex) {
+            radioInput.checked = true;
+        }
+
+        // 2. Interaction Logic
+        if (!quizSubmitted) {
+            radioInput.addEventListener('change', (e) => {
                 userAnswers[currentQuestionIndex] = { answer: parseInt(e.target.value), isCorrect: false };
                 updateNavHighlights();
+            });
+        } else {
+            // --- SUBMITTED STATE (READ ONLY) ---
+            radioInput.disabled = true;
+            label.style.pointerEvents = 'none'; // Prevent clicks
+
+            // A. ALWAYS highlight the Correct Answer (GREEN)
+            // We use correctIndex to be safe against string/number mismatches
+            if (optIndex === correctIndex) {
+                label.classList.add('correct-answer-label');
             }
-        });
+
+            // B. If User Chose this option AND it is WRONG -> Highlight RED
+            if (userAnswerObj && userAnswerObj.answer === optIndex && optIndex !== correctIndex) {
+                label.classList.add('incorrect-answer-label');
+            }
+        }
         
         questionDiv.appendChild(label);
     });
 
+    // --- EXPLANATION (Show only if submitted) ---
     const explanationDiv = document.createElement('div');
-    explanationDiv.className = 'explanation shadow-sm';
-    explanationDiv.id = `explanation${currentQuestionIndex}`;
-    explanationDiv.style.display = 'none';
-    explanationDiv.innerHTML = `<strong>💡 Explanation:</strong> ${question.explanation}`;
+    explanationDiv.className = 'explanation shadow-sm mt-3';
+    explanationDiv.style.display = quizSubmitted ? 'block' : 'none';
+    explanationDiv.innerHTML = `<strong>💡 Explanation:</strong> <br> ${question.explanation}`;
     questionDiv.appendChild(explanationDiv);
 
     questionContainer.appendChild(questionDiv);
 
-    document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
-    document.getElementById('next-btn').disabled = currentQuestionIndex === currentQuizData.length - 1;
+    updateButtonStates();
 
-    if (userAnswers[currentQuestionIndex] !== undefined) {
-        const selectedOption = document.querySelector(`input[name="q${currentQuestionIndex}"][value="${userAnswers[currentQuestionIndex].answer}"]`);
-        if (selectedOption) {
-            selectedOption.checked = true;
-        }
-    }
-    
-    // Only show feedback if the quiz has been submitted
+    // Show text feedback (Correct/Incorrect/Unattempted)
     if (quizSubmitted) {
-        showFeedback();
+        showFeedbackText(correctIndex);
     } else {
-        hideFeedback();
+        document.getElementById('question-feedback').textContent = "";
+    }
+}
+
+function showFeedbackText(correctIndex) {
+    const resultDiv = document.getElementById('question-feedback');
+    const userAnswerObj = userAnswers[currentQuestionIndex];
+    const selectedVal = userAnswerObj ? userAnswerObj.answer : undefined;
+
+    if (selectedVal === correctIndex) {
+        resultDiv.innerHTML = `<h5 class="text-success fw-bold">Correct! 🎉</h5>`;
+    } else if (selectedVal !== undefined) {
+        resultDiv.innerHTML = `<h5 class="text-danger fw-bold">Incorrect. ❌</h5>`;
+    } else {
+        resultDiv.innerHTML = `<h5 class="text-secondary fw-bold">Unattempted. ⚪</h5>`;
+    }
+}
+
+function updateButtonStates() {
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    if (prevBtn && nextBtn) {
+        prevBtn.disabled = currentQuestionIndex === 0;
+        nextBtn.disabled = currentQuestionIndex === currentQuizData.length - 1;
     }
 }
 
@@ -257,7 +292,6 @@ function renderNav() {
 
         navContainer.appendChild(navItem);
     });
-
     updateNavHighlights();
 }
 
@@ -266,22 +300,24 @@ function updateNavHighlights() {
     navItems.forEach((item) => {
         item.classList.remove('active', 'correct-nav', 'incorrect-nav', 'unattempted', 'attempted');
         const itemIndex = parseInt(item.dataset.index, 10);
+        
+        // Safety convert for checking correctness
+        const qCorrectIndex = Number(currentQuizData[itemIndex].correctAnswer);
 
         if (itemIndex === currentQuestionIndex) {
             item.classList.add('active');
         }
         
         if (quizSubmitted) {
-            if (userAnswers[itemIndex] === undefined) {
+            const uAns = userAnswers[itemIndex];
+            if (uAns === undefined) {
                 item.classList.add('unattempted');
             } else {
-                const isCorrect = userAnswers[itemIndex].answer === currentQuizData[itemIndex].correctAnswer;
+                const isCorrect = uAns.answer === qCorrectIndex;
                 item.classList.add(isCorrect ? 'correct-nav' : 'incorrect-nav');
             }
         } else {
-             if (userAnswers[itemIndex] !== undefined) {
-                item.classList.add('attempted');
-            }
+             if (userAnswers[itemIndex] !== undefined) item.classList.add('attempted');
         }
     });
 }
@@ -295,112 +331,57 @@ function navigateQuestions(direction) {
     }
 }
 
-function showFeedback() {
-    // FIXED: Target the new question-feedback container
-    const resultDiv = document.getElementById('question-feedback');
-    const question = currentQuizData[currentQuestionIndex];
-    const explanationDiv = document.getElementById(`explanation${currentQuestionIndex}`);
-    const options = document.querySelectorAll('.option');
-
-    options.forEach(option => option.style.pointerEvents = 'none');
-    
-    const selectedAnswer = userAnswers[currentQuestionIndex]?.answer;
-    const isCorrect = selectedAnswer !== undefined && selectedAnswer === question.correctAnswer;
-
-    if (userAnswers[currentQuestionIndex]) {
-        userAnswers[currentQuestionIndex].isCorrect = isCorrect;
-    }
-
-    if (isCorrect) {
-        resultDiv.innerHTML = `<h5 class="text-success fw-bold">Correct! 🎉</h5>`;
-    } else if (selectedAnswer !== undefined) {
-        resultDiv.innerHTML = `<h5 class="text-danger fw-bold">Incorrect. ❌</h5>`;
-    } else {
-        resultDiv.innerHTML = `<h5 class="text-secondary fw-bold">Unattempted. ⚪</h5>`;
-    }
-    
-    if (question.correctAnswer !== undefined) {
-        options[question.correctAnswer].classList.add('correct-answer-label');
-    }
-
-    if (selectedAnswer !== undefined && !isCorrect) {
-        options[selectedAnswer].classList.add('incorrect-answer-label');
-    }
-    
-    if (explanationDiv) {
-        explanationDiv.style.display = 'block';
-    }
-}
-
-function hideFeedback() {
-    // FIXED: Clear the feedback container instead of the result container
-    document.getElementById('question-feedback').textContent = "";
-    
-    const explanationDiv = document.getElementById(`explanation${currentQuestionIndex}`);
-    if (explanationDiv) {
-        explanationDiv.style.display = 'none';
-    }
-    const options = document.querySelectorAll('.option');
-    options.forEach(option => {
-        option.style.pointerEvents = 'auto';
-        option.classList.remove('correct-answer-label', 'incorrect-answer-label');
-    });
-}
+// --- SUBMISSION ---
 
 function submitAll() {
     let finalScore = 0;
     let correctCount = 0;
     let incorrectCount = 0;
     let unattemptedCount = 0;
+    
     quizSubmitted = true;
     
-    // First, evaluate all answers and update the userAnswers object
+    // Calculate Score
     currentQuizData.forEach((question, index) => {
-        if (userAnswers[index] !== undefined) {
-            userAnswers[index].isCorrect = userAnswers[index].answer === question.correctAnswer;
-        }
-    });
+        const uAns = userAnswers[index];
+        const correctIdx = Number(question.correctAnswer); // Safety convert
 
-    // Then, calculate the final score and counts based on the updated userAnswers
-    currentQuizData.forEach((question, index) => {
-        if (userAnswers[index] !== undefined) {
-            if (userAnswers[index].isCorrect) {
-                finalScore += 1;
-                correctCount += 1;
+        if (uAns !== undefined) {
+            const isCorrect = uAns.answer === correctIdx;
+            userAnswers[index].isCorrect = isCorrect;
+            
+            if (isCorrect) {
+                finalScore += 2;
+                correctCount++;
             } else {
-                finalScore -= 1/3;
-                incorrectCount += 1;
+                finalScore -= 0.66; // Standard negative marking
+                incorrectCount++;
             }
         } else {
-            unattemptedCount += 1;
+            unattemptedCount++;
         }
     });
     
     const totalQuestions = currentQuizData.length;
 
-    const resultDiv = document.getElementById('result');
-    resultDiv.innerHTML = `
+    document.getElementById('result').innerHTML = `
         <div class="alert alert-primary mt-3 shadow-sm" role="alert">
             <h4 class="alert-heading fw-bold">Test Complete! 🏆</h4>
             <hr>
             <p class="mb-0">✅ Correct: <strong>${correctCount}</strong></p>
             <p class="mb-0">❌ Incorrect: <strong>${incorrectCount}</strong></p>
             <p class="mb-0">⚪ Unattempted: <strong>${unattemptedCount}</strong></p>
-            <h5 class="mt-2 text-primary">Your Score: ${finalScore.toFixed(2)} / ${totalQuestions}</h5>
+            <h5 class="mt-2 text-primary">Your Score: ${finalScore.toFixed(2)} / ${totalQuestions * 2}</h5>
         </div>
     `;
 
-    document.querySelectorAll('input[type="radio"]').forEach(radio => radio.disabled = true);
-    
-    // We update the navigation highlights here to reflect the results
+    // Lock UI
     updateNavHighlights();
-    
-    // Disable the navigation buttons after submission
-    document.getElementById('prev-btn').disabled = true;
-    document.getElementById('next-btn').disabled = true;
-    // Keep 'Clear' button disabled too
     document.getElementById('clear-btn').disabled = true;
+    const submitBtn = document.getElementById('final-submit-btn');
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Submitted";
     
-    // Show feedback for the currently viewed question immediately
-    showFeedback();
+    // Re-render CURRENT question to show the Red/Green logic immediately
+    renderQuestion(); 
 }
