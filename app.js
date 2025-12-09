@@ -1,4 +1,3 @@
-
 let currentSubject = '';
 let currentChapterId = '';
 let currentQuizData = [];
@@ -85,7 +84,7 @@ function showChapters(subjectKey) {
                             data-chapter-id="${chapter.id}"
                             data-chapter-name="${encodeURIComponent(chapter.name)}" 
                             type="button">
-                            Start Quiz
+                            Start Test
                         </button>
                     </div>
                 </div>
@@ -156,6 +155,8 @@ function renderQuizLayout(chapterName) {
             <button id="clear-btn" class="btn btn-outline-warning px-4 rounded-pill">Clear</button>
             <button id="next-btn" class="btn btn-primary-custom px-4 rounded-pill">Next</button>
         </div>
+        <div id="question-feedback" class="mt-3 text-center"></div>
+        
         <div id="result" class="mt-4 text-center"></div>
     `;
 
@@ -163,7 +164,7 @@ function renderQuizLayout(chapterName) {
     quizNav.innerHTML = `
         <div class="nav-header">Question Palette</div>
         <div id="nav-container" class="nav-grid"></div>
-        <button id="final-submit-btn" class="btn btn-success w-100 mt-4 rounded-pill py-2 fw-bold">Submit Quiz</button>
+        <button id="final-submit-btn" class="btn btn-success w-100 mt-4 rounded-pill py-2 fw-bold">Submit Test</button>
     `;
 
     document.getElementById('prev-btn').addEventListener('click', navigateQuestions.bind(null, -1));
@@ -295,7 +296,8 @@ function navigateQuestions(direction) {
 }
 
 function showFeedback() {
-    const resultDiv = document.getElementById('result');
+    // FIXED: Target the new question-feedback container
+    const resultDiv = document.getElementById('question-feedback');
     const question = currentQuizData[currentQuestionIndex];
     const explanationDiv = document.getElementById(`explanation${currentQuestionIndex}`);
     const options = document.querySelectorAll('.option');
@@ -331,7 +333,9 @@ function showFeedback() {
 }
 
 function hideFeedback() {
-    document.getElementById('result').textContent = "";
+    // FIXED: Clear the feedback container instead of the result container
+    document.getElementById('question-feedback').textContent = "";
+    
     const explanationDiv = document.getElementById(`explanation${currentQuestionIndex}`);
     if (explanationDiv) {
         explanationDiv.style.display = 'none';
@@ -377,7 +381,7 @@ function submitAll() {
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = `
         <div class="alert alert-primary mt-3 shadow-sm" role="alert">
-            <h4 class="alert-heading fw-bold">Quiz Complete! 🏆</h4>
+            <h4 class="alert-heading fw-bold">Test Complete! 🏆</h4>
             <hr>
             <p class="mb-0">✅ Correct: <strong>${correctCount}</strong></p>
             <p class="mb-0">❌ Incorrect: <strong>${incorrectCount}</strong></p>
