@@ -14,6 +14,27 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+// --- HELPER FUNCTION FOR MIXED DATA TYPES ---
+// This fixes the issue where some answers are strings (e.g., "Option Text") 
+// and others are indices (e.g., 1).
+function getCorrectIndex(question) {
+    // Case 1: If correctAnswer is already a number (e.g., 0, 1, 2)
+    if (typeof question.correctAnswer === 'number') {
+        return question.correctAnswer;
+    }
+    // Case 2: If correctAnswer is a string match (e.g., "Increase it by...")
+    // We find the index of that string inside the options array
+    const optionIndex = question.options.indexOf(question.correctAnswer);
+    if (optionIndex !== -1) {
+        return optionIndex;
+    }
+    // Case 3: If correctAnswer is a string "1" that needs parsing
+    if (!isNaN(question.correctAnswer)) {
+        return Number(question.correctAnswer);
+    }
+    return -1; // Fallback error case
+}
+
 // --- NAVIGATION & UI ---
 
 function generateSubjectCards() {
@@ -178,8 +199,8 @@ function renderQuestion() {
     questionContainer.innerHTML = '';
     const question = currentQuizData[currentQuestionIndex];
     
-    // SAFETY: Convert correctAnswer to a Number to prevent "1" == 1 type errors
-    const correctIndex = Number(question.correctAnswer);
+    // SAFETY: Use helper to get clean index for both string and numeric answers
+    const correctIndex = getCorrectIndex(question);
 
     const questionDiv = document.createElement('div');
     questionDiv.className = 'question';
@@ -195,7 +216,7 @@ function renderQuestion() {
         
         label.innerHTML = `
             <input type="radio" name="q${currentQuestionIndex}" value="${optIndex}" />
-            ${option}
+            <span>${option}</span>
         `;
         
         const radioInput = label.querySelector('input');
@@ -218,7 +239,6 @@ function renderQuestion() {
             label.style.pointerEvents = 'none'; // Prevent clicks
 
             // A. ALWAYS highlight the Correct Answer (GREEN)
-            // We use correctIndex to be safe against string/number mismatches
             if (optIndex === correctIndex) {
                 label.classList.add('correct-answer-label');
             }
@@ -301,8 +321,8 @@ function updateNavHighlights() {
         item.classList.remove('active', 'correct-nav', 'incorrect-nav', 'unattempted', 'attempted');
         const itemIndex = parseInt(item.dataset.index, 10);
         
-        // Safety convert for checking correctness
-        const qCorrectIndex = Number(currentQuizData[itemIndex].correctAnswer);
+        // Safety convert for checking correctness using helper
+        const qCorrectIndex = getCorrectIndex(currentQuizData[itemIndex]);
 
         if (itemIndex === currentQuestionIndex) {
             item.classList.add('active');
@@ -344,7 +364,7 @@ function submitAll() {
     // Calculate Score
     currentQuizData.forEach((question, index) => {
         const uAns = userAnswers[index];
-        const correctIdx = Number(question.correctAnswer); // Safety convert
+        const correctIdx = getCorrectIndex(question); // Use Helper
 
         if (uAns !== undefined) {
             const isCorrect = uAns.answer === correctIdx;
