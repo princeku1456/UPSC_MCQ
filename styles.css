@@ -91,7 +91,7 @@ body {
 .explanation {
     margin-top: 20px;
     padding: 20px;
-    background-color: #f0fdf4;
+    background-color: #F3F4F6;
     border-left: 4px solid var(--accent-color);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
