@@ -2,6 +2,7 @@
 
 const allQuizData = {
     "Murnal Weekely Test": typeof murnalData !== 'undefined' ? murnalData : {},
+    "Sathvik Bhan Monthly CA Test": typeof sathvikBhanCaData !== 'undefined' ? sathvikBhanCaData : {},
     "Year Wise PYQ": typeof yearWiseData !== 'undefined' ? yearWiseData : {},
     "Modern History PYQ": typeof modernHistoryData !== 'undefined' ? modernHistoryData : {},
     "Ancient History PYQ": typeof ancientHistoryData !== 'undefined' ? ancientHistoryData : {},
