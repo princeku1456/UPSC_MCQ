@@ -145,9 +145,11 @@ async function loadUserDashboard() {
     }
 
     try {
+        // OPTIMIZED QUERY: Added .limit(20) to prevent hitting Firebase quotas with large history
         const snapshot = await db.collection('results')
             .where('userId', '==', currentUser.uid)
             .orderBy('timestamp', 'desc')
+            .limit(20) 
             .get();
 
         const results = snapshot.docs.map(doc => ({
