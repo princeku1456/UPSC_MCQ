@@ -16,6 +16,7 @@ let isReviewMode = false;
 let isRegistering = false;
 let userHistory = [];
 let performanceChartInstance = null;
+let comparisonChartInstance = null; // NEW: Track comparison chart
 let quizTimerInterval = null;
 
 /* =========================================
@@ -413,15 +414,12 @@ function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastDa
     const quizNav = document.getElementById('quiz-nav');
     
     if (isReviewMode) {
-        // Expand content area for Review Mode
         quizContent.parentElement.className = 'col-12';
-        quizNav.parentElement.style.display = 'none'; // Hide sidebar column
-        
-        renderReviewMode();
+        quizNav.parentElement.style.display = 'none'; 
+        renderReviewMode(pastData); // Pass result data for stats
     } else {
-        // Standard Quiz Layout
         quizContent.parentElement.className = 'col-lg-8 mb-4';
-        quizNav.parentElement.style.display = 'block'; // Show sidebar column
+        quizNav.parentElement.style.display = 'block'; 
         
         renderQuizLayout(currentChapterName);
         renderQuestion();
@@ -435,15 +433,49 @@ function reviewTest(resultObj) {
 }
 
 // ===================================
-// NEW: REVIEW MODE LOGIC
+// NEW: REVIEW MODE LOGIC & GLOBAL STATS
 // ===================================
 
-function renderReviewMode() {
+// Helper function to fetch stats for a chapter
+async function getGlobalStats(chapterId) {
+    try {
+        const snapshot = await db.collection('results')
+            .where('chapterId', '==', chapterId)
+            .get();
+        
+        if (snapshot.empty) return null;
+
+        let totalScore = 0;
+        let highestScore = 0;
+        const scores = [];
+        
+        snapshot.forEach(doc => {
+            const s = doc.data().scorePercent;
+            scores.push(s);
+            totalScore += s;
+            if (s > highestScore) highestScore = s;
+        });
+
+        const avg = totalScore / scores.length;
+        
+        return {
+            avg: avg,
+            highest: highestScore,
+            totalAttempts: scores.length,
+            allScores: scores
+        };
+    } catch (e) {
+        console.error("Error fetching global stats", e);
+        return null;
+    }
+}
+
+async function renderReviewMode(resultData) {
     const content = document.getElementById('quiz-content');
     
-    // Header + Filter Buttons + Container + Back Button
+    // HTML Scaffold
     content.innerHTML = `
-        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2 border-bottom pb-3">
+        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2 border-bottom pb-3">
             <div>
                 <h4 class="fw-bold text-primary m-0">${currentChapterName}</h4>
                 <span class="badge bg-secondary">Review Mode</span>
@@ -455,6 +487,18 @@ function renderReviewMode() {
                 <button class="btn btn-outline-secondary" id="btn-unattempted" onclick="filterReview('unattempted', this)">Unattempted</button>
             </div>
         </div>
+
+        <div class="card mb-4 border-0 shadow-sm bg-light">
+            <div class="card-body">
+                <h5 class="fw-bold text-dark mb-3">📊 Your Performance Index</h5>
+                <div class="row align-items-center" id="global-stats-container">
+                    <div class="col-12 text-center py-3">
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <p class="text-muted small mt-2">Comparing with other students...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         
         <div id="review-container"></div>
         
@@ -463,16 +507,87 @@ function renderReviewMode() {
         </div>
     `;
 
-    // Default: Show All
+    // Render Questions immediately
     filterReview('all', document.getElementById('btn-all'));
+
+    // Fetch and Render Global Stats
+    const stats = await getGlobalStats(currentChapterId);
+    const container = document.getElementById('global-stats-container');
+    
+    if (!stats) {
+        container.innerHTML = `<div class="col-12 text-center text-muted">Not enough data for global comparison yet.</div>`;
+        return;
+    }
+
+    const myScore = resultData ? resultData.scorePercent : 0;
+    
+    // Calculate Percentile
+    const betterThan = stats.allScores.filter(s => s < myScore).length;
+    const percentile = ((betterThan / stats.totalAttempts) * 100).toFixed(0);
+
+    container.innerHTML = `
+        <div class="col-md-4 mb-3 mb-md-0 text-center">
+            <h6 class="text-uppercase text-muted small fw-bold">Your Rank</h6>
+            <h2 class="fw-bold text-primary">Top ${100 - percentile}%</h2>
+            <p class="small text-muted">Better than ${percentile}% of users</p>
+        </div>
+        <div class="col-md-8">
+            <div style="height: 200px; width: 100%;">
+                <canvas id="comparisonChart"></canvas>
+            </div>
+        </div>
+    `;
+
+    // Render Comparison Chart
+    const ctx = document.getElementById('comparisonChart');
+    if (comparisonChartInstance) comparisonChartInstance.destroy();
+
+    comparisonChartInstance = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Global Avg', 'Your Score', 'Topper'],
+            datasets: [{
+                label: 'Score (%)',
+                data: [stats.avg.toFixed(1), myScore.toFixed(1), stats.highest.toFixed(1)],
+                backgroundColor: [
+                    'rgba(108, 117, 125, 0.5)', // Grey for Avg
+                    'rgba(59, 130, 246, 0.8)',  // Blue for User
+                    'rgba(245, 158, 11, 0.8)'   // Gold for Topper
+                ],
+                borderColor: [
+                    'rgba(108, 117, 125, 1)',
+                    'rgba(30, 58, 138, 1)',
+                    'rgba(245, 158, 11, 1)'
+                ],
+                borderWidth: 1,
+                borderRadius: 5
+            }]
+        },
+        options: {
+            indexAxis: 'y', // Horizontal Bar Chart
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: { display: false }
+                },
+                y: {
+                    grid: { display: false }
+                }
+            }
+        }
+    });
 }
 
 function filterReview(filterType, btnElement) {
-    // Update active button state
     const buttons = document.querySelectorAll('.btn-group .btn');
     buttons.forEach(btn => btn.classList.remove('active'));
     btnElement.classList.add('active');
-
     renderReviewQuestions(filterType);
 }
 
@@ -486,19 +601,14 @@ function renderReviewQuestions(filterType) {
         const correctIndex = getCorrectIndex(question);
         const uAns = userAnswers[index];
         
-        // Determine Status
         let status = 'unattempted';
         if (uAns) {
             status = (uAns.answer === correctIndex) ? 'correct' : 'incorrect';
         }
 
-        // Filter Logic
-        if (filterType !== 'all' && status !== filterType) {
-            return; // Skip this question
-        }
+        if (filterType !== 'all' && status !== filterType) return;
         visibleCount++;
 
-        // Status Badge & Color
         let badgeHtml = '';
         let borderClass = '';
         
@@ -513,13 +623,11 @@ function renderReviewQuestions(filterType) {
             borderClass = 'border-secondary';
         }
 
-        // Render Options
         let optionsHtml = '';
         question.options.forEach((opt, optIdx) => {
             let optionClass = 'option p-3 mb-2 border rounded';
             let icon = '';
 
-            // Styling Logic
             if (optIdx === correctIndex) {
                 optionClass = 'option p-3 mb-2 border rounded bg-success-subtle border-success fw-bold text-success';
                 icon = '✅';
@@ -535,7 +643,6 @@ function renderReviewQuestions(filterType) {
             `;
         });
 
-        // Create Card
         const card = document.createElement('div');
         card.className = `card mb-4 shadow-sm border-0 border-start border-5 ${borderClass}`;
         card.innerHTML = `
@@ -545,18 +652,13 @@ function renderReviewQuestions(filterType) {
                     ${badgeHtml}
                 </div>
                 <p class="fs-5 fw-medium mb-3">${question.text ? question.text.replace(/\n/g, '<br>') : ''}</p>
-                
-                <div class="mb-3">
-                    ${optionsHtml}
-                </div>
-
+                <div class="mb-3">${optionsHtml}</div>
                 <div class="mt-3 bg-light p-3 rounded border-start border-4 border-warning">
                     <strong>💡 Explanation:</strong>
                     <div class="mt-1 text-muted small">${question.explanation || "No explanation provided."}</div>
                 </div>
             </div>
         `;
-        
         container.appendChild(card);
     });
 
@@ -565,7 +667,6 @@ function renderReviewQuestions(filterType) {
     }
 }
 
-
 // ===================================
 // END REVIEW MODE LOGIC
 // ===================================
@@ -573,7 +674,6 @@ function renderReviewQuestions(filterType) {
 function startTimer(numQuestions) {
     let timeLeft = Math.floor(numQuestions * 1.8 * 60); 
     const display = document.getElementById('timer-display');
-    
     updateTimerDisplay(display, timeLeft);
 
     quizTimerInterval = setInterval(() => {
@@ -593,7 +693,6 @@ function updateTimerDisplay(element, seconds) {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
     element.textContent = `⏱ ${m}:${s < 10 ? '0' : ''}${s}`;
-    
     if (seconds < 60) element.classList.add('text-danger');
     else element.classList.remove('text-danger');
 }
@@ -734,6 +833,7 @@ function updateNavHighlights() {
     });
 }
 
+// Updated submitAll to include global comparison message
 function submitAll(forceSubmit = false) {
     if (!forceSubmit && !confirm("Are you sure you want to submit?")) return;
 
@@ -769,6 +869,7 @@ function submitAll(forceSubmit = false) {
     const totalMarks = totalQ * 2;
     const percentage = totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
 
+    // Show initial Result
     document.getElementById('result').innerHTML = `
         <div class="alert alert-primary mt-3 shadow-sm" role="alert">
             <h4 class="alert-heading fw-bold">Test Complete! 🏆</h4>
@@ -776,6 +877,7 @@ function submitAll(forceSubmit = false) {
             <p>✅ Correct: <strong>${correct}</strong> | ❌ Incorrect: <strong>${incorrect}</strong></p>
             <p>⚪ Unattempted: <strong>${unattempted}</strong></p>
             <h3 class="text-primary mt-2">Score: ${finalScore} / ${totalMarks} (${percentage}%)</h3>
+            <div id="stats-loading" class="mt-2 text-muted small"><span class="spinner-border spinner-border-sm"></span> Calculating class standing...</div>
         </div>
         <button class="btn btn-outline-primary mt-2" onclick="showDashboard()">Return to Dashboard</button>
     `;
@@ -801,8 +903,24 @@ function submitAll(forceSubmit = false) {
             scorePercent: parseFloat(percentage),
             userAnswers: userAnswers,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
-        }).then(() => {
+        }).then(async () => {
             toastr.success("Result saved!");
+            
+            // Fetch Global Stats Immediately for Comparison
+            const stats = await getGlobalStats(currentChapterId);
+            if (stats) {
+                const betterThan = stats.allScores.filter(s => s < parseFloat(percentage)).length;
+                const percentile = ((betterThan / stats.totalAttempts) * 100).toFixed(0);
+                
+                const statsDiv = document.getElementById('stats-loading');
+                if (statsDiv) {
+                    statsDiv.innerHTML = `<strong>🌍 Global Index:</strong> You performed better than <strong>${percentile}%</strong> of users. (Avg: ${stats.avg.toFixed(1)}%)`;
+                }
+            } else {
+                const statsDiv = document.getElementById('stats-loading');
+                if (statsDiv) statsDiv.textContent = "";
+            }
+
             loadUserDashboard();
         }).catch(err => toastr.error("Could not save result."));
     }
