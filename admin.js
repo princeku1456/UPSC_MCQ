@@ -5,7 +5,7 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 // 🔴 REPLACE THIS WITH YOUR EMAIL
-const ALLOWED_ADMINS = ["princeiitk@gmail.com", "your.email@gmail.com"]; 
+const ALLOWED_ADMINS = ["prince@gmail.com", "your.email@gmail.com"]; 
 
 auth.onAuthStateChanged((user) => {
     if (user) {
