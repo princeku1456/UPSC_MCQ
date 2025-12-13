@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="styles.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -117,6 +119,17 @@
                     <div class="stat-card p-4 rounded-4 bg-white shadow-sm border-start border-4 border-success">
                         <h6 class="text-muted text-uppercase small fw-bold">Best Subject</h6>
                         <h2 class="fw-bold text-success mb-0 fs-4" id="stat-best-subject">-</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-10">
+                    <div class="card border-0 shadow-sm rounded-4 p-4">
+                        <h5 class="fw-bold text-primary mb-3">📈 Accuracy Trend</h5>
+                        <div style="position: relative; height: 300px; width: 100%;">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -15,6 +15,8 @@ let quizSubmitted = false;
 let isReviewMode = false;
 let isRegistering = false;
 let userHistory = [];
+let performanceChartInstance = null;
+let quizTimerInterval = null; // NEW: Track timer interval
 
 /* =========================================
    2. INITIALIZATION & AUTH
@@ -125,6 +127,8 @@ function showTestSelection() {
 }
 
 function exitQuiz() {
+    // NEW: Stop timer when exiting
+    if (quizTimerInterval) clearInterval(quizTimerInterval);
     showDashboard();
 }
 
@@ -166,6 +170,9 @@ async function loadUserDashboard() {
         document.getElementById('stat-total-tests').textContent = totalTests;
         document.getElementById('stat-avg-score').textContent = avgScore + '%';
         document.getElementById('stat-best-subject').textContent = bestSubject;
+
+        // Render Graph
+        renderPerformanceChart(results);
 
         // Render History
         historyContainer.innerHTML = '';
@@ -211,6 +218,74 @@ async function loadUserDashboard() {
     }
 }
 
+function renderPerformanceChart(data) {
+    const ctx = document.getElementById('performanceChart');
+    if (!ctx) return;
+
+    const chartData = [...data].reverse();
+    const labels = chartData.map(item => {
+        const date = item.timestamp 
+            ? new Date(item.timestamp.toDate()).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) 
+            : '';
+        return `${item.subject} (${date})`; 
+    });
+
+    const scores = chartData.map(item => item.scorePercent);
+
+    if (performanceChartInstance) {
+        performanceChartInstance.destroy();
+    }
+
+    performanceChartInstance = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Accuracy (%)',
+                data: scores,
+                borderColor: '#1e3a8a',
+                backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                pointBackgroundColor: '#f59e0b',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: '#f59e0b',
+                borderWidth: 3,
+                pointRadius: 5,
+                pointHoverRadius: 7,
+                tension: 0.3,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: 'rgba(30, 58, 138, 0.9)',
+                    titleColor: '#fff',
+                    bodyFont: { size: 14 },
+                    callbacks: {
+                        label: function(context) { return `Score: ${context.parsed.y}%`; }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 100,
+                    grid: { color: '#e5e7eb' },
+                    title: { display: true, text: 'Accuracy (%)' }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { maxRotation: 45, minRotation: 0 }
+                }
+            }
+        }
+    });
+}
+
 /* =========================================
    4. TAKE TEST LOGIC (Subjects & Chapters)
    ========================================= */
@@ -223,7 +298,6 @@ function renderSubjects() {
         return;
     }
 
-    // Injected here so it appears on "Select Subject" but is removed when Chapters are rendered
     container.innerHTML = `
         <button class="btn btn-primary-custom px-4 shadow" onclick="showDashboard()">← Back to Dashboard</button>
         <div class="text-center mb-4">
@@ -254,7 +328,6 @@ function renderSubjects() {
 
 function renderChapters(subjectKey) {
     const container = document.getElementById('test-content-container');
-    // Overwrites container, removing "Back to Dashboard" and adding "Back to Subjects"
     container.innerHTML = `
         <button class="btn btn-primary-custom px-4 shadow" onclick="renderSubjects()">← Back to Subjects</button>
         <div class="text-center mb-4">
@@ -294,7 +367,7 @@ function renderChapters(subjectKey) {
 }
 
 /* =========================================
-   5. QUIZ CORE (Unchanged Logic)
+   5. QUIZ CORE (Updated with Timer)
    ========================================= */
 
 function getCorrectIndex(question) {
@@ -320,6 +393,14 @@ function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastDa
     isReviewMode = reviewMode;
     userAnswers = {};
     quizSubmitted = false;
+    
+    // Reset Timer Display
+    const timerDisplay = document.getElementById('timer-display');
+    if (timerDisplay) {
+        timerDisplay.textContent = '';
+        timerDisplay.classList.remove('text-danger');
+    }
+    if (quizTimerInterval) clearInterval(quizTimerInterval);
 
     if (reviewMode && pastData) {
         userAnswers = pastData.userAnswers || {};
@@ -332,10 +413,46 @@ function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastDa
     renderQuizLayout(currentChapterName);
     renderQuestion();
     renderNav();
+
+    // NEW: Start Timer if not in review mode
+    if (!isReviewMode) {
+        startTimer(currentQuizData.length);
+    }
 }
 
 function reviewTest(resultObj) {
     loadQuiz(resultObj.subject, resultObj.chapterId, resultObj.chapterName, true, resultObj);
+}
+
+// NEW FUNCTION: Timer Logic
+function startTimer(numQuestions) {
+    // 1.8 minutes per question = 108 seconds
+    let timeLeft = Math.floor(numQuestions * 1.8 * 60); 
+    const display = document.getElementById('timer-display');
+    
+    updateTimerDisplay(display, timeLeft);
+
+    quizTimerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay(display, timeLeft);
+
+        if (timeLeft <= 0) {
+            clearInterval(quizTimerInterval);
+            toastr.warning("Time's up! Submitting test...");
+            submitAll(true); // Force submit
+        }
+    }, 1000);
+}
+
+// NEW FUNCTION: Helper to format time
+function updateTimerDisplay(element, seconds) {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    element.textContent = `⏱ ${m}:${s < 10 ? '0' : ''}${s}`;
+    
+    // Turn red if less than 1 minute remains
+    if (seconds < 60) element.classList.add('text-danger');
+    else element.classList.remove('text-danger');
 }
 
 function renderQuizLayout(title) {
@@ -366,7 +483,8 @@ function renderQuizLayout(title) {
 
     if (!isReviewMode) {
         document.getElementById('clear-btn').addEventListener('click', clearSelection);
-        document.getElementById('final-submit-btn').addEventListener('click', submitAll);
+        // Call submitAll without arguments for button click
+        document.getElementById('final-submit-btn').addEventListener('click', () => submitAll(false));
     } else {
         document.getElementById('clear-btn').disabled = true;
     }
@@ -483,8 +601,12 @@ function updateNavHighlights() {
     });
 }
 
-function submitAll() {
-    if (!confirm("Are you sure you want to submit?")) return;
+function submitAll(forceSubmit = false) {
+    // If NOT forced (i.e., user clicked button), ask for confirmation
+    if (!forceSubmit && !confirm("Are you sure you want to submit?")) return;
+
+    // Stop timer
+    if (quizTimerInterval) clearInterval(quizTimerInterval);
 
     quizSubmitted = true;
     let score = 0;
@@ -527,8 +649,13 @@ function submitAll() {
         <button class="btn btn-outline-primary mt-2" onclick="showDashboard()">Return to Dashboard</button>
     `;
 
-    document.getElementById('final-submit-btn').style.display = 'none';
-    document.getElementById('clear-btn').disabled = true;
+    // Hide Submit button and Disable Clear button
+    const submitBtn = document.getElementById('final-submit-btn');
+    if(submitBtn) submitBtn.style.display = 'none';
+    
+    const clearBtn = document.getElementById('clear-btn');
+    if(clearBtn) clearBtn.disabled = true;
+    
     renderQuestion();
     updateNavHighlights();
 
