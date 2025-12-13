@@ -352,7 +352,7 @@ function renderQuizLayout(title) {
     `;
 
     const submitBtnHTML = isReviewMode ? '' : `<button id="final-submit-btn" class="btn btn-success w-100 mt-4 rounded-pill py-2 fw-bold">Submit Test</button>`;
-    const backToDashHTML = isReviewMode ? `<button class="btn btn-primary-custom px-4 shadow" onclick="showDashboard()">Back to Dashboard</button>` : '';
+    const backToDashHTML = isReviewMode ? `<button class="btn btn-primary-custom px-4 shadow mt-5" onclick="showDashboard()">Back to Dashboard</button>` : '';
 
     document.getElementById('quiz-nav').innerHTML = `
         <div class="nav-header">Question Palette</div>
