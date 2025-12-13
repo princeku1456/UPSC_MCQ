@@ -437,32 +437,20 @@ function reviewTest(resultObj) {
 // ===================================
 
 // Helper function to fetch stats for a chapter
+// OPTIMIZED: Reads from 'chapter_stats' collection instead of aggregating 'results'
 async function getGlobalStats(chapterId) {
     try {
-        const snapshot = await db.collection('results')
-            .where('chapterId', '==', chapterId)
-            .get();
-        
-        if (snapshot.empty) return null;
+        const doc = await db.collection('chapter_stats').doc(chapterId).get();
 
-        let totalScore = 0;
-        let highestScore = 0;
-        const scores = [];
-        
-        snapshot.forEach(doc => {
-            const s = doc.data().scorePercent;
-            scores.push(s);
-            totalScore += s;
-            if (s > highestScore) highestScore = s;
-        });
+        if (!doc.exists) return null;
 
-        const avg = totalScore / scores.length;
+        const data = doc.data();
         
         return {
-            avg: avg,
-            highest: highestScore,
-            totalAttempts: scores.length,
-            allScores: scores
+            avg: data.average || 0,
+            highest: data.highestScore || 0,
+            totalAttempts: data.totalAttempts || 0,
+            allScores: data.allScores || [] // Needed for percentile comparison
         };
     } catch (e) {
         console.error("Error fetching global stats", e);
@@ -523,7 +511,9 @@ async function renderReviewMode(resultData) {
     
     // Calculate Percentile
     const betterThan = stats.allScores.filter(s => s < myScore).length;
-    const percentile = ((betterThan / stats.totalAttempts) * 100).toFixed(0);
+    const percentile = stats.totalAttempts > 0 
+        ? ((betterThan / stats.totalAttempts) * 100).toFixed(0) 
+        : 0;
 
     container.innerHTML = `
         <div class="col-md-4 mb-3 mb-md-0 text-center">
@@ -833,7 +823,7 @@ function updateNavHighlights() {
     });
 }
 
-// Updated submitAll to include global comparison message
+// Updated submitAll to include global comparison message and atomic updates
 function submitAll(forceSubmit = false) {
     if (!forceSubmit && !confirm("Are you sure you want to submit?")) return;
 
@@ -906,11 +896,49 @@ function submitAll(forceSubmit = false) {
         }).then(async () => {
             toastr.success("Result saved!");
             
-            // Fetch Global Stats Immediately for Comparison
+            // OPTIMIZED: Update 'chapter_stats' atomically
+            const statsRef = db.collection('chapter_stats').doc(currentChapterId);
+            try {
+                await db.runTransaction(async (transaction) => {
+                    const sfDoc = await transaction.get(statsRef);
+                    const newScore = parseFloat(percentage);
+
+                    if (!sfDoc.exists) {
+                        transaction.set(statsRef, {
+                            totalScore: newScore,
+                            totalAttempts: 1,
+                            average: newScore,
+                            highestScore: newScore,
+                            allScores: [newScore]
+                        });
+                    } else {
+                        const data = sfDoc.data();
+                        const newTotalScore = (data.totalScore || 0) + newScore;
+                        const newTotalAttempts = (data.totalAttempts || 0) + 1;
+                        const newAvg = newTotalScore / newTotalAttempts;
+                        const newHighest = Math.max((data.highestScore || 0), newScore);
+                        const newAllScores = [...(data.allScores || []), newScore];
+
+                        transaction.update(statsRef, {
+                            totalScore: newTotalScore,
+                            totalAttempts: newTotalAttempts,
+                            average: newAvg,
+                            highestScore: newHighest,
+                            allScores: newAllScores
+                        });
+                    }
+                });
+            } catch (e) {
+                console.error("Stats update failed:", e);
+            }
+            
+            // Fetch Global Stats Immediately for Comparison (Reads from optimized collection)
             const stats = await getGlobalStats(currentChapterId);
             if (stats) {
                 const betterThan = stats.allScores.filter(s => s < parseFloat(percentage)).length;
-                const percentile = ((betterThan / stats.totalAttempts) * 100).toFixed(0);
+                const percentile = stats.totalAttempts > 0 
+                    ? ((betterThan / stats.totalAttempts) * 100).toFixed(0) 
+                    : 0;
                 
                 const statsDiv = document.getElementById('stats-loading');
                 if (statsDiv) {
