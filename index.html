@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Practice MCQs - User Portal</title>
-    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="styles.css" rel="stylesheet" />
@@ -14,44 +13,93 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark main-navbar sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#" onclick="handleLogoClick()">
-                <span style="font-size: 1.5rem;">✨ MCQ Practice</span>
-            </a>
-            <div class="d-flex align-items-center">
-                <div id="auth-buttons">
-                    <button class="btn btn-outline-light btn-sm rounded-pill px-3" onclick="showAuthModal()">Login / Signup</button>
-                </div>
-                <div id="user-profile" style="display: none;" class="dropdown">
-                    <button class="btn btn-link text-white text-decoration-none dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown">
-                        <span id="user-name-display">User</span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end shadow">
-                        <li><a class="dropdown-item" href="#" onclick="showDashboard()">📊 Dashboard</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser()">🚪 Logout</a></li>
-                    </ul>
-                </div>
+            <a class="navbar-brand fw-bold" href="#" onclick="handleLogoClick()">✨ MCQ Practice</a>
+            <div id="user-profile" style="display: none;" class="dropdown">
+                <button class="btn btn-link text-white text-decoration-none dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown">
+                    <span id="user-name-display">User</span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end shadow">
+                    <li><a class="dropdown-item" href="#" onclick="showDashboard()">📊 Dashboard</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser()">🚪 Logout</a></li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <section id="hero-section" class="hero text-center justify-content-center align-items-center" style="min-height:90vh; display: grid; place-items: center;">
+    <section id="hero-section" class="hero">
         <div class="container">
-            <div class="hero-content p-5 rounded-4 animate-fade-in">
-                <h1 class="display-3 fw-bold mb-3 text-gradient">Master Your Topics</h1>
-                <p class="lead fs-5 mb-5 text-muted">Sign in to track your progress, review past tests, and master your subjects.</p>
-                <div id="hero-cta">
-                    <button class="btn btn-primary-custom btn-lg px-5 py-3 shadow-lg" onclick="showAuthModal()">Get Started 🚀</button>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-5 ">
+                    <div class="card auth-card text-center animate-fade-in">
+                        <div class="card-body p-5">
+                            <h3 class="fw-bold text-primary mb-2" id="auth-title">Welcome Back! 👋</h3>
+                            <p class="text-muted mb-4" id="auth-subtitle">Login to access your dashboard.</p>
+                            
+                            <form id="auth-form">
+                                <div class="mb-3 text-start">
+                                    <label class="form-label text-muted small fw-bold">Email Address</label>
+                                    <input type="email" class="form-control form-control-lg bg-light" id="auth-email" required>
+                                </div>
+                                <div class="mb-3 text-start">
+                                    <label class="form-label text-muted small fw-bold">Password</label>
+                                    <input type="password" class="form-control form-control-lg bg-light" id="auth-password" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary-custom w-100 py-3 mt-3 shadow" id="auth-submit-btn">Login</button>
+                            </form>
+                            
+                            <div class="mt-4">
+                                <small class="text-muted">Don't have an account? 
+                                    <a href="#" class="text-primary fw-bold text-decoration-none" onclick="toggleAuthMode()">Register here</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="dashboard-section" class="py-5" style="display: none; min-height: 90vh;">
-        <div class="container">
-            <h2 class="fw-bold section-title mb-4">My Dashboard</h2>
+        <div class="container h-100 d-flex flex-column justify-content-center">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold section-title">My Dashboard</h2>
+                <div class="title-underline mx-auto"></div>
+            </div>
             
-            <div class="row mb-5">
+            <div class="row justify-content-center g-4">
+                <div class="col-md-5 col-lg-4">
+                    <div class="card topic-card h-100" style="cursor: pointer;" onclick="showPerformance()">
+                        <div class="card-body text-center p-4">
+                            <div class="display-3 mb-4">📊</div>
+                            <h3 class="fw-bold text-primary">Performance</h3>
+                            <p class="text-muted mt-2">View your stats and past results.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-lg-4">
+                    <div class="card topic-card h-100" style="cursor: pointer;" onclick="showTestSelection()">
+                        <div class="card-body text-center p-4">
+                            <div class="display-3 mb-4">🚀</div>
+                            <h3 class="fw-bold text-success">Take Test</h3>
+                            <p class="text-muted mt-2">Start a new quiz or retake topics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="performance-section" class="py-5" style="display: none; min-height: 90vh;">
+        <div class="container">
+            <button class="btn btn-primary-custom px-4 shadow" onclick="showDashboard()">← Back to Dashboard</button>
+            <div class="text-center mb-5">
+                <h2 class="fw-bold section-title">Performance Overview</h2>
+                <div class="title-underline mx-auto"></div>
+            </div>
+
+            <div class="row mb-5 justify-content-center">
                 <div class="col-md-4 mb-3">
                     <div class="stat-card p-4 rounded-4 bg-white shadow-sm border-start border-4 border-primary">
                         <h6 class="text-muted text-uppercase small fw-bold">Tests Taken</h6>
@@ -72,42 +120,22 @@
                 </div>
             </div>
 
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <h4 class="fw-bold text-dark">Recent Activity</h4>
-                <button class="btn btn-primary-custom shadow" onclick="showSubjects()">+ New Test</button>
-            </div>
+            <h4 class="fw-bold text-dark mb-3">Past Reviews</h4>
+            <div id="history-container" class="row"></div>
+        </div>
+    </section>
 
-            <div id="history-container" class="row">
+    <section id="test-selection-section" class="py-5" style="display: none; min-height: 90vh;">
+        <div class="container">
+            <div id="test-content-container">
                 </div>
-        </div>
-    </section>
-
-    <section id="subjects-section" class="topics py-5" style="display: none; min-height:90vh;">
-        <div class="container">
-            <button class="btn btn-primary-custom px-5 py-3 shadow-lg mb-4" onclick="handleBackToHome()">← Back</button>
-            <div class="text-center mb-5">
-                <h2 class="fw-bold section-title">Select a Subject</h2>
-                <div class="title-underline mx-auto"></div>
-            </div>
-            <div class="row justify-content-center" id="subjects-container"></div>
-        </div>
-    </section>
-
-    <section id="chapters-section" class="chapters py-5" style="display: none; min-height:90vh;">
-        <div class="container">
-            <button class="btn btn-primary-custom px-5 py-3 shadow-lg mb-4" onclick="showSubjects()">← Back to Subjects</button>
-            <div class="text-center mb-5">
-                <h2 class="fw-bold section-title" id="chapters-title">Choose a Chapter</h2>
-                <div class="title-underline mx-auto"></div>
-            </div>
-            <div class="row" id="chapters-container"></div>
         </div>
     </section>
 
     <section id="quiz-section" class="quiz-section py-5" style="display: none;">
         <div class="container">
             <div class="d-flex justify-content-between mb-4">
-                <button class="btn btn-primary-custom px-4 shadow-lg" onclick="goBackToChapters()">← Exit</button>
+                <button class="btn btn-primary-custom px-4 shadow" onclick="exitQuiz()">← Exit</button>
                 <div id="timer-display" class="fw-bold text-primary fs-5"></div>
             </div>
             <div class="row">
@@ -121,43 +149,10 @@
         </div>
     </section>
 
-    <div class="modal fade" id="authModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 rounded-4 shadow-lg">
-                <div class="modal-header border-0 pb-0">
-                    <h5 class="modal-title fw-bold text-primary">Welcome Back! 👋</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <form id="auth-form">
-                        <div class="mb-3">
-                            <label class="form-label text-muted small fw-bold">Email Address</label>
-                            <input type="email" class="form-control form-control-lg bg-light border-0" id="auth-email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label text-muted small fw-bold">Password</label>
-                            <input type="password" class="form-control form-control-lg bg-light border-0" id="auth-password" required>
-                        </div>
-                        <div class="d-grid gap-2 mt-4">
-                            <button type="submit" class="btn btn-primary-custom py-3" id="auth-submit-btn">Login</button>
-                        </div>
-                    </form>
-                    <div class="text-center mt-3">
-                        <small class="text-muted">Don't have an account? 
-                            <a href="#" class="text-primary fw-bold text-decoration-none" onclick="toggleAuthMode()">Register here</a>
-                        </small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-
     <script src="config.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
