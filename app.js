@@ -14,9 +14,13 @@ let userAnswers = {};
 let quizSubmitted = false;
 let isReviewMode = false;
 let isRegistering = false;
+
+// OPTIMIZATION: Cache Variables
 let userHistory = [];
+let dashboardDataLoaded = false; // Flag to prevent redundant fetches
+let globalStatsCache = {}; // Cache for chapter stats
 let performanceChartInstance = null;
-let comparisonChartInstance = null; // NEW: Track comparison chart
+let comparisonChartInstance = null;
 let quizTimerInterval = null;
 
 /* =========================================
@@ -27,9 +31,18 @@ auth.onAuthStateChanged((user) => {
     if (user) {
         currentUser = user;
         updateUIForLogin();
-        showDashboard();
+        // Only load if not already on dashboard to avoid double fetch potential
+        if (document.getElementById('dashboard-section').style.display === 'block') {
+            showDashboard();
+        } else {
+            showDashboard();
+        }
     } else {
         currentUser = null;
+        // Clear caches on logout
+        userHistory = [];
+        dashboardDataLoaded = false;
+        globalStatsCache = {};
         updateUIForLogout();
         showHome();
     }
@@ -72,7 +85,13 @@ document.getElementById('auth-form').addEventListener('submit', (e) => {
 });
 
 function logoutUser() {
-    auth.signOut().then(() => toastr.info("Logged out"));
+    auth.signOut().then(() => {
+        toastr.info("Logged out");
+        // Reset Local State
+        userHistory = [];
+        dashboardDataLoaded = false;
+        globalStatsCache = {};
+    });
 }
 
 function updateUIForLogin() {
@@ -136,16 +155,23 @@ function exitQuiz() {
    3. DASHBOARD LOGIC (Stats & History)
    ========================================= */
 
-async function loadUserDashboard() {
+// OPTIMIZED: Split fetching and rendering to utilize cache
+async function loadUserDashboard(forceRefresh = false) {
     if (!currentUser) return;
 
     const historyContainer = document.getElementById('history-container');
+    
+    // Use Cached Data if available and not forced to refresh
+    if (!forceRefresh && dashboardDataLoaded && userHistory.length > 0) {
+        renderDashboardUI();
+        return;
+    }
+
     if (historyContainer.children.length === 0) {
         historyContainer.innerHTML = '<div class="text-center w-100 py-5"><div class="spinner-border text-primary"></div></div>';
     }
 
     try {
-        // OPTIMIZED QUERY: Added .limit(20) to prevent hitting Firebase quotas with large history
         const snapshot = await db.collection('results')
             .where('userId', '==', currentUser.uid)
             .orderBy('timestamp', 'desc')
@@ -156,67 +182,86 @@ async function loadUserDashboard() {
             id: doc.id,
             ...doc.data()
         }));
+        
         userHistory = results;
-
-        // Stats
-        const totalTests = results.length;
-        const avgScore = totalTests ? (results.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalTests).toFixed(1) : 0;
-
-        const subjectCounts = {};
-        results.forEach(r => {
-            if (!subjectCounts[r.subject]) subjectCounts[r.subject] = 0;
-            if (r.scorePercent > 70) subjectCounts[r.subject]++;
-        });
-        const bestSubject = Object.keys(subjectCounts).sort((a, b) => subjectCounts[b] - subjectCounts[a])[0] || "-";
-
-        document.getElementById('stat-total-tests').textContent = totalTests;
-        document.getElementById('stat-avg-score').textContent = avgScore + '%';
-        document.getElementById('stat-best-subject').textContent = bestSubject;
-
-        renderPerformanceChart(results);
-
-        // Render History
-        historyContainer.innerHTML = '';
-        if (results.length === 0) {
-            historyContainer.innerHTML = `<div class="col-12 text-center text-muted py-5">No tests taken yet.</div>`;
-            return;
-        }
-
-        results.forEach(res => {
-            const date = res.timestamp ? new Date(res.timestamp.toDate()).toLocaleDateString() : 'N/A';
-            let borderClass = 'avg-score';
-            if (res.scorePercent >= 80) borderClass = 'high-score';
-            if (res.scorePercent < 50) borderClass = 'low-score';
-
-            const card = document.createElement('div');
-            card.className = 'col-lg-6 mb-3';
-            card.innerHTML = `
-                <div class="card history-card p-3 ${borderClass}">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div style="overflow: hidden;">
-                            <h6 class="fw-bold text-primary mb-1 text-truncate">${res.chapterName}</h6>
-                            <small class="text-muted">${res.subject} • ${date}</small>
-                        </div>
-                        <div class="text-end ms-2">
-                            <div class="fs-4 fw-bold ${res.scorePercent >= 50 ? 'text-success' : 'text-danger'}">
-                                ${res.score.toFixed(1)} <span class="fs-6 text-muted">/ ${res.totalMarks}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-3">
-                        <button class="btn btn-sm btn-outline-primary w-100 review-btn">👁 Review Performance</button>
-                    </div>
-                </div>
-            `;
-
-            card.querySelector('.review-btn').onclick = () => reviewTest(res);
-            historyContainer.appendChild(card);
-        });
+        dashboardDataLoaded = true; // Mark as loaded
+        
+        renderDashboardUI();
 
     } catch (error) {
         console.error("Error loading dashboard:", error);
         historyContainer.innerHTML = `<p class="text-danger text-center">Failed to load history.</p>`;
     }
+}
+
+// NEW: Pure rendering function that works with memory data
+function renderDashboardUI() {
+    const historyContainer = document.getElementById('history-container');
+    const results = userHistory;
+
+    // Stats Calculations
+    const totalTests = results.length;
+    const avgScore = totalTests ? (results.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalTests).toFixed(1) : 0;
+
+    const subjectCounts = {};
+    results.forEach(r => {
+        if (!subjectCounts[r.subject]) subjectCounts[r.subject] = 0;
+        if (r.scorePercent > 70) subjectCounts[r.subject]++;
+    });
+    const bestSubject = Object.keys(subjectCounts).sort((a, b) => subjectCounts[b] - subjectCounts[a])[0] || "-";
+
+    document.getElementById('stat-total-tests').textContent = totalTests;
+    document.getElementById('stat-avg-score').textContent = avgScore + '%';
+    document.getElementById('stat-best-subject').textContent = bestSubject;
+
+    renderPerformanceChart(results);
+
+    // Render History Cards
+    historyContainer.innerHTML = '';
+    if (results.length === 0) {
+        historyContainer.innerHTML = `<div class="col-12 text-center text-muted py-5">No tests taken yet.</div>`;
+        return;
+    }
+
+    results.forEach(res => {
+        // Handle timestamp: It might be a Firestore timestamp or a JS Date (if locally added)
+        let dateStr = 'Just now';
+        if (res.timestamp) {
+             if (res.timestamp.toDate) {
+                 dateStr = new Date(res.timestamp.toDate()).toLocaleDateString();
+             } else {
+                 dateStr = new Date(res.timestamp).toLocaleDateString();
+             }
+        }
+
+        let borderClass = 'avg-score';
+        if (res.scorePercent >= 80) borderClass = 'high-score';
+        if (res.scorePercent < 50) borderClass = 'low-score';
+
+        const card = document.createElement('div');
+        card.className = 'col-lg-6 mb-3';
+        card.innerHTML = `
+            <div class="card history-card p-3 ${borderClass}">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div style="overflow: hidden;">
+                        <h6 class="fw-bold text-primary mb-1 text-truncate">${res.chapterName}</h6>
+                        <small class="text-muted">${res.subject} • ${dateStr}</small>
+                    </div>
+                    <div class="text-end ms-2">
+                        <div class="fs-4 fw-bold ${res.scorePercent >= 50 ? 'text-success' : 'text-danger'}">
+                            ${res.score.toFixed(1)} <span class="fs-6 text-muted">/ ${res.totalMarks}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button class="btn btn-sm btn-outline-primary w-100 review-btn">👁 Review Performance</button>
+                </div>
+            </div>
+        `;
+
+        card.querySelector('.review-btn').onclick = () => reviewTest(res);
+        historyContainer.appendChild(card);
+    });
 }
 
 function renderPerformanceChart(data) {
@@ -225,9 +270,13 @@ function renderPerformanceChart(data) {
 
     const chartData = [...data].reverse();
     const labels = chartData.map(item => {
-        const date = item.timestamp 
-            ? new Date(item.timestamp.toDate()).toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) 
-            : '';
+        // Handle timestamp compatibility
+        let date;
+        if (item.timestamp && item.timestamp.toDate) {
+            date = new Date(item.timestamp.toDate()).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+        } else {
+            date = 'New';
+        }
         return `${item.subject} (${date})`; 
     });
 
@@ -344,7 +393,8 @@ function renderChapters(subjectKey) {
     Object.keys(chapters).forEach(chapId => {
         const col = document.createElement('div');
         col.className = 'col-md-6 col-lg-4 mb-4';
-
+        
+        // Simple check against local history to see if taken (Not 100% accurate if history truncated, but saves reads)
         const hasTaken = userHistory && userHistory.some(h => h.chapterId === chapId);
         const btnText = hasTaken ? "↻ Retake Test" : "🚀 Start Test";
         const btnClass = hasTaken ? "btn-primary-custom" : "btn-primary-custom";
@@ -418,7 +468,7 @@ function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastDa
     if (isReviewMode) {
         quizContent.parentElement.className = 'col-12';
         quizNav.parentElement.style.display = 'none'; 
-        renderReviewMode(pastData); // Pass result data for stats
+        renderReviewMode(pastData); 
     } else {
         quizContent.parentElement.className = 'col-lg-8 mb-4';
         quizNav.parentElement.style.display = 'block'; 
@@ -435,25 +485,32 @@ function reviewTest(resultObj) {
 }
 
 // ===================================
-// NEW: REVIEW MODE LOGIC & GLOBAL STATS
+// OPTIMIZED: REVIEW MODE LOGIC & GLOBAL STATS
 // ===================================
 
-// Helper function to fetch stats for a chapter
-// OPTIMIZED: Reads from 'chapter_stats' collection instead of aggregating 'results'
 async function getGlobalStats(chapterId) {
+    // OPTIMIZATION: Check local cache first
+    if (globalStatsCache[chapterId]) {
+        return globalStatsCache[chapterId];
+    }
+
     try {
         const doc = await db.collection('chapter_stats').doc(chapterId).get();
 
         if (!doc.exists) return null;
 
         const data = doc.data();
-        
-        return {
+        const stats = {
             avg: data.average || 0,
             highest: data.highestScore || 0,
             totalAttempts: data.totalAttempts || 0,
-            allScores: data.allScores || [] // Needed for percentile comparison
+            allScores: data.allScores || [] 
         };
+        
+        // Save to cache
+        globalStatsCache[chapterId] = stats;
+        
+        return stats;
     } catch (e) {
         console.error("Error fetching global stats", e);
         return null;
@@ -463,7 +520,6 @@ async function getGlobalStats(chapterId) {
 async function renderReviewMode(resultData) {
     const content = document.getElementById('quiz-content');
     
-    // HTML Scaffold
     content.innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2 border-bottom pb-3">
             <div>
@@ -497,10 +553,8 @@ async function renderReviewMode(resultData) {
         </div>
     `;
 
-    // Render Questions immediately
     filterReview('all', document.getElementById('btn-all'));
 
-    // Fetch and Render Global Stats
     const stats = await getGlobalStats(currentChapterId);
     const container = document.getElementById('global-stats-container');
     
@@ -511,7 +565,6 @@ async function renderReviewMode(resultData) {
 
     const myScore = resultData ? resultData.scorePercent : 0;
     
-    // Calculate Percentile
     const betterThan = stats.allScores.filter(s => s < myScore).length;
     const percentile = stats.totalAttempts > 0 
         ? ((betterThan / stats.totalAttempts) * 100).toFixed(0) 
@@ -530,7 +583,6 @@ async function renderReviewMode(resultData) {
         </div>
     `;
 
-    // Render Comparison Chart
     const ctx = document.getElementById('comparisonChart');
     if (comparisonChartInstance) comparisonChartInstance.destroy();
 
@@ -542,9 +594,9 @@ async function renderReviewMode(resultData) {
                 label: 'Score (%)',
                 data: [stats.avg.toFixed(1), myScore.toFixed(1), stats.highest.toFixed(1)],
                 backgroundColor: [
-                    'rgba(108, 117, 125, 0.5)', // Grey for Avg
-                    'rgba(59, 130, 246, 0.8)',  // Blue for User
-                    'rgba(245, 158, 11, 0.8)'   // Gold for Topper
+                    'rgba(108, 117, 125, 0.5)',
+                    'rgba(59, 130, 246, 0.8)',
+                    'rgba(245, 158, 11, 0.8)'
                 ],
                 borderColor: [
                     'rgba(108, 117, 125, 1)',
@@ -556,7 +608,7 @@ async function renderReviewMode(resultData) {
             }]
         },
         options: {
-            indexAxis: 'y', // Horizontal Bar Chart
+            indexAxis: 'y',
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
@@ -825,7 +877,7 @@ function updateNavHighlights() {
     });
 }
 
-// Updated submitAll to include global comparison message and atomic updates
+// OPTIMIZED: Update local history immediately to avoid refetch on dashboard load
 function submitAll(forceSubmit = false) {
     if (!forceSubmit && !confirm("Are you sure you want to submit?")) return;
 
@@ -861,7 +913,6 @@ function submitAll(forceSubmit = false) {
     const totalMarks = totalQ * 2;
     const percentage = totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
 
-    // Show initial Result
     document.getElementById('result').innerHTML = `
         <div class="alert alert-primary mt-3 shadow-sm" role="alert">
             <h4 class="alert-heading fw-bold">Test Complete! 🏆</h4>
@@ -884,7 +935,7 @@ function submitAll(forceSubmit = false) {
     updateNavHighlights();
 
     if (currentUser) {
-        db.collection('results').add({
+        const resultObject = {
             userId: currentUser.uid,
             userEmail: currentUser.email,
             subject: currentSubject,
@@ -894,11 +945,23 @@ function submitAll(forceSubmit = false) {
             totalMarks: totalMarks,
             scorePercent: parseFloat(percentage),
             userAnswers: userAnswers,
+            timestamp: new Date() // Use local date for immediate UI update
+        };
+
+        db.collection('results').add({
+            ...resultObject,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }).then(async () => {
             toastr.success("Result saved!");
             
-            // OPTIMIZED: Update 'chapter_stats' atomically
+            // OPTIMIZATION: Manually update local history so we don't have to fetch it
+            userHistory.unshift(resultObject);
+            if (userHistory.length > 20) userHistory.pop();
+            dashboardDataLoaded = true; // Ensure dashboard uses this new data
+
+            // OPTIMIZATION: Invalidate stats cache for this chapter so we fetch fresh next time
+            delete globalStatsCache[currentChapterId];
+            
             const statsRef = db.collection('chapter_stats').doc(currentChapterId);
             try {
                 await db.runTransaction(async (transaction) => {
@@ -934,7 +997,7 @@ function submitAll(forceSubmit = false) {
                 console.error("Stats update failed:", e);
             }
             
-            // Fetch Global Stats Immediately for Comparison (Reads from optimized collection)
+            // Update global stats display
             const stats = await getGlobalStats(currentChapterId);
             if (stats) {
                 const betterThan = stats.allScores.filter(s => s < parseFloat(percentage)).length;
@@ -951,7 +1014,9 @@ function submitAll(forceSubmit = false) {
                 if (statsDiv) statsDiv.textContent = "";
             }
 
-            loadUserDashboard();
+            // Note: We removed loadUserDashboard() call here. 
+            // The "Return to Dashboard" button handles the UI switch using cached data.
+
         }).catch(err => toastr.error("Could not save result."));
     }
 }
