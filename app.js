@@ -16,7 +16,7 @@ let isReviewMode = false;
 let isRegistering = false;
 let userHistory = [];
 let performanceChartInstance = null;
-let quizTimerInterval = null; // NEW: Track timer interval
+let quizTimerInterval = null;
 
 /* =========================================
    2. INITIALIZATION & AUTH
@@ -127,7 +127,6 @@ function showTestSelection() {
 }
 
 function exitQuiz() {
-    // NEW: Stop timer when exiting
     if (quizTimerInterval) clearInterval(quizTimerInterval);
     showDashboard();
 }
@@ -171,7 +170,6 @@ async function loadUserDashboard() {
         document.getElementById('stat-avg-score').textContent = avgScore + '%';
         document.getElementById('stat-best-subject').textContent = bestSubject;
 
-        // Render Graph
         renderPerformanceChart(results);
 
         // Render History
@@ -367,7 +365,7 @@ function renderChapters(subjectKey) {
 }
 
 /* =========================================
-   5. QUIZ CORE (Updated with Timer)
+   5. QUIZ CORE
    ========================================= */
 
 function getCorrectIndex(question) {
@@ -410,12 +408,24 @@ function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastDa
     hideAllSections();
     document.getElementById('quiz-section').style.display = 'block';
 
-    renderQuizLayout(currentChapterName);
-    renderQuestion();
-    renderNav();
-
-    // NEW: Start Timer if not in review mode
-    if (!isReviewMode) {
+    // Layout Management
+    const quizContent = document.getElementById('quiz-content');
+    const quizNav = document.getElementById('quiz-nav');
+    
+    if (isReviewMode) {
+        // Expand content area for Review Mode
+        quizContent.parentElement.className = 'col-12';
+        quizNav.parentElement.style.display = 'none'; // Hide sidebar column
+        
+        renderReviewMode();
+    } else {
+        // Standard Quiz Layout
+        quizContent.parentElement.className = 'col-lg-8 mb-4';
+        quizNav.parentElement.style.display = 'block'; // Show sidebar column
+        
+        renderQuizLayout(currentChapterName);
+        renderQuestion();
+        renderNav();
         startTimer(currentQuizData.length);
     }
 }
@@ -424,9 +434,143 @@ function reviewTest(resultObj) {
     loadQuiz(resultObj.subject, resultObj.chapterId, resultObj.chapterName, true, resultObj);
 }
 
-// NEW FUNCTION: Timer Logic
+// ===================================
+// NEW: REVIEW MODE LOGIC
+// ===================================
+
+function renderReviewMode() {
+    const content = document.getElementById('quiz-content');
+    
+    // Header + Filter Buttons + Container + Back Button
+    content.innerHTML = `
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2 border-bottom pb-3">
+            <div>
+                <h4 class="fw-bold text-primary m-0">${currentChapterName}</h4>
+                <span class="badge bg-secondary">Review Mode</span>
+            </div>
+            <div class="btn-group shadow-sm" role="group">
+                <button class="btn btn-outline-primary active" id="btn-all" onclick="filterReview('all', this)">All</button>
+                <button class="btn btn-outline-success" id="btn-correct" onclick="filterReview('correct', this)">Correct</button>
+                <button class="btn btn-outline-danger" id="btn-incorrect" onclick="filterReview('incorrect', this)">Incorrect</button>
+                <button class="btn btn-outline-secondary" id="btn-unattempted" onclick="filterReview('unattempted', this)">Unattempted</button>
+            </div>
+        </div>
+        
+        <div id="review-container"></div>
+        
+        <div class="text-center mt-5">
+            <button class="btn btn-primary-custom px-5 shadow py-2" onclick="showDashboard()">← Back to Dashboard</button>
+        </div>
+    `;
+
+    // Default: Show All
+    filterReview('all', document.getElementById('btn-all'));
+}
+
+function filterReview(filterType, btnElement) {
+    // Update active button state
+    const buttons = document.querySelectorAll('.btn-group .btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    btnElement.classList.add('active');
+
+    renderReviewQuestions(filterType);
+}
+
+function renderReviewQuestions(filterType) {
+    const container = document.getElementById('review-container');
+    container.innerHTML = '';
+    
+    let visibleCount = 0;
+
+    currentQuizData.forEach((question, index) => {
+        const correctIndex = getCorrectIndex(question);
+        const uAns = userAnswers[index];
+        
+        // Determine Status
+        let status = 'unattempted';
+        if (uAns) {
+            status = (uAns.answer === correctIndex) ? 'correct' : 'incorrect';
+        }
+
+        // Filter Logic
+        if (filterType !== 'all' && status !== filterType) {
+            return; // Skip this question
+        }
+        visibleCount++;
+
+        // Status Badge & Color
+        let badgeHtml = '';
+        let borderClass = '';
+        
+        if (status === 'correct') {
+            badgeHtml = '<span class="badge bg-success mb-2">Correct</span>';
+            borderClass = 'border-success';
+        } else if (status === 'incorrect') {
+            badgeHtml = '<span class="badge bg-danger mb-2">Incorrect</span>';
+            borderClass = 'border-danger';
+        } else {
+            badgeHtml = '<span class="badge bg-secondary mb-2">Unattempted</span>';
+            borderClass = 'border-secondary';
+        }
+
+        // Render Options
+        let optionsHtml = '';
+        question.options.forEach((opt, optIdx) => {
+            let optionClass = 'option p-3 mb-2 border rounded';
+            let icon = '';
+
+            // Styling Logic
+            if (optIdx === correctIndex) {
+                optionClass = 'option p-3 mb-2 border rounded bg-success-subtle border-success fw-bold text-success';
+                icon = '✅';
+            } else if (uAns && uAns.answer === optIdx && status === 'incorrect') {
+                optionClass = 'option p-3 mb-2 border rounded bg-danger-subtle border-danger text-danger';
+                icon = '❌';
+            }
+
+            optionsHtml += `
+                <div class="${optionClass}">
+                    ${icon} <span class="ms-1">${opt}</span>
+                </div>
+            `;
+        });
+
+        // Create Card
+        const card = document.createElement('div');
+        card.className = `card mb-4 shadow-sm border-0 border-start border-5 ${borderClass}`;
+        card.innerHTML = `
+            <div class="card-body p-4">
+                <div class="d-flex justify-content-between">
+                    <h6 class="text-muted fw-bold">Question ${index + 1}</h6>
+                    ${badgeHtml}
+                </div>
+                <p class="fs-5 fw-medium mb-3">${question.text ? question.text.replace(/\n/g, '<br>') : ''}</p>
+                
+                <div class="mb-3">
+                    ${optionsHtml}
+                </div>
+
+                <div class="mt-3 bg-light p-3 rounded border-start border-4 border-warning">
+                    <strong>💡 Explanation:</strong>
+                    <div class="mt-1 text-muted small">${question.explanation || "No explanation provided."}</div>
+                </div>
+            </div>
+        `;
+        
+        container.appendChild(card);
+    });
+
+    if (visibleCount === 0) {
+        container.innerHTML = `<div class="alert alert-info text-center">No questions found for this filter.</div>`;
+    }
+}
+
+
+// ===================================
+// END REVIEW MODE LOGIC
+// ===================================
+
 function startTimer(numQuestions) {
-    // 1.8 minutes per question = 108 seconds
     let timeLeft = Math.floor(numQuestions * 1.8 * 60); 
     const display = document.getElementById('timer-display');
     
@@ -439,25 +583,24 @@ function startTimer(numQuestions) {
         if (timeLeft <= 0) {
             clearInterval(quizTimerInterval);
             toastr.warning("Time's up! Submitting test...");
-            submitAll(true); // Force submit
+            submitAll(true);
         }
     }, 1000);
 }
 
-// NEW FUNCTION: Helper to format time
 function updateTimerDisplay(element, seconds) {
+    if(!element) return;
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
     element.textContent = `⏱ ${m}:${s < 10 ? '0' : ''}${s}`;
     
-    // Turn red if less than 1 minute remains
     if (seconds < 60) element.classList.add('text-danger');
     else element.classList.remove('text-danger');
 }
 
 function renderQuizLayout(title) {
     document.getElementById('quiz-content').innerHTML = `
-        <h4 class="text-center mb-4 fw-bold text-primary">${title} ${isReviewMode ? '<span class="badge bg-secondary">Review Mode</span>' : ''}</h4>
+        <h4 class="text-center mb-4 fw-bold text-primary">${title}</h4>
         <div id="question-container"></div>
         <div class="d-flex justify-content-between mt-4">
             <button id="prev-btn" class="btn btn-primary-custom px-4 rounded-pill">Previous</button>
@@ -468,26 +611,16 @@ function renderQuizLayout(title) {
         <div id="result" class="mt-4 text-center"></div>
     `;
 
-    const submitBtnHTML = isReviewMode ? '' : `<button id="final-submit-btn" class="btn btn-success w-100 mt-4 rounded-pill py-2 fw-bold">Submit Test</button>`;
-    const backToDashHTML = isReviewMode ? `<button class="btn btn-primary-custom px-4 shadow mt-5" onclick="showDashboard()">Back to Dashboard</button>` : '';
-
     document.getElementById('quiz-nav').innerHTML = `
         <div class="nav-header">Question Palette</div>
         <div id="nav-container" class="nav-grid"></div>
-        ${submitBtnHTML}
-        ${backToDashHTML}
+        <button id="final-submit-btn" class="btn btn-success w-100 mt-4 rounded-pill py-2 fw-bold">Submit Test</button>
     `;
 
     document.getElementById('prev-btn').addEventListener('click', () => navigateQuestions(-1));
     document.getElementById('next-btn').addEventListener('click', () => navigateQuestions(1));
-
-    if (!isReviewMode) {
-        document.getElementById('clear-btn').addEventListener('click', clearSelection);
-        // Call submitAll without arguments for button click
-        document.getElementById('final-submit-btn').addEventListener('click', () => submitAll(false));
-    } else {
-        document.getElementById('clear-btn').disabled = true;
-    }
+    document.getElementById('clear-btn').addEventListener('click', clearSelection);
+    document.getElementById('final-submit-btn').addEventListener('click', () => submitAll(false));
 }
 
 function renderQuestion() {
@@ -602,10 +735,8 @@ function updateNavHighlights() {
 }
 
 function submitAll(forceSubmit = false) {
-    // If NOT forced (i.e., user clicked button), ask for confirmation
     if (!forceSubmit && !confirm("Are you sure you want to submit?")) return;
 
-    // Stop timer
     if (quizTimerInterval) clearInterval(quizTimerInterval);
 
     quizSubmitted = true;
@@ -649,7 +780,6 @@ function submitAll(forceSubmit = false) {
         <button class="btn btn-outline-primary mt-2" onclick="showDashboard()">Return to Dashboard</button>
     `;
 
-    // Hide Submit button and Disable Clear button
     const submitBtn = document.getElementById('final-submit-btn');
     if(submitBtn) submitBtn.style.display = 'none';
     
