@@ -1,5 +1,5 @@
 /* =========================================
-   1. GLOBAL VARIABLES & UTILS
+   1. GLOBAL VARIABLES
    ========================================= */
 const auth = firebase.auth();
 const db = firebase.firestore();
@@ -15,43 +15,14 @@ let quizSubmitted = false;
 let isReviewMode = false;
 let isRegistering = false;
 
-// OPTIMIZATION: In-memory variables
+// OPTIMIZATION: Cache Variables to reduce Firestore Reads
 let userHistory = [];
 let dashboardDataLoaded = false;
+let globalStatsCache = {}; 
+let leaderboardCache = {}; // Kept for compatibility, though logic now uses stats doc
 let performanceChartInstance = null;
 let comparisonChartInstance = null;
 let quizTimerInterval = null;
-
-// CACHE KEYS
-const CACHE_PREFIX = 'upsc_mcq_';
-const CACHE_KEYS = {
-    HISTORY: (uid) => `${CACHE_PREFIX}history_${uid}`,
-    STATS: (chapId) => `${CACHE_PREFIX}stats_${chapId}`,
-    LEADERBOARD: (chapId) => `${CACHE_PREFIX}lb_${chapId}`
-};
-
-// Helper: Local/Session Storage Wrapper
-const storage = {
-    get: (key, useSession = false) => {
-        try {
-            const store = useSession ? sessionStorage : localStorage;
-            const item = store.getItem(key);
-            return item ? JSON.parse(item) : null;
-        } catch (e) { return null; }
-    },
-    set: (key, value, useSession = false) => {
-        try {
-            const store = useSession ? sessionStorage : localStorage;
-            store.setItem(key, JSON.stringify(value));
-        } catch (e) { console.warn("Storage full or disabled"); }
-    },
-    remove: (key, useSession = false) => {
-        try {
-            const store = useSession ? sessionStorage : localStorage;
-            store.removeItem(key);
-        } catch (e) { }
-    }
-};
 
 /* =========================================
    2. INITIALIZATION & AUTH
@@ -61,23 +32,19 @@ auth.onAuthStateChanged((user) => {
     if (user) {
         currentUser = user;
         updateUIForLogin();
-        // Check if we are already on dashboard to avoid double loading
+        // Load dashboard if visible, otherwise just be ready
         if (document.getElementById('dashboard-section').style.display === 'block') {
-            loadUserDashboard();
-        } else if (document.getElementById('hero-section').style.display !== 'none') {
+            showDashboard();
+        } else {
             showDashboard();
         }
     } else {
-        const oldUid = currentUser ? currentUser.uid : null;
         currentUser = null;
-        
-        // Clear sensitive in-memory data
+        // Clear caches on logout to free memory
         userHistory = [];
         dashboardDataLoaded = false;
-        
-        // Optional: Clear user history from local storage on logout for security
-        // if (oldUid) storage.remove(CACHE_KEYS.HISTORY(oldUid)); 
-
+        globalStatsCache = {};
+        leaderboardCache = {};
         updateUIForLogout();
         showHome();
     }
@@ -169,8 +136,6 @@ function showDashboard() {
 function showPerformance() {
     hideAllSections();
     document.getElementById('performance-section').style.display = 'block';
-    // Ensure dashboard data is loaded for the charts
-    if (!dashboardDataLoaded) loadUserDashboard();
 }
 
 function showTestSelection() {
@@ -193,24 +158,10 @@ async function loadUserDashboard(forceRefresh = false) {
 
     const historyContainer = document.getElementById('history-container');
     
-    // OPTIMIZATION 1: Use In-Memory Cache
+    // OPTIMIZATION: Use Cached Data if available
     if (!forceRefresh && dashboardDataLoaded && userHistory.length > 0) {
         renderDashboardUI();
         return;
-    }
-
-    // OPTIMIZATION 2: Use LocalStorage Cache (Persists on Refresh)
-    const cacheKey = CACHE_KEYS.HISTORY(currentUser.uid);
-    const cachedHistory = storage.get(cacheKey);
-
-    if (!forceRefresh && cachedHistory) {
-        console.log("Loading history from LocalStorage");
-        // Convert stored timestamp strings back to objects if needed, 
-        // though for display we handle strings/Dates in renderDashboardUI
-        userHistory = cachedHistory; 
-        dashboardDataLoaded = true;
-        renderDashboardUI();
-        return; 
     }
 
     if (historyContainer.children.length === 0) {
@@ -225,22 +176,13 @@ async function loadUserDashboard(forceRefresh = false) {
             .limit(20) 
             .get();
 
-        const results = snapshot.docs.map(doc => {
-            const data = doc.data();
-            // Convert Firestore Timestamp to serializable date string for caching
-            return {
-                id: doc.id,
-                ...data,
-                // Store as ISO string so it survives JSON.stringify cleanly
-                timestamp: data.timestamp && data.timestamp.toDate ? data.timestamp.toDate().toISOString() : new Date().toISOString()
-            };
-        });
+        const results = snapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
         
         userHistory = results;
         dashboardDataLoaded = true;
-        
-        // Save to LocalStorage
-        storage.set(cacheKey, userHistory);
         
         renderDashboardUI();
 
@@ -264,17 +206,11 @@ function renderDashboardUI() {
     });
     const bestSubject = Object.keys(subjectCounts).sort((a, b) => subjectCounts[b] - subjectCounts[a])[0] || "-";
 
-    const elTotal = document.getElementById('stat-total-tests');
-    const elAvg = document.getElementById('stat-avg-score');
-    const elBest = document.getElementById('stat-best-subject');
-    
-    if(elTotal) elTotal.textContent = totalTests;
-    if(elAvg) elAvg.textContent = avgScore + '%';
-    if(elBest) elBest.textContent = bestSubject;
+    document.getElementById('stat-total-tests').textContent = totalTests;
+    document.getElementById('stat-avg-score').textContent = avgScore + '%';
+    document.getElementById('stat-best-subject').textContent = bestSubject;
 
     renderPerformanceChart(results);
-
-    if (!historyContainer) return;
 
     historyContainer.innerHTML = '';
     if (results.length === 0) {
@@ -285,8 +221,11 @@ function renderDashboardUI() {
     results.forEach(res => {
         let dateStr = 'Just now';
         if (res.timestamp) {
-             const d = new Date(res.timestamp); // Works for ISO string or Date obj
-             dateStr = d.toLocaleDateString();
+             if (res.timestamp.toDate) {
+                 dateStr = new Date(res.timestamp.toDate()).toLocaleDateString();
+             } else {
+                 dateStr = new Date(res.timestamp).toLocaleDateString();
+             }
         }
 
         let borderClass = 'avg-score';
@@ -325,10 +264,11 @@ function renderPerformanceChart(data) {
 
     const chartData = [...data].reverse();
     const labels = chartData.map(item => {
-        let date = 'New';
-        if (item.timestamp) {
-            const d = new Date(item.timestamp);
-            date = d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+        let date;
+        if (item.timestamp && item.timestamp.toDate) {
+            date = new Date(item.timestamp.toDate()).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+        } else {
+            date = 'New';
         }
         return `${item.subject} (${date})`; 
     });
@@ -524,13 +464,11 @@ function reviewTest(resultObj) {
 // REVIEW MODE LOGIC, LEADERBOARD & STATS
 // ===================================
 
+// OPTIMIZED: Returns leaderboard array along with stats
 async function getGlobalStats(chapterId) {
-    // OPTIMIZATION: Check SessionStorage first (saves reads in same session)
-    const cacheKey = CACHE_KEYS.STATS(chapterId);
-    const cachedStats = storage.get(cacheKey, true); // true = useSessionStorage
-
-    if (cachedStats) {
-        return cachedStats;
+    // Check local cache first
+    if (globalStatsCache[chapterId]) {
+        return globalStatsCache[chapterId];
     }
 
     try {
@@ -543,11 +481,12 @@ async function getGlobalStats(chapterId) {
             avg: data.average || 0,
             highest: data.highestScore || 0,
             totalAttempts: data.totalAttempts || 0,
-            allScores: data.allScores || [] 
+            allScores: data.allScores || [],
+            leaderboard: data.leaderboard || [] // NEW: Retrieve cached leaderboard array
         };
         
-        // Save to SessionStorage
-        storage.set(cacheKey, stats, true);
+        // Save to cache
+        globalStatsCache[chapterId] = stats;
         
         return stats;
     } catch (e) {
@@ -556,43 +495,18 @@ async function getGlobalStats(chapterId) {
     }
 }
 
-// Function to load leaderboard with caching
+// OPTIMIZED: Uses cached leaderboard array instead of querying 'results'
 async function loadLeaderboard(chapterId) {
     const container = document.getElementById('leaderboard-container');
     if (!container) return;
 
-    // OPTIMIZATION: Check SessionStorage first
-    const cacheKey = CACHE_KEYS.LEADERBOARD(chapterId);
-    const cachedLB = storage.get(cacheKey, true);
+    // Fetch from chapter_stats (via getGlobalStats)
+    const stats = await getGlobalStats(chapterId);
 
-    if (cachedLB) {
-        renderLeaderboardHTML(container, cachedLB);
-        return;
-    }
-
-    try {
-        // Query top 5 scores for this chapter
-        const snapshot = await db.collection('results')
-            .where('chapterId', '==', chapterId)
-            .orderBy('scorePercent', 'desc')
-            .limit(5)
-            .get();
-
-        const leaderboardData = [];
-        snapshot.forEach(doc => {
-            leaderboardData.push(doc.data());
-        });
-
-        // Cache the result in SessionStorage
-        storage.set(cacheKey, leaderboardData, true);
-        renderLeaderboardHTML(container, leaderboardData);
-
-    } catch (error) {
-        console.error("Error loading leaderboard:", error);
-        container.innerHTML = `
-            <div class="alert alert-warning border text-center small p-2">
-                Unable to load leaderboard. (Check Console/Indexes)
-            </div>`;
+    if (stats && stats.leaderboard) {
+        renderLeaderboardHTML(container, stats.leaderboard);
+    } else {
+        renderLeaderboardHTML(container, []);
     }
 }
 
@@ -636,7 +550,7 @@ function renderLeaderboardHTML(container, data) {
             <div class="card-header bg-white border-bottom py-2">
                  <div class="d-flex justify-content-between align-items-center">
                     <h6 class="fw-bold text-primary m-0">🏆 Leaderboard</h6>
-                    <small class="text-muted">Top 5 Students</small>
+                    <small class="text-muted">Top Students</small>
                  </div>
             </div>
             <div class="table-responsive">
@@ -1072,6 +986,7 @@ function updateNavHighlights() {
     });
 }
 
+// OPTIMIZED: Saves leaderboard data directly to 'chapter_stats' within transaction
 function submitAll(forceSubmit = false) {
     if (!forceSubmit && !confirm("Are you sure you want to submit?")) return;
 
@@ -1107,6 +1022,14 @@ function submitAll(forceSubmit = false) {
     const totalMarks = totalQ * 2;
     const percentage = totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
 
+    // Lightweight entry for leaderboard array
+    const leaderboardEntry = {
+        userEmail: currentUser ? currentUser.email : 'guest',
+        scorePercent: parseFloat(percentage),
+        score: finalScore,
+        timestamp: new Date().toISOString() 
+    };
+
     const resultObject = {
         userId: currentUser ? currentUser.uid : 'guest',
         userEmail: currentUser ? currentUser.email : 'guest',
@@ -1117,7 +1040,7 @@ function submitAll(forceSubmit = false) {
         totalMarks: totalMarks,
         scorePercent: parseFloat(percentage),
         userAnswers: userAnswers,
-        timestamp: new Date().toISOString() // Save as String for consistency
+        timestamp: firebase.firestore.FieldValue.serverTimestamp() 
     };
 
     document.getElementById('result').innerHTML = `
@@ -1152,24 +1075,20 @@ function submitAll(forceSubmit = false) {
 
     if (currentUser) {
         db.collection('results').add({
-            ...resultObject,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            ...resultObject
         }).then(async () => {
             toastr.success("Result saved!");
             
-            // OPTIMIZATION: Manually update local history cache
-            // This prevents fetching the entire dashboard list again
+            // Update local history cache
             userHistory.unshift(resultObject);
             if (userHistory.length > 20) userHistory.pop();
             dashboardDataLoaded = true;
-            storage.set(CACHE_KEYS.HISTORY(currentUser.uid), userHistory);
 
-            // OPTIMIZATION: Invalidate caches for this specific chapter
-            // We only clear the cache for this chapter so next time we fetch updated stats
-            storage.remove(CACHE_KEYS.STATS(currentChapterId), true);
-            storage.remove(CACHE_KEYS.LEADERBOARD(currentChapterId), true);
+            // Invalidate caches
+            delete globalStatsCache[currentChapterId];
+            delete leaderboardCache[currentChapterId];
             
-            // Transaction for global stats aggregation
+            // Transaction: Update Stats AND Leaderboard Array
             const statsRef = db.collection('chapter_stats').doc(currentChapterId);
             try {
                 await db.runTransaction(async (transaction) => {
@@ -1182,7 +1101,8 @@ function submitAll(forceSubmit = false) {
                             totalAttempts: 1,
                             average: newScore,
                             highestScore: newScore,
-                            allScores: [newScore]
+                            allScores: [newScore],
+                            leaderboard: [leaderboardEntry] // Start new leaderboard
                         });
                     } else {
                         const data = sfDoc.data();
@@ -1192,12 +1112,26 @@ function submitAll(forceSubmit = false) {
                         const newHighest = Math.max((data.highestScore || 0), newScore);
                         const newAllScores = [...(data.allScores || []), newScore];
 
+                        // --- LEADERBOARD LOGIC ---
+                        let currentLeaderboard = data.leaderboard || [];
+                        currentLeaderboard.push(leaderboardEntry);
+                        
+                        // Sort Descending by Percentage
+                        currentLeaderboard.sort((a, b) => b.scorePercent - a.scorePercent);
+                        
+                        // Keep Top 10 to save doc size
+                        if (currentLeaderboard.length > 10) {
+                            currentLeaderboard = currentLeaderboard.slice(0, 10);
+                        }
+                        // -------------------------
+
                         transaction.update(statsRef, {
                             totalScore: newTotalScore,
                             totalAttempts: newTotalAttempts,
                             average: newAvg,
                             highestScore: newHighest,
-                            allScores: newAllScores
+                            allScores: newAllScores,
+                            leaderboard: currentLeaderboard // Save optimized array
                         });
                     }
                 });
@@ -1206,7 +1140,6 @@ function submitAll(forceSubmit = false) {
             }
             
             // Update global stats display
-            // Note: This will now fetch fresh data because we invalidated the cache above
             const stats = await getGlobalStats(currentChapterId);
             if (stats) {
                 const betterThan = stats.allScores.filter(s => s < parseFloat(percentage)).length;
@@ -1218,9 +1151,6 @@ function submitAll(forceSubmit = false) {
                 if (statsDiv) {
                     statsDiv.innerHTML = `<strong>🌍 Global Index:</strong> You performed better than <strong>${percentile}%</strong> of users. (Avg: ${stats.avg.toFixed(1)}%)`;
                 }
-            } else {
-                const statsDiv = document.getElementById('stats-loading');
-                if (statsDiv) statsDiv.textContent = "";
             }
 
         }).catch(err => toastr.error("Could not save result."));
