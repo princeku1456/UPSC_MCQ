@@ -15,10 +15,11 @@ let quizSubmitted = false;
 let isReviewMode = false;
 let isRegistering = false;
 
-// OPTIMIZATION: Cache Variables
+// OPTIMIZATION: Cache Variables to reduce Firestore Reads
 let userHistory = [];
-let dashboardDataLoaded = false; // Flag to prevent redundant fetches
-let globalStatsCache = {}; // Cache for chapter stats
+let dashboardDataLoaded = false;
+let globalStatsCache = {}; 
+let leaderboardCache = {}; // NEW: Cache for leaderboards
 let performanceChartInstance = null;
 let comparisonChartInstance = null;
 let quizTimerInterval = null;
@@ -31,7 +32,7 @@ auth.onAuthStateChanged((user) => {
     if (user) {
         currentUser = user;
         updateUIForLogin();
-        // Only load if not already on dashboard to avoid double fetch potential
+        // Load dashboard if visible, otherwise just be ready
         if (document.getElementById('dashboard-section').style.display === 'block') {
             showDashboard();
         } else {
@@ -39,10 +40,11 @@ auth.onAuthStateChanged((user) => {
         }
     } else {
         currentUser = null;
-        // Clear caches on logout
+        // Clear caches on logout to free memory
         userHistory = [];
         dashboardDataLoaded = false;
         globalStatsCache = {};
+        leaderboardCache = {};
         updateUIForLogout();
         showHome();
     }
@@ -87,10 +89,6 @@ document.getElementById('auth-form').addEventListener('submit', (e) => {
 function logoutUser() {
     auth.signOut().then(() => {
         toastr.info("Logged out");
-        // Reset Local State
-        userHistory = [];
-        dashboardDataLoaded = false;
-        globalStatsCache = {};
     });
 }
 
@@ -155,13 +153,12 @@ function exitQuiz() {
    3. DASHBOARD LOGIC (Stats & History)
    ========================================= */
 
-// OPTIMIZED: Split fetching and rendering to utilize cache
 async function loadUserDashboard(forceRefresh = false) {
     if (!currentUser) return;
 
     const historyContainer = document.getElementById('history-container');
     
-    // Use Cached Data if available and not forced to refresh
+    // OPTIMIZATION: Use Cached Data if available
     if (!forceRefresh && dashboardDataLoaded && userHistory.length > 0) {
         renderDashboardUI();
         return;
@@ -172,6 +169,7 @@ async function loadUserDashboard(forceRefresh = false) {
     }
 
     try {
+        // OPTIMIZATION: Limit to 20 to save reads
         const snapshot = await db.collection('results')
             .where('userId', '==', currentUser.uid)
             .orderBy('timestamp', 'desc')
@@ -184,7 +182,7 @@ async function loadUserDashboard(forceRefresh = false) {
         }));
         
         userHistory = results;
-        dashboardDataLoaded = true; // Mark as loaded
+        dashboardDataLoaded = true;
         
         renderDashboardUI();
 
@@ -194,12 +192,10 @@ async function loadUserDashboard(forceRefresh = false) {
     }
 }
 
-// NEW: Pure rendering function that works with memory data
 function renderDashboardUI() {
     const historyContainer = document.getElementById('history-container');
     const results = userHistory;
 
-    // Stats Calculations
     const totalTests = results.length;
     const avgScore = totalTests ? (results.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalTests).toFixed(1) : 0;
 
@@ -216,7 +212,6 @@ function renderDashboardUI() {
 
     renderPerformanceChart(results);
 
-    // Render History Cards
     historyContainer.innerHTML = '';
     if (results.length === 0) {
         historyContainer.innerHTML = `<div class="col-12 text-center text-muted py-5">No tests taken yet.</div>`;
@@ -224,7 +219,6 @@ function renderDashboardUI() {
     }
 
     results.forEach(res => {
-        // Handle timestamp: It might be a Firestore timestamp or a JS Date (if locally added)
         let dateStr = 'Just now';
         if (res.timestamp) {
              if (res.timestamp.toDate) {
@@ -270,7 +264,6 @@ function renderPerformanceChart(data) {
 
     const chartData = [...data].reverse();
     const labels = chartData.map(item => {
-        // Handle timestamp compatibility
         let date;
         if (item.timestamp && item.timestamp.toDate) {
             date = new Date(item.timestamp.toDate()).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
@@ -297,11 +290,6 @@ function renderPerformanceChart(data) {
                 backgroundColor: 'rgba(59, 130, 246, 0.1)',
                 pointBackgroundColor: '#f59e0b',
                 pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: '#f59e0b',
-                borderWidth: 3,
-                pointRadius: 5,
-                pointHoverRadius: 7,
                 tension: 0.3,
                 fill: true
             }]
@@ -310,26 +298,15 @@ function renderPerformanceChart(data) {
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-                legend: { display: false },
-                tooltip: {
-                    backgroundColor: 'rgba(30, 58, 138, 0.9)',
-                    titleColor: '#fff',
-                    bodyFont: { size: 14 },
-                    callbacks: {
-                        label: function(context) { return `Score: ${context.parsed.y}%`; }
-                    }
-                }
+                legend: { display: false }
             },
             scales: {
                 y: {
                     beginAtZero: true,
-                    max: 100,
-                    grid: { color: '#e5e7eb' },
-                    title: { display: true, text: 'Accuracy (%)' }
+                    max: 100
                 },
                 x: {
-                    grid: { display: false },
-                    ticks: { maxRotation: 45, minRotation: 0 }
+                    display: false 
                 }
             }
         }
@@ -394,17 +371,16 @@ function renderChapters(subjectKey) {
         const col = document.createElement('div');
         col.className = 'col-md-6 col-lg-4 mb-4';
         
-        // Simple check against local history to see if taken (Not 100% accurate if history truncated, but saves reads)
+        // Simple check against local history to see if taken
         const hasTaken = userHistory && userHistory.some(h => h.chapterId === chapId);
         const btnText = hasTaken ? "↻ Retake Test" : "🚀 Start Test";
-        const btnClass = hasTaken ? "btn-primary-custom" : "btn-primary-custom";
 
         col.innerHTML = `
             <div class="card chapter-card h-100 border-0">
                 <div class="card-body d-flex flex-column p-4">
                     <h5 class="card-title fw-bold text-dark">${chapId}</h5>
                     <p class="card-text flex-grow-1 text-muted small">Topic Quiz</p>
-                    <button class="btn ${btnClass} w-100 mt-auto action-btn">
+                    <button class="btn btn-primary-custom w-100 mt-auto action-btn">
                         ${btnText}
                     </button>
                 </div>
@@ -485,7 +461,7 @@ function reviewTest(resultObj) {
 }
 
 // ===================================
-// OPTIMIZED: REVIEW MODE LOGIC & GLOBAL STATS
+// REVIEW MODE LOGIC, LEADERBOARD & STATS
 // ===================================
 
 async function getGlobalStats(chapterId) {
@@ -517,8 +493,97 @@ async function getGlobalStats(chapterId) {
     }
 }
 
+// NEW: Function to load leaderboard with caching
+async function loadLeaderboard(chapterId) {
+    const container = document.getElementById('leaderboard-container');
+    if (!container) return;
+
+    // OPTIMIZATION: Check cache first
+    if (leaderboardCache[chapterId]) {
+        renderLeaderboardHTML(container, leaderboardCache[chapterId]);
+        return;
+    }
+
+    try {
+        // Query top 5 scores for this chapter
+        // NOTE: Requires composite index (chapterId ASC, scorePercent DESC) in Firestore
+        const snapshot = await db.collection('results')
+            .where('chapterId', '==', chapterId)
+            .orderBy('scorePercent', 'desc')
+            .limit(5)
+            .get();
+
+        const leaderboardData = [];
+        snapshot.forEach(doc => {
+            leaderboardData.push(doc.data());
+        });
+
+        // Cache the result
+        leaderboardCache[chapterId] = leaderboardData;
+        renderLeaderboardHTML(container, leaderboardData);
+
+    } catch (error) {
+        console.error("Error loading leaderboard:", error);
+        container.innerHTML = `
+            <div class="alert alert-warning border text-center small p-2">
+                Unable to load leaderboard. (Check Console/Indexes)
+            </div>`;
+    }
+}
+
+function renderLeaderboardHTML(container, data) {
+    if (!data || data.length === 0) {
+        container.innerHTML = '<div class="alert alert-light border text-center text-muted small">No other attempts yet. Be the first!</div>';
+        return;
+    }
+
+    let rows = '';
+    let rank = 1;
+    
+    data.forEach(entry => {
+        // Privacy masking
+        const email = entry.userEmail || 'Guest';
+        const rawName = email.split('@')[0];
+        const displayName = rawName.length > 3 ? rawName.substring(0, 3) + '***' : rawName;
+        const isMe = currentUser && entry.userEmail === currentUser.email;
+
+        rows += `
+            <tr class="${isMe ? 'table-warning fw-bold' : ''}">
+                <td class="ps-3 text-secondary">#${rank++}</td>
+                <td>
+                    <div class="d-flex align-items-center">
+                        <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center me-2 shadow-sm" style="width:24px; height:24px; font-size:10px;">
+                            ${rawName.charAt(0).toUpperCase()}
+                        </div>
+                        <span>${displayName}</span>
+                        ${isMe ? '<span class="badge bg-warning text-dark ms-2" style="font-size:0.6rem">YOU</span>' : ''}
+                    </div>
+                </td>
+                <td class="text-end pe-3">
+                    <span class="badge ${entry.scorePercent >= 80 ? 'bg-success' : 'bg-primary'}">${entry.scorePercent}%</span>
+                </td>
+            </tr>
+        `;
+    });
+
+    container.innerHTML = `
+        <div class="card border-0 shadow-sm overflow-hidden mt-3">
+            <div class="card-header bg-white border-bottom py-2">
+                 <div class="d-flex justify-content-between align-items-center">
+                    <h6 class="fw-bold text-primary m-0">🏆 Leaderboard</h6>
+                    <small class="text-muted">Top 5 Students</small>
+                 </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover mb-0 align-middle" style="font-size: 0.9rem;">
+                    <tbody class="bg-white">${rows}</tbody>
+                </table>
+            </div>
+        </div>
+    `;
+}
+
 async function renderReviewMode(resultData) {
-    // 1. Calculate Statistics
     let correct = 0;
     let incorrect = 0;
     let unattempted = 0;
@@ -537,7 +602,6 @@ async function renderReviewMode(resultData) {
     });
 
     const totalQuestions = currentQuizData.length;
-    // Use stored score if available, otherwise calculate using standard formula
     const score = resultData ? resultData.score : ((correct * 2) - (incorrect * 0.66)).toFixed(2);
     const totalMarks = totalQuestions * 2;
 
@@ -594,7 +658,13 @@ async function renderReviewMode(resultData) {
                     </div>
                 </div>
 
-                <div class="row align-items-center" id="global-stats-container">
+                <div id="leaderboard-container" class="mb-4">
+                     <div class="text-center py-3">
+                        <span class="spinner-border spinner-border-sm text-primary"></span> Loading Leaderboard...
+                    </div>
+                </div>
+
+                <div class="row align-items-center pt-3 border-top" id="global-stats-container">
                     <div class="col-12 text-center py-3">
                         <div class="spinner-border text-primary" role="status"></div>
                         <p class="text-muted small mt-2">Comparing with other students...</p>
@@ -611,6 +681,9 @@ async function renderReviewMode(resultData) {
     `;
 
     filterReview('all', document.getElementById('btn-all'));
+
+    // Trigger Loads
+    loadLeaderboard(currentChapterId);
 
     const stats = await getGlobalStats(currentChapterId);
     const container = document.getElementById('global-stats-container');
@@ -934,7 +1007,6 @@ function updateNavHighlights() {
     });
 }
 
-// OPTIMIZED: Update local history immediately to avoid refetch on dashboard load
 function submitAll(forceSubmit = false) {
     if (!forceSubmit && !confirm("Are you sure you want to submit?")) return;
 
@@ -970,7 +1042,6 @@ function submitAll(forceSubmit = false) {
     const totalMarks = totalQ * 2;
     const percentage = totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
 
-    // Define object first so it's available for the review button
     const resultObject = {
         userId: currentUser ? currentUser.uid : 'guest',
         userEmail: currentUser ? currentUser.email : 'guest',
@@ -1021,14 +1092,16 @@ function submitAll(forceSubmit = false) {
         }).then(async () => {
             toastr.success("Result saved!");
             
-            // OPTIMIZATION: Manually update local history so we don't have to fetch it
+            // OPTIMIZATION: Manually update local history cache
             userHistory.unshift(resultObject);
             if (userHistory.length > 20) userHistory.pop();
-            dashboardDataLoaded = true; // Ensure dashboard uses this new data
+            dashboardDataLoaded = true;
 
-            // OPTIMIZATION: Invalidate stats cache for this chapter so we fetch fresh next time
+            // OPTIMIZATION: Invalidate caches for this specific chapter
             delete globalStatsCache[currentChapterId];
+            delete leaderboardCache[currentChapterId];
             
+            // Transaction for global stats aggregation
             const statsRef = db.collection('chapter_stats').doc(currentChapterId);
             try {
                 await db.runTransaction(async (transaction) => {
