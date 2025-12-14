@@ -518,6 +518,29 @@ async function getGlobalStats(chapterId) {
 }
 
 async function renderReviewMode(resultData) {
+    // 1. Calculate Statistics
+    let correct = 0;
+    let incorrect = 0;
+    let unattempted = 0;
+    
+    currentQuizData.forEach((q, i) => {
+        const uAns = userAnswers[i];
+        const correctIndex = getCorrectIndex(q);
+        
+        if (!uAns) {
+            unattempted++;
+        } else if (uAns.answer === correctIndex) {
+            correct++;
+        } else {
+            incorrect++;
+        }
+    });
+
+    const totalQuestions = currentQuizData.length;
+    // Use stored score if available, otherwise calculate using standard formula
+    const score = resultData ? resultData.score : ((correct * 2) - (incorrect * 0.66)).toFixed(2);
+    const totalMarks = totalQuestions * 2;
+
     const content = document.getElementById('quiz-content');
     
     content.innerHTML = `
@@ -537,6 +560,40 @@ async function renderReviewMode(resultData) {
         <div class="card mb-4 border-0 shadow-sm bg-light">
             <div class="card-body">
                 <h5 class="fw-bold text-dark mb-3">📊 Your Performance Index</h5>
+                
+                <div class="row g-3 text-center mb-4">
+                    <div class="col-6 col-md">
+                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary">
+                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Total Qs</h6>
+                            <h3 class="fw-bold text-dark m-0">${totalQuestions}</h3>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md">
+                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-success">
+                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Correct</h6>
+                            <h3 class="fw-bold text-success m-0">${correct}</h3>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md">
+                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger">
+                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Incorrect</h6>
+                            <h3 class="fw-bold text-danger m-0">${incorrect}</h3>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md">
+                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-secondary">
+                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Skipped</h6>
+                            <h3 class="fw-bold text-secondary m-0">${unattempted}</h3>
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-3">
+                        <div class="p-3 bg-primary text-white rounded shadow-sm">
+                            <h6 class="text-white-50 text-uppercase small fw-bold mb-1">Score</h6>
+                            <h3 class="fw-bold m-0">${score} <span class="fs-6 text-white-50">/ ${totalMarks}</span></h3>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="row align-items-center" id="global-stats-container">
                     <div class="col-12 text-center py-3">
                         <div class="spinner-border text-primary" role="status"></div>
