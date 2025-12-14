@@ -19,7 +19,7 @@ let isRegistering = false;
 let userHistory = [];
 let dashboardDataLoaded = false;
 let globalStatsCache = {}; 
-let leaderboardCache = {}; // NEW: Cache for leaderboards
+let leaderboardCache = {}; // Kept for compatibility, though logic now uses stats doc
 let performanceChartInstance = null;
 let comparisonChartInstance = null;
 let quizTimerInterval = null;
@@ -464,8 +464,9 @@ function reviewTest(resultObj) {
 // REVIEW MODE LOGIC, LEADERBOARD & STATS
 // ===================================
 
+// OPTIMIZED: Returns leaderboard array along with stats
 async function getGlobalStats(chapterId) {
-    // OPTIMIZATION: Check local cache first
+    // Check local cache first
     if (globalStatsCache[chapterId]) {
         return globalStatsCache[chapterId];
     }
@@ -480,7 +481,8 @@ async function getGlobalStats(chapterId) {
             avg: data.average || 0,
             highest: data.highestScore || 0,
             totalAttempts: data.totalAttempts || 0,
-            allScores: data.allScores || [] 
+            allScores: data.allScores || [],
+            leaderboard: data.leaderboard || [] // NEW: Retrieve cached leaderboard array
         };
         
         // Save to cache
@@ -493,41 +495,18 @@ async function getGlobalStats(chapterId) {
     }
 }
 
-// NEW: Function to load leaderboard with caching
+// OPTIMIZED: Uses cached leaderboard array instead of querying 'results'
 async function loadLeaderboard(chapterId) {
     const container = document.getElementById('leaderboard-container');
     if (!container) return;
 
-    // OPTIMIZATION: Check cache first
-    if (leaderboardCache[chapterId]) {
-        renderLeaderboardHTML(container, leaderboardCache[chapterId]);
-        return;
-    }
+    // Fetch from chapter_stats (via getGlobalStats)
+    const stats = await getGlobalStats(chapterId);
 
-    try {
-        // Query top 5 scores for this chapter
-        // NOTE: Requires composite index (chapterId ASC, scorePercent DESC) in Firestore
-        const snapshot = await db.collection('results')
-            .where('chapterId', '==', chapterId)
-            .orderBy('scorePercent', 'desc')
-            .limit(5)
-            .get();
-
-        const leaderboardData = [];
-        snapshot.forEach(doc => {
-            leaderboardData.push(doc.data());
-        });
-
-        // Cache the result
-        leaderboardCache[chapterId] = leaderboardData;
-        renderLeaderboardHTML(container, leaderboardData);
-
-    } catch (error) {
-        console.error("Error loading leaderboard:", error);
-        container.innerHTML = `
-            <div class="alert alert-warning border text-center small p-2">
-                Unable to load leaderboard. (Check Console/Indexes)
-            </div>`;
+    if (stats && stats.leaderboard) {
+        renderLeaderboardHTML(container, stats.leaderboard);
+    } else {
+        renderLeaderboardHTML(container, []);
     }
 }
 
@@ -571,7 +550,7 @@ function renderLeaderboardHTML(container, data) {
             <div class="card-header bg-white border-bottom py-2">
                  <div class="d-flex justify-content-between align-items-center">
                     <h6 class="fw-bold text-primary m-0">🏆 Leaderboard</h6>
-                    <small class="text-muted">Top 5 Students</small>
+                    <small class="text-muted">Top Students</small>
                  </div>
             </div>
             <div class="table-responsive">
@@ -1007,6 +986,7 @@ function updateNavHighlights() {
     });
 }
 
+// OPTIMIZED: Saves leaderboard data directly to 'chapter_stats' within transaction
 function submitAll(forceSubmit = false) {
     if (!forceSubmit && !confirm("Are you sure you want to submit?")) return;
 
@@ -1042,6 +1022,14 @@ function submitAll(forceSubmit = false) {
     const totalMarks = totalQ * 2;
     const percentage = totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
 
+    // Lightweight entry for leaderboard array
+    const leaderboardEntry = {
+        userEmail: currentUser ? currentUser.email : 'guest',
+        scorePercent: parseFloat(percentage),
+        score: finalScore,
+        timestamp: new Date().toISOString() 
+    };
+
     const resultObject = {
         userId: currentUser ? currentUser.uid : 'guest',
         userEmail: currentUser ? currentUser.email : 'guest',
@@ -1052,7 +1040,7 @@ function submitAll(forceSubmit = false) {
         totalMarks: totalMarks,
         scorePercent: parseFloat(percentage),
         userAnswers: userAnswers,
-        timestamp: new Date() 
+        timestamp: firebase.firestore.FieldValue.serverTimestamp() 
     };
 
     document.getElementById('result').innerHTML = `
@@ -1087,21 +1075,20 @@ function submitAll(forceSubmit = false) {
 
     if (currentUser) {
         db.collection('results').add({
-            ...resultObject,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            ...resultObject
         }).then(async () => {
             toastr.success("Result saved!");
             
-            // OPTIMIZATION: Manually update local history cache
+            // Update local history cache
             userHistory.unshift(resultObject);
             if (userHistory.length > 20) userHistory.pop();
             dashboardDataLoaded = true;
 
-            // OPTIMIZATION: Invalidate caches for this specific chapter
+            // Invalidate caches
             delete globalStatsCache[currentChapterId];
             delete leaderboardCache[currentChapterId];
             
-            // Transaction for global stats aggregation
+            // Transaction: Update Stats AND Leaderboard Array
             const statsRef = db.collection('chapter_stats').doc(currentChapterId);
             try {
                 await db.runTransaction(async (transaction) => {
@@ -1114,7 +1101,8 @@ function submitAll(forceSubmit = false) {
                             totalAttempts: 1,
                             average: newScore,
                             highestScore: newScore,
-                            allScores: [newScore]
+                            allScores: [newScore],
+                            leaderboard: [leaderboardEntry] // Start new leaderboard
                         });
                     } else {
                         const data = sfDoc.data();
@@ -1124,12 +1112,26 @@ function submitAll(forceSubmit = false) {
                         const newHighest = Math.max((data.highestScore || 0), newScore);
                         const newAllScores = [...(data.allScores || []), newScore];
 
+                        // --- LEADERBOARD LOGIC ---
+                        let currentLeaderboard = data.leaderboard || [];
+                        currentLeaderboard.push(leaderboardEntry);
+                        
+                        // Sort Descending by Percentage
+                        currentLeaderboard.sort((a, b) => b.scorePercent - a.scorePercent);
+                        
+                        // Keep Top 10 to save doc size
+                        if (currentLeaderboard.length > 10) {
+                            currentLeaderboard = currentLeaderboard.slice(0, 10);
+                        }
+                        // -------------------------
+
                         transaction.update(statsRef, {
                             totalScore: newTotalScore,
                             totalAttempts: newTotalAttempts,
                             average: newAvg,
                             highestScore: newHighest,
-                            allScores: newAllScores
+                            allScores: newAllScores,
+                            leaderboard: currentLeaderboard // Save optimized array
                         });
                     }
                 });
@@ -1149,9 +1151,6 @@ function submitAll(forceSubmit = false) {
                 if (statsDiv) {
                     statsDiv.innerHTML = `<strong>🌍 Global Index:</strong> You performed better than <strong>${percentile}%</strong> of users. (Avg: ${stats.avg.toFixed(1)}%)`;
                 }
-            } else {
-                const statsDiv = document.getElementById('stats-loading');
-                if (statsDiv) statsDiv.textContent = "";
             }
 
         }).catch(err => toastr.error("Could not save result."));
