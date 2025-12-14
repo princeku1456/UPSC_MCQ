@@ -517,6 +517,70 @@ async function getGlobalStats(chapterId) {
     }
 }
 
+async function fetchAndRenderLeaderboard(chapterId, containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.innerHTML = '<div class="text-center py-3"><span class="spinner-border spinner-border-sm text-primary"></span> Loading Leaderboard...</div>';
+
+    try {
+        // NOTE: This query requires a Firestore Composite Index (chapterId ASC, scorePercent DESC).
+        // Check your browser console for a link to create it if this fails.
+        const snapshot = await db.collection('results')
+            .where('chapterId', '==', chapterId)
+            .orderBy('scorePercent', 'desc')
+            .limit(10)
+            .get();
+
+        if (snapshot.empty) {
+            container.innerHTML = '<p class="text-muted small text-center">Be the first to take this test!</p>';
+            return;
+        }
+
+        let html = `
+            <div class="card border-0 shadow-sm mt-3">
+                <div class="card-header bg-primary text-white fw-bold">
+                    🏆 Top Performers
+                </div>
+                <ul class="list-group list-group-flush small">
+        `;
+
+        snapshot.docs.forEach((doc, index) => {
+            const data = doc.data();
+            const email = data.userEmail || "Anonymous";
+            // Mask email (e.g., pri***@gmail.com)
+            const maskedName = email.length > 4 
+                ? email.substring(0, 3) + "***" + email.substring(email.indexOf('@')) 
+                : "User " + (index + 1);
+            
+            let badge = `<span class="badge bg-light text-dark border rounded-circle">${index + 1}</span>`;
+            if (index === 0) badge = '🥇';
+            if (index === 1) badge = '🥈';
+            if (index === 2) badge = '🥉';
+
+            // Highlight current user
+            const isMe = currentUser && data.userId === currentUser.uid ? "bg-primary-subtle fw-bold" : "";
+
+            html += `
+                <li class="list-group-item d-flex justify-content-between align-items-center ${isMe}">
+                    <span>${badge} <span class="ms-2">${maskedName}</span></span>
+                    <span class="fw-bold text-primary">${data.scorePercent}%</span>
+                </li>`;
+        });
+
+        html += `</ul></div>`;
+        container.innerHTML = html;
+
+    } catch (error) {
+        console.error("Leaderboard Error:", error);
+        container.innerHTML = `
+            <div class="alert alert-warning small mt-2">
+                Unable to load leaderboard. <br>
+                (If you are the admin, check console to create the required Index).
+            </div>`;
+    }
+}
+
 async function renderReviewMode(resultData) {
     // 1. Calculate Statistics
     let correct = 0;
@@ -594,10 +658,15 @@ async function renderReviewMode(resultData) {
                     </div>
                 </div>
 
-                <div class="row align-items-center" id="global-stats-container">
-                    <div class="col-12 text-center py-3">
-                        <div class="spinner-border text-primary" role="status"></div>
-                        <p class="text-muted small mt-2">Comparing with other students...</p>
+                <div class="row">
+                    <div class="col-lg-8" id="global-stats-container">
+                        <div class="text-center py-3">
+                            <div class="spinner-border text-primary" role="status"></div>
+                            <p class="text-muted small mt-2">Calculating rankings...</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div id="review-leaderboard-container"></div>
                     </div>
                 </div>
             </div>
@@ -611,6 +680,9 @@ async function renderReviewMode(resultData) {
     `;
 
     filterReview('all', document.getElementById('btn-all'));
+
+    // Trigger Leaderboard Fetch
+    fetchAndRenderLeaderboard(currentChapterId, 'review-leaderboard-container');
 
     const stats = await getGlobalStats(currentChapterId);
     const container = document.getElementById('global-stats-container');
@@ -628,14 +700,16 @@ async function renderReviewMode(resultData) {
         : 0;
 
     container.innerHTML = `
-        <div class="col-md-4 mb-3 mb-md-0 text-center">
-            <h6 class="text-uppercase text-muted small fw-bold">Your Rank</h6>
-            <h2 class="fw-bold text-primary">Top ${100 - percentile}%</h2>
-            <p class="small text-muted">Better than ${percentile}% of users</p>
-        </div>
-        <div class="col-md-8">
-            <div style="height: 200px; width: 100%;">
-                <canvas id="comparisonChart"></canvas>
+        <div class="row align-items-center h-100">
+            <div class="col-md-4 mb-3 mb-md-0 text-center">
+                <h6 class="text-uppercase text-muted small fw-bold">Your Rank</h6>
+                <h2 class="fw-bold text-primary">Top ${100 - percentile}%</h2>
+                <p class="small text-muted">Better than ${percentile}% of users</p>
+            </div>
+            <div class="col-md-8">
+                <div style="height: 200px; width: 100%;">
+                    <canvas id="comparisonChart"></canvas>
+                </div>
             </div>
         </div>
     `;
@@ -971,15 +1045,24 @@ function submitAll(forceSubmit = false) {
     const percentage = totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
 
     document.getElementById('result').innerHTML = `
-        <div class="alert alert-primary mt-3 shadow-sm" role="alert">
-            <h4 class="alert-heading fw-bold">Test Complete! 🏆</h4>
-            <hr>
-            <p>✅ Correct: <strong>${correct}</strong> | ❌ Incorrect: <strong>${incorrect}</strong></p>
-            <p>⚪ Unattempted: <strong>${unattempted}</strong></p>
-            <h3 class="text-primary mt-2">Score: ${finalScore} / ${totalMarks} (${percentage}%)</h3>
-            <div id="stats-loading" class="mt-2 text-muted small"><span class="spinner-border spinner-border-sm"></span> Calculating class standing...</div>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="alert alert-primary mt-3 shadow-sm" role="alert">
+                    <h4 class="alert-heading fw-bold">Test Complete! 🏆</h4>
+                    <hr>
+                    <p>✅ Correct: <strong>${correct}</strong> | ❌ Incorrect: <strong>${incorrect}</strong></p>
+                    <p>⚪ Unattempted: <strong>${unattempted}</strong></p>
+                    <h3 class="text-primary mt-2">Score: ${finalScore} / ${totalMarks} (${percentage}%)</h3>
+                    <div id="stats-loading" class="mt-2 text-muted small"><span class="spinner-border spinner-border-sm"></span> Calculating class standing...</div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div id="live-leaderboard-container"></div>
+            </div>
         </div>
-        <button class="btn btn-outline-primary mt-2" onclick="showDashboard()">Return to Dashboard</button>
+
+        <button class="btn btn-outline-primary mt-4" onclick="showDashboard()">Return to Dashboard</button>
     `;
 
     const submitBtn = document.getElementById('final-submit-btn');
@@ -1010,6 +1093,9 @@ function submitAll(forceSubmit = false) {
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }).then(async () => {
             toastr.success("Result saved!");
+            
+            // FETCH LEADERBOARD AFTER SAVE
+            fetchAndRenderLeaderboard(currentChapterId, 'live-leaderboard-container');
             
             // OPTIMIZATION: Manually update local history so we don't have to fetch it
             userHistory.unshift(resultObject);
@@ -1070,9 +1156,6 @@ function submitAll(forceSubmit = false) {
                 const statsDiv = document.getElementById('stats-loading');
                 if (statsDiv) statsDiv.textContent = "";
             }
-
-            // Note: We removed loadUserDashboard() call here. 
-            // The "Return to Dashboard" button handles the UI switch using cached data.
 
         }).catch(err => toastr.error("Could not save result."));
     }
