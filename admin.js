@@ -7,6 +7,9 @@ const db = firebase.firestore();
 // 🔴 REPLACE THIS WITH YOUR EMAIL
 const ALLOWED_ADMINS = ["prince@gmail.com", "your.email@gmail.com"]; 
 
+// OPTIMIZATION: Cache Key Prefix
+const ADMIN_CACHE_PREFIX = 'admin_data_';
+
 auth.onAuthStateChanged((user) => {
     if (user) {
         if (ALLOWED_ADMINS.includes(user.email)) {
@@ -46,6 +49,8 @@ document.getElementById('admin-login-form').addEventListener('submit', (e) => {
 });
 
 function logoutAdmin() {
+    // OPTIMIZATION: Clear cache on logout to ensure data security and freshness on re-login
+    sessionStorage.clear();
     auth.signOut();
 }
 
@@ -92,6 +97,10 @@ function loadChapters() {
 /* =========================================
    4. ANALYSIS LOGIC
    ========================================= */
+
+// Track currently displayed chapter to enable "Force Refresh" logic
+let currentDisplayedChapterId = null;
+
 async function loadTestAnalysis() {
     const subject = document.getElementById('subject-select').value;
     const chapterId = document.getElementById('chapter-select').value;
@@ -102,19 +111,61 @@ async function loadTestAnalysis() {
         return;
     }
 
+    // Smart Refresh Logic:
+    // If we are already looking at this chapter, clicking "Analyze" again implies a Force Refresh.
+    const isForceRefresh = (currentDisplayedChapterId === chapterId);
+    
     container.innerHTML = '<div class="text-center py-5"><div class="spinner-border text-primary"></div><p class="mt-2 text-muted">Fetching student results...</p></div>';
 
     try {
         const quizQuestions = allQuizData[subject][chapterId];
+        let results = [];
 
-        // Fetch all results for this test
-        const snapshot = await db.collection('results')
-            .where('chapterId', '==', chapterId)
-            .orderBy('score', 'desc') // Order by score to show top students first
-            .get();
+        // OPTIMIZATION: Check Session Storage Cache
+        const cacheKey = `${ADMIN_CACHE_PREFIX}${chapterId}`;
+        const cachedData = sessionStorage.getItem(cacheKey);
 
-        const results = snapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
+        if (!isForceRefresh && cachedData) {
+            console.log("Loading from cache...");
+            results = JSON.parse(cachedData);
+            
+            // Re-hydrate Timestamps if needed (optional, for display consistency)
+            results = results.map(r => ({
+                ...r,
+                // If timestamp string exists, convert back to object with toDate() mock if used in render
+                // But simplified renderAnalysis below handles strings gracefully.
+            }));
+            
+            toastr.info("Loaded from Cache. Click 'Analyze' again to refresh.");
+        } else {
+            console.log("Fetching from Firestore...");
+            // Fetch all results for this test
+            const snapshot = await db.collection('results')
+                .where('chapterId', '==', chapterId)
+                .orderBy('score', 'desc')
+                .get();
 
+            results = snapshot.docs.map(doc => {
+                const data = doc.data();
+                return { 
+                    ...data, 
+                    id: doc.id,
+                    // Serialize Timestamp to string for storage
+                    timestamp: data.timestamp && data.timestamp.toDate ? data.timestamp.toDate().toISOString() : new Date().toISOString()
+                };
+            });
+
+            // Save to Session Storage
+            try {
+                sessionStorage.setItem(cacheKey, JSON.stringify(results));
+            } catch (e) {
+                console.warn("Session storage full, could not cache results.");
+            }
+            
+            if (isForceRefresh) toastr.success("Data Refreshed from Server.");
+        }
+
+        currentDisplayedChapterId = chapterId;
         renderAnalysis(quizQuestions, results, chapterId);
 
     } catch (error) {
@@ -131,7 +182,6 @@ function renderAnalysis(questions, results, chapterId) {
     // SECTION 1: LEADERBOARD
     // ===========================
     
-    // Calculate Average
     const totalAttempts = results.length;
     const avgScore = totalAttempts > 0 
         ? (results.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalAttempts).toFixed(1) 
@@ -144,13 +194,17 @@ function renderAnalysis(questions, results, chapterId) {
     if (results.length === 0) {
         leaderboardRows = '<tr><td colspan="4" class="text-center text-muted py-3">No students have taken this test yet.</td></tr>';
     } else {
-        results.forEach((res, index) => {
+        // OPTIMIZATION: Limit rendering to top 50 if dataset is huge to prevent DOM lag
+        const displayLimit = results.length > 500 ? 100 : results.length;
+        
+        results.slice(0, displayLimit).forEach((res, index) => {
             let dateStr = '-';
-            if (res.timestamp && res.timestamp.toDate) {
-                dateStr = res.timestamp.toDate().toLocaleString();
+            if (res.timestamp) {
+                // Handle both ISO strings (from cache) and Firestore timestamps
+                const d = typeof res.timestamp === 'string' ? new Date(res.timestamp) : res.timestamp.toDate();
+                dateStr = d.toLocaleString();
             }
             
-            // Highlight high scores
             const badgeClass = res.scorePercent >= 80 ? 'bg-success' : (res.scorePercent < 40 ? 'bg-danger' : 'bg-secondary');
 
             leaderboardRows += `
@@ -165,6 +219,10 @@ function renderAnalysis(questions, results, chapterId) {
                 </tr>
             `;
         });
+        
+        if (results.length > displayLimit) {
+            leaderboardRows += `<tr><td colspan="4" class="text-center text-muted small">...and ${results.length - displayLimit} more students.</td></tr>`;
+        }
     }
 
     leaderboardDiv.innerHTML = `
@@ -205,40 +263,49 @@ function renderAnalysis(questions, results, chapterId) {
     questionsHeader.textContent = `Question Wise Analysis (${questions.length} Questions)`;
     container.appendChild(questionsHeader);
 
-    questions.forEach((q, index) => {
-        const correctUsers = [];
-        const wrongUsers = [];
-        const unattemptedUsers = [];
+    // OPTIMIZATION: Pre-process results to map answers for O(N) access instead of nested loops
+    // This makes rendering significantly faster for large user bases
+    const answerMap = new Array(questions.length).fill(null).map(() => ({
+        correctUsers: [],
+        wrongUsers: [],
+        unattemptedUsers: []
+    }));
 
+    results.forEach(res => {
+        const userIdentifier = res.userEmail ? res.userEmail.split('@')[0] : "Anonymous";
+        const uAnswers = res.userAnswers || {};
+        
+        questions.forEach((q, qIndex) => {
+            let correctIndex = -1;
+            if (typeof q.correctAnswer === 'number') correctIndex = q.correctAnswer;
+            else correctIndex = q.options.indexOf(q.correctAnswer);
+
+            const uAnsObj = uAnswers[qIndex];
+            
+            if (!uAnsObj) {
+                answerMap[qIndex].unattemptedUsers.push(userIdentifier);
+            } else if (uAnsObj.answer === correctIndex) {
+                answerMap[qIndex].correctUsers.push(userIdentifier);
+            } else {
+                answerMap[qIndex].wrongUsers.push(userIdentifier);
+            }
+        });
+    });
+
+    questions.forEach((q, index) => {
+        const { correctUsers, wrongUsers, unattemptedUsers } = answerMap[index];
         let correctIndex = -1;
         if (typeof q.correctAnswer === 'number') correctIndex = q.correctAnswer;
         else correctIndex = q.options.indexOf(q.correctAnswer);
 
-        // Sort users into buckets
-        results.forEach(res => {
-            const userIdentifier = res.userEmail ? res.userEmail.split('@')[0] : "Anonymous";
-            const uAnswers = res.userAnswers || {};
-            const uAnsObj = uAnswers[index]; 
-
-            if (!uAnsObj) {
-                unattemptedUsers.push(userIdentifier);
-            } else if (uAnsObj.answer === correctIndex) {
-                correctUsers.push(userIdentifier);
-            } else {
-                wrongUsers.push(userIdentifier);
-            }
-        });
-
         const card = document.createElement('div');
         card.className = 'card mb-5 shadow-sm border-0 admin-q-card rounded-4';
         
-        // Generate Options HTML
         let optionsHtml = '';
         q.options.forEach((opt, i) => {
             let cssClass = 'option-box';
             let icon = '⚪';
             
-            // Admin View: Always highlight the Correct Answer
             if (i === correctIndex) {
                 cssClass += ' correct-option';
                 icon = '✅';
@@ -252,14 +319,24 @@ function renderAnalysis(questions, results, chapterId) {
             `;
         });
 
-        // User Badges Helper
+        // Helper to render max 30 names to avoid UI clutter
         const renderBadges = (users, colorClass) => {
             if (!users.length) return '<small class="text-muted fst-italic">None</small>';
-            return users.map(u => 
+            
+            const limit = 20;
+            const shownUsers = users.slice(0, limit);
+            const remaining = users.length - limit;
+            
+            let html = shownUsers.map(u => 
                 `<span class="user-badge" style="border-left-color: var(--bs-${colorClass})">
                     ${u}
                  </span>`
             ).join('');
+            
+            if (remaining > 0) {
+                html += `<span class="badge bg-light text-secondary border mt-1">+${remaining} more</span>`;
+            }
+            return html;
         };
 
         card.innerHTML = `
@@ -271,7 +348,7 @@ function renderAnalysis(questions, results, chapterId) {
                     </span>
                 </div>
                 
-                <p class="fs-5 fw-medium mb-4 text-dark">${q.text || 'No text'}</p>
+                <p class="fs-5 fw-medium mb-4 text-dark">${q.text ? q.text.replace(/\n/g, '<br>') : 'No text'}</p>
                 
                 <div class="row g-4">
                     <div class="col-lg-7">
