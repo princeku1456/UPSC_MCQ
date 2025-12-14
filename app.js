@@ -254,7 +254,7 @@ function renderDashboardUI() {
                     </div>
                 </div>
                 <div class="mt-3">
-                    <button class="btn btn-sm btn-outline-primary w-100 review-btn">👁 Review Performance</button>
+                    <button class="btn btn-primary-custom px-4 shadow w-100 review-btn">👁 Review Performance</button>
                 </div>
             </div>
         `;
@@ -970,6 +970,20 @@ function submitAll(forceSubmit = false) {
     const totalMarks = totalQ * 2;
     const percentage = totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
 
+    // Define object first so it's available for the review button
+    const resultObject = {
+        userId: currentUser ? currentUser.uid : 'guest',
+        userEmail: currentUser ? currentUser.email : 'guest',
+        subject: currentSubject,
+        chapterId: currentChapterId,
+        chapterName: currentChapterName,
+        score: finalScore,
+        totalMarks: totalMarks,
+        scorePercent: parseFloat(percentage),
+        userAnswers: userAnswers,
+        timestamp: new Date() 
+    };
+
     document.getElementById('result').innerHTML = `
         <div class="alert alert-primary mt-3 shadow-sm" role="alert">
             <h4 class="alert-heading fw-bold">Test Complete! 🏆</h4>
@@ -979,8 +993,17 @@ function submitAll(forceSubmit = false) {
             <h3 class="text-primary mt-2">Score: ${finalScore} / ${totalMarks} (${percentage}%)</h3>
             <div id="stats-loading" class="mt-2 text-muted small"><span class="spinner-border spinner-border-sm"></span> Calculating class standing...</div>
         </div>
-        <button class="btn btn-outline-primary mt-2" onclick="showDashboard()">Return to Dashboard</button>
+        <div id="result-actions" class="d-flex justify-content-center gap-2 mt-2"></div>
     `;
+
+    const actionsDiv = document.getElementById('result-actions');
+    const reviewBtn = document.createElement('button');
+    reviewBtn.className = "btn btn-primary-custom px-4 shadow";
+    reviewBtn.innerHTML = "👁 Review Performance";
+    reviewBtn.onclick = () => {
+        loadQuiz(currentSubject, currentChapterId, encodeURIComponent(currentChapterName), true, resultObject);
+    };
+    actionsDiv.appendChild(reviewBtn);
 
     const submitBtn = document.getElementById('final-submit-btn');
     if(submitBtn) submitBtn.style.display = 'none';
@@ -992,19 +1015,6 @@ function submitAll(forceSubmit = false) {
     updateNavHighlights();
 
     if (currentUser) {
-        const resultObject = {
-            userId: currentUser.uid,
-            userEmail: currentUser.email,
-            subject: currentSubject,
-            chapterId: currentChapterId,
-            chapterName: currentChapterName,
-            score: finalScore,
-            totalMarks: totalMarks,
-            scorePercent: parseFloat(percentage),
-            userAnswers: userAnswers,
-            timestamp: new Date() // Use local date for immediate UI update
-        };
-
         db.collection('results').add({
             ...resultObject,
             timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -1070,9 +1080,6 @@ function submitAll(forceSubmit = false) {
                 const statsDiv = document.getElementById('stats-loading');
                 if (statsDiv) statsDiv.textContent = "";
             }
-
-            // Note: We removed loadUserDashboard() call here. 
-            // The "Return to Dashboard" button handles the UI switch using cached data.
 
         }).catch(err => toastr.error("Could not save result."));
     }
