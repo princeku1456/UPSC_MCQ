@@ -261,60 +261,131 @@ function renderDashboardUI() {
     });
 }
 
+/* =========================================
+   REPLACE THE renderPerformanceChart FUNCTION
+   ========================================= */
+
 function renderPerformanceChart(data) {
     const ctx = document.getElementById('performanceChart');
     if (!ctx) return;
 
-    const chartData = [...data].reverse();
-    const labels = chartData.map(item => {
-        let date;
-        if (item.timestamp && item.timestamp.toDate) {
-            date = new Date(item.timestamp.toDate()).toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-        } else {
-            date = 'New';
-        }
-        return `${item.subject} (${date})`; 
-    });
-
-    const scores = chartData.map(item => item.scorePercent);
-
+    // Destroy existing chart if it exists to prevents glitches
     if (performanceChartInstance) {
         performanceChartInstance.destroy();
     }
+
+    // 1. Prepare Data
+    // Reverse to show chronological order (Left=Oldest, Right=Newest)
+    const chartData = [...data].reverse(); 
     
-    // Get current theme color for chart text
+    const labels = chartData.map(item => {
+        if (item.timestamp && item.timestamp.toDate) {
+            return new Date(item.timestamp.toDate()).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+        return 'Recently';
+    });
+    
+    const scores = chartData.map(item => item.scorePercent);
+    const subjects = chartData.map(item => item.subject);
+    const chapters = chartData.map(item => item.chapterName);
+
+    // 2. Setup Gradient for Modern Look
+    const canvasContext = ctx.getContext('2d');
+    const gradientFill = canvasContext.createLinearGradient(0, 0, 0, 400);
+    // Top color (Blue) -> Bottom color (Transparent)
+    gradientFill.addColorStop(0, 'rgba(37, 99, 235, 0.4)'); 
+    gradientFill.addColorStop(1, 'rgba(37, 99, 235, 0.0)'); 
+
+    // 3. Determine Colors based on Theme
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const textColor = isDark ? '#e5e7eb' : '#666';
+    const textColor = isDark ? '#9ca3af' : '#6b7280'; // Gray text
+    const gridColor = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
+    const tooltipBg = isDark ? 'rgba(30, 41, 59, 0.95)' : 'rgba(255, 255, 255, 0.95)';
+    const tooltipText = isDark ? '#f3f4f6' : '#1f2937';
+    const tooltipBorder = isDark ? '#334155' : '#e5e7eb';
 
     performanceChartInstance = new Chart(ctx, {
         type: 'line',
         data: {
             labels: labels,
             datasets: [{
-                label: 'Accuracy (%)',
+                label: 'Accuracy',
                 data: scores,
-                borderColor: '#1e3a8a',
-                backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                pointBackgroundColor: '#f59e0b',
-                pointBorderColor: '#fff',
-                tension: 0.3,
-                fill: true
+                borderColor: '#2563eb', // Bright Blue
+                borderWidth: 3,
+                backgroundColor: gradientFill,
+                fill: true,
+                tension: 0.4, // Smooth curve (Bézier)
+                pointBackgroundColor: '#ffffff',
+                pointBorderColor: '#2563eb',
+                pointBorderWidth: 2,
+                pointRadius: 4,
+                pointHoverRadius: 7,
+                pointHoverBackgroundColor: '#f59e0b', // Orange on hover
+                pointHoverBorderColor: '#ffffff',
+                pointHoverBorderWidth: 2
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
             plugins: {
-                legend: { display: false }
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: tooltipBg,
+                    titleColor: tooltipText,
+                    bodyColor: tooltipText,
+                    borderColor: tooltipBorder,
+                    borderWidth: 1,
+                    titleFont: { size: 13, weight: 'bold' },
+                    padding: 12,
+                    displayColors: false, // Hide the little color box
+                    callbacks: {
+                        // Custom Title: Show Subject Name
+                        title: (tooltipItems) => {
+                            const index = tooltipItems[0].dataIndex;
+                            return subjects[index]; 
+                        },
+                        // Custom Body: Show Chapter & Score
+                        label: (context) => {
+                            const index = context.dataIndex;
+                            return [
+                                `📖 ${chapters[index]}`,
+                                `📅 ${labels[index]}`,
+                                `🎯 Score: ${context.raw}%`
+                            ];
+                        }
+                    }
+                }
             },
             scales: {
+                x: {
+                    grid: { display: false }, // Cleaner look
+                    ticks: {
+                        color: textColor,
+                        font: { size: 11 },
+                        maxRotation: 0,
+                        autoSkip: true,
+                        maxTicksLimit: 6 // Don't crowd dates
+                    }
+                },
                 y: {
                     beginAtZero: true,
                     max: 100,
-                    ticks: { color: textColor }
-                },
-                x: {
-                    display: false 
+                    grid: {
+                        color: gridColor,
+                        borderDash: [5, 5] // Dashed grid lines
+                    },
+                    ticks: {
+                        color: textColor,
+                        font: { size: 11 },
+                        stepSize: 20,
+                        callback: function(value) { return value + '%' }
+                    }
                 }
             }
         }
