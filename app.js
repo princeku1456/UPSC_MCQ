@@ -15,11 +15,11 @@ let quizSubmitted = false;
 let isReviewMode = false;
 let isRegistering = false;
 
-// OPTIMIZATION: Cache Variables to reduce Firestore Reads
+// OPTIMIZATION: Cache Variables
 let userHistory = [];
 let dashboardDataLoaded = false;
 let globalStatsCache = {}; 
-let leaderboardCache = {}; // Kept for compatibility, though logic now uses stats doc
+let leaderboardCache = {}; 
 let performanceChartInstance = null;
 let comparisonChartInstance = null;
 let quizTimerInterval = null;
@@ -40,7 +40,6 @@ auth.onAuthStateChanged((user) => {
         }
     } else {
         currentUser = null;
-        // Clear caches on logout to free memory
         userHistory = [];
         dashboardDataLoaded = false;
         globalStatsCache = {};
@@ -48,6 +47,12 @@ auth.onAuthStateChanged((user) => {
         updateUIForLogout();
         showHome();
     }
+});
+
+// Check theme preference on load
+document.addEventListener('DOMContentLoaded', () => {
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
 });
 
 function toggleAuthMode() {
@@ -158,7 +163,6 @@ async function loadUserDashboard(forceRefresh = false) {
 
     const historyContainer = document.getElementById('history-container');
     
-    // OPTIMIZATION: Use Cached Data if available
     if (!forceRefresh && dashboardDataLoaded && userHistory.length > 0) {
         renderDashboardUI();
         return;
@@ -169,7 +173,6 @@ async function loadUserDashboard(forceRefresh = false) {
     }
 
     try {
-        // OPTIMIZATION: Limit to 20 to save reads
         const snapshot = await db.collection('results')
             .where('userId', '==', currentUser.uid)
             .orderBy('timestamp', 'desc')
@@ -278,6 +281,10 @@ function renderPerformanceChart(data) {
     if (performanceChartInstance) {
         performanceChartInstance.destroy();
     }
+    
+    // Get current theme color for chart text
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const textColor = isDark ? '#e5e7eb' : '#666';
 
     performanceChartInstance = new Chart(ctx, {
         type: 'line',
@@ -303,7 +310,8 @@ function renderPerformanceChart(data) {
             scales: {
                 y: {
                     beginAtZero: true,
-                    max: 100
+                    max: 100,
+                    ticks: { color: textColor }
                 },
                 x: {
                     display: false 
@@ -328,7 +336,7 @@ function renderSubjects() {
     container.innerHTML = `
         <button class="btn btn-primary-custom px-4 shadow" onclick="showDashboard()">← Back to Dashboard</button>
         <div class="text-center mb-4">
-            <h4 class="fw-bold text-primary">Select a Subject</h4>
+            <h4 class="fw-bold section-title">Select a Subject</h4>
             <div class="title-underline mx-auto"></div>
         </div>
         <div class="row justify-content-center" id="subjects-row"></div>
@@ -358,7 +366,7 @@ function renderChapters(subjectKey) {
     container.innerHTML = `
         <button class="btn btn-primary-custom px-4 shadow" onclick="renderSubjects()">← Back to Subjects</button>
         <div class="text-center mb-4">
-            <h4 class="fw-bold text-primary">Chapters: ${subjectKey}</h4>
+            <h4 class="fw-bold section-title">Chapters: ${subjectKey}</h4>
             <div class="title-underline mx-auto"></div>
         </div>
         <div class="row" id="chapters-row"></div>
@@ -371,7 +379,6 @@ function renderChapters(subjectKey) {
         const col = document.createElement('div');
         col.className = 'col-md-6 col-lg-4 mb-4';
         
-        // Simple check against local history to see if taken
         const hasTaken = userHistory && userHistory.some(h => h.chapterId === chapId);
         const btnText = hasTaken ? "↻ Retake Test" : "🚀 Start Test";
 
@@ -464,30 +471,22 @@ function reviewTest(resultObj) {
 // REVIEW MODE LOGIC, LEADERBOARD & STATS
 // ===================================
 
-// OPTIMIZED: Returns leaderboard array along with stats
 async function getGlobalStats(chapterId) {
-    // Check local cache first
     if (globalStatsCache[chapterId]) {
         return globalStatsCache[chapterId];
     }
-
     try {
         const doc = await db.collection('chapter_stats').doc(chapterId).get();
-
         if (!doc.exists) return null;
-
         const data = doc.data();
         const stats = {
             avg: data.average || 0,
             highest: data.highestScore || 0,
             totalAttempts: data.totalAttempts || 0,
             allScores: data.allScores || [],
-            leaderboard: data.leaderboard || [] // NEW: Retrieve cached leaderboard array
+            leaderboard: data.leaderboard || []
         };
-        
-        // Save to cache
         globalStatsCache[chapterId] = stats;
-        
         return stats;
     } catch (e) {
         console.error("Error fetching global stats", e);
@@ -495,14 +494,10 @@ async function getGlobalStats(chapterId) {
     }
 }
 
-// OPTIMIZED: Uses cached leaderboard array instead of querying 'results'
 async function loadLeaderboard(chapterId) {
     const container = document.getElementById('leaderboard-container');
     if (!container) return;
-
-    // Fetch from chapter_stats (via getGlobalStats)
     const stats = await getGlobalStats(chapterId);
-
     if (stats && stats.leaderboard) {
         renderLeaderboardHTML(container, stats.leaderboard);
     } else {
@@ -520,7 +515,6 @@ function renderLeaderboardHTML(container, data) {
     let rank = 1;
     
     data.forEach(entry => {
-        // Privacy masking
         const email = entry.userEmail || 'Guest';
         const rawName = email.split('@')[0];
         const displayName = rawName.length > 3 ? rawName.substring(0, 3) + '***' : rawName;
@@ -534,7 +528,7 @@ function renderLeaderboardHTML(container, data) {
                         <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center me-2 shadow-sm" style="width:24px; height:24px; font-size:10px;">
                             ${rawName.charAt(0).toUpperCase()}
                         </div>
-                        <span>${displayName}</span>
+                        <span class="text-dark">${displayName}</span>
                         ${isMe ? '<span class="badge bg-warning text-dark ms-2" style="font-size:0.6rem">YOU</span>' : ''}
                     </div>
                 </td>
@@ -600,9 +594,9 @@ async function renderReviewMode(resultData) {
             </div>
         </div>
 
-        <div class="card mb-4 border-0 shadow-sm bg-light">
+        <div class="card mb-4 border-0 shadow-sm card">
             <div class="card-body">
-                <h5 class="fw-bold text-dark mb-3">📊 Your Performance Index</h5>
+                <h5 class="fw-bold card-title mb-3">📊 Your Performance Index</h5>
                 
                 <div class="row g-3 text-center mb-4">
                     <div class="col-6 col-md">
@@ -661,7 +655,6 @@ async function renderReviewMode(resultData) {
 
     filterReview('all', document.getElementById('btn-all'));
 
-    // Trigger Loads
     loadLeaderboard(currentChapterId);
 
     const stats = await getGlobalStats(currentChapterId);
@@ -694,6 +687,10 @@ async function renderReviewMode(resultData) {
 
     const ctx = document.getElementById('comparisonChart');
     if (comparisonChartInstance) comparisonChartInstance.destroy();
+    
+    // Theme-aware text color for chart
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const textColor = isDark ? '#e5e7eb' : '#666';
 
     comparisonChartInstance = new Chart(ctx, {
         type: 'bar',
@@ -727,10 +724,12 @@ async function renderReviewMode(resultData) {
                 x: {
                     beginAtZero: true,
                     max: 100,
-                    grid: { display: false }
+                    grid: { display: false },
+                    ticks: { color: textColor }
                 },
                 y: {
-                    grid: { display: false }
+                    grid: { display: false },
+                    ticks: { color: textColor }
                 }
             }
         }
@@ -806,9 +805,9 @@ function renderReviewQuestions(filterType) {
                 </div>
                 <p class="fs-5 fw-medium mb-3">${question.text ? question.text.replace(/\n/g, '<br>') : ''}</p>
                 <div class="mb-3">${optionsHtml}</div>
-                <div class="mt-3 bg-light p-3 rounded border-start border-4 border-warning">
+                <div class="explanation mt-3 shadow-sm">
                     <strong>💡 Explanation:</strong>
-                    <div class="mt-1 text-muted small">${question.explanation || "No explanation provided."}</div>
+                    <div class="mt-1 small">${question.explanation || "No explanation provided."}</div>
                 </div>
             </div>
         `;
@@ -986,7 +985,6 @@ function updateNavHighlights() {
     });
 }
 
-// OPTIMIZED: Saves leaderboard data directly to 'chapter_stats' within transaction
 function submitAll(forceSubmit = false) {
     if (!forceSubmit && !confirm("Are you sure you want to submit?")) return;
 
@@ -1022,7 +1020,6 @@ function submitAll(forceSubmit = false) {
     const totalMarks = totalQ * 2;
     const percentage = totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
 
-    // Lightweight entry for leaderboard array
     const leaderboardEntry = {
         userEmail: currentUser ? currentUser.email : 'guest',
         scorePercent: parseFloat(percentage),
@@ -1084,11 +1081,9 @@ function submitAll(forceSubmit = false) {
             if (userHistory.length > 20) userHistory.pop();
             dashboardDataLoaded = true;
 
-            // Invalidate caches
             delete globalStatsCache[currentChapterId];
             delete leaderboardCache[currentChapterId];
             
-            // Transaction: Update Stats AND Leaderboard Array
             const statsRef = db.collection('chapter_stats').doc(currentChapterId);
             try {
                 await db.runTransaction(async (transaction) => {
@@ -1102,7 +1097,7 @@ function submitAll(forceSubmit = false) {
                             average: newScore,
                             highestScore: newScore,
                             allScores: [newScore],
-                            leaderboard: [leaderboardEntry] // Start new leaderboard
+                            leaderboard: [leaderboardEntry] 
                         });
                     } else {
                         const data = sfDoc.data();
@@ -1112,18 +1107,16 @@ function submitAll(forceSubmit = false) {
                         const newHighest = Math.max((data.highestScore || 0), newScore);
                         const newAllScores = [...(data.allScores || []), newScore];
 
-                        // --- LEADERBOARD LOGIC ---
                         let currentLeaderboard = data.leaderboard || [];
                         currentLeaderboard.push(leaderboardEntry);
                         
                         // Sort Descending by Percentage
                         currentLeaderboard.sort((a, b) => b.scorePercent - a.scorePercent);
                         
-                        // Keep Top 10 to save doc size
+                        // Keep Top 10
                         if (currentLeaderboard.length > 10) {
                             currentLeaderboard = currentLeaderboard.slice(0, 10);
                         }
-                        // -------------------------
 
                         transaction.update(statsRef, {
                             totalScore: newTotalScore,
@@ -1131,7 +1124,7 @@ function submitAll(forceSubmit = false) {
                             average: newAvg,
                             highestScore: newHighest,
                             allScores: newAllScores,
-                            leaderboard: currentLeaderboard // Save optimized array
+                            leaderboard: currentLeaderboard 
                         });
                     }
                 });
@@ -1154,5 +1147,46 @@ function submitAll(forceSubmit = false) {
             }
 
         }).catch(err => toastr.error("Could not save result."));
+    }
+}
+
+/* =========================================
+   6. THEME MANAGEMENT
+   ========================================= */
+
+function toggleTheme() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    applyTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
+}
+
+function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    
+    const btn = document.getElementById('theme-toggle');
+    if (btn) {
+        btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+        btn.title = theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+        btn.classList.toggle('btn-light', theme === 'dark');
+        btn.classList.toggle('btn-outline-light', theme === 'light');
+    }
+
+    // Refresh Chart.js colors if charts are active
+    if (typeof Chart !== 'undefined') {
+        const textColor = theme === 'dark' ? '#e5e7eb' : '#666';
+        Chart.defaults.color = textColor;
+        Chart.defaults.borderColor = theme === 'dark' ? '#374151' : '#e5e7eb';
+        
+        if (performanceChartInstance) {
+            performanceChartInstance.options.scales.y.ticks.color = textColor;
+            performanceChartInstance.update();
+        }
+        if (comparisonChartInstance) {
+            comparisonChartInstance.options.scales.x.ticks.color = textColor;
+            comparisonChartInstance.options.scales.y.ticks.color = textColor;
+            comparisonChartInstance.update();
+        }
     }
 }

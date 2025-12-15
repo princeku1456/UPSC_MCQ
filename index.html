@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -17,15 +17,26 @@
     <nav class="navbar navbar-expand-lg navbar-dark main-navbar sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#" onclick="handleLogoClick()">✨ MCQ Practice</a>
-            <div id="user-profile" style="display: none;" class="dropdown">
-                <button class="btn btn-link text-white text-decoration-none dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown">
-                    <span id="user-name-display">User</span>
+            
+            <div class="d-flex align-items-center gap-3">
+                <button class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center" 
+                        id="theme-toggle" 
+                        onclick="toggleTheme()" 
+                        style="width: 38px; height: 38px; font-size: 1.2rem;" 
+                        title="Toggle Dark Mode">
+                    🌙
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end shadow">
-                    <li><a class="dropdown-item" href="#" onclick="showDashboard()">📊 Dashboard</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser()">🚪 Logout</a></li>
-                </ul>
+
+                <div id="user-profile" style="display: none;" class="dropdown">
+                    <button class="btn btn-link text-white text-decoration-none dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown">
+                        <span id="user-name-display">User</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end shadow">
+                        <li><a class="dropdown-item" href="#" onclick="showDashboard()">📊 Dashboard</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser()">🚪 Logout</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
@@ -42,11 +53,11 @@
                             <form id="auth-form">
                                 <div class="mb-3 text-start">
                                     <label class="form-label text-muted small fw-bold">Email Address</label>
-                                    <input type="email" class="form-control form-control-lg bg-light" id="auth-email" required>
+                                    <input type="email" class="form-control form-control-lg" id="auth-email" required>
                                 </div>
                                 <div class="mb-3 text-start">
                                     <label class="form-label text-muted small fw-bold">Password</label>
-                                    <input type="password" class="form-control form-control-lg bg-light" id="auth-password" required>
+                                    <input type="password" class="form-control form-control-lg" id="auth-password" required>
                                 </div>
                                 <button type="submit" class="btn btn-primary-custom w-100 py-3 mt-3 shadow" id="auth-submit-btn">Login</button>
                             </form>
@@ -75,7 +86,7 @@
                     <div class="card topic-card h-100" style="cursor: pointer;" onclick="showPerformance()">
                         <div class="card-body text-center p-4">
                             <div class="display-3 mb-4">📊</div>
-                            <h3 class="fw-bold text-primary">Performance</h3>
+                            <h3 class="fw-bold card-title text-primary">Performance</h3>
                             <p class="text-muted mt-2">View your stats and past results.</p>
                         </div>
                     </div>
@@ -85,7 +96,7 @@
                     <div class="card topic-card h-100" style="cursor: pointer;" onclick="showTestSelection()">
                         <div class="card-body text-center p-4">
                             <div class="display-3 mb-4">🚀</div>
-                            <h3 class="fw-bold text-success">Take Test</h3>
+                            <h3 class="fw-bold card-title text-success">Take Test</h3>
                             <p class="text-muted mt-2">Start a new quiz or retake topics.</p>
                         </div>
                     </div>
@@ -134,7 +145,7 @@
                 </div>
             </div>
 
-            <h4 class="fw-bold text-dark mb-3">Past Reviews</h4>
+            <h4 class="fw-bold section-title mb-3">Past Reviews</h4>
             <div id="history-container" class="row"></div>
         </div>
     </section>
