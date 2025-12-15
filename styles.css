@@ -1,27 +1,60 @@
 :root {
-    /* Theme: Royal Navy & Gold */
-    --primary-color: #1e3a8a;   /* Deep Navy Blue */
-    --secondary-color: #3b82f6; /* Bright Royal Blue */
-    --accent-color: #f59e0b;    /* Gold/Amber */
-    --text-color: #1f2937;      /* Dark Slate Grey */
-    --bg-light: #eff6ff;        /* Very light Blue-White background */
+    /* ============================
+       THEME SYSTEM (Light Mode Default)
+       ============================ */
+    --bg-body: #eff6ff;         /* Matches original --bg-light */
+    --bg-card: #ffffff;
+    --text-main: #1f2937;       /* Matches original --text-color */
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --navbar-bg: #1e3a8a;
+    --navbar-gradient: linear-gradient(160deg, #1e3a8a 0%, #172554 100%);
+    --input-bg: #f9fafb;
+    --option-bg: #ffffff;
+    --option-hover: #eff6ff;
     
+    /* Original Palette (Royal Navy & Gold) */
+    --primary-color: #1e3a8a;   
+    --secondary-color: #3b82f6; 
+    --accent-color: #f59e0b;    
+    
+    /* Shadows */
     --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --hover-shadow: 0 20px 25px -5px rgba(30, 58, 138, 0.15), 0 10px 10px -5px rgba(30, 58, 138, 0.04);
 }
 
+/* ============================
+   DARK MODE OVERRIDES
+   ============================ */
+[data-theme="dark"] {
+    --bg-body: #0f172a;         /* Deep dark blue/slate */
+    --bg-card: #1e293b;         /* Darker slate for cards */
+    --text-main: #f3f4f6;       /* Light gray text */
+    --text-muted: #9ca3af;
+    --border-color: #374151;
+    --navbar-bg: #0f172a;
+    --navbar-gradient: linear-gradient(160deg, #0f172a 0%, #020617 100%);
+    --input-bg: #334155;
+    --option-bg: #1e293b;
+    --option-hover: #334155;
+    
+    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+    --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
+}
+
 body {
     font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-light);
-    color: var(--text-color);
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ============================
    NAVBAR
    ============================ */
 .main-navbar {
-    background: #1e3a8a; 
-    background: linear-gradient(160deg, #1e3a8a 0%, #172554 100%);
+    background: var(--navbar-bg); 
+    background: var(--navbar-gradient);
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
 
@@ -35,34 +68,36 @@ body {
    LANDING PAGE (AUTH)
    ============================ */
 .hero {
-    background-color: #eff6ff;
-    background-image: radial-gradient(#3b82f6 0.5px, transparent 0.5px), radial-gradient(#3b82f6 0.5px, #eff6ff 0.5px);
+    background-color: var(--bg-body);
+    /* Pattern opacity tweaked for dark mode support */
+    background-image: radial-gradient(var(--secondary-color) 0.5px, transparent 0.5px), radial-gradient(var(--secondary-color) 0.5px, transparent 0.5px);
     background-size: 20px 20px;
     background-position: 0 0, 10px 10px;
 }
 
 .auth-card {
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid var(--border-color);
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(12px); /* Glass effect */
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    background: var(--bg-card); /* Changed from rgba(255,255,255,0.9) */
+    backdrop-filter: blur(12px); 
+    box-shadow: var(--card-shadow);
 }
 
 /* ============================
    DASHBOARD TABS
    ============================ */
 .nav-pills {
-    background: #fff;
+    background: var(--bg-card);
     padding: 0.5rem;
     border-radius: 50px;
     display: inline-flex;
     box-shadow: var(--card-shadow);
     gap: 0.5rem;
+    border: 1px solid var(--border-color);
 }
 
 .nav-pills .nav-link {
-    color: var(--text-color);
+    color: var(--text-main);
     border-radius: 50px;
     padding: 10px 25px;
     font-weight: 600;
@@ -70,7 +105,7 @@ body {
 }
 
 .nav-pills .nav-link:hover {
-    background-color: #f3f4f6;
+    background-color: var(--option-hover);
     color: var(--primary-color);
 }
 
@@ -105,39 +140,59 @@ body {
 /* ============================
    QUIZ FEEDBACK & COLORS
    ============================ */
-/* !important ensures these colors persist even if an option is hovered or selected */
 .correct-answer-label {
-    background-color: #f0fdf4 !important;
+    background-color: #064e3b !important; /* Dark Green for dark mode compat */
     border: 2px solid #16a34a !important;
+    color: #86efac !important;
+}
+
+/* Light mode override for correct answer to keep original look */
+[data-theme="light"] .correct-answer-label {
+    background-color: #f0fdf4 !important;
+    border-color: #16a34a !important;
     color: #14532d !important;
 }
 
 .incorrect-answer-label {
-    background-color: #fef2f2 !important;
+    background-color: #7f1d1d !important; /* Dark Red */
     border: 2px solid #dc2626 !important;
+    color: #fca5a5 !important;
+}
+
+/* Light mode override for incorrect */
+[data-theme="light"] .incorrect-answer-label {
+    background-color: #fef2f2 !important;
+    border-color: #dc2626 !important;
     color: #7f1d1d !important;
 }
 
 .explanation {
     margin-top: 20px;
     padding: 20px;
-    background-color: #F3F4F6;
+    background-color: var(--input-bg);
     border-left: 4px solid var(--accent-color);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     font-size: 0.95rem;
-    color: #374151;
+    color: var(--text-main);
 }
 
 /* ============================
-   CARDS (Subjects, History)
+   CARDS
    ============================ */
 .topic-card, .chapter-card {
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border-color);
     border-radius: 12px;
-    background: white;
+    background: var(--bg-card);
     box-shadow: var(--card-shadow);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.topic-card .card-title, .chapter-card .card-title {
+    color: var(--text-main) !important;
+}
+.topic-card .text-muted, .chapter-card .text-muted {
+    color: var(--text-muted) !important;
 }
 
 .topic-card:hover, .chapter-card:hover {
@@ -147,28 +202,31 @@ body {
 }
 
 .history-card {
-    border: none;
+    border: 1px solid var(--border-color); /* Added border for dark mode visibility */
+    border-left: 5px solid transparent; /* Keep logic */
     border-radius: 12px;
-    background: #fff;
+    background: var(--bg-card);
     box-shadow: var(--card-shadow);
     transition: all 0.3s ease;
-    border-left: 5px solid transparent;
 }
+
+.history-card h6 { color: var(--text-main); }
+.history-card .text-muted { color: var(--text-muted) !important; }
 
 .history-card:hover {
     box-shadow: var(--hover-shadow);
     transform: translateY(-2px);
 }
 
-.history-card.high-score { border-left-color: #10b981; } /* Green */
-.history-card.avg-score { border-left-color: #f59e0b; }  /* Orange */
-.history-card.low-score { border-left-color: #ef4444; }  /* Red */
+.history-card.high-score { border-left-color: #10b981; }
+.history-card.avg-score { border-left-color: #f59e0b; } 
+.history-card.low-score { border-left-color: #ef4444; } 
 
 /* ============================
    QUIZ LAYOUT
    ============================ */
 .quiz-box {
-    background: #fff;
+    background: var(--bg-card);
     padding: 2.5rem;
     border-radius: 12px;
     box-shadow: var(--card-shadow);
@@ -176,31 +234,30 @@ body {
 }
 
 .quiz-nav-sidebar {
-    background: #fff;
+    background: var(--bg-card);
     padding: 1.5rem;
     border-radius: 12px;
     box-shadow: var(--card-shadow);
     position: sticky;
-    top: 2rem; /* Sticks when scrolling */
-    border: 1px solid #e5e7eb;
+    top: 2rem; 
+    border: 1px solid var(--border-color);
 }
 
 .nav-header {
     font-weight: 700;
     font-size: 1rem;
-    color: var(--text-color);
+    color: var(--text-main);
     margin-bottom: 1.5rem;
     text-align: center;
     text-transform: uppercase;
     letter-spacing: 1px;
-    border-bottom: 2px solid #f3f4f6;
+    border-bottom: 2px solid var(--border-color);
     padding-bottom: 10px;
 }
 
 /* Grid for Quiz Navigation Numbers */
 .nav-grid {
     display: grid;
-    /* 5 Columns, each taking equal space, centered items */
     grid-template-columns: repeat(5, 1fr); 
     gap: 8px;
     justify-items: center;
@@ -210,54 +267,52 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    width: 100%;       /* Fill grid cell */
-    aspect-ratio: 1;   /* Keeps it square */
-    max-width: 50px;   /* Prevents it from getting too huge on large screens */
-    
-    background-color: #f1f5f9;
+    width: 100%;       
+    aspect-ratio: 1;   
+    max-width: 50px;   
+    background-color: var(--input-bg);
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
     font-size: 0.8rem;
-    color: #64748b;
-    border: 1px solid transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
     transition: all 0.2s ease;
 }
 
 .nav-item:hover {
-    background-color: #e2e8f0;
+    background-color: var(--option-hover);
     color: var(--primary-color);
     border-color: var(--secondary-color);
 }
 
 /* Quiz Nav States */
-.nav-item.active { background-color: var(--primary-color); color: #fff; box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.3); }
-.nav-item.attempted { background-color: var(--accent-color); color: #fff; }
+.nav-item.active { background-color: var(--primary-color); color: #fff; box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.3); border-color: var(--primary-color); }
+.nav-item.attempted { background-color: var(--accent-color); color: #fff; border-color: var(--accent-color); }
 .nav-item.correct-nav { background-color: #16a34a; color: #fff; }
 .nav-item.incorrect-nav { background-color: #dc2626; color: #fff; }
-.nav-item.unattempted { background-color: #cbd5e1; color: #fff; }
+.nav-item.unattempted { background-color: var(--input-bg); color: var(--text-muted); }
 
 /* Question Options */
-.question { margin-bottom: 30px; font-size: 1.15rem; }
+.question { margin-bottom: 30px; font-size: 1.15rem; color: var(--text-main); }
 
 .option {
     cursor: pointer;
     padding: 1rem 1.25rem;
     margin-bottom: 1rem;
     display: block;
-    background-color: white;
-    border: 2px solid #f1f5f9;
+    background-color: var(--option-bg);
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     font-weight: 500;
-    color: #475569;
+    color: var(--text-main);
     transition: all 0.2s ease;
     position: relative;
     padding-left: 3.5rem; 
 }
 
 .option:hover {
-    background-color: #eff6ff;
+    background-color: var(--option-hover);
     border-color: var(--secondary-color);
     color: var(--primary-color);
 }
@@ -281,7 +336,7 @@ body {
    UTILITIES & ANIMATION
    ============================ */
 .section-title {
-    color: var(--primary-color);
+    color: var(--text-main); /* Changed from primary-color for better contrast in dark mode */
     text-transform: uppercase;
     letter-spacing: 1px;
     font-size: 1.75rem;
@@ -305,7 +360,27 @@ body {
 }
 
 /* Form focus states */
+.form-control {
+    background-color: var(--input-bg);
+    border-color: var(--border-color);
+    color: var(--text-main);
+}
 .form-control:focus {
+    background-color: var(--input-bg);
+    color: var(--text-main);
     box-shadow: none;
     border: 2px solid var(--secondary-color);
+}
+
+/* Dropdown Menu Dark Mode Support */
+.dropdown-menu {
+    background-color: var(--bg-card);
+    border-color: var(--border-color);
+}
+.dropdown-item {
+    color: var(--text-main);
+}
+.dropdown-item:hover {
+    background-color: var(--option-hover);
+    color: var(--text-main);
 }
