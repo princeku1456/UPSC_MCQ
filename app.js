@@ -23,6 +23,8 @@ let leaderboardCache = {};
 let performanceChartInstance = null;
 let comparisonChartInstance = null;
 let quizTimerInterval = null;
+// NEW: Store stats for review mode rendering
+let currentReviewStats = null;
 
 /* =========================================
    2. INITIALIZATION & AUTH
@@ -555,7 +557,9 @@ async function getGlobalStats(chapterId) {
             highest: data.highestScore || 0,
             totalAttempts: data.totalAttempts || 0,
             allScores: data.allScores || [],
-            leaderboard: data.leaderboard || []
+            leaderboard: data.leaderboard || [],
+            correctCounts: data.correctCounts || [],
+            attemptedCounts: data.attemptedCounts || [] // NEW: Fetch Attempted Stats
         };
         globalStatsCache[chapterId] = stats;
         return stats;
@@ -724,11 +728,15 @@ async function renderReviewMode(resultData) {
         </div>
     `;
 
+    // OPTIMIZATION: Fetch stats *before* rendering questions so badges appear immediately
+    currentReviewStats = await getGlobalStats(currentChapterId);
+
     filterReview('all', document.getElementById('btn-all'));
 
     loadLeaderboard(currentChapterId);
 
-    const stats = await getGlobalStats(currentChapterId);
+    // Reuse fetched stats
+    const stats = currentReviewStats;
     const container = document.getElementById('global-stats-container');
     
     if (!stats) {
@@ -810,7 +818,7 @@ async function renderReviewMode(resultData) {
 function filterReview(filterType, btnElement) {
     const buttons = document.querySelectorAll('.btn-group .btn');
     buttons.forEach(btn => btn.classList.remove('active'));
-    btnElement.classList.add('active');
+    if(btnElement) btnElement.classList.add('active');
     renderReviewQuestions(filterType);
 }
 
@@ -846,6 +854,53 @@ function renderReviewQuestions(filterType) {
             borderClass = 'border-secondary';
         }
 
+        // NEW: Clean & Modern "Community Stats" Bar with Hover
+        let statsHtml = '';
+        if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
+            const total = currentReviewStats.totalAttempts;
+            const correctCount = (currentReviewStats.correctCounts && currentReviewStats.correctCounts[index]) || 0;
+            const attemptedCount = (currentReviewStats.attemptedCounts && currentReviewStats.attemptedCounts[index]) || 0;
+            
+            // Calculate Percentages
+            const pCorrect = Math.round((correctCount / total) * 100);
+            const pIncorrect = Math.round(((attemptedCount - correctCount) / total) * 100);
+            // Unattempted is anything remaining (total - attempted)
+            const pUnattempted = 100 - pCorrect - pIncorrect;
+            
+            // Text color is strictly success or danger
+            const textColorClass = pCorrect >= 50 ? 'text-success' : 'text-danger';
+
+            statsHtml = `
+                <div class="mt-2 mb-4 p-3 bg-light bg-opacity-75 rounded-3 border">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="small fw-bold text-uppercase text-secondary" style="letter-spacing: 0.5px;">👥 Community Stats</span>
+                        <span class="fw-bold ${textColorClass}">${pCorrect}% Correct</span>
+                    </div>
+                    <div class="progress shadow-sm" style="height: 40px;">
+                        <div class="progress-bar bg-success border" role="progressbar" style="width: ${pCorrect}%" 
+                             data-bs-toggle="tooltip" data-bs-placement="top"
+                             aria-valuenow="${pCorrect}" aria-valuemin="0" aria-valuemax="100"
+                             title="${pCorrect}% Answered Correctly">
+                        </div>
+                        <div class="progress-bar bg-danger bg-opacity-75 border" role="progressbar" style="width: ${pIncorrect}%" 
+                             data-bs-toggle="tooltip" data-bs-placement="top"
+                             aria-valuenow="${pIncorrect}" aria-valuemin="0" aria-valuemax="100"
+                             title="${pIncorrect}% Answered Incorrectly">
+                        </div>
+                        <div class="progress-bar bg-secondary bg-opacity-25 border" role="progressbar" style="width: ${pUnattempted}%" 
+                             data-bs-toggle="tooltip" data-bs-placement="top"
+                             aria-valuenow="${pUnattempted}" aria-valuemin="0" aria-valuemax="100"
+                             title="${pUnattempted}% Skipped this Question">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2 text-muted" style="font-size: 0.75rem;">
+                        <span>${correctCount} students got this right</span>
+                        <span>Based on ${total} attempts</span>
+                    </div>
+                </div>
+            `;
+        }
+
         let optionsHtml = '';
         question.options.forEach((opt, optIdx) => {
             let optionClass = 'option p-3 mb-2 border rounded';
@@ -870,11 +925,12 @@ function renderReviewQuestions(filterType) {
         card.className = `card mb-4 shadow-sm border-0 border-start border-5 ${borderClass}`;
         card.innerHTML = `
             <div class="card-body p-4">
-                <div class="d-flex justify-content-between">
-                    <h6 class="text-muted fw-bold">Question ${index + 1}</h6>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="text-muted fw-bold m-0">Question ${index + 1}</h6>
                     ${badgeHtml}
                 </div>
-                <p class="fs-5 fw-medium mb-3">${question.text ? question.text.replace(/\n/g, '<br>') : ''}</p>
+                
+                ${statsHtml} <p class="fs-5 fw-medium mb-3">${question.text ? question.text.replace(/\n/g, '<br>') : ''}</p>
                 <div class="mb-3">${optionsHtml}</div>
                 <div class="explanation mt-3 shadow-sm">
                     <strong>💡 Explanation:</strong>
@@ -884,6 +940,12 @@ function renderReviewQuestions(filterType) {
         `;
         container.appendChild(card);
     });
+    
+    // NEW: Initialize Bootstrap Tooltips for the newly created elements
+    if (typeof bootstrap !== 'undefined') {
+        const tooltipTriggerList = container.querySelectorAll('[data-bs-toggle="tooltip"]');
+        [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
+    }
 
     if (visibleCount === 0) {
         container.innerHTML = `<div class="alert alert-info text-center">No questions found for this filter.</div>`;
@@ -1162,13 +1224,28 @@ function submitAll(forceSubmit = false) {
                     const newScore = parseFloat(percentage);
 
                     if (!sfDoc.exists) {
+                        // NEW: Calculate correct array for first time
+                        const initCorrectCounts = currentQuizData.map((q, i) => {
+                             const uAns = userAnswers[i];
+                             const cIdx = getCorrectIndex(q);
+                             return (uAns && uAns.answer === cIdx) ? 1 : 0;
+                        });
+                        
+                        // NEW: Calculate attempted array for first time
+                        const initAttemptedCounts = currentQuizData.map((q, i) => {
+                             const uAns = userAnswers[i];
+                             return uAns ? 1 : 0;
+                        });
+
                         transaction.set(statsRef, {
                             totalScore: newScore,
                             totalAttempts: 1,
                             average: newScore,
                             highestScore: newScore,
                             allScores: [newScore],
-                            leaderboard: [leaderboardEntry] 
+                            leaderboard: [leaderboardEntry],
+                            correctCounts: initCorrectCounts, 
+                            attemptedCounts: initAttemptedCounts // NEW
                         });
                     } else {
                         const data = sfDoc.data();
@@ -1189,13 +1266,36 @@ function submitAll(forceSubmit = false) {
                             currentLeaderboard = currentLeaderboard.slice(0, 10);
                         }
 
+                        // NEW: Update Per-Question Correct Stats
+                        let currentCorrectCounts = data.correctCounts || [];
+                        while(currentCorrectCounts.length < currentQuizData.length) currentCorrectCounts.push(0);
+                        
+                        // NEW: Update Per-Question Attempted Stats
+                        let currentAttemptedCounts = data.attemptedCounts || [];
+                        while(currentAttemptedCounts.length < currentQuizData.length) currentAttemptedCounts.push(0);
+
+                        // Update counts based on current submission
+                        currentQuizData.forEach((q, i) => {
+                             const uAns = userAnswers[i];
+                             const cIdx = getCorrectIndex(q);
+                             
+                             if (uAns) {
+                                 currentAttemptedCounts[i]++; // Count Attempt
+                                 if (uAns.answer === cIdx) {
+                                     currentCorrectCounts[i]++; // Count Correct
+                                 }
+                             }
+                        });
+
                         transaction.update(statsRef, {
                             totalScore: newTotalScore,
                             totalAttempts: newTotalAttempts,
                             average: newAvg,
                             highestScore: newHighest,
                             allScores: newAllScores,
-                            leaderboard: currentLeaderboard 
+                            leaderboard: currentLeaderboard,
+                            correctCounts: currentCorrectCounts,
+                            attemptedCounts: currentAttemptedCounts // NEW
                         });
                     }
                 });
