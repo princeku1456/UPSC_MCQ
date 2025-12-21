@@ -4,19 +4,30 @@
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-// 🔴 REPLACE THIS WITH YOUR EMAIL
-const ALLOWED_ADMINS = ["prince@gmail.com", "your.email@gmail.com"]; 
-
+// 🟢 SECURE AUTHENTICATION
+// We check the 'admins' collection in the database instead of hardcoding emails.
 auth.onAuthStateChanged((user) => {
     if (user) {
-        if (ALLOWED_ADMINS.includes(user.email)) {
-            showDashboard();
-            loadSubjects();
-        } else {
-            toastr.error("Access Denied: You are not an admin.");
-            auth.signOut();
-            showLogin();
-        }
+        // Check if this user exists in the protected 'admins' collection
+        db.collection('admins').doc(user.uid).get()
+            .then((doc) => {
+                if (doc.exists) {
+                    // User is confirmed as Admin by the database
+                    toastr.success("Admin verified successfully");
+                    showDashboard();
+                    loadSubjects();
+                } else {
+                    // User is logged in, but not found in 'admins' collection
+                    throw new Error("Access Denied: You do not have admin privileges.");
+                }
+            })
+            .catch((error) => {
+                // This catches both logic errors and Permission Denied errors from Security Rules
+                console.error("Admin Auth Failed:", error);
+                toastr.error("Access Denied: Unauthorized.");
+                auth.signOut();
+                showLogin();
+            });
     } else {
         showLogin();
     }
