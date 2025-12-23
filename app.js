@@ -442,12 +442,15 @@ function renderChapters(subjectKey) {
         
         const hasTaken = userHistory && userHistory.some(h => h.chapterId === (subjectKey.replace(/\s+/g, '_') + "_" + chapId));
         const btnText = hasTaken ? "↻ Retake Test" : "🚀 Start Test";
+        const totalQuestions = chapters[chapId].length;
 
         col.innerHTML = `
             <div class="card chapter-card h-100 border-0">
                 <div class="card-body d-flex flex-column p-4">
                     <h5 class="card-title fw-bold text-dark">${chapId}</h5>
-                    <p class="card-text flex-grow-1 text-muted small">Topic Quiz</p>
+                    <p class="card-text flex-grow-1 text-muted small">
+                        Total Question • <strong>${totalQuestions} Questions</strong>
+                    </p>
                     <button class="btn btn-primary-custom w-100 mt-auto action-btn">
                         ${btnText}
                     </button>
