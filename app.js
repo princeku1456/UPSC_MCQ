@@ -263,21 +263,14 @@ function renderDashboardUI() {
     });
 }
 
-/* =========================================
-   REPLACE THE renderPerformanceChart FUNCTION
-   ========================================= */
-
 function renderPerformanceChart(data) {
     const ctx = document.getElementById('performanceChart');
     if (!ctx) return;
 
-    // Destroy existing chart if it exists to prevents glitches
     if (performanceChartInstance) {
         performanceChartInstance.destroy();
     }
 
-    // 1. Prepare Data
-    // Reverse to show chronological order (Left=Oldest, Right=Newest)
     const chartData = [...data].reverse(); 
     
     const labels = chartData.map(item => {
@@ -291,16 +284,13 @@ function renderPerformanceChart(data) {
     const subjects = chartData.map(item => item.subject);
     const chapters = chartData.map(item => item.chapterName);
 
-    // 2. Setup Gradient for Modern Look
     const canvasContext = ctx.getContext('2d');
     const gradientFill = canvasContext.createLinearGradient(0, 0, 0, 400);
-    // Top color (Blue) -> Bottom color (Transparent)
     gradientFill.addColorStop(0, 'rgba(37, 99, 235, 0.4)'); 
     gradientFill.addColorStop(1, 'rgba(37, 99, 235, 0.0)'); 
 
-    // 3. Determine Colors based on Theme
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const textColor = isDark ? '#9ca3af' : '#6b7280'; // Gray text
+    const textColor = isDark ? '#9ca3af' : '#6b7280'; 
     const gridColor = isDark ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)';
     const tooltipBg = isDark ? 'rgba(30, 41, 59, 0.95)' : 'rgba(255, 255, 255, 0.95)';
     const tooltipText = isDark ? '#f3f4f6' : '#1f2937';
@@ -313,17 +303,17 @@ function renderPerformanceChart(data) {
             datasets: [{
                 label: 'Accuracy',
                 data: scores,
-                borderColor: '#2563eb', // Bright Blue
+                borderColor: '#2563eb', 
                 borderWidth: 3,
                 backgroundColor: gradientFill,
                 fill: true,
-                tension: 0.4, // Smooth curve (Bézier)
+                tension: 0.4, 
                 pointBackgroundColor: '#ffffff',
                 pointBorderColor: '#2563eb',
                 pointBorderWidth: 2,
                 pointRadius: 4,
                 pointHoverRadius: 7,
-                pointHoverBackgroundColor: '#f59e0b', // Orange on hover
+                pointHoverBackgroundColor: '#f59e0b', 
                 pointHoverBorderColor: '#ffffff',
                 pointHoverBorderWidth: 2
             }]
@@ -345,14 +335,12 @@ function renderPerformanceChart(data) {
                     borderWidth: 1,
                     titleFont: { size: 13, weight: 'bold' },
                     padding: 12,
-                    displayColors: false, // Hide the little color box
+                    displayColors: false, 
                     callbacks: {
-                        // Custom Title: Show Subject Name
                         title: (tooltipItems) => {
                             const index = tooltipItems[0].dataIndex;
                             return subjects[index]; 
                         },
-                        // Custom Body: Show Chapter & Score
                         label: (context) => {
                             const index = context.dataIndex;
                             return [
@@ -366,13 +354,13 @@ function renderPerformanceChart(data) {
             },
             scales: {
                 x: {
-                    grid: { display: false }, // Cleaner look
+                    grid: { display: false }, 
                     ticks: {
                         color: textColor,
                         font: { size: 11 },
                         maxRotation: 0,
                         autoSkip: true,
-                        maxTicksLimit: 6 // Don't crowd dates
+                        maxTicksLimit: 6 
                     }
                 },
                 y: {
@@ -380,7 +368,7 @@ function renderPerformanceChart(data) {
                     max: 100,
                     grid: {
                         color: gridColor,
-                        borderDash: [5, 5] // Dashed grid lines
+                        borderDash: [5, 5] 
                     },
                     ticks: {
                         color: textColor,
@@ -452,7 +440,7 @@ function renderChapters(subjectKey) {
         const col = document.createElement('div');
         col.className = 'col-md-6 col-lg-4 mb-4';
         
-        const hasTaken = userHistory && userHistory.some(h => h.chapterId === chapId);
+        const hasTaken = userHistory && userHistory.some(h => h.chapterId === (subjectKey.replace(/\s+/g, '_') + "_" + chapId));
         const btnText = hasTaken ? "↻ Retake Test" : "🚀 Start Test";
 
         col.innerHTML = `
@@ -487,7 +475,8 @@ function getCorrectIndex(question) {
 
 function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastData = null) {
     currentSubject = subjectKey;
-    currentChapterId = chapterId;
+    // FIX: Unique Chapter ID to prevent cross-subject collisions
+    currentChapterId = subjectKey.replace(/\s+/g, '_') + "_" + chapterId; 
     currentChapterName = decodeURIComponent(chapterName);
 
     if (!allQuizData[subjectKey] || !allQuizData[subjectKey][chapterId]) {
@@ -501,7 +490,6 @@ function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastDa
     userAnswers = {};
     quizSubmitted = false;
     
-    // Reset Timer Display
     const timerDisplay = document.getElementById('timer-display');
     if (timerDisplay) {
         timerDisplay.textContent = '';
@@ -517,7 +505,6 @@ function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastDa
     hideAllSections();
     document.getElementById('quiz-section').style.display = 'block';
 
-    // Layout Management
     const quizContent = document.getElementById('quiz-content');
     const quizNav = document.getElementById('quiz-nav');
     
@@ -537,12 +524,12 @@ function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastDa
 }
 
 function reviewTest(resultObj) {
-    loadQuiz(resultObj.subject, resultObj.chapterId, resultObj.chapterName, true, resultObj);
+    loadQuiz(resultObj.subject, resultObj.chapterId.split('_').pop(), resultObj.chapterName, true, resultObj);
 }
 
-// ===================================
-// REVIEW MODE LOGIC, LEADERBOARD & STATS
-// ===================================
+/* =========================================
+   REVIEW MODE LOGIC, LEADERBOARD & STATS
+   ========================================= */
 
 async function getGlobalStats(chapterId) {
     if (globalStatsCache[chapterId]) {
@@ -559,7 +546,7 @@ async function getGlobalStats(chapterId) {
             allScores: data.allScores || [],
             leaderboard: data.leaderboard || [],
             correctCounts: data.correctCounts || [],
-            attemptedCounts: data.attemptedCounts || [] // NEW: Fetch Attempted Stats
+            attemptedCounts: data.attemptedCounts || [] 
         };
         globalStatsCache[chapterId] = stats;
         return stats;
@@ -728,14 +715,12 @@ async function renderReviewMode(resultData) {
         </div>
     `;
 
-    // OPTIMIZATION: Fetch stats *before* rendering questions so badges appear immediately
     currentReviewStats = await getGlobalStats(currentChapterId);
 
     filterReview('all', document.getElementById('btn-all'));
 
     loadLeaderboard(currentChapterId);
 
-    // Reuse fetched stats
     const stats = currentReviewStats;
     const container = document.getElementById('global-stats-container');
     
@@ -767,7 +752,6 @@ async function renderReviewMode(resultData) {
     const ctx = document.getElementById('comparisonChart');
     if (comparisonChartInstance) comparisonChartInstance.destroy();
     
-    // Theme-aware text color for chart
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     const textColor = isDark ? '#e5e7eb' : '#666';
 
@@ -854,20 +838,16 @@ function renderReviewQuestions(filterType) {
             borderClass = 'border-secondary';
         }
 
-        // NEW: Clean & Modern "Community Stats" Bar with Hover
         let statsHtml = '';
         if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
             const total = currentReviewStats.totalAttempts;
             const correctCount = (currentReviewStats.correctCounts && currentReviewStats.correctCounts[index]) || 0;
             const attemptedCount = (currentReviewStats.attemptedCounts && currentReviewStats.attemptedCounts[index]) || 0;
             
-            // Calculate Percentages
             const pCorrect = Math.round((correctCount / total) * 100);
             const pIncorrect = Math.round(((attemptedCount - correctCount) / total) * 100);
-            // Unattempted is anything remaining (total - attempted)
             const pUnattempted = 100 - pCorrect - pIncorrect;
             
-            // Text color is strictly success or danger
             const textColorClass = pCorrect >= 50 ? 'text-success' : 'text-danger';
 
             statsHtml = `
@@ -941,7 +921,6 @@ function renderReviewQuestions(filterType) {
         container.appendChild(card);
     });
     
-    // NEW: Initialize Bootstrap Tooltips for the newly created elements
     if (typeof bootstrap !== 'undefined') {
         const tooltipTriggerList = container.querySelectorAll('[data-bs-toggle="tooltip"]');
         [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl));
@@ -952,9 +931,9 @@ function renderReviewQuestions(filterType) {
     }
 }
 
-// ===================================
-// END REVIEW MODE LOGIC
-// ===================================
+/* =========================================
+   6. TIMER & NAVIGATION
+   ========================================= */
 
 function startTimer(numQuestions) {
     let timeLeft = Math.floor(numQuestions * 1.8 * 60); 
@@ -1118,6 +1097,10 @@ function updateNavHighlights() {
     });
 }
 
+/* =========================================
+   7. SUBMIT & STATISTICS
+   ========================================= */
+
 function submitAll(forceSubmit = false) {
     if (!forceSubmit && !confirm("Are you sure you want to submit?")) return;
 
@@ -1190,7 +1173,7 @@ function submitAll(forceSubmit = false) {
     reviewBtn.className = "btn btn-primary-custom px-4 shadow";
     reviewBtn.innerHTML = "👁 Review Performance";
     reviewBtn.onclick = () => {
-        loadQuiz(currentSubject, currentChapterId, encodeURIComponent(currentChapterName), true, resultObject);
+        loadQuiz(currentSubject, currentChapterId.split('_').pop(), encodeURIComponent(currentChapterName), true, resultObject);
     };
     actionsDiv.appendChild(reviewBtn);
 
@@ -1207,9 +1190,7 @@ function submitAll(forceSubmit = false) {
         db.collection('results').add({
             ...resultObject
         }).then(async () => {
-            toastr.success("Result saved!");
-            
-            // Update local history cache
+            // FIX: Local update before clearing cache
             userHistory.unshift(resultObject);
             if (userHistory.length > 20) userHistory.pop();
             dashboardDataLoaded = true;
@@ -1224,14 +1205,12 @@ function submitAll(forceSubmit = false) {
                     const newScore = parseFloat(percentage);
 
                     if (!sfDoc.exists) {
-                        // NEW: Calculate correct array for first time
                         const initCorrectCounts = currentQuizData.map((q, i) => {
                              const uAns = userAnswers[i];
                              const cIdx = getCorrectIndex(q);
                              return (uAns && uAns.answer === cIdx) ? 1 : 0;
                         });
                         
-                        // NEW: Calculate attempted array for first time
                         const initAttemptedCounts = currentQuizData.map((q, i) => {
                              const uAns = userAnswers[i];
                              return uAns ? 1 : 0;
@@ -1245,7 +1224,7 @@ function submitAll(forceSubmit = false) {
                             allScores: [newScore],
                             leaderboard: [leaderboardEntry],
                             correctCounts: initCorrectCounts, 
-                            attemptedCounts: initAttemptedCounts // NEW
+                            attemptedCounts: initAttemptedCounts 
                         });
                     } else {
                         const data = sfDoc.data();
@@ -1257,33 +1236,21 @@ function submitAll(forceSubmit = false) {
 
                         let currentLeaderboard = data.leaderboard || [];
                         currentLeaderboard.push(leaderboardEntry);
-                        
-                        // Sort Descending by Percentage
                         currentLeaderboard.sort((a, b) => b.scorePercent - a.scorePercent);
-                        
-                        // Keep Top 10
-                        if (currentLeaderboard.length > 10) {
-                            currentLeaderboard = currentLeaderboard.slice(0, 10);
-                        }
+                        if (currentLeaderboard.length > 10) currentLeaderboard = currentLeaderboard.slice(0, 10);
 
-                        // NEW: Update Per-Question Correct Stats
                         let currentCorrectCounts = data.correctCounts || [];
                         while(currentCorrectCounts.length < currentQuizData.length) currentCorrectCounts.push(0);
                         
-                        // NEW: Update Per-Question Attempted Stats
                         let currentAttemptedCounts = data.attemptedCounts || [];
                         while(currentAttemptedCounts.length < currentQuizData.length) currentAttemptedCounts.push(0);
 
-                        // Update counts based on current submission
                         currentQuizData.forEach((q, i) => {
                              const uAns = userAnswers[i];
                              const cIdx = getCorrectIndex(q);
-                             
                              if (uAns) {
-                                 currentAttemptedCounts[i]++; // Count Attempt
-                                 if (uAns.answer === cIdx) {
-                                     currentCorrectCounts[i]++; // Count Correct
-                                 }
+                                 currentAttemptedCounts[i]++; 
+                                 if (uAns.answer === cIdx) currentCorrectCounts[i]++; 
                              }
                         });
 
@@ -1295,15 +1262,19 @@ function submitAll(forceSubmit = false) {
                             allScores: newAllScores,
                             leaderboard: currentLeaderboard,
                             correctCounts: currentCorrectCounts,
-                            attemptedCounts: currentAttemptedCounts // NEW
+                            attemptedCounts: currentAttemptedCounts 
                         });
                     }
                 });
+                
+                // FIX: Toast moved inside success block of transaction
+                toastr.success("Result and stats saved!");
+                
             } catch (e) {
                 console.error("Stats update failed:", e);
+                toastr.warning("Result saved, but stats failed to update.");
             }
             
-            // Update global stats display
             const stats = await getGlobalStats(currentChapterId);
             if (stats) {
                 const betterThan = stats.allScores.filter(s => s < parseFloat(percentage)).length;
@@ -1317,12 +1288,15 @@ function submitAll(forceSubmit = false) {
                 }
             }
 
-        }).catch(err => toastr.error("Could not save result."));
+        }).catch(err => {
+            console.error("Save error:", err);
+            toastr.error("Could not save result.");
+        });
     }
 }
 
 /* =========================================
-   6. THEME MANAGEMENT
+   8. THEME MANAGEMENT
    ========================================= */
 
 function toggleTheme() {
@@ -1344,7 +1318,6 @@ function applyTheme(theme) {
         btn.classList.toggle('btn-outline-light', theme === 'light');
     }
 
-    // Refresh Chart.js colors if charts are active
     if (typeof Chart !== 'undefined') {
         const textColor = theme === 'dark' ? '#e5e7eb' : '#666';
         Chart.defaults.color = textColor;
