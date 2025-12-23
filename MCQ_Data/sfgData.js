@@ -491,4 +491,516 @@ const sfgData = {
         "Fraternity aims to assure the dignity of the individual and the unity and integrity of the nation. 'Equality of status and opportunity' is a separate objective distinct from the concept of Fraternity in the Preamble.",
     },
   ],
+  "Test-2-Polity (321102)": [
+    {
+      text: "Which of the following Fundamental Rights are available only to the citizens of India and not to foreigners?\nI. Protection in respect of conviction for offences.\nII. Equality of opportunity in matters of public employment.\nIII. Freedom of speech and expression.\nIV. Protection of life and personal liberty.\nV. Right of minorities to establish and administer educational institutions.",
+      options: [
+        "I, II and IV only",
+        "II, III and V only",
+        "II, IV and V only",
+        "I, III and IV only",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Fundamental Rights available only to citizens include Articles 15, 16, 19, 29, and 30. In this list: Statement II (Article 16), Statement III (Article 19), and Statement V (Article 30) are exclusive to citizens. Statements I (Article 20) and IV (Article 21) are available to both citizens and foreigners.",
+    },
+    {
+      text: "Which of the following Article(s) of the Constitution of India contains provisions related to the 'Right against Exploitation'?",
+      options: [
+        "Article 23 and 24",
+        "Article 24 only",
+        "Article 25 and 26",
+        "Article 23 only",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "The 'Right against Exploitation' is covered under Articles 23 and 24 of the Indian Constitution. Article 23 prohibits traffic in human beings and forced labor, while Article 24 prohibits the employment of children in hazardous conditions.",
+    },
+    {
+      text: "With reference to the Fundamental Rights, as enshrined in the Constitution of India, consider the following statements:\nI. They are meant for promoting the ideal of political democracy.\nII. They operate as limitations on the tyranny of the executive and arbitrary laws of the legislature.\nIII. They are sacrosanct and cannot be amended by the Parliament.\n\nWhich of the statements given above is/are correct?",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Statement I is correct as Fundamental Rights promote political democracy. Statement II is correct because they limit the executive and legislature. Statement III is incorrect because they are not sacrosanct; Parliament can curtail or repeal them via a constitutional amendment, provided the 'basic structure' remains intact.",
+    },
+    {
+      text: "The State shall not discriminate against any citizen on grounds only of religion, race, caste, sex, place of birth or any of them. This provision is provided in which Article of the Constitution of India?",
+      options: ["Article 14", "Article 15", "Article 16", "Article 17"],
+      correctAnswer: 1,
+      explanation:
+        "Article 15 of the Constitution provides that the State shall not discriminate against any citizen on grounds only of religion, race, caste, sex, or place of birth.",
+    },
+    {
+      text: "Under the Constitution of India, which one of the following is not a fundamental duty?",
+      options: [
+        "To vote in public elections",
+        "To develop the scientific temper",
+        "To safeguard public property",
+        "To abide by the Constitution and respect its ideals",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Voting in public elections is a legal or statutory right but is not listed as a Fundamental Duty under Article 51A. Developing scientific temper, safeguarding public property, and abiding by the Constitution are explicitly mentioned Fundamental Duties.",
+    },
+    {
+      text: "Consider the following statements regarding the 'State' as defined under Article 12 of the Indian Constitution:\nI. It includes the Parliament and the State Legislatures.\nII. It includes all local authorities like municipalities and panchayats.\nIII. It includes statutory and non-statutory authorities like LIC, ONGC, and SAIL.\n\nWhich of the statements given above are correct?",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "Article 12 defines 'State' to include the Government and Parliament of India, the Government and Legislatures of states, all local authorities, and other statutory or non-statutory authorities such as LIC, ONGC, and SAIL.",
+    },
+    {
+      text: "Which of the following features of the Indian Constitution can be considered as 'reasonable' constraints on the freedom of citizens?\nI. National security\nII. Public order\nIII. Decency or morality\nIV. Contempt of court\nV. Defamation\n\nSelect the correct answer using the code given below:",
+      options: [
+        "I, II, and III only",
+        "II, III, and IV only",
+        "I, II, IV, and V only",
+        "I, II, III, IV, and V",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "Under Article 19(2), the State can impose 'reasonable restrictions' on freedom of speech and expression based on grounds including national security, public order, decency/morality, contempt of court, and defamation.",
+    },
+    {
+      text: "Which of the following Constitutional Amendments added Fundamental Duties to the Constitution of India?",
+      options: [
+        "42nd Constitutional Amendment Act, 1976",
+        "44th Constitutional Amendment Act, 1978",
+        "86th Constitutional Amendment Act, 2002",
+        "97th Constitutional Amendment Act, 2011",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Fundamental Duties were added to the Constitution by the 42nd Constitutional Amendment Act in 1976 based on the recommendations of the Swaran Singh Committee.",
+    },
+    {
+      text: "With reference to 'Article 13' of the Constitution of India, consider the following statements:\nI. It declares that all laws that are inconsistent with or in derogation of any of the fundamental rights shall be void.\nII. The term 'law' under Article 13 includes only permanent laws enacted by the Parliament or State Legislatures.\nIII. A Constitutional Amendment is considered a 'law' under Article 13 and can be challenged if it violates a Fundamental Right.\n\nWhich of the statements given above is/are correct?",
+      options: ["I only", "I and II only", "II and III only", "I, II and III"],
+      correctAnswer: 0,
+      explanation:
+        "Statement I is correct as per Article 13. Statement II is incorrect because 'law' includes permanent laws, temporary laws (ordinances), and statutory instruments. Statement III is incorrect; a constitutional amendment is not considered a 'law' under Article 13, though it can be challenged under the 'basic structure' doctrine.",
+    },
+    {
+      text: "The doctrine of 'Equal Protection of Laws' in the Indian Constitution is derived from which of the following sources?",
+      options: [
+        "British Constitution",
+        "American Constitution",
+        "Irish Constitution",
+        "Canadian Constitution",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "The expression 'Equal Protection of Laws' is derived from the American Constitution and implies similar treatment under similar circumstances.",
+    },
+    {
+      text: "Consider the following statements regarding 'Article 17' of the Indian Constitution:\nI. It abolishes 'untouchability' and forbids its practice in any form.\nII. The term 'untouchability' is defined in the Constitution of India.\nIII. The rights under Article 17 are available only against the State.\n\nWhich of the statements given above is/are correct?",
+      options: ["I only", "I and II only", "II and III only", "I, II and III"],
+      correctAnswer: 0,
+      explanation:
+        "Statement I is correct. Statement II is incorrect; 'untouchability' is not defined in the Constitution or the Act. Statement III is incorrect; the right is available against both the State and private individuals.",
+    },
+    {
+      text: "Which of the following Fundamental Rights cannot be suspended even during a National Emergency?",
+      options: [
+        "Right to Equality (Articles 14-18)",
+        "Right to Freedom (Article 19)",
+        "Protection in respect of conviction for offences and Protection of life and personal liberty (Articles 20 and 21)",
+        "Right to Freedom of Religion (Articles 25-28)",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "According to the 44th Amendment Act of 1978, the enforcement of rights guaranteed by Articles 20 and 21 cannot be suspended even during a National Emergency.",
+    },
+    {
+      text: "The 'Rule of Law', as an essential part of the basic structure of the Indian Constitution, implies:\nI. Absence of arbitrary power.\nII. Equality before the law.\nIII. Primacy of individual rights.\n\nSelect the correct answer using the code given below:",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "In the Indian context, Rule of Law implies the absence of arbitrary power and equality before the law. Unlike the British model, individual rights in India are derived from the Constitution itself.",
+    },
+    {
+      text: "Which of the following is/are the correct reasons for the inclusion of Directive Principles of State Policy (DPSPs) in the Constitution of India?\nI. To establish social and economic democracy.\nII. To ensure that the State remains accountable to the people in the long run.\nIII. To serve as moral precepts for the authorities of the State.\n\nSelect the correct answer using the code given below:",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "DPSPs aim to establish social and economic democracy. They ensure accountability because the government must answer to the people regarding implementation, and they serve as moral precepts for state authorities.",
+    },
+    {
+      text: "With reference to the 'Directive Principles of State Policy' (DPSPs), consider the following statements:\nStatement I: DPSPs are non-justiciable in nature.\nStatement II: DPSPs are fundamental in the governance of the country.\nStatement III: The Parliament can amend the DPSPs through a constitutional amendment.\n\nWhich of the statements given above is/are correct?",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "Statement I is correct as DPSPs are not legally enforceable by courts. Statement II is correct; Article 37 declares them fundamental in governance. Statement III is correct; Parliament can amend them provided the basic structure is maintained.",
+    },
+    {
+      text: "Under the Indian Constitution, the provision for 'equal justice and free legal aid' is mentioned in:",
+      options: [
+        "Fundamental Rights",
+        "Directive Principles of State Policy",
+        "Fundamental Duties",
+        "Preamble",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Article 39A of the Directive Principles of State Policy, added by the 42nd Amendment, provides for equal justice and free legal aid.",
+    },
+    {
+      text: "Which of the following pairs is/are correctly matched?\nI. Article 40: Organisation of village panchayats\nII. Article 44: Uniform Civil Code\nIII. Article 50: Promotion of international peace and security\n\nSelect the correct answer using the code given below:",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Article 40 (Village Panchayats) and Article 44 (Uniform Civil Code) are correctly matched. Article 50 deals with the separation of judiciary from executive; Article 51 deals with international peace and security.",
+    },
+    {
+      text: "Which of the following Fundamental Rights is/are available against the actions of both the State and private individuals?\nI. Prohibition of discrimination on grounds only of religion, race, caste, sex or place of birth.\nII. Abolition of untouchability.\nIII. Prohibition of traffic in human beings and forced labour.\nIV. Protection of life and personal liberty.\n\nSelect the correct answer using the code given below:",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I, II and III only",
+        "I, II, III and IV",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "Articles 15, 17, and 23 are available against both State and private actions. Article 21 (Protection of life and personal liberty) is generally available only against State action.",
+    },
+    {
+      text: "The Directive Principle which requires the State to 'protect and improve the environment and to safeguard forests and wildlife' was added by which amendment?",
+      options: [
+        "42nd Amendment Act",
+        "44th Amendment Act",
+        "86th Amendment Act",
+        "97th Amendment Act",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Article 48A, regarding the protection and improvement of the environment, was added by the 42nd Amendment Act of 1976.",
+    },
+    {
+      text: "Which of the following is/are considered as 'Socialist' Directive Principles?\nI. To promote equal justice and free legal aid.\nII. To secure the right to work, education and public assistance.\nIII. To promote the educational and economic interests of SCs, STs and other weaker sections.\nIV. To secure a living wage and a decent standard of life for all workers.\n\nSelect the correct answer using the code given below:",
+      options: [
+        "I, II and III only",
+        "I, II and IV only",
+        "II, III and IV only",
+        "I, II, III and IV",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Socialist principles include Articles 39A, 41, and 43. Article 46 (Statement III) is classified as a 'Gandhian' principle.",
+    },
+    {
+      text: "In which of the following cases did the Supreme Court rule that 'Fundamental Rights and Directive Principles are the two wheels of the chariot of the Constitution'?",
+      options: [
+        "Kesavananda Bharati Case (1973)",
+        "Minerva Mills Case (1980)",
+        "Golaknath Case (1967)",
+        "Maneka Gandhi Case (1978)",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "In the Minerva Mills case (1980), the Supreme Court ruled that the Constitution is founded on the bedrock of the balance between Fundamental Rights and Directive Principles.",
+    },
+    {
+      text: "With reference to the 'Fundamental Duties', consider the following statements:\nI. They were not part of the original Constitution.\nII. They are justiciable in nature and can be enforced by the courts.\nIII. They apply to both citizens and foreigners.\n\nWhich of the statements given above is/are correct?",
+      options: ["I only", "I and II only", "II and III only", "I, II and III"],
+      correctAnswer: 0,
+      explanation:
+        "Statement I is correct; Fundamental Duties were added in 1976. Statement II is incorrect; they are non-justiciable. Statement III is incorrect; they apply only to citizens.",
+    },
+    {
+      text: "Which of the following is/are the recommended functions of the Fundamental Duties as per the Verma Committee (1999)?\nI. To serve as a reminder to the citizens that they have duties towards their country.\nII. To serve as a warning against anti-national and anti-social activities.\nIII. To help the courts in determining the constitutional validity of a law.\n\nSelect the correct answer using the code given below:",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "The Verma Committee observed that Fundamental Duties remind citizens of their country, warn against anti-social activities, and assist courts in determining the constitutional validity of laws.",
+    },
+    {
+      text: "Under Article 19, the 'Right to Freedom' includes:\nI. Right to assemble peacefully and without arms.\nII. Right to form associations or unions or co-operative societies.\nIII. Right to move freely throughout the territory of India.\nIV. Right to reside and settle in any part of the territory of India.\n\nSelect the correct answer using the code given below:",
+      options: [
+        "I, II and III only",
+        "II, III and IV only",
+        "I, III and IV only",
+        "I, II, III and IV",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "Article 19 guarantees rights including assembly, association, movement, and residence to citizens.",
+    },
+    {
+      text: "Which of the following Fundamental Rights provides protection against both 'double jeopardy' and 'self-incrimination'?",
+      options: ["Article 20", "Article 21", "Article 22", "Article 23"],
+      correctAnswer: 0,
+      explanation:
+        "Article 20 provides protection against ex-post-facto laws, double jeopardy, and self-incrimination.",
+    },
+    {
+      text: "Consider the following statements regarding the 'Right to Education' (Article 21A):\nI. It was added by the 86th Constitutional Amendment Act, 2002.\nII. It makes free and compulsory education a Fundamental Right for children of the age of 6 to 14 years.\nIII. It provides for free education up to the higher secondary level.\n\nWhich of the statements given above are correct?",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Statements I and II are correct. Statement III is incorrect; the right applies only to elementary education for children aged 6 to 14.",
+    },
+    {
+      text: "Which of the following Fundamental Rights protects the 'Right to Privacy'?",
+      options: ["Article 14", "Article 19", "Article 21", "Article 25"],
+      correctAnswer: 2,
+      explanation:
+        "In the Justice K.S. Puttaswamy case (2017), the Supreme Court declared the Right to Privacy as an intrinsic part of the Right to Life and Personal Liberty under Article 21.",
+    },
+    {
+      text: "With reference to 'Article 22' of the Indian Constitution, consider the following statements:\nI. It grants protection to persons who are arrested or detained.\nII. Punitive detention is to punish a person for an offence committed by him after trial and conviction.\nIII. Preventive detention is to prevent a person from committing an offence in the near future.\n\nWhich of the statements given above are correct?",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "Statement I is correct. Punitive detention (Statement II) follows a trial and conviction, while preventive detention (Statement III) is to prevent a future offense without trial.",
+    },
+    {
+      text: "The 'Writs' in the Indian Constitution, used for the enforcement of Fundamental Rights, are borrowed from which of the following?",
+      options: [
+        "American Constitution",
+        "British Constitution",
+        "Irish Constitution",
+        "Australian Constitution",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "The prerogative writs (Habeas Corpus, Mandamus, etc.) are borrowed from English law (British Constitution).",
+    },
+    {
+      text: "Which of the following writs can be issued against both public authorities and private individuals?",
+      options: ["Habeas Corpus", "Mandamus", "Certiorari", "Quo-Warranto"],
+      correctAnswer: 0,
+      explanation:
+        "Habeas Corpus is the only writ that can be issued against both public authorities and private individuals.",
+    },
+    {
+      text: "Consider the following statements regarding the writ of 'Mandamus':\nI. It is issued by a higher court to a lower court or a public official to perform a legal duty.\nII. It can be issued against a private individual.\nIII. It cannot be issued against the President of India or State Governors.\n\nWhich of the statements given above is/are correct?",
+      options: ["I only", "I and II only", "I and III only", "I, II and III"],
+      correctAnswer: 2,
+      explanation:
+        "Statement I is correct. Statement II is incorrect; it cannot be issued against private individuals. Statement III is correct; it cannot be issued against the President or Governors.",
+    },
+    {
+      text: "Which of the following Fundamental Rights provides protection to the cultural and educational rights of both 'religious' and 'linguistic' minorities?",
+      options: ["Article 25", "Article 28", "Article 29", "Article 30"],
+      correctAnswer: 3,
+      explanation:
+        "Article 30 grants all minorities—whether religious or linguistic—the right to establish and administer educational institutions. Article 29 protects the language, script, or culture of any section of citizens.",
+    },
+    {
+      text: "Under 'Article 32' of the Indian Constitution, a citizen can move the Supreme Court directly for the enforcement of:\nI. Fundamental Rights.\nII. Directive Principles of State Policy.\nIII. Fundamental Duties.\nIV. Statutory Rights.\n\nSelect the correct answer using the code given below:",
+      options: [
+        "I only",
+        "I and II only",
+        "I and IV only",
+        "I, II, III and IV",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Article 32 provides a remedy for the enforcement of Fundamental Rights only.",
+    },
+    {
+      text: "Which of the following Directive Principles is/are classified as 'Gandhian' Principles?\nI. To organise village panchayats.\nII. To promote cottage industries on an individual or co-operation basis in rural areas.\nIII. To prohibit the consumption of intoxicating drinks and drugs.\nIV. To organise agriculture and animal husbandry on modern and scientific lines.\n\nSelect the correct answer using the code given below:",
+      options: [
+        "I, II and III only",
+        "II, III and IV only",
+        "I, III and IV only",
+        "I, II, III and IV",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Gandhian principles include Articles 40, 43, and 47. Statement IV (Article 48) is classified as a Liberal-Intellectual principle.",
+    },
+    {
+      text: "The 'Separation of Judiciary from Executive' is mentioned in which Article of the Indian Constitution?",
+      options: ["Article 44", "Article 48", "Article 50", "Article 51"],
+      correctAnswer: 2,
+      explanation:
+        "Article 50 of the Directive Principles of State Policy mandates the State to separate the judiciary from the executive.",
+    },
+    {
+      text: "Consider the following statements regarding 'Fundamental Duties':\nStatement I: They serve as a source of inspiration for citizens and promote a sense of discipline and commitment.\nStatement II: The Parliament can provide for the imposition of penalty or punishment for failure to fulfil any of the Fundamental Duties.\n\nWhich of the statements given above is/are correct?",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 2,
+      explanation:
+        "Both statements are correct; duties serve as inspiration and Parliament can enact laws to impose penalties for violations.",
+    },
+    {
+      text: "Which of the following is/are classified as 'Liberal-Intellectual' Directive Principles?\nI. To secure for all citizens a Uniform Civil Code throughout the country.\nII. To provide early childhood care and education for all children until they complete the age of six years.\nIII. To protect monuments, places and objects of artistic or historic interest.\nIV. To promote the educational and economic interests of SCs, STs and other weaker sections.\n\nSelect the correct answer using the code given below:",
+      options: [
+        "I, II and III only",
+        "II, III and IV only",
+        "I, III and IV only",
+        "I, II, III and IV",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Liberal-Intellectual principles include Articles 44, 45, and 49. Statement IV (Article 46) is a Gandhian principle.",
+    },
+    {
+      text: "With reference to 'Article 25' of the Indian Constitution, consider the following statements:\nI. It guarantees the freedom of conscience and the right to freely profess, practice and propagate religion.\nII. This right is subject to public order, morality and health.\nIII. It allows the State to regulate or restrict any economic, financial, political or other secular activity associated with religious practice.\n\nWhich of the statements given above are correct?",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "All statements are correct; Article 25 covers conscience and practice, is subject to public order/health, and allows the State to regulate secular activities linked to religion.",
+    },
+    {
+      text: "Under 'Article 26', every religious denomination or any section thereof shall have the right:\nI. To establish and maintain institutions for religious and charitable purposes.\nII. To manage its own affairs in matters of religion.\nIII. To own and acquire movable and immovable property.\nIV. To administer such property in accordance with law.\n\nSelect the correct answer using the code given below:",
+      options: [
+        "I, II and III only",
+        "II, III and IV only",
+        "I, III and IV only",
+        "I, II, III and IV",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "Article 26 guarantees religious denominations the right to establish institutions, manage religious affairs, and own/administer property.",
+    },
+    {
+      text: "Which of the following Articles of the Constitution of India prohibits the State from compelling any person to pay taxes for the promotion of any particular religion?",
+      options: ["Article 25", "Article 26", "Article 27", "Article 28"],
+      correctAnswer: 2,
+      explanation:
+        "Article 27 provides that no person shall be compelled to pay any taxes used specifically for the promotion of any particular religion.",
+    },
+    {
+      text: "Consider the following statements regarding 'Article 28' of the Indian Constitution:\nI. No religious instruction shall be provided in any educational institution wholly maintained out of State funds.\nII. Religious instruction is permitted in institutions administered by the State but established under any endowment or trust.\nIII. In institutions recognised by the State or receiving aid out of State funds, no person shall be required to take part in any religious instruction without his consent.\n\nWhich of the statements given above are correct?",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "All statements are correct regarding religious instruction and types of educational institutions.",
+    },
+    {
+      text: "The 'Abolition of Titles', except military and academic distinctions, is provided under which Article of the Indian Constitution?",
+      options: ["Article 15", "Article 16", "Article 17", "Article 18"],
+      correctAnswer: 3,
+      explanation:
+        "Article 18 abolishes titles, prohibiting the state from conferring them (except military/academic) and citizens from accepting them from foreign states.",
+    },
+    {
+      text: "Which of the following Fundamental Rights provides protection against 'untouchability'?",
+      options: [
+        "Right to Equality",
+        "Right to Freedom",
+        "Right against Exploitation",
+        "Right to Freedom of Religion",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Article 17, which abolishes untouchability, falls under the category of Right to Equality (Articles 14-18).",
+    },
+    {
+      text: "Under 'Article 24', the employment of children below what age is prohibited in any factory or mine?",
+      options: ["12 years", "14 years", "16 years", "18 years"],
+      correctAnswer: 1,
+      explanation:
+        "Article 24 prohibits the employment of children below the age of 14 in factories, mines, or hazardous jobs.",
+    },
+    {
+      text: "The 86th Constitutional Amendment Act, 2002 added which of the following Fundamental Duties?",
+      options: [
+        "To protect and improve the natural environment.",
+        "To safeguard public property.",
+        "To provide opportunities for education to his child or ward between the age of 6 and 14 years.",
+        "To defend the country and render national service.",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "The 86th Amendment Act of 2002 added the duty to provide educational opportunities to one's child or ward between the ages of 6 and 14.",
+    },
+    {
+      text: "Which of the following is not a 'Fundamental Duty' under Article 51A?\nI. To uphold and protect the sovereignty, unity and integrity of India.\nII. To promote harmony and the spirit of common brotherhood.\nIII. To pay taxes regularly and on time.\nIV. To cherish and follow the noble ideals which inspired our national struggle for freedom.\n\nSelect the correct answer using the code given below:",
+      options: ["I only", "II only", "III only", "IV only"],
+      correctAnswer: 2,
+      explanation:
+        "Paying taxes is not a listed Fundamental Duty in the Indian Constitution.",
+    },
+    {
+      text: "The Directive Principle which requires the State to 'organise agriculture and animal husbandry on modern and scientific lines' is:",
+      options: ["Article 44", "Article 46", "Article 47", "Article 48"],
+      correctAnswer: 3,
+      explanation:
+        "Article 48 mandates the State to organize agriculture and animal husbandry on modern lines and prohibit the slaughter of cows.",
+    },
+    {
+      text: "Under the Indian Constitution, 'protection of monuments and places and objects of national importance' is provided in:",
+      options: ["Article 48", "Article 49", "Article 50", "Article 51"],
+      correctAnswer: 1,
+      explanation:
+        "Article 49 of Part IV (DPSPs) obliges the State to protect monuments and places declared to be of national importance.",
+    },
+    {
+      text: "Which of the following Fundamental Rights provides protection against 'forced labour' and 'begar'?",
+      options: ["Article 20", "Article 21", "Article 23", "Article 24"],
+      correctAnswer: 2,
+      explanation:
+        "Article 23 prohibits traffic in human beings, begar, and other forms of forced labor.",
+    },
+    {
+      text: "Consider the following statements regarding the 'Fundamental Rights' and 'Directive Principles':\nI. Fundamental Rights are justiciable, while Directive Principles are non-justiciable.\nII. Fundamental Rights aim at establishing political democracy, while Directive Principles aim at establishing social and economic democracy.\nIII. In case of a conflict, the Fundamental Rights generally prevail over the Directive Principles.\n\nWhich of the statements given above are correct?",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "All statements are correct; FRs are justiciable and promote political democracy, while DPSPs are non-justiciable and promote social/economic democracy. FRs generally prevail in conflicts.",
+    },
+  ],
 };
