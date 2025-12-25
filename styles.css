@@ -384,3 +384,25 @@ body {
     background-color: var(--option-hover);
     color: var(--text-main);
 }
+
+/* Styles for Completed Subject Cards */
+.topic-card.subject-completed {
+    background-color: #f0fdf4 !important; /* Light green for light mode */
+    border-color: #22c55e !important;
+}
+
+[data-theme="dark"] .topic-card.subject-completed {
+    background-color: #064e3b !important; /* Deep emerald for dark mode */
+    border-color: #10b981 !important;
+}
+
+.topic-card.subject-completed:hover {
+    box-shadow: 0 10px 15px -3px rgba(34, 197, 94, 0.4);
+}
+
+/* Optional: Make the badge look nice */
+.badge.bg-success {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
