@@ -389,11 +389,15 @@ function renderPerformanceChart(data) {
    4. TAKE TEST LOGIC (Subjects & Chapters)
    ========================================= */
 
+/* =========================================
+   UPDATED: SUBJECT PROGRESS LOGIC
+   ========================================= */
+
 function renderSubjects() {
     const container = document.getElementById('test-content-container');
 
     if (typeof allQuizData === 'undefined' || !allQuizData) {
-        container.innerHTML = '<div class="alert alert-danger text-center">Quiz Data not loaded! Please refresh.</div>';
+        container.innerHTML = '<div class="alert alert-danger text-center">Quiz Data not loaded!</div>';
         return;
     }
 
@@ -403,28 +407,57 @@ function renderSubjects() {
             <h4 class="fw-bold section-title">Select a Subject</h4>
             <div class="title-underline mx-auto"></div>
         </div>
-        <div class="row justify-content-center" id="subjects-row"></div>
+        <div class="row justify-content-center g-4" id="subjects-row"></div>
     `;
 
     const row = document.getElementById('subjects-row');
 
     Object.keys(allQuizData).forEach(subjectKey => {
-        const count = Object.keys(allQuizData[subjectKey]).length;
+        const chapters = allQuizData[subjectKey];
+        const totalChapters = Object.keys(chapters).length;
+        
+        const subjectPrefix = subjectKey.replace(/\s+/g, '_') + "_";
+        const completedChaptersCount = Object.keys(chapters).filter(chapId => {
+            const fullId = subjectPrefix + chapId;
+            return userHistory && userHistory.some(h => h.chapterId === fullId);
+        }).length;
+
+        const progressPercent = totalChapters > 0 ? Math.round((completedChaptersCount / totalChapters) * 100) : 0;
+
+        // --- NEW: Completion Logic ---
+        const isCompleted = progressPercent === 100;
+        const completionClass = isCompleted ? 'subject-completed' : '';
+        const badgeHtml = isCompleted ? '<div class="badge bg-success mb-2 animate-fade-in">✨ Completed</div>' : '';
+
         const col = document.createElement('div');
         col.className = 'col-md-4 col-lg-3 mb-4';
         col.innerHTML = `
-            <div class="card topic-card h-100" style="cursor: pointer;">
-                <div class="card-body text-center p-4">
-                    <div class="display-4 mb-3">📖</div>
+            <div class="card topic-card h-100 ${completionClass}" style="cursor: pointer;">
+                <div class="card-body text-center p-4 d-flex flex-column">
+                    <div class="display-4 mb-3">${isCompleted ? '🏆' : '📖'}</div>
+                    ${badgeHtml}
                     <h5 class="card-title text-primary fw-bold">${subjectKey}</h5>
-                    <span class="badge bg-light text-dark border">${count} Chapters</span>
+                    <p class="text-muted small mb-3">${completedChaptersCount} / ${totalChapters} Chapters Done</p>
+                    
+                    <div class="mt-auto">
+                        <div class="progress mb-2" style="height: 20px; background-color: var(--border-color); border-radius: 5px;">
+                            <div class="progress-bar ${isCompleted ? 'bg-success' : ''}" 
+                                 role="progressbar" 
+                                 style="width: ${progressPercent}%; ${!isCompleted ? 'background-color: var(--accent-color);' : ''} border-radius: 5px;" 
+                                 aria-valuenow="${progressPercent}" 
+                                 aria-valuemin="0" 
+                                 aria-valuemax="100">
+                            </div>
+                        </div>
+                        <small class="fw-bold ${isCompleted ? 'text-success' : 'text-secondary'}">${progressPercent}% Complete</small>
+                    </div>
                 </div>
             </div>`;
+        
         col.onclick = () => renderChapters(subjectKey);
         row.appendChild(col);
     });
 }
-
 function renderChapters(subjectKey) {
     const container = document.getElementById('test-content-container');
     container.innerHTML = `
