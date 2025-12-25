@@ -368,7 +368,7 @@ function renderPerformanceChart(data) {
                 },
                 y: {
                     beginAtZero: true,
-                    max: 100,
+                    max: 110,
                     grid: {
                         color: gridColor,
                         borderDash: [5, 5] 

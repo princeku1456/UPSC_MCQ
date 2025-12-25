@@ -1,177 +1,278 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Practice MCQs - User Portal</title>
-    <link rel="icon" type="image/x-icon" href="favicon.svg">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="favicon.svg" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <link href="styles.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    />
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body class="d-flex flex-column min-vh-100">
-
+  </head>
+  <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg navbar-dark main-navbar sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#" onclick="handleLogoClick()">✨ MCQ Practice</a>
-            
-            <div class="d-flex align-items-center gap-3">
-                <button class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center" 
-                        id="theme-toggle" 
-                        onclick="toggleTheme()" 
-                        style="width: 38px; height: 38px; font-size: 1.2rem;" 
-                        title="Toggle Dark Mode">
-                    🌙
-                </button>
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#" onclick="handleLogoClick()"
+          >✨ MCQ Practice</a
+        >
 
-                <div id="user-profile" style="display: none;" class="dropdown">
-                    <button class="btn btn-link text-white text-decoration-none dropdown-toggle fw-bold" type="button" data-bs-toggle="dropdown">
-                        <span id="user-name-display">User</span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end shadow">
-                        <li><a class="dropdown-item" href="#" onclick="showDashboard()">📊 Dashboard</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser()">🚪 Logout</a></li>
-                    </ul>
-                </div>
-            </div>
+        <div class="d-flex align-items-center gap-3">
+          <button
+            class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center"
+            id="theme-toggle"
+            onclick="toggleTheme()"
+            style="width: 38px; height: 38px; font-size: 1.2rem"
+            title="Toggle Dark Mode"
+          >
+            🌙
+          </button>
+
+          <div id="user-profile" style="display: none" class="dropdown">
+            <button
+              class="btn btn-link text-white text-decoration-none dropdown-toggle fw-bold"
+              type="button"
+              data-bs-toggle="dropdown"
+            >
+              <span id="user-name-display">User</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow">
+              <li>
+                <a class="dropdown-item" href="#" onclick="showDashboard()"
+                  >📊 Dashboard</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item text-danger"
+                  href="#"
+                  onclick="logoutUser()"
+                  >🚪 Logout</a
+                >
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
     </nav>
 
-    <section id="hero-section" class="hero" style="margin-top: 100px;">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 col-lg-5 ">
-                    <div class="card auth-card text-center animate-fade-in">
-                        <div class="card-body p-5">
-                            <h3 class="fw-bold text-primary mb-2" id="auth-title">Welcome Back! 👋</h3>
-                            <p class="text-muted mb-4" id="auth-subtitle">Login to access your dashboard.</p>
-                            
-                            <form id="auth-form">
-                                <div class="mb-3 text-start">
-                                    <label class="form-label text-muted small fw-bold">Email Address</label>
-                                    <input type="email" class="form-control form-control-lg" id="auth-email" required>
-                                </div>
-                                <div class="mb-3 text-start">
-                                    <label class="form-label text-muted small fw-bold">Password</label>
-                                    <input type="password" class="form-control form-control-lg" id="auth-password" required>
-                                </div>
-                                <button type="submit" class="btn btn-primary-custom w-100 py-3 mt-3 shadow" id="auth-submit-btn">Login</button>
-                            </form>
-                            
-                            <div class="mt-4">
-                                <small class="text-muted">Don't have an account? 
-                                    <a href="#" class="text-primary fw-bold text-decoration-none" onclick="toggleAuthMode()">Register here</a>
-                                </small>
-                            </div>
-                        </div>
-                    </div>
+    <section id="hero-section" class="hero" style="margin-top: 100px">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-5">
+            <div class="card auth-card text-center animate-fade-in">
+              <div class="card-body p-5">
+                <h3 class="fw-bold text-primary mb-2" id="auth-title">
+                  Welcome Back! 👋
+                </h3>
+                <p class="text-muted mb-4" id="auth-subtitle">
+                  Login to access your dashboard.
+                </p>
+
+                <form id="auth-form">
+                  <div class="mb-3 text-start">
+                    <label class="form-label text-muted small fw-bold"
+                      >Email Address</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control form-control-lg"
+                      id="auth-email"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3 text-start">
+                    <label class="form-label text-muted small fw-bold"
+                      >Password</label
+                    >
+                    <input
+                      type="password"
+                      class="form-control form-control-lg"
+                      id="auth-password"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary-custom w-100 py-3 mt-3 shadow"
+                    id="auth-submit-btn"
+                  >
+                    Login
+                  </button>
+                </form>
+
+                <div class="mt-4">
+                  <small class="text-muted"
+                    >Don't have an account?
+                    <a
+                      href="#"
+                      class="text-primary fw-bold text-decoration-none"
+                      onclick="toggleAuthMode()"
+                      >Register here</a
+                    >
+                  </small>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <section id="dashboard-section" class="py-5" style="display: none; min-height: 90vh;">
-        <div class="container h-100 d-flex flex-column justify-content-center">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold section-title">My Dashboard</h2>
-                <div class="title-underline mx-auto"></div>
-            </div>
-            
-            <div class="row justify-content-center g-4">
-                <div class="col-md-5 col-lg-4">
-                    <div class="card topic-card h-100" style="cursor: pointer;" onclick="showPerformance()">
-                        <div class="card-body text-center p-4">
-                            <div class="display-3 mb-4">📊</div>
-                            <h3 class="fw-bold card-title text-primary">Performance</h3>
-                            <p class="text-muted mt-2">View your stats and past results.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-5 col-lg-4">
-                    <div class="card topic-card h-100" style="cursor: pointer;" onclick="showTestSelection()">
-                        <div class="card-body text-center p-4">
-                            <div class="display-3 mb-4">🚀</div>
-                            <h3 class="fw-bold card-title text-success">Take Test</h3>
-                            <p class="text-muted mt-2">Start a new quiz or retake topics.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <section
+      id="dashboard-section"
+      class="py-5"
+      style="display: none; min-height: 90vh"
+    >
+      <div class="container h-100 d-flex flex-column justify-content-center">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold section-title">My Dashboard</h2>
+          <div class="title-underline mx-auto"></div>
         </div>
+
+        <div class="row justify-content-center g-4">
+          <div class="col-md-5 col-lg-4">
+            <div
+              class="card topic-card h-100"
+              style="cursor: pointer"
+              onclick="showPerformance()"
+            >
+              <div class="card-body text-center p-4">
+                <div class="display-3 mb-4">📊</div>
+                <h3 class="fw-bold card-title text-primary">Performance</h3>
+                <p class="text-muted mt-2">View your stats and past results.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-5 col-lg-4">
+            <div
+              class="card topic-card h-100"
+              style="cursor: pointer"
+              onclick="showTestSelection()"
+            >
+              <div class="card-body text-center p-4">
+                <div class="display-3 mb-4">🚀</div>
+                <h3 class="fw-bold card-title text-success">Take Test</h3>
+                <p class="text-muted mt-2">
+                  Start a new quiz or retake topics.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="performance-section" class="py-5" style="display: none; min-height: 90vh;">
-        <div class="container">
-            <button class="btn btn-primary-custom px-4 shadow" onclick="showDashboard()">← Back to Dashboard</button>
-            <div class="text-center mb-5">
-                <h2 class="fw-bold section-title">Performance Overview</h2>
-                <div class="title-underline mx-auto"></div>
-            </div>
-
-            <div class="row mb-5 justify-content-center">
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary">
-                        <h6 class="text-muted text-uppercase small fw-bold">Tests Taken</h6>
-                        <h2 class="fw-bold text-primary mb-0" id="stat-total-tests">0</h2>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning">
-                        <h6 class="text-muted text-uppercase small fw-bold">Avg. Score</h6>
-                        <h2 class="fw-bold text-warning mb-0" id="stat-avg-score">0%</h2>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-success">
-                        <h6 class="text-muted text-uppercase small fw-bold">Best Subject</h6>
-                        <h2 class="fw-bold text-success mb-0 fs-4" id="stat-best-subject">-</h2>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row justify-content-center mb-5">
-                <div class="col-lg-12">
-                    <div class="card border-0 shadow-sm rounded-4 p-4">
-                        <h5 class="fw-bold text-primary mb-3">📈 Accuracy Trend</h5>
-                        <div style="position: relative; height: 300px; width: 100%;">
-                            <canvas id="performanceChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <h4 class="fw-bold section-title mb-3">Past Reviews</h4>
-            <div id="history-container" class="row"></div>
+    <section
+      id="performance-section"
+      class="py-5"
+      style="display: none; min-height: 90vh"
+    >
+      <div class="container">
+        <button
+          class="btn btn-primary-custom px-4 shadow"
+          onclick="showDashboard()"
+        >
+          ← Back to Dashboard
+        </button>
+        <div class="text-center mb-5">
+          <h2 class="fw-bold section-title">Performance Overview</h2>
+          <div class="title-underline mx-auto"></div>
         </div>
+
+        <div class="row mb-5 justify-content-center">
+          <div class="col-md-4 mb-3">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">
+                Tests Taken
+              </h6>
+              <h2 class="fw-bold text-primary mb-0" id="stat-total-tests">0</h2>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">
+                Avg. Score
+              </h6>
+              <h2 class="fw-bold text-warning mb-0" id="stat-avg-score">0%</h2>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-start border-4 border-success"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">
+                Best Subject
+              </h6>
+              <h2 class="fw-bold text-success mb-0 fs-4" id="stat-best-subject">
+                -
+              </h2>
+            </div>
+          </div>
+        </div>  
+        <div class="row justify-content-center mb-5">
+          <div class="col-lg-12">
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+              <h5 class="fw-bold text-primary mb-3">📈 Accuracy Trend</h5>
+              <div style="position: relative; height: 300px; width: 100%">
+                <canvas id="performanceChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h4 class="fw-bold section-title mb-3">Past Reviews</h4>
+        <div id="history-container" class="row"></div>
+      </div>
     </section>
 
-    <section id="test-selection-section" class="py-5" style="display: none; min-height: 90vh;">
-        <div class="container">
-            <div id="test-content-container">
-                </div>
-        </div>
+    <section
+      id="test-selection-section"
+      class="py-5"
+      style="display: none; min-height: 90vh"
+    >
+      <div class="container">
+        <div id="test-content-container"></div>
+      </div>
     </section>
 
-    <section id="quiz-section" class="quiz-section py-5" style="display: none;">
-        <div class="container">
-            <div class="d-flex justify-content-between mb-4">
-                <button class="btn btn-primary-custom px-4 shadow" onclick="exitQuiz()">← Exit</button>
-                <div id="timer-display" class="fw-bold text-primary fs-5"></div>
-            </div>
-            <div class="row">
-                <div class="col-lg-8 mb-4">
-                    <div id="quiz-content" class="quiz-box h-100"></div>
-                </div>
-                <div class="col-lg-4">
-                    <div id="quiz-nav" class="quiz-nav-sidebar"></div>
-                </div>
-            </div>
+    <section id="quiz-section" class="quiz-section py-5" style="display: none">
+      <div class="container">
+        <div class="d-flex justify-content-between mb-4">
+          <button
+            class="btn btn-primary-custom px-4 shadow"
+            onclick="exitQuiz()"
+          >
+            ← Exit
+          </button>
+          <div id="timer-display" class="fw-bold text-primary fs-5"></div>
         </div>
+        <div class="row">
+          <div class="col-lg-8 mb-4">
+            <div id="quiz-content" class="quiz-box h-100"></div>
+          </div>
+          <div class="col-lg-4">
+            <div id="quiz-nav" class="quiz-nav-sidebar"></div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
@@ -200,5 +301,5 @@
     <script src="quizData.js"></script>
 
     <script src="app.js"></script>
-</body>
+  </body>
 </html>
