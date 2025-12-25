@@ -1,3 +1,4 @@
+
 const modernHistoryData = {
     "India_in_the_18th_Century": [{
             "text": "With reference to revenue collection by Cornwallis, consider the following statements: (2024)\n1. Under the Ryotwari Settlement of revenue collection, the peasants were exempted from revenue payment in case of bad harvests or natural calamities.\n2. Under the Permanent Settlement in Bengal, if the Zamindar failed to pay his revenues to the state, on or before the fixed date, he would be removed from his Zamindari.\nWhich of the statements given above is/are correct?",
@@ -1087,3 +1088,5 @@ const modernHistoryData = {
         }
     ]
 }
+
+module.exports = modernHistoryData;

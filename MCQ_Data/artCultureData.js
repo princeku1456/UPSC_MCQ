@@ -1,3 +1,4 @@
+
 const artCultureData = {
     "Architecture and Sculpture": [{
             "text": "Consider the following properties included in the World Heritage List released by UNESCO: (2024)\n1. Shantiniketan\n2. Rani-ki-Vav\n3. Sacred Ensembles of the Hoysalas\n4. Mahabodhi Temple Complex at Bodhgaya\nHow many of the above properties were included in 2023?",
@@ -634,3 +635,5 @@ const artCultureData = {
         }
     ]
 }
+
+module.exports = artCultureData;

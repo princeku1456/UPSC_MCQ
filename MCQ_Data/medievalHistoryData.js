@@ -1,3 +1,4 @@
+
 const medievalHistoryData = {
     "Delhi Sultanate (1206 AD to 1526 AD)": [{
             "text": "Who among the following rulers of Vijayanagara Empire constructed a large dam across Tungabhadra River and a canal-cum-aqueduct several kilometres long from the river to the capital city?",
@@ -301,3 +302,5 @@ const medievalHistoryData = {
         }
     ]
 }
+
+module.exports = medievalHistoryData;

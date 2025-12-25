@@ -1,3 +1,4 @@
+
 const worldGeographyData = {
     "The Earth and the Universe": [{
             "text": "On June 21 every year, which of the following latitude(s) experience(s) a sunlight of more than 12 hours?\n1. Equator\n2. Tropic of Cancer\n3. Tropic of Capricorn\n4. Arctic Circle\nSelect the correct answer using the code given below:",
@@ -843,3 +844,5 @@ const worldGeographyData = {
         }
     ]
 }
+
+module.exports = worldGeographyData;

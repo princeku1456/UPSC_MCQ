@@ -1,3 +1,4 @@
+
 const polityData = {
     "Historical Background & Making of Indian Constitution": [{
             "text": "Which of the following statements about the Ethics Committee in the Lok Sabha are correct?\n1. Initially it was an ad-hoc Committee.\n2. Only a Member of the Lok Sabha can make a complaint relating to unethical conduct of a member of the Lok Sabha.\n3. This Committee cannot take up any matter which is sub-judice.",
@@ -2088,3 +2089,4 @@ const polityData = {
         }
     ]
 }
+module.exports = polityData;

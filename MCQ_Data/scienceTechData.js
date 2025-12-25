@@ -1,3 +1,4 @@
+
 const scienceTechData = {
         "Biotechnology": [{
                 "text": "\"Membrane Bioreactors\" are often discussed in the context of: (2024)",
@@ -1571,3 +1572,6 @@ const scienceTechData = {
             }
         ]
     } 
+
+
+module.exports = scienceTechData;

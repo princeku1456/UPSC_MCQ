@@ -1,3 +1,4 @@
+
 const sfgData = {
   "Test-1-Polity (321101)": [
     {
@@ -1446,3 +1447,6 @@ const sfgData = {
     },
   ],
 };
+
+module.exports = sfgData;
+

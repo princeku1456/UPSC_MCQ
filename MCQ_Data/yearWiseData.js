@@ -1,3 +1,4 @@
+
 const yearWiseData = {
     "UPSC CSE 2024": [{
             "text": "Consider the following statements:\nStatement - I: The atmosphere is heated more by incoming solar radiation than by terrestrial radiation.\nStatement - II: Carbon dioxide and other greenhouse gases in the atmosphere are good absorbers of long wave radiation.\n\nWhich one of the following is correct in respect of the above statements?",
@@ -15406,3 +15407,5 @@ const yearWiseData = {
         }
     ]
 }
+
+module.exports = yearWiseData;

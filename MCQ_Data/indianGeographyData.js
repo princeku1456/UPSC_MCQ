@@ -1,3 +1,4 @@
+
 const indianGeographyData = {
     "Physiography of India": [{
             "text": "Which one of the following is the best example of repeated falls in sea level, giving rise to present-day extensive marshland?",
@@ -1009,3 +1010,5 @@ const indianGeographyData = {
         }
     ]
 }
+
+module.exports = indianGeographyData;

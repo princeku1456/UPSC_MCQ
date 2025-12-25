@@ -1,3 +1,4 @@
+
 const ancientHistoryData = {
     "Prehistoric_Period_and_Indus_Valley_Civilisation": [{
             "text": "Consider the following information: (2024)\n1. Chandraketugarh - Odisha - Trading Port Town\n2. Inamgaon - Maharashtra - Chalcolithic site\n3. Mangadu - Kerala - Megalithic site\n4. Salihundam - Andhra Pradesh - Rock-cut cave Shrines\nIn which of the above rows is the given information correctly matched?",
@@ -555,3 +556,8 @@ const ancientHistoryData = {
         }
     ]
 }
+
+
+
+
+module.exports = ancientHistoryData;

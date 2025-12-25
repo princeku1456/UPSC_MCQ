@@ -15,6 +15,9 @@ let quizSubmitted = false;
 let isReviewMode = false;
 let isRegistering = false;
 
+// NEW: Cache for lazy-loaded quiz data to prevent redundant fetches
+const quizDataCache = {}; 
+
 // OPTIMIZATION: Cache Variables
 let userHistory = [];
 let dashboardDataLoaded = false;
@@ -442,15 +445,12 @@ function renderChapters(subjectKey) {
         
         const hasTaken = userHistory && userHistory.some(h => h.chapterId === (subjectKey.replace(/\s+/g, '_') + "_" + chapId));
         const btnText = hasTaken ? "↻ Retake Test" : "🚀 Start Test";
-        const totalQuestions = chapters[chapId].length;
-
+        
         col.innerHTML = `
             <div class="card chapter-card h-100 border-0">
                 <div class="card-body d-flex flex-column p-4">
                     <h5 class="card-title fw-bold text-dark">${chapId}</h5>
-                    <p class="card-text flex-grow-1 text-muted small">
-                        Total Question • <strong>${totalQuestions} Questions</strong>
-                    </p>
+                    
                     <button class="btn btn-primary-custom w-100 mt-auto action-btn">
                         ${btnText}
                     </button>
@@ -476,58 +476,84 @@ function getCorrectIndex(question) {
     return -1;
 }
 
-function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastData = null) {
+// Updated loadQuiz to be async for Lazy Loading
+async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastData = null) {
     currentSubject = subjectKey;
-    // FIX: Unique Chapter ID to prevent cross-subject collisions
+    // Unique Chapter ID to prevent cross-subject collisions
     currentChapterId = subjectKey.replace(/\s+/g, '_') + "_" + chapterId; 
     currentChapterName = decodeURIComponent(chapterName);
-
-    if (!allQuizData[subjectKey] || !allQuizData[subjectKey][chapterId]) {
-        toastr.error("Quiz data not found!");
-        return;
-    }
-
-    currentQuizData = allQuizData[subjectKey][chapterId];
-    currentQuestionIndex = 0;
-    isReviewMode = reviewMode;
-    userAnswers = {};
-    quizSubmitted = false;
-    
-    const timerDisplay = document.getElementById('timer-display');
-    if (timerDisplay) {
-        timerDisplay.textContent = '';
-        timerDisplay.classList.remove('text-danger');
-    }
-    if (quizTimerInterval) clearInterval(quizTimerInterval);
-
-    if (reviewMode && pastData) {
-        userAnswers = pastData.userAnswers || {};
-        quizSubmitted = true;
-    }
 
     hideAllSections();
     document.getElementById('quiz-section').style.display = 'block';
 
     const quizContent = document.getElementById('quiz-content');
-    const quizNav = document.getElementById('quiz-nav');
     
-    if (isReviewMode) {
-        quizContent.parentElement.className = 'col-12';
-        quizNav.parentElement.style.display = 'none'; 
-        renderReviewMode(pastData); 
-    } else {
-        quizContent.parentElement.className = 'col-lg-8 mb-4';
-        quizNav.parentElement.style.display = 'block'; 
+    // Show loading state while fetching questions
+    quizContent.innerHTML = `
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2 text-muted">Loading Questions...</p>
+        </div>`;
+
+    try {
+        // LAZY LOADING LOGIC
+        if (quizDataCache[currentChapterId]) {
+            currentQuizData = quizDataCache[currentChapterId];
+        } else {
+            const doc = await db.collection('quizzes').doc(currentChapterId).get();
+            if (!doc.exists) {
+                toastr.error("Quiz questions not found in database!");
+                showDashboard();
+                return;
+            }
+            currentQuizData = doc.data().questions;
+            quizDataCache[currentChapterId] = currentQuizData; // Store in cache
+        }
+
+        currentQuestionIndex = 0;
+        isReviewMode = reviewMode;
+        userAnswers = {};
+        quizSubmitted = false;
         
-        renderQuizLayout(currentChapterName);
-        renderQuestion();
-        renderNav();
-        startTimer(currentQuizData.length);
+        const timerDisplay = document.getElementById('timer-display');
+        if (timerDisplay) {
+            timerDisplay.textContent = '';
+            timerDisplay.classList.remove('text-danger');
+        }
+        if (quizTimerInterval) clearInterval(quizTimerInterval);
+
+        if (reviewMode && pastData) {
+            userAnswers = pastData.userAnswers || {};
+            quizSubmitted = true;
+        }
+
+        const quizNav = document.getElementById('quiz-nav');
+        
+        if (isReviewMode) {
+            quizContent.parentElement.className = 'col-12';
+            quizNav.parentElement.style.display = 'none'; 
+            renderReviewMode(pastData); 
+        } else {
+            quizContent.parentElement.className = 'col-lg-8 mb-4';
+            quizNav.parentElement.style.display = 'block'; 
+            
+            renderQuizLayout(currentChapterName);
+            renderQuestion();
+            renderNav();
+            startTimer(currentQuizData.length);
+        }
+    } catch (error) {
+        console.error("Firebase fetch error:", error);
+        toastr.error("Failed to load questions. Please check connection.");
+        showDashboard();
     }
 }
 
 function reviewTest(resultObj) {
-    loadQuiz(resultObj.subject, resultObj.chapterId.split('_').pop(), resultObj.chapterName, true, resultObj);
+    // Determine the original sub-chapter key from the combined ID
+    const subjectPrefix = resultObj.subject.replace(/\s+/g, '_') + "_";
+    const originalChapId = resultObj.chapterId.replace(subjectPrefix, "");
+    loadQuiz(resultObj.subject, originalChapId, resultObj.chapterName, true, resultObj);
 }
 
 /* =========================================
@@ -1176,7 +1202,8 @@ function submitAll(forceSubmit = false) {
     reviewBtn.className = "btn btn-primary-custom px-4 shadow";
     reviewBtn.innerHTML = "👁 Review Performance";
     reviewBtn.onclick = () => {
-        loadQuiz(currentSubject, currentChapterId.split('_').pop(), encodeURIComponent(currentChapterName), true, resultObject);
+        const originalChapId = currentChapterId.split('_').pop();
+        loadQuiz(currentSubject, originalChapId, encodeURIComponent(currentChapterName), true, resultObject);
     };
     actionsDiv.appendChild(reviewBtn);
 

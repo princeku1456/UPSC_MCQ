@@ -1,3 +1,4 @@
+
 const economyData = {
     "Pillar_1A1_Money_Barter_to_Bitcoins": [{
             "text": "Consider the following statements with respect of the digital rupee: (2024)\n1. It is a sovereign currency issued by the Reserve Bank of India (RBI) in alignment with its monetary policy.\n2. It appears as a liability on the RBI's balance sheet.\n3. It is insured against inflation by its very design.\n4. It is freely convertible against commercial bank money and cash.\nWhich of the statements given above are correct?",
@@ -3212,3 +3213,5 @@ const economyData = {
         }
     ]
 }
+
+module.exports = economyData;
