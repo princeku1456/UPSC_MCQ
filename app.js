@@ -1235,9 +1235,11 @@ function submitAll(forceSubmit = false) {
     reviewBtn.className = "btn btn-primary-custom px-4 shadow";
     reviewBtn.innerHTML = "👁 Review Performance";
     reviewBtn.onclick = () => {
-        const originalChapId = currentChapterId.split('_').pop();
+        const subjectPrefix = currentSubject.replace(/\s+/g, '_') + "_";
+        const originalChapId = currentChapterId.replace(subjectPrefix, "");
         loadQuiz(currentSubject, originalChapId, encodeURIComponent(currentChapterName), true, resultObject);
     };
+   
     actionsDiv.appendChild(reviewBtn);
 
     const submitBtn = document.getElementById('final-submit-btn');
