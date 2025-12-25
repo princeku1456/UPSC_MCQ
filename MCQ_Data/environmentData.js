@@ -1,3 +1,4 @@
+
 const environmentData = {
     "Environment & Ecology - Protected Area Network": [{
             "text": "Which of the following are the most likely places to find the musk deer in its natural habitat?\n1. Askot Wildlife Sanctuary\n2. Gangotri National Park\n3. Kishanpur Wildlife Sanctuary\n4. Manas National Park\nSelect the correct answer using the code given below:",
@@ -2627,3 +2628,5 @@ const environmentData = {
         }
     ]
 } 
+
+module.exports = environmentData;

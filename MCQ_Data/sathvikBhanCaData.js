@@ -1,3 +1,4 @@
+
 const sathvikBhanCaData = {
     "July 2025": [{
             "text": "Consider the following statements:\n1) India recently imported Apache AH-64E helicopters from the U.S.\n2) INS Tamal is indigenously built stealth frigate.",
@@ -2194,3 +2195,5 @@ const sathvikBhanCaData = {
     ]
 
 }
+
+module.exports = sathvikBhanCaData;

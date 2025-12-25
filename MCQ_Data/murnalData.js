@@ -1,3 +1,4 @@
+
 const murnalData = {
     "Pillar_1A1_HDT_Money_Barter_to_Bitcoins": [{
             "text": "In medieval India the term Fanam was associated with:",
@@ -5989,7 +5990,7 @@ const murnalData = {
             "explanation": "Answer: (a). Only one statement is correct among the four given statements (Statement 2 is correct, others are wrong)."
         }
     ],
-    "Pillar_3A_BoP_Import_Export_FDI/FPI": [{
+    "Pillar_3A_BoP_Import_Export_FDI_FPI": [{
             "text": "The balance of payments of a country is a systematic record of (Pre-2013)",
             "options": [
                 "All import & export transactions of a country during a given period of time, normally a year.",
@@ -13507,7 +13508,7 @@ const murnalData = {
             "explanation": "All four facilities mentioned are provided under the scheme."
         }
     ],
-    "Pillar_6E_HRD-HDI/SDG": [{
+    "Pillar_6E_HRD-HDI_SDG": [{
             "text": "Which of following are the four pillars of human development?",
             "options": [
                 "Equity, inclusion, productivity and empowerment",
@@ -13674,3 +13675,5 @@ const murnalData = {
         }
     ]
 }
+
+module.exports = murnalData;

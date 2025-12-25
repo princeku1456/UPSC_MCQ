@@ -1,3 +1,4 @@
+
 const irData = {
     "India's Foreign Policy": [{
             "text": "Consider the following countries:\n1. China\n2. France\n3. India\n4. Israel\n5. Pakistan\nWhich among the above are Nuclear Weapons States as recognized by the Treaty on the Nonproliferation of Nuclear Weapons, commonly known as Nuclear Non-Proliferation Treaty (NPT)?",
@@ -432,3 +433,5 @@ const irData = {
         }
     ]
 }
+
+module.exports = irData;
