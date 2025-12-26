@@ -32,6 +32,7 @@ const allQuizData = {
     "Test-1-Polity (321101)": [],
     "Test-2-Polity (321102)": [],
     "Test-3-Polity (321103)": [],
+    "Test-4-Polity (321104)": []
   },
   "Murnal Weekely Test": {
     Pillar_1A1_HDT_Money_Barter_to_Bitcoins: [],

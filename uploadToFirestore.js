@@ -13,8 +13,8 @@ const db = admin.firestore();
  * Format: "Subject Name": require('./path/to/data/file')
  */
 const dataFiles = {
-    // "SFG Test": require('./MCQ_Data/sfgData.js'),
-    "Murnal Weekely Test": require('./MCQ_Data/murnalData.js')
+    "SFG Test": require('./MCQ_Data/sfgData.js')
+    // "Murnal Weekely Test": require('./MCQ_Data/murnalData.js')
     // "Sathvik Bhan Monthly CA Test": require('./MCQ_Data/sathvikBhanCaData.js'),
     // "Year Wise PYQ": require('./MCQ_Data/yearWiseData.js'),
     // "Modern History PYQ": require('./MCQ_Data/modernHistoryData.js'),
