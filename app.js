@@ -35,14 +35,32 @@ let currentReviewStats = null;
 
 auth.onAuthStateChanged((user) => {
     if (user) {
-        currentUser = user;
-        updateUIForLogin();
-        // Load dashboard if visible, otherwise just be ready
-        if (document.getElementById('dashboard-section').style.display === 'block') {
-            showDashboard();
-        } else {
-            showDashboard();
-        }
+        // SECURE GATE: Refresh user state to check latest verification status
+        user.reload().then(() => {
+            const freshUser = auth.currentUser;
+            
+            if (freshUser && !freshUser.emailVerified) {
+                // Not verified: Ensure they stay on home screen and log out
+                currentUser = null;
+                updateUIForLogout();
+                showHome();
+                auth.signOut();
+                return;
+            }
+
+            currentUser = freshUser;
+            updateUIForLogin();
+            
+            // Standard original navigation logic
+            if (document.getElementById('dashboard-section').style.display === 'block') {
+                showDashboard();
+            } else {
+                showDashboard();
+            }
+        }).catch(err => {
+            console.error("Auth sync error:", err);
+            auth.signOut();
+        });
     } else {
         currentUser = null;
         userHistory = [];
@@ -85,16 +103,64 @@ document.getElementById('auth-form').addEventListener('submit', (e) => {
     const email = document.getElementById('auth-email').value;
     const pass = document.getElementById('auth-password').value;
 
+    if (!email || !pass) {
+        toastr.warning("Please enter both email and password.");
+        return;
+    }
+
     if (isRegistering) {
         auth.createUserWithEmailAndPassword(email, pass)
-            .then(() => toastr.success("Account created successfully!"))
-            .catch(err => toastr.error(err.message));
+            .then((userCredential) => {
+                // 1. Send verification link to new user
+                userCredential.user.sendEmailVerification();
+                toastr.success("Account created! Please verify your email, then login.");
+                
+                // 2. Clear Form
+                document.getElementById('auth-password').value = "";
+                
+                // 3. Force back to Login Mode
+                if (isRegistering) toggleAuthMode();
+                
+                // 4. Force Logout (Prevent auto-login)
+                auth.signOut();
+            })
+            .catch(err => handleAuthError(err));
     } else {
         auth.signInWithEmailAndPassword(email, pass)
-            .then(() => toastr.success("Logged in successfully!"))
-            .catch(err => toastr.error(err.message));
+            .then((userCredential) => {
+                // Block manual login if not verified
+                if (!userCredential.user.emailVerified) {
+                    toastr.error("Login denied: Email not verified.");
+                    auth.signOut();
+                } else {
+                    toastr.success("Logged in successfully!");
+                }
+            })
+            .catch(err => handleAuthError(err));
     }
 });
+
+// FRIENDLY ERROR HANDLING
+function handleAuthError(error) {
+    console.error("Auth Code:", error.code);
+    switch (error.code) {
+        case 'auth/email-already-in-use':
+            toastr.error("This email is already registered.");
+            break;
+        case 'auth/weak-password':
+            toastr.error("Password is too weak. Min 6 characters.");
+            break;
+        case 'auth/user-not-found':
+        case 'auth/wrong-password':
+            toastr.error("Invalid email or password.");
+            break;
+        case 'auth/too-many-requests':
+            toastr.error("Server busy. Please try again later.");
+            break;
+        default:
+            toastr.error(error.message);
+    }
+}
 
 function logoutUser() {
     auth.signOut().then(() => {
@@ -113,7 +179,7 @@ function updateUIForLogout() {
 }
 
 function handleLogoClick() {
-    if (currentUser) showDashboard();
+    if (currentUser && currentUser.emailVerified) showDashboard();
     else showHome();
 }
 
@@ -137,18 +203,20 @@ function showHome() {
 }
 
 function showDashboard() {
-    if (!currentUser) return showHome();
+    if (!currentUser || !currentUser.emailVerified) return showHome();
     hideAllSections();
     document.getElementById('dashboard-section').style.display = 'block';
     loadUserDashboard();
 }
 
 function showPerformance() {
+    if (!currentUser || !currentUser.emailVerified) return showHome();
     hideAllSections();
     document.getElementById('performance-section').style.display = 'block';
 }
 
 function showTestSelection() {
+    if (!currentUser || !currentUser.emailVerified) return showHome();
     hideAllSections();
     document.getElementById('test-selection-section').style.display = 'block';
     renderSubjects();
@@ -164,7 +232,7 @@ function exitQuiz() {
    ========================================= */
 
 async function loadUserDashboard(forceRefresh = false) {
-    if (!currentUser) return;
+    if (!currentUser || !currentUser.emailVerified) return;
 
     const historyContainer = document.getElementById('history-container');
     
@@ -511,6 +579,7 @@ function getCorrectIndex(question) {
 
 // Updated loadQuiz to be async for Lazy Loading
 async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastData = null) {
+    if (!currentUser || !currentUser.emailVerified) return showHome();
     currentSubject = subjectKey;
     // Unique Chapter ID to prevent cross-subject collisions
     currentChapterId = subjectKey.replace(/\s+/g, '_') + "_" + chapterId; 
@@ -1349,7 +1418,7 @@ function submitAll(forceSubmit = false) {
                 
                 const statsDiv = document.getElementById('stats-loading');
                 if (statsDiv) {
-                    statsDiv.innerHTML = `<strong>🌍 Global Index:</strong> You performed better than <strong>${percentile}%</strong> of users. (Avg: ${stats.avg.toFixed(1)}%)`;
+                    statsDiv.innerHTML = `🌍 Performance: Top <strong>${100 - percentile}%</strong>. (Avg: ${stats.avg.toFixed(1)}%)`;
                 }
             }
 
