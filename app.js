@@ -13,6 +13,7 @@ let currentQuestionIndex = 0;
 let userAnswers = {};
 let quizSubmitted = false;
 let isReviewMode = false;
+let reviewSource = null; // NEW: Melacak asal review ('performance' atau 'chapters')
 let isRegistering = false;
 
 // NEW: Cache for lazy-loaded quiz data to prevent redundant fetches
@@ -231,14 +232,17 @@ function showTestSelection() {
   renderSubjects();
 }
 
+/**
+ * UPDATED EXIT LOGIC
+ */
 function exitQuiz() {
   if (quizTimerInterval) clearInterval(quizTimerInterval);
 
-  if (isReviewMode) {
-    // Redirection to Performance Overview during review
+  if (isReviewMode && reviewSource === "performance") {
+    // Kembali ke Performance Review jika masuk dari Dashboard/Performance
     showPerformance();
   } else {
-    // Redirection to Chapters list during test
+    // Kembali ke Chapter list jika masuk dari chapter page atau setelah selesai tes
     hideAllSections();
     document.getElementById("test-selection-section").style.display = "block";
     renderChapters(currentSubject);
@@ -367,7 +371,8 @@ function renderDashboardUI() {
             </div>
         `;
 
-    card.querySelector(".review-btn").onclick = () => reviewTest(res);
+    // Klik dari dashboard/performance diset sebagai source 'performance'
+    card.querySelector(".review-btn").onclick = () => reviewTest(res, "performance");
     historyContainer.appendChild(card);
   });
 }
@@ -506,10 +511,6 @@ function renderPerformanceChart(data) {
    4. TAKE TEST LOGIC (Subjects & Chapters)
    ========================================= */
 
-/* =========================================
-   UPDATED: SUBJECT PROGRESS LOGIC
-   ========================================= */
-
 function renderSubjects() {
   const container = document.getElementById("test-content-container");
 
@@ -545,7 +546,6 @@ function renderSubjects() {
         ? Math.round((completedChaptersCount / totalChapters) * 100)
         : 0;
 
-    // --- NEW: Completion Logic ---
     const isCompleted = progressPercent === 100;
     const completionClass = isCompleted ? "subject-completed" : "";
     const badgeHtml = isCompleted
@@ -589,6 +589,10 @@ function renderSubjects() {
     row.appendChild(col);
   });
 }
+
+/**
+ * UPDATED: RENDER CHAPTERS WITH REVIEW BUTTON
+ */
 function renderChapters(subjectKey) {
   const container = document.getElementById("test-content-container");
   container.innerHTML = `
@@ -607,27 +611,51 @@ function renderChapters(subjectKey) {
     const col = document.createElement("div");
     col.className = "col-md-6 col-lg-4 mb-4";
 
-    const hasTaken =
-      userHistory &&
-      userHistory.some(
-        (h) => h.chapterId === subjectKey.replace(/\s+/g, "_") + "_" + chapId
-      );
-    const btnText = hasTaken ? "↻ Retake Test" : "🚀 Start Test";
+    const subjectPrefix = subjectKey.replace(/\s+/g, "_") + "_";
+    const fullChapterId = subjectPrefix + chapId;
+    
+    // Cari hasil tes terbaru untuk chapter ini
+    const latestResult = userHistory && userHistory.find((h) => h.chapterId === fullChapterId);
+    const hasTaken = !!latestResult;
+    
+    const startBtnText = hasTaken ? "↻ Retake Test" : "🚀 Start Test";
+    
+    // Siapkan HTML tombol review jika sudah pernah dikerjakan
+    let reviewBtnHtml = "";
+    if (hasTaken) {
+        reviewBtnHtml = `
+            <button class="btn btn-secondary-custom w-100 mt-2 review-perf-btn">
+                👁 Review Performance
+            </button>
+        `;
+    }
 
     col.innerHTML = `
             <div class="card chapter-card h-100 border-0">
                 <div class="card-body d-flex flex-column p-4">
                     <h5 class="card-title fw-bold text-dark">${chapId}</h5>
                     
-                    <button class="btn btn-primary-custom w-100 mt-auto action-btn">
-                        ${btnText}
-                    </button>
+                    <div class="mt-auto">
+                        <button class="btn btn-primary-custom w-100 action-btn">
+                            ${startBtnText}
+                        </button>
+                        ${reviewBtnHtml}
+                    </div>
                 </div>
             </div>`;
 
+    // Aksi tombol Start/Retake
     col.querySelector(".action-btn").onclick = () => {
       loadQuiz(subjectKey, chapId, encodeURIComponent(chapId));
     };
+
+    // Aksi tombol Review (Source diset 'chapters')
+    if (hasTaken) {
+        col.querySelector(".review-perf-btn").onclick = () => {
+            reviewTest(latestResult, "chapters");
+        };
+    }
+
     row.appendChild(col);
   });
 }
@@ -644,26 +672,28 @@ function getCorrectIndex(question) {
   return -1;
 }
 
-// Updated loadQuiz to be async for Lazy Loading
+// Updated loadQuiz to include reviewSource tracking
 async function loadQuiz(
   subjectKey,
   chapterId,
   chapterName,
   reviewMode = false,
-  pastData = null
+  pastData = null,
+  source = null // parameter baru
 ) {
   if (!currentUser || !currentUser.emailVerified) return showHome();
   currentSubject = subjectKey;
-  // Unique Chapter ID to prevent cross-subject collisions
   currentChapterId = subjectKey.replace(/\s+/g, "_") + "_" + chapterId;
   currentChapterName = decodeURIComponent(chapterName);
+  
+  isReviewMode = reviewMode;
+  reviewSource = source; // Simpan asal navigasi
 
   hideAllSections();
   document.getElementById("quiz-section").style.display = "block";
 
   const quizContent = document.getElementById("quiz-content");
 
-  // Show loading state while fetching questions
   quizContent.innerHTML = `
         <div class="text-center py-5">
             <div class="spinner-border text-primary" role="status"></div>
@@ -671,7 +701,6 @@ async function loadQuiz(
         </div>`;
 
   try {
-    // LAZY LOADING LOGIC
     if (quizDataCache[currentChapterId]) {
       currentQuizData = quizDataCache[currentChapterId];
     } else {
@@ -682,11 +711,10 @@ async function loadQuiz(
         return;
       }
       currentQuizData = doc.data().questions;
-      quizDataCache[currentChapterId] = currentQuizData; // Store in cache
+      quizDataCache[currentChapterId] = currentQuizData;
     }
 
     currentQuestionIndex = 0;
-    isReviewMode = reviewMode;
     userAnswers = {};
     quizSubmitted = false;
 
@@ -719,13 +747,12 @@ async function loadQuiz(
     }
   } catch (error) {
     console.error("Firebase fetch error:", error);
-    toastr.error("Failed to load questions. Please check connection.");
+    toastr.error("Failed to load questions.");
     showDashboard();
   }
 }
 
-function reviewTest(resultObj) {
-  // Determine the original sub-chapter key from the combined ID
+function reviewTest(resultObj, source = "performance") {
   const subjectPrefix = resultObj.subject.replace(/\s+/g, "_") + "_";
   const originalChapId = resultObj.chapterId.replace(subjectPrefix, "");
   loadQuiz(
@@ -733,7 +760,8 @@ function reviewTest(resultObj) {
     originalChapId,
     resultObj.chapterName,
     true,
-    resultObj
+    resultObj,
+    source // Teruskan source ke loadQuiz
   );
 }
 
@@ -876,9 +904,9 @@ async function renderReviewMode(resultData) {
             </div>
         </div>
 
-        <div class="card mb-4 border-0 shadow-sm card">
+        <div class="card mb-4 border-0 shadow-sm">
             <div class="card-body">
-                <h5 class="fw-bold card-title mb-3">📊 Your Performance Index</h5>
+                <h5 class="fw-bold card-title mb-3">📊 Performance Index</h5>
                 
                 <div class="row g-3 text-center mb-4">
                     <div class="col-6 col-md">
@@ -931,7 +959,7 @@ async function renderReviewMode(resultData) {
         <div id="review-container"></div>
         
         <div class="text-center mt-5">
-            <button class="btn btn-primary-custom px-5 shadow py-2" onclick="showDashboard()">← Back to Dashboard</button>
+            <button class="btn btn-primary-custom px-5 shadow py-2" onclick="exitQuiz()">← Back</button>
         </div>
     `;
 
@@ -1437,6 +1465,7 @@ function submitAll(forceSubmit = false) {
   reviewBtn.className = "btn btn-primary-custom px-4 shadow";
   reviewBtn.innerHTML = "👁 Review Performance";
   reviewBtn.onclick = () => {
+    // Navigasi ke review setelah beres test tetap arahkan balik ke chapter page
     const subjectPrefix = currentSubject.replace(/\s+/g, "_") + "_";
     const originalChapId = currentChapterId.replace(subjectPrefix, "");
     loadQuiz(
@@ -1444,7 +1473,8 @@ function submitAll(forceSubmit = false) {
       originalChapId,
       encodeURIComponent(currentChapterName),
       true,
-      resultObject
+      resultObject,
+      "chapters" 
     );
   };
 
@@ -1547,7 +1577,6 @@ function submitAll(forceSubmit = false) {
             }
           });
 
-          // FIX: Toast moved inside success block of transaction
           toastr.success("Result and stats saved!");
         } catch (e) {
           console.error("Stats update failed:", e);
