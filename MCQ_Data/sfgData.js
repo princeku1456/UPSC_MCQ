@@ -1,4 +1,3 @@
-
 const sfgData = {
   // "Test-1-Polity (321101)": [
   //   {
@@ -1446,559 +1445,970 @@ const sfgData = {
   //       "Statement I is incorrect because while consent is normally required under the DSPE Act, the Supreme Court or High Courts can order a CBI probe without state consent. Statement II is correct; Police and Public Order are State List subjects.",
   //   },
   // ],
-  "Test-4-Polity (321104)": [
-  {
-    "text": "With reference to the writs issued by the Courts in India, consider the following statements:\n1. Mandamus will not lie against a private organisation unless it is entrusted with a public duty.\n2. Mandamus will not lie against a Company even though it may be a Government Company.\n3. Any public minded person can be a petitioner to move the Court to obtain the writ of Quo Warranto.\nWhich of the statements given above are correct?",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "Statement 1 is correct: Mandamus is a command issued to a public official or body to perform official duties. It generally does not lie against a private entity unless it performs a public duty. Statement 2 is correct: It cannot be used against a government company incorporated under the Companies Act as there is no statutory public duty imposed by a statute. Statement 3 is correct: For Quo Warranto, any interested person (not necessarily the aggrieved party) can be the petitioner."
-  },
-  {
-    "text": "With reference to the Supreme Court of India, consider the following statements:\n1. The Indian Constitution provides for a Chief Justice of India and not more than seven other judges until Parliament by law prescribes a larger number.\n2. The judges of the Supreme Court are appointed by the President by warrant under his hand and seal after consultation with such of the Judges of the Supreme Court and of the High Courts in the States as the President may deem necessary.",
-    "options": [
-      "1 only",
-      "2 only",
-      "Both 1 and 2",
-      "Neither 1 nor 2"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Statement 1 is correct: Article 124(1) originally specified a Chief Justice and seven other judges, giving Parliament the power to increase this number. Statement 2 is correct: Under Article 124(2), every Judge of the Supreme Court shall be appointed by the President by warrant under his hand and seal after consultation with judges of the Supreme Court and High Courts as deemed necessary."
-  },
-  {
-    "text": "The power of the Supreme Court of India to decide disputes between the Centre and the States falls under its",
-    "options": [
-      "Advisory jurisdiction",
-      "Appellate jurisdiction",
-      "Original jurisdiction",
-      "Writ jurisdiction"
-    ],
-    "correctAnswer": 2,
-    "explanation": "The Supreme Court has exclusive original jurisdiction over any dispute between the Government of India and one or more States, or between two or more States. This is provided under Article 131 of the Constitution."
-  },
-  {
-    "text": "Consider the following statements:\n1. A Judge of the Supreme Court can be removed from his office by an order of the President.\n2. The address for removal must be supported by a majority of the total membership of each House and by a majority of not less than two-thirds of the members of that House present and voting.\n3. The grounds for removal are 'proved misbehaviour' or 'incapacity'.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct. A Supreme Court judge can be removed by the President following an address by Parliament. The address must be passed by a special majority (majority of total membership and two-thirds of those present and voting) in each House during the same session. The only two grounds for removal are proved misbehaviour or incapacity."
-  },
-  {
-    "text": "With reference to the 'Curative Petition' in the Supreme Court of India, consider the following statements:\n1. The concept of Curative Petition was evolved by the Supreme Court in the Rupa Ashok Hurra case (2002).\n2. It is the last constitutional resort available for redressal of grievances in court after a review petition is dismissed.\n3. A curative petition can be entertained only if the petitioner establishes that there was a violation of the principles of natural justice.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "Statement 1 is correct: The Supreme Court evolved this concept in 2002 to prevent abuse of its process and cure gross miscarriage of justice. Statement 2 is correct: It is the final legal remedy after a review petition is dismissed. Statement 3 is correct: Grounds for such a petition include violation of natural justice (e.g., the party was not heard) or bias of the judge."
-  },
-  {
-    "text": "Which of the following jurisdictions is shared by both the Supreme Court and the High Courts?",
-    "options": [
-      "Advisory jurisdiction",
-      "Original jurisdiction in Centre-State disputes",
-      "Writ jurisdiction for enforcement of Fundamental Rights",
-      "Appellate jurisdiction in all civil cases"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Both the Supreme Court (under Article 32) and the High Courts (under Article 226) have the power to issue writs for the enforcement of Fundamental Rights. Centre-State disputes and advisory jurisdiction are exclusive to the Supreme Court."
-  },
-  {
-    "text": "With reference to the 'Court of Record', consider the following statements:\n1. The judgments of a Court of Record are admitted to be of evidentiary value and cannot be questioned when produced before any court.\n2. Both the Supreme Court and the High Courts are Courts of Record in India.\n3. A Court of Record has the power to punish for contempt of itself.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct. Under Articles 129 (Supreme Court) and 215 (High Courts), these courts are designated as Courts of Record. This means their acts and proceedings are recorded for perpetual memory and testimony and have evidentiary value. They also possess the inherent power to punish for contempt."
-  },
-  {
-    "text": "The 'Basic Structure' doctrine was propounded by the Supreme Court in which of the following cases?",
-    "options": [
-      "Golaknath case (1967)",
-      "Kesavananda Bharati case (1973)",
-      "Minerva Mills case (1980)",
-      "Waman Rao case (1981)"
-    ],
-    "correctAnswer": 1,
-    "explanation": "The doctrine of 'Basic Structure' was propounded by the Supreme Court in the Kesavananda Bharati Sripadagalvaru vs. State of Kerala case (1973). The court ruled that while Parliament has wide powers to amend the Constitution, it cannot alter its basic structure or essential features."
-  },
-  {
-    "text": "With reference to the High Courts in India, consider the following statements:\n1. The Constitution does not specify the strength of a High Court and leaves it to the discretion of the President.\n2. The judges of a High Court are appointed by the President after consultation with the Chief Justice of India and the Governor of the State.\n3. A person must have held a judicial office in the territory of India for ten years to be eligible for appointment as a High Court judge.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "Statement 1 is correct: Unlike the Supreme Court, the strength of High Courts is determined by the President from time to time based on workload. Statement 2 is correct: Article 217 provides for the appointment of judges by the President in consultation with the CJI, the State Governor, and (for other than the CJ of the HC) the Chief Justice of that High Court. Statement 3 is correct: Eligibility criteria include 10 years of judicial office or 10 years as an advocate of a High Court."
-  },
-  {
-    "text": "Under the 'Collegium System', the recommendation for the appointment of judges to the Supreme Court is made by a collegium consisting of the Chief Justice of India and",
-    "options": [
-      "Two senior-most judges of the Supreme Court",
-      "Four senior-most judges of the Supreme Court",
-      "Three senior-most judges of the Supreme Court",
-      "Five senior-most judges of the Supreme Court"
-    ],
-    "correctAnswer": 1,
-    "explanation": "For Supreme Court appointments, the Collegium consists of the CJI and the four senior-most judges of the Supreme Court. For High Court appointments, the Collegium consists of the CJI and the two senior-most SC judges."
-  },
-  {
-    "text": "The 'Public Interest Litigation' (PIL) in India was introduced through",
-    "options": [
-      "A Constitutional Amendment",
-      "A Parliamentary Statute",
-      "Judicial Innovation",
-      "A Presidential Order"
-    ],
-    "correctAnswer": 2,
-    "explanation": "PIL is a product of judicial activism and was introduced by the Supreme Court through judicial innovation (judicial interpretation). It was spearheaded by Justice P.N. Bhagwati and Justice V.R. Krishna Iyer in the late 1970s and early 1980s."
-  },
-  {
-    "text": "With reference to the 'Advisory Jurisdiction' of the Supreme Court (Article 143), consider the following statements:\n1. The President can seek the opinion of the Supreme Court on any question of law or fact of public importance.\n2. The Supreme Court is bound to give its opinion on all matters referred to it by the President.\n3. The opinion expressed by the Supreme Court is binding on the President.",
-    "options": [
-      "1 only",
-      "1 and 2 only",
-      "2 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Statement 1 is correct: The President may refer a question of law or fact to the Supreme Court. Statement 2 is incorrect: The Court may refuse to give an opinion if the matter involves a question of law/fact of public importance (though it is bound if the matter relates to a pre-constitutional treaty). Statement 3 is incorrect: The opinion is advisory and not binding on the President."
-  },
-  {
-    "text": "The 'Contempt of Court' in India is governed by which of the following?",
-    "options": [
-      "Only the Constitution of India",
-      "Only the Contempt of Courts Act, 1971",
-      "Both the Constitution and the Contempt of Courts Act, 1971",
-      "A Presidential Regulation"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Contempt of Court is governed by both the Constitution (Articles 129 and 215) and the Contempt of Courts Act, 1971, which defines civil and criminal contempt."
-  },
-  {
-    "text": "With reference to the 'National Legal Services Authority' (NALSA), consider the following statements:\n1. It was constituted under the Legal Services Authorities Act, 1987 to provide free legal services to the weaker sections of society.\n2. The Chief Justice of India is the Patron-in-Chief of NALSA.\n3. It organizes Lok Adalats for amicable settlement of disputes.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct. NALSA provides free legal aid under the 1987 Act. The CJI is the Patron-in-Chief, and the second senior-most judge of the SC is the Executive Chairman. It also organizes Lok Adalats to reduce the burden on regular courts."
-  },
-  {
-    "text": "The 'Lok Adalats' in India derive their statutory status from",
-    "options": [
-      "The Constitution of India",
-      "The Legal Services Authorities Act, 1987",
-      "The Civil Procedure Code",
-      "The Arbitration and Conciliation Act"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Lok Adalats have been given statutory status under the Legal Services Authorities Act, 1987. Under this Act, an award made by a Lok Adalat is deemed to be a decree of a civil court and is final and binding on all parties."
-  },
-  {
-    "text": "Which of the following bodies has the power to recommend the transfer of judges from one High Court to another?",
-    "options": [
-      "The President of India alone",
-      "The Chief Justice of India after consulting the Collegium",
-      "The Union Law Minister",
-      "The Governor of the state concerned"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Article 222 provides for the transfer of a judge from one High Court to any other High Court by the President after consultation with the Chief Justice of India. The CJI makes the recommendation after consulting the Collegium (CJI + 4 senior-most judges of SC)."
-  },
-  {
-    "text": "With reference to the 'Gram Nyayalayas', consider the following statements:\n1. They were established under the Gram Nyayalayas Act, 2008 for providing access to justice to citizens at their doorsteps.\n2. A Gram Nyayalaya has both civil and criminal jurisdiction.\n3. The appeals from Gram Nyayalayas in civil cases lie to the District Court.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct. Gram Nyayalayas are mobile courts for rural areas. They exercise both civil and criminal powers. Appeals in criminal cases lie to the Court of Session and in civil cases to the District Court."
-  },
-  {
-    "text": "The 'Judicial Review' power of the Supreme Court of India means the power to",
-    "options": [
-      "Review its own judgments",
-      "Advise the President on legal matters",
-      "Examine the constitutionality of legislative enactments and executive orders",
-      "Review the working of the subordinate courts"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Judicial Review is the power of the judiciary to examine the constitutionality of legislative enactments and executive orders of both the Central and State governments. If they are found to be violative of the Constitution, they can be declared as illegal, unconstitutional, and invalid."
-  },
-  {
-    "text": "With reference to the 'Fast Track Courts' (FTCs) in India, consider the following statements:\n1. They were established based on the recommendations of the 11th Finance Commission.\n2. They were primarily set up to dispose of long-pending cases in the sessions courts.\n3. The Central Government provides the entire funding for these courts.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Statement 1 and 2 are correct. FTCs were recommended by the 11th Finance Commission to clear pendency. Statement 3 is incorrect: after 2011, central funding was stopped for general FTCs, and they are now primarily funded by State governments (though some specific schemes like POSCO FTCs receive central aid)."
-  },
-  {
-    "text": "The concept of 'Justice' (social, economic, and political) mentioned in the Preamble of the Indian Constitution is reinforced by which of the following?",
-    "options": [
-      "Fundamental Rights only",
-      "Directive Principles of State Policy only",
-      "Both Fundamental Rights and Directive Principles of State Policy",
-      "Fundamental Duties"
-    ],
-    "correctAnswer": 2,
-    "explanation": "The objective of securing social, economic, and political justice is achieved through the combination of Fundamental Rights (Part III) and Directive Principles of State Policy (Part IV)."
-  },
-  {
-    "text": "With reference to the 'Supreme Court Legal Services Committee', consider the following statements:\n1. It was constituted under the Legal Services Authorities Act, 1987.\n2. It provides free legal aid to persons who are eligible under the Act in cases before the Supreme Court.\n3. The Chairperson of the committee is a sitting Judge of the Supreme Court.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct. The committee ensures legal aid for SC cases. The Chairperson is a sitting SC judge nominated by the CJI."
-  },
-  {
-    "text": "The 'Separation of the Judiciary from the Executive' is mentioned in which Article of the Constitution?",
-    "options": [
-      "Article 44",
-      "Article 48",
-      "Article 50",
-      "Article 51"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Article 50 of the Directive Principles of State Policy directs the State to take steps to separate the judiciary from the executive in the public services of the State."
-  },
-  {
-    "text": "With reference to the 'Evening Courts' in India, consider the following statements:\n1. They were introduced to deal with cases involving petty offences like traffic violations and cheque bounce cases.\n2. They help in reducing the huge pendency of cases in the subordinate judiciary.\n3. They are presided over by judicial officers after regular court hours.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct. Evening courts utilize existing infrastructure after hours to handle small cases and reduce the backlog of the judiciary."
-  },
-  {
-    "text": "The 'National Judicial Appointments Commission' (NJAC) Act was declared unconstitutional by the Supreme Court in the",
-    "options": [
-      "First Judges case",
-      "Second Judges case",
-      "Third Judges case",
-      "Fourth Judges case"
-    ],
-    "correctAnswer": 3,
-    "explanation": "The Fourth Judges case (Supreme Court Advocates-on-Record Association vs. Union of India, 2015) declared both the 99th Constitutional Amendment and the NJAC Act as unconstitutional and void, thus reviving the Collegium system."
-  },
-  {
-    "text": "With reference to the 'Amicus Curiae', consider the following statements:\n1. An Amicus Curiae is a person who is not a party to a case but assists the court by offering information or expertise.\n2. The court can appoint an Amicus Curiae on its own motion or on the application of a person.\n3. An Amicus Curiae is paid by the parties to the case.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Statements 1 and 2 are correct. An Amicus Curiae ('friend of the court') assists in complex cases. Statement 3 is incorrect: they are generally not paid by the parties, and the service is often pro bono or they may receive a token fee from the court."
-  },
-  {
-    "text": "Which of the following is not a ground for the disqualification of a person for appointment as a judge of a High Court?",
-    "options": [
-      "If he is not a citizen of India",
-      "If he has attained the age of 62 years",
-      "If he has not held a judicial office for at least five years",
-      "If he is of unsound mind"
-    ],
-    "correctAnswer": 2,
-    "explanation": "To be eligible, a person must have held judicial office for 10 years (not 5). Thus, not holding it for 5 years is not the specific disqualifying threshold; the threshold is 10 years. A person above 62 cannot be appointed as that is the retirement age."
-  },
-  {
-    "text": "With reference to the 'E-Courts' Project, consider the following statements:\n1. It is a Pan-India project monitored and funded by the Department of Justice, Ministry of Law and Justice.\n2. It aims at the ICT enablement of the district and subordinate courts of the country.\n3. It provides services like e-filing, e-payment, and virtual courts.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct. The E-Courts project is a mission-mode project to digitize the judiciary and provide online services to litigants and advocates."
-  },
-  {
-    "text": "The power of 'Suo Motu' cognizance by the Courts in India refers to the power to",
-    "options": [
-      "Take up a case on its own motion without a formal complaint",
-      "Transfer a case from one court to another",
-      "Review its own judgments",
-      "Punish for contempt of court"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Suo Motu cognizance refers to the inherent power of the court to initiate legal proceedings on its own, based on news reports, letters, or its own observation of a violation of rights."
-  },
-  {
-    "text": "With reference to the 'Legal Aid Clinics', consider the following statements:\n1. They are established in rural areas, jails, and educational institutions to provide basic legal services.\n2. They are managed by Para-Legal Volunteers (PLVs) and lawyers.\n3. They focus on providing primary legal advice and drafting simple legal documents.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct. Legal Aid Clinics bring legal assistance to the grassroots level, helping those who cannot easily reach District or State Legal Services Authorities."
-  },
-  {
-    "text": "The 'Judicial Activism' in India is closely associated with which of the following?",
-    "options": [
-      "Judicial Restraint",
-      "Public Interest Litigation (PIL)",
-      "Strict construction of laws",
-      "Separation of powers"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Judicial activism is the proactive role played by the judiciary in protecting the rights of citizens and promoting justice, primarily through PILs."
-  },
-  {
-    "text": "Which of the following Articles of the Constitution deals with the 'Appellate Jurisdiction' of the Supreme Court in constitutional matters?",
-    "options": [
-      "Article 131",
-      "Article 132",
-      "Article 133",
-      "Article 134"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Article 132 deals with the appellate jurisdiction in constitutional cases. Article 133 deals with civil cases, Article 134 with criminal cases, and Article 131 with original jurisdiction."
-  },
-  {
-    "text": "With reference to 'Article 227' of the Constitution, consider the following statements:\n1. It gives the High Court the power of superintendence over all courts and tribunals throughout its territorial jurisdiction.\n2. This power includes both administrative and judicial superintendence.\n3. The High Court can exercise this power suo motu.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct. Article 227 grants High Courts a broad power of superintendence (administrative and judicial) over all subordinate courts and tribunals in their jurisdiction."
-  },
-  {
-    "text": "The 'Acting Chief Justice' of a High Court is appointed by",
-    "options": [
-      "The Chief Justice of India",
-      "The Governor of the State",
-      "The President of India",
-      "The senior-most judge of the High Court"
-    ],
-    "correctAnswer": 2,
-    "explanation": "The President can appoint a judge of a High Court as an acting Chief Justice of that court when the office of the Chief Justice is vacant or the Chief Justice is unable to perform his duties."
-  },
-  {
-    "text": "With reference to the 'District Judges', consider the following statements:\n1. They are appointed by the Governor of the State in consultation with the High Court.\n2. A person must have been an advocate for seven years to be eligible for appointment as a district judge.\n3. The term 'District Judge' includes additional district judges and sessions judges.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct under Article 233. District judges are the highest judicial authority in the district, and the term covers various designations like Sessions Judge and Additional District Judge."
-  },
-  {
-    "text": "The power of the Supreme Court to punish for its contempt is provided under which Article?",
-    "options": [
-      "Article 124",
-      "Article 129",
-      "Article 131",
-      "Article 136"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Article 129 declares that the Supreme Court shall be a Court of Record and shall have all the powers of such a court including the power to punish for contempt of itself."
-  },
-  {
-    "text": "With reference to 'Article 136' (Special Leave Petition), consider the following statements:\n1. The Supreme Court has the discretion to grant special leave to appeal from any judgment or order in any matter.\n2. This power can be exercised against any court or tribunal in the territory of India, including military tribunals.\n3. It is a plenary power and not a right of the litigant.",
-    "options": [
-      "1 only",
-      "1 and 3 only",
-      "2 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statements 1 and 3 are correct. Article 136 gives the SC wide discretionary (plenary) power. Statement 2 is incorrect because Article 136(2) explicitly excludes judgments or orders passed by any court or tribunal relating to the Armed Forces (military courts/tribunals)."
-  },
-  {
-    "text": "The 'Judicial Standards and Accountability Bill' aims to",
-    "options": [
-      "Replace the Collegium system",
-      "Lay down judicial standards and establish a mechanism for investigating complaints against judges",
-      "Increase the retirement age of judges",
-      "Establish a National Judicial Academy"
-    ],
-    "correctAnswer": 1,
-    "explanation": "The bill aims to provide for judicial standards and establish mechanisms for investigating misbehaviour or incapacity of judges of the SC and High Courts."
-  },
-  {
-    "text": "With reference to 'Article 141' of the Constitution, consider the following statements:\n1. The law declared by the Supreme Court shall be binding on all courts within the territory of India.\n2. This includes the Supreme Court itself.\n3. The judgments of the High Courts are not binding on the subordinate courts of other states.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Statements 1 and 3 are correct. The SC's law is binding on all other courts. Statement 2 is incorrect: the Supreme Court is not bound by its own previous judgments and can depart from them if it finds they were erroneous."
-  },
-  {
-    "text": "The 'Supreme Court of India' was inaugurated on",
-    "options": [
-      "15th August, 1947",
-      "26th November, 1949",
-      "26th January, 1950",
-      "28th January, 1950"
-    ],
-    "correctAnswer": 3,
-    "explanation": "While the Constitution came into effect on 26th Jan 1950, the Supreme Court of India was formally inaugurated on January 28, 1950, succeeding the Federal Court of India."
-  },
-  {
-    "text": "With reference to the 'Permanent Lok Adalats' (PLAs), consider the following statements:\n1. They were established for providing a compulsory pre-litigative mechanism for settlement of disputes related to public utility services.\n2. The pecuniary jurisdiction of a PLA is up to ten lakh rupees.\n3. The award of a Permanent Lok Adalat is final and binding.",
-    "options": [
-      "1 and 2 only",
-      "1 and 3 only",
-      "2 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statements 1 and 3 are correct. PLAs deal with utility services (transport, water, etc.). Statement 2 is incorrect: the pecuniary jurisdiction has been increased to one crore rupees (since 2011)."
-  },
-  {
-    "text": "Which of the following High Courts has the largest territorial jurisdiction in India (excluding UTs)?",
-    "options": [
-      "Bombay High Court",
-      "Calcutta High Court",
-      "Madras High Court",
-      "Guwahati High Court"
-    ],
-    "correctAnswer": 3,
-    "explanation": "The Guwahati High Court originally had jurisdiction over seven states. Even after separate HCs were created for some states, it still serves multiple states (Assam, Nagaland, Mizoram, and Arunachal Pradesh), giving it the largest territorial reach."
-  },
-  {
-    "text": "With reference to the 'National Green Tribunal' (NGT), consider the following statements:\n1. It was established under the National Green Tribunal Act, 2010 for effective disposal of environmental cases.\n2. It is not bound by the procedure laid down under the Code of Civil Procedure, 1908.\n3. It is guided by the principles of natural justice.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct. NGT is a specialized body for environmental disputes, exercising simplified procedures based on natural justice rather than rigid CPC rules."
-  },
-  {
-    "text": "The 'Chief Justice of a High Court' is appointed by the President in consultation with",
-    "options": [
-      "The Chief Justice of India and the Governor of the state",
-      "The Governor of the state and the Collegium",
-      "The Chief Justice of India, the Governor of the state, and the outgoing Chief Justice",
-      "The Union Law Minister"
-    ],
-    "correctAnswer": 0,
-    "explanation": "For the appointment of the Chief Justice of a High Court, the President consults the Chief Justice of India and the Governor of the respective state."
-  },
-  {
-    "text": "With reference to the 'Nyaya Panchayats', consider the following statements:\n1. They are the judicial organs of the Panchayati Raj system at the village level.\n2. They deal with petty civil and criminal cases.\n3. They can impose fines but cannot award imprisonment.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct. Nyaya Panchayats provide a forum for local dispute resolution with limited powers, focusing on fines and conciliation rather than incarceration."
-  },
-  {
-    "text": "The power of 'Pardon' in the case of a death sentence is exclusive to",
-    "options": [
-      "The Supreme Court",
-      "The Governor of the state",
-      "The President of India",
-      "Both the President and the Governor"
-    ],
-    "correctAnswer": 2,
-    "explanation": "While both the President and the Governor have pardoning powers, only the President has the exclusive power to pardon a death sentence. The Governor can suspend, remit, or commute a death sentence but cannot grant a full pardon for it."
-  },
-  {
-    "text": "With reference to the 'Judicial Academy', consider the following statements:\n1. The National Judicial Academy (NJA) is located in Bhopal.\n2. It provides training to judicial officers of the district and subordinate courts.\n3. It is a registered society fully funded by the Government of India.",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct. NJA Bhopal is the apex body for judicial training and research in India."
-  },
-  {
-    "text": "The 'Administrative Tribunals' were added to the Constitution by which Amendment?",
-    "options": [
-      "42nd Amendment",
-      "44th Amendment",
-      "52nd Amendment",
-      "73rd Amendment"
-    ],
-    "correctAnswer": 0,
-    "explanation": "The 42nd Constitutional Amendment Act of 1976 added Part XIV-A to the Constitution, containing Article 323A (Administrative Tribunals) and Article 323B (Tribunals for other matters)."
-  },
-  {
-    "text": "In the context of the Indian Constitution, the 'Doctrine of Severability' refers to",
-    "options": [
-      "Separation of powers",
-      "The power to declare only the offensive part of a law unconstitutional while keeping the rest valid",
-      "Independence of the judiciary",
-      "The process of judge removal"
-    ],
-    "correctAnswer": 1,
-    "explanation": "The Doctrine of Severability (or separability) means that if a law is partly unconstitutional, the court will strike down only the invalid portion if it can be separated from the rest of the law. If the valid and invalid parts are inextricably linked, the whole law is struck down."
-  },
-  {
-    "text": "With reference to Family Courts in India, consider the following statements:\n1. It is mandatory for every State Government to establish a Family Court in every city or town with a population exceeding one million.\n2. The Family Courts in India are not strictly bound by the provisions of Code of Civil Procedure 1908, and have power to make their own rules of procedure to arrive at a settlement.\n3. An appeal from the judgment of a Family Court lies directly to the High Court of the respective state.",
-    "options": [
-      "I only",
-      "I and II only",
-      "II and III only",
-      "I, II and III"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct. Family Courts focus on conciliation and speedy settlement of matrimonial and family disputes. They follow informal procedures and appeals go to the High Court."
-  },
-  {
-    "text": "In the Supreme Court of India, the term 'Puisne Judges' refers to -",
-    "options": [
-      "Judges other than the Chief Justice of India",
-      "Ad hoc judges appointed by the President of India",
-      "Retired judges reappointed temporarily under Article 128 of the Constitution of India",
-      "Chief Justice of India and all the other judges"
-    ],
-    "correctAnswer": 0,
-    "explanation": "The term 'Puisne' means junior or inferior in rank. In legal context, puisne judges refer to all judges of a court other than the Chief Justice. The sanctioned strength of the SC currently is 34 (CJI + 33 puisne judges)."
-  }
-]  
+  //   "Test-4-Polity (321104)": [
+  //   {
+  //     "text": "With reference to the writs issued by the Courts in India, consider the following statements:\n1. Mandamus will not lie against a private organisation unless it is entrusted with a public duty.\n2. Mandamus will not lie against a Company even though it may be a Government Company.\n3. Any public minded person can be a petitioner to move the Court to obtain the writ of Quo Warranto.\nWhich of the statements given above are correct?",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "Statement 1 is correct: Mandamus is a command issued to a public official or body to perform official duties. It generally does not lie against a private entity unless it performs a public duty. Statement 2 is correct: It cannot be used against a government company incorporated under the Companies Act as there is no statutory public duty imposed by a statute. Statement 3 is correct: For Quo Warranto, any interested person (not necessarily the aggrieved party) can be the petitioner."
+  //   },
+  //   {
+  //     "text": "With reference to the Supreme Court of India, consider the following statements:\n1. The Indian Constitution provides for a Chief Justice of India and not more than seven other judges until Parliament by law prescribes a larger number.\n2. The judges of the Supreme Court are appointed by the President by warrant under his hand and seal after consultation with such of the Judges of the Supreme Court and of the High Courts in the States as the President may deem necessary.",
+  //     "options": [
+  //       "1 only",
+  //       "2 only",
+  //       "Both 1 and 2",
+  //       "Neither 1 nor 2"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Statement 1 is correct: Article 124(1) originally specified a Chief Justice and seven other judges, giving Parliament the power to increase this number. Statement 2 is correct: Under Article 124(2), every Judge of the Supreme Court shall be appointed by the President by warrant under his hand and seal after consultation with judges of the Supreme Court and High Courts as deemed necessary."
+  //   },
+  //   {
+  //     "text": "The power of the Supreme Court of India to decide disputes between the Centre and the States falls under its",
+  //     "options": [
+  //       "Advisory jurisdiction",
+  //       "Appellate jurisdiction",
+  //       "Original jurisdiction",
+  //       "Writ jurisdiction"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "The Supreme Court has exclusive original jurisdiction over any dispute between the Government of India and one or more States, or between two or more States. This is provided under Article 131 of the Constitution."
+  //   },
+  //   {
+  //     "text": "Consider the following statements:\n1. A Judge of the Supreme Court can be removed from his office by an order of the President.\n2. The address for removal must be supported by a majority of the total membership of each House and by a majority of not less than two-thirds of the members of that House present and voting.\n3. The grounds for removal are 'proved misbehaviour' or 'incapacity'.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct. A Supreme Court judge can be removed by the President following an address by Parliament. The address must be passed by a special majority (majority of total membership and two-thirds of those present and voting) in each House during the same session. The only two grounds for removal are proved misbehaviour or incapacity."
+  //   },
+  //   {
+  //     "text": "With reference to the 'Curative Petition' in the Supreme Court of India, consider the following statements:\n1. The concept of Curative Petition was evolved by the Supreme Court in the Rupa Ashok Hurra case (2002).\n2. It is the last constitutional resort available for redressal of grievances in court after a review petition is dismissed.\n3. A curative petition can be entertained only if the petitioner establishes that there was a violation of the principles of natural justice.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "Statement 1 is correct: The Supreme Court evolved this concept in 2002 to prevent abuse of its process and cure gross miscarriage of justice. Statement 2 is correct: It is the final legal remedy after a review petition is dismissed. Statement 3 is correct: Grounds for such a petition include violation of natural justice (e.g., the party was not heard) or bias of the judge."
+  //   },
+  //   {
+  //     "text": "Which of the following jurisdictions is shared by both the Supreme Court and the High Courts?",
+  //     "options": [
+  //       "Advisory jurisdiction",
+  //       "Original jurisdiction in Centre-State disputes",
+  //       "Writ jurisdiction for enforcement of Fundamental Rights",
+  //       "Appellate jurisdiction in all civil cases"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Both the Supreme Court (under Article 32) and the High Courts (under Article 226) have the power to issue writs for the enforcement of Fundamental Rights. Centre-State disputes and advisory jurisdiction are exclusive to the Supreme Court."
+  //   },
+  //   {
+  //     "text": "With reference to the 'Court of Record', consider the following statements:\n1. The judgments of a Court of Record are admitted to be of evidentiary value and cannot be questioned when produced before any court.\n2. Both the Supreme Court and the High Courts are Courts of Record in India.\n3. A Court of Record has the power to punish for contempt of itself.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct. Under Articles 129 (Supreme Court) and 215 (High Courts), these courts are designated as Courts of Record. This means their acts and proceedings are recorded for perpetual memory and testimony and have evidentiary value. They also possess the inherent power to punish for contempt."
+  //   },
+  //   {
+  //     "text": "The 'Basic Structure' doctrine was propounded by the Supreme Court in which of the following cases?",
+  //     "options": [
+  //       "Golaknath case (1967)",
+  //       "Kesavananda Bharati case (1973)",
+  //       "Minerva Mills case (1980)",
+  //       "Waman Rao case (1981)"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "The doctrine of 'Basic Structure' was propounded by the Supreme Court in the Kesavananda Bharati Sripadagalvaru vs. State of Kerala case (1973). The court ruled that while Parliament has wide powers to amend the Constitution, it cannot alter its basic structure or essential features."
+  //   },
+  //   {
+  //     "text": "With reference to the High Courts in India, consider the following statements:\n1. The Constitution does not specify the strength of a High Court and leaves it to the discretion of the President.\n2. The judges of a High Court are appointed by the President after consultation with the Chief Justice of India and the Governor of the State.\n3. A person must have held a judicial office in the territory of India for ten years to be eligible for appointment as a High Court judge.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "Statement 1 is correct: Unlike the Supreme Court, the strength of High Courts is determined by the President from time to time based on workload. Statement 2 is correct: Article 217 provides for the appointment of judges by the President in consultation with the CJI, the State Governor, and (for other than the CJ of the HC) the Chief Justice of that High Court. Statement 3 is correct: Eligibility criteria include 10 years of judicial office or 10 years as an advocate of a High Court."
+  //   },
+  //   {
+  //     "text": "Under the 'Collegium System', the recommendation for the appointment of judges to the Supreme Court is made by a collegium consisting of the Chief Justice of India and",
+  //     "options": [
+  //       "Two senior-most judges of the Supreme Court",
+  //       "Four senior-most judges of the Supreme Court",
+  //       "Three senior-most judges of the Supreme Court",
+  //       "Five senior-most judges of the Supreme Court"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "For Supreme Court appointments, the Collegium consists of the CJI and the four senior-most judges of the Supreme Court. For High Court appointments, the Collegium consists of the CJI and the two senior-most SC judges."
+  //   },
+  //   {
+  //     "text": "The 'Public Interest Litigation' (PIL) in India was introduced through",
+  //     "options": [
+  //       "A Constitutional Amendment",
+  //       "A Parliamentary Statute",
+  //       "Judicial Innovation",
+  //       "A Presidential Order"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "PIL is a product of judicial activism and was introduced by the Supreme Court through judicial innovation (judicial interpretation). It was spearheaded by Justice P.N. Bhagwati and Justice V.R. Krishna Iyer in the late 1970s and early 1980s."
+  //   },
+  //   {
+  //     "text": "With reference to the 'Advisory Jurisdiction' of the Supreme Court (Article 143), consider the following statements:\n1. The President can seek the opinion of the Supreme Court on any question of law or fact of public importance.\n2. The Supreme Court is bound to give its opinion on all matters referred to it by the President.\n3. The opinion expressed by the Supreme Court is binding on the President.",
+  //     "options": [
+  //       "1 only",
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Statement 1 is correct: The President may refer a question of law or fact to the Supreme Court. Statement 2 is incorrect: The Court may refuse to give an opinion if the matter involves a question of law/fact of public importance (though it is bound if the matter relates to a pre-constitutional treaty). Statement 3 is incorrect: The opinion is advisory and not binding on the President."
+  //   },
+  //   {
+  //     "text": "The 'Contempt of Court' in India is governed by which of the following?",
+  //     "options": [
+  //       "Only the Constitution of India",
+  //       "Only the Contempt of Courts Act, 1971",
+  //       "Both the Constitution and the Contempt of Courts Act, 1971",
+  //       "A Presidential Regulation"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Contempt of Court is governed by both the Constitution (Articles 129 and 215) and the Contempt of Courts Act, 1971, which defines civil and criminal contempt."
+  //   },
+  //   {
+  //     "text": "With reference to the 'National Legal Services Authority' (NALSA), consider the following statements:\n1. It was constituted under the Legal Services Authorities Act, 1987 to provide free legal services to the weaker sections of society.\n2. The Chief Justice of India is the Patron-in-Chief of NALSA.\n3. It organizes Lok Adalats for amicable settlement of disputes.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct. NALSA provides free legal aid under the 1987 Act. The CJI is the Patron-in-Chief, and the second senior-most judge of the SC is the Executive Chairman. It also organizes Lok Adalats to reduce the burden on regular courts."
+  //   },
+  //   {
+  //     "text": "The 'Lok Adalats' in India derive their statutory status from",
+  //     "options": [
+  //       "The Constitution of India",
+  //       "The Legal Services Authorities Act, 1987",
+  //       "The Civil Procedure Code",
+  //       "The Arbitration and Conciliation Act"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Lok Adalats have been given statutory status under the Legal Services Authorities Act, 1987. Under this Act, an award made by a Lok Adalat is deemed to be a decree of a civil court and is final and binding on all parties."
+  //   },
+  //   {
+  //     "text": "Which of the following bodies has the power to recommend the transfer of judges from one High Court to another?",
+  //     "options": [
+  //       "The President of India alone",
+  //       "The Chief Justice of India after consulting the Collegium",
+  //       "The Union Law Minister",
+  //       "The Governor of the state concerned"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Article 222 provides for the transfer of a judge from one High Court to any other High Court by the President after consultation with the Chief Justice of India. The CJI makes the recommendation after consulting the Collegium (CJI + 4 senior-most judges of SC)."
+  //   },
+  //   {
+  //     "text": "With reference to the 'Gram Nyayalayas', consider the following statements:\n1. They were established under the Gram Nyayalayas Act, 2008 for providing access to justice to citizens at their doorsteps.\n2. A Gram Nyayalaya has both civil and criminal jurisdiction.\n3. The appeals from Gram Nyayalayas in civil cases lie to the District Court.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct. Gram Nyayalayas are mobile courts for rural areas. They exercise both civil and criminal powers. Appeals in criminal cases lie to the Court of Session and in civil cases to the District Court."
+  //   },
+  //   {
+  //     "text": "The 'Judicial Review' power of the Supreme Court of India means the power to",
+  //     "options": [
+  //       "Review its own judgments",
+  //       "Advise the President on legal matters",
+  //       "Examine the constitutionality of legislative enactments and executive orders",
+  //       "Review the working of the subordinate courts"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Judicial Review is the power of the judiciary to examine the constitutionality of legislative enactments and executive orders of both the Central and State governments. If they are found to be violative of the Constitution, they can be declared as illegal, unconstitutional, and invalid."
+  //   },
+  //   {
+  //     "text": "With reference to the 'Fast Track Courts' (FTCs) in India, consider the following statements:\n1. They were established based on the recommendations of the 11th Finance Commission.\n2. They were primarily set up to dispose of long-pending cases in the sessions courts.\n3. The Central Government provides the entire funding for these courts.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Statement 1 and 2 are correct. FTCs were recommended by the 11th Finance Commission to clear pendency. Statement 3 is incorrect: after 2011, central funding was stopped for general FTCs, and they are now primarily funded by State governments (though some specific schemes like POSCO FTCs receive central aid)."
+  //   },
+  //   {
+  //     "text": "The concept of 'Justice' (social, economic, and political) mentioned in the Preamble of the Indian Constitution is reinforced by which of the following?",
+  //     "options": [
+  //       "Fundamental Rights only",
+  //       "Directive Principles of State Policy only",
+  //       "Both Fundamental Rights and Directive Principles of State Policy",
+  //       "Fundamental Duties"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "The objective of securing social, economic, and political justice is achieved through the combination of Fundamental Rights (Part III) and Directive Principles of State Policy (Part IV)."
+  //   },
+  //   {
+  //     "text": "With reference to the 'Supreme Court Legal Services Committee', consider the following statements:\n1. It was constituted under the Legal Services Authorities Act, 1987.\n2. It provides free legal aid to persons who are eligible under the Act in cases before the Supreme Court.\n3. The Chairperson of the committee is a sitting Judge of the Supreme Court.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct. The committee ensures legal aid for SC cases. The Chairperson is a sitting SC judge nominated by the CJI."
+  //   },
+  //   {
+  //     "text": "The 'Separation of the Judiciary from the Executive' is mentioned in which Article of the Constitution?",
+  //     "options": [
+  //       "Article 44",
+  //       "Article 48",
+  //       "Article 50",
+  //       "Article 51"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Article 50 of the Directive Principles of State Policy directs the State to take steps to separate the judiciary from the executive in the public services of the State."
+  //   },
+  //   {
+  //     "text": "With reference to the 'Evening Courts' in India, consider the following statements:\n1. They were introduced to deal with cases involving petty offences like traffic violations and cheque bounce cases.\n2. They help in reducing the huge pendency of cases in the subordinate judiciary.\n3. They are presided over by judicial officers after regular court hours.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct. Evening courts utilize existing infrastructure after hours to handle small cases and reduce the backlog of the judiciary."
+  //   },
+  //   {
+  //     "text": "The 'National Judicial Appointments Commission' (NJAC) Act was declared unconstitutional by the Supreme Court in the",
+  //     "options": [
+  //       "First Judges case",
+  //       "Second Judges case",
+  //       "Third Judges case",
+  //       "Fourth Judges case"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "The Fourth Judges case (Supreme Court Advocates-on-Record Association vs. Union of India, 2015) declared both the 99th Constitutional Amendment and the NJAC Act as unconstitutional and void, thus reviving the Collegium system."
+  //   },
+  //   {
+  //     "text": "With reference to the 'Amicus Curiae', consider the following statements:\n1. An Amicus Curiae is a person who is not a party to a case but assists the court by offering information or expertise.\n2. The court can appoint an Amicus Curiae on its own motion or on the application of a person.\n3. An Amicus Curiae is paid by the parties to the case.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Statements 1 and 2 are correct. An Amicus Curiae ('friend of the court') assists in complex cases. Statement 3 is incorrect: they are generally not paid by the parties, and the service is often pro bono or they may receive a token fee from the court."
+  //   },
+  //   {
+  //     "text": "Which of the following is not a ground for the disqualification of a person for appointment as a judge of a High Court?",
+  //     "options": [
+  //       "If he is not a citizen of India",
+  //       "If he has attained the age of 62 years",
+  //       "If he has not held a judicial office for at least five years",
+  //       "If he is of unsound mind"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "To be eligible, a person must have held judicial office for 10 years (not 5). Thus, not holding it for 5 years is not the specific disqualifying threshold; the threshold is 10 years. A person above 62 cannot be appointed as that is the retirement age."
+  //   },
+  //   {
+  //     "text": "With reference to the 'E-Courts' Project, consider the following statements:\n1. It is a Pan-India project monitored and funded by the Department of Justice, Ministry of Law and Justice.\n2. It aims at the ICT enablement of the district and subordinate courts of the country.\n3. It provides services like e-filing, e-payment, and virtual courts.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct. The E-Courts project is a mission-mode project to digitize the judiciary and provide online services to litigants and advocates."
+  //   },
+  //   {
+  //     "text": "The power of 'Suo Motu' cognizance by the Courts in India refers to the power to",
+  //     "options": [
+  //       "Take up a case on its own motion without a formal complaint",
+  //       "Transfer a case from one court to another",
+  //       "Review its own judgments",
+  //       "Punish for contempt of court"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Suo Motu cognizance refers to the inherent power of the court to initiate legal proceedings on its own, based on news reports, letters, or its own observation of a violation of rights."
+  //   },
+  //   {
+  //     "text": "With reference to the 'Legal Aid Clinics', consider the following statements:\n1. They are established in rural areas, jails, and educational institutions to provide basic legal services.\n2. They are managed by Para-Legal Volunteers (PLVs) and lawyers.\n3. They focus on providing primary legal advice and drafting simple legal documents.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct. Legal Aid Clinics bring legal assistance to the grassroots level, helping those who cannot easily reach District or State Legal Services Authorities."
+  //   },
+  //   {
+  //     "text": "The 'Judicial Activism' in India is closely associated with which of the following?",
+  //     "options": [
+  //       "Judicial Restraint",
+  //       "Public Interest Litigation (PIL)",
+  //       "Strict construction of laws",
+  //       "Separation of powers"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Judicial activism is the proactive role played by the judiciary in protecting the rights of citizens and promoting justice, primarily through PILs."
+  //   },
+  //   {
+  //     "text": "Which of the following Articles of the Constitution deals with the 'Appellate Jurisdiction' of the Supreme Court in constitutional matters?",
+  //     "options": [
+  //       "Article 131",
+  //       "Article 132",
+  //       "Article 133",
+  //       "Article 134"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Article 132 deals with the appellate jurisdiction in constitutional cases. Article 133 deals with civil cases, Article 134 with criminal cases, and Article 131 with original jurisdiction."
+  //   },
+  //   {
+  //     "text": "With reference to 'Article 227' of the Constitution, consider the following statements:\n1. It gives the High Court the power of superintendence over all courts and tribunals throughout its territorial jurisdiction.\n2. This power includes both administrative and judicial superintendence.\n3. The High Court can exercise this power suo motu.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct. Article 227 grants High Courts a broad power of superintendence (administrative and judicial) over all subordinate courts and tribunals in their jurisdiction."
+  //   },
+  //   {
+  //     "text": "The 'Acting Chief Justice' of a High Court is appointed by",
+  //     "options": [
+  //       "The Chief Justice of India",
+  //       "The Governor of the State",
+  //       "The President of India",
+  //       "The senior-most judge of the High Court"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "The President can appoint a judge of a High Court as an acting Chief Justice of that court when the office of the Chief Justice is vacant or the Chief Justice is unable to perform his duties."
+  //   },
+  //   {
+  //     "text": "With reference to the 'District Judges', consider the following statements:\n1. They are appointed by the Governor of the State in consultation with the High Court.\n2. A person must have been an advocate for seven years to be eligible for appointment as a district judge.\n3. The term 'District Judge' includes additional district judges and sessions judges.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct under Article 233. District judges are the highest judicial authority in the district, and the term covers various designations like Sessions Judge and Additional District Judge."
+  //   },
+  //   {
+  //     "text": "The power of the Supreme Court to punish for its contempt is provided under which Article?",
+  //     "options": [
+  //       "Article 124",
+  //       "Article 129",
+  //       "Article 131",
+  //       "Article 136"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Article 129 declares that the Supreme Court shall be a Court of Record and shall have all the powers of such a court including the power to punish for contempt of itself."
+  //   },
+  //   {
+  //     "text": "With reference to 'Article 136' (Special Leave Petition), consider the following statements:\n1. The Supreme Court has the discretion to grant special leave to appeal from any judgment or order in any matter.\n2. This power can be exercised against any court or tribunal in the territory of India, including military tribunals.\n3. It is a plenary power and not a right of the litigant.",
+  //     "options": [
+  //       "1 only",
+  //       "1 and 3 only",
+  //       "2 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Statements 1 and 3 are correct. Article 136 gives the SC wide discretionary (plenary) power. Statement 2 is incorrect because Article 136(2) explicitly excludes judgments or orders passed by any court or tribunal relating to the Armed Forces (military courts/tribunals)."
+  //   },
+  //   {
+  //     "text": "The 'Judicial Standards and Accountability Bill' aims to",
+  //     "options": [
+  //       "Replace the Collegium system",
+  //       "Lay down judicial standards and establish a mechanism for investigating complaints against judges",
+  //       "Increase the retirement age of judges",
+  //       "Establish a National Judicial Academy"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "The bill aims to provide for judicial standards and establish mechanisms for investigating misbehaviour or incapacity of judges of the SC and High Courts."
+  //   },
+  //   {
+  //     "text": "With reference to 'Article 141' of the Constitution, consider the following statements:\n1. The law declared by the Supreme Court shall be binding on all courts within the territory of India.\n2. This includes the Supreme Court itself.\n3. The judgments of the High Courts are not binding on the subordinate courts of other states.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Statements 1 and 3 are correct. The SC's law is binding on all other courts. Statement 2 is incorrect: the Supreme Court is not bound by its own previous judgments and can depart from them if it finds they were erroneous."
+  //   },
+  //   {
+  //     "text": "The 'Supreme Court of India' was inaugurated on",
+  //     "options": [
+  //       "15th August, 1947",
+  //       "26th November, 1949",
+  //       "26th January, 1950",
+  //       "28th January, 1950"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "While the Constitution came into effect on 26th Jan 1950, the Supreme Court of India was formally inaugurated on January 28, 1950, succeeding the Federal Court of India."
+  //   },
+  //   {
+  //     "text": "With reference to the 'Permanent Lok Adalats' (PLAs), consider the following statements:\n1. They were established for providing a compulsory pre-litigative mechanism for settlement of disputes related to public utility services.\n2. The pecuniary jurisdiction of a PLA is up to ten lakh rupees.\n3. The award of a Permanent Lok Adalat is final and binding.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "1 and 3 only",
+  //       "2 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Statements 1 and 3 are correct. PLAs deal with utility services (transport, water, etc.). Statement 2 is incorrect: the pecuniary jurisdiction has been increased to one crore rupees (since 2011)."
+  //   },
+  //   {
+  //     "text": "Which of the following High Courts has the largest territorial jurisdiction in India (excluding UTs)?",
+  //     "options": [
+  //       "Bombay High Court",
+  //       "Calcutta High Court",
+  //       "Madras High Court",
+  //       "Guwahati High Court"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "The Guwahati High Court originally had jurisdiction over seven states. Even after separate HCs were created for some states, it still serves multiple states (Assam, Nagaland, Mizoram, and Arunachal Pradesh), giving it the largest territorial reach."
+  //   },
+  //   {
+  //     "text": "With reference to the 'National Green Tribunal' (NGT), consider the following statements:\n1. It was established under the National Green Tribunal Act, 2010 for effective disposal of environmental cases.\n2. It is not bound by the procedure laid down under the Code of Civil Procedure, 1908.\n3. It is guided by the principles of natural justice.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct. NGT is a specialized body for environmental disputes, exercising simplified procedures based on natural justice rather than rigid CPC rules."
+  //   },
+  //   {
+  //     "text": "The 'Chief Justice of a High Court' is appointed by the President in consultation with",
+  //     "options": [
+  //       "The Chief Justice of India and the Governor of the state",
+  //       "The Governor of the state and the Collegium",
+  //       "The Chief Justice of India, the Governor of the state, and the outgoing Chief Justice",
+  //       "The Union Law Minister"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "For the appointment of the Chief Justice of a High Court, the President consults the Chief Justice of India and the Governor of the respective state."
+  //   },
+  //   {
+  //     "text": "With reference to the 'Nyaya Panchayats', consider the following statements:\n1. They are the judicial organs of the Panchayati Raj system at the village level.\n2. They deal with petty civil and criminal cases.\n3. They can impose fines but cannot award imprisonment.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct. Nyaya Panchayats provide a forum for local dispute resolution with limited powers, focusing on fines and conciliation rather than incarceration."
+  //   },
+  //   {
+  //     "text": "The power of 'Pardon' in the case of a death sentence is exclusive to",
+  //     "options": [
+  //       "The Supreme Court",
+  //       "The Governor of the state",
+  //       "The President of India",
+  //       "Both the President and the Governor"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "While both the President and the Governor have pardoning powers, only the President has the exclusive power to pardon a death sentence. The Governor can suspend, remit, or commute a death sentence but cannot grant a full pardon for it."
+  //   },
+  //   {
+  //     "text": "With reference to the 'Judicial Academy', consider the following statements:\n1. The National Judicial Academy (NJA) is located in Bhopal.\n2. It provides training to judicial officers of the district and subordinate courts.\n3. It is a registered society fully funded by the Government of India.",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct. NJA Bhopal is the apex body for judicial training and research in India."
+  //   },
+  //   {
+  //     "text": "The 'Administrative Tribunals' were added to the Constitution by which Amendment?",
+  //     "options": [
+  //       "42nd Amendment",
+  //       "44th Amendment",
+  //       "52nd Amendment",
+  //       "73rd Amendment"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "The 42nd Constitutional Amendment Act of 1976 added Part XIV-A to the Constitution, containing Article 323A (Administrative Tribunals) and Article 323B (Tribunals for other matters)."
+  //   },
+  //   {
+  //     "text": "In the context of the Indian Constitution, the 'Doctrine of Severability' refers to",
+  //     "options": [
+  //       "Separation of powers",
+  //       "The power to declare only the offensive part of a law unconstitutional while keeping the rest valid",
+  //       "Independence of the judiciary",
+  //       "The process of judge removal"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "The Doctrine of Severability (or separability) means that if a law is partly unconstitutional, the court will strike down only the invalid portion if it can be separated from the rest of the law. If the valid and invalid parts are inextricably linked, the whole law is struck down."
+  //   },
+  //   {
+  //     "text": "With reference to Family Courts in India, consider the following statements:\n1. It is mandatory for every State Government to establish a Family Court in every city or town with a population exceeding one million.\n2. The Family Courts in India are not strictly bound by the provisions of Code of Civil Procedure 1908, and have power to make their own rules of procedure to arrive at a settlement.\n3. An appeal from the judgment of a Family Court lies directly to the High Court of the respective state.",
+  //     "options": [
+  //       "I only",
+  //       "I and II only",
+  //       "II and III only",
+  //       "I, II and III"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct. Family Courts focus on conciliation and speedy settlement of matrimonial and family disputes. They follow informal procedures and appeals go to the High Court."
+  //   },
+  //   {
+  //     "text": "In the Supreme Court of India, the term 'Puisne Judges' refers to -",
+  //     "options": [
+  //       "Judges other than the Chief Justice of India",
+  //       "Ad hoc judges appointed by the President of India",
+  //       "Retired judges reappointed temporarily under Article 128 of the Constitution of India",
+  //       "Chief Justice of India and all the other judges"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "The term 'Puisne' means junior or inferior in rank. In legal context, puisne judges refer to all judges of a court other than the Chief Justice. The sanctioned strength of the SC currently is 34 (CJI + 33 puisne judges)."
+  //   }
+  // ]
+  "Test-5-CSAT (322101)": [
+    {
+      text: "Which of the following statements best reflects the logical inference from the passage given above?\n\nPassage I: Good corporate governance structures encourage companies to provide accountability and control. A fundamental reason why corporate governance has moved onto the economic and political agenda worldwide has been the rapid growth in international capital markets. Effective corporate governance enhances access to external financing by firms, leading to greater investment, higher growth and employment. Investors look to place their funds where the standards of disclosure, of timely and accurate financial reporting, and of equal treatment to all stakeholders are met.",
+      options: [
+        "It is an important agenda of the countries around the world to ensure access to good external financing.",
+        "Good corporate governance improves the credibility of the firms.",
+        "International capital markets ensure that the firms maintain good corporate governance.",
+        "Good corporate governance paves the way for robust supply chains.",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "The passage explains that investors prefer placing funds in companies that meet high standards of disclosure and accurate financial reporting. By providing such accountability and control, good corporate governance enhances a firm's credibility, making it more attractive for external financing and investment.",
+    },
+    {
+      text: "Which of the following, if true, would most appropriately strengthen the author's argument in the passage?\n\nPassage II: The rise of autonomous vehicles has introduced complex questions of legal liability when machine-driven errors cause accidents. Unlike conventional driving, responsibility is no longer limited to human drivers but may extend to software developers, manufacturers, and data providers. While assigning liability to firms could incentivise safer design, it also risks slowing innovation. Conversely, limiting liability may leave victims inadequately compensated. The challenge lies in developing legal frameworks that ensure accountability without discouraging technological progress.",
+      options: [
+        "Countries that imposed strict liability due to accidents by autonomous vehicles on their manufacturers witnessed a sharp decline in start-ups entering the sector.",
+        "Advances in technology have reduced the frequency of software-related driving errors in Autonomous vehicles.",
+        "Victims of accidents involving autonomous vehicles often face difficulties in identifying responsible parties under existing laws.",
+        "Human error due to non availability of avenues for comprehensive training on driving autonomous vehicles continues to be a major cause of accidents.",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "The author argues that assigning liability to firms 'risks slowing innovation.' Option (a) provides a concrete real-world example of this risk by showing that strict liability led to a decline in innovation (start-ups), thereby directly supporting the author's concerns about discouraging technological progress.",
+    },
+    {
+      text: "Which of the following statements represents the most logical and rational inference that can be drawn from the passage?\n\nPassage II: The rise of autonomous vehicles has introduced complex questions of legal liability when machine-driven errors cause accidents. Unlike conventional driving, responsibility is no longer limited to human drivers but may extend to software developers, manufacturers, and data providers. While assigning liability to firms could incentivise safer design, it also risks slowing innovation. Conversely, limiting liability may leave victims inadequately compensated. The challenge lies in developing legal frameworks that ensure accountability without discouraging technological progress.",
+      options: [
+        "Legal systems must eventually prioritise technological innovation over victim compensation in the case of autonomous vehicles.",
+        "Assigning liability in autonomous vehicle accidents requires redefining traditional notions of responsibility beyond individual human agency.",
+        "Autonomous vehicle technology is advancing faster than the capacity of law to regulate it effectively.",
+        "Strict manufacturer liability is likely to become the dominant global model for regulating autonomous vehicles.",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Traditional liability focuses on the human driver (individual human agency). However, the passage notes that responsibility now extends to technical entities like software developers and data providers. This indicates that legal frameworks must move beyond traditional concepts of individual fault to address systemic and automated errors.",
+    },
+    {
+      text: "Based on the above passage, the following assumptions have been made:\nI. India needs to reform its economic policies to emerge as a global leader.\nII. The process of creative destruction is beneficial for the economy in the long run.\nIII. Despite being drivers of progress, risk taking and innovation are often perceived negatively in society.\nIV. Ease of doing business would aid the process of creative destruction in the economy.\n\nPassage III: Economic ecosystems evolve through a process of 'creative destruction'. The inefficient are weeded out over time and replaced by those that are more competent. Thus, the competitiveness of an economy is critically dependent on its ability to encourage and endure a churn despite all the disruptions it may cause in the short run. However, India exhibits a relatively low level of such dynamism, inconsistent with an economy aspiring to high innovation and risk taking. So what needs to be done? The first step should be to change a deeply ingrained social attitude that looks with suspicion at risk taking and innovation. Second, financial regulations and institutional processes must be reoriented to enable easier entry, exit and reallocation of capital. Third, excessive protection of entrenched incumbents across sectors should be curtailed. Together, these measures can go a long way in fostering greater innovation, adaptability and long term resilience in the Indian economy.",
+      options: [
+        "I, II and III only",
+        "II, III and IV only",
+        "II and III only",
+        "III and IV only",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Assumption II is supported by the text's claim that creative destruction replaces the inefficient with the competent. Assumption III is supported by the mention of a 'deeply ingrained social attitude' that views risk with suspicion. Assumption IV is supported by the call to reorient processes for 'easier entry, exit and reallocation of capital.' Assumption I is not explicitly made, as the text focuses on 'resilience' rather than 'global leadership.'",
+    },
+    {
+      text: "Which of the following inference(s) can be correctly drawn from the passage given above?\nI. Start-ups derive their competitive advantage largely from their ability to bypass conventional market constraints.\nII. Market disruption driven by start-ups can produce both efficiency gains and systemic risks.\n\nPassage IV: The rapid rise of start-ups has reshaped traditional markets by introducing new business models, technologies, and modes of consumer engagement. By prioritising speed, scalability, and innovation, start-ups often challenge established firms that rely on stability, regulation, and incremental change. While this disruption can increase efficiency and consumer choice, it may also generate uncertainty, job displacement, and regulatory gaps. The resulting tension highlights a broader economic dilemma: how to encourage innovation-driven growth without undermining market stability and long-term institutional resilience.",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 2,
+      explanation:
+        "Inference I is correct as start-ups 'challenge' firms relying on 'stability' and 'regulation.' Inference II is correct as the passage notes disruption 'can increase efficiency' (gains) but 'may also generate uncertainty' and 'regulatory gaps' (risks).",
+    },
+    {
+      text: "Which of the following statements best reflects the most logical, rational and crucial message implied by the passage?\n\nPassage V: Bhopal's \"Kachra Cafe\" is a unique waste management initiative that reimagines waste as a resource. The cafe collects 19 types of waste, including paper, glass, metal, plastic, e-waste, and old clothes. Citizens are encouraged to bring segregated and clean items to the cafe. Each contribution is weighed and converted into digital points, redeemable for snacks or handmade products such as tote bags, envelopes, diyas, and home decor items. The collected waste goes to the municipal corporation's Material Recovery Facilities and is then sent to authorized recyclers, promoting a circular economy. A key feature that makes this initiative unique is the participation of women. Women create and sell snacks and handicrafts made from upcycled materials, turning waste into a livelihood opportunity. As Bhopal aims for increased cleanliness, Kachra Cafe stands out as a replicable, people driven model for sustainability.",
+      options: [
+        "Waste management practices should be modelled on the principles of circular economy.",
+        "Efficient waste management can convert waste into a resource and a livelihood opportunity.",
+        "Bhopal's Kachra café model should be replicated for sustainable waste management.",
+        "Active participation of communities, especially women, strengthens sustainable development efforts.",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "While the passage mentions circular economy and community participation, the most logical and overarching message is how waste can be successfully converted into both a physical 'resource' (upcycled products) and a socioeconomic 'livelihood opportunity' (for women).",
+    },
+    {
+      text: 'Based on the author\'s depiction, the "living ecosystem" view of markets is characterized by:\n\nPassage VI: Beyond spreadsheets and stock tickers, a quiet revolution is unfolding in the heart of capitalism. Environmental, Social, and Governance (ESG) investing is not merely a new metric but a philosophical crossroads, forcing a fundamental question: what is wealth for? It challenges the long-held axiom of profit as a solitary end, proposing instead a vision where capital is a steward for the future. This shift imagines markets not as cold engines of extraction but as living ecosystems where financial return, planetary health, and social equity are intertwined roots of the same tree. The future of capitalism now hangs in the balance-between a legacy defined solely by accumulation and a new destiny written in the language of holistic value.',
+      options: [
+        "The independent pursuit of financial and social goals.",
+        "The intrinsic and inseparable interconnection of various forms of value.",
+        "The dominance of natural resource-based industries.",
+        "The rapid evolution of financial technologies.",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "The passage describes the market as an ecosystem where financial, planetary, and social aspects are 'intertwined roots of the same tree,' implying that they are not independent but are fundamentally and inseparably connected.",
+    },
+    {
+      text: "The vision of capitalism described in the latter part of the passage would be most difficult to realize if:\n\nPassage VI: Beyond spreadsheets and stock tickers, a quiet revolution is unfolding in the heart of capitalism. Environmental, Social, and Governance (ESG) investing is not merely a new metric but a philosophical crossroads, forcing a fundamental question: what is wealth for? It challenges the long-held axiom of profit as a solitary end, proposing instead a vision where capital is a steward for the future. This shift imagines markets not as cold engines of extraction but as living ecosystems where financial return, planetary health, and social equity are intertwined roots of the same tree. The future of capitalism now hangs in the balance-between a legacy defined solely by accumulation and a new destiny written in the language of holistic value.",
+      options: [
+        "The metrics for measuring planetary health and social equity remain non-financial and qualitative.",
+        "Short-term financial performance continues to be the dominant criterion for market success.",
+        "New technologies emerge to better track corporate environmental impact.",
+        "Public awareness of climate change continues to rise.",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "The passage advocates for a move toward 'holistic value' and 'capital as a steward for the future.' This shift would be most difficult if the market remains stuck in the old paradigm of prioritizing 'short-term financial performance' above all other values.",
+    },
+    {
+      text: "Which of the following can be inferred from the passage regarding blockchain's role in supply chains and service delivery?\n\nPassage VII: Blockchain technology is emerging as a powerful tool to enhance transparency and accountability in supply chains. By recording every transaction on an immutable, decentralized ledger, blockchain enables stakeholders to trace goods, payments, and services in real time. This reduces the scope for corruption, fraud, and inefficiency that often plague traditional delivery systems. For instance, in public service delivery, blockchain can ensure that welfare benefits, subsidies, or healthcare services reach the intended recipients without middlemen or data manipulation. Similarly, in commercial supply chains, it improves product authenticity, tracks environmental compliance, and strengthens consumer trust. Therefore, by integrating blockchain into service delivery frameworks, governments and businesses can create systems characterized by greater trust, efficiency, and inclusivity.",
+      options: [
+        "While it increases operational efficiency, blockchain also raises significant data privacy concerns that limit its adoption by governments.",
+        "Blockchain's ability to record transactions in a decentralized and unchangeable manner builds trust among stakeholders by making processes more transparent and traceable.",
+        "The primary advantage of blockchain lies in its ability to completely remove human intermediaries from all stages of service and supply chains.",
+        "Blockchain technology is more effective in commercial supply chains than in public service delivery frameworks.",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "The passage explains that blockchain records transactions on an 'immutable, decentralized ledger,' allowing real-time tracing. This transparency and unchangeable record-keeping are the features that build trust and reduce corruption.",
+    },
+    {
+      text: "Based on the above passage, the following assumptions have been made:\nI. Use of blockchain technology in supply chains would completely eliminate corruption from the system.\nII. Incorporating blockchain into service delivery promotes good governance through greater accountability.\n\nPassage VII: Blockchain technology is emerging as a powerful tool to enhance transparency and accountability in supply chains. By recording every transaction on an immutable, decentralized ledger, blockchain enables stakeholders to trace goods, payments, and services in real time. This reduces the scope for corruption, fraud, and inefficiency that often plague traditional delivery systems. For instance, in public service delivery, blockchain can ensure that welfare benefits, subsidies, or healthcare services reach the intended recipients without middlemen or data manipulation. Similarly, in commercial supply chains, it improves product authenticity, tracks environmental compliance, and strengthens consumer trust. Therefore, by integrating blockchain into service delivery frameworks, governments and businesses can create systems characterized by greater trust, efficiency, and inclusivity.",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 1,
+      explanation:
+        "Assumption II is valid as the text links blockchain to greater accountability and inclusivity. Assumption I is an overstatement; the passage says it 'reduces the scope for corruption,' not that it 'completely eliminates' it.",
+    },
+    {
+      text: "When we meet other people while we travel, we learn to differentiate between:\n\nPassage VIII: Only with long experience and opening of his wares on many a beach where his language is not spoken, will the merchant come to know the worth of what he carries, and what is parochial and what is universal in his choice. Such delicate goods as justice, love and honour, courtesy, and indeed all the things we care for, are valid everywhere but they are variously moulded and often differently handled, and sometimes nearly unrecognizable if you meet them in a foreign land, and the art of learning fundamental common values is perhaps the greatest gain of travel to those who wish to live at ease among their fellows.",
+      options: [
+        "imagination and understanding",
+        "communities and nationalities",
+        "local values and universal values",
+        "friends and foes",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "The passage discusses how travelers learn what is 'parochial' (local/limited) and what is 'universal' by observing how common values like justice and love are 'variously moulded' in different lands.",
+    },
+    {
+      text: "Which of the following statements best reflects the central idea of the passage?\n\nPassage IX: Businesses worldwide are increasingly making ambitious net-zero pledges. While many companies have begun taking meaningful steps toward these commitments, concerns remain due to the prevalence of greenwashing. This has prompted growing demands for stronger standards and greater corporate accountability. Therefore, these pledges must be backed by clear, verifiable transition plans that outline how targets will be achieved. Corporate management should be held accountable for implementing these plans, ensuring measurable progress. Ultimately, genuine sustainability pledges require that corporate promises translate into transparent action and measurable environmental impact.",
+      options: [
+        "The corporate sector is increasingly committing to environmental sustainability goals.",
+        "Greenwashing undermines the credibility and impact of corporate net-zero pledges.",
+        "Sustainability pledges are meaningless without transparent action and tangible environmental impact.",
+        "While businesses make ambitious sustainability pledges, they often lack a clear roadmap to achieve them.",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "The passage argues that pledges are only 'genuine' if they move beyond empty promises to 'transparent action' and 'measurable impact' via 'verifiable transition plans.' This highlights the need for substance over just making pledges.",
+    },
+    {
+      text: "Which one of the following statements most accurately captures the dilemma mentioned by the author of the above passage?\n\nPassage X: Ageing populations pose a complex challenge that goes beyond economics to include health, dignity, and intergenerational equity. While rising life expectancy reflects medical progress, many older adults suffer from chronic illness, disability, and mental health issues, often due to lack of adequate social support. Pension systems, designed for smaller retired populations, are under increasing strain. Encouraging older adults to remain productive may ease fiscal pressure, but unequal health and capacities, and persisting social constraints limit such options. Societies must therefore balance economic sustainability with ethical responsibility, ensuring that pension reforms promote inclusion, autonomy, and well-being rather than treating the elderly solely as economic contributors.",
+      options: [
+        "Extending the working life of the elderly can resolve the fiscal stress on pension systems.",
+        "Rising life expectancy has increased economic pressure on governments without improving social outcomes.",
+        "Societies must reconcile the need for sustainable pension systems with ethical obligations towards ageing populations.",
+        "Public health interventions are the most critical means and efficient ways to address the challenges of ageing societies.",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "The passage describes the 'complex challenge' of balancing fiscal sustainability (pensions) with the 'ethical responsibility' of ensuring health and dignity for a population that cannot always be treated as just 'economic contributors.'",
+    },
+    {
+      text: "Based on the above passage, the following assumptions have been made:\nI. Pension reforms that focus only on fiscal sustainability may undermine the dignity and well-being of the older population.\nII. Not all older people are equally capable of extending their working lives due to health and social constraints.\nIII. Improving public health outcomes among the elderly will resolve most of the financial stress on pension systems.\n\nPassage X: Ageing populations pose a complex challenge that goes beyond economics to include health, dignity, and intergenerational equity. While rising life expectancy reflects medical progress, many older adults suffer from chronic illness, disability, and mental health issues, often due to lack of adequate social support. Pension systems, designed for smaller retired populations, are under increasing strain. Encouraging older adults to remain productive may ease fiscal pressure, but unequal health and capacities, and persisting social constraints limit such options. Societies must therefore balance economic sustainability with ethical responsibility, ensuring that pension reforms promote inclusion, autonomy, and well-being rather than treating the elderly solely as economic contributors.",
+      options: ["I and II only", "II only", "I and III only", "I, II and III"],
+      correctAnswer: 0,
+      explanation:
+        "Assumption I is valid because the passage warns against treating the elderly 'solely as economic contributors.' Assumption II is valid as the text mentions 'unequal health and capacities' as a limit. Assumption III is not supported; while health is medical progress, the text says the pension system is strained due to population size changes.",
+    },
+    {
+      text: "Which of the following statements best reflects the central idea of the passage given above?\n\nPassage XI: As the world races to embrace renewable energy, lithium has become an indispensable resource. Lithium-ion batteries are the backbone of this energy transformation, enabling everything from our smartphones to the electric cars that are rapidly becoming commonplace on roads. However, the demand for lithium has significant environmental consequences. Large amounts of water are used in the processing and refining of lithium. Additionally, the mining process often leads to the contamination of local water sources with toxic chemicals. Furthermore, the construction of open-pit mines causes significant land degradation and loss of biodiversity. Also, large piles of crushed rock and mining waste leach harmful chemicals into the surrounding environment, posing long-term risks to the environment. As the demand for lithium continues to grow, it is evident that without more sustainable extraction and processing methods, these environmental impacts will only intensify.",
+      options: [
+        "The process of extraction and processing of lithium is causing extensive environmental damage.",
+        "Lithium is essential for the growth and expansion of the renewable energy sector in an economy.",
+        "Along with the expanding lithium's role in renewable energy, its extraction and use must follow sustainable practices to avoid the problem of environmental damage.",
+        "Lithium has a wide range of applications and is the backbone of the energy transformation enabling everything from our smartphones to the electric cars.",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "The passage outlines that lithium is 'indispensable' for green energy but details its severe environmental costs. It concludes that 'sustainable extraction and processing' are necessary, making (c) the most comprehensive central idea.",
+    },
+    {
+      text: "Based on the above passage, the following assumptions have been made:\nI. The world must explore viable alternatives to lithium, given significant environmental costs.\nII. Current technologies for lithium extraction and use may prove unsustainable in the long term.\n\nPassage XI: As the world races to embrace renewable energy, lithium has become an indispensable resource. Lithium-ion batteries are the backbone of this energy transformation, enabling everything from our smartphones to the electric cars that are rapidly becoming commonplace on roads. However, the demand for lithium has significant environmental consequences. Large amounts of water are used in the processing and refining of lithium. Additionally, the mining process often leads to the contamination of local water sources with toxic chemicals. Furthermore, the construction of open-pit mines causes significant land degradation and loss of biodiversity. Also, large piles of crushed rock and mining waste leach harmful chemicals into the surrounding environment, posing long-term risks to the environment. As the demand for lithium continues to grow, it is evident that without more sustainable extraction and processing methods, these environmental impacts will only intensify.",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 1,
+      explanation:
+        "The passage warns that without 'more sustainable... methods,' environmental impacts will 'intensify,' implying current methods (technologies) are unsustainable long-term. Assumption I is not made; the passage calls for better methods, not necessarily alternatives.",
+    },
+    {
+      text: "Which one of the following statements most accurately captures the central idea of the above passage?\n\nPassage XII: With the increasing role of digital technologies in shaping economic activity, governance, and national security, questions of cybersecurity and digital sovereignty have gained prominence. Much of the internet's core infrastructure such as undersea cables, cloud servers, data centres, and digital platforms is owned or controlled by a small number of private corporations, many of which operate under the legal and regulatory frameworks of foreign countries. While this globally distributed structure has enabled efficiency, innovation, and cross-border connectivity, it also exposes states to vulnerabilities such as data breaches, cyber espionage, and strategic dependence on external legal regimes. In response, governments seek greater control over data flows and digital infrastructure in the name of national security and public interest. However, excessive state control risks fragmenting the internet, limiting innovation, and constraining individual freedoms. The central challenge lies in balancing digital sovereignty with the benefits of an open and interconnected global internet.",
+      options: [
+        "Governments must prioritise national security over innovation in managing digital infrastructure.",
+        "Private corporations should be prevented from controlling critical internet infrastructure.",
+        "Asserting digital sovereignty may undermine the openness and efficiency of the global internet.",
+        "Cybersecurity risks can be eliminated only through complete state ownership of digital networks.",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "The passage explains that asserting 'digital sovereignty' (state control) can lead to internet fragmentation and limited innovation, thereby undermining the benefits of an open global internet. The 'central challenge' is maintaining this balance.",
+    },
+    {
+      text: "Based on the above passage, the following assumptions have been made:\nI. Foreign Legal control over digital infrastructure can create strategic dependencies for states.\nII. Strong cybersecurity can be achieved only by restricting cross-border data flows entirely.\n\nPassage XII: With the increasing role of digital technologies in shaping economic activity, governance, and national security, questions of cybersecurity and digital sovereignty have gained prominence. Much of the internet's core infrastructure such as undersea cables, cloud servers, data centres, and digital platforms is owned or controlled by a small number of private corporations, many of which operate under the legal and regulatory frameworks of foreign countries. While this globally distributed structure has enabled efficiency, innovation, and cross-border connectivity, it also exposes states to vulnerabilities such as data breaches, cyber espionage, and strategic dependence on external legal regimes. In response, governments seek greater control over data flows and digital infrastructure in the name of national security and public interest. However, excessive state control risks fragmenting the internet, limiting innovation, and constraining individual freedoms. The central challenge lies in balancing digital sovereignty with the benefits of an open and interconnected global internet.",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 0,
+      explanation:
+        "Assumption I is valid because the text explicitly states that relying on infrastructure under 'external legal regimes' creates 'strategic dependence.' Assumption II is an absolute claim not supported by the passage, which argues for 'balancing' rather than total restriction.",
+    },
+    {
+      text: 'When does populism become a threat to democracy, according to the passage?\n\nPassage XIII: Populism becomes a threat to democracy when leaders claim to represent the "true will of the people" while undermining institutional checks, independent media, and minority rights. By simplifying complex policy issues into emotionally charged narratives, populist politics often weakens deliberation and delegitimises dissent. Over time, this concentration of authority erodes accountability, replacing democratic pluralism with majoritarian dominance that functions within electoral processes but hollow outs democratic norms.',
+      options: [
+        "When it prioritises popular welfare schemes over fiscal discipline.",
+        "When it mobilises mass support through electoral participation.",
+        "When it undermines institutional checks and delegitimises dissent in the name of popular will.",
+        "When it appeals emotionally to citizens during election campaigns.",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "The passage explicitly states that populism is a threat when it claims to represent the 'true will' to 'undermine institutional checks' and 'delegitimise dissent,' essentially replacing pluralism with unchecked majoritarian dominance.",
+    },
+    {
+      text: "Which of the following statements best reflects the most logical and rational inference that can be made from the passage?\n\nPassage XIV: In today's digital world, the rapid spread of disinformation and misinformation poses a significant and growing threat to the very foundations of democracy. False narratives corrode public trust, as manipulated information can distort perception, spread confusion, and weaken confidence in institutions. This erosion of trust fuels political polarization, social fragmentation, and deepens societal divisions, making constructive dialogue increasingly difficult. Addressing this challenge requires robust regulatory frameworks to limit the circulation of false content and hold actors accountable. Equally important is greater responsibility from social media platforms, which can actively identify, flag, and counter misleading information. Civil society organizations also play a vital role in promoting media literacy, critical thinking, and informed civic engagement. Together, these combined efforts from all can help societies resist manipulation, foster a more informed citizenry, and safeguard democratic integrity.",
+      options: [
+        "The internet and social media are often exploited to distort public perception and disseminate misinformation.",
+        "Constructive dialogue can occur only when it is grounded in social trust.",
+        "Failure to ensure accountability contributes to the unchecked spread of false and misleading information.",
+        "Tackling disinformation in today's digital word requires a coordinated effort from governments, social media platforms, and civil society organizations.",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "The passage identifies the roles of regulators, platforms, and civil society, concluding that 'together, these combined efforts from all' are required. This implies that a coordinated approach across all sectors is the necessary inference.",
+    },
+    {
+      text: "Which of the following statements best reflect the most logical and rational inference/inferences that can be made from the passage?\n1. Central banks cannot bring down inflation without budgetary backing.\n2. The effects of monetary policy depend on the fiscal policies pursued by the government.\n\nPassage XV: As inflation rises, even governments previously committed to budget discipline are spending freely to help households. Higher interest rates announced by central banks are supposed to help produce modest fiscal austerity, because to maintain stable debts while paying more to borrow, governments must cut spending or raise taxes. Without the fiscal backup, monetary policy eventually loses traction. Higher interest rates become inflationary, not disinflationary, because they simply lead governments to borrow more to pay rising debt-service costs. The risk of monetary unmooring is greater when public debt rises, because interest rates become more important to budget deficits.",
+      options: ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: 2,
+      explanation:
+        "Inference 1 is correct as the text states 'without the fiscal backup, monetary policy eventually loses traction.' Inference 2 is correct because the author argues that fiscal choices (like borrowing more to cover interest) can make monetary policy (interest rate hikes) counter-productive.",
+    },
+    {
+      text: "Based on the above passage, the following assumptions have been made:\n1. Fiscal policies of governments are solely responsible for higher prices.\n2. Higher prices do not affect the long-term government bonds.\n\nPassage XV: As inflation rises, even governments previously committed to budget discipline are spending freely to help households. Higher interest rates announced by central banks are supposed to help produce modest fiscal austerity, because to maintain stable debts while paying more to borrow, governments must cut spending or raise taxes. Without the fiscal backup, monetary policy eventually loses traction. Higher interest rates become inflationary, not disinflationary, because they simply lead governments to borrow more to pay rising debt-service costs. The risk of monetary unmooring is greater when public debt rises, because interest rates become more important to budget deficits.",
+      options: ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: 3,
+      explanation:
+        "The passage does not state that fiscal policy is 'solely responsible' for inflation; rather, it says fiscal policy determines whether monetary policy is effective in *fighting* it. Assumption 2 is not discussed in the text at all.",
+    },
+    {
+      text: "Based on the passage, the following assumptions has been made:\nI. The benefits of the green transition, such as innovation and sustainable growth, will automatically reach all sections of society.\nII. Socioeconomic inequality influences how different groups experience the shift toward clean energy.\n\nPassage XVI: The shift to clean energy promises security, innovation, and sustainable growth, but carries significant costs that are not borne equally. Existing inequalities mean some individuals and businesses are better positioned to absorb these costs and access new opportunities, while others risk being left behind. This imbalance could deepen societal divides, creating clear winners and losers. Therefore, energy equity-ensuring fair, inclusive, and affordable access to modern clean energy for all-becomes essential to aligning the green transition with social justice and Sustainable Development Goal 7.",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 1,
+      explanation:
+        "Assumption II is valid as the passage states 'existing inequalities' determine who accesses opportunities. Assumption I is incorrect because the passage says some 'risk being left behind,' meaning benefits do not reach everyone automatically.",
+    },
+    {
+      text: "Which of the following statements represents the most logical and rational inference that can be drawn from the passage?\n\nPassage XVII: The growing discourse on de-dollarization reflects deeper shifts in the global financial order. Several countries are exploring trade settlements in local currencies and diversifying foreign exchange reserves to reduce dependence on the US dollar. While this trend signals a move toward a more multipolar financial system, the dollar continues to dominate due to its liquidity, institutional trust, and role in global markets. De-dollarization therefore represents not an abrupt replacement, but a gradual rebalancing shaped by geopolitical considerations, financial stability concerns, and evolving economic alliances.",
+      options: [
+        "De-dollarization is likely to progress unevenly across countries depending on their geopolitical alignments and financial capacities.",
+        "The dominance of the US dollar will persist only until alternative payment systems achieve comparable global liquidity.",
+        "A multipolar financial order will reduce the stabilising role traditionally played by the US dollar.",
+        "Diversification of reserves signals a deliberate attempt by states to insulate themselves from any dollar-centric risks.",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "The passage describes de-dollarization as a 'gradual rebalancing' shaped by 'geopolitical considerations' and 'evolving alliances,' which implies that the process will vary significantly from country to country.",
+    },
+    {
+      text: "As the finance secretary to the Government of India, which of the following would be your suggestion to the Government, considering the perspectives discussed in the passage?\n\nPassage XVII: The growing discourse on de-dollarization reflects deeper shifts in the global financial order. Several countries are exploring trade settlements in local currencies and diversifying foreign exchange reserves to reduce dependence on the US dollar. While this trend signals a move toward a more multipolar financial system, the dollar continues to dominate due to its liquidity, institutional trust, and role in global markets. De-dollarization therefore represents not an abrupt replacement, but a gradual rebalancing shaped by geopolitical considerations, financial stability concerns, and evolving economic alliances.",
+      options: [
+        "Replace dollar-based trade settlements entirely with rupee-based mechanisms.",
+        "Expand rupee-based settlements selectively while continuing dollar-based trade for most transactions.",
+        "Avoid rupee-based settlements until the dollar loses its global dominance.",
+        "Peg the rupee to another major currency to reduce dollar dependence.",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "The text notes the dollar's continued dominance due to liquidity and trust, suggesting de-dollarization is 'gradual.' Thus, a selective expansion of the rupee while maintaining dollar use for the bulk of transactions is the most pragmatic suggestion aligned with the text.",
+    },
+    {
+      text: "Which of the following statements best captures the central idea of the passage?\n\nPassage XVIII: Contemporary debates on sustainable development are increasingly shaped by the contrasting ideas of degrowth and green growth. Degrowth thinkers argue that perpetual economic expansion strains ecological limits and advocate reduced material consumption, particularly in high-income economies. Green growth advocates, however, maintain that innovation, efficiency, and clean technologies can allow economies to grow while lowering environmental impact. Although both perspectives aim to address environmental degradation, they diverge in their assumptions about the desirability of economic growth and the extent to which technology can reconcile growth with sustainability.",
+      options: [
+        "Degrowth and green growth represent fundamentally opposing responses to environmental degradation, differing mainly in their views on economic growth and technological solutions.",
+        "Sustainable development can only be achieved either by limiting consumption or by accelerating technological innovation.",
+        "The debate between degrowth and green growth centres on whether sustainability requires redefining economic progress or transforming it through efficiency.",
+        "Technological progress is the primary factor distinguishing successful and unsuccessful sustainability strategies.",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "The passage contrasts two frameworks and highlights that they 'diverge in their assumptions about the desirability of economic growth' and 'technological reconcilement,' making (a) the most accurate summary of this fundamental opposition.",
+    },
+    {
+      text: "Which of the following statements represents the most logical and rational inference that can be drawn from the passage?\n\nPassage XIX: Migration policy in destination countries is often shaped by the belief that stricter border controls can effectively regulate cross-border movement. Governments tighten entry rules to address security risks, manage fiscal pressures, and respond to domestic political demands. However, experience suggests that migration flows are influenced not only by enforcement, but also by economic incentives, legal pathways, and cooperation with origin countries. This raises an important question: whether policies centred mainly on restriction can manage migration effectively over time, or whether broader policy instruments are necessary.",
+      options: [
+        "Border control measures of destination countries are ineffective in regulating migration flows in present world due to excessive interdependence and humanitarian obligations of the countries.",
+        "Migration governance depends on multiple policy tools taking into account the local needs of the destination countries as well as cooperation with origin countries.",
+        "Economic incentives are the primary drivers of international migration from source to destination countries.",
+        "Domestic political pressures distorts rational migration policymaking in any country.",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "The passage notes that factors like 'economic incentives' and 'cooperation with origin countries' influence flows just as much as enforcement, suggesting that a comprehensive approach ('multiple policy tools') is the logical alternative to just using restriction.",
+    },
+    {
+      text: "Which of the following, if true, would most weaken the argument presented in the passage?\n\nPassage XIX: Migration policy in destination countries is often shaped by the belief that stricter border controls can effectively regulate cross-border movement. Governments tighten entry rules to address security risks, manage fiscal pressures, and respond to domestic political demands. However, experience suggests that migration flows are influenced not only by enforcement, but also by economic incentives, legal pathways, and cooperation with origin countries. This raises an important question: whether policies centred mainly on restriction can manage migration effectively over time, or whether broader policy instruments are necessary.",
+      options: [
+        "Countries that significantly increased border enforcement experienced sustained decline in irregular migration without expanding legal entry channels.",
+        "Migration flows tend to increase during periods of economic growth in destination countries.",
+        "Cooperation agreements between origin and destination countries have reduced irregular migration in some regions.",
+        "Legal migration pathways reduce incentives for irregular border crossings.",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "The author argues that restriction alone might not be enough and that other instruments are likely needed. If countries successfully reduced migration *only* through enforcement without any other tools, it would invalidate the author's claim that enforcement alone is insufficient.",
+    },
+    {
+      text: "Which one of the following statements most accurately captures the dilemma about quiet quitting mentioned by the author of the above passage?\n\nPassage XX: Quiet quitting happens when employees do their jobs to the best of their contractual ability, but nothing beyond that. While quiet quitting is often a personal coping mechanism, it often has ripple effects on organizations. Productivity may shift, team dynamics can change, and morale can be affected when employees withdraw from extra responsibilities creating a conflict between employee's overall wellbeing organizational productivity. However, it isn't inherently a negative trend and can inspire a more conscious approach to workplace culture. Leaders can respond by fostering supportive environments, offering flexibility, and acknowledging employees' contributions. Employees, too, benefit from reflection. Setting boundaries isn't about doing less; it's about doing better with the energy and focus available. Aligning personal values with professional expectations can transform quiet quitting from a silent protest into a strategic approach to sustainable work. Therefore, quiet quitting is steering a larger cultural shift, a re-evaluation of what it means to work, succeed, and live well.",
+      options: [
+        "Quiet quitting describes the dilemma between personal commitments towards family and professional commitments at the workplace.",
+        "Quiet quitting often creates a conflict between employees' overall wellbeing and organizational productivity.",
+        "Quiet quitting reflects the tension between employee disengagement and exploitative demand at the workplace.",
+        "Quiet quitting highlights the dilemma between profit-driven capitalism and the pursuit of a sustainable work culture.",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "The passage identifies the dilemma as employees setting boundaries for their 'wellbeing' which then creates a 'conflict' with the 'productivity' goals of the organization.",
+    },
+    {
+      text: "Based on the above passage, the following assumptions have been made:\nI. Evolution of culture of Quiet quitting is often suggested to be not good for career progression of the employees.\nII. Quiet quitting arose as a reaction to the profit-centric nature of modern capitalism.\n\nPassage XX: Quiet quitting happens when employees do their jobs to the best of their contractual ability, but nothing beyond that. While quiet quitting is often a personal coping mechanism, it often has ripple effects on organizations. Productivity may shift, team dynamics can change, and morale can be affected when employees withdraw from extra responsibilities creating a conflict between employee's overall wellbeing organizational productivity. However, it isn't inherently a negative trend and can inspire a more conscious approach to workplace culture. Leaders can respond by fostering supportive environments, offering flexibility, and acknowledging employees' contributions. Employees, too, benefit from reflection. Setting boundaries isn't about doing less; it's about doing better with the energy and focus available. Aligning personal values with professional expectations can transform quiet quitting from a silent protest into a strategic approach to sustainable work. Therefore, quiet quitting is steering a larger cultural shift, a re-evaluation of what it means to work, succeed, and live well.",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 3,
+      explanation:
+        "The passage describes quiet quitting as a 'personal coping mechanism' and a 're-evaluation of what it means to work,' but it doesn't assume that it hurts career progression (I) or specifically link its origin to a reaction against 'profit-centric capitalism' (II).",
+    },
+    {
+      text: "Based on the above passage, the following assumptions have been made:\n1. Collection, processing and segregation of municipal waste should be with government agencies.\n2. Resource recovery and recycling require technological inputs that can be best handled by private sector enterprises.\n\nPassage XXI: In India, the segregation of municipal waste at source is rare. Recycling is mostly with the informal sector. More than three-fourths of the municipal budget goes into collection and transportation, which leaves very little for processing/resource recovery and disposal. Where does waste-to-energy fit into all this? Ideally it fits in the chain after segregation (between wet waste and the rest), collection, recycling, and before getting to the landfill. Which technology is most appropriate in converting waste to energy depends on what is in the waste (that is biodegradable versus non-biodegradable component) and its calorific value. The biodegradable component of India's municipal solid waste is a little over 50 per cent, and biomethanation offers a major solution for processing this.",
+      options: ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: 3,
+      explanation:
+        "The passage outlines the budget allocation and technological requirements for waste-to-energy but makes no assumption about whether these tasks *should* be done by the government (1) or the private sector (2).",
+    },
+    {
+      text: "Which one of the following statements best reflects the crux of the passage?\n\nPassage XXI: In India, the segregation of municipal waste at source is rare. Recycling is mostly with the informal sector. More than three-fourths of the municipal budget goes into collection and transportation, which leaves very little for processing/resource recovery and disposal. Where does waste-to-energy fit into all this? Ideally it fits in the chain after segregation (between wet waste and the rest), collection, recycling, and before getting to the landfill. Which technology is most appropriate in converting waste to energy depends on what is in the waste (that is biodegradable versus non-biodegradable component) and its calorific value. The biodegradable component of India's municipal solid waste is a little over 50 per cent, and biomethanation offers a major solution for processing this.",
+      options: [
+        "Generation of energy from municipal solid waste is inexpensive.",
+        "Biomethanation is the most ideal way of generating energy from municipal solid waste.",
+        "Segregation of municipal solid waste is the first step in ensuring the success of waste-to-energy plants.",
+        "The biodegradable component of India's municipal solid waste is not adequate to provide energy from Waste efficiently/effectively.",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "The passage describes the waste management chain and notes that waste-to-energy 'fits in the chain after segregation.' Since technology choice depends on waste components, segregation is the vital 'first step' mentioned in the text.",
+    },
+    {
+      text: "Which of the following statements represents the most logical and rational inference that can be drawn from the passage?\n\nPassage XXII: Advances in space technology have renewed interest in the commercial exploitation of outer space, particularly the mining of asteroids and celestial bodies. While existing international agreements prohibit national sovereignty over outer space, they remain ambiguous on the ownership of extracted resources. While the proponents of the commercial exploitation of outer space argue that commercial ownership rights over the extracted resources are necessary to incentivise private investment and innovation, the critics contend that unregulated commercialization could lead to monopolisation, conflict, and unequal access for all. This raises the fundamental question of how to reconcile commercial activity in space with the principle that outer space is a shared domain of humanity.",
+      options: [
+        "Commercial space mining is an inevitable reality in the near future, given technological progress.",
+        "International space law lacks sufficient clarity on how to regulate the emerging commercial interest in the resource extraction from outer space.",
+        "Private investment in commercial exploitation of outer space will undermine international cooperation.",
+        "National governments should prohibit private participation in space mining.",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "The passage explicitly points out that current agreements are 'ambiguous on the ownership of extracted resources,' supporting the inference that existing laws are not clear enough to regulate commercial extraction.",
+    },
+    {
+      text: "Based on the above passage, the following assumptions have been made:\nI. Clear and commonly accepted rules are necessary to prevent conflict and inequitable outcomes in the commercial exploitation of outer space.\nII. Allowing commercial extraction of space resources is incompatible with the idea of outer space as a shared domain of humanity.\n\nPassage XXII: Advances in space technology have renewed interest in the commercial exploitation of outer space, particularly the mining of asteroids and celestial bodies. While existing international agreements prohibit national sovereignty over outer space, they remain ambiguous on the ownership of extracted resources. While the proponents of the commercial exploitation of outer space argue that commercial ownership rights over the extracted resources are necessary to incentivise private investment and innovation, the critics contend that unregulated commercialization could lead to monopolisation, conflict, and unequal access for all. This raises the fundamental question of how to reconcile commercial activity in space with the principle that outer space is a shared domain of humanity.",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 0,
+      explanation:
+        "Assumption I is valid because the text mentions that 'unregulated' activity could lead to 'conflict' and 'unequal access.' Assumption II is not made; rather, it is presented as a 'fundamental question' of how to 'reconcile' the two, not a settled incompatibility.",
+    },
+    {
+      text: "As the chairman of the committee what would be your advice to the government, keeping in mind the perspective presented in the passage?\n\nPassage XXIII: Advances in genetic editing technologies such as CRISPR have expanded the ability to alter human, animal, and plant genomes with unprecedented precision. While these tools hold promise for treating genetic diseases and improving food security, they also raise ethical concerns about unintended consequences, unequal access, and the limits of human intervention in biological processes. As scientific capability advances faster than regulatory consensus, societies face the challenge of determining how innovation can proceed responsibly without eroding ethical safeguards or public trust.",
+      options: [
+        "Approve unrestricted clinical use to avoid delaying scientific progress.",
+        "Prohibit all clinical applications until comprehensive international regulations are established.",
+        "Allow controlled clinical trials under strict ethical oversight and make provision for a periodic review.",
+        "To take suggestions from a group of international scientists who are specialist in the matter and then arrive at a decision.",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "The passage argues for innovation to 'proceed responsibly' without eroding 'ethical safeguards.' A controlled trial with strict oversight and periodic reviews provides a way to advance science while managing the ethical and safety risks highlighted.",
+    },
+    {
+      text: "Based on the above passage, the following assumptions have been made:\nI. Governments must regulate genetic editing to ensure its safe and ethical use.\nII. Developing humans with desired traits through genetic editing could disrupt the course of natural evolution.\n\nPassage XXIII: Advances in genetic editing technologies such as CRISPR have expanded the ability to alter human, animal, and plant genomes with unprecedented precision. While these tools hold promise for treating genetic diseases and improving food security, they also raise ethical concerns about unintended consequences, unequal access, and the limits of human intervention in biological processes. As scientific capability advances faster than regulatory consensus, societies face the challenge of determining how innovation can proceed responsibly without eroding ethical safeguards or public trust.",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 2,
+      explanation:
+        "Assumption I is valid as the text mentions the 'challenge' of determining how to proceed responsibly (regulatory consensus). Assumption II is valid as it falls under the 'ethical concerns' about the 'limits of human intervention in biological processes' mentioned in the text.",
+    },
+    {
+      text: "Based on the above passage, the following assumptions have been made:\nI. As central banks across the world adopt CBDCs, the use of crypto assets would decline.\nII. The rise of CBDCs may accelerate the growth of digital finance and strengthen the digital economy.\n\nPassage XXIV: Central Bank Digital Currencies (CBDCs) blend the convenience of digital payments with state-backed trust. As central banks worldwide explore CBDCs, their emergence could reshape the global financial landscape and crypto regulation. One possibility is that CBDCs will prompt governments to impose stricter controls on decentralized cryptocurrencies to preserve monetary authority and prevent illicit activities. Increased oversight of crypto exchanges and transactions may follow. Conversely, CBDCs might legitimize and accelerate the acceptance of digital assets by familiarizing the public with digital finance. This could encourage regulators to adopt a balanced framework that promotes innovation while ensuring financial stability and consumer protection in the expanding digital economy.",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 1,
+      explanation:
+        "The passage explicitly suggests CBDCs could 'accelerate the acceptance of digital assets' and 'strengthen the digital economy' (II). However, it also suggests they could *legitimize* digital assets, so a 'decline' (I) is not a stated assumption.",
+    },
+    {
+      text: "Based on the above passage, the following assumptions have been made:\nI. Homogenization through globalization is eroding the diverse cultural heritage of communities.\nII. Preserving intangible cultural heritage is essential to safeguard the living traditions of humankind.\n\nPassage XXV: Cultural heritage does not end at monuments and collections of objects. It also includes the intangible cultural heritage comprising of traditions or living expressions inherited from our ancestors and passed on to our descendants. These include oral traditions, performing arts, social practices, rituals, festive events, knowledge and practices concerning nature and the skills to produce traditional crafts. Rooted in inclusivity and representativeness, the intangible heritage fosters a shared sense of identity and belonging within communities. It is an important factor in maintaining cultural diversity in the face of growing globalization. An understanding of the intangible cultural heritage of different communities therefore helps with intercultural dialogue, and encourages mutual respect for varied ways of life.",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 2,
+      explanation:
+        "The passage describes intangible heritage as a factor in 'maintaining diversity' against 'growing globalization' (Assumption I) and defines it as 'living expressions... passed on to our descendants,' making its preservation essential (Assumption II).",
+    },
+    {
+      text: "What can be inferred about the broader societal impact, as suggested by the final lines of the passage?\n\nPassage XXVI: In hopeful queues, India's youth waits-not for change, but for a hallowed government desk. Dreams shrink into answer sheets, time turns into endless preparation, and the heart learns the grammar of patience and panic. Every rank announced is a verdict on worth; every withheld roll number, a quiet corrosion of trust. What grows in this long season of waiting? Not fields, not workshops, not new ideas, not creativity; only a generation trained in the delicate art of hoping softly, while the system measures merit in marks and endless delays.",
+      options: [
+        "It leads to a lack of highly skilled professionals in the private sector in the country.",
+        "It results in the systematic stifling of economic and creative productivity.",
+        "It ensures a fair and transparent and effective selection of the most capable administrators.",
+        "It strengthens the youth's faith in institutional processes and outcomes.",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "The passage concludes by stating that 'not fields, not workshops, not new ideas, not creativity' grow during this period. This implies a systematic lack of real-world economic and creative output because the youth are focused purely on the 'grammar of patience' for exams.",
+    },
+    {
+      text: "Which of the following statements best captures the central idea of the passage?\n\nPassage XXVI: In hopeful queues, India's youth waits-not for change, but for a hallowed government desk. Dreams shrink into answer sheets, time turns into endless preparation, and the heart learns the grammar of patience and panic. Every rank announced is a verdict on worth; every withheld roll number, a quiet corrosion of trust. What grows in this long season of waiting? Not fields, not workshops, not new ideas, not creativity; only a generation trained in the delicate art of hoping softly, while the system measures merit in marks and endless delays.",
+      options: [
+        "The protracted pursuit of government employment is extracting a heavy socio-psychological toll on Indian youth and the nation's broader potential.",
+        "The intense competition for government jobs in India is a necessary filter to ensure only the most dedicated candidates enter public service.",
+        "India's youth are increasingly disillusioned with the private sector, leading them to seek meaning and security in stable government careers.",
+        "The examination system for government jobs, while stressful, is a fair and transparent mechanism that upholds the principle of meritocracy.",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "The entire passage describes the 'shrinking' of dreams and 'corrosion of trust' as youth wait years for government jobs. It emphasizes the loss of creative and economic potential, making (a) the most accurate capture of this heavy toll on both individuals and the nation.",
+    },
+  ],
 };
 
 module.exports = sfgData;
-
