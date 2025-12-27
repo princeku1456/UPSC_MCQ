@@ -137,6 +137,26 @@ body {
     box-shadow: 0 10px 15px -3px rgba(245, 158, 11, 0.3);
 }
 
+/* New Secondary Button (Blue/Indigo) - Matches the Navbar/Titles */
+.btn-secondary-custom {
+    background: linear-gradient(to right, #1454dd, #1e40af);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary-custom:hover {
+    background: linear-gradient(to right, #1e40af, #1e3a8a);
+    transform: translateY(-2px);
+    color: white;
+    box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+}
+
 /* ============================
    QUIZ FEEDBACK & COLORS
    ============================ */
