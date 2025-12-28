@@ -7,6 +7,16 @@ async function loadUserDashboard(forceRefresh = false) {
 
   const historyContainer = document.getElementById("history-container");
 
+  // OPTIMIZATION: Load from local cache first to save reads
+  if (!forceRefresh) {
+    const cachedHistory = localStorage.getItem("user_history_cache");
+    if (cachedHistory && userHistory.length === 0) {
+      userHistory = JSON.parse(cachedHistory);
+      renderDashboardUI();
+      if (dashboardDataLoaded) return;
+    }
+  }
+
   if (!forceRefresh && dashboardDataLoaded && userHistory.length > 0) {
     renderDashboardUI();
     return;
@@ -31,8 +41,11 @@ async function loadUserDashboard(forceRefresh = false) {
     }));
 
     userHistory = results;
+    
+    // OPTIMIZATION: Sync to local storage
+    localStorage.setItem("user_history_cache", JSON.stringify(results));
+    
     dashboardDataLoaded = true;
-
     renderDashboardUI();
   } catch (error) {
     console.error("Error loading dashboard:", error);
@@ -120,7 +133,6 @@ function renderDashboardUI() {
             </div>
         `;
 
-    // Klik dari dashboard/performance diset sebagai source 'performance'
     card.querySelector(".review-btn").onclick = () => reviewTest(res, "performance");
     historyContainer.appendChild(card);
   });
