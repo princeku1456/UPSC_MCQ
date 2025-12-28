@@ -104,17 +104,18 @@ function renderChapters(subjectKey) {
 
     const subjectPrefix = subjectKey.replace(/\s+/g, "_") + "_";
     const fullChapterId = subjectPrefix + chapId;
-    
+
     // Cari hasil tes terbaru untuk chapter ini
-    const latestResult = userHistory && userHistory.find((h) => h.chapterId === fullChapterId);
+    const latestResult =
+      userHistory && userHistory.find((h) => h.chapterId === fullChapterId);
     const hasTaken = !!latestResult;
-    
+
     const startBtnText = hasTaken ? "↻ Retake Test" : "🚀 Start Test";
-    
+
     // Siapkan HTML tombol review jika sudah pernah dikerjakan
     let reviewBtnHtml = "";
     if (hasTaken) {
-        reviewBtnHtml = `
+      reviewBtnHtml = `
             <button class="btn btn-secondary-custom w-100 mt-2 review-perf-btn">
                 👁 Review Performance
             </button>
@@ -142,9 +143,9 @@ function renderChapters(subjectKey) {
 
     // Aksi tombol Review (Source diset 'chapters')
     if (hasTaken) {
-        col.querySelector(".review-perf-btn").onclick = () => {
-            reviewTest(latestResult, "chapters");
-        };
+      col.querySelector(".review-perf-btn").onclick = () => {
+        reviewTest(latestResult, "chapters");
+      };
     }
 
     row.appendChild(col);
@@ -163,22 +164,22 @@ function getCorrectIndex(question) {
   return -1;
 }
 
-// Updated loadQuiz to include reviewSource tracking
+// Updated loadQuiz to include multi-layer caching
 async function loadQuiz(
   subjectKey,
   chapterId,
   chapterName,
   reviewMode = false,
   pastData = null,
-  source = null // parameter baru
+  source = null
 ) {
   if (!currentUser || !currentUser.emailVerified) return showHome();
   currentSubject = subjectKey;
   currentChapterId = subjectKey.replace(/\s+/g, "_") + "_" + chapterId;
   currentChapterName = decodeURIComponent(chapterName);
-  
+
   isReviewMode = reviewMode;
-  reviewSource = source; // Simpan asal navigasi
+  reviewSource = source;
 
   hideAllSections();
   document.getElementById("quiz-section").style.display = "block";
@@ -192,17 +193,27 @@ async function loadQuiz(
         </div>`;
 
   try {
+    const cacheKey = "quiz_cache_" + currentChapterId;
+
+    // OPTIMIZATION: Memory and LocalStorage check
     if (quizDataCache[currentChapterId]) {
       currentQuizData = quizDataCache[currentChapterId];
     } else {
-      const doc = await db.collection("quizzes").doc(currentChapterId).get();
-      if (!doc.exists) {
-        toastr.error("Quiz questions not found in database!");
-        showDashboard();
-        return;
+      const localCached = localStorage.getItem(cacheKey);
+      if (localCached) {
+        currentQuizData = JSON.parse(localCached);
+        quizDataCache[currentChapterId] = currentQuizData;
+      } else {
+        const doc = await db.collection("quizzes").doc(currentChapterId).get();
+        if (!doc.exists) {
+          toastr.error("Quiz questions not found in database!");
+          showDashboard();
+          return;
+        }
+        currentQuizData = doc.data().questions;
+        quizDataCache[currentChapterId] = currentQuizData;
+        localStorage.setItem(cacheKey, JSON.stringify(currentQuizData));
       }
-      currentQuizData = doc.data().questions;
-      quizDataCache[currentChapterId] = currentQuizData;
     }
 
     currentQuestionIndex = 0;
@@ -252,7 +263,7 @@ function reviewTest(resultObj, source = "performance") {
     resultObj.chapterName,
     true,
     resultObj,
-    source // Teruskan source ke loadQuiz
+    source
   );
 }
 
@@ -260,29 +271,41 @@ function reviewTest(resultObj, source = "performance") {
    REVIEW MODE LOGIC, LEADERBOARD & STATS
    ========================================= */
 
+// OPTIMIZATION: Request de-duplication tracker
+let statsFetchPromises = {};
+
 async function getGlobalStats(chapterId) {
   if (globalStatsCache[chapterId]) {
     return globalStatsCache[chapterId];
   }
-  try {
-    const doc = await db.collection("chapter_stats").doc(chapterId).get();
-    if (!doc.exists) return null;
-    const data = doc.data();
-    const stats = {
-      avg: data.average || 0,
-      highest: data.highestScore || 0,
-      totalAttempts: data.totalAttempts || 0,
-      allScores: data.allScores || [],
-      leaderboard: data.leaderboard || [],
-      correctCounts: data.correctCounts || [],
-      attemptedCounts: data.attemptedCounts || [],
-    };
-    globalStatsCache[chapterId] = stats;
-    return stats;
-  } catch (e) {
-    console.error("Error fetching global stats", e);
-    return null;
-  }
+
+  if (statsFetchPromises[chapterId]) return statsFetchPromises[chapterId];
+
+  statsFetchPromises[chapterId] = (async () => {
+    try {
+      const doc = await db.collection("chapter_stats").doc(chapterId).get();
+      if (!doc.exists) return null;
+      const data = doc.data();
+      const stats = {
+        avg: data.average || 0,
+        highest: data.highestScore || 0,
+        totalAttempts: data.totalAttempts || 0,
+        allScores: data.allScores || [],
+        leaderboard: data.leaderboard || [],
+        correctCounts: data.correctCounts || [],
+        attemptedCounts: data.attemptedCounts || [],
+      };
+      globalStatsCache[chapterId] = stats;
+      return stats;
+    } catch (e) {
+      console.error("Error fetching global stats", e);
+      return null;
+    } finally {
+      delete statsFetchPromises[chapterId];
+    }
+  })();
+
+  return statsFetchPromises[chapterId];
 }
 
 async function loadLeaderboard(chapterId) {
@@ -923,7 +946,7 @@ function submitAll(forceSubmit = false) {
     userEmail: currentUser ? currentUser.email : "guest",
     scorePercent: parseFloat(percentage),
     score: finalScore,
-    timestamp: new Date().toISOString(),
+    rankTime: new Date().toISOString(),
   };
 
   const resultObject = {
@@ -956,7 +979,6 @@ function submitAll(forceSubmit = false) {
   reviewBtn.className = "btn btn-primary-custom px-4 shadow";
   reviewBtn.innerHTML = "👁 Review Performance";
   reviewBtn.onclick = () => {
-    // Navigasi ke review setelah beres test tetap arahkan balik ke chapter page
     const subjectPrefix = currentSubject.replace(/\s+/g, "_") + "_";
     const originalChapId = currentChapterId.replace(subjectPrefix, "");
     loadQuiz(
@@ -965,7 +987,7 @@ function submitAll(forceSubmit = false) {
       encodeURIComponent(currentChapterName),
       true,
       resultObject,
-      "chapters" 
+      "chapters"
     );
   };
 
@@ -986,9 +1008,10 @@ function submitAll(forceSubmit = false) {
         ...resultObject,
       })
       .then(async () => {
-        // FIX: Local update before clearing cache
-        userHistory.unshift(resultObject);
+        // OPTIMIZATION: Immediate local history update to avoid re-fetch
+        userHistory.unshift({ ...resultObject, timestamp: new Date() });
         if (userHistory.length > 20) userHistory.pop();
+        localStorage.setItem("user_history_cache", JSON.stringify(userHistory));
         dashboardDataLoaded = true;
 
         delete globalStatsCache[currentChapterId];

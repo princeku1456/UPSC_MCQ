@@ -13,13 +13,10 @@ let currentQuestionIndex = 0;
 let userAnswers = {};
 let quizSubmitted = false;
 let isReviewMode = false;
-let reviewSource = null; // NEW: Melacak asal review ('performance' atau 'chapters')
+let reviewSource = null;
 let isRegistering = false;
 
-// NEW: Cache for lazy-loaded quiz data to prevent redundant fetches
 const quizDataCache = {};
-
-// OPTIMIZATION: Cache Variables
 let userHistory = [];
 let dashboardDataLoaded = false;
 let globalStatsCache = {};
@@ -27,7 +24,6 @@ let leaderboardCache = {};
 let performanceChartInstance = null;
 let comparisonChartInstance = null;
 let quizTimerInterval = null;
-// NEW: Store stats for review mode rendering
 let currentReviewStats = null;
 
 /* =========================================
@@ -36,32 +32,20 @@ let currentReviewStats = null;
 
 auth.onAuthStateChanged((user) => {
   if (user) {
-    // SECURE GATE: Refresh user state to check latest verification status
     user
       .reload()
       .then(() => {
         const freshUser = auth.currentUser;
-
         if (freshUser && !freshUser.emailVerified) {
-          // Not verified: Ensure they stay on home screen and log out
           currentUser = null;
           updateUIForLogout();
           showHome();
           auth.signOut();
           return;
         }
-
         currentUser = freshUser;
         updateUIForLogin();
-
-        // Standard original navigation logic
-        if (
-          document.getElementById("dashboard-section").style.display === "block"
-        ) {
-          showDashboard();
-        } else {
-          showDashboard();
-        }
+        showDashboard();
       })
       .catch((err) => {
         console.error("Auth sync error:", err);
@@ -78,7 +62,6 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
-// Check theme preference on load
 document.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("theme") || "light";
   applyTheme(savedTheme);
@@ -118,19 +101,12 @@ document.getElementById("auth-form").addEventListener("submit", (e) => {
     auth
       .createUserWithEmailAndPassword(email, pass)
       .then((userCredential) => {
-        // 1. Send verification link to new user
         userCredential.user.sendEmailVerification();
         toastr.success(
           "Account created! Please verify your email, then login."
         );
-
-        // 2. Clear Form
         document.getElementById("auth-password").value = "";
-
-        // 3. Force back to Login Mode
         if (isRegistering) toggleAuthMode();
-
-        // 4. Force Logout (Prevent auto-login)
         auth.signOut();
       })
       .catch((err) => handleAuthError(err));
@@ -138,7 +114,6 @@ document.getElementById("auth-form").addEventListener("submit", (e) => {
     auth
       .signInWithEmailAndPassword(email, pass)
       .then((userCredential) => {
-        // Block manual login if not verified
         if (!userCredential.user.emailVerified) {
           toastr.error("Login denied: Email not verified.");
           auth.signOut();
@@ -150,9 +125,7 @@ document.getElementById("auth-form").addEventListener("submit", (e) => {
   }
 });
 
-// FRIENDLY ERROR HANDLING
 function handleAuthError(error) {
-  console.error("Auth Code:", error.code);
   switch (error.code) {
     case "auth/email-already-in-use":
       toastr.error("This email is already registered.");
@@ -163,9 +136,6 @@ function handleAuthError(error) {
     case "auth/user-not-found":
     case "auth/wrong-password":
       toastr.error("Invalid email or password.");
-      break;
-    case "auth/too-many-requests":
-      toastr.error("Server busy. Please try again later.");
       break;
     default:
       toastr.error(error.message);
@@ -232,17 +202,12 @@ function showTestSelection() {
   renderSubjects();
 }
 
-/**
- * UPDATED EXIT LOGIC
- */
 function exitQuiz() {
   if (quizTimerInterval) clearInterval(quizTimerInterval);
 
   if (isReviewMode && reviewSource === "performance") {
-    // Kembali ke Performance Review jika masuk dari Dashboard/Performance
     showPerformance();
   } else {
-    // Kembali ke Chapter list jika masuk dari chapter page atau setelah selesai tes
     hideAllSections();
     document.getElementById("test-selection-section").style.display = "block";
     renderChapters(currentSubject);
