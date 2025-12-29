@@ -1997,418 +1997,970 @@ const sfgData = {
   //     "explanation": "The term 'Puisne' means junior or inferior in rank. In legal context, puisne judges refer to all judges of a court other than the Chief Justice. The sanctioned strength of the SC currently is 34 (CJI + 33 puisne judges)."
   //   }
   // ]
-  "Test-5-CSAT (322101)": [
-    {
-      text: "Which of the following statements best reflects the logical inference from the passage given above?\n\nPassage I: Good corporate governance structures encourage companies to provide accountability and control. A fundamental reason why corporate governance has moved onto the economic and political agenda worldwide has been the rapid growth in international capital markets. Effective corporate governance enhances access to external financing by firms, leading to greater investment, higher growth and employment. Investors look to place their funds where the standards of disclosure, of timely and accurate financial reporting, and of equal treatment to all stakeholders are met.",
-      options: [
-        "It is an important agenda of the countries around the world to ensure access to good external financing.",
-        "Good corporate governance improves the credibility of the firms.",
-        "International capital markets ensure that the firms maintain good corporate governance.",
-        "Good corporate governance paves the way for robust supply chains.",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The passage explains that investors prefer placing funds in companies that meet high standards of disclosure and accurate financial reporting. By providing such accountability and control, good corporate governance enhances a firm's credibility, making it more attractive for external financing and investment.",
-    },
-    {
-      text: "Which of the following, if true, would most appropriately strengthen the author's argument in the passage?\n\nPassage II: The rise of autonomous vehicles has introduced complex questions of legal liability when machine-driven errors cause accidents. Unlike conventional driving, responsibility is no longer limited to human drivers but may extend to software developers, manufacturers, and data providers. While assigning liability to firms could incentivise safer design, it also risks slowing innovation. Conversely, limiting liability may leave victims inadequately compensated. The challenge lies in developing legal frameworks that ensure accountability without discouraging technological progress.",
-      options: [
-        "Countries that imposed strict liability due to accidents by autonomous vehicles on their manufacturers witnessed a sharp decline in start-ups entering the sector.",
-        "Advances in technology have reduced the frequency of software-related driving errors in Autonomous vehicles.",
-        "Victims of accidents involving autonomous vehicles often face difficulties in identifying responsible parties under existing laws.",
-        "Human error due to non availability of avenues for comprehensive training on driving autonomous vehicles continues to be a major cause of accidents.",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "The author argues that assigning liability to firms 'risks slowing innovation.' Option (a) provides a concrete real-world example of this risk by showing that strict liability led to a decline in innovation (start-ups), thereby directly supporting the author's concerns about discouraging technological progress.",
-    },
-    {
-      text: "Which of the following statements represents the most logical and rational inference that can be drawn from the passage?\n\nPassage II: The rise of autonomous vehicles has introduced complex questions of legal liability when machine-driven errors cause accidents. Unlike conventional driving, responsibility is no longer limited to human drivers but may extend to software developers, manufacturers, and data providers. While assigning liability to firms could incentivise safer design, it also risks slowing innovation. Conversely, limiting liability may leave victims inadequately compensated. The challenge lies in developing legal frameworks that ensure accountability without discouraging technological progress.",
-      options: [
-        "Legal systems must eventually prioritise technological innovation over victim compensation in the case of autonomous vehicles.",
-        "Assigning liability in autonomous vehicle accidents requires redefining traditional notions of responsibility beyond individual human agency.",
-        "Autonomous vehicle technology is advancing faster than the capacity of law to regulate it effectively.",
-        "Strict manufacturer liability is likely to become the dominant global model for regulating autonomous vehicles.",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Traditional liability focuses on the human driver (individual human agency). However, the passage notes that responsibility now extends to technical entities like software developers and data providers. This indicates that legal frameworks must move beyond traditional concepts of individual fault to address systemic and automated errors.",
-    },
-    {
-      text: "Based on the above passage, the following assumptions have been made:\nI. India needs to reform its economic policies to emerge as a global leader.\nII. The process of creative destruction is beneficial for the economy in the long run.\nIII. Despite being drivers of progress, risk taking and innovation are often perceived negatively in society.\nIV. Ease of doing business would aid the process of creative destruction in the economy.\n\nPassage III: Economic ecosystems evolve through a process of 'creative destruction'. The inefficient are weeded out over time and replaced by those that are more competent. Thus, the competitiveness of an economy is critically dependent on its ability to encourage and endure a churn despite all the disruptions it may cause in the short run. However, India exhibits a relatively low level of such dynamism, inconsistent with an economy aspiring to high innovation and risk taking. So what needs to be done? The first step should be to change a deeply ingrained social attitude that looks with suspicion at risk taking and innovation. Second, financial regulations and institutional processes must be reoriented to enable easier entry, exit and reallocation of capital. Third, excessive protection of entrenched incumbents across sectors should be curtailed. Together, these measures can go a long way in fostering greater innovation, adaptability and long term resilience in the Indian economy.",
-      options: [
-        "I, II and III only",
-        "II, III and IV only",
-        "II and III only",
-        "III and IV only",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "Assumption II is supported by the text's claim that creative destruction replaces the inefficient with the competent. Assumption III is supported by the mention of a 'deeply ingrained social attitude' that views risk with suspicion. Assumption IV is supported by the call to reorient processes for 'easier entry, exit and reallocation of capital.' Assumption I is not explicitly made, as the text focuses on 'resilience' rather than 'global leadership.'",
-    },
-    {
-      text: "Which of the following inference(s) can be correctly drawn from the passage given above?\nI. Start-ups derive their competitive advantage largely from their ability to bypass conventional market constraints.\nII. Market disruption driven by start-ups can produce both efficiency gains and systemic risks.\n\nPassage IV: The rapid rise of start-ups has reshaped traditional markets by introducing new business models, technologies, and modes of consumer engagement. By prioritising speed, scalability, and innovation, start-ups often challenge established firms that rely on stability, regulation, and incremental change. While this disruption can increase efficiency and consumer choice, it may also generate uncertainty, job displacement, and regulatory gaps. The resulting tension highlights a broader economic dilemma: how to encourage innovation-driven growth without undermining market stability and long-term institutional resilience.",
-      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-      correctAnswer: 2,
-      explanation:
-        "Inference I is correct as start-ups 'challenge' firms relying on 'stability' and 'regulation.' Inference II is correct as the passage notes disruption 'can increase efficiency' (gains) but 'may also generate uncertainty' and 'regulatory gaps' (risks).",
-    },
-    {
-      text: "Which of the following statements best reflects the most logical, rational and crucial message implied by the passage?\n\nPassage V: Bhopal's \"Kachra Cafe\" is a unique waste management initiative that reimagines waste as a resource. The cafe collects 19 types of waste, including paper, glass, metal, plastic, e-waste, and old clothes. Citizens are encouraged to bring segregated and clean items to the cafe. Each contribution is weighed and converted into digital points, redeemable for snacks or handmade products such as tote bags, envelopes, diyas, and home decor items. The collected waste goes to the municipal corporation's Material Recovery Facilities and is then sent to authorized recyclers, promoting a circular economy. A key feature that makes this initiative unique is the participation of women. Women create and sell snacks and handicrafts made from upcycled materials, turning waste into a livelihood opportunity. As Bhopal aims for increased cleanliness, Kachra Cafe stands out as a replicable, people driven model for sustainability.",
-      options: [
-        "Waste management practices should be modelled on the principles of circular economy.",
-        "Efficient waste management can convert waste into a resource and a livelihood opportunity.",
-        "Bhopal's Kachra café model should be replicated for sustainable waste management.",
-        "Active participation of communities, especially women, strengthens sustainable development efforts.",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "While the passage mentions circular economy and community participation, the most logical and overarching message is how waste can be successfully converted into both a physical 'resource' (upcycled products) and a socioeconomic 'livelihood opportunity' (for women).",
-    },
-    {
-      text: 'Based on the author\'s depiction, the "living ecosystem" view of markets is characterized by:\n\nPassage VI: Beyond spreadsheets and stock tickers, a quiet revolution is unfolding in the heart of capitalism. Environmental, Social, and Governance (ESG) investing is not merely a new metric but a philosophical crossroads, forcing a fundamental question: what is wealth for? It challenges the long-held axiom of profit as a solitary end, proposing instead a vision where capital is a steward for the future. This shift imagines markets not as cold engines of extraction but as living ecosystems where financial return, planetary health, and social equity are intertwined roots of the same tree. The future of capitalism now hangs in the balance-between a legacy defined solely by accumulation and a new destiny written in the language of holistic value.',
-      options: [
-        "The independent pursuit of financial and social goals.",
-        "The intrinsic and inseparable interconnection of various forms of value.",
-        "The dominance of natural resource-based industries.",
-        "The rapid evolution of financial technologies.",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The passage describes the market as an ecosystem where financial, planetary, and social aspects are 'intertwined roots of the same tree,' implying that they are not independent but are fundamentally and inseparably connected.",
-    },
-    {
-      text: "The vision of capitalism described in the latter part of the passage would be most difficult to realize if:\n\nPassage VI: Beyond spreadsheets and stock tickers, a quiet revolution is unfolding in the heart of capitalism. Environmental, Social, and Governance (ESG) investing is not merely a new metric but a philosophical crossroads, forcing a fundamental question: what is wealth for? It challenges the long-held axiom of profit as a solitary end, proposing instead a vision where capital is a steward for the future. This shift imagines markets not as cold engines of extraction but as living ecosystems where financial return, planetary health, and social equity are intertwined roots of the same tree. The future of capitalism now hangs in the balance-between a legacy defined solely by accumulation and a new destiny written in the language of holistic value.",
-      options: [
-        "The metrics for measuring planetary health and social equity remain non-financial and qualitative.",
-        "Short-term financial performance continues to be the dominant criterion for market success.",
-        "New technologies emerge to better track corporate environmental impact.",
-        "Public awareness of climate change continues to rise.",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The passage advocates for a move toward 'holistic value' and 'capital as a steward for the future.' This shift would be most difficult if the market remains stuck in the old paradigm of prioritizing 'short-term financial performance' above all other values.",
-    },
-    {
-      text: "Which of the following can be inferred from the passage regarding blockchain's role in supply chains and service delivery?\n\nPassage VII: Blockchain technology is emerging as a powerful tool to enhance transparency and accountability in supply chains. By recording every transaction on an immutable, decentralized ledger, blockchain enables stakeholders to trace goods, payments, and services in real time. This reduces the scope for corruption, fraud, and inefficiency that often plague traditional delivery systems. For instance, in public service delivery, blockchain can ensure that welfare benefits, subsidies, or healthcare services reach the intended recipients without middlemen or data manipulation. Similarly, in commercial supply chains, it improves product authenticity, tracks environmental compliance, and strengthens consumer trust. Therefore, by integrating blockchain into service delivery frameworks, governments and businesses can create systems characterized by greater trust, efficiency, and inclusivity.",
-      options: [
-        "While it increases operational efficiency, blockchain also raises significant data privacy concerns that limit its adoption by governments.",
-        "Blockchain's ability to record transactions in a decentralized and unchangeable manner builds trust among stakeholders by making processes more transparent and traceable.",
-        "The primary advantage of blockchain lies in its ability to completely remove human intermediaries from all stages of service and supply chains.",
-        "Blockchain technology is more effective in commercial supply chains than in public service delivery frameworks.",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The passage explains that blockchain records transactions on an 'immutable, decentralized ledger,' allowing real-time tracing. This transparency and unchangeable record-keeping are the features that build trust and reduce corruption.",
-    },
-    {
-      text: "Based on the above passage, the following assumptions have been made:\nI. Use of blockchain technology in supply chains would completely eliminate corruption from the system.\nII. Incorporating blockchain into service delivery promotes good governance through greater accountability.\n\nPassage VII: Blockchain technology is emerging as a powerful tool to enhance transparency and accountability in supply chains. By recording every transaction on an immutable, decentralized ledger, blockchain enables stakeholders to trace goods, payments, and services in real time. This reduces the scope for corruption, fraud, and inefficiency that often plague traditional delivery systems. For instance, in public service delivery, blockchain can ensure that welfare benefits, subsidies, or healthcare services reach the intended recipients without middlemen or data manipulation. Similarly, in commercial supply chains, it improves product authenticity, tracks environmental compliance, and strengthens consumer trust. Therefore, by integrating blockchain into service delivery frameworks, governments and businesses can create systems characterized by greater trust, efficiency, and inclusivity.",
-      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-      correctAnswer: 1,
-      explanation:
-        "Assumption II is valid as the text links blockchain to greater accountability and inclusivity. Assumption I is an overstatement; the passage says it 'reduces the scope for corruption,' not that it 'completely eliminates' it.",
-    },
-    {
-      text: "When we meet other people while we travel, we learn to differentiate between:\n\nPassage VIII: Only with long experience and opening of his wares on many a beach where his language is not spoken, will the merchant come to know the worth of what he carries, and what is parochial and what is universal in his choice. Such delicate goods as justice, love and honour, courtesy, and indeed all the things we care for, are valid everywhere but they are variously moulded and often differently handled, and sometimes nearly unrecognizable if you meet them in a foreign land, and the art of learning fundamental common values is perhaps the greatest gain of travel to those who wish to live at ease among their fellows.",
-      options: [
-        "imagination and understanding",
-        "communities and nationalities",
-        "local values and universal values",
-        "friends and foes",
-      ],
-      correctAnswer: 2,
-      explanation:
-        "The passage discusses how travelers learn what is 'parochial' (local/limited) and what is 'universal' by observing how common values like justice and love are 'variously moulded' in different lands.",
-    },
-    {
-      text: "Which of the following statements best reflects the central idea of the passage?\n\nPassage IX: Businesses worldwide are increasingly making ambitious net-zero pledges. While many companies have begun taking meaningful steps toward these commitments, concerns remain due to the prevalence of greenwashing. This has prompted growing demands for stronger standards and greater corporate accountability. Therefore, these pledges must be backed by clear, verifiable transition plans that outline how targets will be achieved. Corporate management should be held accountable for implementing these plans, ensuring measurable progress. Ultimately, genuine sustainability pledges require that corporate promises translate into transparent action and measurable environmental impact.",
-      options: [
-        "The corporate sector is increasingly committing to environmental sustainability goals.",
-        "Greenwashing undermines the credibility and impact of corporate net-zero pledges.",
-        "Sustainability pledges are meaningless without transparent action and tangible environmental impact.",
-        "While businesses make ambitious sustainability pledges, they often lack a clear roadmap to achieve them.",
-      ],
-      correctAnswer: 2,
-      explanation:
-        "The passage argues that pledges are only 'genuine' if they move beyond empty promises to 'transparent action' and 'measurable impact' via 'verifiable transition plans.' This highlights the need for substance over just making pledges.",
-    },
-    {
-      text: "Which one of the following statements most accurately captures the dilemma mentioned by the author of the above passage?\n\nPassage X: Ageing populations pose a complex challenge that goes beyond economics to include health, dignity, and intergenerational equity. While rising life expectancy reflects medical progress, many older adults suffer from chronic illness, disability, and mental health issues, often due to lack of adequate social support. Pension systems, designed for smaller retired populations, are under increasing strain. Encouraging older adults to remain productive may ease fiscal pressure, but unequal health and capacities, and persisting social constraints limit such options. Societies must therefore balance economic sustainability with ethical responsibility, ensuring that pension reforms promote inclusion, autonomy, and well-being rather than treating the elderly solely as economic contributors.",
-      options: [
-        "Extending the working life of the elderly can resolve the fiscal stress on pension systems.",
-        "Rising life expectancy has increased economic pressure on governments without improving social outcomes.",
-        "Societies must reconcile the need for sustainable pension systems with ethical obligations towards ageing populations.",
-        "Public health interventions are the most critical means and efficient ways to address the challenges of ageing societies.",
-      ],
-      correctAnswer: 2,
-      explanation:
-        "The passage describes the 'complex challenge' of balancing fiscal sustainability (pensions) with the 'ethical responsibility' of ensuring health and dignity for a population that cannot always be treated as just 'economic contributors.'",
-    },
-    {
-      text: "Based on the above passage, the following assumptions have been made:\nI. Pension reforms that focus only on fiscal sustainability may undermine the dignity and well-being of the older population.\nII. Not all older people are equally capable of extending their working lives due to health and social constraints.\nIII. Improving public health outcomes among the elderly will resolve most of the financial stress on pension systems.\n\nPassage X: Ageing populations pose a complex challenge that goes beyond economics to include health, dignity, and intergenerational equity. While rising life expectancy reflects medical progress, many older adults suffer from chronic illness, disability, and mental health issues, often due to lack of adequate social support. Pension systems, designed for smaller retired populations, are under increasing strain. Encouraging older adults to remain productive may ease fiscal pressure, but unequal health and capacities, and persisting social constraints limit such options. Societies must therefore balance economic sustainability with ethical responsibility, ensuring that pension reforms promote inclusion, autonomy, and well-being rather than treating the elderly solely as economic contributors.",
-      options: ["I and II only", "II only", "I and III only", "I, II and III"],
-      correctAnswer: 0,
-      explanation:
-        "Assumption I is valid because the passage warns against treating the elderly 'solely as economic contributors.' Assumption II is valid as the text mentions 'unequal health and capacities' as a limit. Assumption III is not supported; while health is medical progress, the text says the pension system is strained due to population size changes.",
-    },
-    {
-      text: "Which of the following statements best reflects the central idea of the passage given above?\n\nPassage XI: As the world races to embrace renewable energy, lithium has become an indispensable resource. Lithium-ion batteries are the backbone of this energy transformation, enabling everything from our smartphones to the electric cars that are rapidly becoming commonplace on roads. However, the demand for lithium has significant environmental consequences. Large amounts of water are used in the processing and refining of lithium. Additionally, the mining process often leads to the contamination of local water sources with toxic chemicals. Furthermore, the construction of open-pit mines causes significant land degradation and loss of biodiversity. Also, large piles of crushed rock and mining waste leach harmful chemicals into the surrounding environment, posing long-term risks to the environment. As the demand for lithium continues to grow, it is evident that without more sustainable extraction and processing methods, these environmental impacts will only intensify.",
-      options: [
-        "The process of extraction and processing of lithium is causing extensive environmental damage.",
-        "Lithium is essential for the growth and expansion of the renewable energy sector in an economy.",
-        "Along with the expanding lithium's role in renewable energy, its extraction and use must follow sustainable practices to avoid the problem of environmental damage.",
-        "Lithium has a wide range of applications and is the backbone of the energy transformation enabling everything from our smartphones to the electric cars.",
-      ],
-      correctAnswer: 2,
-      explanation:
-        "The passage outlines that lithium is 'indispensable' for green energy but details its severe environmental costs. It concludes that 'sustainable extraction and processing' are necessary, making (c) the most comprehensive central idea.",
-    },
-    {
-      text: "Based on the above passage, the following assumptions have been made:\nI. The world must explore viable alternatives to lithium, given significant environmental costs.\nII. Current technologies for lithium extraction and use may prove unsustainable in the long term.\n\nPassage XI: As the world races to embrace renewable energy, lithium has become an indispensable resource. Lithium-ion batteries are the backbone of this energy transformation, enabling everything from our smartphones to the electric cars that are rapidly becoming commonplace on roads. However, the demand for lithium has significant environmental consequences. Large amounts of water are used in the processing and refining of lithium. Additionally, the mining process often leads to the contamination of local water sources with toxic chemicals. Furthermore, the construction of open-pit mines causes significant land degradation and loss of biodiversity. Also, large piles of crushed rock and mining waste leach harmful chemicals into the surrounding environment, posing long-term risks to the environment. As the demand for lithium continues to grow, it is evident that without more sustainable extraction and processing methods, these environmental impacts will only intensify.",
-      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-      correctAnswer: 1,
-      explanation:
-        "The passage warns that without 'more sustainable... methods,' environmental impacts will 'intensify,' implying current methods (technologies) are unsustainable long-term. Assumption I is not made; the passage calls for better methods, not necessarily alternatives.",
-    },
-    {
-      text: "Which one of the following statements most accurately captures the central idea of the above passage?\n\nPassage XII: With the increasing role of digital technologies in shaping economic activity, governance, and national security, questions of cybersecurity and digital sovereignty have gained prominence. Much of the internet's core infrastructure such as undersea cables, cloud servers, data centres, and digital platforms is owned or controlled by a small number of private corporations, many of which operate under the legal and regulatory frameworks of foreign countries. While this globally distributed structure has enabled efficiency, innovation, and cross-border connectivity, it also exposes states to vulnerabilities such as data breaches, cyber espionage, and strategic dependence on external legal regimes. In response, governments seek greater control over data flows and digital infrastructure in the name of national security and public interest. However, excessive state control risks fragmenting the internet, limiting innovation, and constraining individual freedoms. The central challenge lies in balancing digital sovereignty with the benefits of an open and interconnected global internet.",
-      options: [
-        "Governments must prioritise national security over innovation in managing digital infrastructure.",
-        "Private corporations should be prevented from controlling critical internet infrastructure.",
-        "Asserting digital sovereignty may undermine the openness and efficiency of the global internet.",
-        "Cybersecurity risks can be eliminated only through complete state ownership of digital networks.",
-      ],
-      correctAnswer: 2,
-      explanation:
-        "The passage explains that asserting 'digital sovereignty' (state control) can lead to internet fragmentation and limited innovation, thereby undermining the benefits of an open global internet. The 'central challenge' is maintaining this balance.",
-    },
-    {
-      text: "Based on the above passage, the following assumptions have been made:\nI. Foreign Legal control over digital infrastructure can create strategic dependencies for states.\nII. Strong cybersecurity can be achieved only by restricting cross-border data flows entirely.\n\nPassage XII: With the increasing role of digital technologies in shaping economic activity, governance, and national security, questions of cybersecurity and digital sovereignty have gained prominence. Much of the internet's core infrastructure such as undersea cables, cloud servers, data centres, and digital platforms is owned or controlled by a small number of private corporations, many of which operate under the legal and regulatory frameworks of foreign countries. While this globally distributed structure has enabled efficiency, innovation, and cross-border connectivity, it also exposes states to vulnerabilities such as data breaches, cyber espionage, and strategic dependence on external legal regimes. In response, governments seek greater control over data flows and digital infrastructure in the name of national security and public interest. However, excessive state control risks fragmenting the internet, limiting innovation, and constraining individual freedoms. The central challenge lies in balancing digital sovereignty with the benefits of an open and interconnected global internet.",
-      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-      correctAnswer: 0,
-      explanation:
-        "Assumption I is valid because the text explicitly states that relying on infrastructure under 'external legal regimes' creates 'strategic dependence.' Assumption II is an absolute claim not supported by the passage, which argues for 'balancing' rather than total restriction.",
-    },
-    {
-      text: 'When does populism become a threat to democracy, according to the passage?\n\nPassage XIII: Populism becomes a threat to democracy when leaders claim to represent the "true will of the people" while undermining institutional checks, independent media, and minority rights. By simplifying complex policy issues into emotionally charged narratives, populist politics often weakens deliberation and delegitimises dissent. Over time, this concentration of authority erodes accountability, replacing democratic pluralism with majoritarian dominance that functions within electoral processes but hollow outs democratic norms.',
-      options: [
-        "When it prioritises popular welfare schemes over fiscal discipline.",
-        "When it mobilises mass support through electoral participation.",
-        "When it undermines institutional checks and delegitimises dissent in the name of popular will.",
-        "When it appeals emotionally to citizens during election campaigns.",
-      ],
-      correctAnswer: 2,
-      explanation:
-        "The passage explicitly states that populism is a threat when it claims to represent the 'true will' to 'undermine institutional checks' and 'delegitimise dissent,' essentially replacing pluralism with unchecked majoritarian dominance.",
-    },
-    {
-      text: "Which of the following statements best reflects the most logical and rational inference that can be made from the passage?\n\nPassage XIV: In today's digital world, the rapid spread of disinformation and misinformation poses a significant and growing threat to the very foundations of democracy. False narratives corrode public trust, as manipulated information can distort perception, spread confusion, and weaken confidence in institutions. This erosion of trust fuels political polarization, social fragmentation, and deepens societal divisions, making constructive dialogue increasingly difficult. Addressing this challenge requires robust regulatory frameworks to limit the circulation of false content and hold actors accountable. Equally important is greater responsibility from social media platforms, which can actively identify, flag, and counter misleading information. Civil society organizations also play a vital role in promoting media literacy, critical thinking, and informed civic engagement. Together, these combined efforts from all can help societies resist manipulation, foster a more informed citizenry, and safeguard democratic integrity.",
-      options: [
-        "The internet and social media are often exploited to distort public perception and disseminate misinformation.",
-        "Constructive dialogue can occur only when it is grounded in social trust.",
-        "Failure to ensure accountability contributes to the unchecked spread of false and misleading information.",
-        "Tackling disinformation in today's digital word requires a coordinated effort from governments, social media platforms, and civil society organizations.",
-      ],
-      correctAnswer: 3,
-      explanation:
-        "The passage identifies the roles of regulators, platforms, and civil society, concluding that 'together, these combined efforts from all' are required. This implies that a coordinated approach across all sectors is the necessary inference.",
-    },
-    {
-      text: "Which of the following statements best reflect the most logical and rational inference/inferences that can be made from the passage?\n1. Central banks cannot bring down inflation without budgetary backing.\n2. The effects of monetary policy depend on the fiscal policies pursued by the government.\n\nPassage XV: As inflation rises, even governments previously committed to budget discipline are spending freely to help households. Higher interest rates announced by central banks are supposed to help produce modest fiscal austerity, because to maintain stable debts while paying more to borrow, governments must cut spending or raise taxes. Without the fiscal backup, monetary policy eventually loses traction. Higher interest rates become inflationary, not disinflationary, because they simply lead governments to borrow more to pay rising debt-service costs. The risk of monetary unmooring is greater when public debt rises, because interest rates become more important to budget deficits.",
-      options: ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
-      correctAnswer: 2,
-      explanation:
-        "Inference 1 is correct as the text states 'without the fiscal backup, monetary policy eventually loses traction.' Inference 2 is correct because the author argues that fiscal choices (like borrowing more to cover interest) can make monetary policy (interest rate hikes) counter-productive.",
-    },
-    {
-      text: "Based on the above passage, the following assumptions have been made:\n1. Fiscal policies of governments are solely responsible for higher prices.\n2. Higher prices do not affect the long-term government bonds.\n\nPassage XV: As inflation rises, even governments previously committed to budget discipline are spending freely to help households. Higher interest rates announced by central banks are supposed to help produce modest fiscal austerity, because to maintain stable debts while paying more to borrow, governments must cut spending or raise taxes. Without the fiscal backup, monetary policy eventually loses traction. Higher interest rates become inflationary, not disinflationary, because they simply lead governments to borrow more to pay rising debt-service costs. The risk of monetary unmooring is greater when public debt rises, because interest rates become more important to budget deficits.",
-      options: ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
-      correctAnswer: 3,
-      explanation:
-        "The passage does not state that fiscal policy is 'solely responsible' for inflation; rather, it says fiscal policy determines whether monetary policy is effective in *fighting* it. Assumption 2 is not discussed in the text at all.",
-    },
-    {
-      text: "Based on the passage, the following assumptions has been made:\nI. The benefits of the green transition, such as innovation and sustainable growth, will automatically reach all sections of society.\nII. Socioeconomic inequality influences how different groups experience the shift toward clean energy.\n\nPassage XVI: The shift to clean energy promises security, innovation, and sustainable growth, but carries significant costs that are not borne equally. Existing inequalities mean some individuals and businesses are better positioned to absorb these costs and access new opportunities, while others risk being left behind. This imbalance could deepen societal divides, creating clear winners and losers. Therefore, energy equity-ensuring fair, inclusive, and affordable access to modern clean energy for all-becomes essential to aligning the green transition with social justice and Sustainable Development Goal 7.",
-      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-      correctAnswer: 1,
-      explanation:
-        "Assumption II is valid as the passage states 'existing inequalities' determine who accesses opportunities. Assumption I is incorrect because the passage says some 'risk being left behind,' meaning benefits do not reach everyone automatically.",
-    },
-    {
-      text: "Which of the following statements represents the most logical and rational inference that can be drawn from the passage?\n\nPassage XVII: The growing discourse on de-dollarization reflects deeper shifts in the global financial order. Several countries are exploring trade settlements in local currencies and diversifying foreign exchange reserves to reduce dependence on the US dollar. While this trend signals a move toward a more multipolar financial system, the dollar continues to dominate due to its liquidity, institutional trust, and role in global markets. De-dollarization therefore represents not an abrupt replacement, but a gradual rebalancing shaped by geopolitical considerations, financial stability concerns, and evolving economic alliances.",
-      options: [
-        "De-dollarization is likely to progress unevenly across countries depending on their geopolitical alignments and financial capacities.",
-        "The dominance of the US dollar will persist only until alternative payment systems achieve comparable global liquidity.",
-        "A multipolar financial order will reduce the stabilising role traditionally played by the US dollar.",
-        "Diversification of reserves signals a deliberate attempt by states to insulate themselves from any dollar-centric risks.",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "The passage describes de-dollarization as a 'gradual rebalancing' shaped by 'geopolitical considerations' and 'evolving alliances,' which implies that the process will vary significantly from country to country.",
-    },
-    {
-      text: "As the finance secretary to the Government of India, which of the following would be your suggestion to the Government, considering the perspectives discussed in the passage?\n\nPassage XVII: The growing discourse on de-dollarization reflects deeper shifts in the global financial order. Several countries are exploring trade settlements in local currencies and diversifying foreign exchange reserves to reduce dependence on the US dollar. While this trend signals a move toward a more multipolar financial system, the dollar continues to dominate due to its liquidity, institutional trust, and role in global markets. De-dollarization therefore represents not an abrupt replacement, but a gradual rebalancing shaped by geopolitical considerations, financial stability concerns, and evolving economic alliances.",
-      options: [
-        "Replace dollar-based trade settlements entirely with rupee-based mechanisms.",
-        "Expand rupee-based settlements selectively while continuing dollar-based trade for most transactions.",
-        "Avoid rupee-based settlements until the dollar loses its global dominance.",
-        "Peg the rupee to another major currency to reduce dollar dependence.",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The text notes the dollar's continued dominance due to liquidity and trust, suggesting de-dollarization is 'gradual.' Thus, a selective expansion of the rupee while maintaining dollar use for the bulk of transactions is the most pragmatic suggestion aligned with the text.",
-    },
-    {
-      text: "Which of the following statements best captures the central idea of the passage?\n\nPassage XVIII: Contemporary debates on sustainable development are increasingly shaped by the contrasting ideas of degrowth and green growth. Degrowth thinkers argue that perpetual economic expansion strains ecological limits and advocate reduced material consumption, particularly in high-income economies. Green growth advocates, however, maintain that innovation, efficiency, and clean technologies can allow economies to grow while lowering environmental impact. Although both perspectives aim to address environmental degradation, they diverge in their assumptions about the desirability of economic growth and the extent to which technology can reconcile growth with sustainability.",
-      options: [
-        "Degrowth and green growth represent fundamentally opposing responses to environmental degradation, differing mainly in their views on economic growth and technological solutions.",
-        "Sustainable development can only be achieved either by limiting consumption or by accelerating technological innovation.",
-        "The debate between degrowth and green growth centres on whether sustainability requires redefining economic progress or transforming it through efficiency.",
-        "Technological progress is the primary factor distinguishing successful and unsuccessful sustainability strategies.",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "The passage contrasts two frameworks and highlights that they 'diverge in their assumptions about the desirability of economic growth' and 'technological reconcilement,' making (a) the most accurate summary of this fundamental opposition.",
-    },
-    {
-      text: "Which of the following statements represents the most logical and rational inference that can be drawn from the passage?\n\nPassage XIX: Migration policy in destination countries is often shaped by the belief that stricter border controls can effectively regulate cross-border movement. Governments tighten entry rules to address security risks, manage fiscal pressures, and respond to domestic political demands. However, experience suggests that migration flows are influenced not only by enforcement, but also by economic incentives, legal pathways, and cooperation with origin countries. This raises an important question: whether policies centred mainly on restriction can manage migration effectively over time, or whether broader policy instruments are necessary.",
-      options: [
-        "Border control measures of destination countries are ineffective in regulating migration flows in present world due to excessive interdependence and humanitarian obligations of the countries.",
-        "Migration governance depends on multiple policy tools taking into account the local needs of the destination countries as well as cooperation with origin countries.",
-        "Economic incentives are the primary drivers of international migration from source to destination countries.",
-        "Domestic political pressures distorts rational migration policymaking in any country.",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The passage notes that factors like 'economic incentives' and 'cooperation with origin countries' influence flows just as much as enforcement, suggesting that a comprehensive approach ('multiple policy tools') is the logical alternative to just using restriction.",
-    },
-    {
-      text: "Which of the following, if true, would most weaken the argument presented in the passage?\n\nPassage XIX: Migration policy in destination countries is often shaped by the belief that stricter border controls can effectively regulate cross-border movement. Governments tighten entry rules to address security risks, manage fiscal pressures, and respond to domestic political demands. However, experience suggests that migration flows are influenced not only by enforcement, but also by economic incentives, legal pathways, and cooperation with origin countries. This raises an important question: whether policies centred mainly on restriction can manage migration effectively over time, or whether broader policy instruments are necessary.",
-      options: [
-        "Countries that significantly increased border enforcement experienced sustained decline in irregular migration without expanding legal entry channels.",
-        "Migration flows tend to increase during periods of economic growth in destination countries.",
-        "Cooperation agreements between origin and destination countries have reduced irregular migration in some regions.",
-        "Legal migration pathways reduce incentives for irregular border crossings.",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "The author argues that restriction alone might not be enough and that other instruments are likely needed. If countries successfully reduced migration *only* through enforcement without any other tools, it would invalidate the author's claim that enforcement alone is insufficient.",
-    },
-    {
-      text: "Which one of the following statements most accurately captures the dilemma about quiet quitting mentioned by the author of the above passage?\n\nPassage XX: Quiet quitting happens when employees do their jobs to the best of their contractual ability, but nothing beyond that. While quiet quitting is often a personal coping mechanism, it often has ripple effects on organizations. Productivity may shift, team dynamics can change, and morale can be affected when employees withdraw from extra responsibilities creating a conflict between employee's overall wellbeing organizational productivity. However, it isn't inherently a negative trend and can inspire a more conscious approach to workplace culture. Leaders can respond by fostering supportive environments, offering flexibility, and acknowledging employees' contributions. Employees, too, benefit from reflection. Setting boundaries isn't about doing less; it's about doing better with the energy and focus available. Aligning personal values with professional expectations can transform quiet quitting from a silent protest into a strategic approach to sustainable work. Therefore, quiet quitting is steering a larger cultural shift, a re-evaluation of what it means to work, succeed, and live well.",
-      options: [
-        "Quiet quitting describes the dilemma between personal commitments towards family and professional commitments at the workplace.",
-        "Quiet quitting often creates a conflict between employees' overall wellbeing and organizational productivity.",
-        "Quiet quitting reflects the tension between employee disengagement and exploitative demand at the workplace.",
-        "Quiet quitting highlights the dilemma between profit-driven capitalism and the pursuit of a sustainable work culture.",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The passage identifies the dilemma as employees setting boundaries for their 'wellbeing' which then creates a 'conflict' with the 'productivity' goals of the organization.",
-    },
-    {
-      text: "Based on the above passage, the following assumptions have been made:\nI. Evolution of culture of Quiet quitting is often suggested to be not good for career progression of the employees.\nII. Quiet quitting arose as a reaction to the profit-centric nature of modern capitalism.\n\nPassage XX: Quiet quitting happens when employees do their jobs to the best of their contractual ability, but nothing beyond that. While quiet quitting is often a personal coping mechanism, it often has ripple effects on organizations. Productivity may shift, team dynamics can change, and morale can be affected when employees withdraw from extra responsibilities creating a conflict between employee's overall wellbeing organizational productivity. However, it isn't inherently a negative trend and can inspire a more conscious approach to workplace culture. Leaders can respond by fostering supportive environments, offering flexibility, and acknowledging employees' contributions. Employees, too, benefit from reflection. Setting boundaries isn't about doing less; it's about doing better with the energy and focus available. Aligning personal values with professional expectations can transform quiet quitting from a silent protest into a strategic approach to sustainable work. Therefore, quiet quitting is steering a larger cultural shift, a re-evaluation of what it means to work, succeed, and live well.",
-      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-      correctAnswer: 3,
-      explanation:
-        "The passage describes quiet quitting as a 'personal coping mechanism' and a 're-evaluation of what it means to work,' but it doesn't assume that it hurts career progression (I) or specifically link its origin to a reaction against 'profit-centric capitalism' (II).",
-    },
-    {
-      text: "Based on the above passage, the following assumptions have been made:\n1. Collection, processing and segregation of municipal waste should be with government agencies.\n2. Resource recovery and recycling require technological inputs that can be best handled by private sector enterprises.\n\nPassage XXI: In India, the segregation of municipal waste at source is rare. Recycling is mostly with the informal sector. More than three-fourths of the municipal budget goes into collection and transportation, which leaves very little for processing/resource recovery and disposal. Where does waste-to-energy fit into all this? Ideally it fits in the chain after segregation (between wet waste and the rest), collection, recycling, and before getting to the landfill. Which technology is most appropriate in converting waste to energy depends on what is in the waste (that is biodegradable versus non-biodegradable component) and its calorific value. The biodegradable component of India's municipal solid waste is a little over 50 per cent, and biomethanation offers a major solution for processing this.",
-      options: ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
-      correctAnswer: 3,
-      explanation:
-        "The passage outlines the budget allocation and technological requirements for waste-to-energy but makes no assumption about whether these tasks *should* be done by the government (1) or the private sector (2).",
-    },
-    {
-      text: "Which one of the following statements best reflects the crux of the passage?\n\nPassage XXI: In India, the segregation of municipal waste at source is rare. Recycling is mostly with the informal sector. More than three-fourths of the municipal budget goes into collection and transportation, which leaves very little for processing/resource recovery and disposal. Where does waste-to-energy fit into all this? Ideally it fits in the chain after segregation (between wet waste and the rest), collection, recycling, and before getting to the landfill. Which technology is most appropriate in converting waste to energy depends on what is in the waste (that is biodegradable versus non-biodegradable component) and its calorific value. The biodegradable component of India's municipal solid waste is a little over 50 per cent, and biomethanation offers a major solution for processing this.",
-      options: [
-        "Generation of energy from municipal solid waste is inexpensive.",
-        "Biomethanation is the most ideal way of generating energy from municipal solid waste.",
-        "Segregation of municipal solid waste is the first step in ensuring the success of waste-to-energy plants.",
-        "The biodegradable component of India's municipal solid waste is not adequate to provide energy from Waste efficiently/effectively.",
-      ],
-      correctAnswer: 2,
-      explanation:
-        "The passage describes the waste management chain and notes that waste-to-energy 'fits in the chain after segregation.' Since technology choice depends on waste components, segregation is the vital 'first step' mentioned in the text.",
-    },
-    {
-      text: "Which of the following statements represents the most logical and rational inference that can be drawn from the passage?\n\nPassage XXII: Advances in space technology have renewed interest in the commercial exploitation of outer space, particularly the mining of asteroids and celestial bodies. While existing international agreements prohibit national sovereignty over outer space, they remain ambiguous on the ownership of extracted resources. While the proponents of the commercial exploitation of outer space argue that commercial ownership rights over the extracted resources are necessary to incentivise private investment and innovation, the critics contend that unregulated commercialization could lead to monopolisation, conflict, and unequal access for all. This raises the fundamental question of how to reconcile commercial activity in space with the principle that outer space is a shared domain of humanity.",
-      options: [
-        "Commercial space mining is an inevitable reality in the near future, given technological progress.",
-        "International space law lacks sufficient clarity on how to regulate the emerging commercial interest in the resource extraction from outer space.",
-        "Private investment in commercial exploitation of outer space will undermine international cooperation.",
-        "National governments should prohibit private participation in space mining.",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The passage explicitly points out that current agreements are 'ambiguous on the ownership of extracted resources,' supporting the inference that existing laws are not clear enough to regulate commercial extraction.",
-    },
-    {
-      text: "Based on the above passage, the following assumptions have been made:\nI. Clear and commonly accepted rules are necessary to prevent conflict and inequitable outcomes in the commercial exploitation of outer space.\nII. Allowing commercial extraction of space resources is incompatible with the idea of outer space as a shared domain of humanity.\n\nPassage XXII: Advances in space technology have renewed interest in the commercial exploitation of outer space, particularly the mining of asteroids and celestial bodies. While existing international agreements prohibit national sovereignty over outer space, they remain ambiguous on the ownership of extracted resources. While the proponents of the commercial exploitation of outer space argue that commercial ownership rights over the extracted resources are necessary to incentivise private investment and innovation, the critics contend that unregulated commercialization could lead to monopolisation, conflict, and unequal access for all. This raises the fundamental question of how to reconcile commercial activity in space with the principle that outer space is a shared domain of humanity.",
-      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-      correctAnswer: 0,
-      explanation:
-        "Assumption I is valid because the text mentions that 'unregulated' activity could lead to 'conflict' and 'unequal access.' Assumption II is not made; rather, it is presented as a 'fundamental question' of how to 'reconcile' the two, not a settled incompatibility.",
-    },
-    {
-      text: "As the chairman of the committee what would be your advice to the government, keeping in mind the perspective presented in the passage?\n\nPassage XXIII: Advances in genetic editing technologies such as CRISPR have expanded the ability to alter human, animal, and plant genomes with unprecedented precision. While these tools hold promise for treating genetic diseases and improving food security, they also raise ethical concerns about unintended consequences, unequal access, and the limits of human intervention in biological processes. As scientific capability advances faster than regulatory consensus, societies face the challenge of determining how innovation can proceed responsibly without eroding ethical safeguards or public trust.",
-      options: [
-        "Approve unrestricted clinical use to avoid delaying scientific progress.",
-        "Prohibit all clinical applications until comprehensive international regulations are established.",
-        "Allow controlled clinical trials under strict ethical oversight and make provision for a periodic review.",
-        "To take suggestions from a group of international scientists who are specialist in the matter and then arrive at a decision.",
-      ],
-      correctAnswer: 2,
-      explanation:
-        "The passage argues for innovation to 'proceed responsibly' without eroding 'ethical safeguards.' A controlled trial with strict oversight and periodic reviews provides a way to advance science while managing the ethical and safety risks highlighted.",
-    },
-    {
-      text: "Based on the above passage, the following assumptions have been made:\nI. Governments must regulate genetic editing to ensure its safe and ethical use.\nII. Developing humans with desired traits through genetic editing could disrupt the course of natural evolution.\n\nPassage XXIII: Advances in genetic editing technologies such as CRISPR have expanded the ability to alter human, animal, and plant genomes with unprecedented precision. While these tools hold promise for treating genetic diseases and improving food security, they also raise ethical concerns about unintended consequences, unequal access, and the limits of human intervention in biological processes. As scientific capability advances faster than regulatory consensus, societies face the challenge of determining how innovation can proceed responsibly without eroding ethical safeguards or public trust.",
-      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-      correctAnswer: 2,
-      explanation:
-        "Assumption I is valid as the text mentions the 'challenge' of determining how to proceed responsibly (regulatory consensus). Assumption II is valid as it falls under the 'ethical concerns' about the 'limits of human intervention in biological processes' mentioned in the text.",
-    },
-    {
-      text: "Based on the above passage, the following assumptions have been made:\nI. As central banks across the world adopt CBDCs, the use of crypto assets would decline.\nII. The rise of CBDCs may accelerate the growth of digital finance and strengthen the digital economy.\n\nPassage XXIV: Central Bank Digital Currencies (CBDCs) blend the convenience of digital payments with state-backed trust. As central banks worldwide explore CBDCs, their emergence could reshape the global financial landscape and crypto regulation. One possibility is that CBDCs will prompt governments to impose stricter controls on decentralized cryptocurrencies to preserve monetary authority and prevent illicit activities. Increased oversight of crypto exchanges and transactions may follow. Conversely, CBDCs might legitimize and accelerate the acceptance of digital assets by familiarizing the public with digital finance. This could encourage regulators to adopt a balanced framework that promotes innovation while ensuring financial stability and consumer protection in the expanding digital economy.",
-      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-      correctAnswer: 1,
-      explanation:
-        "The passage explicitly suggests CBDCs could 'accelerate the acceptance of digital assets' and 'strengthen the digital economy' (II). However, it also suggests they could *legitimize* digital assets, so a 'decline' (I) is not a stated assumption.",
-    },
-    {
-      text: "Based on the above passage, the following assumptions have been made:\nI. Homogenization through globalization is eroding the diverse cultural heritage of communities.\nII. Preserving intangible cultural heritage is essential to safeguard the living traditions of humankind.\n\nPassage XXV: Cultural heritage does not end at monuments and collections of objects. It also includes the intangible cultural heritage comprising of traditions or living expressions inherited from our ancestors and passed on to our descendants. These include oral traditions, performing arts, social practices, rituals, festive events, knowledge and practices concerning nature and the skills to produce traditional crafts. Rooted in inclusivity and representativeness, the intangible heritage fosters a shared sense of identity and belonging within communities. It is an important factor in maintaining cultural diversity in the face of growing globalization. An understanding of the intangible cultural heritage of different communities therefore helps with intercultural dialogue, and encourages mutual respect for varied ways of life.",
-      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
-      correctAnswer: 2,
-      explanation:
-        "The passage describes intangible heritage as a factor in 'maintaining diversity' against 'growing globalization' (Assumption I) and defines it as 'living expressions... passed on to our descendants,' making its preservation essential (Assumption II).",
-    },
-    {
-      text: "What can be inferred about the broader societal impact, as suggested by the final lines of the passage?\n\nPassage XXVI: In hopeful queues, India's youth waits-not for change, but for a hallowed government desk. Dreams shrink into answer sheets, time turns into endless preparation, and the heart learns the grammar of patience and panic. Every rank announced is a verdict on worth; every withheld roll number, a quiet corrosion of trust. What grows in this long season of waiting? Not fields, not workshops, not new ideas, not creativity; only a generation trained in the delicate art of hoping softly, while the system measures merit in marks and endless delays.",
-      options: [
-        "It leads to a lack of highly skilled professionals in the private sector in the country.",
-        "It results in the systematic stifling of economic and creative productivity.",
-        "It ensures a fair and transparent and effective selection of the most capable administrators.",
-        "It strengthens the youth's faith in institutional processes and outcomes.",
-      ],
-      correctAnswer: 1,
-      explanation:
-        "The passage concludes by stating that 'not fields, not workshops, not new ideas, not creativity' grow during this period. This implies a systematic lack of real-world economic and creative output because the youth are focused purely on the 'grammar of patience' for exams.",
-    },
-    {
-      text: "Which of the following statements best captures the central idea of the passage?\n\nPassage XXVI: In hopeful queues, India's youth waits-not for change, but for a hallowed government desk. Dreams shrink into answer sheets, time turns into endless preparation, and the heart learns the grammar of patience and panic. Every rank announced is a verdict on worth; every withheld roll number, a quiet corrosion of trust. What grows in this long season of waiting? Not fields, not workshops, not new ideas, not creativity; only a generation trained in the delicate art of hoping softly, while the system measures merit in marks and endless delays.",
-      options: [
-        "The protracted pursuit of government employment is extracting a heavy socio-psychological toll on Indian youth and the nation's broader potential.",
-        "The intense competition for government jobs in India is a necessary filter to ensure only the most dedicated candidates enter public service.",
-        "India's youth are increasingly disillusioned with the private sector, leading them to seek meaning and security in stable government careers.",
-        "The examination system for government jobs, while stressful, is a fair and transparent mechanism that upholds the principle of meritocracy.",
-      ],
-      correctAnswer: 0,
-      explanation:
-        "The entire passage describes the 'shrinking' of dreams and 'corrosion of trust' as youth wait years for government jobs. It emphasizes the loss of creative and economic potential, making (a) the most accurate capture of this heavy toll on both individuals and the nation.",
-    },
-  ],
+  // "Test-5-CSAT (322101)": [
+  //   {
+  //     text: "Which of the following statements best reflects the logical inference from the passage given above?\n\nPassage I: Good corporate governance structures encourage companies to provide accountability and control. A fundamental reason why corporate governance has moved onto the economic and political agenda worldwide has been the rapid growth in international capital markets. Effective corporate governance enhances access to external financing by firms, leading to greater investment, higher growth and employment. Investors look to place their funds where the standards of disclosure, of timely and accurate financial reporting, and of equal treatment to all stakeholders are met.",
+  //     options: [
+  //       "It is an important agenda of the countries around the world to ensure access to good external financing.",
+  //       "Good corporate governance improves the credibility of the firms.",
+  //       "International capital markets ensure that the firms maintain good corporate governance.",
+  //       "Good corporate governance paves the way for robust supply chains.",
+  //     ],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "The passage explains that investors prefer placing funds in companies that meet high standards of disclosure and accurate financial reporting. By providing such accountability and control, good corporate governance enhances a firm's credibility, making it more attractive for external financing and investment.",
+  //   },
+  //   {
+  //     text: "Which of the following, if true, would most appropriately strengthen the author's argument in the passage?\n\nPassage II: The rise of autonomous vehicles has introduced complex questions of legal liability when machine-driven errors cause accidents. Unlike conventional driving, responsibility is no longer limited to human drivers but may extend to software developers, manufacturers, and data providers. While assigning liability to firms could incentivise safer design, it also risks slowing innovation. Conversely, limiting liability may leave victims inadequately compensated. The challenge lies in developing legal frameworks that ensure accountability without discouraging technological progress.",
+  //     options: [
+  //       "Countries that imposed strict liability due to accidents by autonomous vehicles on their manufacturers witnessed a sharp decline in start-ups entering the sector.",
+  //       "Advances in technology have reduced the frequency of software-related driving errors in Autonomous vehicles.",
+  //       "Victims of accidents involving autonomous vehicles often face difficulties in identifying responsible parties under existing laws.",
+  //       "Human error due to non availability of avenues for comprehensive training on driving autonomous vehicles continues to be a major cause of accidents.",
+  //     ],
+  //     correctAnswer: 0,
+  //     explanation:
+  //       "The author argues that assigning liability to firms 'risks slowing innovation.' Option (a) provides a concrete real-world example of this risk by showing that strict liability led to a decline in innovation (start-ups), thereby directly supporting the author's concerns about discouraging technological progress.",
+  //   },
+  //   {
+  //     text: "Which of the following statements represents the most logical and rational inference that can be drawn from the passage?\n\nPassage II: The rise of autonomous vehicles has introduced complex questions of legal liability when machine-driven errors cause accidents. Unlike conventional driving, responsibility is no longer limited to human drivers but may extend to software developers, manufacturers, and data providers. While assigning liability to firms could incentivise safer design, it also risks slowing innovation. Conversely, limiting liability may leave victims inadequately compensated. The challenge lies in developing legal frameworks that ensure accountability without discouraging technological progress.",
+  //     options: [
+  //       "Legal systems must eventually prioritise technological innovation over victim compensation in the case of autonomous vehicles.",
+  //       "Assigning liability in autonomous vehicle accidents requires redefining traditional notions of responsibility beyond individual human agency.",
+  //       "Autonomous vehicle technology is advancing faster than the capacity of law to regulate it effectively.",
+  //       "Strict manufacturer liability is likely to become the dominant global model for regulating autonomous vehicles.",
+  //     ],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "Traditional liability focuses on the human driver (individual human agency). However, the passage notes that responsibility now extends to technical entities like software developers and data providers. This indicates that legal frameworks must move beyond traditional concepts of individual fault to address systemic and automated errors.",
+  //   },
+  //   {
+  //     text: "Based on the above passage, the following assumptions have been made:\nI. India needs to reform its economic policies to emerge as a global leader.\nII. The process of creative destruction is beneficial for the economy in the long run.\nIII. Despite being drivers of progress, risk taking and innovation are often perceived negatively in society.\nIV. Ease of doing business would aid the process of creative destruction in the economy.\n\nPassage III: Economic ecosystems evolve through a process of 'creative destruction'. The inefficient are weeded out over time and replaced by those that are more competent. Thus, the competitiveness of an economy is critically dependent on its ability to encourage and endure a churn despite all the disruptions it may cause in the short run. However, India exhibits a relatively low level of such dynamism, inconsistent with an economy aspiring to high innovation and risk taking. So what needs to be done? The first step should be to change a deeply ingrained social attitude that looks with suspicion at risk taking and innovation. Second, financial regulations and institutional processes must be reoriented to enable easier entry, exit and reallocation of capital. Third, excessive protection of entrenched incumbents across sectors should be curtailed. Together, these measures can go a long way in fostering greater innovation, adaptability and long term resilience in the Indian economy.",
+  //     options: [
+  //       "I, II and III only",
+  //       "II, III and IV only",
+  //       "II and III only",
+  //       "III and IV only",
+  //     ],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "Assumption II is supported by the text's claim that creative destruction replaces the inefficient with the competent. Assumption III is supported by the mention of a 'deeply ingrained social attitude' that views risk with suspicion. Assumption IV is supported by the call to reorient processes for 'easier entry, exit and reallocation of capital.' Assumption I is not explicitly made, as the text focuses on 'resilience' rather than 'global leadership.'",
+  //   },
+  //   {
+  //     text: "Which of the following inference(s) can be correctly drawn from the passage given above?\nI. Start-ups derive their competitive advantage largely from their ability to bypass conventional market constraints.\nII. Market disruption driven by start-ups can produce both efficiency gains and systemic risks.\n\nPassage IV: The rapid rise of start-ups has reshaped traditional markets by introducing new business models, technologies, and modes of consumer engagement. By prioritising speed, scalability, and innovation, start-ups often challenge established firms that rely on stability, regulation, and incremental change. While this disruption can increase efficiency and consumer choice, it may also generate uncertainty, job displacement, and regulatory gaps. The resulting tension highlights a broader economic dilemma: how to encourage innovation-driven growth without undermining market stability and long-term institutional resilience.",
+  //     options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+  //     correctAnswer: 2,
+  //     explanation:
+  //       "Inference I is correct as start-ups 'challenge' firms relying on 'stability' and 'regulation.' Inference II is correct as the passage notes disruption 'can increase efficiency' (gains) but 'may also generate uncertainty' and 'regulatory gaps' (risks).",
+  //   },
+  //   {
+  //     text: "Which of the following statements best reflects the most logical, rational and crucial message implied by the passage?\n\nPassage V: Bhopal's \"Kachra Cafe\" is a unique waste management initiative that reimagines waste as a resource. The cafe collects 19 types of waste, including paper, glass, metal, plastic, e-waste, and old clothes. Citizens are encouraged to bring segregated and clean items to the cafe. Each contribution is weighed and converted into digital points, redeemable for snacks or handmade products such as tote bags, envelopes, diyas, and home decor items. The collected waste goes to the municipal corporation's Material Recovery Facilities and is then sent to authorized recyclers, promoting a circular economy. A key feature that makes this initiative unique is the participation of women. Women create and sell snacks and handicrafts made from upcycled materials, turning waste into a livelihood opportunity. As Bhopal aims for increased cleanliness, Kachra Cafe stands out as a replicable, people driven model for sustainability.",
+  //     options: [
+  //       "Waste management practices should be modelled on the principles of circular economy.",
+  //       "Efficient waste management can convert waste into a resource and a livelihood opportunity.",
+  //       "Bhopal's Kachra café model should be replicated for sustainable waste management.",
+  //       "Active participation of communities, especially women, strengthens sustainable development efforts.",
+  //     ],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "While the passage mentions circular economy and community participation, the most logical and overarching message is how waste can be successfully converted into both a physical 'resource' (upcycled products) and a socioeconomic 'livelihood opportunity' (for women).",
+  //   },
+  //   {
+  //     text: 'Based on the author\'s depiction, the "living ecosystem" view of markets is characterized by:\n\nPassage VI: Beyond spreadsheets and stock tickers, a quiet revolution is unfolding in the heart of capitalism. Environmental, Social, and Governance (ESG) investing is not merely a new metric but a philosophical crossroads, forcing a fundamental question: what is wealth for? It challenges the long-held axiom of profit as a solitary end, proposing instead a vision where capital is a steward for the future. This shift imagines markets not as cold engines of extraction but as living ecosystems where financial return, planetary health, and social equity are intertwined roots of the same tree. The future of capitalism now hangs in the balance-between a legacy defined solely by accumulation and a new destiny written in the language of holistic value.',
+  //     options: [
+  //       "The independent pursuit of financial and social goals.",
+  //       "The intrinsic and inseparable interconnection of various forms of value.",
+  //       "The dominance of natural resource-based industries.",
+  //       "The rapid evolution of financial technologies.",
+  //     ],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "The passage describes the market as an ecosystem where financial, planetary, and social aspects are 'intertwined roots of the same tree,' implying that they are not independent but are fundamentally and inseparably connected.",
+  //   },
+  //   {
+  //     text: "The vision of capitalism described in the latter part of the passage would be most difficult to realize if:\n\nPassage VI: Beyond spreadsheets and stock tickers, a quiet revolution is unfolding in the heart of capitalism. Environmental, Social, and Governance (ESG) investing is not merely a new metric but a philosophical crossroads, forcing a fundamental question: what is wealth for? It challenges the long-held axiom of profit as a solitary end, proposing instead a vision where capital is a steward for the future. This shift imagines markets not as cold engines of extraction but as living ecosystems where financial return, planetary health, and social equity are intertwined roots of the same tree. The future of capitalism now hangs in the balance-between a legacy defined solely by accumulation and a new destiny written in the language of holistic value.",
+  //     options: [
+  //       "The metrics for measuring planetary health and social equity remain non-financial and qualitative.",
+  //       "Short-term financial performance continues to be the dominant criterion for market success.",
+  //       "New technologies emerge to better track corporate environmental impact.",
+  //       "Public awareness of climate change continues to rise.",
+  //     ],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "The passage advocates for a move toward 'holistic value' and 'capital as a steward for the future.' This shift would be most difficult if the market remains stuck in the old paradigm of prioritizing 'short-term financial performance' above all other values.",
+  //   },
+  //   {
+  //     text: "Which of the following can be inferred from the passage regarding blockchain's role in supply chains and service delivery?\n\nPassage VII: Blockchain technology is emerging as a powerful tool to enhance transparency and accountability in supply chains. By recording every transaction on an immutable, decentralized ledger, blockchain enables stakeholders to trace goods, payments, and services in real time. This reduces the scope for corruption, fraud, and inefficiency that often plague traditional delivery systems. For instance, in public service delivery, blockchain can ensure that welfare benefits, subsidies, or healthcare services reach the intended recipients without middlemen or data manipulation. Similarly, in commercial supply chains, it improves product authenticity, tracks environmental compliance, and strengthens consumer trust. Therefore, by integrating blockchain into service delivery frameworks, governments and businesses can create systems characterized by greater trust, efficiency, and inclusivity.",
+  //     options: [
+  //       "While it increases operational efficiency, blockchain also raises significant data privacy concerns that limit its adoption by governments.",
+  //       "Blockchain's ability to record transactions in a decentralized and unchangeable manner builds trust among stakeholders by making processes more transparent and traceable.",
+  //       "The primary advantage of blockchain lies in its ability to completely remove human intermediaries from all stages of service and supply chains.",
+  //       "Blockchain technology is more effective in commercial supply chains than in public service delivery frameworks.",
+  //     ],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "The passage explains that blockchain records transactions on an 'immutable, decentralized ledger,' allowing real-time tracing. This transparency and unchangeable record-keeping are the features that build trust and reduce corruption.",
+  //   },
+  //   {
+  //     text: "Based on the above passage, the following assumptions have been made:\nI. Use of blockchain technology in supply chains would completely eliminate corruption from the system.\nII. Incorporating blockchain into service delivery promotes good governance through greater accountability.\n\nPassage VII: Blockchain technology is emerging as a powerful tool to enhance transparency and accountability in supply chains. By recording every transaction on an immutable, decentralized ledger, blockchain enables stakeholders to trace goods, payments, and services in real time. This reduces the scope for corruption, fraud, and inefficiency that often plague traditional delivery systems. For instance, in public service delivery, blockchain can ensure that welfare benefits, subsidies, or healthcare services reach the intended recipients without middlemen or data manipulation. Similarly, in commercial supply chains, it improves product authenticity, tracks environmental compliance, and strengthens consumer trust. Therefore, by integrating blockchain into service delivery frameworks, governments and businesses can create systems characterized by greater trust, efficiency, and inclusivity.",
+  //     options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "Assumption II is valid as the text links blockchain to greater accountability and inclusivity. Assumption I is an overstatement; the passage says it 'reduces the scope for corruption,' not that it 'completely eliminates' it.",
+  //   },
+  //   {
+  //     text: "When we meet other people while we travel, we learn to differentiate between:\n\nPassage VIII: Only with long experience and opening of his wares on many a beach where his language is not spoken, will the merchant come to know the worth of what he carries, and what is parochial and what is universal in his choice. Such delicate goods as justice, love and honour, courtesy, and indeed all the things we care for, are valid everywhere but they are variously moulded and often differently handled, and sometimes nearly unrecognizable if you meet them in a foreign land, and the art of learning fundamental common values is perhaps the greatest gain of travel to those who wish to live at ease among their fellows.",
+  //     options: [
+  //       "imagination and understanding",
+  //       "communities and nationalities",
+  //       "local values and universal values",
+  //       "friends and foes",
+  //     ],
+  //     correctAnswer: 2,
+  //     explanation:
+  //       "The passage discusses how travelers learn what is 'parochial' (local/limited) and what is 'universal' by observing how common values like justice and love are 'variously moulded' in different lands.",
+  //   },
+  //   {
+  //     text: "Which of the following statements best reflects the central idea of the passage?\n\nPassage IX: Businesses worldwide are increasingly making ambitious net-zero pledges. While many companies have begun taking meaningful steps toward these commitments, concerns remain due to the prevalence of greenwashing. This has prompted growing demands for stronger standards and greater corporate accountability. Therefore, these pledges must be backed by clear, verifiable transition plans that outline how targets will be achieved. Corporate management should be held accountable for implementing these plans, ensuring measurable progress. Ultimately, genuine sustainability pledges require that corporate promises translate into transparent action and measurable environmental impact.",
+  //     options: [
+  //       "The corporate sector is increasingly committing to environmental sustainability goals.",
+  //       "Greenwashing undermines the credibility and impact of corporate net-zero pledges.",
+  //       "Sustainability pledges are meaningless without transparent action and tangible environmental impact.",
+  //       "While businesses make ambitious sustainability pledges, they often lack a clear roadmap to achieve them.",
+  //     ],
+  //     correctAnswer: 2,
+  //     explanation:
+  //       "The passage argues that pledges are only 'genuine' if they move beyond empty promises to 'transparent action' and 'measurable impact' via 'verifiable transition plans.' This highlights the need for substance over just making pledges.",
+  //   },
+  //   {
+  //     text: "Which one of the following statements most accurately captures the dilemma mentioned by the author of the above passage?\n\nPassage X: Ageing populations pose a complex challenge that goes beyond economics to include health, dignity, and intergenerational equity. While rising life expectancy reflects medical progress, many older adults suffer from chronic illness, disability, and mental health issues, often due to lack of adequate social support. Pension systems, designed for smaller retired populations, are under increasing strain. Encouraging older adults to remain productive may ease fiscal pressure, but unequal health and capacities, and persisting social constraints limit such options. Societies must therefore balance economic sustainability with ethical responsibility, ensuring that pension reforms promote inclusion, autonomy, and well-being rather than treating the elderly solely as economic contributors.",
+  //     options: [
+  //       "Extending the working life of the elderly can resolve the fiscal stress on pension systems.",
+  //       "Rising life expectancy has increased economic pressure on governments without improving social outcomes.",
+  //       "Societies must reconcile the need for sustainable pension systems with ethical obligations towards ageing populations.",
+  //       "Public health interventions are the most critical means and efficient ways to address the challenges of ageing societies.",
+  //     ],
+  //     correctAnswer: 2,
+  //     explanation:
+  //       "The passage describes the 'complex challenge' of balancing fiscal sustainability (pensions) with the 'ethical responsibility' of ensuring health and dignity for a population that cannot always be treated as just 'economic contributors.'",
+  //   },
+  //   {
+  //     text: "Based on the above passage, the following assumptions have been made:\nI. Pension reforms that focus only on fiscal sustainability may undermine the dignity and well-being of the older population.\nII. Not all older people are equally capable of extending their working lives due to health and social constraints.\nIII. Improving public health outcomes among the elderly will resolve most of the financial stress on pension systems.\n\nPassage X: Ageing populations pose a complex challenge that goes beyond economics to include health, dignity, and intergenerational equity. While rising life expectancy reflects medical progress, many older adults suffer from chronic illness, disability, and mental health issues, often due to lack of adequate social support. Pension systems, designed for smaller retired populations, are under increasing strain. Encouraging older adults to remain productive may ease fiscal pressure, but unequal health and capacities, and persisting social constraints limit such options. Societies must therefore balance economic sustainability with ethical responsibility, ensuring that pension reforms promote inclusion, autonomy, and well-being rather than treating the elderly solely as economic contributors.",
+  //     options: ["I and II only", "II only", "I and III only", "I, II and III"],
+  //     correctAnswer: 0,
+  //     explanation:
+  //       "Assumption I is valid because the passage warns against treating the elderly 'solely as economic contributors.' Assumption II is valid as the text mentions 'unequal health and capacities' as a limit. Assumption III is not supported; while health is medical progress, the text says the pension system is strained due to population size changes.",
+  //   },
+  //   {
+  //     text: "Which of the following statements best reflects the central idea of the passage given above?\n\nPassage XI: As the world races to embrace renewable energy, lithium has become an indispensable resource. Lithium-ion batteries are the backbone of this energy transformation, enabling everything from our smartphones to the electric cars that are rapidly becoming commonplace on roads. However, the demand for lithium has significant environmental consequences. Large amounts of water are used in the processing and refining of lithium. Additionally, the mining process often leads to the contamination of local water sources with toxic chemicals. Furthermore, the construction of open-pit mines causes significant land degradation and loss of biodiversity. Also, large piles of crushed rock and mining waste leach harmful chemicals into the surrounding environment, posing long-term risks to the environment. As the demand for lithium continues to grow, it is evident that without more sustainable extraction and processing methods, these environmental impacts will only intensify.",
+  //     options: [
+  //       "The process of extraction and processing of lithium is causing extensive environmental damage.",
+  //       "Lithium is essential for the growth and expansion of the renewable energy sector in an economy.",
+  //       "Along with the expanding lithium's role in renewable energy, its extraction and use must follow sustainable practices to avoid the problem of environmental damage.",
+  //       "Lithium has a wide range of applications and is the backbone of the energy transformation enabling everything from our smartphones to the electric cars.",
+  //     ],
+  //     correctAnswer: 2,
+  //     explanation:
+  //       "The passage outlines that lithium is 'indispensable' for green energy but details its severe environmental costs. It concludes that 'sustainable extraction and processing' are necessary, making (c) the most comprehensive central idea.",
+  //   },
+  //   {
+  //     text: "Based on the above passage, the following assumptions have been made:\nI. The world must explore viable alternatives to lithium, given significant environmental costs.\nII. Current technologies for lithium extraction and use may prove unsustainable in the long term.\n\nPassage XI: As the world races to embrace renewable energy, lithium has become an indispensable resource. Lithium-ion batteries are the backbone of this energy transformation, enabling everything from our smartphones to the electric cars that are rapidly becoming commonplace on roads. However, the demand for lithium has significant environmental consequences. Large amounts of water are used in the processing and refining of lithium. Additionally, the mining process often leads to the contamination of local water sources with toxic chemicals. Furthermore, the construction of open-pit mines causes significant land degradation and loss of biodiversity. Also, large piles of crushed rock and mining waste leach harmful chemicals into the surrounding environment, posing long-term risks to the environment. As the demand for lithium continues to grow, it is evident that without more sustainable extraction and processing methods, these environmental impacts will only intensify.",
+  //     options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "The passage warns that without 'more sustainable... methods,' environmental impacts will 'intensify,' implying current methods (technologies) are unsustainable long-term. Assumption I is not made; the passage calls for better methods, not necessarily alternatives.",
+  //   },
+  //   {
+  //     text: "Which one of the following statements most accurately captures the central idea of the above passage?\n\nPassage XII: With the increasing role of digital technologies in shaping economic activity, governance, and national security, questions of cybersecurity and digital sovereignty have gained prominence. Much of the internet's core infrastructure such as undersea cables, cloud servers, data centres, and digital platforms is owned or controlled by a small number of private corporations, many of which operate under the legal and regulatory frameworks of foreign countries. While this globally distributed structure has enabled efficiency, innovation, and cross-border connectivity, it also exposes states to vulnerabilities such as data breaches, cyber espionage, and strategic dependence on external legal regimes. In response, governments seek greater control over data flows and digital infrastructure in the name of national security and public interest. However, excessive state control risks fragmenting the internet, limiting innovation, and constraining individual freedoms. The central challenge lies in balancing digital sovereignty with the benefits of an open and interconnected global internet.",
+  //     options: [
+  //       "Governments must prioritise national security over innovation in managing digital infrastructure.",
+  //       "Private corporations should be prevented from controlling critical internet infrastructure.",
+  //       "Asserting digital sovereignty may undermine the openness and efficiency of the global internet.",
+  //       "Cybersecurity risks can be eliminated only through complete state ownership of digital networks.",
+  //     ],
+  //     correctAnswer: 2,
+  //     explanation:
+  //       "The passage explains that asserting 'digital sovereignty' (state control) can lead to internet fragmentation and limited innovation, thereby undermining the benefits of an open global internet. The 'central challenge' is maintaining this balance.",
+  //   },
+  //   {
+  //     text: "Based on the above passage, the following assumptions have been made:\nI. Foreign Legal control over digital infrastructure can create strategic dependencies for states.\nII. Strong cybersecurity can be achieved only by restricting cross-border data flows entirely.\n\nPassage XII: With the increasing role of digital technologies in shaping economic activity, governance, and national security, questions of cybersecurity and digital sovereignty have gained prominence. Much of the internet's core infrastructure such as undersea cables, cloud servers, data centres, and digital platforms is owned or controlled by a small number of private corporations, many of which operate under the legal and regulatory frameworks of foreign countries. While this globally distributed structure has enabled efficiency, innovation, and cross-border connectivity, it also exposes states to vulnerabilities such as data breaches, cyber espionage, and strategic dependence on external legal regimes. In response, governments seek greater control over data flows and digital infrastructure in the name of national security and public interest. However, excessive state control risks fragmenting the internet, limiting innovation, and constraining individual freedoms. The central challenge lies in balancing digital sovereignty with the benefits of an open and interconnected global internet.",
+  //     options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+  //     correctAnswer: 0,
+  //     explanation:
+  //       "Assumption I is valid because the text explicitly states that relying on infrastructure under 'external legal regimes' creates 'strategic dependence.' Assumption II is an absolute claim not supported by the passage, which argues for 'balancing' rather than total restriction.",
+  //   },
+  //   {
+  //     text: 'When does populism become a threat to democracy, according to the passage?\n\nPassage XIII: Populism becomes a threat to democracy when leaders claim to represent the "true will of the people" while undermining institutional checks, independent media, and minority rights. By simplifying complex policy issues into emotionally charged narratives, populist politics often weakens deliberation and delegitimises dissent. Over time, this concentration of authority erodes accountability, replacing democratic pluralism with majoritarian dominance that functions within electoral processes but hollow outs democratic norms.',
+  //     options: [
+  //       "When it prioritises popular welfare schemes over fiscal discipline.",
+  //       "When it mobilises mass support through electoral participation.",
+  //       "When it undermines institutional checks and delegitimises dissent in the name of popular will.",
+  //       "When it appeals emotionally to citizens during election campaigns.",
+  //     ],
+  //     correctAnswer: 2,
+  //     explanation:
+  //       "The passage explicitly states that populism is a threat when it claims to represent the 'true will' to 'undermine institutional checks' and 'delegitimise dissent,' essentially replacing pluralism with unchecked majoritarian dominance.",
+  //   },
+  //   {
+  //     text: "Which of the following statements best reflects the most logical and rational inference that can be made from the passage?\n\nPassage XIV: In today's digital world, the rapid spread of disinformation and misinformation poses a significant and growing threat to the very foundations of democracy. False narratives corrode public trust, as manipulated information can distort perception, spread confusion, and weaken confidence in institutions. This erosion of trust fuels political polarization, social fragmentation, and deepens societal divisions, making constructive dialogue increasingly difficult. Addressing this challenge requires robust regulatory frameworks to limit the circulation of false content and hold actors accountable. Equally important is greater responsibility from social media platforms, which can actively identify, flag, and counter misleading information. Civil society organizations also play a vital role in promoting media literacy, critical thinking, and informed civic engagement. Together, these combined efforts from all can help societies resist manipulation, foster a more informed citizenry, and safeguard democratic integrity.",
+  //     options: [
+  //       "The internet and social media are often exploited to distort public perception and disseminate misinformation.",
+  //       "Constructive dialogue can occur only when it is grounded in social trust.",
+  //       "Failure to ensure accountability contributes to the unchecked spread of false and misleading information.",
+  //       "Tackling disinformation in today's digital word requires a coordinated effort from governments, social media platforms, and civil society organizations.",
+  //     ],
+  //     correctAnswer: 3,
+  //     explanation:
+  //       "The passage identifies the roles of regulators, platforms, and civil society, concluding that 'together, these combined efforts from all' are required. This implies that a coordinated approach across all sectors is the necessary inference.",
+  //   },
+  //   {
+  //     text: "Which of the following statements best reflect the most logical and rational inference/inferences that can be made from the passage?\n1. Central banks cannot bring down inflation without budgetary backing.\n2. The effects of monetary policy depend on the fiscal policies pursued by the government.\n\nPassage XV: As inflation rises, even governments previously committed to budget discipline are spending freely to help households. Higher interest rates announced by central banks are supposed to help produce modest fiscal austerity, because to maintain stable debts while paying more to borrow, governments must cut spending or raise taxes. Without the fiscal backup, monetary policy eventually loses traction. Higher interest rates become inflationary, not disinflationary, because they simply lead governments to borrow more to pay rising debt-service costs. The risk of monetary unmooring is greater when public debt rises, because interest rates become more important to budget deficits.",
+  //     options: ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
+  //     correctAnswer: 2,
+  //     explanation:
+  //       "Inference 1 is correct as the text states 'without the fiscal backup, monetary policy eventually loses traction.' Inference 2 is correct because the author argues that fiscal choices (like borrowing more to cover interest) can make monetary policy (interest rate hikes) counter-productive.",
+  //   },
+  //   {
+  //     text: "Based on the above passage, the following assumptions have been made:\n1. Fiscal policies of governments are solely responsible for higher prices.\n2. Higher prices do not affect the long-term government bonds.\n\nPassage XV: As inflation rises, even governments previously committed to budget discipline are spending freely to help households. Higher interest rates announced by central banks are supposed to help produce modest fiscal austerity, because to maintain stable debts while paying more to borrow, governments must cut spending or raise taxes. Without the fiscal backup, monetary policy eventually loses traction. Higher interest rates become inflationary, not disinflationary, because they simply lead governments to borrow more to pay rising debt-service costs. The risk of monetary unmooring is greater when public debt rises, because interest rates become more important to budget deficits.",
+  //     options: ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
+  //     correctAnswer: 3,
+  //     explanation:
+  //       "The passage does not state that fiscal policy is 'solely responsible' for inflation; rather, it says fiscal policy determines whether monetary policy is effective in *fighting* it. Assumption 2 is not discussed in the text at all.",
+  //   },
+  //   {
+  //     text: "Based on the passage, the following assumptions has been made:\nI. The benefits of the green transition, such as innovation and sustainable growth, will automatically reach all sections of society.\nII. Socioeconomic inequality influences how different groups experience the shift toward clean energy.\n\nPassage XVI: The shift to clean energy promises security, innovation, and sustainable growth, but carries significant costs that are not borne equally. Existing inequalities mean some individuals and businesses are better positioned to absorb these costs and access new opportunities, while others risk being left behind. This imbalance could deepen societal divides, creating clear winners and losers. Therefore, energy equity-ensuring fair, inclusive, and affordable access to modern clean energy for all-becomes essential to aligning the green transition with social justice and Sustainable Development Goal 7.",
+  //     options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "Assumption II is valid as the passage states 'existing inequalities' determine who accesses opportunities. Assumption I is incorrect because the passage says some 'risk being left behind,' meaning benefits do not reach everyone automatically.",
+  //   },
+  //   {
+  //     text: "Which of the following statements represents the most logical and rational inference that can be drawn from the passage?\n\nPassage XVII: The growing discourse on de-dollarization reflects deeper shifts in the global financial order. Several countries are exploring trade settlements in local currencies and diversifying foreign exchange reserves to reduce dependence on the US dollar. While this trend signals a move toward a more multipolar financial system, the dollar continues to dominate due to its liquidity, institutional trust, and role in global markets. De-dollarization therefore represents not an abrupt replacement, but a gradual rebalancing shaped by geopolitical considerations, financial stability concerns, and evolving economic alliances.",
+  //     options: [
+  //       "De-dollarization is likely to progress unevenly across countries depending on their geopolitical alignments and financial capacities.",
+  //       "The dominance of the US dollar will persist only until alternative payment systems achieve comparable global liquidity.",
+  //       "A multipolar financial order will reduce the stabilising role traditionally played by the US dollar.",
+  //       "Diversification of reserves signals a deliberate attempt by states to insulate themselves from any dollar-centric risks.",
+  //     ],
+  //     correctAnswer: 0,
+  //     explanation:
+  //       "The passage describes de-dollarization as a 'gradual rebalancing' shaped by 'geopolitical considerations' and 'evolving alliances,' which implies that the process will vary significantly from country to country.",
+  //   },
+  //   {
+  //     text: "As the finance secretary to the Government of India, which of the following would be your suggestion to the Government, considering the perspectives discussed in the passage?\n\nPassage XVII: The growing discourse on de-dollarization reflects deeper shifts in the global financial order. Several countries are exploring trade settlements in local currencies and diversifying foreign exchange reserves to reduce dependence on the US dollar. While this trend signals a move toward a more multipolar financial system, the dollar continues to dominate due to its liquidity, institutional trust, and role in global markets. De-dollarization therefore represents not an abrupt replacement, but a gradual rebalancing shaped by geopolitical considerations, financial stability concerns, and evolving economic alliances.",
+  //     options: [
+  //       "Replace dollar-based trade settlements entirely with rupee-based mechanisms.",
+  //       "Expand rupee-based settlements selectively while continuing dollar-based trade for most transactions.",
+  //       "Avoid rupee-based settlements until the dollar loses its global dominance.",
+  //       "Peg the rupee to another major currency to reduce dollar dependence.",
+  //     ],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "The text notes the dollar's continued dominance due to liquidity and trust, suggesting de-dollarization is 'gradual.' Thus, a selective expansion of the rupee while maintaining dollar use for the bulk of transactions is the most pragmatic suggestion aligned with the text.",
+  //   },
+  //   {
+  //     text: "Which of the following statements best captures the central idea of the passage?\n\nPassage XVIII: Contemporary debates on sustainable development are increasingly shaped by the contrasting ideas of degrowth and green growth. Degrowth thinkers argue that perpetual economic expansion strains ecological limits and advocate reduced material consumption, particularly in high-income economies. Green growth advocates, however, maintain that innovation, efficiency, and clean technologies can allow economies to grow while lowering environmental impact. Although both perspectives aim to address environmental degradation, they diverge in their assumptions about the desirability of economic growth and the extent to which technology can reconcile growth with sustainability.",
+  //     options: [
+  //       "Degrowth and green growth represent fundamentally opposing responses to environmental degradation, differing mainly in their views on economic growth and technological solutions.",
+  //       "Sustainable development can only be achieved either by limiting consumption or by accelerating technological innovation.",
+  //       "The debate between degrowth and green growth centres on whether sustainability requires redefining economic progress or transforming it through efficiency.",
+  //       "Technological progress is the primary factor distinguishing successful and unsuccessful sustainability strategies.",
+  //     ],
+  //     correctAnswer: 0,
+  //     explanation:
+  //       "The passage contrasts two frameworks and highlights that they 'diverge in their assumptions about the desirability of economic growth' and 'technological reconcilement,' making (a) the most accurate summary of this fundamental opposition.",
+  //   },
+  //   {
+  //     text: "Which of the following statements represents the most logical and rational inference that can be drawn from the passage?\n\nPassage XIX: Migration policy in destination countries is often shaped by the belief that stricter border controls can effectively regulate cross-border movement. Governments tighten entry rules to address security risks, manage fiscal pressures, and respond to domestic political demands. However, experience suggests that migration flows are influenced not only by enforcement, but also by economic incentives, legal pathways, and cooperation with origin countries. This raises an important question: whether policies centred mainly on restriction can manage migration effectively over time, or whether broader policy instruments are necessary.",
+  //     options: [
+  //       "Border control measures of destination countries are ineffective in regulating migration flows in present world due to excessive interdependence and humanitarian obligations of the countries.",
+  //       "Migration governance depends on multiple policy tools taking into account the local needs of the destination countries as well as cooperation with origin countries.",
+  //       "Economic incentives are the primary drivers of international migration from source to destination countries.",
+  //       "Domestic political pressures distorts rational migration policymaking in any country.",
+  //     ],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "The passage notes that factors like 'economic incentives' and 'cooperation with origin countries' influence flows just as much as enforcement, suggesting that a comprehensive approach ('multiple policy tools') is the logical alternative to just using restriction.",
+  //   },
+  //   {
+  //     text: "Which of the following, if true, would most weaken the argument presented in the passage?\n\nPassage XIX: Migration policy in destination countries is often shaped by the belief that stricter border controls can effectively regulate cross-border movement. Governments tighten entry rules to address security risks, manage fiscal pressures, and respond to domestic political demands. However, experience suggests that migration flows are influenced not only by enforcement, but also by economic incentives, legal pathways, and cooperation with origin countries. This raises an important question: whether policies centred mainly on restriction can manage migration effectively over time, or whether broader policy instruments are necessary.",
+  //     options: [
+  //       "Countries that significantly increased border enforcement experienced sustained decline in irregular migration without expanding legal entry channels.",
+  //       "Migration flows tend to increase during periods of economic growth in destination countries.",
+  //       "Cooperation agreements between origin and destination countries have reduced irregular migration in some regions.",
+  //       "Legal migration pathways reduce incentives for irregular border crossings.",
+  //     ],
+  //     correctAnswer: 0,
+  //     explanation:
+  //       "The author argues that restriction alone might not be enough and that other instruments are likely needed. If countries successfully reduced migration *only* through enforcement without any other tools, it would invalidate the author's claim that enforcement alone is insufficient.",
+  //   },
+  //   {
+  //     text: "Which one of the following statements most accurately captures the dilemma about quiet quitting mentioned by the author of the above passage?\n\nPassage XX: Quiet quitting happens when employees do their jobs to the best of their contractual ability, but nothing beyond that. While quiet quitting is often a personal coping mechanism, it often has ripple effects on organizations. Productivity may shift, team dynamics can change, and morale can be affected when employees withdraw from extra responsibilities creating a conflict between employee's overall wellbeing organizational productivity. However, it isn't inherently a negative trend and can inspire a more conscious approach to workplace culture. Leaders can respond by fostering supportive environments, offering flexibility, and acknowledging employees' contributions. Employees, too, benefit from reflection. Setting boundaries isn't about doing less; it's about doing better with the energy and focus available. Aligning personal values with professional expectations can transform quiet quitting from a silent protest into a strategic approach to sustainable work. Therefore, quiet quitting is steering a larger cultural shift, a re-evaluation of what it means to work, succeed, and live well.",
+  //     options: [
+  //       "Quiet quitting describes the dilemma between personal commitments towards family and professional commitments at the workplace.",
+  //       "Quiet quitting often creates a conflict between employees' overall wellbeing and organizational productivity.",
+  //       "Quiet quitting reflects the tension between employee disengagement and exploitative demand at the workplace.",
+  //       "Quiet quitting highlights the dilemma between profit-driven capitalism and the pursuit of a sustainable work culture.",
+  //     ],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "The passage identifies the dilemma as employees setting boundaries for their 'wellbeing' which then creates a 'conflict' with the 'productivity' goals of the organization.",
+  //   },
+  //   {
+  //     text: "Based on the above passage, the following assumptions have been made:\nI. Evolution of culture of Quiet quitting is often suggested to be not good for career progression of the employees.\nII. Quiet quitting arose as a reaction to the profit-centric nature of modern capitalism.\n\nPassage XX: Quiet quitting happens when employees do their jobs to the best of their contractual ability, but nothing beyond that. While quiet quitting is often a personal coping mechanism, it often has ripple effects on organizations. Productivity may shift, team dynamics can change, and morale can be affected when employees withdraw from extra responsibilities creating a conflict between employee's overall wellbeing organizational productivity. However, it isn't inherently a negative trend and can inspire a more conscious approach to workplace culture. Leaders can respond by fostering supportive environments, offering flexibility, and acknowledging employees' contributions. Employees, too, benefit from reflection. Setting boundaries isn't about doing less; it's about doing better with the energy and focus available. Aligning personal values with professional expectations can transform quiet quitting from a silent protest into a strategic approach to sustainable work. Therefore, quiet quitting is steering a larger cultural shift, a re-evaluation of what it means to work, succeed, and live well.",
+  //     options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+  //     correctAnswer: 3,
+  //     explanation:
+  //       "The passage describes quiet quitting as a 'personal coping mechanism' and a 're-evaluation of what it means to work,' but it doesn't assume that it hurts career progression (I) or specifically link its origin to a reaction against 'profit-centric capitalism' (II).",
+  //   },
+  //   {
+  //     text: "Based on the above passage, the following assumptions have been made:\n1. Collection, processing and segregation of municipal waste should be with government agencies.\n2. Resource recovery and recycling require technological inputs that can be best handled by private sector enterprises.\n\nPassage XXI: In India, the segregation of municipal waste at source is rare. Recycling is mostly with the informal sector. More than three-fourths of the municipal budget goes into collection and transportation, which leaves very little for processing/resource recovery and disposal. Where does waste-to-energy fit into all this? Ideally it fits in the chain after segregation (between wet waste and the rest), collection, recycling, and before getting to the landfill. Which technology is most appropriate in converting waste to energy depends on what is in the waste (that is biodegradable versus non-biodegradable component) and its calorific value. The biodegradable component of India's municipal solid waste is a little over 50 per cent, and biomethanation offers a major solution for processing this.",
+  //     options: ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
+  //     correctAnswer: 3,
+  //     explanation:
+  //       "The passage outlines the budget allocation and technological requirements for waste-to-energy but makes no assumption about whether these tasks *should* be done by the government (1) or the private sector (2).",
+  //   },
+  //   {
+  //     text: "Which one of the following statements best reflects the crux of the passage?\n\nPassage XXI: In India, the segregation of municipal waste at source is rare. Recycling is mostly with the informal sector. More than three-fourths of the municipal budget goes into collection and transportation, which leaves very little for processing/resource recovery and disposal. Where does waste-to-energy fit into all this? Ideally it fits in the chain after segregation (between wet waste and the rest), collection, recycling, and before getting to the landfill. Which technology is most appropriate in converting waste to energy depends on what is in the waste (that is biodegradable versus non-biodegradable component) and its calorific value. The biodegradable component of India's municipal solid waste is a little over 50 per cent, and biomethanation offers a major solution for processing this.",
+  //     options: [
+  //       "Generation of energy from municipal solid waste is inexpensive.",
+  //       "Biomethanation is the most ideal way of generating energy from municipal solid waste.",
+  //       "Segregation of municipal solid waste is the first step in ensuring the success of waste-to-energy plants.",
+  //       "The biodegradable component of India's municipal solid waste is not adequate to provide energy from Waste efficiently/effectively.",
+  //     ],
+  //     correctAnswer: 2,
+  //     explanation:
+  //       "The passage describes the waste management chain and notes that waste-to-energy 'fits in the chain after segregation.' Since technology choice depends on waste components, segregation is the vital 'first step' mentioned in the text.",
+  //   },
+  //   {
+  //     text: "Which of the following statements represents the most logical and rational inference that can be drawn from the passage?\n\nPassage XXII: Advances in space technology have renewed interest in the commercial exploitation of outer space, particularly the mining of asteroids and celestial bodies. While existing international agreements prohibit national sovereignty over outer space, they remain ambiguous on the ownership of extracted resources. While the proponents of the commercial exploitation of outer space argue that commercial ownership rights over the extracted resources are necessary to incentivise private investment and innovation, the critics contend that unregulated commercialization could lead to monopolisation, conflict, and unequal access for all. This raises the fundamental question of how to reconcile commercial activity in space with the principle that outer space is a shared domain of humanity.",
+  //     options: [
+  //       "Commercial space mining is an inevitable reality in the near future, given technological progress.",
+  //       "International space law lacks sufficient clarity on how to regulate the emerging commercial interest in the resource extraction from outer space.",
+  //       "Private investment in commercial exploitation of outer space will undermine international cooperation.",
+  //       "National governments should prohibit private participation in space mining.",
+  //     ],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "The passage explicitly points out that current agreements are 'ambiguous on the ownership of extracted resources,' supporting the inference that existing laws are not clear enough to regulate commercial extraction.",
+  //   },
+  //   {
+  //     text: "Based on the above passage, the following assumptions have been made:\nI. Clear and commonly accepted rules are necessary to prevent conflict and inequitable outcomes in the commercial exploitation of outer space.\nII. Allowing commercial extraction of space resources is incompatible with the idea of outer space as a shared domain of humanity.\n\nPassage XXII: Advances in space technology have renewed interest in the commercial exploitation of outer space, particularly the mining of asteroids and celestial bodies. While existing international agreements prohibit national sovereignty over outer space, they remain ambiguous on the ownership of extracted resources. While the proponents of the commercial exploitation of outer space argue that commercial ownership rights over the extracted resources are necessary to incentivise private investment and innovation, the critics contend that unregulated commercialization could lead to monopolisation, conflict, and unequal access for all. This raises the fundamental question of how to reconcile commercial activity in space with the principle that outer space is a shared domain of humanity.",
+  //     options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+  //     correctAnswer: 0,
+  //     explanation:
+  //       "Assumption I is valid because the text mentions that 'unregulated' activity could lead to 'conflict' and 'unequal access.' Assumption II is not made; rather, it is presented as a 'fundamental question' of how to 'reconcile' the two, not a settled incompatibility.",
+  //   },
+  //   {
+  //     text: "As the chairman of the committee what would be your advice to the government, keeping in mind the perspective presented in the passage?\n\nPassage XXIII: Advances in genetic editing technologies such as CRISPR have expanded the ability to alter human, animal, and plant genomes with unprecedented precision. While these tools hold promise for treating genetic diseases and improving food security, they also raise ethical concerns about unintended consequences, unequal access, and the limits of human intervention in biological processes. As scientific capability advances faster than regulatory consensus, societies face the challenge of determining how innovation can proceed responsibly without eroding ethical safeguards or public trust.",
+  //     options: [
+  //       "Approve unrestricted clinical use to avoid delaying scientific progress.",
+  //       "Prohibit all clinical applications until comprehensive international regulations are established.",
+  //       "Allow controlled clinical trials under strict ethical oversight and make provision for a periodic review.",
+  //       "To take suggestions from a group of international scientists who are specialist in the matter and then arrive at a decision.",
+  //     ],
+  //     correctAnswer: 2,
+  //     explanation:
+  //       "The passage argues for innovation to 'proceed responsibly' without eroding 'ethical safeguards.' A controlled trial with strict oversight and periodic reviews provides a way to advance science while managing the ethical and safety risks highlighted.",
+  //   },
+  //   {
+  //     text: "Based on the above passage, the following assumptions have been made:\nI. Governments must regulate genetic editing to ensure its safe and ethical use.\nII. Developing humans with desired traits through genetic editing could disrupt the course of natural evolution.\n\nPassage XXIII: Advances in genetic editing technologies such as CRISPR have expanded the ability to alter human, animal, and plant genomes with unprecedented precision. While these tools hold promise for treating genetic diseases and improving food security, they also raise ethical concerns about unintended consequences, unequal access, and the limits of human intervention in biological processes. As scientific capability advances faster than regulatory consensus, societies face the challenge of determining how innovation can proceed responsibly without eroding ethical safeguards or public trust.",
+  //     options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+  //     correctAnswer: 2,
+  //     explanation:
+  //       "Assumption I is valid as the text mentions the 'challenge' of determining how to proceed responsibly (regulatory consensus). Assumption II is valid as it falls under the 'ethical concerns' about the 'limits of human intervention in biological processes' mentioned in the text.",
+  //   },
+  //   {
+  //     text: "Based on the above passage, the following assumptions have been made:\nI. As central banks across the world adopt CBDCs, the use of crypto assets would decline.\nII. The rise of CBDCs may accelerate the growth of digital finance and strengthen the digital economy.\n\nPassage XXIV: Central Bank Digital Currencies (CBDCs) blend the convenience of digital payments with state-backed trust. As central banks worldwide explore CBDCs, their emergence could reshape the global financial landscape and crypto regulation. One possibility is that CBDCs will prompt governments to impose stricter controls on decentralized cryptocurrencies to preserve monetary authority and prevent illicit activities. Increased oversight of crypto exchanges and transactions may follow. Conversely, CBDCs might legitimize and accelerate the acceptance of digital assets by familiarizing the public with digital finance. This could encourage regulators to adopt a balanced framework that promotes innovation while ensuring financial stability and consumer protection in the expanding digital economy.",
+  //     options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "The passage explicitly suggests CBDCs could 'accelerate the acceptance of digital assets' and 'strengthen the digital economy' (II). However, it also suggests they could *legitimize* digital assets, so a 'decline' (I) is not a stated assumption.",
+  //   },
+  //   {
+  //     text: "Based on the above passage, the following assumptions have been made:\nI. Homogenization through globalization is eroding the diverse cultural heritage of communities.\nII. Preserving intangible cultural heritage is essential to safeguard the living traditions of humankind.\n\nPassage XXV: Cultural heritage does not end at monuments and collections of objects. It also includes the intangible cultural heritage comprising of traditions or living expressions inherited from our ancestors and passed on to our descendants. These include oral traditions, performing arts, social practices, rituals, festive events, knowledge and practices concerning nature and the skills to produce traditional crafts. Rooted in inclusivity and representativeness, the intangible heritage fosters a shared sense of identity and belonging within communities. It is an important factor in maintaining cultural diversity in the face of growing globalization. An understanding of the intangible cultural heritage of different communities therefore helps with intercultural dialogue, and encourages mutual respect for varied ways of life.",
+  //     options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+  //     correctAnswer: 2,
+  //     explanation:
+  //       "The passage describes intangible heritage as a factor in 'maintaining diversity' against 'growing globalization' (Assumption I) and defines it as 'living expressions... passed on to our descendants,' making its preservation essential (Assumption II).",
+  //   },
+  //   {
+  //     text: "What can be inferred about the broader societal impact, as suggested by the final lines of the passage?\n\nPassage XXVI: In hopeful queues, India's youth waits-not for change, but for a hallowed government desk. Dreams shrink into answer sheets, time turns into endless preparation, and the heart learns the grammar of patience and panic. Every rank announced is a verdict on worth; every withheld roll number, a quiet corrosion of trust. What grows in this long season of waiting? Not fields, not workshops, not new ideas, not creativity; only a generation trained in the delicate art of hoping softly, while the system measures merit in marks and endless delays.",
+  //     options: [
+  //       "It leads to a lack of highly skilled professionals in the private sector in the country.",
+  //       "It results in the systematic stifling of economic and creative productivity.",
+  //       "It ensures a fair and transparent and effective selection of the most capable administrators.",
+  //       "It strengthens the youth's faith in institutional processes and outcomes.",
+  //     ],
+  //     correctAnswer: 1,
+  //     explanation:
+  //       "The passage concludes by stating that 'not fields, not workshops, not new ideas, not creativity' grow during this period. This implies a systematic lack of real-world economic and creative output because the youth are focused purely on the 'grammar of patience' for exams.",
+  //   },
+  //   {
+  //     text: "Which of the following statements best captures the central idea of the passage?\n\nPassage XXVI: In hopeful queues, India's youth waits-not for change, but for a hallowed government desk. Dreams shrink into answer sheets, time turns into endless preparation, and the heart learns the grammar of patience and panic. Every rank announced is a verdict on worth; every withheld roll number, a quiet corrosion of trust. What grows in this long season of waiting? Not fields, not workshops, not new ideas, not creativity; only a generation trained in the delicate art of hoping softly, while the system measures merit in marks and endless delays.",
+  //     options: [
+  //       "The protracted pursuit of government employment is extracting a heavy socio-psychological toll on Indian youth and the nation's broader potential.",
+  //       "The intense competition for government jobs in India is a necessary filter to ensure only the most dedicated candidates enter public service.",
+  //       "India's youth are increasingly disillusioned with the private sector, leading them to seek meaning and security in stable government careers.",
+  //       "The examination system for government jobs, while stressful, is a fair and transparent mechanism that upholds the principle of meritocracy.",
+  //     ],
+  //     correctAnswer: 0,
+  //     explanation:
+  //       "The entire passage describes the 'shrinking' of dreams and 'corrosion of trust' as youth wait years for government jobs. It emphasizes the loss of creative and economic potential, making (a) the most accurate capture of this heavy toll on both individuals and the nation.",
+  //   },
+  // ],
+  "Test-6-Polity (321106)" : [
+  {
+    "text": "Which one among the following correctly represents the theme on which the interiors of the new Parliament Building is based?\n\n| Lok Sabha | Rajya Sabha |\n| :--- | :--- |\n| a) Lotus | Banyan |\n| b) Peacock | Lotus |\n| c) Peacock | Banyan |\n| d) Lotus | Peacock |",
+    "options": [
+      "a",
+      "b",
+      "c",
+      "d"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The new Parliament building in India incorporates cultural symbols into its interior design. The Lok Sabha (Lower House) features a ceiling design inspired by the Peacock, which is India's national bird. The Rajya Sabha (Upper House) is themed around the Lotus, India's national flower, symbolizing purity and renewal."
+  },
+  {
+    "text": "With reference to the devices of Parliamentary proceedings in India, consider the following statements about Question hour in the House of People:\nI. The Speaker has the discretion to change the timing of the Question hour in the house.\nII. A Question during this hour can be addressed to a private member of the house as well.\nIII. A Question distinguished by an asterisk shall be placed on the list of questions for written answer.\n\nWhich of the statements given above is/are correct?",
+    "options": [
+      "I and II",
+      "II only",
+      "I and III",
+      "III only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Statement I is correct because while the first hour of every sitting is normally devoted to questions, the Speaker has the discretion to change this timing. Statement II is correct as questions can be addressed to private members if the subject matter relates to a Bill, Resolution, or other business for which that member is responsible. Statement III is incorrect because a question distinguished by an asterisk (starred question) requires an oral answer, whereas questions not distinguished by an asterisk are placed on the list for written answers (unstarred questions)."
+  },
+  {
+    "text": "Consider the following Indian states:\nI. Madhya Pradesh\nII. Telangana\nIII. Karnataka\nIV. Maharashtra\nV. Uttar Pradesh\n\nHow many of the above given Indian states have bicameral legislature?",
+    "options": [
+      "Only two",
+      "Only three",
+      "Only four",
+      "All the five"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Currently, six Indian states have a bicameral legislature (both a Legislative Assembly and a Legislative Council): Andhra Pradesh, Telangana, Uttar Pradesh, Bihar, Maharashtra, and Karnataka. Out of the list provided, Telangana, Karnataka, Maharashtra, and Uttar Pradesh have bicameral legislatures. Madhya Pradesh has a unicameral legislature."
+  },
+  {
+    "text": "With reference to Indian Parliamentary system, consider the following statements about the Council of States:\nI. The term 'Rajya Sabha' is nowhere mentioned in the Constitution of India.\nII. The number of members to be elected to the Council of States from each State is mentioned in the Fourth Schedule of the Indian Constitution.\nIII. The Indian Constitution provides for fixed tenure of six years for the members of the Council of States.\nIV. If the member of the house resigns from his/her membership, the new member elected will serve only for the remainder of his/her predecessor's term of office.\n\nWhich of the statements given above are correct?",
+    "options": [
+      "I and II only",
+      "II and III only",
+      "I, II and IV only",
+      "I and IV only"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Statement I is correct; the Constitution refers to the upper house as the 'Council of States'. Statement II is correct; the Fourth Schedule deals with the allocation of seats in the Council of States. Statement III is incorrect; the Constitution does not fix the term of members but provides that one-third retire every second year; the six-year term was fixed by Parliament via the Representation of the People Act, 1951. Statement IV is correct; a member elected to fill a casual vacancy serves only for the remainder of the predecessor's term."
+  },
+  {
+    "text": "Who among the following was the first protem Speaker to be unanimously elected as the Speaker of the Lok Sabha?",
+    "options": [
+      "Rabi Ray",
+      "Hiren Mukherjee",
+      "Somnath Chatterjee",
+      "P.A. Sangma"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Somnath Chatterjee was the first pro-tem Speaker in the history of the Lok Sabha to be unanimously elected as the Speaker of the House (14th Lok Sabha)."
+  },
+  {
+    "text": "Consider the following functions of the Parliament of India:\nI. Impeaching the President for violation of the Constitution.\nII. Recommendation for the removal of the judges of the Supreme Court.\nIII. Punishing its own members for breach of privilege or contempt.\nIV. Censuring of the minister for specific policies and actions.\n\nHow many of the above are judicial functions of the Parliament?",
+    "options": [
+      "Only one",
+      "Only two",
+      "Only three",
+      "All the four"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Statements I, II, and III are judicial (or quasi-judicial) functions because they involve inquiries, investigations, and formal verdicts similar to a trial. Impeaching the President, recommending removal of judges, and punishing for breach of privilege fall into this category. Statement IV is a tool of executive accountability/political control, not a judicial function."
+  },
+  {
+    "text": "In the context of Indian Polity, consider the following statements:\nStatement I: The legislative control over the executive ensures financial propriety.\nStatement II: The legislature can discuss the use or misuse of public funds on the basis of the report of the Public Accounts Committee.\nStatement III: The preparation and presentation of the Annual Financial Statement for the approval of the legislature is the constitutional obligation of the executive.\n\nWhich one of the following is correct in respect of the statements given above?",
+    "options": [
+      "Both statement II and statement III are correct and both of them explain statement I.",
+      "Both statement II and statement III are correct, but only one of them explains statement I.",
+      "Only one of the statements II and III is correct, and that explains statement I.",
+      "Neither Statement II nor statement III is correct."
+    ],
+    "correctAnswer": 0,
+    "explanation": "All three statements are correct. Statement II explains Statement I because the Public Accounts Committee's scrutiny of funds is a primary mechanism for the legislature to ensure financial propriety. Statement III also explains Statement I because the mandatory presentation of the budget (Annual Financial Statement) for legislative approval is the starting point for legislative control over executive spending."
+  },
+  {
+    "text": "Under which of the following circumstance(s) will it be constitutionally valid for the President of India to dissolve the House of the People?\nI. If no party or coalition of parties is able to form a stable government.\nII. If the Council of Ministers fails to prove its majority in the House.\nIII. If the Speaker of the Lok Sabha advises the President to dissolve the House.\n\nSelect the correct answer using the code given below:",
+    "options": [
+      "I and III only",
+      "I and II only",
+      "II only",
+      "I, II and III"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Statement I is correct; the President can dissolve the House if no stable government can be formed. Statement II is correct; if the government loses its majority and no alternative is available, the President may dissolve the House. Statement III is incorrect; the Speaker has no constitutional authority to advise the President on dissolution; this advice comes from the Prime Minister or is a matter of the President's situational discretion."
+  },
+  {
+    "text": "In the context of Indian Polity, consider the following statements:\nI. Provisions as to disqualification on grounds of defection were added to the Constitution through the 52nd Constitutional Amendment Act, 1985.\nII. A person disqualified on the ground of defection under the 10th schedule of Indian Constitution shall also be disqualified from holding any remunerative political post in future.\n\nWhich of the statements given above is/are correct?",
+    "options": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Statement I is correct as the 52nd Amendment introduced the Anti-Defection Law (Tenth Schedule). Statement II is incorrect because Article 361B states that a person disqualified for defection is only disqualified from holding a remunerative political post for the duration of the remainder of their term (or until they are re-elected), not permanently or indefinitely in the future."
+  },
+  {
+    "text": "With reference to Special Address by the President to the Parliament under the Constitution of India, consider the following statements:\nI. This address has to be to both houses of the Parliament assembled together only.\nII. This address shall be at the commencement of the first session after each general election to the House of the People and at the commencement of the first session of each year.\n\nWhich of the statements given above is/are correct?",
+    "options": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Both statements are correct under Article 87(1). The President must address both Houses assembled together at the start of the first session after a general election and at the start of the first session of every year to inform Parliament of the causes of its summons."
+  },
+  {
+    "text": "Which of the following Statements about the Ethics Committee in the Lok Sabha are correct?\n1. Initially it was an ad-hoc Committee.\n2. Only a Member of the Lok Sabha can make a complaint relating to unethical conduct of a member of the Lok Sabha.\n3. This Committee cannot take up any matter which is sub-judice.\n\nSelect the answer using the code given below:",
+    "options": [
+      "1 and 2 only",
+      "2 and 3 only",
+      "1 and 3 only",
+      "1, 2 and 3"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Statement 1 is correct; the committee was initially ad-hoc (formed in 2000) before becoming permanent in 2015. Statement 2 is incorrect; any person can make a complaint against a member, provided it is accompanied by an affidavit (unless the complainant is a member themselves). Statement 3 is correct; the committee is prohibited from taking up matters that are currently before a court of law (sub-judice)."
+  },
+  {
+    "text": "As per the Constitution of India, the Speaker of the House of People address his/her resignation from the office to the-",
+    "options": [
+      "President of India",
+      "The Secretary-General of the House of People",
+      "Leader of the House of People",
+      "Deputy Speaker of the House of People"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Under Article 94(b), the Speaker of the Lok Sabha resigns by writing to the Deputy Speaker. Similarly, the Deputy Speaker resigns by writing to the Speaker."
+  },
+  {
+    "text": "In the context of Indian Polity, consider the following:\nI. A Bill passed by both Houses of Parliament cannot become a law unless it receives the President's assent.\nII. A bill passed by the Parliament comes into force immediately upon receiving the President's assent.\nIII. The Constitution of India explicitly states that the Parliament consists of the President.\n\nWhich of the above prove(s) that the President of India is an integral part of the Parliament?",
+    "options": [
+      "I only",
+      "I and III only",
+      "I and II only",
+      "None of the above"
+    ],
+    "correctAnswer": 1,
+    "explanation": "The President is an integral part of Parliament because Article 79 explicitly states that Parliament consists of the President and two Houses. Additionally, Statement I is correct because no bill can become law without the President's assent. Statement II is incorrect because an Act comes into force based on its own commencement provisions, which may involve a future date or a later government notification."
+  },
+  {
+    "text": "With reference to parliamentary privileges in India, consider the following:\nI. The Constitution of India\nII. Parliamentary conventions\nIII. Statutory provisions\nIV. Rules of Procedure and Conduct of Business\n\nHow many of the above are sources of parliamentary privileges?",
+    "options": [
+      "Only one",
+      "Only two",
+      "Only three",
+      "All the four"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Parliamentary privileges in India are derived from all four sources: the Constitution (Articles 105 and 194), statutory laws (like the Code of Civil Procedure), the Rules of Procedure of the Houses, and long-standing parliamentary conventions inherited from the British system."
+  },
+  {
+    "text": "Consider the following statements:\n1. The Speaker of the Legislative Assembly shall vacate his/her office if he/she ceases to be a member of the assembly.\n2. Whenever the Legislative Assembly is dissolved, the Speaker shall vacate his/her office immediately.\n\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Statement 1 is correct under Article 179; the Speaker must be a member of the House. Statement 2 is incorrect because the Speaker does not vacate office immediately upon dissolution; they continue until immediately before the first meeting of the new Assembly."
+  },
+  {
+    "text": "According to the Fourth Schedule of the Constitution of India, which of the following Union Territories are allotted seats in the Council of States?\nI. Delhi\nII. Jammu and Kashmir\nIII. Ladakh\nIV. Lakshadweep\nV. Puducherry\n\nSelect the correct answer using the code given below:",
+    "options": [
+      "I and II only",
+      "II, III and IV",
+      "I, III, IV and V",
+      "I, II and V"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Only Union Territories with their own Legislative Assemblies are represented in the Rajya Sabha. Currently, these are Delhi (3 seats), Puducherry (1 seat), and Jammu and Kashmir (4 seats). Ladakh and Lakshadweep do not have legislatures and thus have no seats in the Rajya Sabha."
+  },
+  {
+    "text": "Mrs. Y is a citizen of India and is 27 years old. She is registered as an elector for one of the assembly constituencies as well as one of the parliamentary constituencies in Telangana. In this context consider the following:\nI. Membership of Lok Sabha\nII. Membership of Rajya Sabha\nIII. Membership of Legislative Assembly of Telangana\nIV. Membership of Legislative Council of Telangana\n\nMrs. Y would be qualified for the membership of which of the above?",
+    "options": [
+      "I and III only",
+      "I, III and IV only",
+      "III only",
+      "I, II, III and IV"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The minimum age for the Lok Sabha and State Legislative Assembly is 25 years. The minimum age for the Rajya Sabha and State Legislative Council is 30 years. Since Mrs. Y is 27, she is qualified for the Lok Sabha (I) and the Legislative Assembly (III), but not for the Rajya Sabha (II) or the Legislative Council (IV)."
+  },
+  {
+    "text": "With reference to the Parliamentary form of Government in India, the fundamental idea behind disqualifying members of Parliament from holding an office of profit under the government is based on which of the following doctrines?",
+    "options": [
+      "Doctrine of Separation of Power",
+      "Doctrine of Parliamentary Sovereignty",
+      "Doctrine of Rule of Law",
+      "Doctrine of Harmonious Construction"
+    ],
+    "correctAnswer": 0,
+    "explanation": "The disqualification for holding an 'office of profit' is based on the Doctrine of Separation of Powers. It aims to ensure that legislators remain independent of the executive and are not influenced by appointments that offer financial gain, thereby maintaining the check on the executive branch."
+  },
+  {
+    "text": "In the context of Indian Polity, consider the following statements:\nStatement I: The provisions of the Tenth Schedule of the Indian Constitution, with respect to voting against the instruction of the party, will not be applicable during the elections of members of the Rajya Sabha.\nStatement II: The election of members of Rajya Sabha is conducted through an Open ballot System.\n\nWhich of the above is correct in respect of the above statements?",
+    "options": [
+      "Both Statement I and Statement II are correct and Statement II explains Statement I.",
+      "Both Statement I and Statement II are correct but Statement II does not explain Statement I.",
+      "Statement I is correct but Statement II is not correct.",
+      "Statement I is not correct but Statement II is correct."
+    ],
+    "correctAnswer": 1,
+    "explanation": "Both statements are correct. The Supreme Court ruled in the Kuldip Nayar case that the Tenth Schedule does not apply to Rajya Sabha elections because they are 'outside the House' proceedings. Statement II is also correct as Rajya Sabha elections use an open ballot. However, the open ballot is intended to prevent cross-voting and corruption, while the non-application of the Tenth Schedule is due to the legal nature of the election process, so II does not explain I."
+  },
+  {
+    "text": "In cases involving matters related to corrupt practices, a Member of Parliament can be disqualified for a maximum period of six years under the provisions of Representation of Peoples Act 1951. Who among the following is empowered to decide the actual period of such disqualification?",
+    "options": [
+      "Election Commission of India",
+      "Presiding Officer of respective House of Parliament",
+      "President of India on advice of Supreme Court of India",
+      "President of India on advice of Election commission of India"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Under Section 8A of the RPA 1951, the President of India decides the period of disqualification for corrupt practices (not exceeding six years). The President must obtain and act according to the opinion of the Election Commission of India."
+  },
+  {
+    "text": "Which of the following statements about the Committee on Public Undertakings is/are correct?\n1. There are more members from the Rajya Sabha than the Lok Sabha in the Committee.\n2. The Chairperson of the Committee is appointed by the Speaker of the Lok Sabha.\n\nSelect the correct answer using the code given below.",
+    "options": [
+      "1 only",
+      "2 only",
+      "Both 1 and 2",
+      "Neither 1 nor 2"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Statement 1 is incorrect; the committee has 22 members, with 15 from the Lok Sabha and 7 from the Rajya Sabha. Statement 2 is correct; the Speaker of the Lok Sabha appoints the Chairperson from among the Lok Sabha members on the committee."
+  },
+  {
+    "text": "With reference to the Legislative Assembly of a State in India, which of the following statements is correct?",
+    "options": [
+      "There is no state with a Legislative Assembly having a strength less than 60.",
+      "The total number of seats in the Legislative Assembly of each state is fixed on the basis of the 2001 Census.",
+      "No member of any state Legislative assembly is indirectly elected.",
+      "Presently no state have a member nominated by the Governor in their respective Legislative assembly."
+    ],
+    "correctAnswer": 3,
+    "explanation": "Option d is correct; following the 104th Amendment, the Governor's power to nominate Anglo-Indians has ceased. Option a is wrong as states like Goa and Sikkim have 30-40 seats. Option b is wrong; seat numbers are fixed based on the 1971 census (until 2026). Option c is wrong; some members in Nagaland and Sikkim are elected indirectly."
+  },
+  {
+    "text": "In which of the following situation(s) does the seat of a Member of Parliament (MP) become vacant?\nI. If s/he is absent from all meetings of the House for a period of thirty days without permission of the House.\nII. If s/he fails to make and subscribe an oath or affirmation within six months from the date on which the House first meets after his/her election.\nIII. If s/he is elected as the President of India.\n\nSelect the correct answer using the code given below:",
+    "options": [
+      "I and II only",
+      "III only",
+      "II and III only",
+      "I, II and III"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Statement I is incorrect; the vacancy occurs after 60 days of unauthorized absence, not 30. Statement II is incorrect; there is no fixed six-month time limit for the oath that causes automatic vacancy. Statement III is correct; under Article 59, if an MP is elected President, they are deemed to have vacated their seat in Parliament on the date they enter office."
+  },
+  {
+    "text": "Which of the following statements with regard to the Speaker of the Lok Sabha are correct?\nI. S/he is elected by the members of the Lok Sabha from amongst themselves by a simple majority.\nII. The election to the Speaker of the House shall be held on such a date as the pro tem speaker decides.\nIII. S/he is the ex-officio Chairperson of the Conference of Presiding Officers of Legislative Bodies in India.\nIV. S/he is the appointing authority of Deputy Speaker of Lok Sabha.\n\nSelect the correct answer using the code given below.",
+    "options": [
+      "I and IV only",
+      "I and III only",
+      "I, III and IV",
+      "II, III and IV"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Statement I is correct; the House elects the Speaker by simple majority. Statement II is incorrect; the President fixes the date for the Speaker's election. Statement III is correct; by convention, the Speaker chairs the national conference of presiding officers. Statement IV is incorrect; the House itself chooses the Deputy Speaker; the Speaker does not appoint them."
+  },
+  {
+    "text": "Which of the following statements are correct regarding the Joint Session of the Houses of the Parliament in India?\n1. It is an enabling provision empowering the President to take steps for resolving deadlock between the two Houses.\n2. It is not obligatory upon the President to summon the Houses to meet in a joint sitting.\n3. It is being notified by the President.\n4. It is frequently resorted to establish the supremacy of the Lok Sabha.\n\nSelect the correct answer using the codes given below:",
+    "options": [
+      "1 and 2 only",
+      "1, 2 and 3",
+      "2 and 3 only",
+      "3 and 4"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Statements 1, 2, and 3 are correct. Article 108 is an enabling provision for resolving deadlocks. The President notifies the intention to summon a joint sitting, and it is not mandatory. Statement 4 is incorrect; joint sittings are rare (only three times in history) and are meant for legislative resolution, not to establish Lok Sabha supremacy."
+  },
+  {
+    "text": "Consider the following statements regarding the instrument of 'Whip' in the Indian Parliament:\nI. While a 'one-line whip' compels the Members to be present in the House, a 'two-line whip' directs them to vote in a certain way.\nII. If a Member defies a party's whip to be present and vote as per the party line during voting, may lead to his/her disqualification from the membership of the House.\nIII. The office of Chief whip of a political party in Parliament enjoys the same rank as that of a Minister in the Union Cabinet, in the table of precedence in India.\n\nWhich of the statements given above is/are correct?",
+    "options": [
+      "I and III only",
+      "II only",
+      "II and III only",
+      "None of the above"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Statement I is incorrect; a one-line whip just notifies members of a vote, while a two-line whip compels presence (a three-line whip directs voting). Statement II is correct; defying a three-line whip can lead to disqualification under the Anti-Defection Law. Statement III is incorrect; the Chief Whip is not mentioned in the Table of Precedence and does not have Cabinet Minister rank."
+  },
+  {
+    "text": "Mr. G, a Member of Parliament from Rajya Sabha and a minister while discussing certain matters during the proceedings of the Rajya Sabha criticized Mr. R who is a leader of Opposition in Lok Sabha for his past comments. Mr. K, another MP from Rajya Sabha stood up and cited earlier rulings which prohibited allegations against members of the other house. In this context, Mr. K used which of the following Parliamentary practices to raise his concern?",
+    "options": [
+      "Calling Attention Motion",
+      "Dilatory Motion",
+      "Point of Order",
+      "Special Mention"
+    ],
+    "correctAnswer": 2,
+    "explanation": "A Point of Order is used to raise a question regarding the interpretation or enforcement of the Rules of Procedure or the Constitution in regulating the business of the House. By citing previous rulings to challenge the conduct of proceedings, Mr. K was raising a point of order."
+  },
+  {
+    "text": "With reference to the Parliament of India, which of the following statements is/are correct regarding the office of Deputy Chairman of Rajya Sabha?\nI. The date for his/her election is decided by the President of India\nII. S/he is entitled to a casting vote while presiding over the House.\nIII. S/he can be removed only if a resolution to that effect is passed in the Rajya Sabha by a two-third majority of the members present and voting.\nIV. When the office of Deputy Chairman becomes vacant, a new Deputy Chairman must be elected within a period of six-months.\n\nSelect the correct answer using the code given below:",
+    "options": [
+      "II only",
+      "I and II",
+      "II and III",
+      "I and IV"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Statement I is incorrect; the Chairman of the Rajya Sabha (not the President) fixes the election date. Statement II is correct; the Deputy Chairman exercises a casting vote in case of a tie while presiding. Statement III is incorrect; removal requires an 'effective majority' (majority of all then members), not a two-thirds majority. Statement IV is incorrect; the Constitution says 'as soon as may be' but fixes no six-month deadline."
+  },
+  {
+    "text": "In the context of Indian Parliament, consider the following information:\n\n| Action | Implication | It is done by |\n| :--- | :--- | :--- |\n| I. Adjournment of the House | It terminates the sitting of the House for a specified period. | Presiding Officer of the House |\n| II. Prorogation of the House | It terminates all bills and other business pending before the House. | President of India |\n| III. Adjournment Sine Die | It terminates both the sitting as well as the session of the House. | Presiding Officer of the House |\n\nIn how many of the above rows is the information correctly matched?",
+    "options": [
+      "Only one",
+      "Only two",
+      "All the three",
+      "None"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Only Row I is correctly matched. Row II is incorrect; prorogation ends a session but does *not* terminate pending bills. Row III is incorrect; adjournment sine die ends a sitting for an indefinite period, but it does not necessarily end the session (that is done by prorogation)."
+  },
+  {
+    "text": "With reference to method of passage of a bill/resolution in Parliament, consider the following pairs:\n\n| Bill/Resolution | Type of Majority required |\n| :--- | :--- |\n| I. A resolution altering the boundaries and names of certain States and Union Territories | Support of at least half of the members present and voting in each house of Parliament. |\n| II. A bill that reallocates the Rajya Sabha seats among the States | Support of at least half of the total strength of the respective House of the Parliament. |\n| III. A resolution that provides for creation of a State Legislative Council | Support of at least three-fourth of the members of each House of Parliament present and voting |\n\nHow many of the above given pairs are correctly matched?",
+    "options": [
+      "Only one",
+      "Only two",
+      "All the three",
+      "None"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Only Pair I is correctly matched (simple majority). Pair II is incorrect; reallocating Rajya Sabha seats requires a special majority and state ratification as it affects the Fourth Schedule. Pair III is incorrect; while the State Assembly needs a special majority to recommend creation, Parliament passes the law for it by a simple majority."
+  },
+  {
+    "text": "With regard to the Panel of Chairperson, Lok Sabha, which of the following statements is/are correct?\n1. Panel of Chairperson is drawn from the ruling party only.\n2. Panel of Chairperson is nominated by different political parties and appointed by Speaker, Lok Sabha.\n3. Panel of Chairperson consists of 10 members and one of them presides over the House when both Speaker and Deputy Speaker are not there.\n\nSelect the correct answer using the codes given below:",
+    "options": [
+      "1 and 3",
+      "2 and 3",
+      "3 only",
+      "2 only"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Statement 1 is incorrect; the panel includes members from different parties. Statement 2 is correct; members are nominated by parties and appointed by the Speaker. Statement 3 is correct; the panel consists of up to 10 members, and any one can preside if both the Speaker and Deputy Speaker are absent."
+  },
+  {
+    "text": "In the context of parliamentary practices in India, the \"Mavlankar Rule\" lays down which of the following requirements?",
+    "options": [
+      "The minimum strength required to move a no-confidence motion in the House of People.",
+      "The quorum needed to constitute the sitting of the House of People.",
+      "The minimum strength of the party in the House of People needed to be recognized as a Parliamentary Party in the house.",
+      "The member of the House of People to resign from his/her party upon being elected as the Speaker of the House of People."
+    ],
+    "correctAnswer": 2,
+    "explanation": "The Mavlankar Rule requires that for a group to be recognized as a parliamentary party, it must have a strength at least equal to the quorum of the House (i.e., 10% or one-tenth of the total strength)."
+  },
+  {
+    "text": "In the context of Indian polity, consider the following statements: When the Lok Sabha is dissolved-\nI. a bill that has been introduced and is pending before the Lok Sabha lapse.\nII. a bill that is introduced and passed by the Rajya Sabha but pending before the Lok Sabha lapse.\nIII. a bill that has been passed by both the Houses of Parliament but is pending assent from the President of India lapse.\nIV. a bill in regard to which the President of India notified his/her intentions to summon the houses to a joint sitting before the dissolution of the Lok Sabha lapse.\n\nWhich of the statements given above are correct?",
+    "options": [
+      "I and II only",
+      "I and III only",
+      "I, II and III",
+      "I, II and IV"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Under Article 107, Statements I and II are correct; bills pending in or originating in the Lok Sabha lapse. Statement III is incorrect; a bill passed by both Houses and pending assent does *not* lapse. Statement IV is incorrect; if a joint sitting has been notified by the President before dissolution, the bill does *not* lapse."
+  },
+  {
+    "text": "In the context of Indian Polity, consider the following Statements:\nStatement I: A motion of No-confidence can be moved only against the entire Council of Ministers.\nStatement II: The Council of Ministers shall be collectively responsible to the House of People.\nStatement III: An individual minister is not necessary to be the member of either House of Parliament at the time of his/her appointment.\n\nWhich one of the following is correct in respect of the statements given above?",
+    "options": [
+      "Both statement II and statement III are correct and both of them explain statement I",
+      "Both statement II and statement III are correct, but only one of them explains statement I",
+      "Only one of the statements II and III is correct, and that explains statement I",
+      "Neither Statement II nor statement III is correct"
+    ],
+    "correctAnswer": 1,
+    "explanation": "All three statements are correct. Statement II explains Statement I because collective responsibility to the Lok Sabha means the entire ministry stands or falls together, hence the no-confidence motion targets the whole council. Statement III is correct (a person can be a minister for 6 months without being an MP) but it does not explain why the motion must be against the whole Council."
+  },
+  {
+    "text": "With reference to the Speaker of the Lok Sabha, consider the following statements: While any resolution for the removal of the Speaker of the Lok Sabha is under consideration\n1. He/She shall not preside.\n2. He/She shall not have the right to speak.\n3. He/She shall not be entitled to vote on the resolution in the first instance.\n\nWhich of the statements given above is/are correct?",
+    "options": [
+      "1 only",
+      "1 and 2 only",
+      "2 and 3 only",
+      "1, 2 and 3"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Statement 1 is correct; the Speaker cannot preside during their own removal resolution. Statement 2 is incorrect; the Speaker has the right to speak and take part in the proceedings. Statement 3 is incorrect; the Speaker is entitled to vote in the first instance on such a resolution but cannot vote in the case of a tie."
+  },
+  {
+    "text": "With reference to the Annual Financial Statement in India, consider the following statements:\nI. It is prepared by the Ministry of Finance, Government of India.\nII. As per the Constitution of India, the President shall, in respect of every financial year, cause to lay the Annual Financial Statement only before the House of People.\nIII. When the Annual financial statement is not passed by the House of People then the Prime Minister submits the resignation of the Council of Ministers.\n\nWhich of the statements given above is/are correct?",
+    "options": [
+      "I only",
+      "I and III only",
+      "II and III only",
+      "I, II and III"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Statement I is correct; the Ministry of Finance prepares the budget (AFS). Statement II is incorrect; the President must cause the AFS to be laid before *both* Houses of Parliament. Statement III is correct; failure to pass the budget is considered a loss of confidence in the government, necessitating resignation."
+  },
+  {
+    "text": "Consider the following expenditures:\nI. Administrative expenses of the office of the Comptroller and Auditor General (CAG)\nII. Such sums as Parliament may by law provide in the form of grants-in-aid to certain States.\nIII. Salaries and allowances of the judges of the High Courts\nIV. Redemption charges related to the debt raised by the Government of India\n\nHow many of the above expenditures are charged on the Consolidated Fund of India?",
+    "options": [
+      "Only one",
+      "Only two",
+      "Only three",
+      "All the four"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Expenditures I, II, and IV are charged on the Consolidated Fund of India. Statement III is incorrect because the salaries and allowances of High Court judges are charged on the Consolidated Fund of the *State* (though their pensions are charged on the Consolidated Fund of India)."
+  },
+  {
+    "text": "A Urea subsidy scheme was introduced in this year's budget with an appropriation amount of Rs. x. The actual expenditure on the scheme was Rs. x+y. Which of the following types of grant can the Government of India seek from the legislature to cover the over expenditure of amount y on the scheme?",
+    "options": [
+      "Vote of Credit",
+      "Excess Grant",
+      "Additional Grant",
+      "Exceptional Grant"
+    ],
+    "correctAnswer": 1,
+    "explanation": "An Excess Grant is sought when money has already been spent on a service in excess of the amount granted for that service in the budget for that year. Since the Urea scheme overspent its budget, an excess grant is the correct mechanism (after it is approved by the Public Accounts Committee)."
+  },
+  {
+    "text": "Consider the following statements regarding the Contingency Fund of India:\nI. It was created through an Act of Parliament.\nII. It shall be held on behalf of the President of India by a Secretary to the Government of India in the Ministry of Finance.\nIII. The President can make advances out of this Fund to meet unforeseen expenditure, pending authorisation of such expenditure by the Parliament by law.\n\nWhich of the following statements is/are correct?",
+    "options": [
+      "I only",
+      "I and II only",
+      "II and III only",
+      "I, II and III"
+    ],
+    "correctAnswer": 3,
+    "explanation": "All statements are correct. The Fund was established by the Contingency Fund of India Act, 1950 (per Article 267). It is held by the Finance Secretary on behalf of the President and is used to meet unforeseen expenses until Parliament authorizes them through an appropriation law."
+  },
+  {
+    "text": "With reference to the abolition or creation of State Legislative Council in States in India, consider the following statements:\nI. Parliament may by law provide for creation of Legislative Council in a state if the Legislative Assembly of that State passes a resolution by a majority of the total membership of the Assembly and by a majority of not less than two-thirds of the members present and voting.\nII. A law passed by the Parliament for the creation of a Legislative Council is not deemed to be a Constitutional Amendment under Article 368.\nIII. A bill for creation of legislative councils of state can be introduced in Parliament only with the prior recommendation of the President.\n\nWhich of the statements given above is/are correct?",
+    "options": [
+      "I only",
+      "I and II only",
+      "II and III only",
+      "I, II and III"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Statement I is correct; the State Assembly must pass a resolution by special majority. Statement II is correct; Article 169 explicitly states such a law is not a formal constitutional amendment. Statement III is incorrect; no prior recommendation of the President is required for introducing such a bill in Parliament."
+  },
+  {
+    "text": "Consider the following statements:\nI. If any question arises as to whether a Member of the House of the People has become subject to disqualification under the 10th Schedule, the President's decision in accordance with the opinion of the Council of Union Ministers shall be final.\nII. There is no mention of the word 'political party' in the Constitution of India.\n\nWhich of the statements given above is/are correct?",
+    "options": [
+      "I only",
+      "II only",
+      "Both I and II",
+      "Neither I nor II"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Statement I is incorrect; disqualification under the 10th Schedule (Anti-Defection) is decided by the Speaker/Chairman of the House, not the President. Statement II is incorrect; the term 'political party' is explicitly mentioned in the Tenth Schedule of the Constitution."
+  },
+  {
+    "text": "With reference to a bicameral State Legislature, the position of the Legislative Council is equal with respect to the Legislative Assembly in which of the following cases?\nI. Approval of an ordinance promulgated by the Governor of that State\nII. Participation in election of representatives of the State to the Council of States\nIII. Consideration of the reports of Comptroller and Auditor General of India (CAG)\nIV. Ratification of a Constitutional Amendment Bill\n\nSelect the correct answer using the code given below.",
+    "options": [
+      "I and III only",
+      "II, III and IV",
+      "II and III only",
+      "I, II and IV"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Case I is correct; ordinances must be approved by both Houses. Case III is correct; CAG reports are laid before the state legislature (both houses). Case II is incorrect; only elected MLAs (not MLCs) elect Rajya Sabha members. Case IV is incorrect; only the Legislative Assembly (not the Council) ratifies constitutional amendments."
+  },
+  {
+    "text": "Which of the following statements is/are correct with reference to the Public Accounts Committee of the Parliament of India?\nI. It was first set-up in India based on the provisions of the Government of India Act, 1935.\nII. Initially, before independence, it consisted only the members of the Lok Sabha.\nIII. The senior-most member of the Parliament is appointed by the Speaker as the Chairman of the Committee.\n\nSelect the correct answer using the code given below:",
+    "options": [
+      "I and II",
+      "I only",
+      "II only",
+      "II and III"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Statement I is incorrect; the PAC was first set up in 1921 under the 1919 Act. Statement II is correct; it originally consisted only of 15 members from the Lower House (Legislative Assembly/Lok Sabha); Rajya Sabha members were associated starting in 1954. Statement III is incorrect; the Speaker appoints the Chairman, and since 1967, it is by convention a member from the Opposition, not necessarily the 'senior-most' of all Parliament."
+  },
+  {
+    "text": "Consider the following Parliamentary Committees of the Lok Sabha in India, formed to facilitate legislative work:\nI. Business Advisory Committee\nII. Committee on Petitions\nIII. General Purposes Committee\nIV. Committee on Private Members' Bills and Resolutions\n\nHow many of the above are headed by the Speaker of the Lok Sabha?",
+    "options": [
+      "Only one",
+      "Only two",
+      "Only three",
+      "All the four"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Only two of these are headed by the Speaker: the Business Advisory Committee and the General Purposes Committee. The Committee on Private Members' Bills and Resolutions is headed by the Deputy Speaker, and the Committee on Petitions elects its own chairperson."
+  },
+  {
+    "text": "The actual strength of a State Legislative Council is determined by:",
+    "options": [
+      "Legislative Assembly of the State concerned",
+      "President of India",
+      "Governor of the State",
+      "Parliament of India"
+    ],
+    "correctAnswer": 3,
+    "explanation": "The Constitution (Article 171) sets the maximum and minimum limits for the Legislative Council strength, but the actual number of members within those limits is determined by the Parliament by law."
+  },
+  {
+    "text": "With reference to Money Bill in the Indian Parliament, consider the following statements:\nI. It shall not be introduced in the Council of States.\nII. A private member of the House of people cannot introduce such types of bills in the House.\nIII. As per the Constitution of India, a Bill shall be deemed to be a Money Bill if it provides for imposition of fines or other pecuniary penalties.\nIV. The Council of States can amend such bills once transmitted to it by the House of People only at the first instance.\n\nWhich of the statements given above is/are correct?",
+    "options": [
+      "I only",
+      "I, II and III only",
+      "I and II only",
+      "III and IV only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Statement I is correct; a Money Bill can only be introduced in the Lok Sabha. Statement II is incorrect; while rare, there is no explicit constitutional bar against a private member introducing a Money Bill (though it still requires presidential recommendation). Statement III is incorrect; Article 110(2) specifically excludes bills for fines/penalties from being Money Bills. Statement IV is incorrect; the Rajya Sabha cannot amend a Money Bill at all; it can only make recommendations."
+  },
+  {
+    "text": "Which of the following are grounds for disqualification of a Member of Parliament under the Constitution of India?\nI. If s/he is declared of unsound mind by a competent court\nII. If s/he is an undischarged insolvent.\nIII. If s/he is under any acknowledgment of allegiance or adherence to a foreign State.\n\nSelect the correct answer using the code given below.",
+    "options": [
+      "I and II only",
+      "II and III only",
+      "I and III only",
+      "I, II and III"
+    ],
+    "correctAnswer": 3,
+    "explanation": "All three are constitutional grounds for disqualification under Article 102(1). These include being declared of unsound mind, being an undischarged insolvent, or holding allegiance to a foreign state."
+  },
+  {
+    "text": "With reference to the Indian Parliamentary system, consider the following statements about a Private Member's Bill:\nI. These are a mechanism through which Members of Parliament (MP), who are not Ministers, can propose their own legislation.\nII. Generally the period of notice of a motion for leave to introduce such a Bill is one month.\nIII. Only four Private Member Bills have been passed since independence.\n\nWhich of the statements given above is/are correct?",
+    "options": [
+      "I and II",
+      "I only",
+      "I and III",
+      "II and III"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Statement I is correct; any MP who is not a minister is a private member. Statement II is correct; the required notice period for introduction is one month. Statement III is incorrect; 14 private member's bills have been passed since independence (though none since 1970)."
+  },
+  {
+    "text": "Which of the following are the special powers enjoyed by the Council of States? Council of States alone can:\nI. initiate the resolution for the removal of the Vice President of India.\nII. pass a resolution under Article 249 of the Constitution of India empowering Parliament to legislate on a State List subject in national interest.\nIII. pass a resolution for discontinuance of the Emergency proclaimed under Article 352 of the Constitution of India.\nIV. pass a resolution recommending the creation of one or more All-India Services under Article 312.\n\nSelect the correct answer using the code given below:",
+    "options": [
+      "I, II and III only",
+      "I, II and IV only",
+      "III and IV only",
+      "I, II, III and IV"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Powers I, II, and IV are exclusive to the Rajya Sabha. The Vice President's removal can only begin in the Rajya Sabha; Article 249 resolutions regarding state lists begin there; and Article 312 for new All-India services is an exclusive upper house power. Power III is incorrect; a resolution for the discontinuance of a National Emergency can only be passed by the Lok Sabha."
+  },
+  {
+    "text": "In the Council of States, suppose two opposition parties have the same numerical strength and are the greatest in number in the house. In this context, which of the statements given below is correct?",
+    "options": [
+      "The leaders of both the parties will serve as Leader of Opposition to the House.",
+      "The House will decide through voting as the leader of which party will be declared as the Leader of the Opposition.",
+      "The Chairman of the House can recognize the leader of any one of the two parties as the Leader of the Opposition.",
+      "Amongst the two parties, the leader of one which has a higher numerical strength in the House of People will serve as the Leader of Opposition in the Council of States."
+    ],
+    "correctAnswer": 2,
+    "explanation": "Under the Salary and Allowances of Leaders of Opposition in Parliament Act, 1977, if two opposition parties have the same numerical strength, the Chairman of the Rajya Sabha recognizes any one of the leaders as the Leader of the Opposition, and this decision is final."
+  }
+]
 };
 
 module.exports = sfgData;
