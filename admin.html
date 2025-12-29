@@ -3,92 +3,50 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Admin Portal - MCQ App</title>
+    <title>Admin Portal - Discussion Mode</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-        }
+        body { font-family: 'Poppins', sans-serif; background-color: #f4f7f9; }
+        .btn-primary-custom { background-color: #1e3a8a; color: white; border: none; transition: all 0.3s ease; }
+        .btn-primary-custom:hover { background-color: #1e40af; color: white; transform: translateY(-2px); }
+
+        /* Discussion Matrix Styles */
+        .transition-all { transition: all 0.2s ease-in-out; }
+        .border-dashed { border-style: dashed !important; }
         
-        /* Match User App Design */
-        .btn-primary-custom {
-            background-color: #1e3a8a;
-            color: white;
-            border: none;
-            transition: all 0.3s ease;
-        }
-        .btn-primary-custom:hover {
-            background-color: #1e40af;
-            color: white;
-            transform: translateY(-2px);
-        }
+        .admin-q-card { border-left: 5px solid #1e3a8a; }
+        .admin-q-card.high-error { border-left-color: #dc3545 !important; }
 
-        /* Admin Specific Styling */
-        .user-list-box {
-            max-height: 200px;
-            overflow-y: auto;
-            font-size: 0.85rem;
-            background: #fff;
-        }
-        .user-badge {
-            display: block;
-            margin: 4px 0;
-            padding: 6px 10px;
-            border-radius: 6px;
-            background: #f8f9fa;
-            border-left: 3px solid #dee2e6;
-        }
-        
-        /* Question Card Design (Matching Review Mode) */
-        .admin-q-card {
-            border-left: 5px solid #1e3a8a; /* Primary Brand Color */
-            transition: transform 0.2s;
-        }
-        .admin-q-card:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Option Styling */
-        .option-box {
-            padding: 12px;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-            margin-bottom: 8px;
-            background-color: white;
-        }
-        .correct-option {
-            background-color: #d1e7dd; /* bg-success-subtle */
-            border-color: #198754;
-            color: #0f5132;
-            font-weight: 600;
-        }
-
-        /* Explanation Box */
         .explanation-box {
-            background-color: #f8f9fa; /* Light bg */
-            border-start-start-radius: 4px;
-            border-start-end-radius: 4px;
-            border-left: 4px solid #ffc107; /* Warning color border */
+            background-color: #fff9e6;
+            border-left: 4px solid #ffc107;
             padding: 15px;
+            border-radius: 0 8px 8px 0;
         }
+
+        .option-row { cursor: default; transition: background 0.2s; }
+        .option-row:hover { background-color: #f8f9fa; }
         
-        /* Leaderboard Table */
-        .table-custom th {
-            background-color: #1e3a8a;
-            color: white;
+        .badge.user-tag {
+            font-size: 0.7rem;
             font-weight: 500;
+            background-color: white;
+            color: #475569;
+            border: 1px solid #e2e8f0;
         }
+
+        .user-list-container { max-height: 120px; overflow-y: auto; }
     </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
     <nav class="navbar navbar-dark shadow-sm" style="background-color: #1e3a8a;">
         <div class="container">
-            <span class="navbar-brand fw-bold mb-0 h1">🔒 MCQ Admin Panel</span>
+            <span class="navbar-brand fw-bold mb-0 h1"><i class="bi bi-shield-lock-fill me-2"></i>MCQ Admin Panel</span>
             <button class="btn btn-outline-light btn-sm rounded-pill px-3" onclick="logoutAdmin()">Logout</button>
         </div>
     </nav>
@@ -98,17 +56,16 @@
             <div class="col-md-5">
                 <div class="card shadow border-0 rounded-4 p-4">
                     <h3 class="text-center fw-bold text-primary mb-2">Admin Login</h3>
-                    <p class="text-center text-muted mb-4">Enter your credentials to access the dashboard.</p>
                     <form id="admin-login-form">
                         <div class="mb-3">
-                            <label class="form-label fw-bold small text-muted">Email Address</label>
-                            <input type="email" id="admin-email" class="form-control form-control-lg bg-light" required>
+                            <label class="form-label fw-bold small text-muted">Email</label>
+                            <input type="email" id="admin-email" class="form-control bg-light" required>
                         </div>
                         <div class="mb-4">
                             <label class="form-label fw-bold small text-muted">Password</label>
-                            <input type="password" id="admin-password" class="form-control form-control-lg bg-light" required>
+                            <input type="password" id="admin-password" class="form-control bg-light" required>
                         </div>
-                        <button type="submit" class="btn btn-primary-custom w-100 py-3 shadow rounded-3">Access Dashboard</button>
+                        <button type="submit" class="btn btn-primary-custom w-100 py-3 rounded-3">Access Dashboard</button>
                     </form>
                 </div>
             </div>
@@ -116,23 +73,16 @@
     </section>
 
     <section id="admin-dashboard-section" class="container py-5" style="display: none;">
-        
         <div class="card shadow-sm border-0 rounded-4 p-4 mb-5">
-            <h5 class="fw-bold text-primary mb-4">🔍 Select Test to Analyze</h5>
+            <h5 class="fw-bold text-primary mb-4"><i class="bi bi-search me-2"></i>Select Test to Analyze</h5>
             <div class="row g-3">
                 <div class="col-md-5">
-                    <label class="form-label fw-bold small text-muted">Subject</label>
-                    <select id="subject-select" class="form-select form-select-lg">
-                        <option value="">-- Choose Subject --</option>
-                    </select>
+                    <select id="subject-select" class="form-select form-select-lg"></select>
                 </div>
                 <div class="col-md-5">
-                    <label class="form-label fw-bold small text-muted">Test (Chapter)</label>
-                    <select id="chapter-select" class="form-select form-select-lg" disabled>
-                        <option value="">-- First Choose Subject --</option>
-                    </select>
+                    <select id="chapter-select" class="form-select form-select-lg" disabled></select>
                 </div>
-                <div class="col-md-2 d-flex align-items-end">
+                <div class="col-md-2">
                     <button class="btn btn-primary-custom w-100 py-2 btn-lg" onclick="loadTestAnalysis()">Analyze 🚀</button>
                 </div>
             </div>
@@ -140,8 +90,8 @@
 
         <div id="analysis-container">
             <div class="text-center text-muted py-5">
-                <div class="display-1 opacity-25 mb-3">📊</div>
-                <h4>Select a test above to view User Performance & Explanations.</h4>
+                <div class="display-1 opacity-25 mb-3"><i class="bi bi-bar-chart-steps"></i></div>
+                <h4>Select a test to begin the Discussion Session.</h4>
             </div>
         </div>
     </section>
@@ -151,10 +101,8 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
     <script src="config.js"></script>
     <script src="quizData.js"></script>
-
     <script src="admin.js"></script>
 </body>
 </html>
