@@ -2,6 +2,22 @@
    4. TAKE TEST LOGIC (Subjects & Chapters)
    ========================================= */
 
+// --- HELPER FUNCTIONS FOR AUTO-SAVE ---
+function saveQuizProgress() {
+  if (!currentChapterId || quizSubmitted || isReviewMode) return;
+  const progressData = {
+    userAnswers: userAnswers,
+    lastQuestionIndex: currentQuestionIndex,
+    timestamp: new Date().getTime()
+  };
+  localStorage.setItem(`quiz_progress_${currentChapterId}`, JSON.stringify(progressData));
+}
+
+function clearQuizProgress(chapterId) {
+  localStorage.removeItem(`quiz_progress_${chapterId}`);
+}
+// --------------------------------------
+
 function renderSubjects() {
   const container = document.getElementById("test-content-container");
 
@@ -164,7 +180,7 @@ function getCorrectIndex(question) {
   return -1;
 }
 
-// Updated loadQuiz to include multi-layer caching
+// Updated loadQuiz to include multi-layer caching and AUTO-SAVE RESTORATION
 async function loadQuiz(
   subjectKey,
   chapterId,
@@ -219,6 +235,22 @@ async function loadQuiz(
     currentQuestionIndex = 0;
     userAnswers = {};
     quizSubmitted = false;
+
+    // --- RESTORE AUTO-SAVE PROGRESS ---
+    if (!reviewMode) {
+      const savedProgress = localStorage.getItem(`quiz_progress_${currentChapterId}`);
+      if (savedProgress) {
+        const parsedProgress = JSON.parse(savedProgress);
+        const oneDay = 24 * 60 * 60 * 1000;
+        // Only restore if saved progress is less than 24 hours old
+        if (new Date().getTime() - parsedProgress.timestamp < oneDay) {
+          userAnswers = parsedProgress.userAnswers || {};
+          currentQuestionIndex = parsedProgress.lastQuestionIndex || 0;
+          toastr.info("Restored your previous progress.");
+        }
+      }
+    }
+    // ----------------------------------
 
     const timerDisplay = document.getElementById("timer-display");
     if (timerDisplay) {
@@ -817,6 +849,7 @@ function renderQuestion() {
           answer: idx,
         };
         updateNavHighlights();
+        saveQuizProgress(); // <-- SYNC TO LOCAL STORAGE
       });
     }
     div.appendChild(label);
@@ -859,6 +892,7 @@ function navigateQuestions(dir) {
     currentQuestionIndex = next;
     renderQuestion();
     updateNavHighlights();
+    saveQuizProgress(); // <-- SAVE CURRENT INDEX ON NAVIGATION
   }
 }
 
@@ -867,6 +901,7 @@ function clearSelection() {
   delete userAnswers[currentQuestionIndex];
   renderQuestion();
   updateNavHighlights();
+  saveQuizProgress(); // <-- SYNC CLEAR ACTION
 }
 
 function renderNav() {
@@ -880,6 +915,7 @@ function renderNav() {
       currentQuestionIndex = i;
       renderQuestion();
       updateNavHighlights();
+      saveQuizProgress(); // <-- SAVE INDEX ON NAV CLICK
     };
     nav.appendChild(item);
   });
@@ -912,6 +948,8 @@ function submitAll(forceSubmit = false) {
   if (quizTimerInterval) clearInterval(quizTimerInterval);
 
   quizSubmitted = true;
+  clearQuizProgress(currentChapterId); // <-- CLEAR AUTO-SAVE ON SUCCESSFUL SUBMISSION
+
   let score = 0;
   let correct = 0,
     incorrect = 0,
