@@ -97,9 +97,6 @@ function renderSubjects() {
   });
 }
 
-/**
- * UPDATED: RENDER CHAPTERS WITH REVIEW BUTTON
- */
 function renderChapters(subjectKey) {
   const container = document.getElementById("test-content-container");
   container.innerHTML = `
@@ -121,14 +118,12 @@ function renderChapters(subjectKey) {
     const subjectPrefix = subjectKey.replace(/\s+/g, "_") + "_";
     const fullChapterId = subjectPrefix + chapId;
 
-    // Cari hasil tes terbaru untuk chapter ini
     const latestResult =
       userHistory && userHistory.find((h) => h.chapterId === fullChapterId);
     const hasTaken = !!latestResult;
 
     const startBtnText = hasTaken ? "↻ Retake Test" : "🚀 Start Test";
 
-    // Siapkan HTML tombol review jika sudah pernah dikerjakan
     let reviewBtnHtml = "";
     if (hasTaken) {
       reviewBtnHtml = `
@@ -152,12 +147,10 @@ function renderChapters(subjectKey) {
                 </div>
             </div>`;
 
-    // Aksi tombol Start/Retake
     col.querySelector(".action-btn").onclick = () => {
       loadQuiz(subjectKey, chapId, encodeURIComponent(chapId));
     };
 
-    // Aksi tombol Review (Source diset 'chapters')
     if (hasTaken) {
       col.querySelector(".review-perf-btn").onclick = () => {
         reviewTest(latestResult, "chapters");
@@ -180,7 +173,6 @@ function getCorrectIndex(question) {
   return -1;
 }
 
-// Updated loadQuiz to include multi-layer caching and AUTO-SAVE RESTORATION
 async function loadQuiz(
   subjectKey,
   chapterId,
@@ -211,7 +203,6 @@ async function loadQuiz(
   try {
     const cacheKey = "quiz_cache_" + currentChapterId;
 
-    // OPTIMIZATION: Memory and LocalStorage check
     if (quizDataCache[currentChapterId]) {
       currentQuizData = quizDataCache[currentChapterId];
     } else {
@@ -236,13 +227,11 @@ async function loadQuiz(
     userAnswers = {};
     quizSubmitted = false;
 
-    // --- RESTORE AUTO-SAVE PROGRESS ---
     if (!reviewMode) {
       const savedProgress = localStorage.getItem(`quiz_progress_${currentChapterId}`);
       if (savedProgress) {
         const parsedProgress = JSON.parse(savedProgress);
         const oneDay = 24 * 60 * 60 * 1000;
-        // Only restore if saved progress is less than 24 hours old
         if (new Date().getTime() - parsedProgress.timestamp < oneDay) {
           userAnswers = parsedProgress.userAnswers || {};
           currentQuestionIndex = parsedProgress.lastQuestionIndex || 0;
@@ -250,7 +239,6 @@ async function loadQuiz(
         }
       }
     }
-    // ----------------------------------
 
     const timerDisplay = document.getElementById("timer-display");
     if (timerDisplay) {
@@ -303,7 +291,6 @@ function reviewTest(resultObj, source = "performance") {
    REVIEW MODE LOGIC, LEADERBOARD & STATS
    ========================================= */
 
-// OPTIMIZATION: Request de-duplication tracker
 let statsFetchPromises = {};
 
 async function getGlobalStats(chapterId) {
@@ -410,29 +397,48 @@ function renderLeaderboardHTML(container, data) {
     `;
 }
 
+/**
+ * UPDATED: Advanced UPSC Performance Review
+ */
 async function renderReviewMode(resultData) {
+  // Pre-fetch stats to ensure they are available for community comparison
+  currentReviewStats = await getGlobalStats(currentChapterId);
+  
   let correct = 0;
   let incorrect = 0;
   let unattempted = 0;
+  
+  // NEW: UPSC specific trackers
+  let sillyMistakes = 0;
+  let hardSuccess = 0;
 
   currentQuizData.forEach((q, i) => {
     const uAns = userAnswers[i];
     const correctIndex = getCorrectIndex(q);
+    
+    // Community accuracy calculation for Silly Mistake vs Hard Success flagging
+    const commCorrect = (currentReviewStats?.correctCounts?.[i] || 0);
+    const commTotal = (currentReviewStats?.totalAttempts || 1);
+    const commAccuracy = (commCorrect / commTotal) * 100;
 
     if (!uAns) {
       unattempted++;
     } else if (uAns.answer === correctIndex) {
       correct++;
+      if (commAccuracy < 40) hardSuccess++; // Correct answer on a low-accuracy question
     } else {
       incorrect++;
+      if (commAccuracy > 65) sillyMistakes++; // Wrong answer on a high-accuracy question
     }
   });
 
   const totalQuestions = currentQuizData.length;
-  const score = resultData
-    ? resultData.score
-    : (correct * 2 - incorrect * 0.66).toFixed(2);
+  const score = resultData ? resultData.score : (correct * 2 - incorrect * 0.66).toFixed(2);
   const totalMarks = totalQuestions * 2;
+  
+  // Advanced Stats Calculation
+  const marksLost = (incorrect * 0.66).toFixed(2);
+  const accuracyRate = ((correct / (correct + incorrect)) * 100 || 0).toFixed(1);
 
   const content = document.getElementById("quiz-content");
 
@@ -440,7 +446,7 @@ async function renderReviewMode(resultData) {
         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2 border-bottom pb-3">
             <div>
                 <h4 class="fw-bold text-primary m-0">${currentChapterName}</h4>
-                <span class="badge bg-secondary">Review Mode</span>
+                <span class="badge bg-secondary">Performance Review</span>
             </div>
             <div class="btn-group shadow-sm" role="group">
                 <button class="btn btn-outline-primary active" id="btn-all" onclick="filterReview('all', this)">All</button>
@@ -452,37 +458,54 @@ async function renderReviewMode(resultData) {
 
         <div class="card mb-4 border-0 shadow-sm">
             <div class="card-body">
-                <h5 class="fw-bold card-title mb-3">📊 Performance Index</h5>
+                <h5 class="fw-bold card-title mb-3">📊 UPSC Prep Index</h5>
                 
                 <div class="row g-3 text-center mb-4">
-                    <div class="col-6 col-md">
+                    <div class="col-6 col-md-3">
                         <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary">
-                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Total Qs</h6>
-                            <h3 class="fw-bold text-dark m-0">${totalQuestions}</h3>
+                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Accuracy</h6>
+                            <h3 class="fw-bold text-dark m-0">${accuracyRate}%</h3>
+                            <small class="text-muted">on attempted</small>
                         </div>
                     </div>
-                    <div class="col-6 col-md">
-                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-success">
-                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Correct</h6>
-                            <h3 class="fw-bold text-success m-0">${correct}</h3>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md">
+                    <div class="col-6 col-md-3">
                         <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger">
-                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Incorrect</h6>
-                            <h3 class="fw-bold text-danger m-0">${incorrect}</h3>
+                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Negative Loss</h6>
+                            <h3 class="fw-bold text-danger m-0">-${marksLost}</h3>
+                            <small class="text-muted">marks lost</small>
                         </div>
                     </div>
-                    <div class="col-6 col-md">
-                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-secondary">
-                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Skipped</h6>
-                            <h3 class="fw-bold text-secondary m-0">${unattempted}</h3>
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning">
+                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Concept Gaps</h6>
+                            <h3 class="fw-bold text-warning m-0">${sillyMistakes}</h3>
+                            <small class="text-muted">Easy Qs missed</small>
                         </div>
                     </div>
-                    <div class="col-12 col-md-3">
+                    <div class="col-6 col-md-3">
                         <div class="p-3 bg-primary text-white rounded shadow-sm">
-                            <h6 class="text-white-50 text-uppercase small fw-bold mb-1">Score</h6>
+                            <h6 class="text-white-50 text-uppercase small fw-bold mb-1">Final Score</h6>
                             <h3 class="fw-bold m-0">${score} <span class="fs-6 text-white-50">/ ${totalMarks}</span></h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4 g-3">
+                    <div class="col-md-6">
+                        <div class="alert alert-info border-0 shadow-sm h-100">
+                            <h6 class="fw-bold"><i class="fas fa-lightbulb me-2"></i>Strategy Insight</h6>
+                            <p class="small mb-0">
+                                ${accuracyRate < 70 ? "Your accuracy is below threshold. Focus on elimination techniques." : "Good precision. You are making calculated attempts."}
+                                ${sillyMistakes > 2 ? `You missed <strong>${sillyMistakes} basic questions</strong> that 65% of students got right. Tighten your fundamentals.` : "You handled the 'easy' questions with professional precision."}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="alert alert-success border-0 shadow-sm h-100">
+                            <h6 class="fw-bold"><i class="fas fa-trophy me-2"></i>Competitive Edge</h6>
+                            <p class="small mb-0">
+                                You solved <strong>${hardSuccess} high-difficulty</strong> questions where the community struggled. This indicates depth in complex topics.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -509,10 +532,7 @@ async function renderReviewMode(resultData) {
         </div>
     `;
 
-  currentReviewStats = await getGlobalStats(currentChapterId);
-
   filterReview("all", document.getElementById("btn-all"));
-
   loadLeaderboard(currentChapterId);
 
   const stats = currentReviewStats;
@@ -524,12 +544,8 @@ async function renderReviewMode(resultData) {
   }
 
   const myScore = resultData ? resultData.scorePercent : 0;
-
   const betterThan = stats.allScores.filter((s) => s < myScore).length;
-  const percentile =
-    stats.totalAttempts > 0
-      ? ((betterThan / stats.totalAttempts) * 100).toFixed(0)
-      : 0;
+  const percentile = stats.totalAttempts > 0 ? ((betterThan / stats.totalAttempts) * 100).toFixed(0) : 0;
 
   container.innerHTML = `
         <div class="col-md-4 mb-3 mb-md-0 text-center">
@@ -562,16 +578,8 @@ async function renderReviewMode(resultData) {
             myScore.toFixed(1),
             stats.highest.toFixed(1),
           ],
-          backgroundColor: [
-            "rgba(108, 117, 125, 0.5)",
-            "rgba(59, 130, 246, 0.8)",
-            "rgba(245, 158, 11, 0.8)",
-          ],
-          borderColor: [
-            "rgba(108, 117, 125, 1)",
-            "rgba(30, 58, 138, 1)",
-            "rgba(245, 158, 11, 1)",
-          ],
+          backgroundColor: ["rgba(108, 117, 125, 0.5)", "rgba(59, 130, 246, 0.8)", "rgba(245, 158, 11, 0.8)"],
+          borderColor: ["rgba(108, 117, 125, 1)", "rgba(30, 58, 138, 1)", "rgba(245, 158, 11, 1)"],
           borderWidth: 1,
           borderRadius: 5,
         },
@@ -581,20 +589,10 @@ async function renderReviewMode(resultData) {
       indexAxis: "y",
       responsive: true,
       maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-      },
+      plugins: { legend: { display: false } },
       scales: {
-        x: {
-          beginAtZero: true,
-          max: 100,
-          grid: { display: false },
-          ticks: { color: textColor },
-        },
-        y: {
-          grid: { display: false },
-          ticks: { color: textColor },
-        },
+        x: { beginAtZero: true, max: 100, grid: { display: false }, ticks: { color: textColor } },
+        y: { grid: { display: false }, ticks: { color: textColor } },
       },
     },
   });
@@ -642,19 +640,11 @@ function renderReviewQuestions(filterType) {
     let statsHtml = "";
     if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
       const total = currentReviewStats.totalAttempts;
-      const correctCount =
-        (currentReviewStats.correctCounts &&
-          currentReviewStats.correctCounts[index]) ||
-        0;
-      const attemptedCount =
-        (currentReviewStats.attemptedCounts &&
-          currentReviewStats.attemptedCounts[index]) ||
-        0;
+      const correctCount = (currentReviewStats.correctCounts && currentReviewStats.correctCounts[index]) || 0;
+      const attemptedCount = (currentReviewStats.attemptedCounts && currentReviewStats.attemptedCounts[index]) || 0;
 
       const pCorrect = Math.round((correctCount / total) * 100);
-      const pIncorrect = Math.round(
-        ((attemptedCount - correctCount) / total) * 100
-      );
+      const pIncorrect = Math.round(((attemptedCount - correctCount) / total) * 100);
       const pUnattempted = 100 - pCorrect - pIncorrect;
 
       const textColorClass = pCorrect >= 50 ? "text-success" : "text-danger";
@@ -666,21 +656,9 @@ function renderReviewQuestions(filterType) {
                         <span class="fw-bold ${textColorClass}">${pCorrect}% Correct</span>
                     </div>
                     <div class="progress shadow-sm" style="height: 40px;">
-                        <div class="progress-bar bg-success border" role="progressbar" style="width: ${pCorrect}%" 
-                             data-bs-toggle="tooltip" data-bs-placement="top"
-                             aria-valuenow="${pCorrect}" aria-valuemin="0" aria-valuemax="100"
-                             title="${pCorrect}% Answered Correctly">
-                        </div>
-                        <div class="progress-bar bg-danger bg-opacity-75 border" role="progressbar" style="width: ${pIncorrect}%" 
-                             data-bs-toggle="tooltip" data-bs-placement="top"
-                             aria-valuenow="${pIncorrect}" aria-valuemin="0" aria-valuemax="100"
-                             title="${pIncorrect}% Answered Incorrectly">
-                        </div>
-                        <div class="progress-bar bg-secondary bg-opacity-25 border" role="progressbar" style="width: ${pUnattempted}%" 
-                             data-bs-toggle="tooltip" data-bs-placement="top"
-                             aria-valuenow="${pUnattempted}" aria-valuemin="0" aria-valuemax="100"
-                             title="${pUnattempted}% Skipped this Question">
-                        </div>
+                        <div class="progress-bar bg-success border" role="progressbar" style="width: ${pCorrect}%" title="${pCorrect}% Answered Correctly"></div>
+                        <div class="progress-bar bg-danger bg-opacity-75 border" role="progressbar" style="width: ${pIncorrect}%" title="${pIncorrect}% Answered Incorrectly"></div>
+                        <div class="progress-bar bg-secondary bg-opacity-25 border" role="progressbar" style="width: ${pUnattempted}%" title="${pUnattempted}% Skipped"></div>
                     </div>
                     <div class="d-flex justify-content-between mt-2 text-muted" style="font-size: 0.75rem;">
                         <span>${correctCount} students got this right</span>
@@ -696,20 +674,14 @@ function renderReviewQuestions(filterType) {
       let icon = "";
 
       if (optIdx === correctIndex) {
-        optionClass =
-          "option p-3 mb-2 border rounded bg-success-subtle border-success fw-bold text-success";
+        optionClass = "option p-3 mb-2 border rounded bg-success-subtle border-success fw-bold text-success";
         icon = "✅";
       } else if (uAns && uAns.answer === optIdx && status === "incorrect") {
-        optionClass =
-          "option p-3 mb-2 border rounded bg-danger-subtle border-danger text-danger";
+        optionClass = "option p-3 mb-2 border rounded bg-danger-subtle border-danger text-danger";
         icon = "❌";
       }
 
-      optionsHtml += `
-                <div class="${optionClass}">
-                    ${icon} <span class="ms-1">${opt}</span>
-                </div>
-            `;
+      optionsHtml += `<div class="${optionClass}">${icon} <span class="ms-1">${opt}</span></div>`;
     });
 
     const card = document.createElement("div");
@@ -717,35 +689,20 @@ function renderReviewQuestions(filterType) {
     card.innerHTML = `
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h6 class="text-muted fw-bold m-0">Question ${
-                      index + 1
-                    }</h6>
+                    <h6 class="text-muted fw-bold m-0">Question ${index + 1}</h6>
                     ${badgeHtml}
                 </div>
-                
-                ${statsHtml} <p class="fs-5 fw-medium mb-3">${
-      question.text ? question.text.replace(/\n/g, "<br>") : ""
-    }</p>
+                ${statsHtml} 
+                <p class="fs-5 fw-medium mb-3">${question.text ? question.text.replace(/\n/g, "<br>") : ""}</p>
                 <div class="mb-3">${optionsHtml}</div>
                 <div class="explanation mt-3 shadow-sm">
                     <strong>💡 Explanation:</strong>
-                    <div class="mt-1 small">${
-                      question.explanation || "No explanation provided."
-                    }</div>
+                    <div class="mt-1 small">${question.explanation || "No explanation provided."}</div>
                 </div>
             </div>
         `;
     container.appendChild(card);
   });
-
-  if (typeof bootstrap !== "undefined") {
-    const tooltipTriggerList = container.querySelectorAll(
-      '[data-bs-toggle="tooltip"]'
-    );
-    [...tooltipTriggerList].map(
-      (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
-    );
-  }
 
   if (visibleCount === 0) {
     container.innerHTML = `<div class="alert alert-info text-center">No questions found for this filter.</div>`;
@@ -801,18 +758,10 @@ function renderQuizLayout(title) {
         <button id="final-submit-btn" class="btn btn-success w-100 mt-4 rounded-pill py-2 fw-bold">Submit Test</button>
     `;
 
-  document
-    .getElementById("prev-btn")
-    .addEventListener("click", () => navigateQuestions(-1));
-  document
-    .getElementById("next-btn")
-    .addEventListener("click", () => navigateQuestions(1));
-  document
-    .getElementById("clear-btn")
-    .addEventListener("click", clearSelection);
-  document
-    .getElementById("final-submit-btn")
-    .addEventListener("click", () => submitAll(false));
+  document.getElementById("prev-btn").addEventListener("click", () => navigateQuestions(-1));
+  document.getElementById("next-btn").addEventListener("click", () => navigateQuestions(1));
+  document.getElementById("clear-btn").addEventListener("click", clearSelection);
+  document.getElementById("final-submit-btn").addEventListener("click", () => submitAll(false));
 }
 
 function renderQuestion() {
@@ -824,9 +773,7 @@ function renderQuestion() {
   const div = document.createElement("div");
   div.className = "question";
   const text = question.text ? question.text.replace(/\n/g, "<br>") : "";
-  div.innerHTML = `<p class="mb-3 lead"><strong>Q${
-    currentQuestionIndex + 1
-  }. ${text}</strong></p>`;
+  div.innerHTML = `<p class="mb-3 lead"><strong>Q${currentQuestionIndex + 1}. ${text}</strong></p>`;
 
   question.options.forEach((opt, idx) => {
     const label = document.createElement("label");
@@ -834,22 +781,17 @@ function renderQuestion() {
     const uAns = userAnswers[currentQuestionIndex];
     const isSelected = uAns && uAns.answer === idx;
 
-    let inputHTML = `<input type="radio" name="q${currentQuestionIndex}" value="${idx}" ${
-      isSelected ? "checked" : ""
-    } ${quizSubmitted ? "disabled" : ""}>`;
+    let inputHTML = `<input type="radio" name="q${currentQuestionIndex}" value="${idx}" ${isSelected ? "checked" : ""} ${quizSubmitted ? "disabled" : ""}>`;
     label.innerHTML = `${inputHTML} <span>${opt}</span>`;
 
     if (quizSubmitted) {
       if (idx === correctIndex) label.classList.add("correct-answer-label");
-      if (isSelected && idx !== correctIndex)
-        label.classList.add("incorrect-answer-label");
+      if (isSelected && idx !== correctIndex) label.classList.add("incorrect-answer-label");
     } else {
       label.querySelector("input").addEventListener("change", () => {
-        userAnswers[currentQuestionIndex] = {
-          answer: idx,
-        };
+        userAnswers[currentQuestionIndex] = { answer: idx };
         updateNavHighlights();
-        saveQuizProgress(); // <-- SYNC TO LOCAL STORAGE
+        saveQuizProgress();
       });
     }
     div.appendChild(label);
@@ -892,7 +834,7 @@ function navigateQuestions(dir) {
     currentQuestionIndex = next;
     renderQuestion();
     updateNavHighlights();
-    saveQuizProgress(); // <-- SAVE CURRENT INDEX ON NAVIGATION
+    saveQuizProgress();
   }
 }
 
@@ -901,7 +843,7 @@ function clearSelection() {
   delete userAnswers[currentQuestionIndex];
   renderQuestion();
   updateNavHighlights();
-  saveQuizProgress(); // <-- SYNC CLEAR ACTION
+  saveQuizProgress();
 }
 
 function renderNav() {
@@ -915,7 +857,7 @@ function renderNav() {
       currentQuestionIndex = i;
       renderQuestion();
       updateNavHighlights();
-      saveQuizProgress(); // <-- SAVE INDEX ON NAV CLICK
+      saveQuizProgress();
     };
     nav.appendChild(item);
   });
@@ -948,12 +890,10 @@ function submitAll(forceSubmit = false) {
   if (quizTimerInterval) clearInterval(quizTimerInterval);
 
   quizSubmitted = true;
-  clearQuizProgress(currentChapterId); // <-- CLEAR AUTO-SAVE ON SUCCESSFUL SUBMISSION
+  clearQuizProgress(currentChapterId);
 
   let score = 0;
-  let correct = 0,
-    incorrect = 0,
-    unattempted = 0;
+  let correct = 0, incorrect = 0, unattempted = 0;
   const totalQ = currentQuizData.length;
 
   currentQuizData.forEach((q, i) => {
@@ -977,8 +917,7 @@ function submitAll(forceSubmit = false) {
 
   const finalScore = parseFloat(score.toFixed(2));
   const totalMarks = totalQ * 2;
-  const percentage =
-    totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
+  const percentage = totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
 
   const leaderboardEntry = {
     userEmail: currentUser ? currentUser.email : "guest",
@@ -1019,34 +958,19 @@ function submitAll(forceSubmit = false) {
   reviewBtn.onclick = () => {
     const subjectPrefix = currentSubject.replace(/\s+/g, "_") + "_";
     const originalChapId = currentChapterId.replace(subjectPrefix, "");
-    loadQuiz(
-      currentSubject,
-      originalChapId,
-      encodeURIComponent(currentChapterName),
-      true,
-      resultObject,
-      "chapters"
-    );
+    loadQuiz(currentSubject, originalChapId, encodeURIComponent(currentChapterName), true, resultObject, "chapters");
   };
 
   actionsDiv.appendChild(reviewBtn);
-
-  const submitBtn = document.getElementById("final-submit-btn");
-  if (submitBtn) submitBtn.style.display = "none";
-
-  const clearBtn = document.getElementById("clear-btn");
-  if (clearBtn) clearBtn.disabled = true;
+  if (document.getElementById("final-submit-btn")) document.getElementById("final-submit-btn").style.display = "none";
+  if (document.getElementById("clear-btn")) document.getElementById("clear-btn").disabled = true;
 
   renderQuestion();
   updateNavHighlights();
 
   if (currentUser) {
-    db.collection("results")
-      .add({
-        ...resultObject,
-      })
+    db.collection("results").add({ ...resultObject })
       .then(async () => {
-        // OPTIMIZATION: Immediate local history update to avoid re-fetch
         userHistory.unshift({ ...resultObject, timestamp: new Date() });
         if (userHistory.length > 20) userHistory.pop();
         localStorage.setItem("user_history_cache", JSON.stringify(userHistory));
@@ -1062,141 +986,51 @@ function submitAll(forceSubmit = false) {
             const newScore = parseFloat(percentage);
 
             if (!sfDoc.exists) {
-              const initCorrectCounts = currentQuizData.map((q, i) => {
-                const uAns = userAnswers[i];
-                const cIdx = getCorrectIndex(q);
-                return uAns && uAns.answer === cIdx ? 1 : 0;
-              });
-
-              const initAttemptedCounts = currentQuizData.map((q, i) => {
-                const uAns = userAnswers[i];
-                return uAns ? 1 : 0;
-              });
-
+              const initCorrectCounts = currentQuizData.map((q, i) => (userAnswers[i] && userAnswers[i].answer === getCorrectIndex(q) ? 1 : 0));
+              const initAttemptedCounts = currentQuizData.map((q, i) => (userAnswers[i] ? 1 : 0));
               transaction.set(statsRef, {
-                totalScore: newScore,
-                totalAttempts: 1,
-                average: newScore,
-                highestScore: newScore,
-                allScores: [newScore],
-                leaderboard: [leaderboardEntry],
-                correctCounts: initCorrectCounts,
-                attemptedCounts: initAttemptedCounts,
+                totalScore: newScore, totalAttempts: 1, average: newScore, highestScore: newScore,
+                allScores: [newScore], leaderboard: [leaderboardEntry],
+                correctCounts: initCorrectCounts, attemptedCounts: initAttemptedCounts,
               });
             } else {
               const data = sfDoc.data();
-              const newTotalScore = (data.totalScore || 0) + newScore;
-              const newTotalAttempts = (data.totalAttempts || 0) + 1;
-              const newAvg = newTotalScore / newTotalAttempts;
-              const newHighest = Math.max(data.highestScore || 0, newScore);
-              const newAllScores = [...(data.allScores || []), newScore];
-
+              const newAttempts = (data.totalAttempts || 0) + 1;
+              const newAvg = ((data.totalScore || 0) + newScore) / newAttempts;
               let currentLeaderboard = data.leaderboard || [];
               currentLeaderboard.push(leaderboardEntry);
-              currentLeaderboard.sort(
-                (a, b) => b.scorePercent - a.scorePercent
-              );
-              if (currentLeaderboard.length > 10)
-                currentLeaderboard = currentLeaderboard.slice(0, 10);
+              currentLeaderboard.sort((a, b) => b.scorePercent - a.scorePercent);
+              if (currentLeaderboard.length > 10) currentLeaderboard = currentLeaderboard.slice(0, 10);
 
-              let currentCorrectCounts = data.correctCounts || [];
-              while (currentCorrectCounts.length < currentQuizData.length)
-                currentCorrectCounts.push(0);
-
-              let currentAttemptedCounts = data.attemptedCounts || [];
-              while (currentAttemptedCounts.length < currentQuizData.length)
-                currentAttemptedCounts.push(0);
-
+              let cCounts = data.correctCounts || [];
+              let aCounts = data.attemptedCounts || [];
               currentQuizData.forEach((q, i) => {
-                const uAns = userAnswers[i];
-                const cIdx = getCorrectIndex(q);
-                if (uAns) {
-                  currentAttemptedCounts[i]++;
-                  if (uAns.answer === cIdx) currentCorrectCounts[i]++;
+                if (userAnswers[i]) {
+                  aCounts[i] = (aCounts[i] || 0) + 1;
+                  if (userAnswers[i].answer === getCorrectIndex(q)) cCounts[i] = (cCounts[i] || 0) + 1;
                 }
               });
 
               transaction.update(statsRef, {
-                totalScore: newTotalScore,
-                totalAttempts: newTotalAttempts,
-                average: newAvg,
-                highestScore: newHighest,
-                allScores: newAllScores,
-                leaderboard: currentLeaderboard,
-                correctCounts: currentCorrectCounts,
-                attemptedCounts: currentAttemptedCounts,
+                totalScore: (data.totalScore || 0) + newScore, totalAttempts: newAttempts,
+                average: newAvg, highestScore: Math.max(data.highestScore || 0, newScore),
+                allScores: [...(data.allScores || []), newScore], leaderboard: currentLeaderboard,
+                correctCounts: cCounts, attemptedCounts: aCounts,
               });
             }
           });
-
           toastr.success("Result and stats saved!");
         } catch (e) {
           console.error("Stats update failed:", e);
-          toastr.warning("Result saved, but stats failed to update.");
         }
 
         const stats = await getGlobalStats(currentChapterId);
         if (stats) {
-          const betterThan = stats.allScores.filter(
-            (s) => s < parseFloat(percentage)
-          ).length;
-          const percentile =
-            stats.totalAttempts > 0
-              ? ((betterThan / stats.totalAttempts) * 100).toFixed(0)
-              : 0;
-
-          const statsDiv = document.getElementById("stats-loading");
-          if (statsDiv) {
-            statsDiv.innerHTML = `🌍 Performance: Top <strong>${
-              100 - percentile
-            }%</strong>. (Avg: ${stats.avg.toFixed(1)}%)`;
-          }
+          const betterThan = stats.allScores.filter((s) => s < parseFloat(percentage)).length;
+          const percentile = stats.totalAttempts > 0 ? ((betterThan / stats.totalAttempts) * 100).toFixed(0) : 0;
+          if (document.getElementById("stats-loading"))
+            document.getElementById("stats-loading").innerHTML = `🌍 Performance: Top <strong>${100 - percentile}%</strong>. (Avg: ${stats.avg.toFixed(1)}%)`;
         }
-      })
-      .catch((err) => {
-        console.error("Save error:", err);
-        toastr.error("Could not save result.");
       });
-  }
-}
-
-/* =========================================
-   8. THEME MANAGEMENT
-   ========================================= */
-
-function toggleTheme() {
-  const currentTheme = document.documentElement.getAttribute("data-theme");
-  const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-  applyTheme(newTheme);
-  localStorage.setItem("theme", newTheme);
-}
-
-function applyTheme(theme) {
-  document.documentElement.setAttribute("data-theme", theme);
-
-  const btn = document.getElementById("theme-toggle");
-  if (btn) {
-    btn.textContent = theme === "dark" ? "☀️" : "🌙";
-    btn.title =
-      theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode";
-    btn.classList.toggle("btn-light", theme === "dark");
-    btn.classList.toggle("btn-outline-light", theme === "light");
-  }
-
-  if (typeof Chart !== "undefined") {
-    const textColor = theme === "dark" ? "#e5e7eb" : "#666";
-    Chart.defaults.color = textColor;
-    Chart.defaults.borderColor = theme === "dark" ? "#374151" : "#e5e7eb";
-
-    if (performanceChartInstance) {
-      performanceChartInstance.options.scales.y.ticks.color = textColor;
-      performanceChartInstance.update();
-    }
-    if (comparisonChartInstance) {
-      comparisonChartInstance.options.scales.x.ticks.color = textColor;
-      comparisonChartInstance.options.scales.y.ticks.color = textColor;
-      comparisonChartInstance.update();
-    }
   }
 }
