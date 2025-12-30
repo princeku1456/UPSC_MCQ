@@ -2409,558 +2409,1030 @@ const sfgData = {
   //       "The entire passage describes the 'shrinking' of dreams and 'corrosion of trust' as youth wait years for government jobs. It emphasizes the loss of creative and economic potential, making (a) the most accurate capture of this heavy toll on both individuals and the nation.",
   //   },
   // ],
-  "Test-6-Polity (321106)" : [
-  {
-    "text": "Which one among the following correctly represents the theme on which the interiors of the new Parliament Building is based?\n\n| Lok Sabha | Rajya Sabha |\n| :--- | :--- |\n| a) Lotus | Banyan |\n| b) Peacock | Lotus |\n| c) Peacock | Banyan |\n| d) Lotus | Peacock |",
-    "options": [
-      "a",
-      "b",
-      "c",
-      "d"
-    ],
-    "correctAnswer": 1,
-    "explanation": "The new Parliament building in India incorporates cultural symbols into its interior design. The Lok Sabha (Lower House) features a ceiling design inspired by the Peacock, which is India's national bird. The Rajya Sabha (Upper House) is themed around the Lotus, India's national flower, symbolizing purity and renewal."
-  },
-  {
-    "text": "With reference to the devices of Parliamentary proceedings in India, consider the following statements about Question hour in the House of People:\nI. The Speaker has the discretion to change the timing of the Question hour in the house.\nII. A Question during this hour can be addressed to a private member of the house as well.\nIII. A Question distinguished by an asterisk shall be placed on the list of questions for written answer.\n\nWhich of the statements given above is/are correct?",
-    "options": [
-      "I and II",
-      "II only",
-      "I and III",
-      "III only"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Statement I is correct because while the first hour of every sitting is normally devoted to questions, the Speaker has the discretion to change this timing. Statement II is correct as questions can be addressed to private members if the subject matter relates to a Bill, Resolution, or other business for which that member is responsible. Statement III is incorrect because a question distinguished by an asterisk (starred question) requires an oral answer, whereas questions not distinguished by an asterisk are placed on the list for written answers (unstarred questions)."
-  },
-  {
-    "text": "Consider the following Indian states:\nI. Madhya Pradesh\nII. Telangana\nIII. Karnataka\nIV. Maharashtra\nV. Uttar Pradesh\n\nHow many of the above given Indian states have bicameral legislature?",
-    "options": [
-      "Only two",
-      "Only three",
-      "Only four",
-      "All the five"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Currently, six Indian states have a bicameral legislature (both a Legislative Assembly and a Legislative Council): Andhra Pradesh, Telangana, Uttar Pradesh, Bihar, Maharashtra, and Karnataka. Out of the list provided, Telangana, Karnataka, Maharashtra, and Uttar Pradesh have bicameral legislatures. Madhya Pradesh has a unicameral legislature."
-  },
-  {
-    "text": "With reference to Indian Parliamentary system, consider the following statements about the Council of States:\nI. The term 'Rajya Sabha' is nowhere mentioned in the Constitution of India.\nII. The number of members to be elected to the Council of States from each State is mentioned in the Fourth Schedule of the Indian Constitution.\nIII. The Indian Constitution provides for fixed tenure of six years for the members of the Council of States.\nIV. If the member of the house resigns from his/her membership, the new member elected will serve only for the remainder of his/her predecessor's term of office.\n\nWhich of the statements given above are correct?",
-    "options": [
-      "I and II only",
-      "II and III only",
-      "I, II and IV only",
-      "I and IV only"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Statement I is correct; the Constitution refers to the upper house as the 'Council of States'. Statement II is correct; the Fourth Schedule deals with the allocation of seats in the Council of States. Statement III is incorrect; the Constitution does not fix the term of members but provides that one-third retire every second year; the six-year term was fixed by Parliament via the Representation of the People Act, 1951. Statement IV is correct; a member elected to fill a casual vacancy serves only for the remainder of the predecessor's term."
-  },
-  {
-    "text": "Who among the following was the first protem Speaker to be unanimously elected as the Speaker of the Lok Sabha?",
-    "options": [
-      "Rabi Ray",
-      "Hiren Mukherjee",
-      "Somnath Chatterjee",
-      "P.A. Sangma"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Somnath Chatterjee was the first pro-tem Speaker in the history of the Lok Sabha to be unanimously elected as the Speaker of the House (14th Lok Sabha)."
-  },
-  {
-    "text": "Consider the following functions of the Parliament of India:\nI. Impeaching the President for violation of the Constitution.\nII. Recommendation for the removal of the judges of the Supreme Court.\nIII. Punishing its own members for breach of privilege or contempt.\nIV. Censuring of the minister for specific policies and actions.\n\nHow many of the above are judicial functions of the Parliament?",
-    "options": [
-      "Only one",
-      "Only two",
-      "Only three",
-      "All the four"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Statements I, II, and III are judicial (or quasi-judicial) functions because they involve inquiries, investigations, and formal verdicts similar to a trial. Impeaching the President, recommending removal of judges, and punishing for breach of privilege fall into this category. Statement IV is a tool of executive accountability/political control, not a judicial function."
-  },
-  {
-    "text": "In the context of Indian Polity, consider the following statements:\nStatement I: The legislative control over the executive ensures financial propriety.\nStatement II: The legislature can discuss the use or misuse of public funds on the basis of the report of the Public Accounts Committee.\nStatement III: The preparation and presentation of the Annual Financial Statement for the approval of the legislature is the constitutional obligation of the executive.\n\nWhich one of the following is correct in respect of the statements given above?",
-    "options": [
-      "Both statement II and statement III are correct and both of them explain statement I.",
-      "Both statement II and statement III are correct, but only one of them explains statement I.",
-      "Only one of the statements II and III is correct, and that explains statement I.",
-      "Neither Statement II nor statement III is correct."
-    ],
-    "correctAnswer": 0,
-    "explanation": "All three statements are correct. Statement II explains Statement I because the Public Accounts Committee's scrutiny of funds is a primary mechanism for the legislature to ensure financial propriety. Statement III also explains Statement I because the mandatory presentation of the budget (Annual Financial Statement) for legislative approval is the starting point for legislative control over executive spending."
-  },
-  {
-    "text": "Under which of the following circumstance(s) will it be constitutionally valid for the President of India to dissolve the House of the People?\nI. If no party or coalition of parties is able to form a stable government.\nII. If the Council of Ministers fails to prove its majority in the House.\nIII. If the Speaker of the Lok Sabha advises the President to dissolve the House.\n\nSelect the correct answer using the code given below:",
-    "options": [
-      "I and III only",
-      "I and II only",
-      "II only",
-      "I, II and III"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statement I is correct; the President can dissolve the House if no stable government can be formed. Statement II is correct; if the government loses its majority and no alternative is available, the President may dissolve the House. Statement III is incorrect; the Speaker has no constitutional authority to advise the President on dissolution; this advice comes from the Prime Minister or is a matter of the President's situational discretion."
-  },
-  {
-    "text": "In the context of Indian Polity, consider the following statements:\nI. Provisions as to disqualification on grounds of defection were added to the Constitution through the 52nd Constitutional Amendment Act, 1985.\nII. A person disqualified on the ground of defection under the 10th schedule of Indian Constitution shall also be disqualified from holding any remunerative political post in future.\n\nWhich of the statements given above is/are correct?",
-    "options": [
-      "I only",
-      "II only",
-      "Both I and II",
-      "Neither I nor II"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Statement I is correct as the 52nd Amendment introduced the Anti-Defection Law (Tenth Schedule). Statement II is incorrect because Article 361B states that a person disqualified for defection is only disqualified from holding a remunerative political post for the duration of the remainder of their term (or until they are re-elected), not permanently or indefinitely in the future."
-  },
-  {
-    "text": "With reference to Special Address by the President to the Parliament under the Constitution of India, consider the following statements:\nI. This address has to be to both houses of the Parliament assembled together only.\nII. This address shall be at the commencement of the first session after each general election to the House of the People and at the commencement of the first session of each year.\n\nWhich of the statements given above is/are correct?",
-    "options": [
-      "I only",
-      "II only",
-      "Both I and II",
-      "Neither I nor II"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Both statements are correct under Article 87(1). The President must address both Houses assembled together at the start of the first session after a general election and at the start of the first session of every year to inform Parliament of the causes of its summons."
-  },
-  {
-    "text": "Which of the following Statements about the Ethics Committee in the Lok Sabha are correct?\n1. Initially it was an ad-hoc Committee.\n2. Only a Member of the Lok Sabha can make a complaint relating to unethical conduct of a member of the Lok Sabha.\n3. This Committee cannot take up any matter which is sub-judice.\n\nSelect the answer using the code given below:",
-    "options": [
-      "1 and 2 only",
-      "2 and 3 only",
-      "1 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Statement 1 is correct; the committee was initially ad-hoc (formed in 2000) before becoming permanent in 2015. Statement 2 is incorrect; any person can make a complaint against a member, provided it is accompanied by an affidavit (unless the complainant is a member themselves). Statement 3 is correct; the committee is prohibited from taking up matters that are currently before a court of law (sub-judice)."
-  },
-  {
-    "text": "As per the Constitution of India, the Speaker of the House of People address his/her resignation from the office to the-",
-    "options": [
-      "President of India",
-      "The Secretary-General of the House of People",
-      "Leader of the House of People",
-      "Deputy Speaker of the House of People"
-    ],
-    "correctAnswer": 3,
-    "explanation": "Under Article 94(b), the Speaker of the Lok Sabha resigns by writing to the Deputy Speaker. Similarly, the Deputy Speaker resigns by writing to the Speaker."
-  },
-  {
-    "text": "In the context of Indian Polity, consider the following:\nI. A Bill passed by both Houses of Parliament cannot become a law unless it receives the President's assent.\nII. A bill passed by the Parliament comes into force immediately upon receiving the President's assent.\nIII. The Constitution of India explicitly states that the Parliament consists of the President.\n\nWhich of the above prove(s) that the President of India is an integral part of the Parliament?",
-    "options": [
-      "I only",
-      "I and III only",
-      "I and II only",
-      "None of the above"
-    ],
-    "correctAnswer": 1,
-    "explanation": "The President is an integral part of Parliament because Article 79 explicitly states that Parliament consists of the President and two Houses. Additionally, Statement I is correct because no bill can become law without the President's assent. Statement II is incorrect because an Act comes into force based on its own commencement provisions, which may involve a future date or a later government notification."
-  },
-  {
-    "text": "With reference to parliamentary privileges in India, consider the following:\nI. The Constitution of India\nII. Parliamentary conventions\nIII. Statutory provisions\nIV. Rules of Procedure and Conduct of Business\n\nHow many of the above are sources of parliamentary privileges?",
-    "options": [
-      "Only one",
-      "Only two",
-      "Only three",
-      "All the four"
-    ],
-    "correctAnswer": 3,
-    "explanation": "Parliamentary privileges in India are derived from all four sources: the Constitution (Articles 105 and 194), statutory laws (like the Code of Civil Procedure), the Rules of Procedure of the Houses, and long-standing parliamentary conventions inherited from the British system."
-  },
-  {
-    "text": "Consider the following statements:\n1. The Speaker of the Legislative Assembly shall vacate his/her office if he/she ceases to be a member of the assembly.\n2. Whenever the Legislative Assembly is dissolved, the Speaker shall vacate his/her office immediately.\n\nWhich of the statements given above is/are correct?",
-    "options": [
-      "1 only",
-      "2 only",
-      "Both 1 and 2",
-      "Neither 1 nor 2"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Statement 1 is correct under Article 179; the Speaker must be a member of the House. Statement 2 is incorrect because the Speaker does not vacate office immediately upon dissolution; they continue until immediately before the first meeting of the new Assembly."
-  },
-  {
-    "text": "According to the Fourth Schedule of the Constitution of India, which of the following Union Territories are allotted seats in the Council of States?\nI. Delhi\nII. Jammu and Kashmir\nIII. Ladakh\nIV. Lakshadweep\nV. Puducherry\n\nSelect the correct answer using the code given below:",
-    "options": [
-      "I and II only",
-      "II, III and IV",
-      "I, III, IV and V",
-      "I, II and V"
-    ],
-    "correctAnswer": 3,
-    "explanation": "Only Union Territories with their own Legislative Assemblies are represented in the Rajya Sabha. Currently, these are Delhi (3 seats), Puducherry (1 seat), and Jammu and Kashmir (4 seats). Ladakh and Lakshadweep do not have legislatures and thus have no seats in the Rajya Sabha."
-  },
-  {
-    "text": "Mrs. Y is a citizen of India and is 27 years old. She is registered as an elector for one of the assembly constituencies as well as one of the parliamentary constituencies in Telangana. In this context consider the following:\nI. Membership of Lok Sabha\nII. Membership of Rajya Sabha\nIII. Membership of Legislative Assembly of Telangana\nIV. Membership of Legislative Council of Telangana\n\nMrs. Y would be qualified for the membership of which of the above?",
-    "options": [
-      "I and III only",
-      "I, III and IV only",
-      "III only",
-      "I, II, III and IV"
-    ],
-    "correctAnswer": 0,
-    "explanation": "The minimum age for the Lok Sabha and State Legislative Assembly is 25 years. The minimum age for the Rajya Sabha and State Legislative Council is 30 years. Since Mrs. Y is 27, she is qualified for the Lok Sabha (I) and the Legislative Assembly (III), but not for the Rajya Sabha (II) or the Legislative Council (IV)."
-  },
-  {
-    "text": "With reference to the Parliamentary form of Government in India, the fundamental idea behind disqualifying members of Parliament from holding an office of profit under the government is based on which of the following doctrines?",
-    "options": [
-      "Doctrine of Separation of Power",
-      "Doctrine of Parliamentary Sovereignty",
-      "Doctrine of Rule of Law",
-      "Doctrine of Harmonious Construction"
-    ],
-    "correctAnswer": 0,
-    "explanation": "The disqualification for holding an 'office of profit' is based on the Doctrine of Separation of Powers. It aims to ensure that legislators remain independent of the executive and are not influenced by appointments that offer financial gain, thereby maintaining the check on the executive branch."
-  },
-  {
-    "text": "In the context of Indian Polity, consider the following statements:\nStatement I: The provisions of the Tenth Schedule of the Indian Constitution, with respect to voting against the instruction of the party, will not be applicable during the elections of members of the Rajya Sabha.\nStatement II: The election of members of Rajya Sabha is conducted through an Open ballot System.\n\nWhich of the above is correct in respect of the above statements?",
-    "options": [
-      "Both Statement I and Statement II are correct and Statement II explains Statement I.",
-      "Both Statement I and Statement II are correct but Statement II does not explain Statement I.",
-      "Statement I is correct but Statement II is not correct.",
-      "Statement I is not correct but Statement II is correct."
-    ],
-    "correctAnswer": 1,
-    "explanation": "Both statements are correct. The Supreme Court ruled in the Kuldip Nayar case that the Tenth Schedule does not apply to Rajya Sabha elections because they are 'outside the House' proceedings. Statement II is also correct as Rajya Sabha elections use an open ballot. However, the open ballot is intended to prevent cross-voting and corruption, while the non-application of the Tenth Schedule is due to the legal nature of the election process, so II does not explain I."
-  },
-  {
-    "text": "In cases involving matters related to corrupt practices, a Member of Parliament can be disqualified for a maximum period of six years under the provisions of Representation of Peoples Act 1951. Who among the following is empowered to decide the actual period of such disqualification?",
-    "options": [
-      "Election Commission of India",
-      "Presiding Officer of respective House of Parliament",
-      "President of India on advice of Supreme Court of India",
-      "President of India on advice of Election commission of India"
-    ],
-    "correctAnswer": 3,
-    "explanation": "Under Section 8A of the RPA 1951, the President of India decides the period of disqualification for corrupt practices (not exceeding six years). The President must obtain and act according to the opinion of the Election Commission of India."
-  },
-  {
-    "text": "Which of the following statements about the Committee on Public Undertakings is/are correct?\n1. There are more members from the Rajya Sabha than the Lok Sabha in the Committee.\n2. The Chairperson of the Committee is appointed by the Speaker of the Lok Sabha.\n\nSelect the correct answer using the code given below.",
-    "options": [
-      "1 only",
-      "2 only",
-      "Both 1 and 2",
-      "Neither 1 nor 2"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statement 1 is incorrect; the committee has 22 members, with 15 from the Lok Sabha and 7 from the Rajya Sabha. Statement 2 is correct; the Speaker of the Lok Sabha appoints the Chairperson from among the Lok Sabha members on the committee."
-  },
-  {
-    "text": "With reference to the Legislative Assembly of a State in India, which of the following statements is correct?",
-    "options": [
-      "There is no state with a Legislative Assembly having a strength less than 60.",
-      "The total number of seats in the Legislative Assembly of each state is fixed on the basis of the 2001 Census.",
-      "No member of any state Legislative assembly is indirectly elected.",
-      "Presently no state have a member nominated by the Governor in their respective Legislative assembly."
-    ],
-    "correctAnswer": 3,
-    "explanation": "Option d is correct; following the 104th Amendment, the Governor's power to nominate Anglo-Indians has ceased. Option a is wrong as states like Goa and Sikkim have 30-40 seats. Option b is wrong; seat numbers are fixed based on the 1971 census (until 2026). Option c is wrong; some members in Nagaland and Sikkim are elected indirectly."
-  },
-  {
-    "text": "In which of the following situation(s) does the seat of a Member of Parliament (MP) become vacant?\nI. If s/he is absent from all meetings of the House for a period of thirty days without permission of the House.\nII. If s/he fails to make and subscribe an oath or affirmation within six months from the date on which the House first meets after his/her election.\nIII. If s/he is elected as the President of India.\n\nSelect the correct answer using the code given below:",
-    "options": [
-      "I and II only",
-      "III only",
-      "II and III only",
-      "I, II and III"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statement I is incorrect; the vacancy occurs after 60 days of unauthorized absence, not 30. Statement II is incorrect; there is no fixed six-month time limit for the oath that causes automatic vacancy. Statement III is correct; under Article 59, if an MP is elected President, they are deemed to have vacated their seat in Parliament on the date they enter office."
-  },
-  {
-    "text": "Which of the following statements with regard to the Speaker of the Lok Sabha are correct?\nI. S/he is elected by the members of the Lok Sabha from amongst themselves by a simple majority.\nII. The election to the Speaker of the House shall be held on such a date as the pro tem speaker decides.\nIII. S/he is the ex-officio Chairperson of the Conference of Presiding Officers of Legislative Bodies in India.\nIV. S/he is the appointing authority of Deputy Speaker of Lok Sabha.\n\nSelect the correct answer using the code given below.",
-    "options": [
-      "I and IV only",
-      "I and III only",
-      "I, III and IV",
-      "II, III and IV"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statement I is correct; the House elects the Speaker by simple majority. Statement II is incorrect; the President fixes the date for the Speaker's election. Statement III is correct; by convention, the Speaker chairs the national conference of presiding officers. Statement IV is incorrect; the House itself chooses the Deputy Speaker; the Speaker does not appoint them."
-  },
-  {
-    "text": "Which of the following statements are correct regarding the Joint Session of the Houses of the Parliament in India?\n1. It is an enabling provision empowering the President to take steps for resolving deadlock between the two Houses.\n2. It is not obligatory upon the President to summon the Houses to meet in a joint sitting.\n3. It is being notified by the President.\n4. It is frequently resorted to establish the supremacy of the Lok Sabha.\n\nSelect the correct answer using the codes given below:",
-    "options": [
-      "1 and 2 only",
-      "1, 2 and 3",
-      "2 and 3 only",
-      "3 and 4"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statements 1, 2, and 3 are correct. Article 108 is an enabling provision for resolving deadlocks. The President notifies the intention to summon a joint sitting, and it is not mandatory. Statement 4 is incorrect; joint sittings are rare (only three times in history) and are meant for legislative resolution, not to establish Lok Sabha supremacy."
-  },
-  {
-    "text": "Consider the following statements regarding the instrument of 'Whip' in the Indian Parliament:\nI. While a 'one-line whip' compels the Members to be present in the House, a 'two-line whip' directs them to vote in a certain way.\nII. If a Member defies a party's whip to be present and vote as per the party line during voting, may lead to his/her disqualification from the membership of the House.\nIII. The office of Chief whip of a political party in Parliament enjoys the same rank as that of a Minister in the Union Cabinet, in the table of precedence in India.\n\nWhich of the statements given above is/are correct?",
-    "options": [
-      "I and III only",
-      "II only",
-      "II and III only",
-      "None of the above"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statement I is incorrect; a one-line whip just notifies members of a vote, while a two-line whip compels presence (a three-line whip directs voting). Statement II is correct; defying a three-line whip can lead to disqualification under the Anti-Defection Law. Statement III is incorrect; the Chief Whip is not mentioned in the Table of Precedence and does not have Cabinet Minister rank."
-  },
-  {
-    "text": "Mr. G, a Member of Parliament from Rajya Sabha and a minister while discussing certain matters during the proceedings of the Rajya Sabha criticized Mr. R who is a leader of Opposition in Lok Sabha for his past comments. Mr. K, another MP from Rajya Sabha stood up and cited earlier rulings which prohibited allegations against members of the other house. In this context, Mr. K used which of the following Parliamentary practices to raise his concern?",
-    "options": [
-      "Calling Attention Motion",
-      "Dilatory Motion",
-      "Point of Order",
-      "Special Mention"
-    ],
-    "correctAnswer": 2,
-    "explanation": "A Point of Order is used to raise a question regarding the interpretation or enforcement of the Rules of Procedure or the Constitution in regulating the business of the House. By citing previous rulings to challenge the conduct of proceedings, Mr. K was raising a point of order."
-  },
-  {
-    "text": "With reference to the Parliament of India, which of the following statements is/are correct regarding the office of Deputy Chairman of Rajya Sabha?\nI. The date for his/her election is decided by the President of India\nII. S/he is entitled to a casting vote while presiding over the House.\nIII. S/he can be removed only if a resolution to that effect is passed in the Rajya Sabha by a two-third majority of the members present and voting.\nIV. When the office of Deputy Chairman becomes vacant, a new Deputy Chairman must be elected within a period of six-months.\n\nSelect the correct answer using the code given below:",
-    "options": [
-      "II only",
-      "I and II",
-      "II and III",
-      "I and IV"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Statement I is incorrect; the Chairman of the Rajya Sabha (not the President) fixes the election date. Statement II is correct; the Deputy Chairman exercises a casting vote in case of a tie while presiding. Statement III is incorrect; removal requires an 'effective majority' (majority of all then members), not a two-thirds majority. Statement IV is incorrect; the Constitution says 'as soon as may be' but fixes no six-month deadline."
-  },
-  {
-    "text": "In the context of Indian Parliament, consider the following information:\n\n| Action | Implication | It is done by |\n| :--- | :--- | :--- |\n| I. Adjournment of the House | It terminates the sitting of the House for a specified period. | Presiding Officer of the House |\n| II. Prorogation of the House | It terminates all bills and other business pending before the House. | President of India |\n| III. Adjournment Sine Die | It terminates both the sitting as well as the session of the House. | Presiding Officer of the House |\n\nIn how many of the above rows is the information correctly matched?",
-    "options": [
-      "Only one",
-      "Only two",
-      "All the three",
-      "None"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Only Row I is correctly matched. Row II is incorrect; prorogation ends a session but does *not* terminate pending bills. Row III is incorrect; adjournment sine die ends a sitting for an indefinite period, but it does not necessarily end the session (that is done by prorogation)."
-  },
-  {
-    "text": "With reference to method of passage of a bill/resolution in Parliament, consider the following pairs:\n\n| Bill/Resolution | Type of Majority required |\n| :--- | :--- |\n| I. A resolution altering the boundaries and names of certain States and Union Territories | Support of at least half of the members present and voting in each house of Parliament. |\n| II. A bill that reallocates the Rajya Sabha seats among the States | Support of at least half of the total strength of the respective House of the Parliament. |\n| III. A resolution that provides for creation of a State Legislative Council | Support of at least three-fourth of the members of each House of Parliament present and voting |\n\nHow many of the above given pairs are correctly matched?",
-    "options": [
-      "Only one",
-      "Only two",
-      "All the three",
-      "None"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Only Pair I is correctly matched (simple majority). Pair II is incorrect; reallocating Rajya Sabha seats requires a special majority and state ratification as it affects the Fourth Schedule. Pair III is incorrect; while the State Assembly needs a special majority to recommend creation, Parliament passes the law for it by a simple majority."
-  },
-  {
-    "text": "With regard to the Panel of Chairperson, Lok Sabha, which of the following statements is/are correct?\n1. Panel of Chairperson is drawn from the ruling party only.\n2. Panel of Chairperson is nominated by different political parties and appointed by Speaker, Lok Sabha.\n3. Panel of Chairperson consists of 10 members and one of them presides over the House when both Speaker and Deputy Speaker are not there.\n\nSelect the correct answer using the codes given below:",
-    "options": [
-      "1 and 3",
-      "2 and 3",
-      "3 only",
-      "2 only"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statement 1 is incorrect; the panel includes members from different parties. Statement 2 is correct; members are nominated by parties and appointed by the Speaker. Statement 3 is correct; the panel consists of up to 10 members, and any one can preside if both the Speaker and Deputy Speaker are absent."
-  },
-  {
-    "text": "In the context of parliamentary practices in India, the \"Mavlankar Rule\" lays down which of the following requirements?",
-    "options": [
-      "The minimum strength required to move a no-confidence motion in the House of People.",
-      "The quorum needed to constitute the sitting of the House of People.",
-      "The minimum strength of the party in the House of People needed to be recognized as a Parliamentary Party in the house.",
-      "The member of the House of People to resign from his/her party upon being elected as the Speaker of the House of People."
-    ],
-    "correctAnswer": 2,
-    "explanation": "The Mavlankar Rule requires that for a group to be recognized as a parliamentary party, it must have a strength at least equal to the quorum of the House (i.e., 10% or one-tenth of the total strength)."
-  },
-  {
-    "text": "In the context of Indian polity, consider the following statements: When the Lok Sabha is dissolved-\nI. a bill that has been introduced and is pending before the Lok Sabha lapse.\nII. a bill that is introduced and passed by the Rajya Sabha but pending before the Lok Sabha lapse.\nIII. a bill that has been passed by both the Houses of Parliament but is pending assent from the President of India lapse.\nIV. a bill in regard to which the President of India notified his/her intentions to summon the houses to a joint sitting before the dissolution of the Lok Sabha lapse.\n\nWhich of the statements given above are correct?",
-    "options": [
-      "I and II only",
-      "I and III only",
-      "I, II and III",
-      "I, II and IV"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Under Article 107, Statements I and II are correct; bills pending in or originating in the Lok Sabha lapse. Statement III is incorrect; a bill passed by both Houses and pending assent does *not* lapse. Statement IV is incorrect; if a joint sitting has been notified by the President before dissolution, the bill does *not* lapse."
-  },
-  {
-    "text": "In the context of Indian Polity, consider the following Statements:\nStatement I: A motion of No-confidence can be moved only against the entire Council of Ministers.\nStatement II: The Council of Ministers shall be collectively responsible to the House of People.\nStatement III: An individual minister is not necessary to be the member of either House of Parliament at the time of his/her appointment.\n\nWhich one of the following is correct in respect of the statements given above?",
-    "options": [
-      "Both statement II and statement III are correct and both of them explain statement I",
-      "Both statement II and statement III are correct, but only one of them explains statement I",
-      "Only one of the statements II and III is correct, and that explains statement I",
-      "Neither Statement II nor statement III is correct"
-    ],
-    "correctAnswer": 1,
-    "explanation": "All three statements are correct. Statement II explains Statement I because collective responsibility to the Lok Sabha means the entire ministry stands or falls together, hence the no-confidence motion targets the whole council. Statement III is correct (a person can be a minister for 6 months without being an MP) but it does not explain why the motion must be against the whole Council."
-  },
-  {
-    "text": "With reference to the Speaker of the Lok Sabha, consider the following statements: While any resolution for the removal of the Speaker of the Lok Sabha is under consideration\n1. He/She shall not preside.\n2. He/She shall not have the right to speak.\n3. He/She shall not be entitled to vote on the resolution in the first instance.\n\nWhich of the statements given above is/are correct?",
-    "options": [
-      "1 only",
-      "1 and 2 only",
-      "2 and 3 only",
-      "1, 2 and 3"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Statement 1 is correct; the Speaker cannot preside during their own removal resolution. Statement 2 is incorrect; the Speaker has the right to speak and take part in the proceedings. Statement 3 is incorrect; the Speaker is entitled to vote in the first instance on such a resolution but cannot vote in the case of a tie."
-  },
-  {
-    "text": "With reference to the Annual Financial Statement in India, consider the following statements:\nI. It is prepared by the Ministry of Finance, Government of India.\nII. As per the Constitution of India, the President shall, in respect of every financial year, cause to lay the Annual Financial Statement only before the House of People.\nIII. When the Annual financial statement is not passed by the House of People then the Prime Minister submits the resignation of the Council of Ministers.\n\nWhich of the statements given above is/are correct?",
-    "options": [
-      "I only",
-      "I and III only",
-      "II and III only",
-      "I, II and III"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statement I is correct; the Ministry of Finance prepares the budget (AFS). Statement II is incorrect; the President must cause the AFS to be laid before *both* Houses of Parliament. Statement III is correct; failure to pass the budget is considered a loss of confidence in the government, necessitating resignation."
-  },
-  {
-    "text": "Consider the following expenditures:\nI. Administrative expenses of the office of the Comptroller and Auditor General (CAG)\nII. Such sums as Parliament may by law provide in the form of grants-in-aid to certain States.\nIII. Salaries and allowances of the judges of the High Courts\nIV. Redemption charges related to the debt raised by the Government of India\n\nHow many of the above expenditures are charged on the Consolidated Fund of India?",
-    "options": [
-      "Only one",
-      "Only two",
-      "Only three",
-      "All the four"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Expenditures I, II, and IV are charged on the Consolidated Fund of India. Statement III is incorrect because the salaries and allowances of High Court judges are charged on the Consolidated Fund of the *State* (though their pensions are charged on the Consolidated Fund of India)."
-  },
-  {
-    "text": "A Urea subsidy scheme was introduced in this year's budget with an appropriation amount of Rs. x. The actual expenditure on the scheme was Rs. x+y. Which of the following types of grant can the Government of India seek from the legislature to cover the over expenditure of amount y on the scheme?",
-    "options": [
-      "Vote of Credit",
-      "Excess Grant",
-      "Additional Grant",
-      "Exceptional Grant"
-    ],
-    "correctAnswer": 1,
-    "explanation": "An Excess Grant is sought when money has already been spent on a service in excess of the amount granted for that service in the budget for that year. Since the Urea scheme overspent its budget, an excess grant is the correct mechanism (after it is approved by the Public Accounts Committee)."
-  },
-  {
-    "text": "Consider the following statements regarding the Contingency Fund of India:\nI. It was created through an Act of Parliament.\nII. It shall be held on behalf of the President of India by a Secretary to the Government of India in the Ministry of Finance.\nIII. The President can make advances out of this Fund to meet unforeseen expenditure, pending authorisation of such expenditure by the Parliament by law.\n\nWhich of the following statements is/are correct?",
-    "options": [
-      "I only",
-      "I and II only",
-      "II and III only",
-      "I, II and III"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All statements are correct. The Fund was established by the Contingency Fund of India Act, 1950 (per Article 267). It is held by the Finance Secretary on behalf of the President and is used to meet unforeseen expenses until Parliament authorizes them through an appropriation law."
-  },
-  {
-    "text": "With reference to the abolition or creation of State Legislative Council in States in India, consider the following statements:\nI. Parliament may by law provide for creation of Legislative Council in a state if the Legislative Assembly of that State passes a resolution by a majority of the total membership of the Assembly and by a majority of not less than two-thirds of the members present and voting.\nII. A law passed by the Parliament for the creation of a Legislative Council is not deemed to be a Constitutional Amendment under Article 368.\nIII. A bill for creation of legislative councils of state can be introduced in Parliament only with the prior recommendation of the President.\n\nWhich of the statements given above is/are correct?",
-    "options": [
-      "I only",
-      "I and II only",
-      "II and III only",
-      "I, II and III"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Statement I is correct; the State Assembly must pass a resolution by special majority. Statement II is correct; Article 169 explicitly states such a law is not a formal constitutional amendment. Statement III is incorrect; no prior recommendation of the President is required for introducing such a bill in Parliament."
-  },
-  {
-    "text": "Consider the following statements:\nI. If any question arises as to whether a Member of the House of the People has become subject to disqualification under the 10th Schedule, the President's decision in accordance with the opinion of the Council of Union Ministers shall be final.\nII. There is no mention of the word 'political party' in the Constitution of India.\n\nWhich of the statements given above is/are correct?",
-    "options": [
-      "I only",
-      "II only",
-      "Both I and II",
-      "Neither I nor II"
-    ],
-    "correctAnswer": 3,
-    "explanation": "Statement I is incorrect; disqualification under the 10th Schedule (Anti-Defection) is decided by the Speaker/Chairman of the House, not the President. Statement II is incorrect; the term 'political party' is explicitly mentioned in the Tenth Schedule of the Constitution."
-  },
-  {
-    "text": "With reference to a bicameral State Legislature, the position of the Legislative Council is equal with respect to the Legislative Assembly in which of the following cases?\nI. Approval of an ordinance promulgated by the Governor of that State\nII. Participation in election of representatives of the State to the Council of States\nIII. Consideration of the reports of Comptroller and Auditor General of India (CAG)\nIV. Ratification of a Constitutional Amendment Bill\n\nSelect the correct answer using the code given below.",
-    "options": [
-      "I and III only",
-      "II, III and IV",
-      "II and III only",
-      "I, II and IV"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Case I is correct; ordinances must be approved by both Houses. Case III is correct; CAG reports are laid before the state legislature (both houses). Case II is incorrect; only elected MLAs (not MLCs) elect Rajya Sabha members. Case IV is incorrect; only the Legislative Assembly (not the Council) ratifies constitutional amendments."
-  },
-  {
-    "text": "Which of the following statements is/are correct with reference to the Public Accounts Committee of the Parliament of India?\nI. It was first set-up in India based on the provisions of the Government of India Act, 1935.\nII. Initially, before independence, it consisted only the members of the Lok Sabha.\nIII. The senior-most member of the Parliament is appointed by the Speaker as the Chairman of the Committee.\n\nSelect the correct answer using the code given below:",
-    "options": [
-      "I and II",
-      "I only",
-      "II only",
-      "II and III"
-    ],
-    "correctAnswer": 2,
-    "explanation": "Statement I is incorrect; the PAC was first set up in 1921 under the 1919 Act. Statement II is correct; it originally consisted only of 15 members from the Lower House (Legislative Assembly/Lok Sabha); Rajya Sabha members were associated starting in 1954. Statement III is incorrect; the Speaker appoints the Chairman, and since 1967, it is by convention a member from the Opposition, not necessarily the 'senior-most' of all Parliament."
-  },
-  {
-    "text": "Consider the following Parliamentary Committees of the Lok Sabha in India, formed to facilitate legislative work:\nI. Business Advisory Committee\nII. Committee on Petitions\nIII. General Purposes Committee\nIV. Committee on Private Members' Bills and Resolutions\n\nHow many of the above are headed by the Speaker of the Lok Sabha?",
-    "options": [
-      "Only one",
-      "Only two",
-      "Only three",
-      "All the four"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Only two of these are headed by the Speaker: the Business Advisory Committee and the General Purposes Committee. The Committee on Private Members' Bills and Resolutions is headed by the Deputy Speaker, and the Committee on Petitions elects its own chairperson."
-  },
-  {
-    "text": "The actual strength of a State Legislative Council is determined by:",
-    "options": [
-      "Legislative Assembly of the State concerned",
-      "President of India",
-      "Governor of the State",
-      "Parliament of India"
-    ],
-    "correctAnswer": 3,
-    "explanation": "The Constitution (Article 171) sets the maximum and minimum limits for the Legislative Council strength, but the actual number of members within those limits is determined by the Parliament by law."
-  },
-  {
-    "text": "With reference to Money Bill in the Indian Parliament, consider the following statements:\nI. It shall not be introduced in the Council of States.\nII. A private member of the House of people cannot introduce such types of bills in the House.\nIII. As per the Constitution of India, a Bill shall be deemed to be a Money Bill if it provides for imposition of fines or other pecuniary penalties.\nIV. The Council of States can amend such bills once transmitted to it by the House of People only at the first instance.\n\nWhich of the statements given above is/are correct?",
-    "options": [
-      "I only",
-      "I, II and III only",
-      "I and II only",
-      "III and IV only"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Statement I is correct; a Money Bill can only be introduced in the Lok Sabha. Statement II is incorrect; while rare, there is no explicit constitutional bar against a private member introducing a Money Bill (though it still requires presidential recommendation). Statement III is incorrect; Article 110(2) specifically excludes bills for fines/penalties from being Money Bills. Statement IV is incorrect; the Rajya Sabha cannot amend a Money Bill at all; it can only make recommendations."
-  },
-  {
-    "text": "Which of the following are grounds for disqualification of a Member of Parliament under the Constitution of India?\nI. If s/he is declared of unsound mind by a competent court\nII. If s/he is an undischarged insolvent.\nIII. If s/he is under any acknowledgment of allegiance or adherence to a foreign State.\n\nSelect the correct answer using the code given below.",
-    "options": [
-      "I and II only",
-      "II and III only",
-      "I and III only",
-      "I, II and III"
-    ],
-    "correctAnswer": 3,
-    "explanation": "All three are constitutional grounds for disqualification under Article 102(1). These include being declared of unsound mind, being an undischarged insolvent, or holding allegiance to a foreign state."
-  },
-  {
-    "text": "With reference to the Indian Parliamentary system, consider the following statements about a Private Member's Bill:\nI. These are a mechanism through which Members of Parliament (MP), who are not Ministers, can propose their own legislation.\nII. Generally the period of notice of a motion for leave to introduce such a Bill is one month.\nIII. Only four Private Member Bills have been passed since independence.\n\nWhich of the statements given above is/are correct?",
-    "options": [
-      "I and II",
-      "I only",
-      "I and III",
-      "II and III"
-    ],
-    "correctAnswer": 0,
-    "explanation": "Statement I is correct; any MP who is not a minister is a private member. Statement II is correct; the required notice period for introduction is one month. Statement III is incorrect; 14 private member's bills have been passed since independence (though none since 1970)."
-  },
-  {
-    "text": "Which of the following are the special powers enjoyed by the Council of States? Council of States alone can:\nI. initiate the resolution for the removal of the Vice President of India.\nII. pass a resolution under Article 249 of the Constitution of India empowering Parliament to legislate on a State List subject in national interest.\nIII. pass a resolution for discontinuance of the Emergency proclaimed under Article 352 of the Constitution of India.\nIV. pass a resolution recommending the creation of one or more All-India Services under Article 312.\n\nSelect the correct answer using the code given below:",
-    "options": [
-      "I, II and III only",
-      "I, II and IV only",
-      "III and IV only",
-      "I, II, III and IV"
-    ],
-    "correctAnswer": 1,
-    "explanation": "Powers I, II, and IV are exclusive to the Rajya Sabha. The Vice President's removal can only begin in the Rajya Sabha; Article 249 resolutions regarding state lists begin there; and Article 312 for new All-India services is an exclusive upper house power. Power III is incorrect; a resolution for the discontinuance of a National Emergency can only be passed by the Lok Sabha."
-  },
-  {
-    "text": "In the Council of States, suppose two opposition parties have the same numerical strength and are the greatest in number in the house. In this context, which of the statements given below is correct?",
-    "options": [
-      "The leaders of both the parties will serve as Leader of Opposition to the House.",
-      "The House will decide through voting as the leader of which party will be declared as the Leader of the Opposition.",
-      "The Chairman of the House can recognize the leader of any one of the two parties as the Leader of the Opposition.",
-      "Amongst the two parties, the leader of one which has a higher numerical strength in the House of People will serve as the Leader of Opposition in the Council of States."
-    ],
-    "correctAnswer": 2,
-    "explanation": "Under the Salary and Allowances of Leaders of Opposition in Parliament Act, 1977, if two opposition parties have the same numerical strength, the Chairman of the Rajya Sabha recognizes any one of the leaders as the Leader of the Opposition, and this decision is final."
-  }
-]
+  //   "Test-6-Polity (321106)" : [
+  //   {
+  //     "text": "Which one among the following correctly represents the theme on which the interiors of the new Parliament Building is based?\n\n| Lok Sabha | Rajya Sabha |\n| :--- | :--- |\n| a) Lotus | Banyan |\n| b) Peacock | Lotus |\n| c) Peacock | Banyan |\n| d) Lotus | Peacock |",
+  //     "options": [
+  //       "a",
+  //       "b",
+  //       "c",
+  //       "d"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "The new Parliament building in India incorporates cultural symbols into its interior design. The Lok Sabha (Lower House) features a ceiling design inspired by the Peacock, which is India's national bird. The Rajya Sabha (Upper House) is themed around the Lotus, India's national flower, symbolizing purity and renewal."
+  //   },
+  //   {
+  //     "text": "With reference to the devices of Parliamentary proceedings in India, consider the following statements about Question hour in the House of People:\nI. The Speaker has the discretion to change the timing of the Question hour in the house.\nII. A Question during this hour can be addressed to a private member of the house as well.\nIII. A Question distinguished by an asterisk shall be placed on the list of questions for written answer.\n\nWhich of the statements given above is/are correct?",
+  //     "options": [
+  //       "I and II",
+  //       "II only",
+  //       "I and III",
+  //       "III only"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Statement I is correct because while the first hour of every sitting is normally devoted to questions, the Speaker has the discretion to change this timing. Statement II is correct as questions can be addressed to private members if the subject matter relates to a Bill, Resolution, or other business for which that member is responsible. Statement III is incorrect because a question distinguished by an asterisk (starred question) requires an oral answer, whereas questions not distinguished by an asterisk are placed on the list for written answers (unstarred questions)."
+  //   },
+  //   {
+  //     "text": "Consider the following Indian states:\nI. Madhya Pradesh\nII. Telangana\nIII. Karnataka\nIV. Maharashtra\nV. Uttar Pradesh\n\nHow many of the above given Indian states have bicameral legislature?",
+  //     "options": [
+  //       "Only two",
+  //       "Only three",
+  //       "Only four",
+  //       "All the five"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Currently, six Indian states have a bicameral legislature (both a Legislative Assembly and a Legislative Council): Andhra Pradesh, Telangana, Uttar Pradesh, Bihar, Maharashtra, and Karnataka. Out of the list provided, Telangana, Karnataka, Maharashtra, and Uttar Pradesh have bicameral legislatures. Madhya Pradesh has a unicameral legislature."
+  //   },
+  //   {
+  //     "text": "With reference to Indian Parliamentary system, consider the following statements about the Council of States:\nI. The term 'Rajya Sabha' is nowhere mentioned in the Constitution of India.\nII. The number of members to be elected to the Council of States from each State is mentioned in the Fourth Schedule of the Indian Constitution.\nIII. The Indian Constitution provides for fixed tenure of six years for the members of the Council of States.\nIV. If the member of the house resigns from his/her membership, the new member elected will serve only for the remainder of his/her predecessor's term of office.\n\nWhich of the statements given above are correct?",
+  //     "options": [
+  //       "I and II only",
+  //       "II and III only",
+  //       "I, II and IV only",
+  //       "I and IV only"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Statement I is correct; the Constitution refers to the upper house as the 'Council of States'. Statement II is correct; the Fourth Schedule deals with the allocation of seats in the Council of States. Statement III is incorrect; the Constitution does not fix the term of members but provides that one-third retire every second year; the six-year term was fixed by Parliament via the Representation of the People Act, 1951. Statement IV is correct; a member elected to fill a casual vacancy serves only for the remainder of the predecessor's term."
+  //   },
+  //   {
+  //     "text": "Who among the following was the first protem Speaker to be unanimously elected as the Speaker of the Lok Sabha?",
+  //     "options": [
+  //       "Rabi Ray",
+  //       "Hiren Mukherjee",
+  //       "Somnath Chatterjee",
+  //       "P.A. Sangma"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Somnath Chatterjee was the first pro-tem Speaker in the history of the Lok Sabha to be unanimously elected as the Speaker of the House (14th Lok Sabha)."
+  //   },
+  //   {
+  //     "text": "Consider the following functions of the Parliament of India:\nI. Impeaching the President for violation of the Constitution.\nII. Recommendation for the removal of the judges of the Supreme Court.\nIII. Punishing its own members for breach of privilege or contempt.\nIV. Censuring of the minister for specific policies and actions.\n\nHow many of the above are judicial functions of the Parliament?",
+  //     "options": [
+  //       "Only one",
+  //       "Only two",
+  //       "Only three",
+  //       "All the four"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Statements I, II, and III are judicial (or quasi-judicial) functions because they involve inquiries, investigations, and formal verdicts similar to a trial. Impeaching the President, recommending removal of judges, and punishing for breach of privilege fall into this category. Statement IV is a tool of executive accountability/political control, not a judicial function."
+  //   },
+  //   {
+  //     "text": "In the context of Indian Polity, consider the following statements:\nStatement I: The legislative control over the executive ensures financial propriety.\nStatement II: The legislature can discuss the use or misuse of public funds on the basis of the report of the Public Accounts Committee.\nStatement III: The preparation and presentation of the Annual Financial Statement for the approval of the legislature is the constitutional obligation of the executive.\n\nWhich one of the following is correct in respect of the statements given above?",
+  //     "options": [
+  //       "Both statement II and statement III are correct and both of them explain statement I.",
+  //       "Both statement II and statement III are correct, but only one of them explains statement I.",
+  //       "Only one of the statements II and III is correct, and that explains statement I.",
+  //       "Neither Statement II nor statement III is correct."
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "All three statements are correct. Statement II explains Statement I because the Public Accounts Committee's scrutiny of funds is a primary mechanism for the legislature to ensure financial propriety. Statement III also explains Statement I because the mandatory presentation of the budget (Annual Financial Statement) for legislative approval is the starting point for legislative control over executive spending."
+  //   },
+  //   {
+  //     "text": "Under which of the following circumstance(s) will it be constitutionally valid for the President of India to dissolve the House of the People?\nI. If no party or coalition of parties is able to form a stable government.\nII. If the Council of Ministers fails to prove its majority in the House.\nIII. If the Speaker of the Lok Sabha advises the President to dissolve the House.\n\nSelect the correct answer using the code given below:",
+  //     "options": [
+  //       "I and III only",
+  //       "I and II only",
+  //       "II only",
+  //       "I, II and III"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Statement I is correct; the President can dissolve the House if no stable government can be formed. Statement II is correct; if the government loses its majority and no alternative is available, the President may dissolve the House. Statement III is incorrect; the Speaker has no constitutional authority to advise the President on dissolution; this advice comes from the Prime Minister or is a matter of the President's situational discretion."
+  //   },
+  //   {
+  //     "text": "In the context of Indian Polity, consider the following statements:\nI. Provisions as to disqualification on grounds of defection were added to the Constitution through the 52nd Constitutional Amendment Act, 1985.\nII. A person disqualified on the ground of defection under the 10th schedule of Indian Constitution shall also be disqualified from holding any remunerative political post in future.\n\nWhich of the statements given above is/are correct?",
+  //     "options": [
+  //       "I only",
+  //       "II only",
+  //       "Both I and II",
+  //       "Neither I nor II"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Statement I is correct as the 52nd Amendment introduced the Anti-Defection Law (Tenth Schedule). Statement II is incorrect because Article 361B states that a person disqualified for defection is only disqualified from holding a remunerative political post for the duration of the remainder of their term (or until they are re-elected), not permanently or indefinitely in the future."
+  //   },
+  //   {
+  //     "text": "With reference to Special Address by the President to the Parliament under the Constitution of India, consider the following statements:\nI. This address has to be to both houses of the Parliament assembled together only.\nII. This address shall be at the commencement of the first session after each general election to the House of the People and at the commencement of the first session of each year.\n\nWhich of the statements given above is/are correct?",
+  //     "options": [
+  //       "I only",
+  //       "II only",
+  //       "Both I and II",
+  //       "Neither I nor II"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Both statements are correct under Article 87(1). The President must address both Houses assembled together at the start of the first session after a general election and at the start of the first session of every year to inform Parliament of the causes of its summons."
+  //   },
+  //   {
+  //     "text": "Which of the following Statements about the Ethics Committee in the Lok Sabha are correct?\n1. Initially it was an ad-hoc Committee.\n2. Only a Member of the Lok Sabha can make a complaint relating to unethical conduct of a member of the Lok Sabha.\n3. This Committee cannot take up any matter which is sub-judice.\n\nSelect the answer using the code given below:",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Statement 1 is correct; the committee was initially ad-hoc (formed in 2000) before becoming permanent in 2015. Statement 2 is incorrect; any person can make a complaint against a member, provided it is accompanied by an affidavit (unless the complainant is a member themselves). Statement 3 is correct; the committee is prohibited from taking up matters that are currently before a court of law (sub-judice)."
+  //   },
+  //   {
+  //     "text": "As per the Constitution of India, the Speaker of the House of People address his/her resignation from the office to the-",
+  //     "options": [
+  //       "President of India",
+  //       "The Secretary-General of the House of People",
+  //       "Leader of the House of People",
+  //       "Deputy Speaker of the House of People"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "Under Article 94(b), the Speaker of the Lok Sabha resigns by writing to the Deputy Speaker. Similarly, the Deputy Speaker resigns by writing to the Speaker."
+  //   },
+  //   {
+  //     "text": "In the context of Indian Polity, consider the following:\nI. A Bill passed by both Houses of Parliament cannot become a law unless it receives the President's assent.\nII. A bill passed by the Parliament comes into force immediately upon receiving the President's assent.\nIII. The Constitution of India explicitly states that the Parliament consists of the President.\n\nWhich of the above prove(s) that the President of India is an integral part of the Parliament?",
+  //     "options": [
+  //       "I only",
+  //       "I and III only",
+  //       "I and II only",
+  //       "None of the above"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "The President is an integral part of Parliament because Article 79 explicitly states that Parliament consists of the President and two Houses. Additionally, Statement I is correct because no bill can become law without the President's assent. Statement II is incorrect because an Act comes into force based on its own commencement provisions, which may involve a future date or a later government notification."
+  //   },
+  //   {
+  //     "text": "With reference to parliamentary privileges in India, consider the following:\nI. The Constitution of India\nII. Parliamentary conventions\nIII. Statutory provisions\nIV. Rules of Procedure and Conduct of Business\n\nHow many of the above are sources of parliamentary privileges?",
+  //     "options": [
+  //       "Only one",
+  //       "Only two",
+  //       "Only three",
+  //       "All the four"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "Parliamentary privileges in India are derived from all four sources: the Constitution (Articles 105 and 194), statutory laws (like the Code of Civil Procedure), the Rules of Procedure of the Houses, and long-standing parliamentary conventions inherited from the British system."
+  //   },
+  //   {
+  //     "text": "Consider the following statements:\n1. The Speaker of the Legislative Assembly shall vacate his/her office if he/she ceases to be a member of the assembly.\n2. Whenever the Legislative Assembly is dissolved, the Speaker shall vacate his/her office immediately.\n\nWhich of the statements given above is/are correct?",
+  //     "options": [
+  //       "1 only",
+  //       "2 only",
+  //       "Both 1 and 2",
+  //       "Neither 1 nor 2"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Statement 1 is correct under Article 179; the Speaker must be a member of the House. Statement 2 is incorrect because the Speaker does not vacate office immediately upon dissolution; they continue until immediately before the first meeting of the new Assembly."
+  //   },
+  //   {
+  //     "text": "According to the Fourth Schedule of the Constitution of India, which of the following Union Territories are allotted seats in the Council of States?\nI. Delhi\nII. Jammu and Kashmir\nIII. Ladakh\nIV. Lakshadweep\nV. Puducherry\n\nSelect the correct answer using the code given below:",
+  //     "options": [
+  //       "I and II only",
+  //       "II, III and IV",
+  //       "I, III, IV and V",
+  //       "I, II and V"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "Only Union Territories with their own Legislative Assemblies are represented in the Rajya Sabha. Currently, these are Delhi (3 seats), Puducherry (1 seat), and Jammu and Kashmir (4 seats). Ladakh and Lakshadweep do not have legislatures and thus have no seats in the Rajya Sabha."
+  //   },
+  //   {
+  //     "text": "Mrs. Y is a citizen of India and is 27 years old. She is registered as an elector for one of the assembly constituencies as well as one of the parliamentary constituencies in Telangana. In this context consider the following:\nI. Membership of Lok Sabha\nII. Membership of Rajya Sabha\nIII. Membership of Legislative Assembly of Telangana\nIV. Membership of Legislative Council of Telangana\n\nMrs. Y would be qualified for the membership of which of the above?",
+  //     "options": [
+  //       "I and III only",
+  //       "I, III and IV only",
+  //       "III only",
+  //       "I, II, III and IV"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "The minimum age for the Lok Sabha and State Legislative Assembly is 25 years. The minimum age for the Rajya Sabha and State Legislative Council is 30 years. Since Mrs. Y is 27, she is qualified for the Lok Sabha (I) and the Legislative Assembly (III), but not for the Rajya Sabha (II) or the Legislative Council (IV)."
+  //   },
+  //   {
+  //     "text": "With reference to the Parliamentary form of Government in India, the fundamental idea behind disqualifying members of Parliament from holding an office of profit under the government is based on which of the following doctrines?",
+  //     "options": [
+  //       "Doctrine of Separation of Power",
+  //       "Doctrine of Parliamentary Sovereignty",
+  //       "Doctrine of Rule of Law",
+  //       "Doctrine of Harmonious Construction"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "The disqualification for holding an 'office of profit' is based on the Doctrine of Separation of Powers. It aims to ensure that legislators remain independent of the executive and are not influenced by appointments that offer financial gain, thereby maintaining the check on the executive branch."
+  //   },
+  //   {
+  //     "text": "In the context of Indian Polity, consider the following statements:\nStatement I: The provisions of the Tenth Schedule of the Indian Constitution, with respect to voting against the instruction of the party, will not be applicable during the elections of members of the Rajya Sabha.\nStatement II: The election of members of Rajya Sabha is conducted through an Open ballot System.\n\nWhich of the above is correct in respect of the above statements?",
+  //     "options": [
+  //       "Both Statement I and Statement II are correct and Statement II explains Statement I.",
+  //       "Both Statement I and Statement II are correct but Statement II does not explain Statement I.",
+  //       "Statement I is correct but Statement II is not correct.",
+  //       "Statement I is not correct but Statement II is correct."
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Both statements are correct. The Supreme Court ruled in the Kuldip Nayar case that the Tenth Schedule does not apply to Rajya Sabha elections because they are 'outside the House' proceedings. Statement II is also correct as Rajya Sabha elections use an open ballot. However, the open ballot is intended to prevent cross-voting and corruption, while the non-application of the Tenth Schedule is due to the legal nature of the election process, so II does not explain I."
+  //   },
+  //   {
+  //     "text": "In cases involving matters related to corrupt practices, a Member of Parliament can be disqualified for a maximum period of six years under the provisions of Representation of Peoples Act 1951. Who among the following is empowered to decide the actual period of such disqualification?",
+  //     "options": [
+  //       "Election Commission of India",
+  //       "Presiding Officer of respective House of Parliament",
+  //       "President of India on advice of Supreme Court of India",
+  //       "President of India on advice of Election commission of India"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "Under Section 8A of the RPA 1951, the President of India decides the period of disqualification for corrupt practices (not exceeding six years). The President must obtain and act according to the opinion of the Election Commission of India."
+  //   },
+  //   {
+  //     "text": "Which of the following statements about the Committee on Public Undertakings is/are correct?\n1. There are more members from the Rajya Sabha than the Lok Sabha in the Committee.\n2. The Chairperson of the Committee is appointed by the Speaker of the Lok Sabha.\n\nSelect the correct answer using the code given below.",
+  //     "options": [
+  //       "1 only",
+  //       "2 only",
+  //       "Both 1 and 2",
+  //       "Neither 1 nor 2"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Statement 1 is incorrect; the committee has 22 members, with 15 from the Lok Sabha and 7 from the Rajya Sabha. Statement 2 is correct; the Speaker of the Lok Sabha appoints the Chairperson from among the Lok Sabha members on the committee."
+  //   },
+  //   {
+  //     "text": "With reference to the Legislative Assembly of a State in India, which of the following statements is correct?",
+  //     "options": [
+  //       "There is no state with a Legislative Assembly having a strength less than 60.",
+  //       "The total number of seats in the Legislative Assembly of each state is fixed on the basis of the 2001 Census.",
+  //       "No member of any state Legislative assembly is indirectly elected.",
+  //       "Presently no state have a member nominated by the Governor in their respective Legislative assembly."
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "Option d is correct; following the 104th Amendment, the Governor's power to nominate Anglo-Indians has ceased. Option a is wrong as states like Goa and Sikkim have 30-40 seats. Option b is wrong; seat numbers are fixed based on the 1971 census (until 2026). Option c is wrong; some members in Nagaland and Sikkim are elected indirectly."
+  //   },
+  //   {
+  //     "text": "In which of the following situation(s) does the seat of a Member of Parliament (MP) become vacant?\nI. If s/he is absent from all meetings of the House for a period of thirty days without permission of the House.\nII. If s/he fails to make and subscribe an oath or affirmation within six months from the date on which the House first meets after his/her election.\nIII. If s/he is elected as the President of India.\n\nSelect the correct answer using the code given below:",
+  //     "options": [
+  //       "I and II only",
+  //       "III only",
+  //       "II and III only",
+  //       "I, II and III"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Statement I is incorrect; the vacancy occurs after 60 days of unauthorized absence, not 30. Statement II is incorrect; there is no fixed six-month time limit for the oath that causes automatic vacancy. Statement III is correct; under Article 59, if an MP is elected President, they are deemed to have vacated their seat in Parliament on the date they enter office."
+  //   },
+  //   {
+  //     "text": "Which of the following statements with regard to the Speaker of the Lok Sabha are correct?\nI. S/he is elected by the members of the Lok Sabha from amongst themselves by a simple majority.\nII. The election to the Speaker of the House shall be held on such a date as the pro tem speaker decides.\nIII. S/he is the ex-officio Chairperson of the Conference of Presiding Officers of Legislative Bodies in India.\nIV. S/he is the appointing authority of Deputy Speaker of Lok Sabha.\n\nSelect the correct answer using the code given below.",
+  //     "options": [
+  //       "I and IV only",
+  //       "I and III only",
+  //       "I, III and IV",
+  //       "II, III and IV"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Statement I is correct; the House elects the Speaker by simple majority. Statement II is incorrect; the President fixes the date for the Speaker's election. Statement III is correct; by convention, the Speaker chairs the national conference of presiding officers. Statement IV is incorrect; the House itself chooses the Deputy Speaker; the Speaker does not appoint them."
+  //   },
+  //   {
+  //     "text": "Which of the following statements are correct regarding the Joint Session of the Houses of the Parliament in India?\n1. It is an enabling provision empowering the President to take steps for resolving deadlock between the two Houses.\n2. It is not obligatory upon the President to summon the Houses to meet in a joint sitting.\n3. It is being notified by the President.\n4. It is frequently resorted to establish the supremacy of the Lok Sabha.\n\nSelect the correct answer using the codes given below:",
+  //     "options": [
+  //       "1 and 2 only",
+  //       "1, 2 and 3",
+  //       "2 and 3 only",
+  //       "3 and 4"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Statements 1, 2, and 3 are correct. Article 108 is an enabling provision for resolving deadlocks. The President notifies the intention to summon a joint sitting, and it is not mandatory. Statement 4 is incorrect; joint sittings are rare (only three times in history) and are meant for legislative resolution, not to establish Lok Sabha supremacy."
+  //   },
+  //   {
+  //     "text": "Consider the following statements regarding the instrument of 'Whip' in the Indian Parliament:\nI. While a 'one-line whip' compels the Members to be present in the House, a 'two-line whip' directs them to vote in a certain way.\nII. If a Member defies a party's whip to be present and vote as per the party line during voting, may lead to his/her disqualification from the membership of the House.\nIII. The office of Chief whip of a political party in Parliament enjoys the same rank as that of a Minister in the Union Cabinet, in the table of precedence in India.\n\nWhich of the statements given above is/are correct?",
+  //     "options": [
+  //       "I and III only",
+  //       "II only",
+  //       "II and III only",
+  //       "None of the above"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Statement I is incorrect; a one-line whip just notifies members of a vote, while a two-line whip compels presence (a three-line whip directs voting). Statement II is correct; defying a three-line whip can lead to disqualification under the Anti-Defection Law. Statement III is incorrect; the Chief Whip is not mentioned in the Table of Precedence and does not have Cabinet Minister rank."
+  //   },
+  //   {
+  //     "text": "Mr. G, a Member of Parliament from Rajya Sabha and a minister while discussing certain matters during the proceedings of the Rajya Sabha criticized Mr. R who is a leader of Opposition in Lok Sabha for his past comments. Mr. K, another MP from Rajya Sabha stood up and cited earlier rulings which prohibited allegations against members of the other house. In this context, Mr. K used which of the following Parliamentary practices to raise his concern?",
+  //     "options": [
+  //       "Calling Attention Motion",
+  //       "Dilatory Motion",
+  //       "Point of Order",
+  //       "Special Mention"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "A Point of Order is used to raise a question regarding the interpretation or enforcement of the Rules of Procedure or the Constitution in regulating the business of the House. By citing previous rulings to challenge the conduct of proceedings, Mr. K was raising a point of order."
+  //   },
+  //   {
+  //     "text": "With reference to the Parliament of India, which of the following statements is/are correct regarding the office of Deputy Chairman of Rajya Sabha?\nI. The date for his/her election is decided by the President of India\nII. S/he is entitled to a casting vote while presiding over the House.\nIII. S/he can be removed only if a resolution to that effect is passed in the Rajya Sabha by a two-third majority of the members present and voting.\nIV. When the office of Deputy Chairman becomes vacant, a new Deputy Chairman must be elected within a period of six-months.\n\nSelect the correct answer using the code given below:",
+  //     "options": [
+  //       "II only",
+  //       "I and II",
+  //       "II and III",
+  //       "I and IV"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Statement I is incorrect; the Chairman of the Rajya Sabha (not the President) fixes the election date. Statement II is correct; the Deputy Chairman exercises a casting vote in case of a tie while presiding. Statement III is incorrect; removal requires an 'effective majority' (majority of all then members), not a two-thirds majority. Statement IV is incorrect; the Constitution says 'as soon as may be' but fixes no six-month deadline."
+  //   },
+  //   {
+  //     "text": "In the context of Indian Parliament, consider the following information:\n\n| Action | Implication | It is done by |\n| :--- | :--- | :--- |\n| I. Adjournment of the House | It terminates the sitting of the House for a specified period. | Presiding Officer of the House |\n| II. Prorogation of the House | It terminates all bills and other business pending before the House. | President of India |\n| III. Adjournment Sine Die | It terminates both the sitting as well as the session of the House. | Presiding Officer of the House |\n\nIn how many of the above rows is the information correctly matched?",
+  //     "options": [
+  //       "Only one",
+  //       "Only two",
+  //       "All the three",
+  //       "None"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Only Row I is correctly matched. Row II is incorrect; prorogation ends a session but does *not* terminate pending bills. Row III is incorrect; adjournment sine die ends a sitting for an indefinite period, but it does not necessarily end the session (that is done by prorogation)."
+  //   },
+  //   {
+  //     "text": "With reference to method of passage of a bill/resolution in Parliament, consider the following pairs:\n\n| Bill/Resolution | Type of Majority required |\n| :--- | :--- |\n| I. A resolution altering the boundaries and names of certain States and Union Territories | Support of at least half of the members present and voting in each house of Parliament. |\n| II. A bill that reallocates the Rajya Sabha seats among the States | Support of at least half of the total strength of the respective House of the Parliament. |\n| III. A resolution that provides for creation of a State Legislative Council | Support of at least three-fourth of the members of each House of Parliament present and voting |\n\nHow many of the above given pairs are correctly matched?",
+  //     "options": [
+  //       "Only one",
+  //       "Only two",
+  //       "All the three",
+  //       "None"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Only Pair I is correctly matched (simple majority). Pair II is incorrect; reallocating Rajya Sabha seats requires a special majority and state ratification as it affects the Fourth Schedule. Pair III is incorrect; while the State Assembly needs a special majority to recommend creation, Parliament passes the law for it by a simple majority."
+  //   },
+  //   {
+  //     "text": "With regard to the Panel of Chairperson, Lok Sabha, which of the following statements is/are correct?\n1. Panel of Chairperson is drawn from the ruling party only.\n2. Panel of Chairperson is nominated by different political parties and appointed by Speaker, Lok Sabha.\n3. Panel of Chairperson consists of 10 members and one of them presides over the House when both Speaker and Deputy Speaker are not there.\n\nSelect the correct answer using the codes given below:",
+  //     "options": [
+  //       "1 and 3",
+  //       "2 and 3",
+  //       "3 only",
+  //       "2 only"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Statement 1 is incorrect; the panel includes members from different parties. Statement 2 is correct; members are nominated by parties and appointed by the Speaker. Statement 3 is correct; the panel consists of up to 10 members, and any one can preside if both the Speaker and Deputy Speaker are absent."
+  //   },
+  //   {
+  //     "text": "In the context of parliamentary practices in India, the \"Mavlankar Rule\" lays down which of the following requirements?",
+  //     "options": [
+  //       "The minimum strength required to move a no-confidence motion in the House of People.",
+  //       "The quorum needed to constitute the sitting of the House of People.",
+  //       "The minimum strength of the party in the House of People needed to be recognized as a Parliamentary Party in the house.",
+  //       "The member of the House of People to resign from his/her party upon being elected as the Speaker of the House of People."
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "The Mavlankar Rule requires that for a group to be recognized as a parliamentary party, it must have a strength at least equal to the quorum of the House (i.e., 10% or one-tenth of the total strength)."
+  //   },
+  //   {
+  //     "text": "In the context of Indian polity, consider the following statements: When the Lok Sabha is dissolved-\nI. a bill that has been introduced and is pending before the Lok Sabha lapse.\nII. a bill that is introduced and passed by the Rajya Sabha but pending before the Lok Sabha lapse.\nIII. a bill that has been passed by both the Houses of Parliament but is pending assent from the President of India lapse.\nIV. a bill in regard to which the President of India notified his/her intentions to summon the houses to a joint sitting before the dissolution of the Lok Sabha lapse.\n\nWhich of the statements given above are correct?",
+  //     "options": [
+  //       "I and II only",
+  //       "I and III only",
+  //       "I, II and III",
+  //       "I, II and IV"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Under Article 107, Statements I and II are correct; bills pending in or originating in the Lok Sabha lapse. Statement III is incorrect; a bill passed by both Houses and pending assent does *not* lapse. Statement IV is incorrect; if a joint sitting has been notified by the President before dissolution, the bill does *not* lapse."
+  //   },
+  //   {
+  //     "text": "In the context of Indian Polity, consider the following Statements:\nStatement I: A motion of No-confidence can be moved only against the entire Council of Ministers.\nStatement II: The Council of Ministers shall be collectively responsible to the House of People.\nStatement III: An individual minister is not necessary to be the member of either House of Parliament at the time of his/her appointment.\n\nWhich one of the following is correct in respect of the statements given above?",
+  //     "options": [
+  //       "Both statement II and statement III are correct and both of them explain statement I",
+  //       "Both statement II and statement III are correct, but only one of them explains statement I",
+  //       "Only one of the statements II and III is correct, and that explains statement I",
+  //       "Neither Statement II nor statement III is correct"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "All three statements are correct. Statement II explains Statement I because collective responsibility to the Lok Sabha means the entire ministry stands or falls together, hence the no-confidence motion targets the whole council. Statement III is correct (a person can be a minister for 6 months without being an MP) but it does not explain why the motion must be against the whole Council."
+  //   },
+  //   {
+  //     "text": "With reference to the Speaker of the Lok Sabha, consider the following statements: While any resolution for the removal of the Speaker of the Lok Sabha is under consideration\n1. He/She shall not preside.\n2. He/She shall not have the right to speak.\n3. He/She shall not be entitled to vote on the resolution in the first instance.\n\nWhich of the statements given above is/are correct?",
+  //     "options": [
+  //       "1 only",
+  //       "1 and 2 only",
+  //       "2 and 3 only",
+  //       "1, 2 and 3"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Statement 1 is correct; the Speaker cannot preside during their own removal resolution. Statement 2 is incorrect; the Speaker has the right to speak and take part in the proceedings. Statement 3 is incorrect; the Speaker is entitled to vote in the first instance on such a resolution but cannot vote in the case of a tie."
+  //   },
+  //   {
+  //     "text": "With reference to the Annual Financial Statement in India, consider the following statements:\nI. It is prepared by the Ministry of Finance, Government of India.\nII. As per the Constitution of India, the President shall, in respect of every financial year, cause to lay the Annual Financial Statement only before the House of People.\nIII. When the Annual financial statement is not passed by the House of People then the Prime Minister submits the resignation of the Council of Ministers.\n\nWhich of the statements given above is/are correct?",
+  //     "options": [
+  //       "I only",
+  //       "I and III only",
+  //       "II and III only",
+  //       "I, II and III"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Statement I is correct; the Ministry of Finance prepares the budget (AFS). Statement II is incorrect; the President must cause the AFS to be laid before *both* Houses of Parliament. Statement III is correct; failure to pass the budget is considered a loss of confidence in the government, necessitating resignation."
+  //   },
+  //   {
+  //     "text": "Consider the following expenditures:\nI. Administrative expenses of the office of the Comptroller and Auditor General (CAG)\nII. Such sums as Parliament may by law provide in the form of grants-in-aid to certain States.\nIII. Salaries and allowances of the judges of the High Courts\nIV. Redemption charges related to the debt raised by the Government of India\n\nHow many of the above expenditures are charged on the Consolidated Fund of India?",
+  //     "options": [
+  //       "Only one",
+  //       "Only two",
+  //       "Only three",
+  //       "All the four"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Expenditures I, II, and IV are charged on the Consolidated Fund of India. Statement III is incorrect because the salaries and allowances of High Court judges are charged on the Consolidated Fund of the *State* (though their pensions are charged on the Consolidated Fund of India)."
+  //   },
+  //   {
+  //     "text": "A Urea subsidy scheme was introduced in this year's budget with an appropriation amount of Rs. x. The actual expenditure on the scheme was Rs. x+y. Which of the following types of grant can the Government of India seek from the legislature to cover the over expenditure of amount y on the scheme?",
+  //     "options": [
+  //       "Vote of Credit",
+  //       "Excess Grant",
+  //       "Additional Grant",
+  //       "Exceptional Grant"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "An Excess Grant is sought when money has already been spent on a service in excess of the amount granted for that service in the budget for that year. Since the Urea scheme overspent its budget, an excess grant is the correct mechanism (after it is approved by the Public Accounts Committee)."
+  //   },
+  //   {
+  //     "text": "Consider the following statements regarding the Contingency Fund of India:\nI. It was created through an Act of Parliament.\nII. It shall be held on behalf of the President of India by a Secretary to the Government of India in the Ministry of Finance.\nIII. The President can make advances out of this Fund to meet unforeseen expenditure, pending authorisation of such expenditure by the Parliament by law.\n\nWhich of the following statements is/are correct?",
+  //     "options": [
+  //       "I only",
+  //       "I and II only",
+  //       "II and III only",
+  //       "I, II and III"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All statements are correct. The Fund was established by the Contingency Fund of India Act, 1950 (per Article 267). It is held by the Finance Secretary on behalf of the President and is used to meet unforeseen expenses until Parliament authorizes them through an appropriation law."
+  //   },
+  //   {
+  //     "text": "With reference to the abolition or creation of State Legislative Council in States in India, consider the following statements:\nI. Parliament may by law provide for creation of Legislative Council in a state if the Legislative Assembly of that State passes a resolution by a majority of the total membership of the Assembly and by a majority of not less than two-thirds of the members present and voting.\nII. A law passed by the Parliament for the creation of a Legislative Council is not deemed to be a Constitutional Amendment under Article 368.\nIII. A bill for creation of legislative councils of state can be introduced in Parliament only with the prior recommendation of the President.\n\nWhich of the statements given above is/are correct?",
+  //     "options": [
+  //       "I only",
+  //       "I and II only",
+  //       "II and III only",
+  //       "I, II and III"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Statement I is correct; the State Assembly must pass a resolution by special majority. Statement II is correct; Article 169 explicitly states such a law is not a formal constitutional amendment. Statement III is incorrect; no prior recommendation of the President is required for introducing such a bill in Parliament."
+  //   },
+  //   {
+  //     "text": "Consider the following statements:\nI. If any question arises as to whether a Member of the House of the People has become subject to disqualification under the 10th Schedule, the President's decision in accordance with the opinion of the Council of Union Ministers shall be final.\nII. There is no mention of the word 'political party' in the Constitution of India.\n\nWhich of the statements given above is/are correct?",
+  //     "options": [
+  //       "I only",
+  //       "II only",
+  //       "Both I and II",
+  //       "Neither I nor II"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "Statement I is incorrect; disqualification under the 10th Schedule (Anti-Defection) is decided by the Speaker/Chairman of the House, not the President. Statement II is incorrect; the term 'political party' is explicitly mentioned in the Tenth Schedule of the Constitution."
+  //   },
+  //   {
+  //     "text": "With reference to a bicameral State Legislature, the position of the Legislative Council is equal with respect to the Legislative Assembly in which of the following cases?\nI. Approval of an ordinance promulgated by the Governor of that State\nII. Participation in election of representatives of the State to the Council of States\nIII. Consideration of the reports of Comptroller and Auditor General of India (CAG)\nIV. Ratification of a Constitutional Amendment Bill\n\nSelect the correct answer using the code given below.",
+  //     "options": [
+  //       "I and III only",
+  //       "II, III and IV",
+  //       "II and III only",
+  //       "I, II and IV"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Case I is correct; ordinances must be approved by both Houses. Case III is correct; CAG reports are laid before the state legislature (both houses). Case II is incorrect; only elected MLAs (not MLCs) elect Rajya Sabha members. Case IV is incorrect; only the Legislative Assembly (not the Council) ratifies constitutional amendments."
+  //   },
+  //   {
+  //     "text": "Which of the following statements is/are correct with reference to the Public Accounts Committee of the Parliament of India?\nI. It was first set-up in India based on the provisions of the Government of India Act, 1935.\nII. Initially, before independence, it consisted only the members of the Lok Sabha.\nIII. The senior-most member of the Parliament is appointed by the Speaker as the Chairman of the Committee.\n\nSelect the correct answer using the code given below:",
+  //     "options": [
+  //       "I and II",
+  //       "I only",
+  //       "II only",
+  //       "II and III"
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Statement I is incorrect; the PAC was first set up in 1921 under the 1919 Act. Statement II is correct; it originally consisted only of 15 members from the Lower House (Legislative Assembly/Lok Sabha); Rajya Sabha members were associated starting in 1954. Statement III is incorrect; the Speaker appoints the Chairman, and since 1967, it is by convention a member from the Opposition, not necessarily the 'senior-most' of all Parliament."
+  //   },
+  //   {
+  //     "text": "Consider the following Parliamentary Committees of the Lok Sabha in India, formed to facilitate legislative work:\nI. Business Advisory Committee\nII. Committee on Petitions\nIII. General Purposes Committee\nIV. Committee on Private Members' Bills and Resolutions\n\nHow many of the above are headed by the Speaker of the Lok Sabha?",
+  //     "options": [
+  //       "Only one",
+  //       "Only two",
+  //       "Only three",
+  //       "All the four"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Only two of these are headed by the Speaker: the Business Advisory Committee and the General Purposes Committee. The Committee on Private Members' Bills and Resolutions is headed by the Deputy Speaker, and the Committee on Petitions elects its own chairperson."
+  //   },
+  //   {
+  //     "text": "The actual strength of a State Legislative Council is determined by:",
+  //     "options": [
+  //       "Legislative Assembly of the State concerned",
+  //       "President of India",
+  //       "Governor of the State",
+  //       "Parliament of India"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "The Constitution (Article 171) sets the maximum and minimum limits for the Legislative Council strength, but the actual number of members within those limits is determined by the Parliament by law."
+  //   },
+  //   {
+  //     "text": "With reference to Money Bill in the Indian Parliament, consider the following statements:\nI. It shall not be introduced in the Council of States.\nII. A private member of the House of people cannot introduce such types of bills in the House.\nIII. As per the Constitution of India, a Bill shall be deemed to be a Money Bill if it provides for imposition of fines or other pecuniary penalties.\nIV. The Council of States can amend such bills once transmitted to it by the House of People only at the first instance.\n\nWhich of the statements given above is/are correct?",
+  //     "options": [
+  //       "I only",
+  //       "I, II and III only",
+  //       "I and II only",
+  //       "III and IV only"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Statement I is correct; a Money Bill can only be introduced in the Lok Sabha. Statement II is incorrect; while rare, there is no explicit constitutional bar against a private member introducing a Money Bill (though it still requires presidential recommendation). Statement III is incorrect; Article 110(2) specifically excludes bills for fines/penalties from being Money Bills. Statement IV is incorrect; the Rajya Sabha cannot amend a Money Bill at all; it can only make recommendations."
+  //   },
+  //   {
+  //     "text": "Which of the following are grounds for disqualification of a Member of Parliament under the Constitution of India?\nI. If s/he is declared of unsound mind by a competent court\nII. If s/he is an undischarged insolvent.\nIII. If s/he is under any acknowledgment of allegiance or adherence to a foreign State.\n\nSelect the correct answer using the code given below.",
+  //     "options": [
+  //       "I and II only",
+  //       "II and III only",
+  //       "I and III only",
+  //       "I, II and III"
+  //     ],
+  //     "correctAnswer": 3,
+  //     "explanation": "All three are constitutional grounds for disqualification under Article 102(1). These include being declared of unsound mind, being an undischarged insolvent, or holding allegiance to a foreign state."
+  //   },
+  //   {
+  //     "text": "With reference to the Indian Parliamentary system, consider the following statements about a Private Member's Bill:\nI. These are a mechanism through which Members of Parliament (MP), who are not Ministers, can propose their own legislation.\nII. Generally the period of notice of a motion for leave to introduce such a Bill is one month.\nIII. Only four Private Member Bills have been passed since independence.\n\nWhich of the statements given above is/are correct?",
+  //     "options": [
+  //       "I and II",
+  //       "I only",
+  //       "I and III",
+  //       "II and III"
+  //     ],
+  //     "correctAnswer": 0,
+  //     "explanation": "Statement I is correct; any MP who is not a minister is a private member. Statement II is correct; the required notice period for introduction is one month. Statement III is incorrect; 14 private member's bills have been passed since independence (though none since 1970)."
+  //   },
+  //   {
+  //     "text": "Which of the following are the special powers enjoyed by the Council of States? Council of States alone can:\nI. initiate the resolution for the removal of the Vice President of India.\nII. pass a resolution under Article 249 of the Constitution of India empowering Parliament to legislate on a State List subject in national interest.\nIII. pass a resolution for discontinuance of the Emergency proclaimed under Article 352 of the Constitution of India.\nIV. pass a resolution recommending the creation of one or more All-India Services under Article 312.\n\nSelect the correct answer using the code given below:",
+  //     "options": [
+  //       "I, II and III only",
+  //       "I, II and IV only",
+  //       "III and IV only",
+  //       "I, II, III and IV"
+  //     ],
+  //     "correctAnswer": 1,
+  //     "explanation": "Powers I, II, and IV are exclusive to the Rajya Sabha. The Vice President's removal can only begin in the Rajya Sabha; Article 249 resolutions regarding state lists begin there; and Article 312 for new All-India services is an exclusive upper house power. Power III is incorrect; a resolution for the discontinuance of a National Emergency can only be passed by the Lok Sabha."
+  //   },
+  //   {
+  //     "text": "In the Council of States, suppose two opposition parties have the same numerical strength and are the greatest in number in the house. In this context, which of the statements given below is correct?",
+  //     "options": [
+  //       "The leaders of both the parties will serve as Leader of Opposition to the House.",
+  //       "The House will decide through voting as the leader of which party will be declared as the Leader of the Opposition.",
+  //       "The Chairman of the House can recognize the leader of any one of the two parties as the Leader of the Opposition.",
+  //       "Amongst the two parties, the leader of one which has a higher numerical strength in the House of People will serve as the Leader of Opposition in the Council of States."
+  //     ],
+  //     "correctAnswer": 2,
+  //     "explanation": "Under the Salary and Allowances of Leaders of Opposition in Parliament Act, 1977, if two opposition parties have the same numerical strength, the Chairman of the Rajya Sabha recognizes any one of the leaders as the Leader of the Opposition, and this decision is final."
+  //   }
+  // ]
+  "Test-7-Polity (321106)": [
+    {
+      text: "Consider the following statements with regard to pardoning power of the President of India:\nI. The exercise of this power by the President can be subjected to limited judicial review.\nII. The President can exercise this power without the advice of the Central Government.\n\nWhich of the statements given above is/are correct?",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 0,
+      explanation:
+        "Statement I is correct: The Supreme Court in Maru Ram v. Union of India (1980) and Shatrughan Chauhan v. Union of India (2014) held that the President's pardoning power under Article 72 is subject to limited judicial review to ensure it is not used arbitrarily or in bad faith. Statement II is incorrect: As per Article 74, the President is bound to act on the aid and advice of the Council of Ministers, which includes the exercise of clemency powers.",
+    },
+    {
+      text: "With reference to the Indian polity, consider the following:\nI. President of India\nII. Vice-President of India\nIII. Prime Minister and Union Council of Ministers\nIV. Attorney General of India\n\nHow many of the above form part of the Union Executive as per the Constitution of India?",
+      options: ["Only one", "Only two", "Only three", "All the four"],
+      correctAnswer: 3,
+      explanation:
+        "The Union Executive consists of the President, the Vice-President, the Prime Minister, the Union Council of Ministers, and the Attorney General of India. These are described in Part V of the Constitution (Articles 52 to 78).",
+    },
+    {
+      text: "With reference to removal of the Governor of a state in India, consider the following statements:\nI. As per the Constitution, the Governor of a state can only be removed on the ground of violation of the Constitution.\nII. The President must remove the Governor if the state legislature passes a resolution to that effect with a majority of total membership of House/Houses and the majority of not less than two-third of members present and voting in House/Houses of the legislature.",
+      options: ["Both I and II", "Neither I nor II", "I only", "II only"],
+      correctAnswer: 1,
+      explanation:
+        "Statement I is incorrect: The Constitution does not specify any grounds for the removal of a Governor; they hold office during the pleasure of the President (Article 156). Statement II is incorrect: The State Legislature has no constitutional role in the removal process of the Governor.",
+    },
+    {
+      text: "With reference to the Indian polity, consider the following situations:\nI. To seek information relating to the administration of the affairs of the Union\nII. Appointing the Prime minister when no party or coalition has a clear majority in Lok Sabha.\nIII. Withdrawal of an Ordinance issued under Article 123 of the Constitution of India.\n\nIn how many of the above situations, the President of India can exercise his/her discretionary powers?",
+      options: ["Only one", "Only two", "All the three", "None"],
+      correctAnswer: 1,
+      explanation:
+        "The President can exercise discretionary powers in situations I and II. Under Article 78, the President has the right to seek information relating to Union affairs. Appointing a PM in a hung assembly is a situational discretion. Situation III is incorrect as the withdrawal of an Ordinance must be based on the aid and advice of the Council of Ministers per Article 74(1).",
+    },
+    {
+      text: "With reference to the Union Government, consider the following statements:\n1. N. Gopala Swamy Iyengar Committee suggested that a minister and a secretary be designated solely for pursuing the subject of administrative reform and promoting it.\n2. In 1970, the Department of Personnel was constituted on the recommendation of the Administrative Reforms Commission, 1966, and this was placed under the Prime Minister's charge.",
+      options: ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: 1,
+      explanation:
+        "Statement 1 is incorrect: The Iyengar Committee (1950) recommended grouping of ministries and personnel capability improvements but did not suggest a dedicated minister for administrative reform. Statement 2 is correct: The Department of Personnel was set up in 1970 in the Cabinet Secretariat (placed under PM's charge) based on the first Administrative Reforms Commission's recommendations.",
+    },
+    {
+      text: "Which of the following statements with regard to the Vice President of India is/are correct?\nI. S/he is elected with the system of proportional representation by means of a single transferable vote.\nII. Nominated members of the Council of States do not form part of the electoral college for the Vice President's election.\nIII. Even after the expiry of the term, the Vice President continues to hold office until his/her successor enters upon the office.",
+      options: ["I and II only", "I and III only", "I only", "I, II and III"],
+      correctAnswer: 1,
+      explanation:
+        "Statement I is correct: Article 66(1) mandates election via proportional representation with a single transferable vote. Statement II is incorrect: The Vice-President's electoral college includes both elected and nominated members of both Houses. Statement III is correct: Under Article 67(c), the Vice-President continues to hold office until the successor takes charge to prevent a constitutional vacancy.",
+    },
+    {
+      text: "Consider the following:\nI. Violation of the Constitution.\nII. Engaging in any office of profit under the Government of India.\nIII. Misuse of discretionary powers.\n\nHow many of the above are explicitly mentioned in the Constitution of India as grounds for removal of the President of India by impeachment?",
+      options: ["Only one", "Only two", "All the three", "None"],
+      correctAnswer: 0,
+      explanation:
+        'Under Article 61, the only explicitly mentioned ground for the impeachment of the President is "Violation of the Constitution."',
+    },
+    {
+      text: "Consider the following statements regarding the office of the Prime Minister of India:\nI. A person can be appointed as Prime Minister only after proving majority in the House of the People.\nII. The Prime Minister advises the President on the allocation and reshuffling of portfolios among the ministers.\nIII. The Prime Minister can recommend the dissolution of the House of the People to the President of India before the completion of its five-year term.",
+      options: [
+        "I and III only",
+        "I and II only",
+        "II and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "Statement I is incorrect: The PM is appointed first, and then asked to prove a majority within a specified time. Statement II is correct: Per Article 75(1), ministers are appointed on the PM's advice, allowing the PM to decide portfolios. Statement III is correct: The PM can advise the President to dissolve the Lok Sabha before its full term.",
+    },
+    {
+      text: "In the context of Indian Polity, consider the following statements:\nStatement I: The total number of Ministers, including the Prime Minister, in the Union Council of Ministers shall not exceed fifteen percent of the total number of members of the House of the People.\nStatement II: The 91st Constitutional Amendment Act, 2003 placed limits on the size of the Union Council of Ministers.",
+      options: [
+        "Both Statement I and Statement II are correct and Statement II explains Statement I",
+        "Both Statement I and Statement II are correct, but Statement II does not explain Statement I",
+        "Statement I is correct, but Statement II is not correct",
+        "Statement I is not correct, but Statement II is correct",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Both statements are correct. The 91st Amendment (2003) introduced Article 75(1A) to limit the size of the Council of Ministers to 15% of the Lok Sabha's total strength to prevent jumbo cabinets and political bargaining.",
+    },
+    {
+      text: "Consider the following statements regarding the Union Council of Ministers:\nI. If an individual minister does not agree with a policy or decision of the Council of Ministers, he/she must either accept the decision of the Council or resign.\nII. If a censure motion is passed in the House of people against any individual minister, the Council of Ministers have to resign.\nIII. The death of the incumbent Prime Minister automatically leads to the resignation of the Council of Ministers.",
+      options: ["I and II only", "III only", "I and III only", "I, II and III"],
+      correctAnswer: 2,
+      explanation:
+        "Statement I is correct: This reflects the principle of collective responsibility where all ministers must publicly support cabinet decisions. Statement II is incorrect: A censure motion is to express disapproval but does not force resignation (unlike a no-confidence motion). Statement III is correct: The PM is the central authority; their death or resignation results in the dissolution of the entire Council.",
+    },
+    {
+      text: "With reference to the Indian polity, consider the following statements:\nI. The Governor of a State is not answerable to any court for the exercise and performance of the powers and duties of his/her office.\nII. No criminal proceedings shall be instituted or continued against the Governor during his/her term of office.\nIII. Members of a State Legislature are not liable to any proceedings in any court in respect of anything said within the House.",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "All statements are correct. Statements I and II refer to constitutional immunities for the Governor under Article 361. Statement III refers to parliamentary privileges for state legislators under Article 194.",
+    },
+    {
+      text: "With reference to the Presidential Election in India, consider the following statements:\nI. Each elected member of either House of Parliament shall have equal value of vote.\nII. The value of vote of a Member of the Legislative Assembly is uniform across all the States.",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 0,
+      explanation:
+        "Statement I is correct: Per Article 55(2)(c), all elected MPs have an equal vote value. Statement II is incorrect: The value of an MLA's vote depends on the state's population and number of assembly seats, making it vary between states (e.g., UP vs. Sikkim).",
+    },
+    {
+      text: "Consider the following statements regarding the Solicitor General of India (SGI):\nI. The Solicitor General of India's office is a constitutional office created under Article 76 of the Constitution.\nII. S/he is appointed by the President of India by warrant under his/her hand and seal.\nIII. Like the Attorney General of India, s/he has the right to participate in the proceedings of Parliament.",
+      options: [
+        "I only",
+        "II and III only",
+        "I and III only",
+        "None of the above",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "All statements are incorrect. Statement I: Only the Attorney General is a constitutional office (Art 76); SGI is statutory. Statement II: SGI is appointed by the Appointments Committee of the Cabinet (ACC), not via Presidential warrant. Statement III: Only the AG has the right to participate in Parliament under Article 88; the SGI does not.",
+    },
+    {
+      text: "Under the provisions of the Fifth Schedule of the Constitution of India, which of the following is empowered to direct that any area or part thereof shall cease to be a Scheduled Area?",
+      options: [
+        "Ministry of Tribal Affairs",
+        "Parliament of India",
+        "Governor of the concerned State",
+        "President of India",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "Under the Fifth Schedule, the President of India has the exclusive authority to declare areas as Scheduled Areas, alter their boundaries, or direct that an area cease to be a Scheduled Area.",
+    },
+    {
+      text: "Consider the following statements:\n1. If the election of the President of India is declared void by the Supreme Court of India, all acts done by him/her in the performance of duties of his/her office of President before the date of decision become invalid.\n2. Election for the post of the President of India can be postponed on the ground that some Legislative Assemblies have been dissolved, and elections are yet to take place.\n3. When a Bill is presented to the President of India, the Constitution prescribes time limits he/she has to declare his/her assent.",
+      options: ["Only one", "Only two", "All three", "None"],
+      correctAnswer: 3,
+      explanation:
+        "All statements are incorrect. Statement 1: Acts done before the declaration remain valid. Statement 2: Dissolution of an assembly is not a ground for postponing presidential elections. Statement 3: The Constitution prescribes no time limit for the President's assent.",
+    },
+    {
+      text: "With reference to Constitution of India, consider the following statements:\nStatement I: The scope of the pardoning power of the President of India under Article 72 of the Constitution of India is wider than the pardoning power of the Governor of a state under Article 161.\nStatement II: The President has the power to grant pardons in all cases where the punishment or sentence is by a Court Martial, whereas the Governor of state does not possess any such power.",
+      options: [
+        "Both Statement I and Statement II are correct and Statement II explains Statement I",
+        "Both Statement I and Statement II are correct, but Statement II does not explain Statement I",
+        "Statement I is correct, but Statement II is not correct",
+        "Statement I is not correct, but Statement II is correct",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Both statements are correct. The President's power is wider because it covers cases of court martials (II) and the power to pardon death sentences, which a Governor cannot do. Since Statement II identifies a specific area of exclusive jurisdiction, it explains Statement I.",
+    },
+    {
+      text: "With reference to the Indian polity, consider the following statements:\nStatement I: In the event of the occurrence of any vacancy in the office of the President by reason of his/her death, the Vice-President shall act as President for a period not exceeding six months.\nStatement II: The functions of the office of the Vice-President of India is modelled on the lines of the office of the Vice-President of the United States of America.",
+      options: [
+        "Both Statement I and Statement II are correct and Statement II explains Statement I",
+        "Both Statement I and Statement II are correct but Statement II does not explain Statement I",
+        "Statement I is correct but Statement II is not correct",
+        "Statement I is not correct but Statement II is correct",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Both statements are correct. The VP acts as President for 6 months until a new election (I). The office is modelled on the US VP (II). However, in the US, the VP succeeds for the full remaining term, whereas in India, they only act temporarily. Thus, II does not explain the specific 6-month limit in I.",
+    },
+    {
+      text: "Consider the following bodies/ organisations in India:\nI. National Medical Commission\nII. National Security Council\nIII. Inter-State Council\nIV. National Disaster Management Authority\nV. Zonal Councils\n\nThe Prime Minister of India acts as the Chairman of how many of the above bodies/organisations?",
+      options: ["Only two", "Only three", "Only four", "All five"],
+      correctAnswer: 1,
+      explanation:
+        "The PM chairs three of these: National Security Council, Inter-State Council, and NDMA. Zonal Councils are chaired by the Home Minister. NMC is chaired by a government appointee, not the PM.",
+    },
+    {
+      text: "With reference to Indian polity, consider the following statements:\nStatement I: The Constitution of India does not establish a system of legal responsibility for the individual Ministers of the Union Council of Ministers.\nStatement II: The advice given by the Union Council of Ministers to the President of India cannot be questioned in any Court.\nStatement III: In India, the individual ministers do not countersign any order of the President of India for a public act.",
+      options: [
+        "Both Statement II and Statement III are correct and both of them explain Statement I",
+        "Both Statement II and Statement III are correct but only one of them explains Statement I",
+        "Only one of the Statements II and III is correct and that explains Statement I",
+        "Neither Statement II nor Statement III is correct",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "All three are correct. There is no legal responsibility for ministers (I). Ministerial advice is non-justiciable (II). Ministers do not countersign presidential orders (III). Statement III explains I because the lack of countersigning means ministers aren't legally liable in court for official acts. II refers to the confidential relationship but doesn't explain the lack of legal accountability.",
+    },
+    {
+      text: "With reference to the ordinance-making powers of the Governor of a State, consider the following statements:\nI. The Governor's ordinance making power does not extend to Union List subjects of the Seventh Schedule of the Constitution of India under any circumstances.\nII. The Governor can promulgate an Ordinance without obtaining instructions from the President, on a matter for which a Bill would have required the previous sanction of the President to be introduced in the state legislature.",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 0,
+      explanation:
+        "Statement I is correct: Governor can only issue ordinances on subjects the State Legislature can law-make (State and Concurrent lists). Statement II is incorrect: Article 213 specifies that the Governor must obtain President's instructions if the matter would have required previous Presidential sanction as a Bill.",
+    },
+    {
+      text: "Consider the following statements:\nI. The Constitution of India explicitly mentions that in certain spheres the Governor of a State acts in his/her own discretion.\nII. The President of India can, of his/her own, reserve a bill passed by a State Legislature for his/her consideration without it being forwarded by the Governor of the State concerned.",
+      options: ["1 Only", "II Only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 0,
+      explanation:
+        "Statement I is correct: Article 163 explicitly provides for the Governor to act in his/her discretion. Statement II is incorrect: Under Article 200, only the Governor can reserve a state bill for the President; the President cannot do so independently.",
+    },
+    {
+      text: "The Constitution of India describes the Union Cabinet as \"the Council consisting of the Prime Minister and other Ministers of Cabinet rank appointed under article 75\" In this context, consider the following statements:\n1. The term 'Cabinet' is mentioned in Part V of the Constitution of India.\nII. The term 'Cabinet' was added to the Indian Constitution through the 44th Constitutional Amendment Act of 1978.",
+      options: ["II only", "I only", "Neither I nor II", "Both I and II"],
+      correctAnswer: 0,
+      explanation:
+        "Statement I is incorrect: The word 'Cabinet' appears only in Article 352 (Part XVIII). Statement II is correct: It was added by the 44th Amendment (1978); prior to this, the Constitution used only 'Council of Ministers'.",
+    },
+    {
+      text: "Consider the following types of bills passed by both the Houses of the Indian Parliament and presented to the President of India:\nI. Ordinary Bills\nII. Money Bills\nIII. Constitutional Amendment Bills under Article 368 of the Constitution of India.\n\nFor how many of the above types of bills, the President of India can use suspensive veto?",
+      options: ["Only one", "Only two", "All three", "None"],
+      correctAnswer: 0,
+      explanation:
+        "Only Ordinary Bills can be returned for reconsideration (suspensive veto). Money Bills cannot be returned, and per the 24th Amendment, the President must give assent to Constitutional Amendment Bills.",
+    },
+    {
+      text: "With reference to Indian polity, consider the following statements regarding the Cabinet Committees of the Union:\nI. They are constitutional bodies established under Article 75 of the Constitution of India.\nII. They are constituted by the President of India on the recommendation of the Council of Ministers.\nIII. At present, there are eight Standing Committees of Cabinet functioning in India.",
+      options: ["I only", "I and II", "III only", "II and III"],
+      correctAnswer: 2,
+      explanation:
+        "Statement I is incorrect: Cabinet Committees are extra-constitutional bodies established via the Rules of Business. Statement II is incorrect: They are constituted by the Prime Minister. Statement III is correct: Currently, there are 8 standing committees (e.g., Security, Economic Affairs).",
+    },
+    {
+      text: "In relation to the powers of the Union Government of India, which one of the following statements is NOT correct?",
+      options: [
+        "The Government of India may undertake legislative functions of a territory outside of India by agreement with the Government of that territory.",
+        "The Union Government may not entrust a State Government with functions over matters where executive power of the Union extends.",
+        "The Union Government may direct States for construction and maintenance of means of communication of military importance.",
+        "The Governor may, with consent of the Government of India, entrust its officers with functions on matters which fall within the executive power of the State.",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Option b is incorrect because Article 258(1) allows the President (with state consent) to entrust Union executive functions to the state government or its officers.",
+    },
+    {
+      text: "Who among the following can make provision for the discharge of the functions of the Governor of a State in any contingency not provided for in the Constitution of India?",
+      options: [
+        "President of India",
+        "Parliament of India",
+        "The State Legislature concerned",
+        "Chief Justice of the State High Court concerned",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Article 160 empowers the President to make any provision he thinks fit for the discharge of a Governor's functions in unforeseen contingencies (e.g., temporary vacancy).",
+    },
+    {
+      text: "Which of the following statements is not correct about the Attorney General of India?",
+      options: [
+        "To be Attorney General of India, s/he must be qualified to be appointed as a Judge of the Supreme Court.",
+        "S/he is appointed for a fixed tenure of five years.",
+        "S/he is not debarred from private legal practice during his/her tenure.",
+        "S/he cannot defend accused persons in criminal prosecutions without the permission of the Government of India.",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "Option b is incorrect: The Attorney General holds office during the pleasure of the President; there is no fixed tenure of five years.",
+    },
+    {
+      text: "With reference to the Governor of a State in India, consider the following statements:\nStatement I: The office of the Governor of a state is an employment under the Government of India.\nStatement II: The Governor of a state shall hold office during the pleasure of the President of India.",
+      options: [
+        "Both Statement I and Statement II are correct, and Statement II explains Statement I",
+        "Both Statement I and Statement II are correct but Statement II does not explain Statement I",
+        "Statement I is correct, but Statement II is not correct",
+        "Statement I is not correct, but Statement II is correct",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "Statement I is incorrect: The Supreme Court in Hargovind Pant v. Raghukul Tilak held that the Governor's office is an independent constitutional office, not employment under the Union. Statement II is correct (Article 156).",
+    },
+    {
+      text: "Which of the following is/are the qualifications mentioned in the Constitution of India for appointment as the Governor of a State?\nA person to be eligible for appointment as Governor shall be a citizen of India and-\nI. must have completed the age of 35 years.\nII. must not be a resident of the State to which s/he is appointed as Governor.\nIII. must be qualified to be elected as a member of the State Legislative Assembly.",
+      options: ["I only", "I and III", "II and III", "I and II"],
+      correctAnswer: 0,
+      explanation:
+        'Under Article 157, the only two constitutional qualifications are being a citizen and being 35 years old. The "outsider" requirement (II) is a political convention, not a constitutional rule.',
+    },
+    {
+      text: "A money bill passed by the State legislature is reserved by the Governor for the consideration of the President. In this context consider the following:\n1. Give assent to the Bill\nII. Withhold assent to the Bill\nIII. Direct the Governor of the state to return the Bill to the State Legislature for reconsideration\n\nHow many of the above options are available to the President in such a situation as per the Constitution of India?",
+      options: ["Only one", "Only two", "All the three", "None"],
+      correctAnswer: 1,
+      explanation:
+        "For a reserved state Money Bill, the President can only give or withhold assent (I and II). He cannot return a Money Bill for reconsideration (III).",
+    },
+    {
+      text: "Consider the following statements:\n1. The Chief Secretary in a State is appointed by the Governor of that State.\n2. The Chief Secretary in a State has a fixed tenure.",
+      options: ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: 3,
+      explanation:
+        "Statement 1 is incorrect: The Chief Secretary is appointed by the Chief Minister. Statement 2 is incorrect: There is no fixed tenure for a Chief Secretary in a state.",
+    },
+    {
+      text: "Which of the following Constitutional Amendment Acts for the first time made it mandatory for the President of India to act on the aid and advice of the Council of Ministers?",
+      options: [
+        "24th Constitutional Amendment Act, 1971",
+        "38th Constitutional Amendment Act, 1975",
+        "42nd Constitutional Amendment Act, 1976",
+        "44th Constitutional Amendment Act, 1978",
+      ],
+      correctAnswer: 2,
+      explanation:
+        'The 42nd Amendment (1976) explicitly amended Article 74 to state the President "shall" act in accordance with the advice of the Council of Ministers.',
+    },
+    {
+      text: "Which of the following statements is/are correct regarding the President of India?\nI. No civil proceedings in which relief is claimed against the President can be instituted during his/her term of office in any court.\nII. No process for the arrest or imprisonment of the President, shall issue from any court during his/her term of office.",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 1,
+      explanation:
+        "Statement I is incorrect: Civil proceedings for personal acts can be started after 2 months' notice. Statement II is correct: Article 361(3) provides absolute immunity from arrest or imprisonment during the term.",
+    },
+    {
+      text: "Consider the following states in India:\nI. Chhattisgarh\nII. Madhya Pradesh\nIII. Rajasthan\nIV. Odisha\n\nAs per the Constitution of India, in how many of the above states there shall be a Minister in charge of tribal welfare who may in addition be in charge of the welfare of the Scheduled Castes and backward classes or any other work?",
+      options: ["Only one", "Only two", "Only three", "All four"],
+      correctAnswer: 2,
+      explanation:
+        "Article 164(1) mandates a Tribal Welfare Minister for Chhattisgarh, Jharkhand, Madhya Pradesh, and Odisha. Rajasthan is not included in this mandatory list.",
+    },
+    {
+      text: "The Prime Minister's National Relief Fund is operated by which one of the following bodies?",
+      options: [
+        "The Prime Minister's Office (PMO)",
+        "The National Disaster Management Authority",
+        "The Ministry of Finance",
+        "The National Development Council (NDC)",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "The PMNRF is operated out of the Prime Minister's Office (PMO) and consists of public contributions used for relief in natural calamities and accidents.",
+    },
+    {
+      text: "Consider the following Cabinet Committees in India:\nI. Cabinet Committee on Economic Affairs\nII. Cabinet Committee on Political Affairs\nIII. Cabinet Committee on Investment and Growth\nIV. Cabinet Committee on Skill, Employment and Livelihood\nV. Cabinet Committee on Accommodation.\n\nHow many of the above given cabinet committees are headed by the Prime Minister?",
+      options: ["Only two", "Only three", "Only four", "All the five"],
+      correctAnswer: 2,
+      explanation:
+        "The PM heads four of these (I, II, III, and IV). The Cabinet Committee on Accommodation is headed by the Union Home Minister.",
+    },
+    {
+      text: "With reference to a Joint State Public Service Commission (JSPSC), which of the following statements is/are correct?\nI. It is a statutory body.\nII. The Chairman and members of the JSPSC are appointed by the President of India.\nIII. The members of the JSPSC serve a term of six years or until the age of 65, whichever is earlier.",
+      options: ["I and II only", "III only", "I only", "None of the above"],
+      correctAnswer: 0,
+      explanation:
+        "Statement I is correct: It is created by a law of Parliament. Statement II is correct: Members are appointed by the President. Statement III is incorrect: The age limit is 62 years (65 is for UPSC).",
+    },
+    {
+      text: "Which of the following statements are correct with regard to the Advocate General of a State?\nI. S/he shall have the right to take part in the proceedings of the Legislature of the State.\nII. S/he shall receive such remuneration as the Legislature of the State may determine by law.\nIII. A citizen of India who has for at least 10 years held a judicial office in the territory of India becomes eligible for the office of Advocate General of the State.",
+      options: [
+        "I, II and III",
+        "I and II only",
+        "II and III only",
+        "I and III only",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "Statement I is correct (Article 177). Statement II is incorrect: Remuneration is determined by the Governor. Statement III is correct: Qualifications are the same as an HC Judge, including 10 years of judicial office.",
+    },
+    {
+      text: "It is a legal principle under which the property of a person who dies without leaving a legal heir or a valid will reverts to the State. The doctrine is based on the idea that the State is the ultimate owner of all property within its territory. The description given above most appropriately refers to which one of the following doctrines?",
+      options: [
+        "Doctrine of Eminent Domain",
+        "Doctrine of Lapse",
+        "Doctrine of Escheat",
+        "Doctrine of Eclipse",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "This describes the Doctrine of Escheat, where property of a person dying intestate with no heirs reverts to the State (Art 296).",
+    },
+    {
+      text: "With reference to the legislative powers of the Governor of a State in India, consider the following statements:\nI. S/he shall from time to time summon the House or each House of the Legislature of the State to meet.\nII. s/he can nominate one member of the Anglo-Indian community to the State Legislative Assembly.\nIII. S/he shall nominate one-sixth of the total number of members of the State Legislative Council in states with Bicameral legislature.",
+      options: ["I only", "II and III only", "I and III only", "I, II and III"],
+      correctAnswer: 2,
+      explanation:
+        "Statement I is correct (Article 174). Statement II is incorrect: The 104th Amendment (2019) ended the nomination of Anglo-Indians. Statement III is correct: Governor nominates 1/6th of MLCs (Article 171).",
+    },
+    {
+      text: "Which one among the following Departments/Authorities is not under the Ministry of Home Affairs?",
+      options: [
+        "The Department of States",
+        "The Department of Official Languages",
+        "The National Authority Chemical Weapons Convention",
+        "The Department of Jammu & Kashmir and Ladakh Affairs",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "The National Authority Chemical Weapons Convention (NACWC) is an office under the Cabinet Secretariat.",
+    },
+    {
+      text: "With reference to the procedure for the impeachment of the President of India, consider the following statements:\nI. A resolution to impeach the President can be introduced in either House of Parliament.\nII. After the House of Parliament in which the resolution to impeach the President was introduced passes the resolution, the other House must constitute a committee of five Supreme Court Judges to investigate charges against the President.\nIII. The resolution to impeach the President must be passed by both houses of Parliament with a majority of not less than two-thirds of the total membership of the respective house.",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "Statement I is correct. Statement II is incorrect: The other House itself investigates or causes the investigation; there is no provision for a specific committee of five SC judges. Statement III is correct.",
+    },
+    {
+      text: "Which of the following bodies are required to submit the reports regarding their functioning to the President of India?\nI. Comptroller and Auditor General of India (CAG)\nII. Central Vigilance Commission (CVC)\nIII. Union Public Service Commission (UPSC)",
+      options: [
+        "I and II only",
+        "II and III only",
+        "I and III only",
+        "I, II and III",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "All three bodies are required to submit annual reports to the President, who then causes them to be laid before Parliament.",
+    },
+    {
+      text: "Consider the following statements:\nStatement I: The oath of office to the Governor of a state is administered by the President of India.\nStatement II: The Governor of a State shall be appointed by the President of India by warrant under his/her hand and seal.",
+      options: [
+        "Both Statement I and Statement II are correct and Statement II explains Statement I.",
+        "Both Statement I and Statement II are correct but Statement II does not explain Statement I.",
+        "Statement I is correct but Statement II is not correct.",
+        "Statement I is not correct but Statement II is correct.",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "Statement I is incorrect: The Chief Justice of the respective State High Court administers the Governor's oath. Statement II is correct (Article 155).",
+    },
+    {
+      text: "Which one of the following is not explicitly stated in the Constitution of India but followed as a convention?",
+      options: [
+        "The finance minister is to be a Member of the Lower House.",
+        "The Prime Minister has to resign if he loses the majority in the Lower House.",
+        "All the parts of India are to be represented in the Council of Ministers.",
+        "In the event of both the President and the Vice-President demitting office simultaneously before the end of the tenure, the Speaker of the Lower House of the Parliament will officiate as the President.",
+      ],
+      correctAnswer: 1,
+      explanation:
+        "While Article 75(3) states the Council is collectively responsible, the explicit rule that the PM *must resign* upon losing the Lok Sabha majority is a constitutional convention. In Situation d, the Chief Justice of India officiates per statutory law (not convention).",
+    },
+    {
+      text: "In India, the limits of the territorial waters, the continental shelf, the exclusive economic zone, and other maritime zones of India shall be specified by the-",
+      options: [
+        "Parliament",
+        "President of India",
+        "State Legislature of the Coastal states",
+        "Governors of Coastal States",
+      ],
+      correctAnswer: 0,
+      explanation:
+        "Article 297(3) empowers the Parliament to specify these limits by law from time to time.",
+    },
+    {
+      text: "Consider the following statements:\nI. The Governor of a state shall be consulted by the President of India while appointing Chief justice of the High Court of that state.\nII. The Governor of a state is authorised to direct that a language spoken by a substantial proportion of population in a state shall be officially recognised throughout that State.",
+      options: ["I only", "II only", "Both I and II", "Neither I nor II"],
+      correctAnswer: 0,
+      explanation:
+        "Statement I is correct (Article 217). Statement II is incorrect: Only the President (under Article 347) has the power to direct that a language spoken by a substantial portion of the population be officially recognized.",
+    },
+    {
+      text: "Consider the following statements regarding Chief Minister of a state in India:\nI. S/he is a member of the Inter-State Council.\nII. It shall be the duty of the Chief Minister of each State to communicate to the Governor of the State all decisions of the Council of Ministers relating to the administration of the affairs of the State.\nIII. S/he shall make rules for the more convenient transaction of the business of the Government of the State, and for the allocation among Ministers of the said business.",
+      options: ["I and III only", "III only", "I and II only", "II only"],
+      correctAnswer: 2,
+      explanation:
+        "Statement I is correct (CMs are members). Statement II is correct (Article 167 duty). Statement III is incorrect: The Governor makes these rules (Article 166).",
+    },
+    {
+      text: "Which of the following committees/ commissions recommended the abolition of All-India Services in India?",
+      options: [
+        "Punchhi Commission",
+        "Sarkaria Commission",
+        "Rajamannar Committee",
+        "Hota Commission",
+      ],
+      correctAnswer: 2,
+      explanation:
+        "The Rajamannar Committee (1971) recommended the abolition of All-India Services (IAS, IPS, etc.) to strengthen state autonomy.",
+    },
+    {
+      text: "Under the provisions of Article 311 of the Constitution of India, in which of the following situations can a member of a civil service of the Union be dismissed/removed without an appropriate inquiry?\nI. If the President is satisfied that in the interest of the security of the State it is not expedient to hold such an inquiry.\nII. If the authority empowered to dismiss or remove him/her is satisfied that for some reason which should be recorded in writing by that authority, it is not reasonably practicable to hold such inquiry.\nIII. If that person becomes a member or associated with a political party or joins any organization which takes part in politics.\nIV. If that person is dismissed or removed on the ground of conduct which has led to his/her conviction on a criminal charge.",
+      options: [
+        "I and II only",
+        "I, II and III",
+        "III and IV only",
+        "I, II and IV",
+      ],
+      correctAnswer: 3,
+      explanation:
+        "Article 311(2) lists three exceptions to the inquiry requirement: criminal conviction (IV), impracticability (II), and security of the state (I). Associating with a political party (III) is a violation of conduct rules but is not a constitutional ground to bypass the inquiry.",
+    },
+  ],
 };
 
 module.exports = sfgData;

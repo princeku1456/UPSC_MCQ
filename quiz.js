@@ -787,9 +787,9 @@ function renderQuizLayout(title) {
         <h4 class="text-center mb-4 fw-bold text-primary">${title}</h4>
         <div id="question-container"></div>
         <div class="d-flex justify-content-between mt-4">
-            <button id="prev-btn" class="btn btn-primary-custom px-4 rounded-pill">Previous</button>
-            <button id="clear-btn" class="btn btn-outline-warning px-4 rounded-pill">Clear</button>
-            <button id="next-btn" class="btn btn-primary-custom px-4 rounded-pill">Next</button>
+            <button id="prev-btn" class="btn btn-secondary-custom px-4 ">Previous</button>
+            <button id="clear-btn" class="btn btn-primary-custom px-4 ">Clear</button>
+            <button id="next-btn" class="btn btn-secondary-custom px-4 ">Next</button>
         </div>
         <div id="question-feedback" class="mt-3 text-center"></div>
         <div id="result" class="mt-4 text-center"></div>
