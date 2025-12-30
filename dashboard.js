@@ -46,34 +46,113 @@ async function loadUserDashboard(forceRefresh = false) {
   }
 }
 
+/**
+ * UPDATED: Renders UI with Precision, Negative Drain, and Concept Gap analysis.
+ * Removed "Best Subject" logic.
+ */
 function renderDashboardUI() {
   const results = userHistory;
 
-  // Calculate Statistics
+  // 1. Calculate Standard Stats
   const totalTests = results.length;
   const avgScore = totalTests
-    ? (
-        results.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalTests
-      ).toFixed(1)
+    ? (results.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalTests).toFixed(1)
     : 0;
 
-  const subjectCounts = {};
-  results.forEach((r) => {
-    if (!subjectCounts[r.subject]) subjectCounts[r.subject] = 0;
-    if (r.scorePercent > 70) subjectCounts[r.subject]++;
+  // 2. Calculate Precision & Negative Drain (Aggregate)
+  let totalCorrect = 0;
+  let totalIncorrect = 0;
+  let totalAttempted = 0;
+  
+  results.forEach(res => {
+    if (res.userAnswers) {
+      Object.values(res.userAnswers).forEach(ans => {
+        totalAttempted++;
+        if (ans.isCorrect) totalCorrect++;
+        else totalIncorrect++;
+      });
+    }
   });
-  const bestSubject =
-    Object.keys(subjectCounts).sort(
-      (a, b) => subjectCounts[b] - subjectCounts[a]
-    )[0] || "-";
 
-  // Update UI Elements in index.html
+  const precisionRate = totalAttempted ? ((totalCorrect / totalAttempted) * 100).toFixed(1) : 0;
+  const negativeLoss = totalIncorrect * 0.66;
+  const positiveGain = totalCorrect * 2;
+  const negativeDrain = positiveGain ? ((negativeLoss / positiveGain) * 100).toFixed(1) : 0;
+
+  // 3. Update UI Elements
   document.getElementById("stat-total-tests").textContent = totalTests;
   document.getElementById("stat-avg-score").textContent = avgScore + "%";
-  document.getElementById("stat-best-subject").textContent = bestSubject;
+  
+  if (document.getElementById("stat-precision-rate")) 
+    document.getElementById("stat-precision-rate").textContent = precisionRate + "%";
+  if (document.getElementById("stat-negative-drain")) 
+    document.getElementById("stat-negative-drain").textContent = negativeDrain + "%";
 
-  // Render the Chart
+  // 4. Calculate Concept Gap (Async using Global Data)
+  updateConceptGapStat(results);
+
+  // 5. Render the Chart
   renderPerformanceChart(results);
+}
+
+/**
+ * NEW: Analyzes global stats to identify "Silly Mistakes" (Concept Gaps).
+ * Compares user misses against questions where Global Accuracy is > 65%.
+ */
+async function updateConceptGapStat(results) {
+  const el = document.getElementById("stat-concept-gap");
+  if (!el) return;
+  el.textContent = "Analyzing...";
+
+  try {
+    const uniqueChapters = [...new Set(results.map(r => r.chapterId))];
+    const statsMap = {};
+    
+    // Fetch stats for all unique chapters in history in parallel
+    const promises = uniqueChapters.map(async (id) => {
+        const doc = await db.collection("chapter_stats").doc(id).get();
+        if (doc.exists) statsMap[id] = doc.data();
+    });
+    await Promise.all(promises);
+
+    let sillyMistakes = 0;
+    let totalQuestionsAttempted = 0;
+
+    results.forEach(res => {
+        const stats = statsMap[res.chapterId];
+        if (!stats || !res.userAnswers) return;
+
+        Object.entries(res.userAnswers).forEach(([index, ans]) => {
+            totalQuestionsAttempted++;
+            if (!ans.isCorrect) {
+                const qIdx = parseInt(index);
+                const commCorrect = (stats.correctCounts && stats.correctCounts[qIdx]) || 0;
+                const commTotal = (stats.attemptedCounts && stats.attemptedCounts[qIdx]) || 1;
+                const commAccuracy = (commCorrect / commTotal) * 100;
+
+                // Flag if user missed a question that 65%+ of the community got right
+                if (commAccuracy > 65) sillyMistakes++;
+            }
+        });
+    });
+
+    const gapPercent = totalQuestionsAttempted ? ((sillyMistakes / totalQuestionsAttempted) * 100).toFixed(1) : 0;
+    el.textContent = gapPercent + "%";
+    
+    // Dynamic color coding based on threshold
+    const container = el.parentElement;
+    if (gapPercent > 15) {
+        container.classList.remove("border-info", "border-success");
+        container.classList.add("border-danger");
+    } else {
+        container.classList.remove("border-info", "border-danger");
+        container.classList.add("border-success");
+    }
+
+  } catch (error) {
+    console.error("Concept gap calculation error:", error);
+    el.textContent = "N/A";
+  }
 }
 
 function renderPerformanceChart(data) {
