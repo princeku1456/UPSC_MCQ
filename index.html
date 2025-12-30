@@ -113,6 +113,22 @@
                   </button>
                 </form>
 
+                <div id="google-auth-container">
+                  <div class="d-flex align-items-center my-4">
+                    <hr class="flex-grow-1">
+                    <span class="mx-2 text-muted small">OR</span>
+                    <hr class="flex-grow-1">
+                  </div>
+                  <button 
+                    type="button" 
+                    class="btn btn-secondary-custom w-100 py-2 d-flex align-items-center justify-content-center gap-2"
+                    onclick="signInWithGoogle()"
+                  >
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" width="18" alt="Google">
+                    Continue with Google
+                  </button>
+                </div>
+
                 <div class="mt-4">
                   <small class="text-muted"
                     >Don't have an account?
@@ -284,24 +300,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-    <!-- <script src="MCQ_Data/murnalData.js"></script>
-    <script src="MCQ_Data/sfgData.js"></script>
-    <script src="MCQ_Data/yearWiseData.js"></script>
-    <script src="MCQ_Data/modernHistoryData.js"></script>
-    <script src="MCQ_Data/ancientHistoryData.js"></script>
-    <script src="MCQ_Data/medievalHistoryData.js"></script>
-    <script src="MCQ_Data/artCultureData.js"></script>
-    <script src="MCQ_Data/worldGeographyData.js"></script>
-    <script src="MCQ_Data/indianGeographyData.js"></script>
-    <script src="MCQ_Data/environmentData.js"></script>
-    <script src="MCQ_Data/polityData.js"></script>
-    <script src="MCQ_Data/irData.js"></script>
-    <script src="MCQ_Data/economyData.js"></script>
-    <script src="MCQ_Data/scienceTechData.js"></script>
-    <script src="MCQ_Data/sathvikBhanCaData.js"></script> -->
     <script src="quizData.js"></script>
     <script src="auth.js"></script>
     <script src="quiz.js"></script>
-      <script src="dashboard.js"></script>
+    <script src="dashboard.js"></script>
   </body>
 </html>
