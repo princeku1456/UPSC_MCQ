@@ -1,11 +1,9 @@
 /* =========================================
-   3. DASHBOARD LOGIC (Stats & History)
+   3. DASHBOARD LOGIC (Stats & Graph)
    ========================================= */
 
 async function loadUserDashboard(forceRefresh = false) {
   if (!currentUser || !currentUser.emailVerified) return;
-
-  const historyContainer = document.getElementById("history-container");
 
   // OPTIMIZATION: Load from local cache first to save reads
   if (!forceRefresh) {
@@ -20,11 +18,6 @@ async function loadUserDashboard(forceRefresh = false) {
   if (!forceRefresh && dashboardDataLoaded && userHistory.length > 0) {
     renderDashboardUI();
     return;
-  }
-
-  if (historyContainer.children.length === 0) {
-    historyContainer.innerHTML =
-      '<div class="text-center w-100 py-5"><div class="spinner-border text-primary"></div></div>';
   }
 
   try {
@@ -49,14 +42,14 @@ async function loadUserDashboard(forceRefresh = false) {
     renderDashboardUI();
   } catch (error) {
     console.error("Error loading dashboard:", error);
-    historyContainer.innerHTML = `<p class="text-danger text-center">Failed to load history.</p>`;
+    toastr.error("Failed to load performance data.");
   }
 }
 
 function renderDashboardUI() {
-  const historyContainer = document.getElementById("history-container");
   const results = userHistory;
 
+  // Calculate Statistics
   const totalTests = results.length;
   const avgScore = totalTests
     ? (
@@ -74,68 +67,13 @@ function renderDashboardUI() {
       (a, b) => subjectCounts[b] - subjectCounts[a]
     )[0] || "-";
 
+  // Update UI Elements in index.html
   document.getElementById("stat-total-tests").textContent = totalTests;
   document.getElementById("stat-avg-score").textContent = avgScore + "%";
   document.getElementById("stat-best-subject").textContent = bestSubject;
 
+  // Render the Chart
   renderPerformanceChart(results);
-
-  historyContainer.innerHTML = "";
-  if (results.length === 0) {
-    historyContainer.innerHTML = `<div class="col-12 text-center text-muted py-5">No tests taken yet.</div>`;
-    return;
-  }
-
-  results.forEach((res) => {
-    let dateStr = "Just now";
-    if (res.timestamp) {
-      if (res.timestamp.toDate) {
-        dateStr = new Date(res.timestamp.toDate()).toLocaleDateString();
-      } else {
-        dateStr = new Date(res.timestamp).toLocaleDateString();
-      }
-    }
-
-    let borderClass = "avg-score";
-    if (res.scorePercent >= 80) borderClass = "high-score";
-    if (res.scorePercent < 50) borderClass = "low-score";
-
-    const card = document.createElement("div");
-    card.className = "col-lg-6 mb-3";
-    card.innerHTML = `
-            <div class="card history-card p-3 ${borderClass}">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div style="overflow: hidden;">
-                        <h6 class="fw-bold text-primary mb-1 text-truncate">${
-                          res.chapterName
-                        }</h6>
-                        <small class="text-muted">${
-                          res.subject
-                        } • ${dateStr}</small>
-                    </div>
-                    <div class="text-end ms-2">
-                        <div class="fs-4 fw-bold ${
-                          res.scorePercent >= 50
-                            ? "text-success"
-                            : "text-danger"
-                        }">
-                            ${res.score.toFixed(
-                              1
-                            )} <span class="fs-6 text-muted">/ ${
-      res.totalMarks
-    }</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <button class="btn btn-primary-custom px-4 shadow w-100 review-btn">👁 Review Performance</button>
-                </div>
-            </div>
-        `;
-
-    card.querySelector(".review-btn").onclick = () => reviewTest(res, "performance");
-    historyContainer.appendChild(card);
-  });
 }
 
 function renderPerformanceChart(data) {

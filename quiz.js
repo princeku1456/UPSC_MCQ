@@ -18,6 +18,10 @@ function clearQuizProgress(chapterId) {
 }
 // --------------------------------------
 
+/**
+ * UPDATED: Renders subjects directly into the dashboard's test container.
+ * Removed the "Back to Dashboard" button as this is now part of the main view.
+ */
 function renderSubjects() {
   const container = document.getElementById("test-content-container");
 
@@ -27,8 +31,9 @@ function renderSubjects() {
     return;
   }
 
+  // ADDED: Back to Dashboard button
   container.innerHTML = `
-        <button class="btn btn-primary-custom px-4 shadow" onclick="showDashboard()">← Back to Dashboard</button>
+        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="showDashboard()">← Back to Dashboard</button>
         <div class="text-center mb-4">
             <h4 class="fw-bold section-title">Select a Subject</h4>
             <div class="title-underline mx-auto"></div>
@@ -64,30 +69,22 @@ function renderSubjects() {
     col.innerHTML = `
             <div class="card topic-card h-100 ${completionClass}" style="cursor: pointer;">
                 <div class="card-body text-center p-4 d-flex flex-column">
-                    <div class="display-4 mb-3">${
-                      isCompleted ? "🏆" : "📖"
-                    }</div>
+                    <div class="display-4 mb-3">${isCompleted ? "🏆" : "📖"}</div>
                     ${badgeHtml}
                     <h5 class="card-title text-primary fw-bold">${subjectKey}</h5>
                     <p class="text-muted small mb-3">${completedChaptersCount} / ${totalChapters} Chapters Done</p>
                     
                     <div class="mt-auto">
-                        <div class="progress mb-2" style="height: 20px; background-color: var(--border-color); border-radius: 5px;">
-                            <div class="progress-bar ${
-                              isCompleted ? "bg-success" : ""
-                            }" 
+                        <div class="progress mb-2" style="height: 25px; background-color: var(--border-color); border-radius: 5px;">
+                            <div class="progress-bar ${isCompleted ? "bg-success" : ""}" 
                                  role="progressbar" 
-                                 style="width: ${progressPercent}%; ${
-      !isCompleted ? "background-color: var(--accent-color);" : ""
-    } border-radius: 5px;" 
+                                 style="width: ${progressPercent}%; ${!isCompleted ? "background-color: var(--accent-color);" : ""} border-radius: 5px;" 
                                  aria-valuenow="${progressPercent}" 
                                  aria-valuemin="0" 
                                  aria-valuemax="100">
                             </div>
                         </div>
-                        <small class="fw-bold ${
-                          isCompleted ? "text-success" : "text-secondary"
-                        }">${progressPercent}% Complete</small>
+                        <small class="fw-bold ${isCompleted ? "text-success" : "text-secondary"}">${progressPercent}% Complete</small>
                     </div>
                 </div>
             </div>`;
@@ -97,10 +94,15 @@ function renderSubjects() {
   });
 }
 
+/**
+ * UPDATED: Navigates back to showDashboard (the consolidated view)
+ */
 function renderChapters(subjectKey) {
   const container = document.getElementById("test-content-container");
+  
+  // UPDATED: Button now returns to Subjects list
   container.innerHTML = `
-        <button class="btn btn-primary-custom px-4 shadow" onclick="renderSubjects()">← Back to Subjects</button>
+        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="renderSubjects()">← Back to Subjects</button>
         <div class="text-center mb-4">
             <h4 class="fw-bold section-title">Chapters: ${subjectKey}</h4>
             <div class="title-underline mx-auto"></div>
@@ -118,8 +120,7 @@ function renderChapters(subjectKey) {
     const subjectPrefix = subjectKey.replace(/\s+/g, "_") + "_";
     const fullChapterId = subjectPrefix + chapId;
 
-    const latestResult =
-      userHistory && userHistory.find((h) => h.chapterId === fullChapterId);
+    const latestResult = userHistory && userHistory.find((h) => h.chapterId === fullChapterId);
     const hasTaken = !!latestResult;
 
     const startBtnText = hasTaken ? "↻ Retake Test" : "🚀 Start Test";
@@ -137,7 +138,6 @@ function renderChapters(subjectKey) {
             <div class="card chapter-card h-100 border-0">
                 <div class="card-body d-flex flex-column p-4">
                     <h5 class="card-title fw-bold text-dark">${chapId}</h5>
-                    
                     <div class="mt-auto">
                         <button class="btn btn-primary-custom w-100 action-btn">
                             ${startBtnText}
