@@ -162,10 +162,12 @@
           <div class="title-underline mx-auto"></div>
         </div>
 
-        <div class="row mb-5 justify-content-center">
-          <div class="col-md-4 mb-3">
+        <div
+          class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-3 mb-5 justify-content-center"
+        >
+          <div class="col">
             <div
-              class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary"
+              class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary h-100"
             >
               <h6 class="text-muted text-uppercase small fw-bold">
                 Tests Taken
@@ -173,9 +175,10 @@
               <h2 class="fw-bold text-primary mb-0" id="stat-total-tests">0</h2>
             </div>
           </div>
-          <div class="col-md-4 mb-3">
+
+          <div class="col">
             <div
-              class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning"
+              class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning h-100"
             >
               <h6 class="text-muted text-uppercase small fw-bold">
                 Avg. Score
@@ -183,22 +186,48 @@
               <h2 class="fw-bold text-warning mb-0" id="stat-avg-score">0%</h2>
             </div>
           </div>
-          <div class="col-md-4 mb-3">
+
+          <div class="col">
             <div
-              class="p-3 bg-white rounded shadow-sm border-start border-4 border-success"
+              class="p-3 bg-white rounded shadow-sm border-start border-4 border-success h-100"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">Precision</h6>
+              <h2 class="fw-bold text-success mb-0" id="stat-precision-rate">
+                0%
+              </h2>
+              <small class="text-muted">Net Accuracy</small>
+            </div>
+          </div>
+
+          <div class="col">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger h-100"
             >
               <h6 class="text-muted text-uppercase small fw-bold">
-                Best Subject
+                Neg. Drain
               </h6>
-              <h2 class="fw-bold text-success mb-0 fs-4" id="stat-best-subject">
-                -
+              <h2 class="fw-bold text-danger mb-0" id="stat-negative-drain">
+                0%
               </h2>
+              <small class="text-muted">Marks Lost</small>
+            </div>
+          </div>
+
+          <div class="col">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-start border-4 border-info h-100"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">
+                Concept Gap
+              </h6>
+              <h2 class="fw-bold text-info mb-0" id="stat-concept-gap">0%</h2>
+              <small class="text-muted">Easy Qs Missed</small>
             </div>
           </div>
         </div>
 
         <div class="row justify-content-center mb-4">
-          <div class="col-md-6 col-lg-12">
+          <div class="col-12">
             <div
               class="card topic-card shadow-sm"
               style="cursor: pointer"
@@ -213,10 +242,10 @@
               </div>
             </div>
           </div>
-        </div> 
+        </div>
 
         <div class="row justify-content-center mb-5">
-          <div class="col-lg-12">
+          <div class="col-12">
             <div class="card border-0 shadow-sm rounded-4 p-4">
               <h5 class="fw-bold text-primary mb-3">📈 Accuracy Trend</h5>
               <div style="position: relative; height: 300px; width: 100%">
