@@ -103,7 +103,7 @@ document.getElementById("auth-form").addEventListener("submit", (e) => {
       .then((userCredential) => {
         userCredential.user.sendEmailVerification();
         toastr.success(
-          "Account created! Please verify your email, then login."
+          "Account created! Please verify your email (check spam folder), then login."
         );
         document.getElementById("auth-password").value = "";
         if (isRegistering) toggleAuthMode();
@@ -115,7 +115,7 @@ document.getElementById("auth-form").addEventListener("submit", (e) => {
       .signInWithEmailAndPassword(email, pass)
       .then((userCredential) => {
         if (!userCredential.user.emailVerified) {
-          toastr.error("Login denied: Email not verified.");
+          toastr.error("Login denied: Email not verified. Please verify your email. (check spam folder)");
           auth.signOut();
         } else {
           toastr.success("Logged in successfully!");
