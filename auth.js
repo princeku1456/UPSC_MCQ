@@ -3,6 +3,7 @@
    ========================================= */
 const auth = firebase.auth();
 const db = firebase.firestore();
+const googleProvider = new firebase.auth.GoogleAuthProvider();
 
 let currentUser = null;
 let currentSubject = "";
@@ -62,6 +63,17 @@ auth.onAuthStateChanged((user) => {
   }
 });
 
+function signInWithGoogle() {
+  auth.signInWithPopup(googleProvider)
+    .then((result) => {
+      toastr.success("Signed in with Google successfully!");
+    })
+    .catch((error) => {
+      console.error("Google Auth Error:", error);
+      handleAuthError(error);
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("theme") || "light";
   applyTheme(savedTheme);
@@ -73,6 +85,9 @@ function toggleAuthMode() {
   const link = document.querySelector(".card-body small a");
   const title = document.getElementById("auth-title");
   const sub = document.getElementById("auth-subtitle");
+  
+  // We no longer need to find or hide the google-auth-container here
+  // because we want it to stay visible in both modes.
 
   if (isRegistering) {
     title.textContent = "Create Account";
@@ -136,6 +151,9 @@ function handleAuthError(error) {
     case "auth/user-not-found":
     case "auth/wrong-password":
       toastr.error("Invalid email or password.");
+      break;
+    case "auth/popup-closed-by-user":
+      toastr.info("Login cancelled.");
       break;
     default:
       toastr.error(error.message);
