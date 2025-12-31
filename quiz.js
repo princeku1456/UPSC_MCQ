@@ -345,10 +345,25 @@ function renderLeaderboardHTML(container, data) {
     return;
   }
 
+  // --- Logic to remove duplicate users and keep the best score ---
+  const uniqueUsers = {};
+  data.forEach(entry => {
+    const email = entry.userEmail || "Guest";
+    // If the user isn't in the map yet, or if this current score is higher than their stored best score
+    if (!uniqueUsers[email] || entry.scorePercent > uniqueUsers[email].scorePercent) {
+      uniqueUsers[email] = entry;
+    }
+  });
+
+  // Convert the unique user object back into an array and sort by scorePercent descending
+  const filteredSortedData = Object.values(uniqueUsers).sort((a, b) => b.scorePercent - a.scorePercent);
+  // ---------------------------------------------------------------
+
   let rows = "";
   let rank = 1;
 
-  data.forEach((entry) => {
+  // Iterate through the filtered and sorted data instead of the raw data
+  filteredSortedData.forEach((entry) => {
     const email = entry.userEmail || "Guest";
     const rawName = email.split("@")[0];
     const displayName =
