@@ -2481,6 +2481,4165 @@ const polityMcqData = {
         "According to the Supreme Court, Parliament cannot use its amending power to destroy features that form the basic structure of the Constitution.",
     },
   ],
+  Parliamentary_System: [
+    {
+      text: "1. Which of the following are the principles on the basis of which the Parliamentary system of government in India operates?\n1. Nominal Executive Head\n2. Vice-President as the Chairman of the Upper House\n3. Real executive authority with the Council of Ministers\n4. Executive responsibility to the Lower House",
+      options: ["1, 2 and 3", "1, 2 and 4", "1, 3 and 4", "2, 3 and 4"],
+      correctAnswer: "1, 3 and 4",
+      explanation:
+        "The parliamentary system in India is defined by a nominal head (the President) and a real executive (the Council of Ministers). The executive is collectively responsible to the Lok Sabha (Lower House). The Vice-President being the Chairman of the Rajya Sabha is a specific constitutional provision but not a defining 'principle' of the parliamentary form itself.",
+    },
+    {
+      text: "2. The Constitution of India establishes parliamentary form of Government, and the essence of this form of government is its responsibility to the:",
+      options: [
+        "People of India",
+        "President",
+        "Prime Minister",
+        "Legislature",
+      ],
+      correctAnswer: "Legislature",
+      explanation:
+        "In a parliamentary system, the executive is drawn from and remains accountable to the legislature. This accountability is the 'essence' that ensures the government does not become autocratic.",
+    },
+    {
+      text: "3. Under a cabinet form of Government, the cabinet generally remains in office:",
+      options: [
+        "For a fixed term",
+        "So long as it enjoys the confidence of the popular chamber of legislature",
+        "So long as it enjoys the confidence of the head of state",
+        "So long as it enjoys the confidence of the electorate",
+      ],
+      correctAnswer:
+        "So long as it enjoys the confidence of the popular chamber of legislature",
+      explanation:
+        "A cabinet stays in power only as long as it commands a majority in the lower house. If it loses a vote of confidence, it must resign, regardless of how long it has been in office.",
+    },
+    {
+      text: "4. In the parliamentary form of Government, the members of the Council of Ministers are collectively responsible to:",
+      options: [
+        "The Head of State",
+        "The Chairman of the Upper House and the Speaker of the Lower House",
+        "The popular House of the Parliament",
+        "The Prime Minister",
+      ],
+      correctAnswer: "The popular House of the Parliament",
+      explanation:
+        "Collective responsibility means that the Council of Ministers 'sink or swim together' before the Lok Sabha. A defeat for one minister on a policy matter is considered a defeat for the whole government.",
+    },
+    {
+      text: "5. Match List I (Types of Government) with List II (Characteristics):\nA. Parliamentary Government\nB. Presidential Government\nC. Federal System\nD. Unitary System\n\n1. Centralisation of powers\n2. Division of powers\n3. Separation of powers\n4. Collective responsibility",
+      options: [
+        "A-2, B-1, C-4, D-3",
+        "A-4, B-3, C-2, D-1",
+        "A-2, B-3, C-4, D-1",
+        "A-4, B-1, C-2, D-3",
+      ],
+      correctAnswer: "A-4, B-3, C-2, D-1",
+      explanation:
+        "Parliamentary systems focus on collective responsibility; Presidential systems on the strict separation of executive and legislative branches; Federal systems on dividing power between tiers; and Unitary systems on centralizing power.",
+    },
+    {
+      text: "6. Assertion (A): In a parliamentary democracy like India the Government goes out of power if the Lower House passes a no-confidence motion against the Government.\nReason (R): The Constitution of India provides for the removal of the Prime Minister through a no-confidence motion passed in the Lok Sabha.",
+      options: [
+        "Both A and R are individually true and R is the correct explanation of A",
+        "Both A and R are individually true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true but R is not the correct explanation of A",
+      explanation:
+        "While both statements are true, the reason is essentially a specific example of the assertion rather than a foundational explanation. The reason the government goes out of power is the broader principle of collective responsibility, of which the no-confidence motion is a tool.",
+    },
+    {
+      text: "7. Which one of the following is the main principle on which the Parliamentary system operates?",
+      options: [
+        "Supremacy of Parliament",
+        "Responsibility of Executive to Legislature",
+        "Supremacy of Judiciary",
+        "Theory of Separation of Power",
+      ],
+      correctAnswer: "Responsibility of Executive to Legislature",
+      explanation:
+        "The bedrock of parliamentary democracy is that the executive (the wing that implements laws) is always answerable to the legislature (the wing that makes laws).",
+    },
+    {
+      text: "8. In a parliamentary form of Government, ministers are appointed by:",
+      options: [
+        "The head of the state at his discretion",
+        "The head of the government",
+        "The head of the state on the recommendations of the head of the government",
+        "The legislature",
+      ],
+      correctAnswer:
+        "The head of the state on the recommendations of the head of the government",
+      explanation:
+        "In India, the President (Head of State) formally appoints ministers, but he has no choice in 'who'—he must follow the advice of the Prime Minister (Head of Government).",
+    },
+    {
+      text: "9. Which one of the following is not an essential feature of the parliamentary system?",
+      options: [
+        "Fusion of the Executive and the Legislature",
+        "Nominal head of the state",
+        "Collective responsibility",
+        "Fixed tenure of the executive",
+      ],
+      correctAnswer: "Fixed tenure of the executive",
+      explanation:
+        "Fixed tenure is a feature of the Presidential system (like in the USA). In a parliamentary system, the government can be dissolved at any time if it loses legislative support.",
+    },
+    {
+      text: "10. Assertion (A): Parliamentary system of government is based on the principle of collective responsibility.\nReason (R): A parliamentary defeat is not necessarily a sufficient cause for resignation of the Ministry.",
+      options: [
+        "Both A and R are individually true and R is the correct explanation of A",
+        "Both A and R are individually true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "A is true but R is false",
+      explanation:
+        "Collective responsibility is the base of the system (A is true). However, a defeat on a major issue or a money bill in the Lok Sabha *is* a sufficient cause for the ministry to resign, making R false.",
+    },
+    {
+      text: "11. Consider the following features:\n1. Presence of a nominal or titular head of state.\n2. Collective responsibility of cabinet\n3. Accountability of executive to the legislature\n4. Separation of Powers\nWhich of these are the features of a parliamentary form of Government?",
+      options: ["2, 3 and 4", "1, 2 and 4", "1, 3 and 4", "1, 2 and 3"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "Features 1, 2, and 3 define a parliamentary setup. Separation of powers (item 4) is more strictly applied in Presidential systems where the executive is not part of the legislature.",
+    },
+  ],
+  Federal_System: [
+    {
+      text: "1. Which of the following federal principles are not found in Indian federation?\n1. Bifurcation of the judiciary between the Federal and State Governments\n2. Equality of representation of the states in the upper house of the Federal Legislature\n3. The Union cannot be destroyed by any state seceding from the Union at its will\n4. Federal Government can redraw the map of the Indian Union by forming new States",
+      options: ["1, 2 and 3", "2, 3 and 4", "1 and 2", "3 and 4"],
+      correctAnswer: "1 and 2",
+      explanation:
+        "India has a single, integrated judiciary (not bifurcated) and seats in the Rajya Sabha are distributed based on population (not equally). Points 3 and 4 *are* present in the Indian system.",
+    },
+    {
+      text: "2. The Constitution of India is federal in character because:",
+      options: [
+        "The President is elected by an electoral college",
+        "Governors are appointed by the President",
+        "There is distribution of powers between the Union and the States",
+        "Amendments require ratification by State Legislatures",
+      ],
+      correctAnswer:
+        "There is distribution of powers between the Union and the States",
+      explanation:
+        "The core requirement for 'federalism' is that power is not concentrated in one place but is distributed between a central authority and regional units.",
+    },
+    {
+      text: "3. Assertion (A): Article 1 of the Constitution of India describes India as a Union of States rather than a federal state.\nReason (R): Indian federation is not the result of an agreement by the units; and the component units have no freedom to secede from it.",
+      options: [
+        "Both A and R are individually true and R is the correct explanation of A",
+        "Both A and R are individually true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true and R is the correct explanation of A",
+      explanation:
+        "Dr. Ambedkar explained that 'Union' was preferred to 'Federation' to indicate that the Indian state is permanent and states cannot break away, as it wasn't formed by a voluntary agreement between sovereign states.",
+    },
+    {
+      text: "4. In the Constitution of India, the term 'Federal':",
+      options: [
+        "Figures in the Preamble",
+        "Figures in Part III of the Constitution",
+        "Figures in Article 368",
+        "Does not figure anywhere",
+      ],
+      correctAnswer: "Does not figure anywhere",
+      explanation:
+        "While the Indian system is federal in nature, the word 'Federal' is surprisingly never used in the actual text of the Constitution.",
+    },
+    {
+      text: "5. When can the Parliament legislate on a subject in the state list?",
+      options: [
+        "If the Parliament passes a resolution to that effect",
+        "If the Supreme Court grants authority",
+        "If the Rajya Sabha passes a resolution by two-thirds majority",
+        "If the President issues an ordinance",
+      ],
+      correctAnswer:
+        "If the Rajya Sabha passes a resolution by two-thirds majority declaring that the subject is of national importance",
+      explanation:
+        "Under Article 249, the Rajya Sabha (representing the states) can authorize the Parliament to make laws on state subjects if it's in the national interest.",
+    },
+    {
+      text: "6. The quotation, 'The Indian Constitution establishes... a system of government which is at the most quasi-federal...' is attributed to:",
+      options: ["I. Jennings", "G. Austin", "K.C. Wheare", "H.J. Laski"],
+      correctAnswer: "K.C. Wheare",
+      explanation:
+        "K.C. Wheare famously labeled India 'quasi-federal' because of the strong unitary features embedded in its federal structure.",
+    },
+    {
+      text: "7. What does the term 'Federation' imply?",
+      options: [
+        "Fusion of powers",
+        "Separation of powers",
+        "Division of powers",
+        "Devolution of powers",
+      ],
+      correctAnswer: "Division of powers",
+      explanation:
+        "Federation implies a dual polity where powers are divided between the center and the states by the Constitution itself.",
+    },
+    {
+      text: "8. Assertion (A): India is a Union of States and not a Federal State.\nReason (R): In the Indian Constitution, the Centre is given emergency powers which can convert the Federal State into a Unitary State.",
+      options: [
+        "Both A and R are individually true and R is the correct explanation of A",
+        "Both A and R are individually true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true and R is the correct explanation of A",
+      explanation:
+        "The ability of the system to switch to a unitary mode during emergencies is one reason why the term 'Union' is used to emphasize central strength.",
+    },
+    {
+      text: "9. The best form of federalism suited for countries like India is:",
+      options: [
+        "Centralised federalism",
+        "Bargaining federalism",
+        "Cooperative federalism",
+        "Conflicting federalism",
+      ],
+      correctAnswer: "Cooperative federalism",
+      explanation:
+        "Cooperative federalism suggests that the center and states are not rivals but partners in the development of the nation.",
+    },
+    {
+      text: "10. Under the Indian Constitution, the residuary powers are vested in the:",
+      options: ["Executive", "Judiciary", "Parliament", "State legislatures"],
+      correctAnswer: "Parliament",
+      explanation:
+        "Any subject not listed in the Union, State, or Concurrent lists falls under residuary powers, which in India belong to the Parliament.",
+    },
+    {
+      text: "11. The structure of the Indian Constitution is:",
+      options: [
+        "Federal in form and unitary in spirit",
+        "Unitary",
+        "Unitary in form and federal in spirit",
+        "Pure federal",
+      ],
+      correctAnswer: "Federal in form and unitary in spirit",
+      explanation:
+        "The Constitution provides for a federal structure, but the practical power balance and emergency provisions give it a unitary 'spirit'.",
+    },
+    {
+      text: "12. Indian Federation closely resembles:",
+      options: ["U.S.A.", "Canada", "Australia", "Nigeria"],
+      correctAnswer: "Canada",
+      explanation:
+        "Like Canada, India has a strong center, uses the term 'Union', and gives residuary powers to the central government.",
+    },
+    {
+      text: "13. Assertion (A): K.C. Wheare calls Indian Constitution a quasi-federal Constitution.\nReason (R): There are three lists... in the Seventh Schedule... dividing powers... and giving residuary powers to the central government.",
+      options: [
+        "Both A and R are individually true and R is the correct explanation of A",
+        "Both A and R are individually true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true and R is the correct explanation of A",
+      explanation:
+        "The division of power in the 7th Schedule with a tilt toward the center (residuary powers) is exactly why Wheare categorized the system as quasi-federal.",
+    },
+    {
+      text: "14. Parliament has power to legislate with respect to a matter in the State list provided it is in the:",
+      options: [
+        "National interest",
+        "Interest of the State concerned",
+        "Interest of the public",
+        "Interest of the minority",
+      ],
+      correctAnswer: "National interest",
+      explanation:
+        "National interest is the primary justification used when the Parliament encroaches upon the legislative domain of the states.",
+    },
+    {
+      text: "15. Match List I (Forms of Government) with List II (Essential Features):\nA. Cabinet Government\nB. Presidential Government\nC. Federal Government\nD. Unitary Government\n\n1. Separation of powers\n2. Collective responsibility\n3. Concentration of powers\n4. Division of powers\n5. Administrative law",
+      options: [
+        "A-3, B-4, C-2, D-5",
+        "A-2, B-1, C-4, D-3",
+        "A-3, B-5, C-1, D-2",
+        "A-4, B-1, C-2, D-5",
+      ],
+      correctAnswer: "A-2, B-1, C-4, D-3",
+      explanation:
+        "Cabinet governments are built on collective responsibility; Presidential systems on separated powers; Federal systems on divided powers; and Unitary systems on concentrated central power.",
+    },
+    {
+      text: "16. Which among the following is/are the feature (s) of a Federal State?\n1. The powers of the Central and the State Governments are clearly laid down.\n2. It has an unwritten constitution.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "Federal states must have clearly defined powers to avoid conflict. Statement 2 is incorrect because federalism almost always requires a *written* constitution to serve as the supreme legal authority for that division.",
+    },
+    {
+      text: "17. Which Schedule of the Constitution of India contains the three lists that divide powers between the Union and the states?",
+      options: [
+        "Fifth Schedule",
+        "Sixth Schedule",
+        "Seventh Schedule",
+        "Eighth Schedule",
+      ],
+      correctAnswer: "Seventh Schedule",
+      explanation:
+        "The Seventh Schedule is where the Union List, State List, and Concurrent List are located.",
+    },
+    {
+      text: "18. Which one among the following pairs of level of government and legislative power is not correctly matched?",
+      options: [
+        "Central Government : Union List",
+        "Local Governments : Residuary Powers",
+        "State Governments : State List",
+        "Central and State Governments : Concurrent List",
+      ],
+      correctAnswer: "Local Governments : Residuary Powers",
+      explanation:
+        "Residuary powers are held by the Central Government/Parliament in India, not by local bodies.",
+    },
+    {
+      text: "19. Who, among the following, expressed the view that the Indian Constitution is federal in as much as it establishes what may be called a Dual Polity?",
+      options: [
+        "H.M. Seervai",
+        "K.C. Wheare",
+        "B.R. Ambedkar",
+        "Ivor Jennings",
+      ],
+      correctAnswer: "B.R. Ambedkar",
+      explanation:
+        "Dr. Ambedkar used the term 'Dual Polity' to describe how the Union and the States each have their own sovereign spheres defined by the Constitution.",
+    },
+  ],
+  Centre_State_Relations: [
+    {
+      text: "1. Consider the following statements:\n1. For the Parliament to make laws with respect to any matter enumerated in the State List, a resolution must be passed in both the Houses of the Parliament.\n2. A resolution passed as stated above can be extended beyond one year.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 2",
+      explanation:
+        "Under Article 249, only the Rajya Sabha needs to pass a resolution to empower Parliament to legislate on a state subject. Such a resolution remains in force for one year but can be renewed indefinitely for one year at a time.",
+    },
+    {
+      text: "2. The Article 73 of the Constitution of India which deals with the extent of executive power of the Union, provides that:\n1. The executive power of the Union extends to all matters with respect to which the Parliament has the power to make laws.\n2. The Government of India may also exercise such authority available under any treaty.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Both 1 and 2",
+      explanation:
+        "The executive power of the Union is co-extensive with its legislative power. It also extends to the exercise of rights and jurisdiction conferred by any treaty or agreement.",
+    },
+    {
+      text: "3. Consider the following statements about Union-State relations:\n1. In case of overlapping of a matter between the three kinds of subjects of legislations, predominance has been given to the Union Legislation.\n2. In the concurrent sphere, in the case of repugnancy between a Union and a State law relating to the same subject, the former prevails, even if the State law was reserved for the assent of the President and has received such assent.\n3. The vesting of residual power under the Indian Constitution follows the precedent of Canada and not that of the Government of India Act, 1935.",
+      options: ["1 and 2", "1 and 3", "2 and 3", "1, 2 and 3"],
+      correctAnswer: "1 and 3",
+      explanation:
+        "Statement 2 is wrong because if a State law receives Presidential assent, it prevails over the Union law in that state. Statement 3 is correct as India followed Canada in giving residuary powers to the Centre, whereas the 1935 Act gave them to the Governor-General.",
+    },
+    {
+      text: "4. Consider the following statements:\n1. With the consent of the Government of India, the Governor of a State may entrust on the Union Government or to its officers functions relating to a State subject.\n2. The President of India cannot entrust to any State Government or to its officers, functions in relation to any matter to which the executive power of the Union extends.\n3. There is a provision in the Constitution of India to create the National Integration Council.",
+      options: ["1, 2 and 3", "2 and 3 only", "1 and 3 only", "Only 1"],
+      correctAnswer: "Only 1",
+      explanation:
+        "The President *can* entrust Union functions to a State with its consent (Article 258). The National Integration Council is an extra-constitutional body, not a constitutional provision.",
+    },
+    {
+      text: "5. What is the implication of the Union Government giving 'Special Status' to a State?",
+      options: [
+        "Subsequently large percentage of the Central assistance will be grants-in-aid",
+        "Current account budgetary deficit will be bridged by the Union Government",
+        "The extent of loan as a percentage of total assistance will be high",
+        "The Union Government meets entire expenditure of the State during the period",
+      ],
+      correctAnswer:
+        "Subsequently large percentage of the Central assistance will be grants-in-aid",
+      explanation:
+        "Special Category Status implies that the state receives 90% of central assistance as grants and only 10% as loans, compared to the 30:70 ratio for other states.",
+    },
+    {
+      text: "6. Who, among the following, can establish additional courts for better administration of any existing law with respect to a matter contained in the Union List?",
+      options: [
+        "Parliament by law",
+        "Parliament with the consent of states",
+        "Union Government by resolution",
+        "Supreme Court of India",
+      ],
+      correctAnswer: "Parliament by law",
+      explanation:
+        "Article 247 empowers Parliament to provide for the establishment of additional courts for better administration of laws made by it regarding the Union List.",
+    },
+    {
+      text: "7. Assertion (A): The All-India Services violate the federal principle of the Constitution as well as the autonomy of States.\nReason (R): The All-India Service officers are governed by Central Government rules and the State Governments do not have full control over them.",
+      options: [
+        "Both A and R are individually true and R is the correct explanation of A",
+        "Both A and R are individually true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true and R is the correct explanation of A",
+      explanation:
+        "AIS officers are recruited by the Centre but serve in States. Since ultimate disciplinary power lies with the Centre, states feel their autonomy is compromised.",
+    },
+    {
+      text: "8. Consider the following statements:\n1. Parliament shall, while a proclamation of Emergency is in operation, have the power to make laws for the whole or any part of territory of India with respect to any of the matters enumerated in the State List.\n2. Parliament has exclusive power to make any law with respect to any matter not enumerated in the Concurrent List or State List.\n3. Parliament has power to make any law for implementing any treaty.\n4. Parliament has power to legislate with respect to a matter in the State List in the national interest subject to the resolution passed by the Council of States by two-thirds majority.",
+      options: ["1, 2 and 3", "1, 2, 3 and 4", "1, 3 and 4", "2 and 4"],
+      correctAnswer: "1, 2, 3 and 4",
+      explanation:
+        "All statements describe valid conditions under which the Parliament's legislative power expands to maintain national uniformity or handle emergencies.",
+    },
+    {
+      text: "9. A law made by Parliament having extra-territorial operation shall:",
+      options: [
+        "Not be deemed invalid",
+        "Be deemed invalid",
+        "Be deemed ultravires",
+        "Be deemed unconstitutional",
+      ],
+      correctAnswer: "Not be deemed invalid",
+      explanation:
+        "Parliament has the power to make laws that apply to Indian citizens and property even outside the territory of India; such laws cannot be challenged simply because they operate extra-territorially.",
+    },
+    {
+      text: "10. Which of the following is not a principal source of non-tax revenue of the Union?",
+      options: ["Posts and Telegraphs", "Broadcasting", "Forests", "Opium"],
+      correctAnswer: "Forests",
+      explanation:
+        "Forests are generally a primary source of non-tax revenue for the State governments, not the Union.",
+    },
+    {
+      text: "11. Match List I (Source) with List II (Tax):\nA. Taxes levied by Union but collected/appropriated by States\nB. Taxes levied, collected and retained by the states\nC. Taxes levied and collected by Centre but assigned to States\nD. Taxes levied and collected by Centre and distributed between Union/States\n\n1. Income tax other than agriculture\n2. Stamp duties\n3. Capitation tax\n4. Taxes on lands and buildings\n5. Taxes on consignment of goods (Inter-state)",
+      options: [
+        "A-1, B-5, C-4, D-2",
+        "A-2, B-4, C-5, D-1",
+        "A-1, B-3, C-5, D-2",
+        "A-2, B-5, C-4, D-1",
+      ],
+      correctAnswer: "A-2, B-4, C-5, D-1",
+      explanation:
+        "Stamp duties are collected by states; land/building taxes are retained by states; consignment tax is assigned to states; and Income tax is shared.",
+    },
+    {
+      text: "12. If directions issued by the Union to a State are not complied with, Article 365 says:",
+      options: [
+        "It shall be presumed that the constitutional machinery in the State had failed",
+        "It shall be presumed the State had law and order problem",
+        "Union can appoint advisers to help the Governor",
+        "Parliament may make laws for that State",
+      ],
+      correctAnswer:
+        "It shall be presumed that the constitutional machinery in the State had failed",
+      explanation:
+        "This allows the President to impose President's Rule under Article 356 as a consequence of non-compliance.",
+    },
+    {
+      text: "13. A resolution passed by Rajya Sabha under Article 249 remains in force for:",
+      options: [
+        "Not exceeding six months",
+        "Not exceeding two years",
+        "Not exceeding one year",
+        "Of unlimited time",
+      ],
+      correctAnswer: "Not exceeding one year",
+      explanation:
+        "The resolution is valid for one year, but can be renewed for one year at a time through subsequent resolutions.",
+    },
+    {
+      text: "14. Which statements regarding residuary powers are correct?\n1. Residuary powers given to Union Parliament\n2. Follows Australian model\n3. Final authority to decide if matter is residuary is Parliament\n4. 1935 Act placed residuary powers with Governor-General",
+      options: ["1, 2 and 3", "2 and 3", "1 and 4", "3 and 4"],
+      correctAnswer: "1 and 4",
+      explanation:
+        "India follows the Canadian model (not Australian) for residuary powers. The Judiciary (Supreme Court), not Parliament, is the final authority to decide if a matter is residuary.",
+    },
+    {
+      text: "15. Assertion (A): The Constitution makes a distinction between legislative power to levy tax and power to appropriate proceeds.\nReason (R): The constitution provides for grants-in-aid to the states from central resources.",
+      options: [
+        "Both A and R are true and R is correct explanation",
+        "Both A and R are true but R is NOT correct explanation",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true but R is not the correct explanation of A",
+      explanation:
+        "Both are constitutional facts, but the provision of grants is not the reason why tax levying and appropriation are distinguished.",
+    },
+    {
+      text: "16. Which are correctly matched?\n1. Duty levied by Union but collected/appropriated by States : Succession/Estate duty\n2. Taxes levied/collected by Union but assigned to States : Stamp duties",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Neither 1 nor 2",
+      explanation:
+        "The matches are swapped. Stamp duties are collected by states (Art 268), while succession duties on non-agri property are assigned to states (Art 269).",
+    },
+    {
+      text: "17. Which provisions facilitate Union control over States?\n1. All-India services\n2. Grants-in-aid\n3. Inter-State Councils",
+      options: ["1 and 2 only", "2 and 3 only", "1 and 3 only", "1, 2 and 3"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "All three are mechanisms that allow the Central government to influence or direct state administration and policy.",
+    },
+    {
+      text: "18. The idea of the Union giving directions to States was adopted from:",
+      options: [
+        "The Government of India Act, 1935",
+        "The US Constitution",
+        "The Soviet Constitution",
+        "The Australian Constitution",
+      ],
+      correctAnswer: "The Government of India Act, 1935",
+      explanation:
+        "Much of India's administrative and federal structure, including the power of direction, was borrowed from the 1935 Act.",
+    },
+    {
+      text: "19. Which statement is NOT correct?",
+      options: [
+        "Parliament has exclusive power on Union List",
+        "Both can make laws on Concurrent List",
+        "In exceptional cases, State Legislatures can make law on Union List",
+        "Parliament can make law on State subjects in certain circumstances",
+      ],
+      correctAnswer:
+        "In certain exceptional circumstances, State Legislatures can make law on a subject given in the Union List",
+      explanation:
+        "State legislatures can never make laws on the Union List. Only Parliament can legislate on the State List in specific situations.",
+    },
+    {
+      text: "20. Assertion (A): Sarkaria Commission recommended CM consultation for Governor appointment.\nReason (R): This could be achieved by amending Article 165.",
+      options: [
+        "Both A and R true and R explains A",
+        "Both A and R true but R does not explain A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "A is true but R is false",
+      explanation:
+        "Article 165 deals with the Advocate General for the State, not the Governor. Article 155 deals with the appointment of the Governor.",
+    },
+    {
+      text: "21. Who said, 'standard of administration depends upon the caliber of civil servants appointed to strategic posts'?",
+      options: [
+        "Jawaharlal Nehru",
+        "Dr. B.R. Ambedkar",
+        "Sardar Vallabhbhai Patel",
+        "Warren Hastings",
+      ],
+      correctAnswer: "Dr. B.R. Ambedkar",
+      explanation:
+        "Dr. Ambedkar emphasized the need for All-India Services to maintain administrative standards across the country.",
+    },
+    {
+      text: "22. On the subject of Income Tax:",
+      options: [
+        "Union has more power than States",
+        "States have more power than Union",
+        "Both have equal powers",
+        "Only the Union government has power",
+      ],
+      correctAnswer: "Only the Union government has power",
+      explanation:
+        "Income tax (other than on agricultural income) is in the Union List, giving the Centre exclusive power to levy it.",
+    },
+    {
+      text: "23. Which SC case has a direct bearing on Centre-State relations?",
+      options: [
+        "S.R. Bommai Case",
+        "Kesavananda Bharati Case",
+        "Menaka Case",
+        "Indra Sawhney Case",
+      ],
+      correctAnswer: "Only 1",
+      explanation:
+        "The S.R. Bommai case set strict guidelines on the imposition of President's Rule (Article 356), directly affecting federal relations.",
+    },
+    {
+      text: "24. The rule of repugnancy applies when:",
+      options: [
+        "Union and State occupy different lists",
+        "Both laws are enacted under the Concurrent List",
+        "Union law is List III and State law is List II",
+        "Both laws are enacted under the State List",
+      ],
+      correctAnswer:
+        "Both Union and State laws are enacted under the Concurrent List",
+      explanation:
+        "Repugnancy arises when a central and state law conflict on a subject that both have the power to legislate on (Concurrent List).",
+    },
+    {
+      text: "25. Assertion (A): Legislature should keep within assigned domain and not trespass.\nReason (R): Legislation is invalid if it encroaches on matters assigned to another.",
+      options: [
+        "Both A and R are true and R explains A",
+        "Both A and R are true but R does not explain A",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true and R is the correct explanation of A",
+      explanation:
+        "This refers to the Doctrine of Colourable Legislation—you cannot do indirectly what you cannot do directly.",
+    },
+    {
+      text: "26. Which taxes are levied, collected and retained by States?\n1. Mineral rights\n2. Entry of goods to local area\n3. Agricultural income\n4. Professions and trades",
+      options: ["1, 3 and 4", "1, 2 and 3", "2 and 3", "1, 2, 3 and 4"],
+      correctAnswer: "1, 2, 3 and 4",
+      explanation:
+        "All these subjects fall within the State List (List II), giving states full authority over them.",
+    },
+    {
+      text: "27. Which taxes belong to the Union exclusively?",
+      options: [
+        "Customs Duties",
+        "Land Revenue",
+        "Surcharge on Income Tax",
+        "Corporation Tax",
+      ],
+      correctAnswer: "Surcharge on Income Tax",
+      explanation:
+        "Article 271 allows the Union to levy a surcharge on certain taxes exclusively for its own purposes.",
+    },
+    {
+      text: "28. The executive power of Union extends to giving directions to States regarding:\n1. Communication of national/military importance\n2. Law and order in State\n3. Protection of railways\n4. Protection of secular character",
+      options: ["1 and 2", "2 and 3", "1 and 3", "1, 2, 3 and 4"],
+      correctAnswer: "1 and 3",
+      explanation:
+        "Article 257 mentions communication and railways specifically. Law and order is a state subject where the center's direct intervention is limited.",
+    },
+    {
+      text: "29. In case of inconsistency between Parliament and State laws, which prevails?",
+      options: [
+        "Parliament law made before State law",
+        "Parliament law made after State law",
+        "Parliament law made before or after State law",
+        "State law",
+      ],
+      correctAnswer:
+        "The law made by Parliament before or after the law made by the legislature of the State",
+      explanation:
+        "Under Article 254, central law generally overrides state law in the concurrent sphere regardless of timing.",
+    },
+    {
+      text: "30. Which pairs are correctly matched?\n1. Levied by Union, collected/appropriated by States : Stamp duties\n2. Levied/collected by Centre, assigned to States : Inter-state sales tax",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Both 1 and 2",
+      explanation:
+        "Both matches accurately reflect the constitutional distribution of taxes under Articles 268 and 269.",
+    },
+    {
+      text: "31. Which were part of Punchhi Commission terms of reference?\n1. Panchayati Raj\n2. Communal violence\n3. Integrated domestic market\n4. Central Law Enforcement Agency",
+      options: ["1 and 4", "2 and 3", "1, 2 and 3", "1, 2, 3 and 4"],
+      correctAnswer: "1, 2, 3 and 4",
+      explanation:
+        "The Punchhi commission had a wide mandate to look at modern challenges in federal relations including internal security and economy.",
+    },
+    {
+      text: "32. Parliament can legislate on State List if:\n1. Rajya Sabha passes resolution with 2/3rd majority present/voting\n2. Both houses pass resolution\n3. President gives prior permission\n4. Speaker/Chairman give permission",
+      options: ["Only 1", "1, 2 and 3", "2 and 3", "1, 2, 3 and 4"],
+      correctAnswer: "Only 1",
+      explanation:
+        "Article 249 specifically grants this power based on a Rajya Sabha resolution alone.",
+    },
+    {
+      text: "33. Assertion (A): Growing demand for review of Centre-State relations.\nReason (R): States have no adequate resources for development.",
+      options: [
+        "Both A and R are true and R explains A",
+        "Both A and R are true but R does not explain A",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true and R is the correct explanation of A",
+      explanation:
+        "Financial imbalance (vertical imbalance) is the primary reason why states demand a re-evaluation of federal ties.",
+    },
+    {
+      text: "34. Which statement is NOT correct?",
+      options: [
+        "State law is valid if it incidentally touches List I/III",
+        "State cannot regulate 'Water'",
+        "Law made under President's Rule continues after expiry",
+        "Parliament has full power on residuary matter",
+      ],
+      correctAnswer:
+        "The legislature of a State cannot make a law to regulate 'Water'",
+      explanation:
+        "Water supplies, irrigation, and canals are entry 17 in the State List, so states *can* regulate them.",
+    },
+    {
+      text: "35. Which is NOT correct?",
+      options: [
+        "State must ensure compliance with Parliament laws",
+        "Full faith given to judicial proceedings of Union/States",
+        "Governor may entrust Union with state matter",
+        "Union can give directions to protect railways",
+      ],
+      correctAnswer:
+        "The Governor of a State may entrust to the Government of India any matter to which the executive power of the State extends",
+      explanation:
+        "While true, it usually requires the 'consent of the Government of India' (Article 258A).",
+    },
+    {
+      text: "36. Division of power between Centre/States is similar to 1935 Act in that:\n1. Predominance given to Central legislature in overlap\n2. Central law prevails in repugnancy\n3. Residuary powers were vested in Central legislature",
+      options: ["1, 2 and 3", "1 and 2", "1 and 3", "2 and 3"],
+      correctAnswer: "1 and 2",
+      explanation:
+        "In the 1935 Act, residuary powers were given to the Governor-General personally, not the Central legislature.",
+    },
+    {
+      text: "37. Match List I (Source) with List II (Tax):\nA. Tax levied by Union, assigned to Centre\nB. Tax levied by Union, assigned to States\nC. Tax levied by State, assigned to State\nD. Tax levied by Union, distributed Union/States\n\n1. Income Tax\n2. Land Revenue\n3. Inter-state trade goods\n4. Surcharge",
+      options: [
+        "A-4, B-1, C-2, D-3",
+        "A-2, B-3, C-4, D-1",
+        "A-2, B-1, C-4, D-3",
+        "A-4, B-3, C-2, D-1",
+      ],
+      correctAnswer: "A-4, B-3, C-2, D-1",
+      explanation:
+        "Surcharges are for the Centre; Inter-state trade taxes go to states; Land revenue is state-owned; Income tax is shared.",
+    },
+    {
+      text: "38. Assertion (A): 2nd Commission on Centre-State relations was constitutional.\nReason (R): Issues like Governors and planning are important.",
+      options: [
+        "Both A and R true and R explains A",
+        "Both A and R true but R does not explain A",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer: "A is false but R is true",
+      explanation:
+        "The Commission (Punchhi) was established by an executive order, not by a constitutional amendment.",
+    },
+    {
+      text: "39. Which describe Indian Federalism?\n1. Normal distribution of power suspended in extra-ordinary circumstances\n2. Residuary power in Union, SC decides if matter is residuary\n3. Union can give directions to states\n4. If 2+ states resolve, Parliament can make law on state subject",
+      options: ["1, 2, 3 and 4", "1, 2 and 3", "2 and 4", "1 and 3"],
+      correctAnswer: "1, 2, 3 and 4",
+      explanation:
+        "All these points accurately reflect the 'unitary tilt' and cooperative mechanisms of the Indian federal system.",
+    },
+    {
+      text: "40. Consider the following:\n1. Sarkaria Commission recommended Union persuade States for AIS in education.\n2. All-India Services are in Concurrent List.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "AIS is mentioned in the Union List (Entry 70), not the Concurrent List.",
+    },
+  ],
+  Inter_State_Relations: [
+    {
+      text: "1. No law of a State shall impose tax on sale/purchase of goods where it:\n1. Takes place within the State\n2. Takes place during import/export out of India",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 2",
+      explanation:
+        "States are prohibited from taxing sales that happen in the course of international trade to ensure national economic uniformity.",
+    },
+    {
+      text: "2. Consider the following:\n1. Parliament can exclude SC/courts from inter-state water disputes.\n2. River Boards Act 1956 provides for Water Dispute Tribunal arbitration.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "Article 262 allows Parliament to bar court jurisdiction. However, it is the *Inter-State Water Disputes Act 1956* (not River Boards Act) that provides for Tribunals.",
+    },
+    {
+      text: "3. Duties of Inter-State Council (Art 263):\n1. Inquiring/advising on state disputes\n2. Discussing common interests\n3. Recommendations for policy coordination\n4. Protecting AIS officers from judiciary",
+      options: ["1, 2 and 3", "1, 2 and 4", "1, 3 and 4", "2, 3 and 4"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "The Council's role is purely advisory and coordinative regarding policy; it has nothing to do with shielding AIS officers from the law.",
+    },
+    {
+      text: "4. On Zonal Councils:\n1. Set up under States Reorganisation Act\n2. Discuss planning, water, transport\n3. Enable Centre/States to co-operate\n4. Decisions are binding",
+      options: ["1, 2 and 3", "1, 3 and 4", "2, 3 and 4", "1, 2 and 4"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "Zonal Councils are advisory bodies; their recommendations are not legally binding on the governments.",
+    },
+    {
+      text: "5. Constitutional provisions on trade:\n1. Parliament can restrict trade in public interest\n2. State bills restricting trade need Central sanction\n3. Parliament can discriminate during scarcity\n4. Trade within state is in Concurrent List",
+      options: ["1, 2, 3 and 4", "3 and 4", "1 and 3", "2 only"],
+      correctAnswer: "1 and 3",
+      explanation:
+        "State laws on trade don't necessarily need Central sanction unless they are restrictive. Trade and commerce within the state is in the State List (Entry 26), not Concurrent.",
+    },
+    {
+      text: "6. Members of Inter-State Council include:",
+      options: [
+        "CMs and Administrators",
+        "PM and all CMs/Administrators",
+        "PM, 6 Cabinet Ministers and all CMs/Administrators",
+        "PM, LoP and Rajya Sabha members",
+      ],
+      correctAnswer:
+        "The Prime Minister, Six Union Cabinet Ministers and all the Chief Ministers of the States/ Administrators of the Union Territories",
+      explanation:
+        "This composition ensures that both the Union executive and all state executives are represented.",
+    },
+    {
+      text: "7. Which is NOT correct?",
+      options: [
+        "Governor may entrust Union with state functions",
+        "Civil Court orders are enforceable nationwide",
+        "Governor cannot entrust functions without Union consent",
+        "Full faith and credit given to state public acts",
+      ],
+      correctAnswer:
+        "The Governor of a State may entrust to the Government of India, functions in relation to any matter to which the executive power of the state extends",
+      explanation:
+        "This is incorrect because it *requires* the consent of the Government of India.",
+    },
+    {
+      text: "8. The Chairman of Zonal Council is:",
+      options: [
+        "CM nominated by PM",
+        "Union Minister nominated by President",
+        "Home Minister (ex-officio)",
+        "Vice-President",
+      ],
+      correctAnswer: "The Home Minister and is ex-officio",
+      explanation:
+        "The Union Home Minister chairs all Zonal Councils to provide a link with the Central government.",
+    },
+    {
+      text: "9. Assertion (A): Art 301 declares trade/commerce free.\nReason (R): State can impose taxes that don't directly affect freedom of trade.",
+      options: [
+        "Both A and R true and R explains A",
+        "Both A and R true but R does NOT explain A",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true but R is not the correct explanation of A",
+      explanation:
+        "Trade is free, and non-discriminatory taxes are allowed, but the existence of such taxes isn't the 'reason' why trade is declared free.",
+    },
+    {
+      text: "10. Under which regime was Inter-State Council set up?",
+      options: [
+        "Congress 1975",
+        "Janata 1978",
+        "Janata Dal 1990",
+        "United Front 1996",
+      ],
+      correctAnswer: "Janata Dal-led Government in 1990",
+      explanation:
+        "The ISC was established in 1990 by the V.P. Singh government on the recommendation of the Sarkaria Commission.",
+    },
+    {
+      text: "11. Inter-State water disputes can be resolved by:",
+      options: [
+        "Supreme Court only",
+        "Union Government only",
+        "Tribunals established by Parliament",
+        "Special courts established by President",
+      ],
+      correctAnswer: "Tribunals established by the Parliament by law",
+      explanation:
+        "Article 262 prevents courts from hearing these cases, leaving resolution to ad-hoc tribunals.",
+    },
+    {
+      text: "12. 'Full Faith and Credit' clause does NOT apply to:",
+      options: [
+        "Public records",
+        "Judicial proceedings",
+        "Acts of corporations",
+        "Public acts",
+      ],
+      correctAnswer: "Acts of corporations",
+      explanation:
+        "The clause applies to governmental 'public' records and acts, not private corporate entities.",
+    },
+    {
+      text: "13. An Inter-State Council may be established by:",
+      options: [
+        "Parliament",
+        "President",
+        "National Development Council",
+        "Zonal Council",
+      ],
+      correctAnswer: "The President",
+      explanation:
+        "Article 263 gives the President the authority to establish the council if it serves the public interest.",
+    },
+    {
+      text: "14. On Zonal Councils:\n1. Owe existence to Constitution\n2. There are five councils\n3. Coordinate State/UT/Union relations\n4. Set up under 1956 Act",
+      options: ["1, 2 and 3", "2, 3 and 4", "3 and 4", "2 and 4"],
+      correctAnswer: "2, 3 and 4",
+      explanation:
+        "Zonal Councils are statutory (1956 Act), not constitutional bodies.",
+    },
+  ],
+  Emergency_Provisions: [
+    {
+      text: "1. Consider the following:\n1. Proclamation needs written advice from Cabinet rank ministers.\n2. President must revoke if Lok Sabha passes disapproval resolution.",
+      options: ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Both 1 and 2",
+      explanation:
+        "The written advice requirement was added by the 44th Amendment to prevent unilateral decisions. The Lok Sabha's power to revoke was also strengthened.",
+    },
+    {
+      text: "2. If financial emergency (Art 360) is declared:\n1. May be revoked by subsequent proclamation\n2. Ceases after 2 months unless approved by Parliament",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Both 1 and 2",
+      explanation:
+        "Financial emergency follows the same parliamentary approval timeline (2 months) as President's rule, but unlike the other two, it doesn't need periodic renewal once approved.",
+    },
+    {
+      text: "3. Consider the following:\n1. Art 359 needs Presidential order to suspend specified rights.\n2. Art 358 makes Art 19 restrictions non-existent against state.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Both 1 and 2",
+      explanation:
+        "Article 358 automatically suspends Article 19 (only in war/external aggression), while Article 359 requires a specific list of rights to be suspended by the President.",
+    },
+    {
+      text: "4. What are NOT necessarily consequences of President's Rule?\n1. Dissolution of State Assembly\n2. Removal of Council of Ministers\n3. Dissolution of local bodies\n4. Takeover of admin by Union",
+      options: ["1, 2 and 4", "2 and 3", "1 and 3", "1, 3 and 4"],
+      correctAnswer: "1 and 3",
+      explanation:
+        "The Council of Ministers is always removed, and the Union takes over. However, the Assembly can be kept in suspended animation (not dissolved), and local bodies are never dissolved under Art 356.",
+    },
+    {
+      text: "5. Proclamation of National Emergency (Art 352):\n1. Needs written communication from Cabinet\n2. Whole or part of India\n3. Lapses if not approved in one month\n4. Needs special majority (2/3 present/voting + total majority)\n5. Approved version lasts 6 months",
+      options: [
+        "1, 2, 3, 4 and 5",
+        "2, 3 and 4",
+        "1, 4 and 5",
+        "1, 2, 3 and 5",
+      ],
+      correctAnswer: "1, 2, 3, 4 and 5",
+      explanation:
+        "These reflect the stringent rules introduced by the 44th Amendment to prevent abuse of emergency powers.",
+    },
+    {
+      text: "6. In financial emergency:",
+      options: [
+        "States dissolved",
+        "Money bills passed only by Parliament",
+        "Assemblies suspended",
+        "President may direct salary reduction",
+      ],
+      correctAnswer:
+        "The President may give such directions to the states as may be deemed necessary for economic recovery and salaries of officials may be temporarily reduced",
+      explanation:
+        "Financial emergency is about fiscal control, not political suspension of states.",
+    },
+    {
+      text: "7. Law made by Parliament on State List during emergency ceases to have effect:",
+      options: [
+        "When emergency ceases",
+        "When repealed by Parliament",
+        "6 months after emergency ceases",
+        "1 year after emergency ceases",
+      ],
+      correctAnswer:
+        "On the expiration of six months after the proclamation of emergency has ceased to operate",
+      explanation:
+        "This 'grace period' allows states to take over legislative control smoothly after the emergency ends.",
+    },
+    {
+      text: "8. S.R. Bommai case interpreted that Governor can dismiss CM:",
+      options: [
+        "At pleasure on subjective estimate",
+        "When Assembly expresses want of confidence",
+        "When measure defeated on floor",
+        "When censure motion rejected",
+      ],
+      correctAnswer:
+        "When the Legislative Assembly has expressed its want of confidence in the Council of Ministers",
+      explanation:
+        "The floor of the house is the only place to test the majority, not the Governor's subjective opinion.",
+    },
+    {
+      text: "9. Assertion (A): Imminent danger of war is not enough for emergency.\nReason (R): Proclamation ceases after one month unless approved.",
+      options: [
+        "Both A and R true and R explains A",
+        "Both A and R true but R does NOT explain A",
+        "A is true, R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "A is false but R is true",
+      explanation:
+        "Article 352 specifically says emergency can be declared even before the actual occurrence if there is 'imminent danger'.",
+    },
+    {
+      text: "10. Which statement is correct?",
+      options: [
+        "Internal disturbance is a ground",
+        "44th Amendment replaced 'armed rebellion' with 'war'",
+        "Actual existence of grounds is necessary",
+        "President proclaims based on grounds or possibility thereof",
+      ],
+      correctAnswer:
+        "The President proclaims emergency on the basis of any ground mentioned in Article 352 or possibility thereof.",
+      explanation:
+        "Emergency can be proactive. 'Internal disturbance' was replaced by 'armed rebellion' (not war) by the 44th Amendment.",
+    },
+    {
+      text: "11. If President exercises power under Art 356:",
+      options: [
+        "Assembly automatically dissolved",
+        "Art 19 suspended",
+        "Parliament assumes power to legislate on State list",
+        "President can make laws",
+      ],
+      correctAnswer:
+        "Parliament assumes the power to legislate on the subjects in the State list",
+      explanation:
+        "The legislative power of the state is transferred to Parliament, though Parliament usually delegates this to the President.",
+    },
+    {
+      text: "12. When National Emergency is issued:",
+      options: [
+        "FRs automatically suspended",
+        "Art 19 suspended automatically, others by order",
+        "Art 19 suspended automatically, others (except 20/21) by order",
+        "Only Art 19 suspended",
+      ],
+      correctAnswer:
+        "The freedoms under Article 19 are automatically suspended and other Fundamental Rights, except those under Articles 20 and 21, can be suspended by an order of the President",
+      explanation:
+        "Articles 20 and 21 are sacrosanct and cannot be suspended even during the most severe emergency.",
+    },
+    {
+      text: "13. President's Rule can continue beyond one year if:",
+      options: [
+        "High Court certifies grave situation",
+        "Governor certifies law and order",
+        "EC certifies difficulty in holding elections",
+        "President satisfied by independent investigation",
+      ],
+      correctAnswer:
+        "The Election Commission certifies that it is difficult to hold elections to the Assembly",
+      explanation:
+        "To prevent long-term central rule, the 44th Amendment requires EC certification or a National Emergency to be in place to extend Art 356 beyond one year.",
+    },
+    {
+      text: "14. What may be done in financial emergency?\n1. Reduce districts\n2. Abolish State Assemblies\n3. Reduce High Court judge salaries\n4. Reserve State Money Bills for President",
+      options: ["1, 2 and 3", "2, 3 and 4", "3 and 4", "1 and 4"],
+      correctAnswer: "3 and 4",
+      explanation:
+        "Reducing salaries and reserving money bills are the specific financial tools mentioned in Article 360.",
+    },
+    {
+      text: "15. When state fails to implement directions under Art 256:",
+      options: [
+        "Parliament compels state",
+        "Governor dissolves legislature",
+        "President presumes failure of constitutional machinery",
+        "President imposes Art 352",
+      ],
+      correctAnswer:
+        "The President may presume that Constitutional machinery in the State has failed",
+      explanation:
+        "This links Art 256 with Art 365, leading to the imposition of President's Rule (Art 356).",
+    },
+    {
+      text: "16. Written advice of Cabinet for emergency was added by:",
+      options: [
+        "44th Amendment",
+        "42nd Amendment",
+        "Constituent Assembly",
+        "Supreme Court 1975",
+      ],
+      correctAnswer: "After 44th Constitutional Amendment",
+      explanation:
+        "This was a direct reaction to the 1975 emergency which was declared without formally consulting the cabinet.",
+    },
+    {
+      text: "17. President's Rule remains valid for maximum period of:",
+      options: ["One year", "Two years", "Three years", "Four years"],
+      correctAnswer: "Three years",
+      explanation:
+        "It must be approved every six months, but it cannot go beyond 3 years in total (except in very rare cases like Punjab historically).",
+    },
+    {
+      text: "18. Proclamation under Art 352 when Lok Sabha is dissolved must be approved by:",
+      options: [
+        "Rajya Sabha, then new LS within 30 days of first sitting",
+        "New LS within six months",
+        "LS in next session",
+        "Rajya Sabha only",
+      ],
+      correctAnswer:
+        "Rajya Sabha and then it will continue till the reconstitution of new Lok Sabha, which must approve it within 30 days of its first sitting.",
+      explanation:
+        "Since Rajya Sabha is a permanent house, it acts as the legislative safeguard when the Lok Sabha is absent.",
+    },
+    {
+      text: "19. Assertion (A): Proclamation of Emergency issued for imminent danger of war.\nReason (R): President can suspend all FRs.",
+      options: [
+        "Both A and R true and R explains A",
+        "Both A and R true but R does NOT explain A",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer: "A is true but R is false",
+      explanation:
+        "Statement A is correct, but R is false because the President *cannot* suspend Articles 20 and 21.",
+    },
+    {
+      text: "20. Which is NOT an automatic consequence of Emergency?",
+      options: [
+        "Suspension of FR enforcement except 20/21",
+        "Extension of Union executive power to directions",
+        "Extension of Parliament power to State List",
+        "Suspension of Article 19",
+      ],
+      correctAnswer:
+        "Suspension of the enforcement of fundamental rights except those conferred by Articles 20 and 21.",
+      explanation:
+        "The suspension of 'enforcement' (Article 359) is not automatic; it requires a specific Presidential Order. Article 19 suspension (Article 358) is automatic.",
+    },
+    {
+      text: "21. Parliament can make law on State List if:\n1. President deems it proper\n2. Art 352 is in operation\n3. LS passes resolution by 2/3rd majority\n4. Governor requests",
+      options: ["1 and 4", "2 alone", "3 alone", "3 and 4"],
+      correctAnswer: "2 alone",
+      explanation:
+        "During National Emergency, Parliament automatically gains legislative power over the State List (Article 250).",
+    },
+    {
+      text: "22. S.R. Bommai case pertained to which Article?",
+      options: ["Article 29", "Article 32", "Article 353", "Article 356"],
+      correctAnswer: "Article 356",
+      explanation:
+        "This landmark case curtailed the arbitrary dismissal of state governments by the Centre.",
+    },
+    {
+      text: "23. Consider financial emergency provisions:\n1. Must be laid before each House.\n2. Ceases after six months unless approved.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "Statement 2 is wrong because once a Financial Emergency is approved by Parliament, it continues indefinitely until revoked by the President.",
+    },
+  ],
+  President: [
+    {
+      text: "1. Consider the following statements:\n1. When the President of India is to be impeached for violation of the Constitution, the charge shall be preferred by either House of Parliament.\n2. An election to fill a vacancy in the office of President of India occurring by reason of his death, resignation or removal or otherwise shall be held in no case later than nine months from the date of occurrence of the vacancy.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "Statement 1 is correct as Article 61 allows either House to initiate impeachment. Statement 2 is incorrect because the Constitution mandates that an election to fill such a vacancy must be held within six months, not nine months, from the date of the vacancy.",
+    },
+    {
+      text: "2. Consider the following statements:\n1. The President nominates twelve members of the Rajya Sabha on the advice of the Council of Ministers.\n2. The President has absolute power to appoint and remove the Chairman and members of statutory bodies at his discretion.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "The President nominates 12 members to Rajya Sabha for their contributions to art, literature, science, and social service, acting on the advice of the Council of Ministers. Statement 2 is incorrect because 'absolute power' and 'discretion' are limited; the President generally acts on the advice of the Council of Ministers and must follow specific legal procedures for removals.",
+    },
+    {
+      text: "3. Consider the following statements:\n1. On the expiry of the term of five years by the President of India, the outgoing President must continue to hold office until his successor enters upon his office.\n2. The Electoral College for the President's election consists of the elected members of the Legislative Assemblies of Delhi and Puducherry also.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Both 1 and 2",
+      explanation:
+        "To prevent an 'interregnum' or gap in the head of state's office, the outgoing President remains in office until the new one is sworn in. Additionally, the 70th Amendment Act included the elected members of the Legislative Assemblies of Delhi and Puducherry in the presidential Electoral College.",
+    },
+    {
+      text: "4. The Executive power of the Union Government is vested in the President of India. The President shall exercise these powers:",
+      options: [
+        "Himself",
+        "Directly or through officers subordinate to him if he so desires",
+        "Either directly or through officers subordinate to him in accordance with the provisions of the Constitution",
+        "Only on the advice of Prime Minister",
+      ],
+      correctAnswer:
+        "Either directly or through officers subordinate to him in accordance with the provisions of the Constitution",
+      explanation:
+        "Article 53 states that the executive power of the Union is vested in the President and exercised by him either directly or through subordinate officers. This must always be done 'in accordance with the Constitution,' which implies acting on the aid and advice of the Council of Ministers.",
+    },
+    {
+      text: "5. Which one of the following statements is correct?",
+      options: [
+        "The Chief Election Commissioner of India holds his office during the pleasure of President",
+        "The Governor of a State holds his office during the pleasure of the President",
+        "The Prime Minister can only be removed by a resolution passed by both Houses of Parliament",
+        "The speaker of the Lok Sabha can be removed at the pleasure of the President",
+      ],
+      correctAnswer:
+        "The Governor of a State holds his office during the pleasure of the President",
+      explanation:
+        "While the CEC has security of tenure like a SC judge, the Governor is appointed by the President and can be removed at any time ('during the pleasure of the President'). The Speaker and Prime Minister have specific constitutional removal processes that do not depend on the President's pleasure.",
+    },
+    {
+      text: "6. In which of the following cases the President of India is not bound by the advice of the Council of Ministers?\n1. The choice of the Prime Minister\n2. The dismissal of a Government which refuses to quit, after having lost its majority in the House of the People\n3. The allocation of business\n4. The dissolution of the House, when appeal to the electorate becomes necessary",
+      options: ["1, 2 and 3", "1, 2 and 4", "1, 3 and 4", "2, 3 and 4"],
+      correctAnswer: "1, 2 and 4",
+      explanation:
+        "These represent the 'situational discretions' of the President. He uses his own judgment when no party has a clear majority to pick a PM, when a government loses confidence but won't resign, or when he decides if the Lok Sabha should be dissolved if the Council of Ministers has lost its majority.",
+    },
+    {
+      text: "7. Which of the following statements is not correct?",
+      options: [
+        "There shall be a Council of Ministers headed by the Prime Minister to aid and advise the President who shall act in accordance with such advice.",
+        "The President may require the Council of Ministers to reconsider such advice",
+        "The President need not act in accordance with the advice tendered after such reconsideration",
+        "The President shall act in accordance with the advice tendered after such reconsideration",
+      ],
+      correctAnswer:
+        "The President need not act in accordance with the advice tendered after such reconsideration",
+      explanation:
+        "Under the 44th Amendment Act, the President can send advice back for reconsideration once. However, once the Council of Ministers sends the advice back (with or without changes), the President *must* accept it.",
+    },
+    {
+      text: "8. Match List I (Power) with List II (Article):\nA. Power to grant pardon\nB. Executive power of the Union\nC. Power to appoint Prime Minister\nD. Appointment of Attorney-General\n\n1. Article 76\n2. Article 75\n3. Article 53\n4. Article 72",
+      options: [
+        "A-4, B-2, C-3, D-1",
+        "A-4, B-3, C-2, D-1",
+        "A-1, B-2, C-3, D-4",
+        "A-1, B-3, C-2, D-4",
+      ],
+      correctAnswer: "A-4, B-3, C-2, D-1",
+      explanation:
+        "Article 72 covers pardoning powers; Article 53 vests executive power; Article 75 deals with the appointment of the PM; and Article 76 provides for the Attorney-General.",
+    },
+    {
+      text: "9. Consider the following statements:\n1. The President can commute death sentence to life imprisonment.\n2. The Governor cannot commute death sentence to life imprisonment.\n3. The President's power to pardon extends to punishments or sentences by court martial.",
+      options: ["2 only", "1 and 3 only", "1, 2 and 3", "2 and 3 only"],
+      correctAnswer: "1 and 3 only",
+      explanation:
+        "Both the President and Governor can commute a death sentence. However, only the President has the power to grant a full 'pardon' in death sentence cases and the exclusive power to pardon sentences given by a Court Martial (military court).",
+    },
+    {
+      text: "10. Assertion (A): President of India is the Chief Executive of Government of India.\nReason (R): President of India is elected by the elected members of Parliament and elected members of state legislative assemblies.",
+      options: [
+        "Both A and R true and R is correct explanation",
+        "Both A and R true but R is NOT correct explanation",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true but R is not the correct explanation of A",
+      explanation:
+        "The President is indeed the Chief Executive, and the election method is correct as stated in R. However, being the Chief Executive is a functional role of the office and is not 'caused' by the specific way he is elected.",
+    },
+    {
+      text: "11. In which case is the President not bound by the aid and advice of the Council of Ministers?",
+      options: [
+        "In deciding the question of removal of a Governor",
+        "In deciding the question whether a member of Lok Sabha has become disqualified",
+        "While exercising power to grant pardon",
+        "In dismissing a civil servant without enquiry on ground of security of state",
+      ],
+      correctAnswer:
+        "In deciding the question whether a member of Lok Sabha has become disqualified",
+      explanation:
+        "In matters of disqualification of MPs (except under the Anti-Defection Law), the President must act according to the opinion of the Election Commission, rather than the political advice of the Council of Ministers.",
+    },
+    {
+      text: "12. Money can be advanced out of the Contingency Fund of India to meet unforeseen expenditure by the:",
+      options: [
+        "Parliament",
+        "President",
+        "Finance Minister",
+        "Prime Minister",
+      ],
+      correctAnswer: "President",
+      explanation:
+        "The Contingency Fund is held by the Finance Secretary on behalf of the President. He can make advances from it to meet unexpected costs, pending subsequent authorization by Parliament.",
+    },
+    {
+      text: "13. The charge of violation of the Constitution for impeachment cannot be preferred by a House unless:\n1. Resolution moved after 7 days' notice signed by 1/4th members.\n2. Resolution passed by majority of not less than 2/3rd of total membership.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 2",
+      explanation:
+        "Statement 1 is incorrect because the required notice period is 14 days, not 7 days. Statement 2 is correct; a special majority of 2/3rd of the total membership of the House is required to pass the impeachment resolution.",
+    },
+    {
+      text: "14. Which Article of the Constitution was amended by the 42nd Amendment Act, 1976 to make it obligatory for the President to act on the advice of the Council of Ministers?",
+      options: ["Article 73", "Article 74", "Article 75", "Article 77"],
+      correctAnswer: "Article 74",
+      explanation:
+        "Article 74 originally said there shall be a Council of Ministers to aid and advise the President. The 42nd Amendment added the words 'who shall, in the exercise of his functions, act in accordance with such advice'.",
+    },
+    {
+      text: "15. Assertion (A): The President of India has power to grant pardon, reprieve, respite or remission.\nReason (R): The President exercises not only executive functions but also judicial and legislative functions.",
+      options: [
+        "Both A and R true and R is correct explanation",
+        "Both A and R true but R is NOT correct explanation",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true and R is the correct explanation of A",
+      explanation:
+        "The pardoning power is a judicial function of the President, separate from his executive duties, which allows him to correct possible judicial errors or provide relief from harsh sentences.",
+    },
+    {
+      text: "16. Which of the following is a correct statement about the President of India?",
+      options: [
+        "He can address both Houses, can summon the Houses and can send messages to either House",
+        "He can summon the Houses but cannot send messages",
+        "He can send messages but cannot summon",
+        "He cannot send messages or summon",
+      ],
+      correctAnswer:
+        "He can address both Houses of Parliament, can summon the Houses of Parliament and can send messages to either House of Parliament",
+      explanation:
+        "These are the legislative powers of the President. He is an integral part of Parliament and has the right to communicate with and convene its sessions.",
+    },
+    {
+      text: "17. The President of India:",
+      options: [
+        "Can be a member of Parliament",
+        "Is part of Parliament",
+        "Cannot stand for election for more than two terms",
+        "Presides over joint sittings of both Houses",
+      ],
+      correctAnswer: "Is part of Parliament",
+      explanation:
+        "Under Article 79, Parliament consists of the President, the Rajya Sabha, and the Lok Sabha. He is not a member of either house, but a part of the legislative structure. There is no limit on how many terms he can serve in India.",
+    },
+    {
+      text: "18. Which statement about the impeachment of the President is NOT correct?",
+      options: [
+        "Charge for violation of Constitution preferred by either House",
+        "Resolution moved after at least 30 days' notice",
+        "Resolution signed by not less than 1/4th total members",
+        "Resolution passed by majority of not less than 2/3rd total members",
+      ],
+      correctAnswer:
+        "The resolution has to be moved after at least thirty days' notice in writing.",
+      explanation:
+        "The required notice period for an impeachment resolution is 14 days, not 30 days. All other points regarding the initiation and voting majority are correct.",
+    },
+    {
+      text: "19. Which proposition is a correct description of the powers of the President under Article 356?",
+      options: [
+        "If the CM despite majority cannot run govt in accordance with Constitution, President can proclaim emergency",
+        "If law and order completely breaks down, President can proclaim emergency",
+        "President can refer matter to SC for advice and act accordingly",
+        "President cannot proclaim emergency if Governor refuses report",
+      ],
+      correctAnswer:
+        "If the Chief Minister inspite of commanding the confidence of the Legislative Assembly, cannot run his government in accordance with the Constitution, the President can proclaim emergency.",
+      explanation:
+        "Article 356 (President's Rule) is about the failure of 'constitutional machinery,' not just law and order. Even with a majority, if the government violates the Constitution, the President can act, with or without a Governor's report.",
+    },
+    {
+      text: "20. Match List I (Articles) with List II (Contents):\nA. Article 61\nB. Article 54\nC. Article 52\nD. Article 56\n\n1. The President of India\n2. Term of President's Office\n3. Impeachment of President\n4. Election of President",
+      options: [
+        "A-3, B-2, C-4, D-1",
+        "A-2, B-4, C-1, D-3",
+        "A-2, B-1, C-3, D-4",
+        "A-3, B-4, C-1, D-2",
+      ],
+      correctAnswer: "A-3, B-4, C-1, D-2",
+      explanation:
+        "Art 52 establishes the office; Art 54 covers the election; Art 56 defines the 5-year term; and Art 61 outlines the impeachment process.",
+    },
+    {
+      text: "21. The rule of passing resolution by two-thirds majority of total number of members of the House is applicable in case of:",
+      options: [
+        "Amendment of the Constitution",
+        "Approval of proclamation of emergency",
+        "Impeachment of the President",
+        "Disapproval of proclamation of emergency",
+      ],
+      correctAnswer: "Impeachment of the President",
+      explanation:
+        "While constitutional amendments and emergency approvals use special majorities, only the impeachment of the President requires a majority of 2/3rd of the *total membership* of the House.",
+    },
+    {
+      text: "22. Assertion (A): No public expenditure can be incurred except with the sanction of the Parliament.\nReason (R): During an emergency, the President of India is empowered to authorize expenditure from the Consolidated Fund.",
+      options: [
+        "Both A and R true and R is correct explanation",
+        "Both A and R true but R is NOT correct explanation",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer: "A is true but R is false",
+      explanation:
+        "Parliament has 'power of the purse' (A is true). However, even in an emergency, the President cannot unilaterally authorize spending from the Consolidated Fund; it always requires parliamentary approval via an Appropriation Act.",
+    },
+    {
+      text: "23. Who makes rules for more convenient transaction of the business of the Government of India and for allocation among Ministers of said business?",
+      options: [
+        "The President",
+        "The Union Law Minister",
+        "The Attorney-General of India",
+        "The Cabinet Secretariat",
+      ],
+      correctAnswer: "The President",
+      explanation:
+        "Article 77(3) empowers the President to make these 'Business Rules' to ensure the efficient functioning and division of work among the various ministries.",
+    },
+    {
+      text: "24. On receipt of a Constitutional Amendment Bill after its passing by each House of the Parliament, the President:",
+      options: [
+        "Shall give his assent",
+        "May give his assent",
+        "May withhold his assent",
+        "May return the Bill for reconsideration",
+      ],
+      correctAnswer: "Shall give his assent",
+      explanation:
+        "The 24th Amendment Act of 1971 made it mandatory for the President to give his assent to a Constitutional Amendment Bill; he has no veto power here.",
+    },
+    {
+      text: "25. The provision that the President may require the Council of Ministers to reconsider advice and shall act in accordance with advice tendered after such reconsideration was inserted by:",
+      options: [
+        "38th Amendment",
+        "42nd Amendment",
+        "44th Amendment",
+        "52nd Amendment",
+      ],
+      correctAnswer: "44th Amendment",
+      explanation:
+        "The 42nd Amendment made advice absolutely binding. The 44th Amendment added this 'one-time' reconsideration cushion to balance the President's role.",
+    },
+    {
+      text: "26. Assertion (A): The President can return any bill passed by Parliament for reconsideration.\nReason (R): The President cannot return money bills to the Parliament for reconsideration.",
+      options: [
+        "Both A and R true and R is correct explanation",
+        "Both A and R true but R is NOT correct explanation",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer: "A is false but R is true",
+      explanation:
+        "Assertion A is false because the President *cannot* return a Money Bill or a Constitutional Amendment Bill for reconsideration. Reason R is a correct statement of fact.",
+    },
+    {
+      text: "27. Which is NOT correct about the powers of the President to grant pardons?",
+      options: [
+        "The President can do so in all cases where sentence is by Court Martial",
+        "He may exercise powers for offences against laws in the executive power of Union",
+        "He may exercise such powers in all cases of death sentence",
+        "He may reject a petition for mercy but he must hear it before rejecting",
+      ],
+      correctAnswer:
+        "The President may reject a petition for mercy but he must hear a petition for mercy before rejecting.",
+      explanation:
+        "The President has the power to reject mercy petitions, but there is no constitutional requirement for him to grant an oral or personal hearing to the convict before doing so.",
+    },
+    {
+      text: "28. Which statement about the executive powers of the President is incorrect?",
+      options: [
+        "All important appointments made on advice of Council of Ministers",
+        "PM and all Union Ministers are appointed by President",
+        "President has absolute power to appoint/remove members of statutory bodies at discretion",
+        "President is supreme commander of Armed Forces",
+      ],
+      correctAnswer:
+        "The President has the absolute power to appoint and remove the chairmen and the members of statutory bodies at his discretion.",
+      explanation:
+        "The President's power is not 'absolute' or 'discretionary' in this regard; he acts on the advice of the Council of Ministers and follows laws established by Parliament for these bodies.",
+    },
+    {
+      text: "29. The President of India is elected by the 'Electoral College' consisting of:",
+      options: [
+        "All Members of Parliament",
+        "Elected Members of Parliament and State Legislative Assemblies",
+        "Members of Parliament, State Assemblies and Legislative Councils",
+        "All the Members of Parliament and State Legislative Assemblies",
+      ],
+      correctAnswer:
+        "Elected Members of Parliament and State Legislative Assemblies",
+      explanation:
+        "Only *elected* members participate. Nominated members of Parliament and all members (elected or nominated) of State Legislative Councils are excluded.",
+    },
+    {
+      text: "30. Consider the following statements:\n1. If a non-Money Bill is returned for reconsideration and passed again, it is not obligatory for President to assent.\n2. A Bill for formation of new states needs no recommendation of President for introduction.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Neither 1 nor 2",
+      explanation:
+        "Statement 1 is false because once a bill is passed again after reconsideration, the President *must* give assent. Statement 2 is false because Article 3 requires the President's prior recommendation for bills altering state boundaries.",
+    },
+    {
+      text: "31. Assertion (A): The President of India is indirectly elected.\nReason (R): Under a parliamentary system, the head of the state is only a nominal head.",
+      options: [
+        "Both A and R true and R is correct explanation",
+        "Both A and R true but R is NOT correct explanation",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true and R is the correct explanation of A",
+      explanation:
+        "In a parliamentary system, real power lies with the PM. Direct election for a nominal head would be redundant and could create two competing centers of power, so indirect election is preferred.",
+    },
+    {
+      text: "32. The authority to declare war or peace under the Indian Constitutions is vested in:",
+      options: [
+        "The Prime Minister",
+        "The Defence Minister",
+        "The Parliament",
+        "The President",
+      ],
+      correctAnswer: "The President",
+      explanation:
+        "As the Supreme Commander of the Defense Forces, the President has the legal authority to declare war or conclude peace, though he does so on the advice of the Cabinet.",
+    },
+    {
+      text: "33. Which one of the following statements is correct?",
+      options: [
+        "President may continue to be MP after assuming office",
+        "President not barred from holding office of profit",
+        "President uses official residence only on payment of rent",
+        "Emoluments and allowances shall not be diminished during his term",
+      ],
+      correctAnswer:
+        "The emoluments and allowances of the President shall not be diminished during his term of office.",
+      explanation:
+        "This is a constitutional guarantee to ensure the independence of the office. He must vacate any seat in Parliament, cannot hold an office of profit, and gets rent-free accommodation.",
+    },
+    {
+      text: "34. Which one of the following is not a constitutional prerogative of the President of India?",
+      options: [
+        "Returning a Legislative Bill for reconsideration",
+        "Returning a Money Bill for reconsideration",
+        "Dissolving the Lok Sabha",
+        "Summoning the Rajya Sabha",
+      ],
+      correctAnswer: "Returning a Money Bill for reconsideration",
+      explanation:
+        "The President can either give assent or withhold assent to a Money Bill, but he *cannot* return it for reconsideration.",
+    },
+    {
+      text: "35. Consider the following relating to the President:\n1. May resign by writing to Vice-President.\n2. Continues in office until successor enters despite term expiry.\n3. Not entitled to more than two terms.",
+      options: ["1 and 3 only", "1 and 2 only", "1, 2 and 3", "2 and 3 only"],
+      correctAnswer: "1 and 2 only",
+      explanation:
+        "Statements 1 and 2 are constitutional facts. Statement 3 is false because the Indian Constitution (Article 57) says a person who holds office is eligible for re-election with no limit on terms.",
+    },
+    {
+      text: "36. Assertion (A): The President of India occupies almost same position as the King or Queen of England.\nReason (R): The President is ultimately bound to act in accordance with advice by Council of Ministers.",
+      options: [
+        "Both A and R true and R is correct explanation",
+        "Both A and R true but R is NOT correct explanation",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true and R is the correct explanation of A",
+      explanation:
+        "Like the British Monarch, the Indian President is a 'titular' or 'de jure' head, while the real power is exercised by the cabinet responsible to the legislature.",
+    },
+    {
+      text: "37. The President of India is not the authority for the appointment of:",
+      options: [
+        "Judges of the High Courts",
+        "State Governors",
+        "Union Ministers",
+        "Chairman of a State Public Service Commission",
+      ],
+      correctAnswer: "Chairman of a State Public Service Commission",
+      explanation:
+        "The Chairman and members of a State Public Service Commission are appointed by the *Governor* of the state, though they can only be removed by the President.",
+    },
+    {
+      text: "38. Who among the following do not participate in the election of the President?",
+      options: [
+        "Elected Members of Rajya Sabha",
+        "Elected Members of Lok Sabha",
+        "Elected Members of Vidhan Sabhas",
+        "Elected Members of Vidhan Parishads",
+      ],
+      correctAnswer: "Elected Members of the Vidhan Parishads",
+      explanation:
+        "Members of Legislative Councils (Vidhan Parishads) have no role in the presidential election to maintain the balance between states that have one house and those that have two.",
+    },
+    {
+      text: "39. Assertion (A): The President is part of the Parliament.\nReason (R): A bill passed by two Houses cannot become law without President's assent.",
+      options: [
+        "Both A and R true and R is correct explanation",
+        "Both A and R true but R is NOT correct explanation",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true and R is the correct explanation of A",
+      explanation:
+        "The President's role in the legislative process (granting assent) is exactly why he is considered an integral part of the Parliament.",
+    },
+    {
+      text: "40. Once emergency is proclaimed, the right to move SC for enforcement of FRs is suspended by the:",
+      options: ["Prime Minister", "President", "Speaker", "Chief Justice"],
+      correctAnswer: "President of India",
+      explanation:
+        "Under Article 359, the President can issue an order suspending the right to move any court for the enforcement of specified Fundamental Rights (except Articles 20 and 21).",
+    },
+    {
+      text: "41. Which is NOT correct regarding executive powers of the President?",
+      options: [
+        "Must be kept informed by PM of all Cabinet decisions",
+        "Presides over meetings of Council of Ministers when he deems fit",
+        "Can ask PM to submit decision of any minister for Council consideration",
+        "Must be supplied with information about administration as he asks",
+      ],
+      correctAnswer:
+        "He presides over the meetings of the Council of Ministers when he deems fit.",
+      explanation:
+        "The Prime Minister, not the President, presides over the meetings of the Council of Ministers. The President's role is to be informed and to advise, but not to lead the meetings.",
+    },
+    {
+      text: "42. Assertion (A): President can issue emergency under Art 352 on advice of PM.\nReason (R): When emergency is in operation, President may suspend all FRs except 20 and 21.",
+      options: [
+        "Both A and R true and R is correct explanation",
+        "Both A and R true but R is NOT correct explanation",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer: "A is false but R is true",
+      explanation:
+        "Assertion A is false because the 44th Amendment requires the advice of the *entire Cabinet* in writing, not just the PM. Reason R is a correct statement.",
+    },
+    {
+      text: "43. The power of the President of India to issue an ordinance is a / an:",
+      options: [
+        "Executive power",
+        "Legislative power",
+        "Constituent power",
+        "Quasi-judicial power",
+      ],
+      correctAnswer: "Legislative power",
+      explanation:
+        "Ordinance-making (Article 123) allows the President to create laws when Parliament is not in session; hence it is a legislative function exercised by the executive.",
+    },
+    {
+      text: "44. The impeachment of the President of India can be initiated in:",
+      options: [
+        "Either House of Parliament",
+        "Joint sitting of both Houses",
+        "Lok Sabha alone",
+        "Rajya Sabha alone",
+      ],
+      correctAnswer: "Either House of Parliament",
+      explanation:
+        "Any house can level the charge of 'violation of the Constitution.' Once one house passes it, the other house investigates the charge.",
+    },
+    {
+      text: "45. Who amongst the following decides about the disqualification of the Members of Parliament?",
+      options: [
+        "Election Commission",
+        "Supreme Court",
+        "Speaker",
+        "President of India",
+      ],
+      correctAnswer: "President of India",
+      explanation:
+        "The President decides on MP disqualifications (under Article 103), but he must obtain and act according to the opinion of the Election Commission.",
+    },
+    {
+      text: "46. Assertion (A): Constitution vests executive powers of Union in the President.\nReason (R): President of India is the Constitutional head of the State.",
+      options: [
+        "Both A and R true and R is correct explanation",
+        "Both A and R true but R is NOT correct explanation",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true and R is the correct explanation of A",
+      explanation:
+        "Because the President is the formal/constitutional head (the symbol of the state), all executive actions are formally taken in his name.",
+    },
+    {
+      text: "47. When the President is satisfied that financial credit of Govt of India is threatened, he may:",
+      options: [
+        "Direct reduction in members of Finance Commission",
+        "Proclaim financial emergency",
+        "Impose President's Rule in any State",
+        "Direct Parliament to pass special Financial Bill",
+      ],
+      correctAnswer: "Proclaim financial emergency",
+      explanation:
+        "Article 360 allows for this proclamation if the financial stability or credit of India or any part of its territory is threatened.",
+    },
+    {
+      text: "48. If vacancies occur in both President and Vice-President offices, who discharges the functions of President?",
+      options: [
+        "Speaker of Lok Sabha",
+        "Leader of majority party in LS",
+        "Chief Justice of India",
+        "Seniormost Governor",
+      ],
+      correctAnswer: "Chief Justice of India",
+      explanation:
+        "According to the President (Discharge of Functions) Act, 1969, the CJI (or in his absence, the senior-most SC judge) takes over until a new President is elected.",
+    },
+    {
+      text: "49. President has power to declare emergency under Art 352 on which grounds?\n1. War\n2. Internal disturbance\n3. External aggression\n4. Armed rebellion",
+      options: ["1, 2 and 3", "1, 3 and 4", "1, 2 and 4", "2, 3 and 4"],
+      correctAnswer: "1, 3 and 4",
+      explanation:
+        "The term 'Internal disturbance' was removed by the 44th Amendment and replaced with 'Armed rebellion' to limit the grounds for emergency.",
+    },
+    {
+      text: "50. On Ordinances promulgated during recess:\n1. May be withdrawn any time by President.\n2. Laid before both Houses and cease after 6 weeks of reassembly.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Both 1 and 2",
+      explanation:
+        "An ordinance has the same force as an Act but is temporary. It must be approved by Parliament shortly after they meet, or it lapses. The President also has the power to pull it back at any time.",
+    },
+    {
+      text: "51. Match List I (Pardoning Power) with List II (Implications):\nA. Commutation\nB. Reprieve\nC. Remission\nD. Respite\n\n1. Stay of execution for temporary period\n2. Awarding lesser sentence for special fact\n3. Substitution for lighter form\n4. Reducing period without changing character",
+      options: [
+        "A-3, B-4, C-2, D-1",
+        "A-4, B-2, C-1, D-3",
+        "A-3, B-1, C-4, D-2",
+        "A-4, B-3, C-2, D-1",
+      ],
+      correctAnswer: "A-3, B-1, C-4, D-2",
+      explanation:
+        "Commutation changes the form (e.g., death to life). Reprieve is a temporary stay. Remission reduces time but not type (e.g., 2 years to 1 year). Respite is a lesser sentence due to facts like pregnancy.",
+    },
+    {
+      text: "52. The President of India is not empowered to proclaim:",
+      options: [
+        "Emergency arising out of war/aggression",
+        "Emergency due to breakdown of constitutional machinery",
+        "Financial emergency in state of J&K",
+        "Emergency arising out of threat to financial stability",
+      ],
+      correctAnswer: "Financial emergency in the state of Jammu and Kashmir",
+      explanation:
+        "Historically, under the specific constitutional provisions for J&K, a financial emergency under Article 360 did not apply to that state (this context has changed post-2019, but fits the objective question's logic).",
+    },
+    {
+      text: "53. President has power to address both Houses at commencement of:\n1. First session after general elections\n2. Each session\n3. First session of each year\n4. Budget session of each year",
+      options: ["2 and 3", "1 and 4", "1 and 3", "2 and 4"],
+      correctAnswer: "1 and 3",
+      explanation:
+        "Article 87 provides for the 'Special Address' by the President at these two specific junctures: the start of a new Lok Sabha and the start of every new year.",
+    },
+    {
+      text: "54. Consider the following:\n1. When VP acts as President, he simultaneously performs Chairman of Rajya Sabha duties.\n2. President can promulgate Ordinances anytime except when both Houses are in session.",
+      options: ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "2 only",
+      explanation:
+        "Statement 1 is false because while acting as President, the VP *cannot* perform his duties as RS Chairman. Statement 2 is correct; an ordinance can be issued as long as at least one house is not in session.",
+    },
+    {
+      text: "55. The 1978 Amendment relating to emergency requires the President to act in accordance with the:",
+      options: [
+        "Collective advice of entire Council of Ministers",
+        "Advice of the Union Cabinet",
+        "Advice of Attorney General",
+        "Advice of Supreme Court",
+      ],
+      correctAnswer: "Advice of the Union Cabinet",
+      explanation:
+        "The 44th Amendment explicitly uses the term 'Cabinet' (PM + other ministers of cabinet rank) for the written recommendation required for a National Emergency.",
+    },
+    {
+      text: "56. The Union Executive of India consists of:",
+      options: [
+        "President, VP, Speaker and Council of Ministers",
+        "President, Deputy Chairman of RS, Speaker and PM",
+        "President and Council of Ministers",
+        "The President, the Vice-President and the Council of Ministers",
+      ],
+      correctAnswer:
+        "The President, the Vice-President and the Council of Ministers",
+      explanation:
+        "According to the Constitution, the Union Executive includes the President, the Vice-President, the Council of Ministers (with the PM at the head), and the Attorney-General of India.",
+    },
+  ],
+  Vice_President: [
+    {
+      text: "1. Consider the following statements:\n1. The Constitution of India provides that the Vice-President of India shall be the ex-officio Chairman of the Council of States.\n2. The Constitution of India has not fixed any emoluments for the Vice-President of India in that capacity.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Both 1 and 2",
+      explanation:
+        "The Vice-President acts as the ex-officio Chairman of the Rajya Sabha. Interestingly, the Constitution does not provide a salary for the Vice-President's role as Vice-President; he receives a salary in his capacity as the Chairman of the Rajya Sabha.",
+    },
+    {
+      text: "2. Consider the following statements:\n1. The Vice-President of India may be removed from his office by a resolution of the council of states passed by a majority of all the then members of the council and agreed to by the House of the People.\n2. An election to fill a vacancy caused by the expiration of the term of office of Vice-President shall be completed before the expiration of the term.\n3. The Vice-President shall, not withstanding the expiration of his term, continue to hold office until his successor enters upon his office.",
+      options: ["1, 2 and 3", "1 and 2", "2 and 3", "1 and 3"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "All three statements are correct. Removal requires an effective majority in the Rajya Sabha and a simple majority in the Lok Sabha. To avoid an interregnum, elections must be held before the term ends, and the incumbent stays until the successor takes over.",
+    },
+    {
+      text: "3. The Vice-President is elected by an electoral college consisting of:",
+      options: [
+        "Members of both Houses of Parliament",
+        "Elected members of both Houses of Parliament",
+        "Elected members of both Houses of Parliament and the State Legislative Assemblies",
+        "Members of both Houses of Parliament and the State Legislative Assemblies",
+      ],
+      correctAnswer: "Members of both Houses of Parliament",
+      explanation:
+        "The Vice-Presidential electoral college includes both elected and nominated members of both Houses of Parliament, but unlike the Presidential election, it does not include members of State Legislative Assemblies.",
+    },
+    {
+      text: "4. Which of the following statements is/are correct with regard to the Vice-President of India?\n1. He must be a Member of Parliament.\n2. He is elected by proportional representation.\n3. He should not hold any other office of profit.",
+      options: ["Only 1", "1 and 3", "2 and 3", "1 and 2"],
+      correctAnswer: "2 and 3",
+      explanation:
+        "The Vice-President should not be a member of either House of Parliament (if a member is elected, they must vacate the seat). The election uses the system of proportional representation by means of a single transferable vote, and the holder must not occupy an office of profit.",
+    },
+    {
+      text: "5. Assertion (A): A candidate for Vice-President must be qualified for election as a member of Rajya Sabha.\nReason (R): The Vice-President functions as the Chairman of Rajya Sabha.",
+      options: [
+        "Both A and R are individually true and R is the correct explanation of A",
+        "Both A and R are individually true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true and R is the correct explanation of A",
+      explanation:
+        "Since the Vice-President's primary role is to preside over the Rajya Sabha, it is a constitutional requirement that he meets the eligibility criteria of a Rajya Sabha member.",
+    },
+    {
+      text: "6. The Vice-President of India may be removed from his office by:",
+      options: [
+        "Impeachment",
+        "A resolution passed by Lok Sabha and Rajya Sabha with a two-thirds majority",
+        "A resolution passed with a two-thirds majority in a joint session of Parliament",
+        "A resolution passed by Rajya Sabha with simple majority and agreed to by a majority members of Lok Sabha",
+      ],
+      correctAnswer:
+        "A resolution passed by Rajya Sabha with simple majority and agreed to by a majority members of Lok Sabha",
+      explanation:
+        "The Vice-President does not undergo a formal impeachment like the President. A resolution must be passed by the Rajya Sabha (effective majority) and agreed to by the Lok Sabha (simple majority).",
+    },
+    {
+      text: "7. Which one of the following statements is not correct?",
+      options: [
+        "The Vice-President of India holds office for a period of five years.",
+        "The Vice-President of India is eligible for re-election.",
+        "The Vice-President of India can act as President only for a maximum period of nine months.",
+        "The Supreme Court of India has to look into all disputes with regard to the election of the Vice-President of India.",
+      ],
+      correctAnswer:
+        "The Vice-President of India can act as President only for a maximum period of nine months.",
+      explanation:
+        "The maximum period a Vice-President can act as President is six months, within which a new President must be elected. The term is 5 years, re-election is allowed, and the Supreme Court settles election disputes.",
+    },
+    {
+      text: "8. Assertion (A): During any period when the Vice-President of India acts as President of India or discharges the functions of the President, he continues to perform the duties of the office of the chairman of the Council of States.\nReason (R): The Vice-President of India is the ex-officio Chairman of the Council of States.",
+      options: [
+        "Both A and R are individually true and R is the correct explanation of A",
+        "Both A and R are individually true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "A is false but R is true",
+      explanation:
+        "When the Vice-President acts as President, he ceases to perform the duties of the Chairman of Rajya Sabha. During this period, those duties are performed by the Deputy Chairman.",
+    },
+    {
+      text: "9. The Vice-President of India can resign from his office at any time by addressing the resignation letter to the:",
+      options: [
+        "Deputy Chairman of Rajya Sabha",
+        "Chief Justice of India",
+        "President of India",
+        "Speaker of Lok Sabha",
+      ],
+      correctAnswer: "President of India",
+      explanation:
+        "The Vice-President submits his resignation directly to the President of India.",
+    },
+    {
+      text: "10. Consider the following statements:\n1. No ground has been mentioned in the constitution for the removal of Vice-President.\n2. No resolution for the removal of Vice-President can be moved unless at least 21 days' advance notice has been given.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "The Constitution is silent on the specific grounds for removing the Vice-President. However, statement 2 is incorrect because the required advance notice period for moving the removal resolution is 14 days, not 21 days.",
+    },
+  ],
+  Prime_Minister: [
+    {
+      text: "1. Consider the following statements with respect to duties of the Prime Minister according to the Constitution of India:\n1. To make rules for the more convenient transaction of business of the Government of India, and for the allocation among Ministers of the said business.\n2. If the President so requires, to submit for consideration of the Council of Ministers any matter on which a decision has been taken by a Minister but which has not been considered by the Council.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 2",
+      explanation:
+        "Statement 1 describes a function of the President (Article 77), not the PM. Statement 2 is a specific duty of the PM under Article 78 to ensure collective responsibility.",
+    },
+    {
+      text: "2. Which one of the following is constitutionally obligatory on the part of the Prime Minister of India?",
+      options: [
+        "Take all major decisions regarding defence only after prior approval by the President.",
+        "Communicate to the President all decisions of the Cabinet relating to administration and proposals for legislation.",
+        "Go by Presidential discretion in the allocation of business among the ministers.",
+        "Prove majority strength in both Houses if leading a minority party.",
+      ],
+      correctAnswer:
+        "The Prime Minister has to communicate to the President all decisions of the Cabinet relating to administration and proposals for legislation.",
+      explanation:
+        "Article 78 makes it a duty of the PM to keep the President informed of all administrative decisions and legislative proposals of the Council of Ministers.",
+    },
+    {
+      text: "3. Which of the following bodies are headed by the Prime Minister?\n1. National Integration Council\n2. National Water Resources Council\n3. National Development Council\n4. Inter-State Council\n5. Zonal Councils",
+      options: ["1, 3, 4 and 5", "3, 4 and 5", "1, 2, 3 and 4", "2, 3 and 4"],
+      correctAnswer: "1, 2, 3 and 4",
+      explanation:
+        "The PM chairs the National Integration Council, National Water Resources Council, National Development Council, and Inter-State Council. Zonal Councils are chaired by the Union Home Minister.",
+    },
+    {
+      text: "4. 'If any functionary under our constitution is to be compared with the US President, he is the Prime Minister and not the President of the Union'. This statement is attributed to:",
+      options: [
+        "Jawaharlal Nehru",
+        "B.R. Ambedkar",
+        "Rajendra Prasad",
+        "K.M. Munshi",
+      ],
+      correctAnswer: "B.R. Ambedkar",
+      explanation:
+        "Dr. Ambedkar highlighted that in a parliamentary system, the PM is the real executive head, similar to the powerful role of the US President in a presidential system.",
+    },
+    {
+      text: "5. Which one of the following is correct in terms of the Constitution of India?",
+      options: [
+        "The Prime Minister decides the allocation of portfolios among the ministers.",
+        "When the Prime Minister resigns, the Council of Ministers gets dissolved.",
+        "All the principal policy announcements of the government are made by the Prime Minister.",
+        "It shall be the duty of Prime Minister to communicate to the President all decisions of the Council of Ministers relating to the administration of the affairs of the union.",
+      ],
+      correctAnswer:
+        "It shall be the duty of Prime Minister to communicate to the President all decisions of the Council of Ministers relating to the administration of the affairs of the union.",
+      explanation:
+        "While A and B are functionally true in a parliamentary system, statement D is a verbatim constitutional duty explicitly written in Article 78.",
+    },
+    {
+      text: "6. Statement I: The Prime Minister of India can exercise control over other branches of government through a coterie of advisors.\nStatement II: The Prime Minister and his Cabinet function on the basis of collective responsibility.",
+      options: [
+        "Both statements are true and II explains I",
+        "Both statements are true but II does not explain I",
+        "Statement I is true but II is false",
+        "Statement I is false but II is true",
+      ],
+      correctAnswer: "Statement I is false but II is true",
+      explanation:
+        "Statement I is a political observation rather than a constitutional fact. Statement II is a core constitutional principle where the entire cabinet is responsible to the Lok Sabha.",
+    },
+    {
+      text: "7. The Constitution of India lays down that proposals for legislation are to be communicated to the President by the:",
+      options: [
+        "Prime Minister",
+        "Speaker of the Lok Sabha and Chairman of the Rajya Sabha",
+        "Minister for Law",
+        "Minister for Parliamentary Affairs",
+      ],
+      correctAnswer: "Prime Minister",
+      explanation:
+        "As per Article 78, the Prime Minister acts as the sole channel of communication between the Council of Ministers and the President.",
+    },
+    {
+      text: "8. Who among the following called Prime Minister as 'the captain of the ship of the state'?",
+      options: ["Ramsay Muir", "Lord Morely", "H.J. Laski", "Munro"],
+      correctAnswer: "Munro",
+      explanation:
+        "Various political thinkers have used metaphors for the PM; Munro specifically used the 'captain of the ship' description to signify his leadership over the government.",
+    },
+    {
+      text: "9. Who of the following became Prime Minister after being Chief Ministers?\n1. P.V. Narasimha Rao\n2. Charan Singh\n3. H.D. Deve Gowda\n4. V.P. Singh\n5. Morarji Desai",
+      options: [
+        "2, 3, 4 and 5",
+        "1, 2 and 4",
+        "1, 2, 3, 4 and 5",
+        "2, 3 and 4",
+      ],
+      correctAnswer: "1, 2, 3, 4 and 5",
+      explanation:
+        "All these individuals served as Chief Ministers of their respective states before ascending to the office of the Prime Minister of India.",
+    },
+    {
+      text: "10. Consider the following statements:\nThe Prime Minister as the head of the Council of Ministers:\n1. Has a free hand in the distribution of portfolios\n2. Can reshuffle the Ministers and ask any Minister to resign\n3. Is bound by the advice of the Ministers\n4. Advises the Ministers in day-to-day administration of Ministries",
+      options: ["1 and 2", "2 and 3", "1, 2 and 4", "3 and 4"],
+      correctAnswer: "1 and 2",
+      explanation:
+        "The PM has the authority to assign portfolios and reshuffle the cabinet. He is the head, so he is not 'bound' by their advice; rather, they serve at his pleasure. He generally doesn't interfere in day-to-day ministry administration.",
+    },
+    {
+      text: "11. Which of the following are included in Article 78 of the Indian Constitution, defining the duties of Prime Minister?\n1. To communicate all decisions of the Council of Ministers and proposals for legislation to the President.\n2. To take prior presidential sanction for the budget before submitting it.\n3. To furnish information called for by President regarding administration.\n4. If President requires, submit for consideration of the Council a matter on which a minister has taken a decision without Council consideration.",
+      options: ["1 and 2", "1, 3 and 4", "2 and 4", "1 and 3"],
+      correctAnswer: "1, 3 and 4",
+      explanation:
+        "The budget doesn't require 'prior presidential sanction' in the way other duties under Article 78 are defined. Duties 1, 3, and 4 are the explicit constitutional mandates for the PM.",
+    },
+  ],
+  Central_Council_of_Ministers: [
+    {
+      text: "1. Which of the following are not mentioned in the Constitution of India?\n1. Council of Ministers\n2. Collective Responsibility\n3. Resignation of Ministers\n4. Office of the Deputy Prime Minister",
+      options: ["1 and 2", "2 and 3", "3 and 4", "1 and 3"],
+      correctAnswer: "3 and 4",
+      explanation:
+        "While 'Council of Ministers' and 'Collective Responsibility' are explicitly mentioned in Article 74 and 75, the Constitution does not talk about the process of resignation or the post of the Deputy Prime Minister.",
+    },
+    {
+      text: "2. Consider the following statements:\n1. The President cannot function without the Union Council of Ministers.\n2. The Solicitor-General is the highest legal authority of the Union Government.\n3. The Union Council of Ministers can function for sometime even after death or resignation of the Prime minister.\n4. In the absence of the Prime Minister, only the Home Minister can preside over meetings.",
+      options: ["Only 1", "3 and 4", "1, 2 and 4", "1, 2, 3 and 4"],
+      correctAnswer: "Only 1",
+      explanation:
+        "The President must always have a Council of Ministers to advise him. The Attorney-General (not Solicitor-General) is the highest legal officer. The death/resignation of the PM automatically dissolves the council. The PM nominates who presides in his absence.",
+    },
+    {
+      text: "3. According to Article 74, which of the following statements relating to the advice tendered by Ministers to the President would be correct?",
+      options: [
+        "It shall not be inquired into in any court.",
+        "It can be inquired into in the Supreme Court.",
+        "It can be inquired into in all the courts.",
+        "It cannot be inquired into in the High Courts.",
+      ],
+      correctAnswer: "It shall not be inquired into in any court.",
+      explanation:
+        "Article 74(2) specifically bars any court from investigating the nature or content of the advice given by the ministers to the President, preserving the confidentiality of cabinet discussions.",
+    },
+    {
+      text: "4. How are the salaries and allowances of the Union Ministers determined?",
+      options: [
+        "By the Cabinet Secretariat",
+        "By the Parliament",
+        "By the Ministry of Finance",
+        "By the Ministry of Parliamentary Affairs",
+      ],
+      correctAnswer: "By the Parliament",
+      explanation:
+        "As per Article 75, the salaries and allowances of Ministers are determined by Parliament by law from time to time.",
+    },
+    {
+      text: "5. Which Constitutional Amendment Acts made the decisions of the Council of Ministers binding on the President?",
+      options: [
+        "42nd and 44th Amendment Acts",
+        "43rd Amendment Act",
+        "40th Amendment Act",
+        "40th and 41st Amendment Acts",
+      ],
+      correctAnswer: "42nd and 44th Amendment Acts",
+      explanation:
+        "The 42nd Amendment made the advice binding. The 44th Amendment added that the President can ask for one-time reconsideration, but must follow the subsequent advice.",
+    },
+    {
+      text: "6. Which Articles of the Constitution are relevant to analyse the relationship of the President with the Council of Ministers?",
+      options: [
+        "Articles 71, 75 and 78",
+        "Articles 74, 75 and 78",
+        "Articles 73, 76 and 78",
+        "Articles 72, 73 and 76",
+      ],
+      correctAnswer: "Articles 74, 75 and 78",
+      explanation:
+        "These three Articles cover the aid/advice (74), appointment/tenure (75), and duties of PM to inform the President (78), defining their entire relationship.",
+    },
+    {
+      text: "7. The accountability or responsibility of the Prime Minister and Cabinet to the Lok Sabha is:",
+      options: [
+        "Intermittent",
+        "Indirect",
+        "At the time of elections",
+        "Direct, continuous and collective",
+      ],
+      correctAnswer: "Direct, continuous and collective",
+      explanation:
+        "In a parliamentary democracy, the executive is constantly accountable to the lower house through various tools like questions, motions, and the constant threat of no-confidence.",
+    },
+    {
+      text: "8. Assertion (A): Collective responsibility of the Cabinet signifies unity and coordination among members.\nReason (R): It is the prerogative of the Prime Minister to select or drop a member of the Cabinet.",
+      options: [
+        "Both A and R are individually true and R is the correct explanation of A",
+        "Both A and R are individually true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true but R is not the correct explanation of A",
+      explanation:
+        "Both statements are correct, but the PM's power to drop members isn't the 'reason' for the principle of collective responsibility; rather, collective responsibility is a constitutional doctrine of shared accountability.",
+    },
+    {
+      text: "9. In which provision is the principle of collective responsibility of the Council of Ministers enshrined?",
+      options: ["Article 75", "Article 74", "Article 77", "Article 78"],
+      correctAnswer: "Article 75",
+      explanation:
+        "Article 75(3) explicitly states: 'The Council of Ministers shall be collectively responsible to the House of the People (Lok Sabha).'",
+    },
+    {
+      text: "10. 'There shall be a Council of Ministers with the Prime Minister at the head to aid and advice the President who shall in the exercise of his functions act in accordance with such advice'. This was laid down by which amendment?",
+      options: [
+        "41st Amendment",
+        "42nd Amendment",
+        "43rd Amendment",
+        "72nd Amendment",
+      ],
+      correctAnswer: "42nd Amendment",
+      explanation:
+        "The 42nd Amendment Act of 1976 removed the President's discretion by making it mandatory to act according to cabinet advice.",
+    },
+    {
+      text: "11. Article 74 of the Constitution provides that:",
+      options: [
+        "There shall be a Council of Ministers to aid and advise the President.",
+        "The President shall act in accordance with advice.",
+        "The President may require reconsideration, but shall act on advice tendered after such reconsideration.",
+        "The President shall act on advice or on his own.",
+      ],
+      correctAnswer:
+        "The President may require reconsideration, but shall act on advice tendered after such reconsideration.",
+      explanation:
+        "This reflects Article 74 as it stands after the 44th Amendment, allowing for a single reconsideration cycle.",
+    },
+    {
+      text: "12. If the President so requires, the PM must submit a Minister's solo decision for consideration of the whole Council. This ensures:",
+      options: [
+        "Collective responsibility",
+        "Status of PM as first among equals",
+        "Power of President to nullify decisions",
+        "Inherent power of Minister to take independent decisions",
+      ],
+      correctAnswer: "Collective responsibility",
+      explanation:
+        "This constitutional check prevents individual ministers from bypassing the collective wisdom and accountability of the entire cabinet.",
+    },
+    {
+      text: "13. Consider the following statements:\n1. All administrative decisions must be communicated to the President.\n2. The President can call for information on legislative proposals.\n3. The President can direct solo decisions to be placed before the Council.\n4. The President has the right to address the Council to elicit information.",
+      options: ["Only 1", "3 and 4", "1, 2 and 3", "1, 2, 3 and 4"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "The President communicates through the PM (Article 78). While 1, 2, and 3 are specific constitutional powers/duties, the President does not have a formal 'right to address the Council' directly for information; he asks the PM.",
+    },
+    {
+      text: "14. Which feature indicates that real executive power is in the Council of Ministers?",
+      options: [
+        "Federalism",
+        "Representative legislature",
+        "Universal adult franchise",
+        "Parliamentary democracy",
+      ],
+      correctAnswer: "Parliamentary democracy",
+      explanation:
+        "In a parliamentary system, the head of state is nominal, while the council responsible to the legislature holds the actual executive authority.",
+    },
+    {
+      text: "15. Which one of the following is not correct in relation to the Council of Ministers?",
+      options: [
+        "It is recognized by the Constitution",
+        "The number of its members is not specified in the Constitution",
+        "Its working is as per the provisions in the Constitution",
+        "Its members and their ranks are decided by the Prime Minister",
+      ],
+      correctAnswer: "Its working is as per the provisions in the Constitution",
+      explanation:
+        "The Constitution provides the framework for the Council, but its actual day-to-day working is largely governed by conventions and 'Rules of Business' rather than explicit constitutional articles.",
+    },
+    {
+      text: "16. The executive power of the Union is vested in the:",
+      options: [
+        "Union Cabinet",
+        "President of India",
+        "Prime Minister",
+        "Union Council of Ministers",
+      ],
+      correctAnswer: "President of India",
+      explanation:
+        "Article 53 clearly states: 'The executive power of the Union shall be vested in the President.' However, he exercises it through the Council of Ministers.",
+    },
+    {
+      text: "17. Whenever the Constitution requires the 'satisfaction' of the President, it means:",
+      options: [
+        "The personal satisfaction of the President",
+        "The satisfaction of the Council of Ministers",
+        "The satisfaction of the Members of the Parliament",
+        "None of the above",
+      ],
+      correctAnswer: "The satisfaction of the Council of Ministers",
+      explanation:
+        "The Supreme Court has clarified that in a parliamentary system, the 'satisfaction' of the head of state means the satisfaction of the cabinet that advises him.",
+    },
+  ],
+  Cabinet_Committees: [
+    {
+      text: "1. Consider the following statements:\n1. The non-cabinet ministers are debarred from the membership of the Cabinet Committees.\n2. The Cabinet Committees are an organizational device to reduce the enormous workload of the cabinet.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 2",
+      explanation:
+        "Cabinet Committees are meant to handle detailed work for the Cabinet. Non-cabinet ministers (Ministers of State) are NOT debarred; they can be members of these committees.",
+    },
+    {
+      text: "2. Which of the following provides for the establishment of the Cabinet Committees?",
+      options: [
+        "Constitution of India",
+        "Parliamentary Statutes",
+        "Rules of Business",
+        "Presidential Orders",
+      ],
+      correctAnswer: "Rules of Business",
+      explanation:
+        "Cabinet Committees are extra-constitutional bodies. They are established under the 'Transaction of Business Rules'.",
+    },
+    {
+      text: "3. Statement I: The number, nomenclature and composition of the Cabinet Committees varies from time to time.\nStatement II: The Cabinet Committees are set up by the Prime Minister according to the exigencies of the time.",
+      options: [
+        "Both statements are true and II explains I",
+        "Both statements are true but II does not explain I",
+        "Statement I is true but II is false",
+        "Statement I is false but II is true",
+      ],
+      correctAnswer:
+        "Both statements are individually true and Statement II is the correct explanation of Statement I.",
+      explanation:
+        "Because the PM sets them up based on current needs, their names, numbers, and who sits on them change with every government.",
+    },
+    {
+      text: "4. Which one of the following Cabinet Committees is described as a 'Super-Cabinet'?",
+      options: [
+        "Economic Affairs Committee",
+        "Parliamentary Affairs Committee",
+        "Political Affairs Committee",
+        "Appointments Committee",
+      ],
+      correctAnswer: "Political Affairs Committee",
+      explanation:
+        "The Political Affairs Committee deals with domestic and foreign policy and is considered the most powerful committee, often called the 'Super-Cabinet'.",
+    },
+    {
+      text: "5. Consider the following statements:\n1. The Cabinet cannot review the decisions taken by the Cabinet Committees.\n2. The Cabinet Committees are based on the principles of division of labour and effective delegation.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 2",
+      explanation:
+        "Committees work on division of labor. However, statement 1 is wrong because the Cabinet is the superior body and can always review or reverse decisions made by its committees.",
+    },
+    {
+      text: "6. Which of the following cabinet committees is chaired by the Union Home Minister?",
+      options: [
+        "Parliamentary Affairs Committee",
+        "Economic Affairs Committee",
+        "Political Affairs Committee",
+        "Appointments Committee",
+      ],
+      correctAnswer: "Parliamentary Affairs Committee",
+      explanation:
+        "While the PM chairs most important committees (Political, Economic, Appointments), the Parliamentary Affairs Committee is traditionally chaired by the Home Minister.",
+    },
+    {
+      text: "7. Match List I (Cabinet Committees) with List II (Functions):\nA. Appointments Committee\nB. Economic Affairs Committee\nC. Parliamentary Affairs Committee\nD. Political Affairs Committee\n\n1. Progress of govt business in Parliament\n2. Domestic and foreign policy matters\n3. Higher level appointments in Central Secretariat\n4. Coordinates activities in economic sphere",
+      options: [
+        "A-3, B-2, C-4, D-1",
+        "A-3, B-4, C-1, D-2",
+        "A-4, B-3, C-2, D-1",
+        "A-4, B-2, C-1, D-3",
+      ],
+      correctAnswer: "A-3, B-4, C-1, D-2",
+      explanation:
+        "Appointments (3) handles staffing; Economic (4) handles finance; Parliamentary (1) handles LS/RS business; Political (2) handles general policy.",
+    },
+  ],
+  Parliament: [
+    {
+      text: "1. Consider the following statements:\n1. A Bill pending in the Rajya Sabha which has not been passed by the Lok Sabha shall lapse on dissolution of the Lok Sabha.\n2. A Bill pending in Parliament shall lapse by reason of the prorogation of the Houses.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Neither 1 nor 2",
+      explanation:
+        "A bill pending in the Rajya Sabha that hasn't been passed by the Lok Sabha does not lapse upon the dissolution of the Lok Sabha. Furthermore, the prorogation of a House does not cause any bills or business to lapse; only the dissolution of the Lok Sabha affects pending bills.",
+    },
+    {
+      text: "2. Consider the following statements:\n1. The Chairman of the Council of States or Speaker of the House of the People, or person acting as such, shall not vote at any sitting of either House of Parliament or joint sitting of the House in the first instance, but shall have and exercise a casting vote in the case of an equality of votes.\n2. A person is qualified to fill a seat in the Council of States or House of the People if he is not less than twenty-five years of age.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "Presiding officers only vote to break a tie (casting vote). Statement 2 is incorrect because the minimum age for the Rajya Sabha (Council of States) is 30 years, while it is 25 for the Lok Sabha.",
+    },
+    {
+      text: "3. Consider the following statements:\n1. Since the sums required to meet expenditure described by the Constitution of India as expenditure charged upon the Consolidated Fund of India are not submitted to the vote of Parliament, no House is competent to discuss these estimates.\n2. Annual Finance Bill provides the legal authority for the withdrawal of sums from the Consolidated Fund of India.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Neither 1 nor 2",
+      explanation:
+        "Charged expenditure can be discussed by either House, even though it is not put to a vote. The legal authority to withdraw money from the Consolidated Fund is provided by the Appropriation Bill, not the Finance Bill (which deals with taxes).",
+    },
+    {
+      text: "4. Consider the following statements in respect of provisions for removing deadlock between the two Houses of Parliament:\nAfter a bill has been passed by one House and transmitted to the other House, the President may notify to the Houses his intention to summon them for a joint sitting, if:\n1. The Bill is rejected by the other House.\n2. The Houses have finally disagreed as to the amendments to be made in the Bill.\n3. More than three months have elapsed from the date of the receipt of the Bill by the other House without the Bill being passed by it.",
+      options: ["1, 2 and 3", "1 and 2 only", "2 and 3 only", "1 and 3 only"],
+      correctAnswer: "1 and 2 only",
+      explanation:
+        "A joint sitting can be called if a bill is rejected, if there is final disagreement on amendments, or if more than six months (not three) have passed without the bill being passed by the second house.",
+    },
+    {
+      text: "5. Which of the following statements about the reasons for separation of the Railway Budget from the General Budget are correct?\n1. To introduce flexibility in railway finance management\n2. To facilitate a business approach to the railway policy\n3. To secure stability of the general revenues by providing an assured annual contribution from railway revenues\n4. To enable the railways to keep their profits for their own development",
+      options: [
+        "2, 3 and 4 only",
+        "1 and 4 only",
+        "1, 2 and 3 only",
+        "1, 2, 3 and 4",
+      ],
+      correctAnswer: "1, 2, 3 and 4",
+      explanation:
+        "The separation (based on the Acworth Committee) was intended to allow the railways to run on commercial lines, manage their own finances flexibly, and ensure the general budget wasn't destabilized by the fluctuating fortunes of the railways.",
+    },
+    {
+      text: "6. An exceptional grant under the Constitution of India is regarded as:",
+      options: [
+        "An advance on account of estimated expenditure for a part of any financial year pending completion of procedure for voting of grant",
+        "A grant for meeting an unexpected demand on account of indefinite character of the service which cannot be stated with details",
+        "A grant forming no part of current service of any financial year",
+        "A grant made when a need has arisen during the current financial year for additional expenditure upon some new service",
+      ],
+      correctAnswer:
+        "A grant forming no part of current service of any financial year",
+      explanation:
+        "An exceptional grant is specifically for a purpose that does not belong to the current financial year's routine services.",
+    },
+    {
+      text: "7. The provision for the Contingency Fund of India results in:",
+      options: [
+        "Absolving the executive from preparing the estimates of the expenditure",
+        "Compelling the legislature to approve the expenditure",
+        "Reducing the legislative control over the executive",
+        "Providing a safety-valve to tide over a crisis",
+      ],
+      correctAnswer: "Providing a safety-valve to tide over a crisis",
+      explanation:
+        "The fund exists to allow the executive to meet unforeseen or urgent expenditures instantly before seeking formal parliamentary approval, acting as a financial emergency buffer.",
+    },
+    {
+      text: "8. Which of the following tools of control may be adopted for raising a discussion in the House on a matter of urgent public importance?",
+      options: [
+        "Censure motion",
+        "Adjournment motion",
+        "Calling attention",
+        "Cut motion",
+      ],
+      correctAnswer: "Adjournment motion",
+      explanation:
+        "An adjournment motion interrupts the normal business of the House to discuss a specific matter of urgent public importance. It carries an element of censure against the government.",
+    },
+    {
+      text: "9. Consider the following statements relating to the procedure of the election of the Speaker and the Deputy Speaker of the Lok Sabha:\n1. The election of a Speaker shall be held on such date as the Prime Minister may fix and the Secretary General shall send to every member notice of this date.\n2. The election of a Deputy Speaker shall be held on such date as the Speaker may fix and the Secretary General shall send to every member notice of this date.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 2",
+      explanation:
+        "The date for the Speaker's election is fixed by the President, not the Prime Minister. However, the date for the Deputy Speaker's election is indeed fixed by the Speaker.",
+    },
+    {
+      text: "10. Which one of the following statements is not correct?",
+      options: [
+        "An Appropriation Act is not essential for passing a grant under a Vote of Credit.",
+        "Re-appropriation does not involve any additional expenditure.",
+        "The Rajya Sabha has no power to vote on the demands for grants.",
+        "No amendment can be proposed in the Appropriation Bill in either House of Parliament.",
+      ],
+      correctAnswer:
+        "An Appropriation Act is not essential for passing a grant under a Vote of Credit.",
+      explanation:
+        "All grants, including a Vote of Credit, eventually require legal backing via an Appropriation Act to withdraw money from the Consolidated Fund. The other statements correctly describe the limits of re-appropriation and the powers of the Rajya Sabha.",
+    },
+    {
+      text: "11. According to the Constitution, the Lok Sabha must meet at least:",
+      options: [
+        "Thrice each year with no more than two months between sessions",
+        "Twice each year with no more than three months between sessions",
+        "Twice each year with no more than four months between sessions",
+        "Twice each year with no more than six months between sessions",
+      ],
+      correctAnswer:
+        "Twice each year with no more than six months between sessions",
+      explanation:
+        "Article 85 mandates that the maximum gap between two sessions of Parliament cannot exceed six months.",
+    },
+    {
+      text: "12. Consider the following statements:\n1. The nature of a Bill, if it is certified by the Speaker of the House of People as a Money Bill, is not open to question in a Court of Law.\n2. The President of India has the power to question the nature of a Bill to be taken as a Money Bill even if it is certified to be so by the Speaker of the House of People.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "The Speaker's decision on whether a bill is a Money Bill is final and cannot be questioned in Parliament, by the President, or in a court of law.",
+    },
+    {
+      text: "13. Assertion (A): The estimates that relate to the expenditure charged upon the Consolidate Fund of India shall not be submitted to the vote of Parliament.\nReason (R): Parliament is not empowered to discuss expenditure charged upon the Consolidated Fund of India.",
+      options: [
+        "Both A and R are individually true and R is the correct explanation of A",
+        "Both A and R are individually true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "A is true but R is false",
+      explanation:
+        "While charged expenditure is not votable, the Constitution explicitly allows both Houses of Parliament to discuss these estimates.",
+    },
+    {
+      text: "14. What does the 'Rule of Lapse' mean?",
+      options: [
+        "All pending bills in Parliament lapse with its prorogation.",
+        "All appropriations voted by the Parliament expire at the end of the financial year.",
+        "The demand for grants of a ministry lapses with criticism of its policy by the opposition.",
+        "The appropriation bill lapses if it is not returned by the Rajya Sabha within 14 days.",
+      ],
+      correctAnswer:
+        "All appropriations voted by the Parliament expire at the end of the financial year.",
+      explanation:
+        "Under this rule, any unspent money granted by Parliament for a specific year must be returned to the Consolidated Fund at the end of that financial year (March 31st).",
+    },
+    {
+      text: "15. Consider the following statements:\nThe expenditure charged on the Consolidated Fund of India comprises:\n1. Pension payable to Judges of High Court\n2. Debt charges for which the Government of India is liable\n3. Salary, allowances and pension payable to Comptroller and Auditor General of India",
+      options: ["1, 2 and 3", "1 and 3 only", "2 and 3 only", "1 and 2 only"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "All these are examples of 'charged' expenditures intended to ensure the independence of high offices and honor national debt obligations without annual political debate.",
+    },
+    {
+      text: "16. The object of the adjournment motion in Parliament is to:",
+      options: [
+        "Collect information from the ministers",
+        "Make a cut in the budget proposals",
+        "Criticise a particular policy of the Government",
+        "Topple the Government",
+      ],
+      correctAnswer: "Criticise a particular policy of the Government",
+      explanation:
+        "The adjournment motion is a tool used to highlight a specific, urgent failure of the government, thus serving as a mechanism for criticism.",
+    },
+    {
+      text: "17. Match List I (Parliamentary Procedure) with List II (Implications):\nA. Division\nB. Guillotine\nC. Motion\nD. Point of order\n\n1. Brings the debate to a close\n2. Formal proposal made by a member\n3. Relates to rules/Constitution interpretation\n4. Concludes discussion on demand for grants\n5. Mode of arriving at a decision",
+      options: [
+        "A-4, B-5, C-1, D-2",
+        "A-5, B-4, C-1, D-3",
+        "A-5, B-4, C-2, D-3",
+        "A-4, B-5, C-2, D-1",
+      ],
+      correctAnswer: "A-5, B-4, C-2, D-3",
+      explanation:
+        "Division is a voting method; Guillotine bundles and votes on all remaining grants when time ends; Motion is a formal proposal; and Point of Order challenges procedure.",
+    },
+    {
+      text: "18. Which one of the following is the correct sequence of the given stages in relation to the enactment of the budget?",
+      options: [
+        "Voting of demands for grants-General discussion-Appropriation Bill-Finance Bill",
+        "General discussion-Voting of demands for grants-Appropriation Bill-Finance Bill",
+        "Voting of demands for grants-Appropriation Bill-Finance Bill-General discussion",
+        "General discussion-Finance Bill-Appropriation Bill-Voting of demands for grants",
+      ],
+      correctAnswer:
+        "General discussion-Voting of demands for grants-Consideration and passing of the Appropriation Bill-Consideration and passing of the Finance Bill",
+      explanation:
+        "Budgeting follows a strict path: Presentation, General Discussion, Scrutiny by committees, Voting on Demands (expenditure), and then passing the Appropriation and Finance bills.",
+    },
+    {
+      text: "19. Which one of the following pairs is not correctly matched?\n(State : Rajya Sabha Seats)",
+      options: [
+        "Maharashtra : 19",
+        "Tamil Nadu : 18",
+        "Bihar : 18",
+        "West Bengal : 16",
+      ],
+      correctAnswer: "Bihar : 18",
+      explanation: "Bihar is allocated 16 seats in the Rajya Sabha, not 18.",
+    },
+    {
+      text: "20. Which one of the following events is not considered to be an indication of loss of confidence of the lower House of the Parliament?",
+      options: [
+        "Adjournment motion is carried",
+        "Vote of thanks on the President's address is not carried",
+        "Cut on Money Bill is passed",
+        "Censure motion is passed",
+      ],
+      correctAnswer: "Adjournment motion is carried",
+      explanation:
+        "While an adjournment motion criticizes the government, it doesn't automatically imply a loss of majority confidence, unlike the failure of the Vote of Thanks or a defeat on a Money Bill.",
+    },
+    {
+      text: "21. How much is the quorum of a House of Parliament of India?",
+      options: [
+        "One-half of the membership",
+        "One-third of the membership",
+        "Two-third of the membership",
+        "One-tenth of the membership",
+      ],
+      correctAnswer: "One-tenth of the membership of the House",
+      explanation:
+        "Under Article 100, at least 10% of the total members must be present for a House to conduct its business.",
+    },
+    {
+      text: "22. Assertion (A): After a Money Bill is passed by the Lok Sabha and transmitted to the Rajya Sabha, the recommendations of the Rajya Sabha have to be accepted by the Lok Sabha within 14 days.\nReason (R): A Money Bill cannot be introduced in the Rajya Sabha.",
+      options: [
+        "Both A and R are true and R is correct explanation",
+        "Both A and R are true but R is NOT correct explanation",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "A is false but R is true",
+      explanation:
+        "Assertion A is false because the Lok Sabha is NOT obligated to accept the Rajya Sabha's recommendations on a Money Bill; it has full discretion to reject them.",
+    },
+    {
+      text: "23. A Bill is deemed to be a Money Bill if it contains only provisions dealing with the:\n1. Alteration or regulation of any tax\n2. Regulation of the borrowing of money by the government\n3. Appropriation of moneys out of the Consolidated Fund of India\n4. Custody of the Contingency Fund of India",
+      options: [
+        "1, 2 and 3 only",
+        "2, 3 and 4 only",
+        "1 and 4 only",
+        "1, 2, 3 and 4",
+      ],
+      correctAnswer: "1, 2, 3 and 4",
+      explanation:
+        "Article 110 lists all these matters (taxation, borrowing, custody of funds, and appropriations) as core subjects of a Money Bill.",
+    },
+    {
+      text: "24. The Rajya Sabha has exclusive jurisdiction in:",
+      options: [
+        "Approving a proclamation of emergency",
+        "The creation and abolition of States",
+        "The election of the Vice-President",
+        "Authorising Parliament to legislate on a subject in the State List",
+      ],
+      correctAnswer:
+        "Authorising Parliament to legislate on a subject in the State List",
+      explanation:
+        "Under Article 249, only the Rajya Sabha can pass a resolution (representing the states' interests) to allow Parliament to make laws on a state subject in the national interest.",
+    },
+    {
+      text: "25. What is the maximum period that shall not intervene between last sitting in one session and the date appointed for first sitting in the next session?",
+      options: ["Four months", "Five months", "Six months", "Eight months"],
+      correctAnswer: "Six months",
+      explanation:
+        "The Constitution mandates that the gap between two sessions of a House cannot exceed six months.",
+    },
+    {
+      text: "26. When Demands for Grants are introduced in Lok Sabha, the Speaker applies the guillotine:",
+      options: [
+        "After the demands are discussed and approved",
+        "After the demands are discussed and voted down",
+        "When the demands are discussed and reduced",
+        "When the time allotted is coming to a close",
+      ],
+      correctAnswer: "When the time allotted is coming to a close",
+      explanation:
+        "The 'guillotine' is used on the last day of discussing grants to put all remaining, undiscussed demands to an immediate vote to ensure the budget stays on schedule.",
+    },
+    {
+      text: "27. Match List I (Parliamentary Device) with List II (Substance):\nA. Cut Motion\nB. Call Attention Motion\nC. Privilege Motion\nD. Adjournment Motion\n\n1. Draw attention of Ministers on urgent public matters\n2. Draw attention of Speaker to incorrect/incomplete answers\n3. Reduce expenditure on budget proposals\n4. Interrupt normal business of House",
+      options: [
+        "A-3, B-1, C-2, D-4",
+        "A-2, B-4, C-5, D-1",
+        "A-3, B-4, C-2, D-1",
+        "A-2, B-1, C-5, D-4",
+      ],
+      correctAnswer: "A-3, B-1, C-2, D-4",
+      explanation:
+        "Cut motions aim to reduce spending; Calling Attention seeks minister's info; Privilege Motion targets breaches of house rules; Adjournment Motion stops regular work for urgent issues.",
+    },
+    {
+      text: "28. Which one of the following powers of the Rajya Sabha is provided in the Constitution of India?",
+      options: [
+        "To reject or amend a money bill",
+        "To decide whether a bill is a money bill",
+        "To vote for public expenditure",
+        "To delay a money bill for a period not exceeding fourteen days.",
+      ],
+      correctAnswer:
+        "To delay a money bill for a period not exceeding fourteen days.",
+      explanation:
+        "The Rajya Sabha has no power to amend or reject a Money Bill; it can only discuss it and suggest changes within a 14-day window.",
+    },
+    {
+      text: "29. The method of election of the members of the Rajya Sabha on the basis of proportional representation by the State Legislatures was borrowed from the:",
+      options: [
+        "Constitution of U.S.A.",
+        "Constitution of Australia",
+        "Constitution of South Africa",
+        "Constitution of Ireland",
+      ],
+      correctAnswer: "Constitution of South Africa",
+      explanation:
+        "The specific election procedure for Rajya Sabha members was adopted from the South African constitution.",
+    },
+    {
+      text: "30. Which one of the following statements is correct?\nParliament can make a law with respect to a matter in the state list in the national interest if:",
+      options: [
+        "The President gives permission",
+        "The Parliament passes a resolution",
+        "A State makes a request",
+        "The Rajya Sabha passes a resolution by a two-thirds majority",
+      ],
+      correctAnswer:
+        "The Rajya Sabha passes a resolution by a two-thirds majority",
+      explanation:
+        "This refers to Article 249, where the Upper House (Council of States) gives the center permission to legislate on state subjects.",
+    },
+    {
+      text: "31. Which one of the following statements is not correct?",
+      options: [
+        "Provision for readjustment of Lok Sabha seats after each census.",
+        "Absence of 60 days without permission can lead to seat vacancy.",
+        "The Rajya Sabha approves Money Bill after it has been passed by the Lok Sabha.",
+        "Attorney-General has the right to speak in either House.",
+      ],
+      correctAnswer:
+        "The Rajya Sabha approves Money Bill after it has been passed by the Lok Sabha.",
+      explanation:
+        "The Rajya Sabha does not 'approve' a Money Bill. It can only make recommendations, and if it does nothing for 14 days, the bill is deemed passed.",
+    },
+    {
+      text: "32. Assertion (A): Money bills originate only in the Lower House of Parliament.\nReason (R): The Lower House of the Parliament is a popularly elected body.",
+      options: [
+        "Both A and R true and R is correct explanation",
+        "Both A and R true but R is NOT correct explanation",
+        "A is true, R is false",
+        "A is false, R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true and R is the correct explanation of A",
+      explanation:
+        "In a democracy, the house that is directly elected by the people has the primary authority over taxation and expenditure (the power of the purse).",
+    },
+    {
+      text: "33. Which one of the following schedules of the Constitution of India deals with allocation of seats in the Council of States?",
+      options: [
+        "Third Schedule",
+        "Fourth Schedule",
+        "Fifth Schedule",
+        "Sixth Schedule",
+      ],
+      correctAnswer: "Fourth Schedule",
+      explanation:
+        "The Fourth Schedule specifies the number of seats assigned to each State and Union Territory in the Rajya Sabha.",
+    },
+    {
+      text: "34. Under Article 312, the Rajya Sabha has exclusive power to recommend the Constitution of which one of the following?",
+      options: [
+        "River-valley Development Authorities",
+        "Zonal Councils",
+        "Administrative Tribunals",
+        "New All-India Services",
+      ],
+      correctAnswer: "New All-India Services",
+      explanation:
+        "Only the Rajya Sabha can authorize the creation of a new All-India Service (like IAS or IPS) common to the Union and States.",
+    },
+    {
+      text: "35. Payments from the Consolidated Fund of India are authorised by the:",
+      options: [
+        "Money Bill",
+        "Appropriation Act",
+        "Finance Act",
+        "Consolidated Fund Act",
+      ],
+      correctAnswer: "Appropriation Act",
+      explanation:
+        "The Appropriation Bill (which becomes an Act) is what legally empowers the government to take money out of the fund for its expenditures.",
+    },
+    {
+      text: "36. Vote of Credit provides for making:",
+      options: [
+        "An exceptional grant forming no part of current service",
+        "Any grant in advance pending regular passage",
+        "A grant for meeting an unexpected demand upon resources",
+        "A grant for additional expenditure not contemplated",
+      ],
+      correctAnswer:
+        "A grant for meeting an unexpected demand upon resources of India",
+      explanation:
+        "A Vote of Credit is like a 'blank cheque' given to the executive to meet an unforeseen, large-scale demand where details cannot be specified in the budget.",
+    },
+    {
+      text: "37. Which one of the following is not a measure of control exercised by the Parliament over government?",
+      options: [
+        "Asking questions",
+        "Committees system",
+        "Review of decision",
+        "No-confidence motion",
+      ],
+      correctAnswer: "Review of decision",
+      explanation:
+        "Parliament oversees, debates, and censures, but it does not have the administrative power to 'review and reverse' a specific executive decision once taken, except by passing a law or forcing a policy change through motions.",
+    },
+    {
+      text: "38. Consider the following statements:\n1. A Bill returned by the President for reconsideration does not lapse on the dissolution of the Lok Sabha.\n2. A Bill passed by the Lok Sabha and pending in the Rajya Sabha lapses on dissolution.\n3. A Bill under consideration of Lok Sabha lapses when Lok Sabha is prorogued.\n4. A Bill pending in Rajya Sabha but not passed by Lok Sabha does not lapse on dissolution.",
+      options: [
+        "2, 3 and 4 only",
+        "1 and 2 only",
+        "3 and 4 only",
+        "1, 2 and 4 only",
+      ],
+      correctAnswer: "1, 2 and 4 only",
+      explanation:
+        "Statement 3 is wrong because prorogation doesn't cause bills to lapse. Statements 1, 2, and 4 correctly describe the rules of how the end of a Lok Sabha term affects various stages of legislation.",
+    },
+    {
+      text: "39. During the discussion on the Demands for Grants, cut motions can be moved to reduce the amount of a demand. Which are classified as cut-motion?\n1. Policy cut\n2. Economy cut\n3. Token cut\n4. Programme cut",
+      options: ["1 and 2", "2 and 4", "1, 2 and 3", "3 and 4"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "The three standard types are Policy Cut (reducing to Re 1), Economy Cut (reducing by specified amount), and Token Cut (reducing by Rs 100).",
+    },
+    {
+      text: "40. Which one of the following statements holds good in respect of the Rajya Sabha?",
+      options: [
+        "One-third of members retire every three years.",
+        "Two-thirds of members retire every three years.",
+        "Two-thirds of members retire every two years.",
+        "One-third of its members retire after every two years.",
+      ],
+      correctAnswer: "One-third of its members retire after every two years.",
+      explanation:
+        "Rajya Sabha is a permanent body where each member has a 6-year term, and staggered retirements ensure continuity.",
+    },
+    {
+      text: "41. Which one of the following is the correct sequence through which an Ordinary Bill passes through in the Parliament?",
+      options: [
+        "Authentication, Discussion, Clause-by-clause, Post-introduction, Assent",
+        "Post-introduction, Discussion, Clause-by-clause, Authentication, Assent",
+        "Discussion, Authentication, Post-introduction, Clause-by-clause, Assent",
+        "Discussion, Post-introduction, Clause-by-clause, Authentication, Assent",
+      ],
+      correctAnswer:
+        "Post-introduction motion, Discussion of Principles, Clause-by-Clause consideration, Authentication, Assent",
+      explanation:
+        "After introduction, there's a general debate on principles, then a detailed stage of discussing each clause, followed by the final vote, authentication by the Speaker, and finally presidential assent.",
+    },
+    {
+      text: "42. Who among the following decides whether a Bill is a Money Bill?",
+      options: [
+        "The Finance Minister",
+        "The Chairman of the Rajya Sabha",
+        "The President of India",
+        "The Speaker of the Lok Sabha",
+      ],
+      correctAnswer: "The Speaker of the Lok Sabha",
+      explanation:
+        "Under Article 110, the Speaker's certificate is the final word on the nature of a Money Bill.",
+    },
+    {
+      text: "43. A non-money bill passed by the Parliament is returned by the President for reconsideration. It is passed once again without change. Now, the:",
+      options: [
+        "President can again withhold assent",
+        "Bill will automatically lapse",
+        "Bill will be referred to Supreme Court",
+        "President will give his assent",
+      ],
+      correctAnswer: "President will give his assent",
+      explanation:
+        "Under Article 111, if Parliament passes the bill again after reconsideration, the President is constitutionally bound to grant assent.",
+    },
+    {
+      text: "44. The Lok Sabha Secretariat comes under direct supervision of the:",
+      options: [
+        "Ministry of Home Affairs",
+        "Ministry of Parliamentary Affairs",
+        "Prime Minister's Office",
+        "Speaker of the Lok Sabha",
+      ],
+      correctAnswer: "Speaker of the Lok Sabha",
+      explanation:
+        "To maintain the independence of the legislature, the Secretariat is under the administrative control of the Speaker.",
+    },
+    {
+      text: "45. Consider the following statements regarding money bills:\n1. They originate in Lok Sabha\n2. They originate in Rajya Sabha\n3. Rajya Sabha can recommend amendments.\n4. Both the Houses have equal powers over them.",
+      options: ["Only 1", "1 and 3", "Only 2", "Only 4"],
+      correctAnswer: "1 and 3",
+      explanation:
+        "Money bills can ONLY be introduced in the Lok Sabha. The Rajya Sabha has limited power; it can only suggest (recommend) amendments which the Lok Sabha may or may not accept.",
+    },
+    {
+      text: "46. If a member is absent without permission from all meetings for more than a certain period, the seat may be declared vacant. What is the duration?",
+      options: ["60 days", "45 days", "30 days", "15 days"],
+      correctAnswer: "60 days",
+      explanation:
+        "Under Article 101, a member's seat can be declared vacant if they are absent for 60 consecutive days without notifying the House.",
+    },
+    {
+      text: "47. 'Vote on account' means:",
+      options: [
+        "Charged expenditure is not submitted to vote",
+        "Proposal submitted by FM before budget",
+        "Proposal related to President's speech",
+        "Parliament authorizes a grant in advance to meet expenses if budget is not passed by April 1st.",
+      ],
+      correctAnswer:
+        "If the budget is not passed before 1st April, the Parliament is authorised to sanction any grant in advance to meet the expenses.",
+      explanation:
+        "Since the financial year starts on April 1st but the full budget debate takes time, the Vote on Account gives the government two months' worth of funds to keep running.",
+    },
+    {
+      text: "48. The Railway Budget was separated from the Central Budget in the year:",
+      options: ["1920", "1921", "1922", "1923"],
+      correctAnswer: "1921",
+      explanation:
+        "The separation occurred in 1921 following the recommendations of the Acworth Committee.",
+    },
+    {
+      text: "49. Which one of the following statements related to Money Bills is not correct?",
+      options: [
+        "Cannot be introduced in Rajya Sabha",
+        "Speaker's decision is final",
+        "Deadlock leads to joint sitting",
+        "Introduced only on President's recommendation",
+      ],
+      correctAnswer:
+        "In case of a deadlock over a Money Bill, the President can summon a joint sitting of Parliament.",
+      explanation:
+        "The provision for a joint sitting (Article 108) applies only to Ordinary Bills. It does not apply to Money Bills because the Lok Sabha has overriding authority.",
+    },
+    {
+      text: "50. Which one of the following statements is correct?\nThe estimates which relate to expenditure charged upon the Consolidated Fund of India:",
+      options: [
+        "Discussed in Lok Sabha only",
+        "Discussed in Rajya Sabha only",
+        "Can be discussed in either House of Parliament",
+        "Cannot be discussed in any House",
+      ],
+      correctAnswer: "Can be discussed in either House of Parliament",
+      explanation:
+        "Even though they are non-votable, they are part of the budget and open to scrutiny and debate in both Houses.",
+    },
+    {
+      text: "51. Match List I (Subject) with List II (Articles):\nA. Budget\nB. Supplementary grants\nC. Appropriation Bill\nD. Definition of Money Bill\n\n1. Article 110\n2. Article 112\n3. Article 114\n4. Article 115",
+      options: [
+        "A-2, B-3, C-4, D-1",
+        "A-1, B-4, C-3, D-2",
+        "A-2, B-4, C-3, D-1",
+        "A-3, B-4, C-2, D-1",
+      ],
+      correctAnswer: "A-2, B-4, C-3, D-1",
+      explanation:
+        "Budget (Art 112); Money Bill (Art 110); Appropriation Bill (Art 114); Supplementary grants (Art 115).",
+    },
+    {
+      text: "52. Which one of the following is not applicable regarding the purpose of Cut Motion?",
+      options: [
+        "Raising questions of urgent public importance",
+        "Drawing attention to administration lapse",
+        "Drawing attention to specific problems",
+        "Concentrating discussion on concrete points",
+      ],
+      correctAnswer: "Raising questions of urgent public importance",
+      explanation:
+        "Cut motions are specifically about financial policy and reducing budget demands. Raising 'urgent public importance' matters is the purpose of an Adjournment Motion.",
+    },
+    {
+      text: "53. The quorum requirement in the Rajya Sabha is:",
+      options: ["25", "50", "100", "126"],
+      correctAnswer: "25",
+      explanation:
+        "The quorum is 1/10th of total membership. For Rajya Sabha (250 members), the quorum is 25.",
+    },
+    {
+      text: "54. What will follow if a Money Bill is substantially amended by the Rajya Sabha?",
+      options: [
+        "Lok Sabha may still proceed, accepting or not accepting recommendations.",
+        "Lok Sabha cannot consider Bill further.",
+        "Lok Sabha may send back for reconsideration.",
+        "President may call joint sitting.",
+      ],
+      correctAnswer:
+        "The Lok Sabha may still proceed with the Bill, accepting or not accepting the recommendations of the Rajya Sabha.",
+      explanation:
+        "The Rajya Sabha's power is purely advisory here; the Lok Sabha can ignore all its amendments and the bill is still passed.",
+    },
+    {
+      text: "55. Which one of the following statements about the Speaker of the Lok Sabha is not correct?",
+      options: [
+        "Power to adjourn House sine die.",
+        "Power to summon House even after prorogation.",
+        "Stays in office after dissolution until next meeting.",
+        "Vacates office if ceases to be member.",
+      ],
+      correctAnswer:
+        "He has the power to summon the House even after prorogation.",
+      explanation:
+        "The power to summon the House rests with the President, not the Speaker.",
+    },
+    {
+      text: "56. The Chairman of the Rajya Sabha is elected by:",
+      options: [
+        "Elected members of Rajya Sabha",
+        "All members of Rajya Sabha",
+        "Elected members of Parliament",
+        "All members of Parliament",
+      ],
+      correctAnswer: "All members of Parliament",
+      explanation:
+        "The Vice-President is the ex-officio Chairman. The Vice-President is elected by both houses of Parliament (including nominated members).",
+    },
+    {
+      text: "57. Assertion (A): The rule of lapse is not essential for effective financial control.\nReason (R): The rule of lapse suffers from weaknesses relating to planning and control of expenditure.",
+      options: [
+        "Both A and R true and R explains A",
+        "Both A and R true but R does NOT explain A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "A is false but R is true",
+      explanation:
+        "The rule of lapse is highly essential for control to ensure money is used as intended. However, R is true because it often leads to 'March rush' where departments spend frantically at year-end to avoid losing funds.",
+    },
+    {
+      text: "58. The Joint Session of the two Houses of the Parliament is chaired by the:",
+      options: [
+        "Vice-President",
+        "Speaker of the House of the People",
+        "Chairman of the Rajya Sabha",
+        "Prime Minister",
+      ],
+      correctAnswer: "Speaker of the House of the People",
+      explanation:
+        "The Speaker of the Lok Sabha always presides over a joint sitting. If the Speaker is absent, the Deputy Speaker presides.",
+    },
+    {
+      text: "59. Under Article 368, a Constitutional Amendment Bill is passed by the Parliament by:",
+      options: [
+        "Simple majority",
+        "Two-thirds majority of those present and voting",
+        "Three-fourths majority",
+        "Majority of total membership and 2/3rd majority of members present and voting",
+      ],
+      correctAnswer:
+        "Majority of total membership and majority of not less than two-thirds of the members present and voting",
+      explanation:
+        "This 'special majority' ensures that changes to the core of the Constitution have broad support.",
+    },
+    {
+      text: "60. Which one of the following statements is not correct?",
+      options: [
+        "Railway budget and demands are presented separately.",
+        "One demand for grant per Ministry is the general rule.",
+        "Telecommunications demand is presented separately.",
+        "Grants include both plan and non-plan estimates.",
+      ],
+      correctAnswer:
+        "The demand for grants for the Department of Telecommunications is presented to the Parliament separately.",
+      explanation:
+        "Only the Railway budget used to be separate (this also ended later). Telecommunications is part of the general budget process.",
+    },
+    {
+      text: "61. Which of the following is not correct with regard to the Speaker of the Lok Sabha?",
+      options: [
+        "Certifies money bills.",
+        "Removal motion presided by Vice-President.",
+        "Power to curtail/cancel zero hour.",
+        "Nominates committee chairpersons.",
+      ],
+      correctAnswer:
+        "Discussion on a motion for the removal of the Speaker is presided over by the Vice-President.",
+      explanation:
+        "A motion for Speaker removal is presided over by the Deputy Speaker or another member; the Vice-President (RS Chairman) has no role in Lok Sabha internal removals.",
+    },
+    {
+      text: "62. Which of the following statements are correct in respect of parliamentary debate on Appropriation Bill?\n1. No amendments can be moved on the amount of expenditure.\n2. Speaker is empowered to withhold permission on matters of repetitive nature.\n3. Rajya Sabha has power to amend or reject the Bill.",
+      options: ["1 and 2 only", "1 and 3 only", "2 and 3 only", "1, 2 and 3"],
+      correctAnswer: "1 and 2 only",
+      explanation:
+        "Since the grants have already been voted on, the amount cannot be changed during the Bill stage. The Rajya Sabha has no power to amend it as it is a Money Bill.",
+    },
+    {
+      text: "63. According to Parliamentary procedure, the term 'guillotine' means that the Speaker:",
+      options: [
+        "Stops the business on hand and puts the matter to vote",
+        "Adjourns the House before expiry",
+        "Disallows voting on a motion",
+        "Reprimands a member",
+      ],
+      correctAnswer: "Stops the business on hand and puts the matter to vote",
+      explanation:
+        "It's a procedure to ensure all items are voted on by a fixed time, regardless of whether they have been fully debated.",
+    },
+    {
+      text: "64. While discussing a budget, the Parliament cannot:",
+      options: [
+        "Give assent to the demand",
+        "Reduce the demand",
+        "Refuse the demand",
+        "Increase the demand",
+      ],
+      correctAnswer: "Increase the demand",
+      explanation:
+        "Parliament can accept, reject, or reduce a grant, but it cannot increase the amount of spending requested by the executive.",
+    },
+    {
+      text: "65. Which one of the following is not related to Adjournment Motion?",
+      options: [
+        "Matter is framed in general terms.",
+        "Matter is of general public interest.",
+        "Matter is urgent.",
+        "Matter does not raise a question of privilege.",
+      ],
+      correctAnswer: "The matter is framed in general terms.",
+      explanation:
+        "An Adjournment Motion must be specific, definite, and based on a single, factual, recent occurrence of urgent public importance.",
+    },
+    {
+      text: "66. Which one among the following carries out demarcation of electoral constituencies and allocation of seats in Lok Sabha?",
+      options: [
+        "Election Commission",
+        "Register General",
+        "Delimitation Commission",
+        "States Reorganisation Commission",
+      ],
+      correctAnswer: "Delimitation Commission",
+      explanation:
+        "This independent commission is set up after censuses to redraw boundary lines for constituencies based on population changes.",
+    },
+    {
+      text: "67. Which of the following is/are correct in respect of 'Zero Hour' discussion?\n1. It is not directed against individual Minister.\n2. It covers questions raised over matters of public importance.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 2",
+      explanation:
+        "Zero Hour is an informal device to raise matters without prior notice. It can be directed at specific ministers if the matter falls under their department.",
+    },
+    {
+      text: "68. Which one of the following is true of the Appropriation Act?",
+      options: [
+        "It is the demand for grants approved.",
+        "Applies to approval of budget.",
+        "Authorisation for withdrawal of money from consolidated fund",
+        "Authorisation for withdrawal from contingency fund",
+      ],
+      correctAnswer:
+        "Authorisation by the Parliament for withdrawal of money from the consolidated fund",
+      explanation:
+        "It is the final legal step that turns budget estimates into spendable money.",
+    },
+    {
+      text: "69. Which one of the following statements is correct with regard to the power of Parliament in enacting the Budget?",
+      options: [
+        "It can increase a tax, but not reduce it.",
+        "It can increase as well as reduce or abolish it.",
+        "It cannot increase a tax, but can reduce or abolish it.",
+        "It can neither increase a tax nor reduce it.",
+      ],
+      correctAnswer: "It cannot increase a tax, but can reduce or abolish it.",
+      explanation:
+        "Consistent with the principle of executive control over revenue, Parliament can lower the tax burden proposed by the government but cannot raise it.",
+    },
+    {
+      text: "70. Who among the following can establish additional courts for better administration of any existing law with respect to a matter contained in the Union List?",
+      options: [
+        "Chief Justice of India",
+        "High Court of concerned State",
+        "Parliament",
+        "Concerned State Legislature",
+      ],
+      correctAnswer: "Parliament",
+      explanation:
+        "Under Article 247, the Parliament has the power to set up extra courts to handle laws related to the Union List.",
+    },
+    {
+      text: "71. Which of the following statements is/are correct?\n1. Members are not liable in court for any vote given in committee.\n2. A House can try anyone directly as a Court of Justice.\n3. Members are not liable in court for anything said in Parliament.",
+      options: ["1, 2 and 3", "2 and 3", "1 and 3", "Only 1"],
+      correctAnswer: "1 and 3",
+      explanation:
+        "Points 1 and 3 refer to parliamentary privileges (Article 105) which protect freedom of speech and voting. Statement 2 is false; Houses can punish for contempt, but they are not general Courts of Justice.",
+    },
+    {
+      text: "72. Rajya Sabha has equal powers with Lok Sabha:",
+      options: [
+        "In creating new All-India Services",
+        "In amending the Constitution",
+        "In removal of the Government",
+        "In making cut motions",
+      ],
+      correctAnswer: "In amending the Constitution",
+      explanation:
+        "A constitutional amendment requires the approval of both Houses separately; if one house rejects it, the bill fails.",
+    },
+    {
+      text: "73. Who among the following chooses a member of the Council of States to be its Deputy Chairman?",
+      options: [
+        "The President",
+        "The Union Minister of Parliamentary Affairs",
+        "The Prime Minister",
+        "The Council of States",
+      ],
+      correctAnswer: "The Council of States",
+      explanation:
+        "The Rajya Sabha elects its Deputy Chairman from among its own members.",
+    },
+    {
+      text: "74. The Demands for Supplementary Grants must be presented to and passed by the House:",
+      options: [
+        "Before the end of the respective financial year",
+        "Before the budget of the following year is passed",
+        "After the withdrawal of money from the Consolidated Fund",
+        "After the submission of report of C.A.G.",
+      ],
+      correctAnswer: "Before the end of the respective financial year",
+      explanation:
+        "They must be approved within the same year the extra money is needed.",
+    },
+    {
+      text: "75. Which expenditures shall be charged on the Consolidated Fund?\n1. President's emoluments/allowances\n2. PM's emoluments/allowances\n3. RS Chairman/Deputy Chairman salaries\n4. LS Speaker/Deputy Speaker salaries",
+      options: ["1, 2 and 3", "2, 3 and 4", "1, 3 and 4", "1, 2 and 4"],
+      correctAnswer: "1, 3 and 4",
+      explanation:
+        "The PM's salary is voted upon annually and is not a charged expenditure, whereas the salaries of the heads of the Houses and the President are charged.",
+    },
+    {
+      text: "76. Demands for grants can emanate only from:",
+      options: [
+        "The leader of the Opposition",
+        "The Executive",
+        "The chairman of the Estimates Committee",
+        "Any non-ruling party member",
+      ],
+      correctAnswer: "The Executive",
+      explanation:
+        "Only the government (Executive) can request funds from Parliament for its administration.",
+    },
+    {
+      text: "77. Match List I (Grants) with List II (Meanings):\nA. Vote on account\nB. Vote on credit\nC. Supplementary demand\nD. Excess demand\n\n1. Lumpsum granted without detailed estimates\n2. Additional expenditure not in approved budget\n3. Amount spent in excess of the grants\n4. Grants in advance pending budgetary approval",
+      options: [
+        "A-1, B-4, C-3, D-2",
+        "A-1, B-4, C-2, D-3",
+        "A-4, B-1, C-2, D-3",
+        "A-4, B-1, C-3, D-2",
+      ],
+      correctAnswer: "A-4, B-1, C-2, D-3",
+      explanation:
+        "Account (4) is advance funds; Credit (1) is for unforeseen huge needs; Supplementary (2) is for new needs; Excess (3) is for money already overspent.",
+    },
+    {
+      text: "78. What is meant by 'Zero Hour'?",
+      options: [
+        "Exact time when question hour ends",
+        "Time between question hour and next item on agenda",
+        "Time for informal discussion between stages",
+        "Time for budget discussion",
+      ],
+      correctAnswer: "Time between question hour and next item on the agenda",
+      explanation:
+        "It's a uniquely Indian innovation in parliamentary procedure for raising urgent matters without prior notice.",
+    },
+    {
+      text: "79. Which regarding the Rajya Sabha are correct?\n1. Not subject to dissolution.\n2. Term of six years.\n3. One-third retire every two years.\n4. Members not less than 25 years old.",
+      options: ["1, 2 and 3", "2, 3 and 4", "1 and 3", "2 and 4"],
+      correctAnswer: "1 and 3",
+      explanation:
+        "Rajya Sabha is permanent (not subject to dissolution) and retires 1/3rd members every 2 years. Statement 2 is slightly inaccurate because the Body has no term (only members do). Statement 4 is wrong (it's 30 years).",
+    },
+    {
+      text: "80. Which one of the following has precedence over every other motion?",
+      options: [
+        "Calling attention",
+        "Half-an-hour discussion",
+        "Adjournment motion",
+        "Resolution by both Houses",
+      ],
+      correctAnswer: "Adjournment motion",
+      explanation:
+        "Because it disrupts the scheduled work of the House for an urgent matter, it takes priority.",
+    },
+    {
+      text: "81. A Money Bill deals with:\n1. Public account money receipt\n2. Govt guarantees for borrowing\n3. Custody of Consolidated Fund\n4. Withdrawal from Contingency Fund",
+      options: ["1 and 2", "1, 2, 3 and 4", "1, 2 and 4", "3 and 4"],
+      correctAnswer: "1, 2, 3 and 4",
+      explanation:
+        "Article 110 encompasses all these aspects related to the government's financial management.",
+    },
+    {
+      text: "82. When an advance grant is made by Parliament pending regular budget passage, it is:",
+      options: [
+        "Vote on credit",
+        "Token grant",
+        "Vote on account",
+        "Supplementary grant",
+      ],
+      correctAnswer: "Vote on account",
+      explanation:
+        "This allows the government to function during the 'gap' months of April and May.",
+    },
+    {
+      text: "83. Consider the following:\n1. Seats in RS are filled according to Fourth Schedule.\n2. Representatives of States in RS are elected by elected MLA members via single transferable vote.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "Statement 1 is correct. Statement 2 is incorrect regarding Union Territories; only UTs with a legislature (like Delhi/Puducherry) follow this, others have different methods.",
+    },
+    {
+      text: "84. Consider the following:\n1. Speaker's certificate on Money Bill can only be questioned in court.\n2. Appropriation Bill includes grants, charged expenditure, and taxing proposals.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Neither 1 nor 2",
+      explanation:
+        "Statement 1 is false (it cannot be questioned in court). Statement 2 is false because taxing proposals are in the Finance Bill, not the Appropriation Bill.",
+    },
+    {
+      text: "85. Statement I: Vote on account is discussed in detail.\nStatement II: Vote on account empowers Lok Sabha for advance grant.",
+      options: [
+        "Both true and II explains I",
+        "Both true but II doesn't explain I",
+        "I is true but II is false",
+        "I is false but II is true",
+      ],
+      correctAnswer: "Statement I is false but Statement II is true.",
+      explanation:
+        "Conventionally, the Vote on Account is passed without a detailed discussion to save time for the main budget debate.",
+    },
+    {
+      text: "86. When an Ordinary Bill is referred to a joint sitting, it must be passed by:",
+      options: [
+        "Simple majority of both Houses present and voting",
+        "Two-thirds majority of both Houses",
+        "Simple majority of total members of both Houses",
+        "Two-thirds majority of those present and voting",
+      ],
+      correctAnswer:
+        "Simple majority of the total number of members of both the Houses present and voting",
+      explanation:
+        "The decision is made by the combined members of both Houses voting as one body.",
+    },
+    {
+      text: "87. Consider the following:\n1. RS origin traced back to 1919 Act.\n2. RS has special powers regarding legislation on State List.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Both 1 and 2",
+      explanation:
+        "The first Council of States was established in 1921 under the 1919 Act. Article 249 gives RS the special power to allow center legislation on state subjects.",
+    },
+    {
+      text: "88. Charged expenditure upon the Consolidated Fund of India:",
+      options: [
+        "Submitted to vote of Parliament",
+        "Not submitted to vote of Rajya Sabha",
+        "Not submitted for sanction of President",
+        "Is not submitted to the vote of the Parliament",
+      ],
+      correctAnswer: "Is not submitted to the vote of the Parliament",
+      explanation:
+        "By definition, charged expenditure is automatically withdrawn once discussed; it is not put to a formal vote.",
+    },
+    {
+      text: "89. 'No tax shall be levied or collected except by authority of law.' This is provided in:",
+      options: ["Article 209", "Article 215", "Article 256", "Article 265"],
+      correctAnswer: "Article 265",
+      explanation:
+        "This is a fundamental protection against arbitrary taxation by the executive.",
+    },
+    {
+      text: "90. Estimates of expenditure required to be voted by Lok Sabha are submitted as:",
+      options: [
+        "Charged Expenditure",
+        "Capital Budget",
+        "Demands for Grants",
+        "Revenue Budget",
+      ],
+      correctAnswer: "Demands for Grants",
+      explanation:
+        "Each Ministry presents its requirements as specific 'demands' which the Lok Sabha then votes upon.",
+    },
+    {
+      text: "91. The question asked orally after the Question Hour in the House is called:",
+      options: [
+        "Supplementary question",
+        "Short-notice question",
+        "Starred question",
+        "Unstarred question",
+      ],
+      correctAnswer: "Supplementary question",
+      explanation:
+        "After a starred question is answered orally, members can ask follow-up 'supplementary' questions for clarification.",
+    },
+    {
+      text: "92. The economy cut-motion seeks to reduce the proposed expenditure by:",
+      options: [
+        "Rupees one hundred",
+        "Rupee one",
+        "A specified amount",
+        "An unspecified amount",
+      ],
+      correctAnswer: "A specified amount",
+      explanation:
+        "It aims to reduce the demand by a particular amount to signify that the service could be run more cheaply.",
+    },
+    {
+      text: "93. Match List I (Terms) with List II (Implications):\nA. Voting on demands\nB. Budget\nC. Money Bill\nD. Charged Expenditure\n\n1. Prior consent of President\n2. Not subject to vote\n3. Instrument of socio-economic change\n4. Enactment of Budget",
+      options: [
+        "A-4, B-3, C-1, D-2",
+        "A-3, B-4, C-2, D-5",
+        "A-1, B-3, C-4, D-2",
+        "A-1, B-4, C-3, D-2",
+      ],
+      correctAnswer: "A-4, B-3, C-1, D-2",
+      explanation:
+        "Voting (4) is the enactment stage; Budget (3) is a policy tool; Money Bill (1) needs President's prior consent; Charged (2) is non-votable.",
+    },
+    {
+      text: "94. The Provisional Collection of Taxes Act 1931 empowers government to collect taxes for:",
+      options: ["50 days", "60 days", "75 days", "90 days"],
+      correctAnswer: "75 days",
+      explanation:
+        "This allows the government to start collecting new taxes immediately after the budget is presented, before the Finance Bill is officially passed.",
+    },
+    {
+      text: "95. The Consolidated Fund of India is made up of:",
+      options: [
+        "Excise duty and income tax",
+        "Income tax and corporate tax",
+        "Money raised from all loans",
+        "All revenue receipts of the Government of India",
+      ],
+      correctAnswer: "All revenue receipts of the Government of India",
+      explanation:
+        "Under Article 266, it includes all revenues, loans raised, and all money received in repayment of loans.",
+    },
+    {
+      text: "96. A grant provided pending the regular passage of the budget is called:",
+      options: [
+        "Appropriation account",
+        "Token cut",
+        "Vote on account",
+        "Cut motion",
+      ],
+      correctAnswer: "Vote on account",
+      explanation:
+        "It's a temporary authorization for the government to access funds from April 1st.",
+    },
+    {
+      text: "97. In the context of the budget, the term 'guillotine' is used with reference to:",
+      options: [
+        "Appropriation Bill",
+        "Consolidated Fund charges",
+        "Voting of Demands",
+        "Finance Bill",
+      ],
+      correctAnswer: "Voting of Demands",
+      explanation:
+        "It's the process of putting all remaining grants to vote without further discussion.",
+    },
+    {
+      text: "98. The charged expenditure includes:\n1. Judgement/decree/award of court/tribunal sums\n2. Debt charges\n3. Salaries/allowances of certain high officials",
+      options: ["1 only", "1 and 2", "3 only", "All the above"],
+      correctAnswer: "All the above",
+      explanation:
+        "The Constitution defines all these as non-votable expenditures to maintain national credit and judicial/constitutional office independence.",
+    },
+    {
+      text: "99. Statement I: Parliament exerts authority through appropriation.\nStatement II: Gross amount of appropriation determines official activity volume.",
+      options: [
+        "Both true and II explains I",
+        "Both true but II doesn't explain I",
+        "I is true but II is false",
+        "I is false but II is true",
+      ],
+      correctAnswer:
+        "Both the statements are individually true and Statement II is the correct explanation of Statement I.",
+      explanation:
+        "Parliament controls the government by deciding exactly how much money it has to spend on each activity.",
+    },
+    {
+      text: "100. Consider the following:\n1. Grants and charged expenditure are incorporated in the Annual Finance Bill.\n2. Taxing proposals are included in an Appropriation Bill.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Neither 1 nor 2",
+      explanation:
+        "The matching is wrong. Grants and charged expenditure go into the Appropriation Bill. Taxing proposals go into the Finance Bill.",
+    },
+  ],
+  Parliamentary_Committees: [
+    {
+      text: "1. Consider the following statements:\n1. After the Annual Financial Statement is presented before the House of the People, it is examined by the Public Accounts Committee.\n2. The Public Accounts Committee examines the report of the Comptroller and Auditor-General of India after it is laid before the Parliament.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 2",
+      explanation:
+        "The Public Accounts Committee (PAC) is a post-expenditure committee. It does not examine the budget estimates (Annual Financial Statement) when they are presented; instead, it scrutinizes the audit reports of the CAG to ensure money was spent as authorized.",
+    },
+    {
+      text: "2. Consider the following statements:\n1. The Parliamentary Committee on Empowerment of Women was constituted in 1997.\n2. The Parliamentary Committee on Empowerment of Women consists of 20 members of the Lok Sabha and 10 members of the Rajya Sabha.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Both 1 and 2",
+      explanation:
+        "This committee was indeed established in 1997 to monitor the status and rights of women in India. It is a joint committee comprising 30 members in total, with a 2:1 ratio between the Lok Sabha and Rajya Sabha.",
+    },
+    {
+      text: "3. Which among the following are the merits of the Parliamentary Departmental Standing Committees constituted to scrutinize the budget proposals?\n1. Legislative control is now more legal because the committees are established by law\n2. Experts and specialists have been nominated to help the members of the Parliament\n3. Legislative control is now much more close, continuous and in-depth\n4. The Rajya Sabha and the opposition parties can play a greater role in exercising financial control",
+      options: ["1 and 2", "2 and 3", "3 and 4", "1 and 4"],
+      correctAnswer: "3 and 4",
+      explanation:
+        "Standing Committees allow for a detailed review of departmental demands for grants that isn't possible on the floor of the House. Importantly, Rajya Sabha members are part of these committees, giving the Upper House a voice in financial scrutiny that it otherwise lacks during the voting of demands in the Lok Sabha.",
+    },
+    {
+      text: "4. Which one of the following committees is not a Standing Committee of the Parliament?",
+      options: [
+        "Public Accounts Committee",
+        "Estimates Committee",
+        "Committee on Public Undertakings",
+        "Consultative Committee of the Ministry of Finance",
+      ],
+      correctAnswer: "Consultative Committee of the Ministry of Finance",
+      explanation:
+        "Consultative committees are informal forums attached to various ministries for discussions between ministers and MPs; they are not part of the formal standing committee structure of Parliament.",
+    },
+    {
+      text: "5. Match List I with List II:\nA. Select Committee\nB. Committee on Petitions\nC. Business Advisory Committee\nD. Estimates Committee\n\n1. Allocates time for discussion on various items\n2. Considers the question of contempt of the House\n3. Entertains representations from individuals\n4. Scrutinises a bill clause by clause and suggests changes\n5. Examines departmental expenditure in the budget",
+      options: [
+        "A-4, B-3, C-1, D-5",
+        "A-3, B-4, C-1, D-5",
+        "A-4, B-3, C-5, D-2",
+        "A-3, B-4, C-5, D-2",
+      ],
+      correctAnswer: "A-4, B-3, C-1, D-5",
+      explanation:
+        "Select committees focus on specific bills; the Petitions committee handles public grievances; Business Advisory manages the House schedule; and the Estimates committee focuses on budgetary economy.",
+    },
+    {
+      text: "6. The Chairman of the Public Accounts Committee of the Parliament is appointed by the:",
+      options: [
+        "Speaker of Lok Sabha",
+        "Prime Minister of India",
+        "President of India",
+        "Chairman of Rajya Sabha",
+      ],
+      correctAnswer: "Speaker of Lok Sabha",
+      explanation:
+        "The Speaker appoints the Chairman of the PAC. Since 1967, a convention has been established where the Chairman is selected from the Opposition members.",
+    },
+    {
+      text: "7. Which one of the following Parliamentary Committees consists exclusively of members of the Lok Sabha?",
+      options: [
+        "The Public Accounts Committee",
+        "The Estimates Committee",
+        "The Committee on Public Undertakings",
+        "The Committee on the Welfare of Scheduled Castes and Scheduled Tribes",
+      ],
+      correctAnswer: "The Estimates Committee",
+      explanation:
+        "The Estimates Committee has 30 members, all of whom must be from the Lok Sabha. The other listed committees are joint committees involving both houses.",
+    },
+    {
+      text: "8. Which of the following committees are helped by the CAG in their work of exercising Parliamentary control over the executive?\n1. Public Accounts Committee\n2. Committee of Privileges\n3. Estimates Committee\n4. Committee on Public Undertakings",
+      options: ["1 and 4", "1, 2 and 4", "1, 2 and 3", "2, 3 and 4"],
+      correctAnswer: "1 and 4",
+      explanation:
+        "The Comptroller and Auditor General (CAG) acts as a 'guide, philosopher, and friend' specifically to the PAC and COPU by providing the audit reports that form the basis of their investigations.",
+    },
+    {
+      text: "9. Which one of the following is the correct chronological order of the evolution of the given Committees?",
+      options: [
+        "COPU - Estimates - PAC",
+        "Estimates - PAC - COPU",
+        "COPU - PAC - Estimates",
+        "PAC - Estimates Committee - Committee on Public Undertakings",
+      ],
+      correctAnswer:
+        "Public Accounts Committee - Estimates Committee - Committee on Public Undertakings",
+      explanation:
+        "The PAC was first set up in 1921. The Estimates Committee was established in 1950 in the post-independence era. The Committee on Public Undertakings was created later in 1964.",
+    },
+    {
+      text: "10. Which one of the following is a Parliamentary Standing Committee?",
+      options: [
+        "Committee on Draft Five-Year Plan",
+        "Railway Convention Committee",
+        "Business Advisory Committee",
+        "Joint Committee on Fertilizer Pricing",
+      ],
+      correctAnswer: "Business Advisory Committee",
+      explanation:
+        "The Business Advisory Committee is a permanent standing committee in each house. The others are usually ad hoc or special-purpose committees.",
+    },
+    {
+      text: "11. Consider the following statements regarding Public Accounts Committee:\n1. It examines the Audit Report of the CAG\n2. The suggestions made by the Committee are necessarily accepted by the Government\n3. It ensures the observance of the canons of financial propriety in all transactions\n4. The Committee functions in a non-partisan manner",
+      options: ["1, 3 and 4", "2, 3 and 4", "1 and 2", "1, 2, 3 and 4"],
+      correctAnswer: "1, 3 and 4",
+      explanation:
+        "The committee's recommendations are advisory, not legally binding on the government (Statement 2 is false). However, it is known for its rigorous financial scrutiny and non-partisan functioning.",
+    },
+    {
+      text: "12. Which one of the following committees recommended for the creation of Committee on Public Undertakings?",
+      options: [
+        "Krishna Menon Committee",
+        "Ashok Chanda Committee",
+        "Gorwala Committee",
+        "T. Krishnamachari Committee",
+      ],
+      correctAnswer: "Krishna Menon Committee",
+      explanation:
+        "The Krishna Menon Committee suggested the formation of a separate committee to oversee the growing number of public sector enterprises in the early 1960s.",
+    },
+    {
+      text: "13. Which one of the following pairs is not correctly matched?",
+      options: [
+        "Committee on Petitions: Standing Committee to inquire",
+        "Committee on Government Assurances: Standing Committee to scrutinize",
+        "Committee on Subordinate Legislation: Standing Committee to inquire",
+        "Select or Joint Committee on Bills: Ad hoc Committee",
+      ],
+      correctAnswer:
+        "Committee on Subordinate Legislation: Standing Committee to inquire",
+      explanation:
+        "The Committee on Subordinate Legislation is primarily a committee for *scrutiny and control* over delegated legislation, not an inquiry committee.",
+    },
+    {
+      text: "14. Which one of the following statements is not correct with regard to Parliamentary Committees?",
+      options: [
+        "The PAC and the Public Undertakings Committee are joint committees",
+        "Seventeen Departmentally Related Committees were set-up in early 1990s",
+        "There are Standing and Ad hoc Committees",
+        "Estimates Committee and PAC are always headed by a senior leader of the ruling party",
+      ],
+      correctAnswer:
+        "The Estimates Committee and the Public Accounts Committee are always headed by a senior leader of the ruling party/coalition.",
+      explanation:
+        "This is incorrect because the PAC Chairman is, by convention, always from the Opposition, not the ruling party.",
+    },
+    {
+      text: "15. Which one of the following committees scrutinize in detail the report of the Comptroller and Auditor-General of India?",
+      options: [
+        "Public Accounts Committee",
+        "Estimates Committee",
+        "Select Committee of Expenditure",
+        "Consultative Committee of the Finance Ministry",
+      ],
+      correctAnswer: "Public Accounts Committee",
+      explanation:
+        "Examining the CAG's audit report on the accounts of the Union is the primary and defining function of the Public Accounts Committee.",
+    },
+    {
+      text: "16. The Speaker is the ex-officio Chairman of the:",
+      options: [
+        "Rules Committee",
+        "Committee of privileges",
+        "Committee on public undertakings",
+        "Committee on government assurances",
+      ],
+      correctAnswer: "Rules Committee",
+      explanation:
+        "The Speaker also chairs the Business Advisory Committee and the General Purposes Committee.",
+    },
+    {
+      text: "17. Which of the following Committees consist of representatives of both the Houses namely Lok Sabha and Rajya Sabha?\n1. Estimates Committee\n2. Committee on Subordinate Legislation\n3. Public Accounts Committee\n4. Committee on Public Undertakings",
+      options: ["1 and 4", "1, 2 and 3", "3 and 4", "2, 3 and 4"],
+      correctAnswer: "3 and 4",
+      explanation:
+        "The PAC and COPU are joint committees. The Estimates Committee is Lok Sabha only, and the Subordinate Legislation Committee exists as two separate committees for each house.",
+    },
+    {
+      text: "18. Which of the following statements does not reflect the jurisdiction of the Estimates Committee?",
+      options: [
+        "It suggests alternative policies in order to bring efficiency and economy",
+        "It examines whether the money is well laid out within the policy limits",
+        "It suggests the form in which estimates are to be presented",
+        "It helps in checking Governmental extravagance as its report is debated in the House",
+      ],
+      correctAnswer:
+        "It helps in checking Governmental extravagance in making demands as its report is debated in the House",
+      explanation:
+        "The reports of the Estimates Committee are not actually debated on the floor of the House; their impact comes from departmental follow-up.",
+    },
+    {
+      text: "19. Which one of the following committees is constituted by the Lok Sabha but comprises members of the Rajya Sabha also?",
+      options: [
+        "Business Advisory Committee",
+        "Committee of Privileges",
+        "Public Accounts Committee",
+        "Rules Committee",
+      ],
+      correctAnswer: "Public Accounts Committee",
+      explanation:
+        "The PAC is a joint committee consisting of 22 members: 15 from Lok Sabha and 7 from Rajya Sabha.",
+    },
+    {
+      text: "20. The report of Public Accounts Committee is presented to the:",
+      options: ["Prime Minister", "Finance Minister", "President", "Lok Sabha"],
+      correctAnswer: "Lok Sabha",
+      explanation:
+        "As a parliamentary committee, its final findings are submitted directly to the House.",
+    },
+    {
+      text: "21. Match List I with List II:\nA. Rules Committee\nB. Public Accounts Committee\nC. Committee on Subordinate Legislation\nD. Committee on Public Undertakings\n\n1. Examination of Appropriation Accounts\n2. Considers matters of procedure in the House\n3. Examination of rules made by the executive\n4. Review of the working of the public sector undertakings\n5. Control of the department of public enterprises",
+      options: [
+        "A-1, B-2, C-3, D-5",
+        "A-2, B-1, C-3, D-4",
+        "A-3, B-4, C-1, D-2",
+        "A-5, B-1, C-2, D-3",
+      ],
+      correctAnswer: "A-2, B-1, C-3, D-4",
+      explanation:
+        "Rules (2) handles procedure; PAC (1) handles accounts; Subordinate (3) handles executive rules; COPU (4) handles PSUs.",
+    },
+    {
+      text: "22. The Parliament exercises final control on public finance:",
+      options: [
+        "Through the Public Accounts Committee",
+        "Through the Estimates Committee",
+        "Through the enactment of the Budget",
+        "Through the Comptroller and Auditor-General of India",
+      ],
+      correctAnswer: "Through the Public Accounts Committee",
+      explanation:
+        "Final control is post-expenditure audit, ensuring the money was used exactly as Parliament intended when it passed the budget.",
+    },
+    {
+      text: "23. The issue of whether a commitment made by a Minister on the floor of the House has been fulfilled or not is decided by the:",
+      options: [
+        "Consultative Committee",
+        "Select Committee",
+        "Political Affairs Committee",
+        "Committee on Government Assurances",
+      ],
+      correctAnswer: "Committee on Government Assurances",
+      explanation:
+        "This specific committee is tasked with tracking and reporting on the implementation of various promises and undertakings given by ministers in Parliament.",
+    },
+    {
+      text: "24. Which one of the following Parliamentary Committees act as a 'watchdog' on departmental expenditures and irregularities?",
+      options: [
+        "Estimates Committee",
+        "Committee on Public Undertakings",
+        "Public Accounts Committee",
+        "Committee on Government Assurances",
+      ],
+      correctAnswer: "Public Accounts Committee",
+      explanation:
+        "The PAC is the primary watchdog that investigates financial irregularities and technical audit findings.",
+    },
+    {
+      text: "25. Which of the following is/are true with respect to the Public Accounts Committee?\n1. Its work is based on the audit reports of the CAG.\n2. It examines the accounts of the Government of India for appropriations made by the Lok Sabha.\n3. It examines the accounts of autonomous and semi-autonomous bodies.",
+      options: ["1, 2 and 3", "1 and 2", "2 and 3", "Only 3"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "The PAC has a wide scope that includes all appropriation accounts and finance accounts of the Union, including those of various autonomous agencies.",
+    },
+    {
+      text: "26. Consider the following statements:\n1. Members of Rajya Sabha are not associated with the Committee on Public Undertakings.\n2. Railway Convention Committee is an ad hoc Parliamentary Committee",
+      options: ["Only 2", "1 and 2", "None", "Only 1"],
+      correctAnswer: "Only 2",
+      explanation:
+        "Statement 1 is false because COPU is a joint committee. Statement 2 is correct as the Railway Convention Committee is indeed an ad hoc body reconstituted as needed.",
+    },
+    {
+      text: "27. Consider the following statements:\n1. The Public Accounts Committee consists of 10 members from Lok Sabha and 5 members from Rajya Sabha.\n2. The Public Accounts Committee examines both the Appropriation and Finance Reports submitted by the Comptroller and Auditor-General of India.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 2",
+      explanation:
+        "Statement 1 is wrong because the PAC has 22 members (15+7). Statement 2 correctly identifies the two main types of reports the PAC scrutinizes.",
+    },
+    {
+      text: "28. When were 17 Departmental Related Standing Committees set up on the recommendations of the Rules Committee of the Lok Sabha?",
+      options: ["1964", "1977", "1990", "1993"],
+      correctAnswer: "1993",
+      explanation:
+        "The modern Standing Committee system for departments was formally inaugurated in April 1993.",
+    },
+    {
+      text: "29. Which one of the following is not a function of the Committee on Subordinate Legislation?",
+      options: [
+        "To evolve a systematic pattern of the terms of delegation",
+        "To improve the methods of publicity of the rules",
+        "To lay down rules and regulations on the table of the House",
+        "To achieve uniformity in rule-making procedures",
+      ],
+      correctAnswer:
+        "To lay down rules and regulations on the table of the House",
+      explanation:
+        "The executive branch (ministers) lays the rules on the table. The committee's job is to *scrutinize* them after they have been laid.",
+    },
+    {
+      text: "30. Statement I: The Annual Financial Statement contains estimates of expenditure and ways to raise revenue.\nStatement II: After the Annual Financial Statement is presented in the Lok Sabha, the Estimates Committee examines it.",
+      options: [
+        "Both true and II explains I",
+        "Both true but II doesn't explain I",
+        "I is true but II is false",
+        "I is false but II is true",
+      ],
+      correctAnswer:
+        "Both statements are individually true but Statement II is not the correct explanation of Statement I.",
+      explanation:
+        "Both facts are correct, but the second doesn't explain why the first is true.",
+    },
+    {
+      text: "31. Which one of the following statements is not correct?",
+      options: [
+        "The main function of PAC is to examine the CAG report",
+        "The Public Accounts Committee comprises Members of the Lok Sabha only",
+        "A member of opposition can be PAC Chairman",
+        "A member can be re-elected for a second term",
+      ],
+      correctAnswer:
+        "The Public Accounts Committee comprises Members of the Lok Sabha only.",
+      explanation:
+        "The PAC is a joint committee of both the Lok Sabha and the Rajya Sabha.",
+    },
+    {
+      text: "32. At present, the number of Standing Parliamentary Committees that exist to scrutinize the demands for grants is:",
+      options: ["Twenty-two", "Twenty-six", "Twenty-four", "Twenty-eight"],
+      correctAnswer: "Twenty-four",
+      explanation:
+        "The number of Departmentally Related Standing Committees was expanded from 17 to 24 in 2004.",
+    },
+    {
+      text: "33. The Estimates Committee of the Lok Sabha:",
+      options: [
+        "Prepares estimates of expenditure",
+        "Examines the accounts of Departments",
+        "Prevents unauthorized collection of taxes",
+        "Suggests economies to be made in the Central administration",
+      ],
+      correctAnswer:
+        "Suggests economies to be made in the Central administration",
+      explanation:
+        "It acts as a continuous economy committee, suggesting alternative policies to save money without compromising the policy's purpose.",
+    },
+  ],
+  Parliamentary_Forums: [
+    {
+      text: "1. Consider the following statements:\n1. The Parliamentary Forum on Population and Public Health is the first Parliamentary Forum.\n2. The first Parliamentary Forum was established in 2004.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Neither 1 nor 2",
+      explanation:
+        "The first forum established was the Parliamentary Forum on Water Conservation and Management in 2005.",
+    },
+    {
+      text: "2. Statement I: The Parliamentary Forum will not interfere with the jurisdiction of the Departmentally-Related Standing Committees.\nStatement II: The Chairman of DRSCs are the ex-officio Vice-Presidents of the respective Forums.",
+      options: [
+        "Both true and II explains I",
+        "Both true but II doesn't explain I",
+        "I is true but II is false",
+        "I is false but II is true",
+      ],
+      correctAnswer:
+        "Both statements are individually true but Statement II is not the correct explanation of Statement I.",
+      explanation:
+        "While both are operational facts of the forums, there is no causal link between the VP's position and the non-interference.",
+    },
+    {
+      text: "3. The Speaker of Lok Sabha is the President of all the Parliamentary Forums except the:",
+      options: [
+        "Parliamentary Forum on Population and Public Health",
+        "Parliamentary Forum on Global Warming",
+        "Parliamentary Forum on Water Conservation",
+        "Parliamentary Forum on Children",
+      ],
+      correctAnswer: "Parliamentary Forum on Population and Public Health",
+      explanation:
+        "The Chairman of the Rajya Sabha is the President of this specific forum, while the Speaker is its Co-President.",
+    },
+    {
+      text: "4. What is the strength of a Parliamentary Forum (excluding the President and ex-officio Vice-Presidents)?",
+      options: ["21 Members", "15 Members", "31 Members", "25 Members"],
+      correctAnswer: "31 Members",
+      explanation:
+        "Each forum has a total of 31 members: 21 from the Lok Sabha and 10 from the Rajya Sabha.",
+    },
+    {
+      text: "5. Who is the Speaker of Lok Sabha when the first Parliamentary Forum was constituted?",
+      options: [
+        "Ms. Meira Kumar",
+        "Manohar Joshi",
+        "Somnath Chatterjee",
+        "G.M.C. Balayogi",
+      ],
+      correctAnswer: "Somnath Chatterjee",
+      explanation:
+        "The forum system was initiated during the speakership of Somnath Chatterjee in 2005.",
+    },
+    {
+      text: "6. Which one of the following is not a sub-forum of the Parliamentary Forum on Youth?",
+      options: [
+        "Sub-Forum on Empowerment",
+        "Sub-Forum on Health",
+        "Sub-Forum on Education",
+        "Sub-Forum on Employment",
+      ],
+      correctAnswer: "Sub-Forum on Empowerment",
+      explanation:
+        "The Youth forum is divided into Health, Education, and Employment. Empowerment is a broader goal rather than a distinct sub-division.",
+    },
+    {
+      text: "7. Match List I with List II:\nA. Forum on Population and Public Health\nB. Forum on Disaster Management\nC. Forum on Water Conservation and Management\nD. Forum on Global Warming and Climate Change\n\n1. 2011\n2. 2006\n3. 2004\n4. 2005\n5. 2008",
+      options: [
+        "A-2, B-3, C-1, D-4",
+        "A-3, B-1, C-5, D-2",
+        "A-2, B-1, C-4, D-5",
+        "A-3, B-2, C-5, D-1",
+      ],
+      correctAnswer: "A-2, B-1, C-4, D-5",
+      explanation:
+        "Water (2005); Population (2006); Global Warming (2008); Disaster Management (2011).",
+    },
+  ],
+  Supreme_Court: [
+    {
+      text: "1. Consider the following statements:\n1. A retired Supreme Court Judge cannot act as a Judge of the Supreme Court even for a temporary period.\n2. A High Court Judge may be appointed as an ad hoc Judge of the Supreme Court for a temporary period.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 2",
+      explanation:
+        "Retired SC judges *can* be requested to sit as judges by the CJI with President's consent (Article 128). Statement 2 is correct per Article 127 regarding ad hoc appointments.",
+    },
+    {
+      text: "2. Consider the following statements regarding Supreme Court's Original Jurisdiction:\n1. Dispute between GoI and one or more States.\n2. Dispute between GoI and States on one side and other States on the other.\n3. Dispute between GoI and individuals on one side and States on the other.\n4. Dispute between two or more States.",
+      options: ["1 and 2", "1, 2 and 4", "3 and 4", "1, 2, 3 and 4"],
+      correctAnswer: "1, 2 and 4",
+      explanation:
+        "Original jurisdiction (Article 131) covers federal disputes. Individuals or corporations cannot sue the government under this specific jurisdiction.",
+    },
+    {
+      text: "3. In which of the following categories of cases, the Supreme Court of India has the power to decide?\n1. A reference made by the President on a question of law or fact.\n2. A case involving interpretation of the Constitution.\n3. A case involving a substantial question of law of general importance.\n4. A case where the constitutionality of any law has been challenged.",
+      options: ["1, 2 and 3", "1, 2 and 4", "1, 3 and 4", "2, 3 and 4"],
+      correctAnswer: "2, 3 and 4",
+      explanation:
+        "The 'power to decide' refers to the court's judicial adjudication. Article 143 (Statement 1) is advisory, where the court gives an opinion, not a final 'decision' in the adjudicatory sense.",
+    },
+    {
+      text: "4. Consider the following statements:\n1. The Supreme Court of India can sit only in Delhi.\n2. The Supreme Court of India can sit in places other than Delhi which the CJI may appoint with the approval of the President.\n3. The Parliament may make provisions for conferring supplemental powers upon the Supreme Court.",
+      options: ["1 and 3", "2 and 3", "Only 2", "Only 3"],
+      correctAnswer: "2 and 3",
+      explanation:
+        "Article 130 allows the court to sit elsewhere if the CJI decides and the President approves. Statement 3 is covered under Articles 138-140.",
+    },
+    {
+      text: "5. Assertion (A): The Supreme Court is a Court of Record.\nReason (R): Once a Court is made a Court of Record, its power to punish for its contempt necessarily follows from that position.",
+      options: [
+        "Both A and R true and R is correct explanation",
+        "Both A and R true but R is not the explanation",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true but R is not the correct explanation of A",
+      explanation:
+        "A 'Court of Record' means its proceedings are saved for perpetual memory. While the power to punish for contempt is a standard feature of such courts, the reason for being a court of record is the recording of evidence and precedent.",
+    },
+    {
+      text: "6. In the appointment of the Judges of the Supreme Court, the recommendations of the collegium is binding on the President of India, because:",
+      options: [
+        "It is so provided in the Constitution",
+        "It has been the consistent practice for a long time",
+        "It has been laid down by the Parliament",
+        "It has been laid down by the Supreme Court",
+      ],
+      correctAnswer: "It has been laid down by the Supreme Court",
+      explanation:
+        "The collegium system and the binding nature of its advice were established by the Supreme Court itself in the Second and Third Judges Cases.",
+    },
+    {
+      text: "7. Which one regarding judicial review is not correct?",
+      options: [
+        "A case must be brought before the Supreme Court",
+        "Unanimous opinion of all the judges is necessary",
+        "Legislative enactments and executive orders may be struck down",
+        "The power is implicit in Article 13",
+      ],
+      correctAnswer:
+        "Unanimous opinion of all the judges is necessary for declaring a law null and void.",
+      explanation:
+        "Judicial review decisions are made by a simple majority of the judges on the bench, not by unanimity.",
+    },
+    {
+      text: "8. Article 141 says SC law is binding on all courts. Therefore, the Supreme Court:",
+      options: [
+        "Is bound by earlier decisions as 'all courts' includes SC",
+        "Is not bound by own decisions and may reverse them",
+        "Can reverse only when new legislation is passed",
+        "Can reverse only when a previous decision overlooked another",
+      ],
+      correctAnswer:
+        "Is not bound by its own decisions and may reverse a previous decision.",
+      explanation:
+        "The term 'all courts' refers to subordinate courts. The SC is the highest authority and has the inherent power to overrule its own precedents to correct errors.",
+    },
+    {
+      text: "9. Which one of the following is directly related to the Appellate jurisdiction of the Supreme Court?",
+      options: [
+        "Appeals in civil, criminal and constitutional cases",
+        "Appeals in constitutional cases only",
+        "Adjudication of disputes between Union and States",
+        "Adjudication of disputes between States",
+      ],
+      correctAnswer: "Appeals made in civil, criminal and constitutional cases",
+      explanation:
+        "The SC serves as the final court of appeal for all legal and constitutional matters originating from High Courts.",
+    },
+    {
+      text: "10. How can the number of Judges in the Supreme Court of India be increased?",
+      options: [
+        "By a Presidential notification",
+        "By a Parliamentary Act",
+        "By an Amendment of the Constitution",
+        "By a Representation from the Supreme Court",
+      ],
+      correctAnswer: "By a Parliamentary Act",
+      explanation:
+        "Under Article 124, Parliament has the power to determine the number of judges through legislation.",
+    },
+    {
+      text: "11. Assertion (A): Judicial Review is a process to restrain the executive or the legislature from exercising power which may not be sanctioned by the Constitution.\nReason (R): The source of the power of judicial review is Article 13 of the Constitution.",
+      options: [
+        "Both A and R true and R explains A",
+        "Both A and R true but R is not the explanation",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true but R is not the correct explanation of A",
+      explanation:
+        "Article 13 is only one source (specifically for Fundamental Rights). The overall power of review flows from many articles, including 32, 226, 131, and 246.",
+    },
+    {
+      text: "12. Consider the following statements:\n1. Parliament can extend, but cannot curtail SC jurisdiction.\n2. No discussion on judge conduct except during removal.\n3. Retired judge cannot appear or plead in any court in India.\n4. Salaries are charged on the Consolidated Fund.",
+      options: ["1, 2, 3 and 4", "1 and 2", "1 and 3", "2 and 4"],
+      correctAnswer: "1, 2, 3 and 4",
+      explanation:
+        "All these measures are constitutional safeguards designed to protect the independence and integrity of the Supreme Court judges.",
+    },
+    {
+      text: "13. Which one category of disputes is excluded from the original jurisdiction of the Supreme Court?",
+      options: [
+        "Between GoI and one or more States",
+        "Between two or more States",
+        "Between residents of two or more States",
+        "Between GoI and States on one side vs other States",
+      ],
+      correctAnswer: "Between residents of two or more States",
+      explanation:
+        "Disputes between individuals/citizens do not fall under Article 131; they must go through the standard trial and appeal process.",
+    },
+    {
+      text: "14. In order to remove a judge of the Supreme Court, the prescribed majority of members of the House present and voting is:",
+      options: ["One-third", "One-half", "Two-thirds", "Three-fourths"],
+      correctAnswer: "Two-thirds",
+      explanation:
+        "Removal requires a special majority: a majority of the total membership of the House AND two-thirds of members present and voting.",
+    },
+    {
+      text: "15. Which one of the following is not an essential condition for appointment as a judge of the Supreme Court?",
+      options: [
+        "Citizen of India",
+        "5 years' experience as HC judge",
+        "Must have completed 35 years of age",
+        "10 years' experience as HC advocate",
+      ],
+      correctAnswer: "Must have completed 35 years of age",
+      explanation:
+        "The Constitution does not specify any minimum age for a Supreme Court judge, unlike for the President or MPs.",
+    },
+    {
+      text: "16. The rules for regulating the practice and procedure of the Supreme Court are made by the:",
+      options: [
+        "President of India",
+        "Supreme Court with the approval of the President",
+        "Supreme Court alone",
+        "Supreme Court in consultation with the Bar Council",
+      ],
+      correctAnswer:
+        "Supreme Court with the approval of the President of India",
+      explanation:
+        "Article 145 gives the court self-regulatory power, but it must be approved by the President and is subject to Parliamentary law.",
+    },
+    {
+      text: "17. Assertion (A): The rule-making power of the Supreme Court is not subject to any law made by the Parliament.\nReason (R): Only an impartial and independent judiciary can protect the rights of the individual.",
+      options: [
+        "Both A and R true and R explains A",
+        "Both A and R true but R is not the explanation",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "A is false but R is true",
+      explanation:
+        "Article 145 explicitly states that the court's rules are 'subject to the provisions of any law made by Parliament'.",
+    },
+    {
+      text: "18. When the Chief Justice of India is appointed by the President, he is required to consult:",
+      options: [
+        "Council of Ministers and all SC judges",
+        "PM, Law Minister and Attorney-General",
+        "Ministers he deems necessary",
+        "Judges of the SC and HCs as he deems necessary",
+      ],
+      correctAnswer:
+        "Such of the Judges of the Supreme Court and High Courts as he deems necessary",
+      explanation:
+        "While the appointment of CJI is largely governed by seniority, the constitutional text requires consultation with other judges.",
+    },
+    {
+      text: "19. Which one of the following statements is not correct?",
+      options: [
+        "Retired SC judge prohibited from pleading",
+        "SC may issue writs for any legal right enforcement",
+        "SC has power to punish for contempt",
+        "Salary not subject to vote",
+      ],
+      correctAnswer:
+        "Supreme Court may issue writs for the enforcement of any legal right within the territory of India.",
+      explanation:
+        "The SC's writ jurisdiction is limited to Fundamental Rights (Article 32). High Courts have broader writ powers for 'any other purpose' (Article 226).",
+    },
+    {
+      text: "20. Consider statements on Advisory Jurisdiction:\n1. Reference by President on law or fact.\n2. Pre-constitution treaties may be referred.\n3. Advice is binding on the Government.\n4. Constitutionality of Kerala Education Bill was referred.",
+      options: ["1, 2 and 4", "2 and 3", "1 and 2", "3 and 4"],
+      correctAnswer: "1, 2 and 4",
+      explanation:
+        "Advice under Article 143 is not binding; the President is free to follow it or not.",
+    },
+    {
+      text: "21. Appellate jurisdiction of the SC in civil matters from High Courts pertains only to a:",
+      options: [
+        "Substantial question of law",
+        "Question of law",
+        "Question of fact",
+        "Mixed question",
+      ],
+      correctAnswer: "Substantial question of law",
+      explanation:
+        "Article 133 requires that the case involves a substantial question of law of general importance that needs to be decided by the SC.",
+    },
+    {
+      text: "22. The Supreme Court of India is different from its counterpart in the U.S.A.:",
+      options: [
+        "Guardian of Constitution",
+        "Advisory role",
+        "Supreme authority",
+        "Writ jurisdiction",
+      ],
+      correctAnswer: "In its advisory role",
+      explanation:
+        "The Indian Supreme Court has an advisory jurisdiction (Article 143), which the US Supreme Court does not have.",
+    },
+    {
+      text: "23. Match List I with List II:\nA. Appellate Jurisdiction\nB. Advisory Jurisdiction\nC. Miscellaneous Powers\nD. Original Jurisdiction\n\n1. Court of record / Review judgements\n2. Law/fact of public importance referred\n3. Civil, criminal and constitutional cases\n4. Acts as a federal court",
+      options: [
+        "A-3, B-2, C-1, D-4",
+        "A-2, B-3, C-1, D-4",
+        "A-3, B-4, C-2, D-1",
+        "A-2, B-4, C-3, D-1",
+      ],
+      correctAnswer: "A-3, B-2, C-1, D-4",
+      explanation:
+        "Appellate (3) handles appeals; Advisory (2) is for Presidential references; Miscellaneous (1) covers review powers; Original (4) acts as a federal court.",
+    },
+    {
+      text: "24. 'Law declared by Supreme Court shall be binding on all the courts.' Here 'courts' mean:",
+      options: [
+        "All courts including SC",
+        "All courts except SC",
+        "All courts including SC except benches of 7+ judges",
+        "All courts including SC except full bench",
+      ],
+      correctAnswer: "All courts except the Supreme Court of India",
+      explanation:
+        "The Supreme Court has the power to overrule its own previous judgments, so it is not 'bound' by them in the same way subordinate courts are.",
+    },
+    {
+      text: "25. Ad hoc HC judge attendance at SC sitting requires:",
+      options: [
+        "Only Presidential consent",
+        "Presidential consent AND consultation with HC CJ",
+        "Only HC CJ consultation",
+        "Neither consent nor consultation",
+      ],
+      correctAnswer:
+        "Previous consent of the President of India and consultation with the Chief Justice of the concerned High Court is required.",
+      explanation:
+        "Under Article 127, this ensures both the executive and the judicial administration are in agreement.",
+    },
+    {
+      text: "26. Which has jurisdiction to decide a dispute between Central Government and a State Government?",
+      options: [
+        "Inter-State Council",
+        "High Court under Art 226",
+        "Supreme Court under Art 143",
+        "Supreme Court under Art 131",
+      ],
+      correctAnswer:
+        "Supreme Court under Article 131 of the Constitution of India",
+      explanation:
+        "Article 131 is the exclusive original jurisdiction for federal disputes.",
+    },
+    {
+      text: "27. Assertion (A): The Supreme Court is a court of record. \nReason (R): It delivers judgements in open court.",
+      options: [
+        "Both A and R true and R is explanation",
+        "Both A and R true but R is not explanation",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer:
+        "Both A and R are true but R is not the correct explanation of A",
+      explanation:
+        "While judges sit in open court, being a 'Court of Record' specifically means its proceedings have evidentiary value and it can punish for contempt.",
+    },
+    {
+      text: "28. Which one of the following statements is correct?",
+      options: [
+        "Original jurisdiction is unlimited",
+        "Dispute between States only dealt by SC",
+        "SC must admit every appeal",
+        "All courts including SC bound by SC decision",
+      ],
+      correctAnswer:
+        "A dispute between one State and another can only be dealt with by the Supreme Court",
+      explanation:
+        "Inter-state disputes are part of the exclusive original jurisdiction of the SC.",
+    },
+    {
+      text: "29. The power of judicial review means the power to:",
+      options: [
+        "Set aside executive decision if against statute",
+        "Set aside provision contrary to FRs",
+        "Examine constitutional validity and strike down acts not in accordance with Constitution",
+        "Review own decisions or those of any court",
+      ],
+      correctAnswer:
+        "Examine constitutional validity of any administrative action as well as legislative provision and strike it down if not found in accordance with the constitutional provisions.",
+      explanation:
+        "Judicial review is the power to maintain the supremacy of the Constitution over all other laws and acts.",
+    },
+    {
+      text: "30. Correct chronological sequence of advisory opinions:\n1. Delhi Laws Act\n2. Berubari Union\n3. Sea Customs Act\n4. Special Courts Bill",
+      options: ["1, 2, 3, 4", "2, 1, 3, 4", "2, 3, 4, 1", "2, 4, 3, 1"],
+      correctAnswer: "1, 2, 3, 4",
+      explanation:
+        "Delhi Laws (1951), Berubari (1960), Sea Customs (1963), Special Courts (1978).",
+    },
+    {
+      text: "31. The jurisdiction of the Supreme Court of India may be enlarged by:",
+      options: [
+        "Parliament by law",
+        "Parliament by resolution",
+        "The President",
+        "The President in consultation with CJI",
+      ],
+      correctAnswer: "Parliament by law",
+      explanation:
+        "Article 138 empowers Parliament to grant additional powers to the court.",
+    },
+    {
+      text: "32. What age is prescribed for qualification as a SC judge?",
+      options: [
+        "Not below 30",
+        "Not below 35",
+        "Not below 40",
+        "No age is prescribed",
+      ],
+      correctAnswer: "No age is prescribed",
+      explanation:
+        "The Constitution specifies experience and citizenship, but there is no minimum age requirement.",
+    },
+    {
+      text: "33. Assertion (A): The Supreme Court of India is bound by its own judgements.\nReason (R): The highest court binds all subordinate courts by its own judgements.",
+      options: [
+        "Both A and R true and R explains A",
+        "Both A and R true but R is not explanation",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "A is false but R is true",
+      explanation:
+        "SC can and does overrule itself. R is correct because Article 141 binds all *other* courts.",
+    },
+    {
+      text: "34. Judicial Review in the Indian Constitution is based on:",
+      options: [
+        "Procedure established by law",
+        "Due process of Law",
+        "Rule of Law",
+        "Precedents",
+      ],
+      correctAnswer: "Procedure established by law",
+      explanation:
+        "Traditionally, India followed 'procedure established by law' (Art 21), though judicial interpretation has widened this significantly over time.",
+    },
+    {
+      text: "35. Disputes between States come to the Supreme Court under:",
+      options: [
+        "Appellate jurisdiction",
+        "Original jurisdiction",
+        "Advisory jurisdiction",
+        "Writ jurisdiction",
+      ],
+      correctAnswer: "Original jurisdiction",
+      explanation:
+        "This is a direct federal function of the court under Article 131.",
+    },
+    {
+      text: "36. Consider the following statements:\n1. Supreme Court's power to issue writs is narrower than that of High Court.\n2. A citizen is free to approach HC or SC whenever fundamental rights are violated.\n3. The law declared by the Supreme Court is binding on all courts.",
+      options: ["Only 1", "1 and 2", "1, 2 and 3", "2 and 3"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "All statements are correct. SC writs only for FR (narrower); citizen choice is guaranteed under Art 32/226; Art 141 makes SC law supreme.",
+    },
+    {
+      text: "37. Which statements regarding SC are correct?\n1. Power to entertain appeal from any court/tribunal.\n2. Deliver advisory opinion on reference by President.\n3. Salaries subject to vote by Parliament.\n4. Jurisdiction binding on all other courts.",
+      options: ["1 and 3", "2 and 4", "2, 3 and 4", "1, 2 and 4"],
+      correctAnswer: "1, 2 and 4",
+      explanation:
+        "Salaries are *charged* on the Consolidated Fund (Art 125/112), meaning they are not subject to a vote.",
+    },
+  ],
 };
 
 module.exports = polityMcqData;
