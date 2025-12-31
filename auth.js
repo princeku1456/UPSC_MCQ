@@ -28,6 +28,54 @@ let quizTimerInterval = null;
 let currentReviewStats = null;
 
 /* =========================================
+   1.5 DARK MODE FUNCTIONS
+   ========================================= */
+
+/**
+ * Applies the specified theme to the document
+ * @param {string} theme - Either 'light' or 'dark'
+ */
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('theme', theme);
+  
+  // Update button icon
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  if (themeToggleBtn) {
+    themeToggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    themeToggleBtn.title = theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+  }
+  
+  // Refresh charts if they exist to apply dark mode colors
+  if (performanceChartInstance) {
+    renderPerformanceChart(userHistory);
+  }
+  if (comparisonChartInstance && currentReviewStats) {
+    // Re-render comparison chart with new theme
+    const ctx = document.getElementById('comparisonChart');
+    if (ctx) {
+      const isDark = theme === 'dark';
+      const textColor = isDark ? '#e5e7eb' : '#666';
+      
+      if (comparisonChartInstance) {
+        comparisonChartInstance.options.scales.x.ticks.color = textColor;
+        comparisonChartInstance.options.scales.y.ticks.color = textColor;
+        comparisonChartInstance.update();
+      }
+    }
+  }
+}
+
+/**
+ * Toggles between light and dark themes
+ */
+function toggleTheme() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  applyTheme(newTheme);
+}
+
+/* =========================================
    2. INITIALIZATION & AUTH
    ========================================= */
 
