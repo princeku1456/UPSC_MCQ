@@ -23,6 +23,61 @@
     --hover-shadow: 0 20px 25px -5px rgba(30, 58, 138, 0.15), 0 10px 10px -5px rgba(30, 58, 138, 0.04);
 }
 
+[data-theme="dark"] {
+    --bg-body: #0f172a;
+    --bg-card: #1e293b;
+    --text-main: #f3f4f6;
+    --text-muted: #9ca3af;
+    --border-color: #334155;
+    --navbar-bg: #0f172a;
+    --navbar-gradient: linear-gradient(160deg, #0f172a 0%, #020617 100%);
+    --input-bg: #1e293b;
+    --option-bg: #1e293b;
+    --option-hover: #334155;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
+}
+
+/* --- Bootstrap Overrides --- */
+[data-theme="dark"] .bg-white { background-color: var(--bg-card) !important; }
+[data-theme="dark"] .text-dark, [data-theme="dark"] .card-title { color: var(--text-main) !important; }
+[data-theme="dark"] .text-muted { color: var(--text-muted) !important; }
+[data-theme="dark"] .border { border-color: var(--border-color) !important; }
+[data-theme="dark"] .dropdown-menu { background-color: var(--bg-card); border: 1px solid var(--border-color); }
+[data-theme="dark"] .dropdown-item { color: var(--text-main); }
+[data-theme="dark"] .dropdown-item:hover { background-color: var(--option-hover); }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.main-navbar { background: var(--navbar-gradient); box-shadow: 0 4px 20px rgba(0,0,0,0.15); }
+.hero { background-color: var(--bg-body); background-image: radial-gradient(var(--secondary-color) 0.5px, transparent 0.5px); background-size: 20px 20px; }
+.auth-card { border: 1px solid var(--border-color); border-radius: 20px; background: var(--bg-card); box-shadow: var(--card-shadow); }
+
+.btn-primary-custom { background: linear-gradient(to right, #f59e0b, #d97706); border: none; color: white; font-weight: 600; text-transform: uppercase; border-radius: 8px; }
+.btn-secondary-custom { background: linear-gradient(to right, #1454dd, #1e40af); border: none; color: white; font-weight: 600; text-transform: uppercase; border-radius: 8px; }
+
+.quiz-box, .quiz-nav-sidebar, .topic-card, .chapter-card {
+    background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px; box-shadow: var(--card-shadow);
+}
+
+.option {
+    cursor: pointer; padding: 1rem 1.25rem; margin-bottom: 1rem; background-color: var(--option-bg);
+    border: 2px solid var(--border-color); border-radius: 8px; color: var(--text-main); transition: 0.2s;
+}
+.option:hover { background-color: var(--option-hover); border-color: var(--secondary-color); }
+
+.nav-item { background-color: var(--input-bg); color: var(--text-muted); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; border-radius: 6px; aspect-ratio: 1; cursor: pointer; }
+.nav-item.active { background-color: var(--primary-color); color: white; }
+.nav-item.attempted { background-color: var(--accent-color); color: white; }
+
+.form-control { background-color: var(--input-bg); border-color: var(--border-color); color: var(--text-main); }
+.form-control:focus { background-color: var(--input-bg); color: var(--text-main); border-color: var(--secondary-color); box-shadow: none; }
+
 /* ============================
    DARK MODE OVERRIDES
    ============================ */
@@ -426,3 +481,4 @@ body {
     padding: 6px 12px;
     border-radius: 20px;
 }
+
