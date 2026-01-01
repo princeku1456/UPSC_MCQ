@@ -6640,6 +6640,1080 @@ const polityMcqData = {
         "Salaries are *charged* on the Consolidated Fund (Art 125/112), meaning they are not subject to a vote.",
     },
   ],
+  Governor: [
+    {
+      text: "Consider the following statements:\n1. The Parliament by law may appoint the Governor of a state as the Administrator of an adjoining Union territory.\n2. If a Governor of a State is appointed to act as an Administrator of an adjoining Union territory, he shall exercise his functions as such Administrator independently of his Council of Ministers.",
+      options: ["1 only", "2 only", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "2 only",
+      explanation:
+        "The 7th Constitutional Amendment Act of 1956 authorized the President (not Parliament) to appoint a Governor as an administrator of an adjoining UT. When acting as such, the Governor exercises functions independently of the state's Council of Ministers.",
+    },
+    {
+      text: "Consider the following statements:\n1. As regards legislative powers, the Governor of a State is not a part of the State Legislature.\n2. The Governor of a State has no emergency powers to meet the situation arising from external aggression.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 2",
+      explanation:
+        "The Governor is an integral part of the State Legislature. However, the Governor has no emergency powers; powers to handle external aggression (National Emergency) rest solely with the President.",
+    },
+    {
+      text: "Consider the following statements with respect to the powers of the Governor of a State:\n1. The governor can summon, prorogue and dissolve the State Assembly.\n2. The Governor can adjourn the sittings of the State Assembly.\n3. The Governor addresses the first session of the Legislative Assembly after elections.\n4. The Governor causes to lay the annual budget in the State Assembly.",
+      options: ["1 and 2", "1, 3 and 4", "2 and 3", "2 and 4"],
+      correctAnswer: "1, 3 and 4",
+      explanation:
+        "The Governor summons, prorogues, and dissolves the assembly, but the power to adjourn the sittings lies with the presiding officer (Speaker/Chairman) of the House.",
+    },
+    {
+      text: "Consider the following statements:\n1. There is a bar to the selection of a Governor of a State from amongst the members of the Legislature of the State.\n2. The original plan in the Draft Constitution of India was to have an elected Governor but in the Constituent Assembly it was replaced by the method of appointment by the President of India.\n3. The method of appointment of a Governor of a State by the President of India is repugnant to the prevailing practice in the federal systems of the United States of America and Australia.",
+      options: ["1, 2 and 3", "1 and 2 only", "2 and 3 only", "1 and 3 only"],
+      correctAnswer: "2 and 3 only",
+      explanation:
+        "There is no constitutional bar to appointing a legislator as Governor, though they must vacate their seat upon joining. The current appointment system differs from the US and Australia where Governors are usually elected.",
+    },
+    {
+      text: "Which one of the following statements is not correct?",
+      options: [
+        "The Governor can issue ordinances when the Legislative Assembly is not in session or only when two Houses are not in session.",
+        "The Governor can at his discretion issue the ordinances whether the Assembly is in session or not.",
+        "The Governor must be satisfied that such circumstances exist which render it necessary for him to take immediate action.",
+        "The Governor's ordinance shall have the same force and effect as an Act of the Legislature.",
+      ],
+      correctAnswer:
+        "The Governor can at his discretion issue the ordinances whether the Assembly is in session or not.",
+      explanation:
+        "The Governor can only issue an ordinance when the State Legislature (or one of the two houses) is not in session. He cannot issue it while the Assembly is active.",
+    },
+    {
+      text: "When a Bill passed by the State Legislature attempts to take away the powers of the High Court and is presented before the Governor for his assent, he:",
+      options: [
+        "May give his assent",
+        "May withhold his assent",
+        "Is bound to return the Bill for reconsideration",
+        "Is bound to reserve the Bill for the consideration of the President",
+      ],
+      correctAnswer:
+        "Is bound to reserve the Bill for the consideration of the President",
+      explanation:
+        "If a bill endangers the constitutional position of the State High Court, the Governor is constitutionally mandated (obligatory) to reserve it for the President's consideration.",
+    },
+    {
+      text: "Which of the following are functions to which the scope of the discretionary powers of the Governor is limited?\n1. The appointment of the Chief Minister\n2. The dismissal of the Ministry\n3. The dissolution of the Legislative Assembly\n4. Assent to Bills",
+      options: ["1, 2 and 3", "1, 2, 3 and 4", "1, 3 and 4", "2, 3 and 4"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "The Governor uses situational discretion for the appointment of a CM (when no majority exists), dismissal of the ministry (on loss of majority), and dissolution of the assembly.",
+    },
+    {
+      text: "Assertion (A): According to the Constitution of India, the same person cannot function as the Governor of two or more States at the same time.\nReason (R): Article 153 of the Constitution states that there shall be a Governor for each State.",
+      options: [
+        "Both A and R are individually true and R is the correct explanation of A",
+        "Both A and R are individually true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "A is false but R is true",
+      explanation:
+        "The 7th Amendment Act of 1956 allows one person to be Governor of two or more states. While Article 153 originally stated there should be one per state, the assertion that they *cannot* serve multiple states is now false.",
+    },
+    {
+      text: "The de-jure head of a State Government is the:",
+      options: [
+        "Chief Minister of the State",
+        "Law Minister of the State",
+        "Home Minister of the State",
+        "Governor of the State",
+      ],
+      correctAnswer: "Governor of the State",
+      explanation:
+        "The Governor is the formal or constitutional (de-jure) head, while the Chief Minister is the real (de-facto) executive head.",
+    },
+    {
+      text: "Consider the following statements:\nThe Governor of a State has the power to appoint:\n1. Judges of the High Court\n2. Members of the State Public Service Commission\n3. Members of the State Finance Commission\n4. The Accountant General",
+      options: ["1 and 2", "2 and 3", "1, 3 and 4", "1, 2, 3 and 4"],
+      correctAnswer: "2 and 3",
+      explanation:
+        "High Court judges are appointed by the President. The Accountant General is part of the CAG's office. The Governor appoints members of the SPSC and the State Finance Commission.",
+    },
+    {
+      text: "On receipt of the report from the Governor of a State that the Government of the State cannot be carried on in accordance with the provisions of the Constitution, the President of India under Article 356:",
+      options: [
+        "Has to proclaim President's Rule in the State",
+        "Has to dismiss the State Government and dissolve the Legislative Assembly",
+        "Has to dismiss the Government but keep that Legislative Assembly in a state of suspended animation",
+        "May refuse to impose President's Rule in the State",
+      ],
+      correctAnswer: "May refuse to impose President's Rule in the State",
+      explanation:
+        "The President is not bound to act on the Governor's report; he must be satisfied independently that the situation warrants President's Rule.",
+    },
+    {
+      text: "When can the Governor of a State issue an ordinance?",
+      options: [
+        "When the Union Government asks him to do so",
+        "Whenever there is a law and order problem in the State",
+        "Whenever the State Legislature is not in session and the Governor is satisfied that immediate action is needed",
+        "Whenever the Judiciary advises him to do so",
+      ],
+      correctAnswer:
+        "Whenever the State Legislature is not in session and the Governor is satisfied that immediate action is needed",
+      explanation:
+        "This follows the power granted under Article 213, which is used only during the recess of the legislature.",
+    },
+    {
+      text: "Consider the following statements:\nUnder Article 200 of the Constitution of India, the Governor may:\n1. Withhold his assent to a Bill passed by the State Legislature.\n2. Reserve the Bill passed by the State Legislature for the consideration of the President.\n3. Return a Bill, other than a Money Bill, for reconsideration of the legislature.",
+      options: ["1 and 2", "2 and 3", "1 and 3", "1, 2 and 3"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "Article 200 provides the Governor with four options: give assent, withhold assent, return for reconsideration (non-money bills), or reserve for the President.",
+    },
+    {
+      text: "The correct constitutional position regarding the Governor is that the:",
+      options: [
+        "Governor acts on the advice of the Prime Minister",
+        "Governor acts on the advice of the President of India",
+        "Governor acts on the advice of the Chief Minister of the State",
+        "Governor acts on the advice of the Council of Ministers of the State",
+      ],
+      correctAnswer:
+        "Governor acts on the advice of the Council of Ministers of the State",
+      explanation:
+        "The Governor, as a constitutional head, is required to act on the aid and advice of the State Council of Ministers, except in discretionary matters.",
+    },
+    {
+      text: "Assertion (A): The Draft Constitution provided for the direct election of the Governor.\nReason (R): The Constituent Assembly opted for the present system of appointment of the Governor by the President.",
+      options: [
+        "Both A and R are individually true and R is the correct explanation of A",
+        "Both A and R are individually true but R is not the correct explanation of A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer:
+        "Both A and R are individually true but R is not the correct explanation of A",
+      explanation:
+        "Both statements are historical facts, but the transition to an appointment system in the final Constitution does not directly 'explain' the existence of the initial draft's preference for elections.",
+    },
+    {
+      text: "Consider the following statements:\nThe Governor of a State:\n1. Is vested with executive power under the Constitution of India\n2. Is needed because of the federal structure of government\n3. Was to be elected according to the original Draft Constitution of India\n4. Is chosen only from among the categories laid down in the Constitution of India",
+      options: ["1 and 4", "1, 2 and 3", "2 and 3", "2, 3 and 4"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "Statements 1, 2, and 3 are correct. Statement 4 is inaccurate as the Constitution specifies qualifications (age and citizenship) rather than rigid professional 'categories'.",
+    },
+    {
+      text: "In the performance of his duties and in the exercise of his powers, the Governor",
+      options: [
+        "Is answerable in a court of law",
+        "Is not answerable in a court of law",
+        "Can be impeached in the Vidhan Sabha",
+        "Is answerable to the Vidhan Sabha",
+      ],
+      correctAnswer: "Is not answerable in a court of law",
+      explanation:
+        "Article 361 provides immunity to the Governor, stating they are not answerable to any court for the exercise and performance of their official duties.",
+    },
+    {
+      text: "Under Article 213, the Governor of a State is empowered to:",
+      options: [
+        "Exercise discretionary powers",
+        "Promulgate ordinances during the recess of the Legislature",
+        "Appoint a Judge of the State High Court",
+        "Exercise his emergency powers",
+      ],
+      correctAnswer:
+        "Promulgate ordinances during the recess of the Legislature",
+      explanation:
+        "Article 213 specifically deals with the Governor's legislative power to issue ordinances when the legislature is not in session.",
+    },
+    {
+      text: "On which of the following issues can a Governor make recommendation to the President?\n1. Dismissal of the State Council of Ministers\n2. Removal of the Judges of the High Court\n3. Dissolution of the State Legislative Assembly\n4. Declaration of the breakdown of the Constitutional Machinery in the State",
+      options: ["1, 2 and 3", "2, 3 and 4", "1, 3 and 4", "1, 2 and 4"],
+      correctAnswer: "1, 3 and 4",
+      explanation:
+        "The Governor has no role in the removal of High Court judges (handled by Parliament). Recommendations regarding the ministry, assembly, and constitutional breakdown (President's Rule) are valid functions.",
+    },
+    {
+      text: "Which one of the following statements is not correct?",
+      options: [
+        "The Council of Ministers is collectively responsible to the Governor.",
+        "Under Article 167, the Chief Minister communicates decisions of the Council to the Governor.",
+        "Once the Governor reserves a Bill for the President, the Governor has no further part in its career.",
+        "All executive actions of the State are taken in the name of the Governor.",
+      ],
+      correctAnswer:
+        "The Council of Ministers is collectively responsible to the Governor.",
+      explanation:
+        "The Council of Ministers is collectively responsible to the Legislative Assembly of the State, not the Governor.",
+    },
+    {
+      text: "In which one of the following states, it is not constitutionally obligatory for the Governor to appoint a minister in-charge of tribal affairs?",
+      options: ["Bihar", "Madhya Pradesh", "Odisha", "Jharkhand"],
+      correctAnswer: "Bihar",
+      explanation:
+        "The 94th Amendment Act of 2006 removed the obligation for Bihar and extended it to the newly formed states of Chhattisgarh and Jharkhand.",
+    },
+    {
+      text: "Consider the following matters:\n1. Reservation of the State Bill for the consideration of the President\n2. Delivery of Speech in the House of the Legislature\n3. Recommendation to the President to impose the President's Rule\nUnder Article 163, in relation to which of the matters is the rule of acting on advice not applicable?",
+      options: ["1 and 3", "1, 2 and 3", "2 and 3", "Only 2"],
+      correctAnswer: "1 and 3",
+      explanation:
+        "Reservation of bills and recommending President's Rule are discretionary powers where the Governor acts without needing the advice of the Council of Ministers.",
+    },
+    {
+      text: "Who of the following is not appointed by the Governor?",
+      options: [
+        "State Council of Ministers",
+        "State Advocate General",
+        "State Director General of Police",
+        "Members of State Public Service Commission",
+      ],
+      correctAnswer: "State Director General of Police",
+      explanation:
+        "The DGP is a civil service appointment made according to state service rules, whereas the others are constitutional appointments made by the Governor.",
+    },
+    {
+      text: "The Governor of a State may be removed from the office by the President:",
+      options: [
+        "At the request of the Chief Minister",
+        "On the advice of the Lok Ayukta",
+        "On the advice of the Union Cabinet",
+        "On the advice of the Attorney-General of India",
+      ],
+      correctAnswer: "On the advice of the Union Cabinet",
+      explanation:
+        "The Governor holds office during the pleasure of the President. In practice, the President acts on the advice of the Union Council of Ministers (Cabinet).",
+    },
+    {
+      text: "Consider the following statements with respect to Governor of a State:\n1. A Governor shall, notwithstanding the expiration of his term, continue to hold office until his successor enters upon his office.\n2. No person shall be eligible for appointment as Governor unless he has completed the age of thirty years.\n3. The question whether any advice was tendered by Ministers to the Governor shall not be inquired into in any Court.",
+      options: ["1, 2 and 3", "1 and 2", "1 and 3", "Only 3"],
+      correctAnswer: "1 and 3",
+      explanation:
+        "The minimum age for appointment as Governor is 35 years, not 30. The other two statements correctly reflect constitutional provisions.",
+    },
+    {
+      text: "Assertion (A): Reservation of a State Bill for the assent of the President is a discretionary power of the Governor.\nReason (R): The President of India can disallow a Bill passed by a State Legislature or return it for reconsideration.",
+      options: [
+        "Both A and R true; R is correct explanation of A",
+        "Both A and R true; R is not correct explanation",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "Both A and R true; R is not correct explanation",
+      explanation:
+        "While both are true facts, the President's subsequent power to disallow the bill is not the 'reason' why the Governor's act of reservation is categorized as 'discretionary'.",
+    },
+    {
+      text: "Which one of the following is not correct in respect of the Governor's Ordinance-making power?",
+      options: [
+        "It is exercised only when the Legislature is not in session.",
+        "It is a discretionary power which need not be exercised with the aid and advice of Ministers.",
+        "The Governor himself is competent to withdraw the Ordinance at any time.",
+        "The scope of the Ordinance-making power is limited to subjects in List II and List III.",
+      ],
+      correctAnswer:
+        "It is a discretionary power which need not be exercised with the aid and advice of Ministers.",
+      explanation:
+        "The Governor's ordinance-making power is not a discretionary power; he must act on the aid and advice of the Council of Ministers.",
+    },
+    {
+      text: "Under which Article of the Constitution of India, the State Governor can reserve a Bill for the consideration of the President?",
+      options: ["Article 169", "Article 200", "Article 201", "Article 257"],
+      correctAnswer: "Article 200",
+      explanation:
+        "Article 200 deals with the Governor's options when a bill is presented for assent, including reservation for the President.",
+    },
+    {
+      text: "Rules for more convenient transaction of business of the State Government are made by:",
+      options: [
+        "The Chief Secretary",
+        "A Committee of Secretaries",
+        "The Department of Home",
+        "The Governor",
+      ],
+      correctAnswer: "The Governor",
+      explanation:
+        "Under Article 166, the Governor makes rules for the transaction of business of the government and the allocation of such business among ministers.",
+    },
+    {
+      text: "Consider the following statements regarding Governor's powers:\n1. He addresses the Assembly at the commencement of the first session of each year.\n2. He can send messages to the Assembly regarding pending Bills.\n3. He can summon, prorogue and dissolve the Assembly.\n4. He can give assent to a Bill to curtail the powers of the High Court.",
+      options: ["1 and 4", "3 and 4", "1 and 2", "1, 2 and 3"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "The Governor *cannot* give assent to a bill that curtails the powers of the High Court; he is obligated to reserve such a bill for the President.",
+    },
+    {
+      text: "Which Amendment made it possible to appoint one person as Governor in two or more states simultaneously?",
+      options: [
+        "7th Amendment",
+        "42nd Amendment",
+        "43rd Amendment",
+        "44th Amendment",
+      ],
+      correctAnswer: "7th Amendment",
+      explanation:
+        "The 7th Constitutional Amendment Act of 1956 modified the requirement of one Governor per state.",
+    },
+    {
+      text: "Which one of the following statements is correct?",
+      options: [
+        "The same person can be appointed as Governor of three states.",
+        "Consulting the Chief Minister is a constitutional requirement.",
+        "A Governor cannot entrust functions to the Union government.",
+        "Minimum age is 30 years.",
+      ],
+      correctAnswer:
+        "The same person can be appointed as Governor of three states.",
+      explanation:
+        "The 7th Amendment allows appointment for 'two or more' states. CM consultation is a convention, not a requirement. Minimum age is 35.",
+    },
+  ],
+  Chief_Minister: [
+    {
+      text: "Consider the following statements regarding the Chief Minister:\n1. He is appointed by the Governor.\n2. He and his Council are collectively responsible to the Governor.\n3. He must communicate all decisions to the Governor.\n4. He must submit matters for Council consideration if the Governor requires.",
+      options: ["1, 2, 3 and 4", "Only 4", "1, 3 and 4", "1 and 3"],
+      correctAnswer: "1, 3 and 4",
+      explanation:
+        "Collective responsibility is to the State Legislative Assembly, not the Governor.",
+    },
+    {
+      text: "The powers/functions of the Chief Minister include:\n1. Appointing ministers and allocating portfolios\n2. Presiding over meetings of the Cabinet\n3. Resolving conflicts between ministers\n4. Communicating with the Governor",
+      options: ["2, 3 and 4", "1 and 4", "1, 2 and 3", "1, 2, 3 and 4"],
+      correctAnswer: "1, 2, 3 and 4",
+      explanation:
+        "The Chief Minister is the head of the Council of Ministers and performs all these executive leadership roles.",
+    },
+    {
+      text: "Which duties of the CM are defined in Article 167?\n1. Communicate decisions of the Council.\n2. Take prior Governor sanction for the budget.\n3. Furnish information requested by the Governor.\n4. Submit matters for Council consideration if required by the Governor.",
+      options: ["1 and 2", "1, 3 and 4", "2 and 4", "1 and 3"],
+      correctAnswer: "1, 3 and 4",
+      explanation:
+        "Budget sanction is not a duty listed under Article 167, which focuses on information flow between the CM and Governor.",
+    },
+    {
+      text: "Which of the following is constitutionally obligatory for the Chief Minister?",
+      options: [
+        "Approval by Governor for all major decisions.",
+        "Communicate all decisions of the cabinet relating to administration.",
+        "Go by Governor's discretion in portfolio allocation.",
+        "Prove majority only if stipulated by Governor.",
+      ],
+      correctAnswer:
+        "Communicate all decisions of the cabinet relating to administration.",
+      explanation:
+        "Communicating cabinet decisions and legislative proposals to the Governor is a formal duty under Article 167.",
+    },
+    {
+      text: "Which one of the following is correct in terms of the Constitution?",
+      options: [
+        "CM decides allocation of portfolios.",
+        "When CM resigns, the Council gets dissolved.",
+        "All principal policy announcements are made by the CM.",
+        "Duty of CM to communicate all decisions of the Council to the Governor.",
+      ],
+      correctAnswer:
+        "Duty of CM to communicate all decisions of the Council to the Governor.",
+      explanation:
+        "While portfolio allocation and dissolution are CM-led, the explicit constitutional 'duty' is the communication of decisions.",
+    },
+    {
+      text: "Assertion (A): In appointment and dismissal of Ministers, the CM's word is final.\nReason (R): Governor appoints the CM and on his advice appoints other ministers.",
+      options: [
+        "Both A and R true; R explains A",
+        "Both A and R true; R does not explain A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "Both A and R true; R explains A",
+      explanation:
+        "Because the Governor is constitutionally bound to appoint ministers *only* on the CM's advice, the CM effectively has final authority.",
+    },
+    {
+      text: "When no party has a majority, the Governor's choice for CM is governed by:",
+      options: [
+        "Stable majority likelihood",
+        "Largest party only",
+        "Combination of parties",
+        "Loyalty of members",
+      ],
+      correctAnswer: "Stable majority likelihood",
+      explanation:
+        "The Governor uses discretion to select the person most likely to provide a stable government that can command the House.",
+    },
+    {
+      text: "Who communicates legislative proposals to the Governor?",
+      options: ["Chief Minister", "Speaker", "Law Minister", "Home Minister"],
+      correctAnswer: "Chief Minister",
+      explanation:
+        "The CM is the sole link between the Council of Ministers and the Governor.",
+    },
+    {
+      text: "Assertion (A): The CM is the head of the State Council of Ministers.\nReason (R): The CM is responsible to the Assembly and enjoys majority support.",
+      options: [
+        "Both A and R true; R explains A",
+        "Both A and R true; R does not explain A",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "Both A and R true; R explains A",
+      explanation:
+        "The CM's leadership position stems from their ability to command the majority in the legislature.",
+    },
+    {
+      text: "The Chief Minister as the head of the State Council of Ministers:\n1. Has a free hand in distribution of portfolios\n2. Can reshuffle Ministers and ask for resignations\n3. Is bound by the advice of Ministers\n4. Advises Ministers in day-to-day administration",
+      options: ["1 and 2", "1, 2 and 4", "2 and 3", "3 and 4"],
+      correctAnswer: "1 and 2",
+      explanation:
+        "The CM leads the council; he is not bound by their advice. He controls the composition and work distribution of the ministry.",
+    },
+    {
+      text: "Statement I: CM can control other branches through a coterie of advisors.\nStatement II: CM and Cabinet function on basis of collective responsibility.",
+      options: [
+        "Both true; II explains I",
+        "Both true; II does not explain I",
+        "I is true but II is false",
+        "I is false but II is true",
+      ],
+      correctAnswer: "I is false but II is true",
+      explanation:
+        "Statement I describes an informal political practice, while Statement II is a core constitutional principle.",
+    },
+    {
+      text: "Consider the following duties of the CM:\n1. Make rules for transaction of government business.\n2. Submit matter for Council consideration if Governor requires.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 2",
+      explanation:
+        "Making rules for business is the Governor's duty (Article 166), while submitting matters for Council consideration is the CM's duty (Article 167).",
+    },
+    {
+      text: "In which bodies does the CM hold membership?\n1. National Integration Council\n2. National Development Council\n3. Inter-State Council\n4. Zonal Council",
+      options: ["1, 3 and 4", "2 and 3", "1, 2, 3 and 4", "2, 3 and 4"],
+      correctAnswer: "1, 2, 3 and 4",
+      explanation:
+        "The Chief Minister represents the state in all these important federal and national bodies.",
+    },
+  ],
+  State_Council_of_Ministers: [
+    {
+      text: "Consider the following statements:\n1. The Governor cannot function without the State Council of Ministers.\n2. A non-legislator cannot be appointed as a minister.\n3. The Council can function after CM's death or resignation.\n4. Only the Home Minister can preside in the CM's absence.",
+      options: ["Only 1", "3 and 4", "1, 2 and 4", "1, 2, 3 and 4"],
+      correctAnswer: "Only 1",
+      explanation:
+        "The Governor must always have a council for aid and advice. A non-legislator can be a minister for 6 months, and the CM's resignation dissolves the whole council.",
+    },
+    {
+      text: "States requiring a Minister for Tribal Welfare are:",
+      options: [
+        "Assam, Nagaland, Manipur",
+        "Himachal, Haryana, Rajasthan",
+        "MP, Odisha, Chhattisgarh, Jharkhand",
+        "Manipur, Tripura, Meghalaya",
+      ],
+      correctAnswer: "MP, Odisha, Chhattisgarh, Jharkhand",
+      explanation:
+        "Article 164 mandates a tribal welfare minister for these four specific states.",
+    },
+    {
+      text: "Parliamentary Secretaries in states are appointed by:",
+      options: ["Chief Minister", "Governor", "Chief Whip", "Speaker"],
+      correctAnswer: "Governor",
+      explanation:
+        "Like ministers, they are technically appointed and sworn in by the Governor.",
+    },
+    {
+      text: "Salaries of the State Council of Ministers are paid from:",
+      options: [
+        "RBI",
+        "Treasury",
+        "Contingency Fund",
+        "Consolidated Fund of the state",
+      ],
+      correctAnswer: "Consolidated Fund of the state",
+      explanation:
+        "Expenditure for the executive is drawn from the state's consolidated fund.",
+    },
+    {
+      text: "Which Articles deal with the Governor-Council relationship?",
+      options: [
+        "161, 165, 166",
+        "163, 164, 167",
+        "162, 163, 168",
+        "164, 165, 169",
+      ],
+      correctAnswer: "163, 164, 167",
+      explanation:
+        "These articles cover aid/advice, appointment/responsibility, and the CM's duties to provide information.",
+    },
+    {
+      text: "Assertion (A): Collective responsibility signifies unity and coordination.\nReason (R): It is the CM's prerogative to select or drop a member.",
+      options: [
+        "Both A and R true; R explains A",
+        "Both A and R true; R not explanation",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "Both A and R true; R not explanation",
+      explanation:
+        "While both are true, the CM's power to fire a minister is an individual power, whereas collective responsibility is a parliamentary convention of group accountability.",
+    },
+    {
+      text: "Regarding Governor-Council interaction:\n1. All decisions must be communicated to the Governor.\n2. Governor can call for information on legislation.\n3. Governor can direct a minister's decision be placed before the Council.\n4. Governor has right to address the Council to elicit information.",
+      options: ["Only 1", "1, 2 and 3", "3 and 4", "1, 2, 3 and 4"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "The Governor communicates with the Council through the CM; he has a right to address the *Legislature*, but info from the Council is obtained via the CM's duties.",
+    },
+    {
+      text: "Which provision enshrines collective responsibility?",
+      options: ["Article 164", "Article 162", "Article 163", "Article 167"],
+      correctAnswer: "Article 164",
+      explanation:
+        "Article 164(2) states that the Council of Ministers shall be collectively responsible to the Legislative Assembly.",
+    },
+    {
+      text: "State ministers can be prosecuted only with Governor approval because they:",
+      options: [
+        "Head ministries",
+        "Represent people",
+        "Enjoy constitutional immunities",
+        "Exercise executive powers for the Governor",
+      ],
+      correctAnswer: "Enjoy constitutional immunities",
+      explanation:
+        "As high constitutional functionaries, they have legal protections that require a specific sanction for prosecution.",
+    },
+    {
+      text: "State ministers are appointed by:",
+      options: ["President", "Governor", "Chief Minister", "Prime Minister"],
+      correctAnswer: "Governor",
+      explanation:
+        "They are appointed by the Governor, but only on the advice of the Chief Minister.",
+    },
+    {
+      text: "Assertion (A): Strength of the Council is not specified in the Constitution.\nReason (R): Pressures operate in determining ministry strength.",
+      options: [
+        "Both A and R true; R explains A",
+        "Both A and R true; R not explanation",
+        "A is true but R is false",
+        "A is false but R is true",
+      ],
+      correctAnswer: "Both A and R true; R explains A",
+      explanation:
+        "Political factors often influence the size of the ministry, which is why the original constitution didn't fix a hard number (though the 91st Amendment later added a 15% limit).",
+    },
+    {
+      text: "Which are NOT mentioned in the Constitution?\n1. Council headed by CM\n2. Collective Responsibility\n3. Resignation of Ministers\n4. Office of Deputy CM",
+      options: ["1 and 2", "3 and 4", "2 and 3", "1 and 3"],
+      correctAnswer: "3 and 4",
+      explanation:
+        "The Constitution doesn't mention 'Deputy CM' or the specific process of 'Resignation' letters, while 1 and 2 are explicit constitutional clauses.",
+    },
+    {
+      text: "Ensuring a single minister's decision is considered by the whole Council ensures:",
+      options: [
+        "Collective responsibility",
+        "CM is first among equals",
+        "Governor's power to nullify",
+        "Minister's independent power",
+      ],
+      correctAnswer: "Collective responsibility",
+      explanation:
+        "This mechanism ensures that the entire cabinet is aware of and responsible for the actions of individual ministers.",
+    },
+    {
+      text: "Accountability of the CM and Cabinet to the Assembly is:",
+      options: [
+        "Intermittent",
+        "Indirect",
+        "At election time",
+        "Direct, continuous and collective",
+      ],
+      correctAnswer: "Direct, continuous and collective",
+      explanation:
+        "The executive is responsible to the legislature throughout its tenure through various parliamentary controls.",
+    },
+    {
+      text: "Regarding advice from Ministers to the Governor:",
+      options: [
+        "Not inquired into in any court.",
+        "Inquired in Supreme Court.",
+        "Inquired in all courts.",
+        "Cannot be inquired in High Court.",
+      ],
+      correctAnswer: "Not inquired into in any court.",
+      explanation:
+        "Article 163(3) explicitly protects the confidentiality of the advice given by ministers to the Governor.",
+    },
+    {
+      text: "Minister salaries are determined by:",
+      options: ["Home Dept", "State Legislature", "Finance Dept", "Law Dept"],
+      correctAnswer: "State Legislature",
+      explanation:
+        "Article 164(5) gives the state legislature the power to determine salaries by law.",
+    },
+  ],
+  State_Legislature: [
+    {
+      text: "Consider the following:\n1. A bill pending in the Legislature shall not lapse due to prorogation.\n2. A bill pending in the Council not yet passed by the Assembly shall not lapse on dissolution.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Both 1 and 2",
+      explanation:
+        "Prorogation only ends a session. Since the Council is a permanent body, bills originating there survive the dissolution of the Assembly.",
+    },
+    {
+      text: "Consider the following:\n1. Parliament may provide for abolition or creation of a Council.\n2. Total members in Council shall not exceed 1/2 of the Assembly.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "The limit for the Council's size is 1/3 (one-third) of the Assembly members, not 1/2.",
+    },
+    {
+      text: "The Upper Chamber (Council) consists of:",
+      options: [
+        "1/12 by teachers; 1/3 by municipalities; 1/12 by graduates",
+        "1/12 by graduates; 1/12 by women; 1/3 by unions",
+        "1/3 directly elected; 1/12 by graduates",
+        "1/12 by women; 1/12 by municipalities; 1/3 by teachers",
+      ],
+      correctAnswer:
+        "1/12 by teachers; 1/3 by municipalities; 1/12 by graduates",
+      explanation:
+        "The composition follows specific ratios: 1/3 local bodies, 1/3 MLAs, 1/12 graduates, 1/12 teachers, and 1/6 nominated by Governor.",
+    },
+    {
+      text: "Quorum for a State Legislature meeting is:",
+      options: [
+        "30 or 1/10 whichever less",
+        "1/2 of membership",
+        "1/10 of membership",
+        "10 or 1/10 whichever more",
+      ],
+      correctAnswer: "10 or 1/10 whichever more",
+      explanation:
+        "This is the fixed constitutional requirement for valid legislative sittings.",
+    },
+    {
+      text: "Assertion (A): Bills involving Consolidated Fund expenditure require Governor recommendation.\nReason (R): Such bills cannot be passed without Governor recommendation for consideration.",
+      options: [
+        "Both A and R true; R explains A",
+        "Both A and R true; R not explanation",
+        "A is true",
+        "A is false",
+      ],
+      correctAnswer: "Both A and R true; R explains A",
+      explanation:
+        "Governor's recommendation is a constitutional prerequisite for financial bills involving state expenditure.",
+    },
+    {
+      text: "If the Governor reserves a bill for the President, the President may:\n1. Give assent\n2. Withhold assent\n3. Veto the Bill\n4. Direct Governor to return it for reconsideration",
+      options: ["1, 2 and 3", "1, 2 and 4", "3 and 4", "1, 2, 3 and 4"],
+      correctAnswer: "1, 2 and 4",
+      explanation:
+        "Assent, withholding assent, and returning for reconsideration are the specific powers of the President under Article 201.",
+    },
+    {
+      text: "Which state does not have Vidhan Parishad?",
+      options: ["Bihar", "Maharashtra", "Rajasthan", "Uttar Pradesh"],
+      correctAnswer: "Rajasthan",
+      explanation: "Rajasthan has a unicameral legislature (Assembly only).",
+    },
+    {
+      text: "Regarding State Legislature:\n1. No discussion on conduct of SC Judge.\n2. No restriction on discussion of HC Judge conduct.\n3. Courts cannot enquire into proceedings.",
+      options: ["1 and 2", "1 and 3", "2 and 3", "1, 2 and 3"],
+      correctAnswer: "1 and 3",
+      explanation:
+        "Article 211 restricts discussion on the conduct of *both* SC and HC judges in the discharge of their duties.",
+    },
+    {
+      text: "Resolution to abolish or create a Council requires:",
+      options: [
+        "2/3 present and voting",
+        "1/3 present and voting",
+        "Majority of total membership AND 2/3 present and voting",
+        "Simple majority",
+      ],
+      correctAnswer: "Majority of total membership AND 2/3 present and voting",
+      explanation:
+        "This specific special majority is required under Article 169.",
+    },
+    {
+      text: "Assertion (A): Governor can withhold a non-Money Bill.\nReason (R): Empowered by Article 200.",
+      options: [
+        "Both A and R true; R explains A",
+        "Both A and R true; R not explanation",
+        "A is true",
+        "A is false",
+      ],
+      correctAnswer: "Both A and R true; R explains A",
+      explanation:
+        "Article 200 is the source of the Governor's power regarding assent to bills.",
+    },
+    {
+      text: "Maximum strength of Vidhan Sabha is:",
+      options: ["400", "425", "500", "545"],
+      correctAnswer: "500",
+      explanation:
+        "The Constitution limits the size of any state assembly to a maximum of 500 members.",
+    },
+    {
+      text: "Regarding state bills:\n1. Reservation for President is a discretionary power.\n2. President cannot keep a bill pending indefinitely.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "The President can keep a state bill pending indefinitely (Pocket Veto), as no time limit is prescribed for presidential assent.",
+    },
+    {
+      text: "Time-limit for Governor to send non-money bill back for reconsideration:",
+      options: ["14 days", "1 month", "3 months", "No time limit"],
+      correctAnswer: "No time limit",
+      explanation:
+        "Article 200 states 'as soon as possible' but does not specify a fixed number of days.",
+    },
+    {
+      text: "Which is NOT correct regarding Governor's power over Bills?",
+      options: [
+        "May give assent",
+        "May withhold",
+        "May reserve for President",
+        "No alternative but to give assent",
+      ],
+      correctAnswer: "No alternative but to give assent",
+      explanation:
+        "The Governor has several constitutional choices and is not 'bound' to give assent in the first instance.",
+    },
+  ],
+  High_Court: [
+    {
+      text: "Consider the following:\n1. Max judges in a High Court are specified in the Constitution.\n2. Every HC has power of superintendence over all courts/tribunals except military.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Neither 1 nor 2",
+      explanation:
+        "The President determines the number of judges. Superintendence (Art 227) extends regardless of appellate jurisdiction.",
+    },
+    {
+      text: "A High Court has jurisdiction to:\n1. Punish for contempt\n2. Advise President on legal questions\n3. Advise Governor on legal questions\n4. Issue writs for Fundamental Rights",
+      options: ["1 and 4", "1 and 2", "1, 2 and 3", "2, 3 and 4"],
+      correctAnswer: "1 and 4",
+      explanation:
+        "Advisory jurisdiction is exclusive to the Supreme Court. High Courts are courts of record (contempt) and issue writs.",
+    },
+    {
+      text: "Transfer of Judges between High Courts is made by:",
+      options: [
+        "President with HC Chief Justice",
+        "HC Chief Justice",
+        "Governor with CJI",
+        "President with CJI",
+      ],
+      correctAnswer:
+        "President after consultation with the Chief Justice of India.",
+      explanation:
+        "Article 222 empowers the President to transfer judges after consulting the CJI.",
+    },
+    {
+      text: "A retired judge of a High Court cannot:",
+      options: [
+        "Practise in SC",
+        "Practise in any HC",
+        "Practise in the HC from where he retired",
+        "Practise in any court",
+      ],
+      correctAnswer: "Practise in the High Court from where he retired",
+      explanation:
+        "Article 220 prevents a retired judge from practicing in the same court where they held permanent office.",
+    },
+    {
+      text: "Writ jurisdiction of HC is wider than SC because it covers:",
+      options: [
+        "Civil and criminal",
+        "Fundamental and other legal rights",
+        "Fundamental and appeals",
+        "Fundamental and stay matters",
+      ],
+      correctAnswer: "Fundamental and other legal rights",
+      explanation:
+        "While the SC issues writs only for Fundamental Rights (Art 32), HCs can issue them for legal rights as well (Art 226).",
+    },
+    {
+      text: "Who extends HC jurisdiction to a Union Territory?",
+      options: ["Parliament", "President", "CJI", "State Legislature"],
+      correctAnswer: "Parliament by law",
+      explanation:
+        "Under Article 230, only Parliament can extend or exclude HC jurisdiction from a UT.",
+    },
+    {
+      text: "Consultation with CJI for HC judge appointment is:",
+      options: [
+        "Inspection of file",
+        "Concurrence",
+        "Conformity with opinion",
+        "Formal reference",
+      ],
+      correctAnswer: "Conformity with the opinion of the Chief Justice",
+      explanation:
+        "SC judgements have clarified that 'consultation' implies 'concurrence' with the CJI (Collegium).",
+    },
+    {
+      text: "Assertion (A): Habeas Corpus petition dismissed by SC can be admitted by HC.\nReason (R): Writ powers of SC and HC are concurrent.",
+      options: [
+        "Both true; R explains A",
+        "Both true; R not explanation",
+        "A is true",
+        "A is false but R is true",
+      ],
+      correctAnswer: "A is false but R is true",
+      explanation:
+        "Once the SC (highest court) dismisses a petition, it cannot be reopened in a lower court (HC) due to res judicata, even if they share concurrent jurisdiction.",
+    },
+    {
+      text: "Which is NOT correct?",
+      options: [
+        "SC can over-rule itself",
+        "HC can over-rule itself",
+        "SC judgements bind lower courts",
+        "HC judgements do not bind lower courts of the State",
+      ],
+      correctAnswer:
+        "Judgements of a High Court do not bind the lower courts of the State.",
+      explanation:
+        "High Court rulings are binding on all subordinate courts within its territorial jurisdiction.",
+    },
+    {
+      text: "HC with jurisdiction over the largest number of States/UTs:",
+      options: ["Calcutta", "Kerala", "Bombay", "Guwahati"],
+      correctAnswer: "Guwahati High Court",
+      explanation:
+        "Guwahati High Court traditionally has the widest multi-state jurisdiction in the North-East.",
+    },
+    {
+      text: "A High Court Judge is removed by:",
+      options: [
+        "Governor",
+        "President on Parliamentary resolution",
+        "CJI",
+        "HC Chief Justice",
+      ],
+      correctAnswer:
+        "The President, on the basis of a resolution passed by the Parliament by two-thirds majority",
+      explanation:
+        "Removal follows the same procedure as an SC judge, requiring special majority in both houses of Parliament.",
+    },
+    {
+      text: "Judicial review means:",
+      options: [
+        "Interpret constitution",
+        "Declare acts null/void if against Constitution",
+        "Define laws",
+        "Legislate",
+      ],
+      correctAnswer:
+        "The power of the courts to declare null and void any legislative or executive act, which is against the provisions of the Constitution",
+      explanation:
+        "This is the essence of maintaining constitutional supremacy.",
+    },
+    {
+      text: "Who is consulted by the President for HC judge appointment?",
+      options: [
+        "Law Minister",
+        "Advocate General",
+        "Attorney-General",
+        "Governor",
+      ],
+      correctAnswer: "The Governor",
+      explanation:
+        "Article 217 mandates consultation with the CJI, the Governor, and the Chief Justice of the state HC.",
+    },
+    {
+      text: "Which Article(s) vest writ power for Fundamental Rights?",
+      options: ["32 only", "226 only", "32 and 226 both", "Neither"],
+      correctAnswer: "Article 32 and Article 226 both",
+      explanation: "Article 32 is for the SC; Article 226 is for the HCs.",
+    },
+    {
+      text: "Main jurisdictions of High Court:\n1. Original\n2. Appellate\n3. Supervisory\n4. Advisory",
+      options: ["1, 2 and 3", "2, 3 and 4", "1, 3 and 4", "1, 2 and 4"],
+      correctAnswer: "1, 2 and 3",
+      explanation:
+        "High Courts possess original, appellate, and supervisory powers, but lack advisory jurisdiction.",
+    },
+  ],
+  Subordinate_Courts: [
+    {
+      text: "Consider the following:\n1. District judge exercises judicial and administrative powers.\n2. Sessions judge cannot impose capital punishment.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "A Sessions Judge *can* impose capital punishment, but it must be confirmed by the High Court.",
+    },
+    {
+      text: "Regarding subordinate courts:\n1. Function at district and lower levels.\n2. Pattern and designation are not uniform.\n3. Munsiff's courts have civil and criminal jurisdiction.\n4. Metropolitan area pattern is same as districts.",
+      options: ["1 and 2", "1 and 3", "2 and 3", "3 and 4"],
+      correctAnswer: "1 and 2",
+      explanation:
+        "Subordinate court structures vary by state. Munsiff courts are primarily civil, and metropolitan areas have a distinct magistrate system.",
+    },
+    {
+      text: "Who appoints the District judge?",
+      options: ["Governor", "President", "Chief Minister", "HC Chief Justice"],
+      correctAnswer: "The Governor of the State",
+      explanation:
+        "Article 233 provides for appointment by the Governor in consultation with the High Court.",
+    },
+    {
+      text: "Who appoints judicial officers other than district judges?",
+      options: [
+        "UPSC",
+        "SPSC",
+        "Governor with HC/SPSC rules",
+        "Governor with HC only",
+      ],
+      correctAnswer:
+        "Governor in accordance with the rules made by him in consultation with the High Court and State Public Service Commission",
+      explanation:
+        "Recruitment to the state judicial service follows Article 234.",
+    },
+    {
+      text: "Which is NOT a qualification for district judge?",
+      options: [
+        "Not in service of Central/State govt",
+        "Advocate for 7 years",
+        "30 years of age",
+        "Recommended by HC",
+      ],
+      correctAnswer: "He should have completed the 30 years of age.",
+      explanation:
+        "The Constitution specifies service status and 7 years of practice but doesn't explicitly fix a minimum age of 30.",
+    },
+  ],
+  "Special_Status_J&K": [
+    {
+      text: "Regarding J&K special status (historical):\n1. Fundamental Rights (Part III) not applicable.\n2. Directive Principles (Part IV) applicable with exceptions.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Neither 1 nor 2",
+      explanation:
+        "Part III applied with some modifications, while Part IV (DPSP) was specifically not applicable to J&K. Note: This status changed significantly in 2019.",
+    },
+    {
+      text: "Regarding J&K:\n1. Constitution provides for Governor's Rule.\n2. Kashmiri is the official language.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "J&K Constitution allowed Governor's Rule. However, Urdu was the official language of the state.",
+    },
+    {
+      text: "Which is correct regarding J&K High Court?",
+      options: [
+        "Issue writs only for Fundamental Rights",
+        "Issue writs for FR and other purposes",
+        "Issue writs for any purpose except FR",
+        "No writ power",
+      ],
+      correctAnswer:
+        "The High Court of J & K can issue writs only for the enforcement of the fundamental rights and not for any other purpose.",
+      explanation:
+        "Unlike other High Courts, the J&K HC's writ jurisdiction was historically limited only to Fundamental Rights.",
+    },
+    {
+      text: "Declaration that Article 370 is inoperative requires:\n1. Public notification\n2. Recommendation of Parliament\n3. Advice of Cabinet\n4. Recommendation of J&K Constituent Assembly",
+      options: ["1 and 3", "2 and 4", "1 and 2", "1 and 4"],
+      correctAnswer: "1 and 4 are correct",
+      explanation:
+        "Article 370(3) required the recommendation of the state's Constituent Assembly for the President to declare it inoperative.",
+    },
+    {
+      text: "Original designation of head of state in J&K:",
+      options: [
+        "Sadar-i-Azam",
+        "Sadar-i-Riyasat",
+        "Wazir-i-Riyasat",
+        "Wazir-i-Azam",
+      ],
+      correctAnswer: "Sadar-i-Riyasat",
+      explanation:
+        "This title was used until it was changed to 'Governor' in 1965.",
+    },
+    {
+      text: "Part of Constitution granting special status to J&K:",
+      options: ["Part XX", "Part XXI", "Part XXII", "Part XIX"],
+      correctAnswer: "Part XXI",
+      explanation:
+        "Part XXI covers temporary, transitional, and special provisions.",
+    },
+    {
+      text: "Which is NOT correct for J&K?\n1. Art 368 requires Presidential order.\n2. No boundary alteration without State Legislature consent.\n3. Union can proclaim financial emergency.",
+      options: ["Only 1", "3 only", "1 and 2", "1 and 3"],
+      correctAnswer: "3 only",
+      explanation:
+        "Financial emergency (Article 360) could not be proclaimed in J&K under its previous special status.",
+    },
+    {
+      text: "J&K Constitution came into force on:",
+      options: ["Jan 26, 1950", "Jan 26, 1952", "Jan 26, 1955", "Jan 26, 1957"],
+      correctAnswer: "January 26, 1957",
+      explanation:
+        "The separate constitution of J&K was adopted in Nov 1956 and enforced in Jan 1957.",
+    },
+  ],
+  Special_Provisions_States: [
+    {
+      text: "Consider the following:\n1. Governor of Arunachal has special responsibility for law and order.\n2. Arunachal Assembly consists of at least 40 members.",
+      options: ["Only 1", "Only 2", "Both 1 and 2", "Neither 1 nor 2"],
+      correctAnswer: "Only 1",
+      explanation:
+        "The minimum size for the Arunachal Assembly is 30 members, not 40.",
+    },
+    {
+      text: "Acts of Parliament do not apply to Nagaland unless Assembly decides for:\n1. Religious/social practices\n2. Customary law\n3. Customary justice\n4. Land resources",
+      options: ["2 and 3", "1 and 2", "1, 2, 3 and 4", "3 and 4"],
+      correctAnswer: "1, 2, 3 and 4",
+      explanation:
+        "Article 371-A provides these protections to maintain Naga cultural and resource autonomy.",
+    },
+    {
+      text: "Who can extend Union laws to Sikkim?",
+      options: ["Parliament", "President", "Governor", "Legislative Assembly"],
+      correctAnswer: "President of India",
+      explanation:
+        "Under 371-F, the President is empowered to extend laws to Sikkim.",
+    },
+    {
+      text: "Part XXI relates to which states?\n1. J&K\n2. Nagaland\n3. Assam\n4. Andhra Pradesh",
+      options: ["Only 1", "1, 2 and 3", "3 and 4", "1, 2, 3 and 4"],
+      correctAnswer: "1, 2, 3 and 4",
+      explanation:
+        "Part XXI (Articles 370-371J) contains provisions for all these states.",
+    },
+    {
+      text: "Who provides for Central University in Andhra under 371-E?",
+      options: ["President", "Parliament", "Assembly", "Governor"],
+      correctAnswer: "Parliament of India",
+      explanation:
+        "Article 371-E specifically empowers Parliament to establish a Central University in AP.",
+    },
+    {
+      text: "Who creates a committee for Hill areas in Manipur?",
+      options: ["Governor", "Chief Minister", "Parliament", "President"],
+      correctAnswer: "President of India",
+      explanation:
+        "Under 371-C, the President may provide for the constitution of this specific committee.",
+    },
+    {
+      text: "State Governor with special responsibility for law/order under 371-A:",
+      options: ["Assam", "Manipur", "Nagaland", "Andhra Pradesh"],
+      correctAnswer: "Nagaland",
+      explanation:
+        "Article 371-A grants this specific responsibility to the Governor of Nagaland.",
+    },
+    {
+      text: "Article 371 provides special provisions for:",
+      options: [
+        "Andhra Pradesh",
+        "Assam",
+        "Nagaland",
+        "Maharashtra and Gujarat",
+      ],
+      correctAnswer: "Maharashtra and Gujarat",
+      explanation:
+        "Article 371 (without a suffix letter) addresses the creation of development boards in Maharashtra and Gujarat.",
+    },
+  ],
 };
 
 module.exports = polityMcqData;
