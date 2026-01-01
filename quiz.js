@@ -182,6 +182,7 @@ async function loadQuiz(
   source = null
 ) {
   if (!currentUser || !currentUser.emailVerified) return showHome();
+  isPracticeMode = false;
   currentSubject = subjectKey;
   currentChapterId = subjectKey.replace(/\s+/g, "_") + "_" + chapterId;
   currentChapterName = decodeURIComponent(chapterName);

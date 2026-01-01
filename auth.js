@@ -16,6 +16,7 @@ let quizSubmitted = false;
 let isReviewMode = false;
 let reviewSource = null;
 let isRegistering = false;
+let isPracticeMode = false; // Isse global banayein hain taaki practice.js mein bhi access ho sake
 
 const quizDataCache = {};
 let userHistory = [];
@@ -36,27 +37,28 @@ let currentReviewStats = null;
  * @param {string} theme - Either 'light' or 'dark'
  */
 function applyTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
-  
+  document.documentElement.setAttribute("data-theme", theme);
+  localStorage.setItem("theme", theme);
+
   // Update button icon
-  const themeToggleBtn = document.getElementById('theme-toggle');
+  const themeToggleBtn = document.getElementById("theme-toggle");
   if (themeToggleBtn) {
-    themeToggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
-    themeToggleBtn.title = theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+    themeToggleBtn.textContent = theme === "dark" ? "☀️" : "🌙";
+    themeToggleBtn.title =
+      theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode";
   }
-  
+
   // Refresh charts if they exist to apply dark mode colors
   if (performanceChartInstance) {
     renderPerformanceChart(userHistory);
   }
   if (comparisonChartInstance && currentReviewStats) {
     // Re-render comparison chart with new theme
-    const ctx = document.getElementById('comparisonChart');
+    const ctx = document.getElementById("comparisonChart");
     if (ctx) {
-      const isDark = theme === 'dark';
-      const textColor = isDark ? '#e5e7eb' : '#666';
-      
+      const isDark = theme === "dark";
+      const textColor = isDark ? "#e5e7eb" : "#666";
+
       if (comparisonChartInstance) {
         comparisonChartInstance.options.scales.x.ticks.color = textColor;
         comparisonChartInstance.options.scales.y.ticks.color = textColor;
@@ -70,8 +72,9 @@ function applyTheme(theme) {
  * Toggles between light and dark themes
  */
 function toggleTheme() {
-  const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  const currentTheme =
+    document.documentElement.getAttribute("data-theme") || "light";
+  const newTheme = currentTheme === "light" ? "dark" : "light";
   applyTheme(newTheme);
 }
 
@@ -112,7 +115,8 @@ auth.onAuthStateChanged((user) => {
 });
 
 function signInWithGoogle() {
-  auth.signInWithPopup(googleProvider)
+  auth
+    .signInWithPopup(googleProvider)
     .then((result) => {
       toastr.success("Signed in with Google successfully!");
     })
@@ -133,7 +137,7 @@ function toggleAuthMode() {
   const link = document.querySelector(".card-body small a");
   const title = document.getElementById("auth-title");
   const sub = document.getElementById("auth-subtitle");
-  
+
   // We no longer need to find or hide the google-auth-container here
   // because we want it to stay visible in both modes.
 
@@ -178,7 +182,9 @@ document.getElementById("auth-form").addEventListener("submit", (e) => {
       .signInWithEmailAndPassword(email, pass)
       .then((userCredential) => {
         if (!userCredential.user.emailVerified) {
-          toastr.error("Login denied: Email not verified. Please verify your email. (check spam folder)");
+          toastr.error(
+            "Login denied: Email not verified. Please verify your email. (check spam folder)"
+          );
           auth.signOut();
         } else {
           toastr.success("Logged in successfully!");
@@ -250,6 +256,7 @@ function showHome() {
 
 function showDashboard() {
   if (!currentUser || !currentUser.emailVerified) return showHome();
+  isPracticeMode = false;
   hideAllSections();
   document.getElementById("dashboard-section").style.display = "block";
   loadUserDashboard();
@@ -257,12 +264,14 @@ function showDashboard() {
 
 function showPerformance() {
   if (!currentUser || !currentUser.emailVerified) return showHome();
+  isPracticeMode = false;
   hideAllSections();
   document.getElementById("performance-section").style.display = "block";
 }
 
 function showTestSelection() {
   if (!currentUser || !currentUser.emailVerified) return showHome();
+  isPracticeMode = false;
   hideAllSections();
   document.getElementById("test-selection-section").style.display = "block";
   renderSubjects();
@@ -271,11 +280,21 @@ function showTestSelection() {
 function exitQuiz() {
   if (quizTimerInterval) clearInterval(quizTimerInterval);
 
+  // Check if we are in Practice Mode
+  if (isPracticeMode) {
+    startPracticeSelection(); // Practice configuration page par wapas le jayega
+    return;
+  }
+
+  // Regular Quiz Logic
   if (isReviewMode && reviewSource === "performance") {
     showPerformance();
-  } else {
+  } else if (currentSubject && allQuizData[currentSubject]) {
     hideAllSections();
     document.getElementById("test-selection-section").style.display = "block";
     renderChapters(currentSubject);
+  } else {
+    // Safety Fallback: Agar kuch samajh na aaye toh Dashboard dikhao
+    showDashboard();
   }
 }
