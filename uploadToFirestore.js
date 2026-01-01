@@ -29,7 +29,7 @@ const dataFiles = {
     // "Economy PYQ": require('./MCQ_Data/economyData.js'),
     // "Science and Tech PYQ": require('./MCQ_Data/scienceTechData.js')
     // "Polity MCQ Laxmikant": require('./MCQ_Data/polityMcqData.js'),
-    "PYQ": require('./practice_Data/pyqData.js'),
+    "Polity": require('./practice_Data/polityData.js'),
 
     // Add others: "Modern History PYQ": require('./MCQ_Data/modernHistoryData.js'), etc.
 };
