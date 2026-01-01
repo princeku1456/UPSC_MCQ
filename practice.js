@@ -24,11 +24,14 @@ function startPracticeSelection() {
  * Renders the consolidated Dropdown interface
  * UPDATED: Now uses allPracticeData from practiceMcqData.js
  */
+/**
+ * Renders the consolidated Dropdown interface
+ */
 function renderPracticeUI() {
     const container = document.getElementById("test-content-container");
     
     container.innerHTML = `
-        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="showDashboard()">竊Back to Dashboard</button>
+        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="showDashboard()">← Back to Dashboard</button>
         <div class="text-center mb-5">
             <h2 class="fw-bold section-title text-primary">Practice MCQ</h2>
             <div class="title-underline mx-auto" style="background: var(--secondary-color)"></div>
@@ -56,12 +59,14 @@ function renderPracticeUI() {
                     <div class="mb-4">
                         <label class="form-label fw-bold text-muted small">3. Number of Questions</label>
                         <select id="practice-limit-select" class="form-select form-select-lg">
-                            <option value="5">5 Questions</option>
                             <option value="10" selected>10 Questions</option>
                             <option value="20">20 Questions</option>
+                            <option value="30">30 Questions</option>
+                            <option value="40">40 Questions</option>
                             <option value="50">50 Questions</option>
-                            <option value="0">All Questions</option>
-                        </select>
+                            <option value="75">75 Questions</option>
+                            <option value="100">100 Questions</option>
+                            </select>
                     </div>
 
                     <button class="btn btn-secondary-custom w-100 py-3 fw-bold fs-5" onclick="handleGeneratePractice()">
@@ -77,6 +82,9 @@ function renderPracticeUI() {
  * Dynamically updates the Topic dropdown based on the selected Subject
  * UPDATED: Maps chapters from allPracticeData
  */
+/**
+ * Dynamically updates the Topic dropdown based on the selected Subject
+ */
 function updatePracticeTopics() {
     const subjectSelect = document.getElementById("practice-subject-select");
     const topicSelect = document.getElementById("practice-topic-select");
@@ -85,7 +93,9 @@ function updatePracticeTopics() {
     if (!selectedSubject) return;
 
     const chapters = allPracticeData[selectedSubject];
+    // Added "All Topics" option at the beginning of the list
     topicSelect.innerHTML = `<option value="" selected disabled>Choose a Topic...</option>` + 
+        `<option value="all">All Topics</option>` +
         Object.keys(chapters).map(chapId => `<option value="${chapId}">${chapId}</option>`).join('');
     
     topicSelect.disabled = false;
@@ -111,9 +121,12 @@ function handleGeneratePractice() {
  * Fetches questions from Firebase
  * UPDATED: Now fetches from "practice_mcqs" collection
  */
+/**
+ * Fetches questions from Firebase and randomizes selection
+ */
 async function loadPracticeQuiz(subject, chapter, limit) {
     practiceSubject = subject;
-    practiceChapter = chapter;
+    practiceChapter = chapter === "all" ? "All Topics" : chapter;
     practiceQuestionLimit = limit;
     practiceSubmitted = false;
     
@@ -122,18 +135,47 @@ async function loadPracticeQuiz(subject, chapter, limit) {
     document.getElementById("quiz-content").innerHTML = `
         <div class="text-center py-5">
             <div class="spinner-border text-info" role="status"></div>
-            <p class="mt-2 text-muted">Generating your session...</p>
+            <p class="mt-2 text-muted">Generating your randomized session...</p>
         </div>`;
 
     try {
-        const docId = subject.replace(/\s+/g, "_") + "_" + chapter;
-        // Fetching from the new dedicated practice collection
-        const doc = await db.collection("practice_mcqs").doc(docId).get();
-        if (!doc.exists) return toastr.error("Questions not found in database!");
+        let questions = [];
 
-        let questions = doc.data().questions;
-        practiceQuizData = questions.sort(() => Math.random() - 0.5);
-        if (limit > 0) practiceQuizData = practiceQuizData.slice(0, limit);
+        if (chapter === "all") {
+            // Fetch questions from ALL topics in this subject
+            const chapterIds = Object.keys(allPracticeData[subject]);
+            const fetchPromises = chapterIds.map(chapId => {
+                const docId = subject.replace(/\s+/g, "_") + "_" + chapId;
+                return db.collection("practice_mcqs").doc(docId).get();
+            });
+
+            const docs = await Promise.all(fetchPromises);
+            docs.forEach(doc => {
+                if (doc.exists) {
+                    questions = questions.concat(doc.data().questions || []);
+                }
+            });
+        } else {
+            // Fetch questions from a specific topic
+            const docId = subject.replace(/\s+/g, "_") + "_" + chapter;
+            const doc = await db.collection("practice_mcqs").doc(docId).get();
+            if (doc.exists) {
+                questions = doc.data().questions || [];
+            } else {
+                return toastr.error("Questions not found in database!");
+            }
+        }
+
+        if (questions.length === 0) return toastr.error("No questions available for this selection.");
+
+        // RANDOMIZATION: Fisher-Yates Shuffle algorithm to ensure questions are not in sequence
+        for (let i = questions.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [questions[i], questions[j]] = [questions[j], questions[i]];
+        }
+
+        // SLICE: Select only the requested number of questions from the randomized pool
+        practiceQuizData = questions.slice(0, limit);
 
         practiceCurrentIndex = 0;
         practiceUserAnswers = {};
