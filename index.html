@@ -214,18 +214,27 @@
           </div>
         </div>
         <div class="row justify-content-center mb-4">
-          <div class="col-12">
+          <div class="col-md-6">
             <div
-              class="card topic-card shadow-sm"
+              class="card topic-card shadow-sm h-100"
               style="cursor: pointer"
               onclick="showTestSelection()"
             >
               <div class="card-body text-center p-4">
                 <div class="display-5 mb-2">🚀</div>
                 <h3 class="fw-bold card-title text-success m-0">Take Test</h3>
-                <p class="text-muted small">
-                  Start a new quiz or retake topics
-                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div
+              class="card topic-card shadow-sm h-100"
+              style="cursor: pointer"
+              onclick="startPracticeSelection()"
+            >
+              <div class="card-body text-center p-4">
+                <div class="display-5 mb-2">🎯</div>
+                <h3 class="fw-bold card-title text-info m-0">Practice MCQ</h3>
               </div>
             </div>
           </div>
@@ -283,6 +292,7 @@
     <script src="quizData.js"></script>
     <script src="auth.js"></script>
     <script src="quiz.js"></script>
+    <script src="practice.js"></script>
     <script src="dashboard.js"></script>
   </body>
 </html>
