@@ -28,7 +28,8 @@ const dataFiles = {
     // "IR PYQ": require('./MCQ_Data/irData.js'),
     // "Economy PYQ": require('./MCQ_Data/economyData.js'),
     // "Science and Tech PYQ": require('./MCQ_Data/scienceTechData.js')
-    "Polity MCQ Laxmikant": require('./MCQ_Data/polityMcqData.js'),
+    // "Polity MCQ Laxmikant": require('./MCQ_Data/polityMcqData.js'),
+    "PYQ": require('./practice_Data/pyqData.js'),
 
     // Add others: "Modern History PYQ": require('./MCQ_Data/modernHistoryData.js'), etc.
 };
@@ -45,7 +46,7 @@ async function uploadQuizzes() {
             
             try {
                 // Upload to the 'quizzes' collection
-                await db.collection('quizzes').doc(docId).set({
+                await db.collection('practice_mcqs').doc(docId).set({
                     questions: questions
                 });
                 console.log(`✅ Uploaded Chapter: ${chapterId} (Questions: ${questions.length})`);
