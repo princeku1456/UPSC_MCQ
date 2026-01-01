@@ -1,8 +1,6 @@
 /* =========================================
    PRACTICE MODE LOGIC (practice.js)
    ========================================= */
-
-let isPracticeMode = false;
 let practiceSubmitted = false;
 let practiceQuestionLimit = 0;
 let practiceUserAnswers = {};
@@ -15,7 +13,7 @@ let practiceChapter = "";
  * Entry point from Dashboard - Renders the Dropdown Selection UI
  */
 function startPracticeSelection() {
-    isPracticeMode = true;
+    // isPracticeMode = true;
     practiceSubmitted = false;
     hideAllSections();
     document.getElementById("test-selection-section").style.display = "block";
