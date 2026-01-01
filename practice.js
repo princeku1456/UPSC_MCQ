@@ -28,9 +28,9 @@ function renderPracticeUI() {
     const container = document.getElementById("test-content-container");
     
     container.innerHTML = `
-        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="showDashboard()">← Back to Dashboard</button>
+        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="showDashboard()">竊Back to Dashboard</button>
         <div class="text-center mb-5">
-            <h2 class="fw-bold section-title text-primary">Practice MCQ 🎯</h2>
+            <h2 class="fw-bold section-title text-primary">Practice MCQ</h2>
             <div class="title-underline mx-auto" style="background: var(--secondary-color)"></div>
             <p class="text-muted mt-3">Configure your custom practice session below.</p>
         </div>
@@ -65,7 +65,7 @@ function renderPracticeUI() {
                     </div>
 
                     <button class="btn btn-secondary-custom w-100 py-3 fw-bold fs-5" onclick="handleGeneratePractice()">
-                        🚀 Generate Practice
+                         Generate Practice
                     </button>
                 </div>
             </div>
@@ -75,7 +75,7 @@ function renderPracticeUI() {
 
 /**
  * Dynamically updates the Topic dropdown based on the selected Subject
- * UPDATED: Pulls topics from allPracticeData
+ * UPDATED: Maps chapters from allPracticeData
  */
 function updatePracticeTopics() {
     const subjectSelect = document.getElementById("practice-subject-select");
@@ -127,9 +127,9 @@ async function loadPracticeQuiz(subject, chapter, limit) {
 
     try {
         const docId = subject.replace(/\s+/g, "_") + "_" + chapter;
-        // Changed collection from "quizzes" to "practice_mcqs"
+        // Fetching from the new dedicated practice collection
         const doc = await db.collection("practice_mcqs").doc(docId).get();
-        if (!doc.exists) return toastr.error("Questions not found in practice database!");
+        if (!doc.exists) return toastr.error("Questions not found in database!");
 
         let questions = doc.data().questions;
         practiceQuizData = questions.sort(() => Math.random() - 0.5);
@@ -165,7 +165,7 @@ function setupPracticeLayout() {
         <button id="practice-submit-btn" class="btn btn-secondary-custom w-100 mt-4 rounded-pill py-2 fw-bold text-white" onclick="submitPractice()">Finish Practice</button>
     `;
     
-    document.getElementById("timer-display").textContent = "Practice Mode 🎯";
+    document.getElementById("timer-display").textContent = "Practice Mode";
 }
 
 function renderPracticeQuestion() {
@@ -206,7 +206,7 @@ function renderPracticeQuestion() {
     if (practiceSubmitted && q.explanation) {
         const exp = document.createElement("div");
         exp.className = "explanation shadow-sm mt-3 animate-fade-in";
-        exp.innerHTML = `<strong>💡 Explanation:</strong> <br>${q.explanation}`;
+        exp.innerHTML = `<strong> Explanation:</strong> <br>${q.explanation}`;
         container.appendChild(exp);
     }
 }
@@ -291,7 +291,7 @@ function submitPractice() {
 
     document.getElementById("practice-result-summary").innerHTML = `
         <div class="card border-0 shadow-sm rounded-4 p-4 text-center animate-fade-in mb-4">
-            <h4 class="fw-bold text-primary mb-3">Practice Result 🏆</h4>
+            <h4 class="fw-bold text-primary mb-3">Practice Result</h4>
             <div class="row g-2 mb-3">
                 <div class="col-12 col-md-4">
                     <div class="p-2 bg-primary text-white rounded shadow-sm">
