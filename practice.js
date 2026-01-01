@@ -22,6 +22,7 @@ function startPracticeSelection() {
 
 /**
  * Renders the consolidated Dropdown interface
+ * UPDATED: Now uses allPracticeData from practiceMcqData.js
  */
 function renderPracticeUI() {
     const container = document.getElementById("test-content-container");
@@ -41,7 +42,7 @@ function renderPracticeUI() {
                         <label class="form-label fw-bold text-muted small">1. Select Subject</label>
                         <select id="practice-subject-select" class="form-select form-select-lg" onchange="updatePracticeTopics()">
                             <option value="" selected disabled>Choose a Subject...</option>
-                            ${Object.keys(allQuizData).map(subject => `<option value="${subject}">${subject}</option>`).join('')}
+                            ${Object.keys(allPracticeData).map(subject => `<option value="${subject}">${subject}</option>`).join('')}
                         </select>
                     </div>
 
@@ -74,6 +75,7 @@ function renderPracticeUI() {
 
 /**
  * Dynamically updates the Topic dropdown based on the selected Subject
+ * UPDATED: Pulls topics from allPracticeData
  */
 function updatePracticeTopics() {
     const subjectSelect = document.getElementById("practice-subject-select");
@@ -82,7 +84,7 @@ function updatePracticeTopics() {
 
     if (!selectedSubject) return;
 
-    const chapters = allQuizData[selectedSubject];
+    const chapters = allPracticeData[selectedSubject];
     topicSelect.innerHTML = `<option value="" selected disabled>Choose a Topic...</option>` + 
         Object.keys(chapters).map(chapId => `<option value="${chapId}">${chapId}</option>`).join('');
     
@@ -105,6 +107,10 @@ function handleGeneratePractice() {
     loadPracticeQuiz(subject, topic, limit);
 }
 
+/**
+ * Fetches questions from Firebase
+ * UPDATED: Now fetches from "practice_mcqs" collection
+ */
 async function loadPracticeQuiz(subject, chapter, limit) {
     practiceSubject = subject;
     practiceChapter = chapter;
@@ -121,8 +127,9 @@ async function loadPracticeQuiz(subject, chapter, limit) {
 
     try {
         const docId = subject.replace(/\s+/g, "_") + "_" + chapter;
-        const doc = await db.collection("quizzes").doc(docId).get();
-        if (!doc.exists) return toastr.error("Questions not found in database!");
+        // Changed collection from "quizzes" to "practice_mcqs"
+        const doc = await db.collection("practice_mcqs").doc(docId).get();
+        if (!doc.exists) return toastr.error("Questions not found in practice database!");
 
         let questions = doc.data().questions;
         practiceQuizData = questions.sort(() => Math.random() - 0.5);
