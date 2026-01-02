@@ -1,12 +1,11 @@
 const allPracticeData = {
   Polity: {
-    "historical background and Making of Constitution and Salient Features of Constitution ": [],
+    "historical background and Making of Constitution and Salient Features of Constitution": [],
     "FR and DPSP": [],
     legislature: [],
     executive: [],
     judiciary: [],
-    "local self government and governance and constitutional and non constitutional bodies": [],
-    IR: [],
+    "local self government and governance and constitutional and non constitutional bodies": []
   },
   // History: {
   //   Modern_History: [],
