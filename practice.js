@@ -8,6 +8,7 @@ let practiceCurrentIndex = 0;
 let practiceQuizData = [];
 let practiceSubject = "";
 let practiceChapter = "";
+const practiceDataCache = {};
 
 /**
  * Entry point from Dashboard - Renders the Dropdown Selection UI
@@ -135,47 +136,48 @@ async function loadPracticeQuiz(subject, chapter, limit) {
     document.getElementById("quiz-content").innerHTML = `
         <div class="text-center py-5">
             <div class="spinner-border text-info" role="status"></div>
-            <p class="mt-2 text-muted">Generating your randomized session...</p>
+            <p class="mt-2 text-muted">Optimizing your session...</p>
         </div>`;
 
     try {
-        let questions = [];
+        let allQuestions = [];
+        // Define which chapters to check (either a specific one or all in the subject)
+        const chapterIds = chapter === "all" ? Object.keys(allPracticeData[subject]) : [chapter];
 
-        if (chapter === "all") {
-            // Fetch questions from ALL topics in this subject
-            const chapterIds = Object.keys(allPracticeData[subject]);
-            const fetchPromises = chapterIds.map(chapId => {
-                const docId = subject.replace(/\s+/g, "_") + "_" + chapId;
-                return db.collection("practice_mcqs").doc(docId).get();
-            });
+        for (const chapId of chapterIds) {
+            const docId = subject.replace(/\s+/g, "_") + "_" + chapId;
+            const cacheKey = `practice_cache_${docId}`;
 
-            const docs = await Promise.all(fetchPromises);
-            docs.forEach(doc => {
-                if (doc.exists) {
-                    questions = questions.concat(doc.data().questions || []);
+            // 1. Check Memory Cache first
+            if (practiceDataCache[docId]) {
+                allQuestions = allQuestions.concat(practiceDataCache[docId]);
+            } 
+            // 2. Check LocalStorage Cache for persistence across refreshes
+            else {
+                const localCached = localStorage.getItem(cacheKey);
+                if (localCached) {
+                    const parsed = JSON.parse(localCached);
+                    practiceDataCache[docId] = parsed; // Sync to memory
+                    allQuestions = allQuestions.concat(parsed);
+                } 
+                // 3. Fetch from Firestore ONLY if not found in any cache
+                else {
+                    const doc = await db.collection("practice_mcqs").doc(docId).get();
+                    if (doc.exists) {
+                        const data = doc.data().questions || [];
+                        practiceDataCache[docId] = data;
+                        localStorage.setItem(cacheKey, JSON.stringify(data)); // Save for future use
+                        allQuestions = allQuestions.concat(data);
+                    }
                 }
-            });
-        } else {
-            // Fetch questions from a specific topic
-            const docId = subject.replace(/\s+/g, "_") + "_" + chapter;
-            const doc = await db.collection("practice_mcqs").doc(docId).get();
-            if (doc.exists) {
-                questions = doc.data().questions || [];
-            } else {
-                return toastr.error("Questions not found in database!");
             }
         }
 
-        if (questions.length === 0) return toastr.error("No questions available for this selection.");
+        if (allQuestions.length === 0) return toastr.error("No questions available.");
 
-        // RANDOMIZATION: Fisher-Yates Shuffle algorithm to ensure questions are not in sequence
-        for (let i = questions.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [questions[i], questions[j]] = [questions[j], questions[i]];
-        }
-
-        // SLICE: Select only the requested number of questions from the randomized pool
-        practiceQuizData = questions.slice(0, limit);
+        // RANDOMIZATION & SLICING (Happens locally - 0 Firestore cost)
+        const randomized = [...allQuestions].sort(() => 0.5 - Math.random());
+        practiceQuizData = randomized.slice(0, limit);
 
         practiceCurrentIndex = 0;
         practiceUserAnswers = {};
@@ -184,7 +186,7 @@ async function loadPracticeQuiz(subject, chapter, limit) {
         renderPracticeQuestion();
         renderPracticeNav();
     } catch (error) {
-        console.error(error);
+        console.error("Fetch Error:", error);
         toastr.error("Failed to load questions.");
     }
 }
