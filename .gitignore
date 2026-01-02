@@ -3,3 +3,8 @@ node_modules/
 
 # Firebase Service Account Key
 serviceAccountKey.json
+
+MCQ_Data/
+practice_Data/
+verifyOldUser.js
+uploadToFirestore.js
