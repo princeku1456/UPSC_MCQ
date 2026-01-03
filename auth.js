@@ -298,3 +298,52 @@ function exitQuiz() {
     showDashboard();
   }
 }
+
+/* --- Add this helper function at the bottom of auth.js --- */
+function hideGlobalLoader() {
+  const loader = document.getElementById("global-loader");
+  if (loader) {
+    loader.classList.add("loader-hidden");
+    // Completely remove from layout after transition
+    setTimeout(() => {
+      loader.style.display = "none";
+    }, 500);
+  }
+}
+
+/* --- Modify the existing listener in auth.js --- */
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    user
+      .reload()
+      .then(() => {
+        const freshUser = auth.currentUser;
+        if (freshUser && !freshUser.emailVerified) {
+          currentUser = null;
+          updateUIForLogout();
+          showHome();
+          auth.signOut();
+          hideGlobalLoader(); // Hide loader after handling unverified user
+          return;
+        }
+        currentUser = freshUser;
+        updateUIForLogin();
+        showDashboard();
+        hideGlobalLoader(); // Hide loader after showing dashboard
+      })
+      .catch((err) => {
+        console.error("Auth sync error:", err);
+        auth.signOut();
+        hideGlobalLoader(); // Hide loader even on error
+      });
+  } else {
+    currentUser = null;
+    userHistory = [];
+    dashboardDataLoaded = false;
+    globalStatsCache = {};
+    leaderboardCache = {};
+    updateUIForLogout();
+    showHome();
+    hideGlobalLoader(); // Hide loader after showing login/home
+  }
+});
