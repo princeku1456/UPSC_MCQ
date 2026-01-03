@@ -1,7 +1,18 @@
 /* =========================================
    4. TAKE TEST LOGIC (Subjects & Chapters)
    ========================================= */
-
+async function fetchQuizManifest() {
+    try {
+        const doc = await db.collection("quiz_metadata").doc("quiz_manifest").get();
+        if (doc.exists) {
+            window.allQuizData = doc.data(); // Set global variable dynamically
+        } else {
+            console.error("Quiz manifest not found in Firestore");
+        }
+    } catch (error) {
+        console.error("Error fetching quiz manifest:", error);
+    }
+}
 // --- HELPER FUNCTIONS FOR AUTO-SAVE ---
 function saveQuizProgress() {
   if (!currentChapterId || quizSubmitted || isReviewMode) return;
@@ -22,7 +33,10 @@ function clearQuizProgress(chapterId) {
  * UPDATED: Renders subjects directly into the dashboard's test container.
  * Removed the "Back to Dashboard" button as this is now part of the main view.
  */
-function renderSubjects() {
+async function renderSubjects() {
+  if (typeof allQuizData === "undefined") {
+        await fetchQuizManifest();
+    }
   const container = document.getElementById("test-content-container");
 
   if (typeof allQuizData === "undefined" || !allQuizData) {

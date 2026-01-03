@@ -274,7 +274,7 @@ function showTestSelection() {
   isPracticeMode = false;
   hideAllSections();
   document.getElementById("test-selection-section").style.display = "block";
-  renderSubjects();
+  renderSubjects(); // This will now fetch data if it's missing
 }
 
 function exitQuiz() {
