@@ -32,20 +32,34 @@ function clearQuizProgress(chapterId) {
 /**
  * UPDATED: Renders subjects directly into the dashboard's test container.
  * Removed the "Back to Dashboard" button as this is now part of the main view.
+/**
+ * Renders subjects in sorted order directly into the dashboard's test container.
+ */
+/**
+ * UPDATED: Fetches manifest from Firestore if missing, then renders subjects.
  */
 async function renderSubjects() {
-  if (typeof allQuizData === "undefined") {
-        await fetchQuizManifest();
-    }
   const container = document.getElementById("test-content-container");
 
+  // If data isn't loaded yet, fetch it from Firestore
+  if (typeof allQuizData === "undefined" || !allQuizData) {
+    container.innerHTML = `
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2 text-muted">Loading Subjects from Cloud...</p>
+        </div>`;
+    
+    await fetchQuizManifest(); // Helper function to get data from Firebase
+  }
+
+  // Double check if data is now available after fetch
   if (typeof allQuizData === "undefined" || !allQuizData) {
     container.innerHTML =
-      '<div class="alert alert-danger text-center">Quiz Data not loaded!</div>';
+      '<div class="alert alert-danger text-center">Failed to load Quiz Data from Firebase!</div>';
     return;
   }
 
-  // ADDED: Back to Dashboard button
+  // Clear container and start rendering
   container.innerHTML = `
         <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="showDashboard()">← Back to Dashboard</button>
         <div class="text-center mb-4">
@@ -57,45 +71,38 @@ async function renderSubjects() {
 
   const row = document.getElementById("subjects-row");
 
-  Object.keys(allQuizData).forEach((subjectKey) => {
+  // Sort and render subjects as before
+  const sortedSubjectKeys = Object.keys(allQuizData).sort((a, b) => {
+    return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
+  });
+
+  sortedSubjectKeys.forEach((subjectKey) => {
     const chapters = allQuizData[subjectKey];
     const totalChapters = Object.keys(chapters).length;
-
     const subjectPrefix = subjectKey.replace(/\s+/g, "_") + "_";
+    
     const completedChaptersCount = Object.keys(chapters).filter((chapId) => {
       const fullId = subjectPrefix + chapId;
       return userHistory && userHistory.some((h) => h.chapterId === fullId);
     }).length;
 
-    const progressPercent =
-      totalChapters > 0
-        ? Math.round((completedChaptersCount / totalChapters) * 100)
-        : 0;
-
+    const progressPercent = totalChapters > 0 ? Math.round((completedChaptersCount / totalChapters) * 100) : 0;
     const isCompleted = progressPercent === 100;
-    const completionClass = isCompleted ? "subject-completed" : "";
-    const badgeHtml = isCompleted
-      ? '<div class="badge bg-success mb-2 animate-fade-in">✨ Completed</div>'
-      : "";
 
     const col = document.createElement("div");
     col.className = "col-md-4 col-lg-3 mb-4";
     col.innerHTML = `
-            <div class="card topic-card h-100 ${completionClass}" style="cursor: pointer;">
+            <div class="card topic-card h-100 ${isCompleted ? "subject-completed" : ""}" style="cursor: pointer;">
                 <div class="card-body text-center p-4 d-flex flex-column">
                     <div class="display-4 mb-3">${isCompleted ? "🏆" : "📖"}</div>
-                    ${badgeHtml}
+                    ${isCompleted ? '<div class="badge bg-success mb-2 animate-fade-in">✨ Completed</div>' : ""}
                     <h5 class="card-title text-primary fw-bold">${subjectKey}</h5>
                     <p class="text-muted small mb-3">${completedChaptersCount} / ${totalChapters} Chapters Done</p>
-                    
                     <div class="mt-auto">
                         <div class="progress mb-2" style="height: 25px; background-color: var(--border-color); border-radius: 5px;">
                             <div class="progress-bar ${isCompleted ? "bg-success" : ""}" 
                                  role="progressbar" 
-                                 style="width: ${progressPercent}%; ${!isCompleted ? "background-color: var(--accent-color);" : ""} border-radius: 5px;" 
-                                 aria-valuenow="${progressPercent}" 
-                                 aria-valuemin="0" 
-                                 aria-valuemax="100">
+                                 style="width: ${progressPercent}%; ${!isCompleted ? "background-color: var(--accent-color);" : ""} border-radius: 5px;">
                             </div>
                         </div>
                         <small class="fw-bold ${isCompleted ? "text-success" : "text-secondary"}">${progressPercent}% Complete</small>
@@ -111,10 +118,13 @@ async function renderSubjects() {
 /**
  * UPDATED: Navigates back to showDashboard (the consolidated view)
  */
+/**
+ * UPDATED: Renders chapters for a selected subject in sorted order.
+ */
 function renderChapters(subjectKey) {
   const container = document.getElementById("test-content-container");
   
-  // UPDATED: Button now returns to Subjects list
+  // Create the layout for the chapters view
   container.innerHTML = `
         <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="renderSubjects()">← Back to Subjects</button>
         <div class="text-center mb-4">
@@ -127,13 +137,19 @@ function renderChapters(subjectKey) {
   const row = document.getElementById("chapters-row");
   const chapters = allQuizData[subjectKey];
 
-  Object.keys(chapters).forEach((chapId) => {
+  // FIX: Sort the chapter IDs numerically before rendering to ensure Test-1, Test-2 order
+  const sortedChapterIds = Object.keys(chapters).sort((a, b) => {
+    return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
+  });
+
+  sortedChapterIds.forEach((chapId) => {
     const col = document.createElement("div");
     col.className = "col-md-6 col-lg-4 mb-4";
 
     const subjectPrefix = subjectKey.replace(/\s+/g, "_") + "_";
     const fullChapterId = subjectPrefix + chapId;
 
+    // Check if the user has already taken this test
     const latestResult = userHistory && userHistory.find((h) => h.chapterId === fullChapterId);
     const hasTaken = !!latestResult;
 
@@ -161,10 +177,12 @@ function renderChapters(subjectKey) {
                 </div>
             </div>`;
 
+    // Handle Start/Retake Test click
     col.querySelector(".action-btn").onclick = () => {
       loadQuiz(subjectKey, chapId, encodeURIComponent(chapId));
     };
 
+    // Handle Review Performance click if the test was previously completed
     if (hasTaken) {
       col.querySelector(".review-perf-btn").onclick = () => {
         reviewTest(latestResult, "chapters");
