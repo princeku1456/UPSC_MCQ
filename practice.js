@@ -10,6 +10,18 @@ let practiceSubject = "";
 let practiceChapter = "";
 const practiceDataCache = {};
 
+
+
+async function fetchPracticeManifest() {
+    try {
+        const doc = await db.collection("quiz_metadata").doc("practice_manifest").get();
+        if (doc.exists) {
+            window.allPracticeData = doc.data();
+        }
+    } catch (error) {
+        console.error("Error fetching practice manifest:", error);
+    }
+}
 /**
  * Entry point from Dashboard - Renders the Dropdown Selection UI
  */
@@ -28,7 +40,10 @@ function startPracticeSelection() {
 /**
  * Renders the consolidated Dropdown interface
  */
-function renderPracticeUI() {
+async function renderPracticeUI() {
+    if (typeof allPracticeData === "undefined") {
+        await fetchPracticeManifest();
+    }
     const container = document.getElementById("test-content-container");
     
     container.innerHTML = `
