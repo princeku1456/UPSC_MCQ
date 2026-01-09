@@ -1,29 +1,30 @@
+
 /* =========================================
    4. TAKE TEST LOGIC (Subjects & Chapters)
    ========================================= */
 async function fetchQuizManifest() {
-    try {
-        const doc = await db.collection("quiz_metadata").doc("quiz_manifest").get();
-        if (doc.exists) {
-            window.allQuizData = doc.data(); // Set global variable dynamically
-        } else {
-            console.error("Quiz manifest not found in Firestore");
-        }
-    } catch (error) {
-        console.error("Error fetching quiz manifest:", error);
+  try {
+    const doc = await db.collection("quiz_metadata").doc("quiz_manifest").get();
+    if (doc.exists) {
+      window.allQuizData = doc.data(); // Set global variable dynamically
+    } else {
+      console.error("Quiz manifest not found in Firestore");
     }
+  } catch (error) {
+    console.error("Error fetching quiz manifest:", error);
+  }
 }
 // --- HELPER FUNCTIONS FOR AUTO-SAVE ---
 function saveQuizProgress() {
   if (!currentChapterId || quizSubmitted || isReviewMode) return;
   const progressData = {
     userAnswers: userAnswers,
+    markedForReview: markedForReview, // NEW: Persist marks
     lastQuestionIndex: currentQuestionIndex,
     timestamp: new Date().getTime()
   };
   localStorage.setItem(`quiz_progress_${currentChapterId}`, JSON.stringify(progressData));
 }
-
 function clearQuizProgress(chapterId) {
   localStorage.removeItem(`quiz_progress_${chapterId}`);
 }
@@ -48,7 +49,7 @@ async function renderSubjects() {
             <div class="spinner-border text-primary" role="status"></div>
             <p class="mt-2 text-muted">Loading Subjects from Cloud...</p>
         </div>`;
-    
+
     await fetchQuizManifest(); // Helper function to get data from Firebase
   }
 
@@ -73,39 +74,59 @@ async function renderSubjects() {
 
   // Sort and render subjects as before
   const sortedSubjectKeys = Object.keys(allQuizData).sort((a, b) => {
-    return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
+    return a.localeCompare(b, undefined, {
+      numeric: true,
+      sensitivity: "base",
+    });
   });
 
   sortedSubjectKeys.forEach((subjectKey) => {
     const chapters = allQuizData[subjectKey];
     const totalChapters = Object.keys(chapters).length;
     const subjectPrefix = subjectKey.replace(/\s+/g, "_") + "_";
-    
+
     const completedChaptersCount = Object.keys(chapters).filter((chapId) => {
       const fullId = subjectPrefix + chapId;
       return userHistory && userHistory.some((h) => h.chapterId === fullId);
     }).length;
 
-    const progressPercent = totalChapters > 0 ? Math.round((completedChaptersCount / totalChapters) * 100) : 0;
+    const progressPercent =
+      totalChapters > 0
+        ? Math.round((completedChaptersCount / totalChapters) * 100)
+        : 0;
     const isCompleted = progressPercent === 100;
 
     const col = document.createElement("div");
     col.className = "col-md-4 col-lg-3 mb-4";
     col.innerHTML = `
-            <div class="card topic-card h-100 ${isCompleted ? "subject-completed" : ""}" style="cursor: pointer;">
+            <div class="card topic-card h-100 ${
+              isCompleted ? "subject-completed" : ""
+            }" style="cursor: pointer;">
                 <div class="card-body text-center p-4 d-flex flex-column">
-                    <div class="display-4 mb-3">${isCompleted ? "🏆" : "📖"}</div>
-                    ${isCompleted ? '<div class="badge bg-success mb-2 animate-fade-in">✨ Completed</div>' : ""}
+                    <div class="display-4 mb-3">${
+                      isCompleted ? "🏆" : "📖"
+                    }</div>
+                    ${
+                      isCompleted
+                        ? '<div class="badge bg-success mb-2 animate-fade-in">✨ Completed</div>'
+                        : ""
+                    }
                     <h5 class="card-title text-primary fw-bold">${subjectKey}</h5>
                     <p class="text-muted small mb-3">${completedChaptersCount} / ${totalChapters} Chapters Done</p>
                     <div class="mt-auto">
                         <div class="progress mb-2" style="height: 25px; background-color: var(--border-color); border-radius: 5px;">
-                            <div class="progress-bar ${isCompleted ? "bg-success" : ""}" 
+                            <div class="progress-bar ${
+                              isCompleted ? "bg-success" : ""
+                            }" 
                                  role="progressbar" 
-                                 style="width: ${progressPercent}%; ${!isCompleted ? "background-color: var(--accent-color);" : ""} border-radius: 5px;">
+                                 style="width: ${progressPercent}%; ${
+      !isCompleted ? "background-color: var(--accent-color);" : ""
+    } border-radius: 5px;">
                             </div>
                         </div>
-                        <small class="fw-bold ${isCompleted ? "text-success" : "text-secondary"}">${progressPercent}% Complete</small>
+                        <small class="fw-bold ${
+                          isCompleted ? "text-success" : "text-secondary"
+                        }">${progressPercent}% Complete</small>
                     </div>
                 </div>
             </div>`;
@@ -123,7 +144,7 @@ async function renderSubjects() {
  */
 function renderChapters(subjectKey) {
   const container = document.getElementById("test-content-container");
-  
+
   // Create the layout for the chapters view
   container.innerHTML = `
         <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="renderSubjects()">← Back to Subjects</button>
@@ -139,7 +160,10 @@ function renderChapters(subjectKey) {
 
   // FIX: Sort the chapter IDs numerically before rendering to ensure Test-1, Test-2 order
   const sortedChapterIds = Object.keys(chapters).sort((a, b) => {
-    return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
+    return a.localeCompare(b, undefined, {
+      numeric: true,
+      sensitivity: "base",
+    });
   });
 
   sortedChapterIds.forEach((chapId) => {
@@ -150,7 +174,8 @@ function renderChapters(subjectKey) {
     const fullChapterId = subjectPrefix + chapId;
 
     // Check if the user has already taken this test
-    const latestResult = userHistory && userHistory.find((h) => h.chapterId === fullChapterId);
+    const latestResult =
+      userHistory && userHistory.find((h) => h.chapterId === fullChapterId);
     const hasTaken = !!latestResult;
 
     const startBtnText = hasTaken ? "↻ Retake Test" : "🚀 Start Test";
@@ -205,14 +230,7 @@ function getCorrectIndex(question) {
   return -1;
 }
 
-async function loadQuiz(
-  subjectKey,
-  chapterId,
-  chapterName,
-  reviewMode = false,
-  pastData = null,
-  source = null
-) {
+async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastData = null, source = null) {
   if (!currentUser || !currentUser.emailVerified) return showHome();
   isPracticeMode = false;
   currentSubject = subjectKey;
@@ -258,6 +276,7 @@ async function loadQuiz(
 
     currentQuestionIndex = 0;
     userAnswers = {};
+    markedForReview = {}; // NEW: Reset for new test
     quizSubmitted = false;
 
     if (!reviewMode) {
@@ -267,12 +286,14 @@ async function loadQuiz(
         const oneDay = 24 * 60 * 60 * 1000;
         if (new Date().getTime() - parsedProgress.timestamp < oneDay) {
           userAnswers = parsedProgress.userAnswers || {};
+          markedForReview = parsedProgress.markedForReview || {}; // NEW: Restore marks
           currentQuestionIndex = parsedProgress.lastQuestionIndex || 0;
           toastr.info("Restored your previous progress.");
         }
       }
     }
 
+    // ... Rest of the function (timer initialization, etc.)
     const timerDisplay = document.getElementById("timer-display");
     if (timerDisplay) {
       timerDisplay.textContent = "";
@@ -380,16 +401,21 @@ function renderLeaderboardHTML(container, data) {
 
   // --- Logic to remove duplicate users and keep the best score ---
   const uniqueUsers = {};
-  data.forEach(entry => {
+  data.forEach((entry) => {
     const email = entry.userEmail || "Guest";
     // If the user isn't in the map yet, or if this current score is higher than their stored best score
-    if (!uniqueUsers[email] || entry.scorePercent > uniqueUsers[email].scorePercent) {
+    if (
+      !uniqueUsers[email] ||
+      entry.scorePercent > uniqueUsers[email].scorePercent
+    ) {
       uniqueUsers[email] = entry;
     }
   });
 
   // Convert the unique user object back into an array and sort by scorePercent descending
-  const filteredSortedData = Object.values(uniqueUsers).sort((a, b) => b.scorePercent - a.scorePercent);
+  const filteredSortedData = Object.values(uniqueUsers).sort(
+    (a, b) => b.scorePercent - a.scorePercent
+  );
   // ---------------------------------------------------------------
 
   let rows = "";
@@ -451,11 +477,11 @@ function renderLeaderboardHTML(container, data) {
 async function renderReviewMode(resultData) {
   // Pre-fetch stats to ensure they are available for community comparison
   currentReviewStats = await getGlobalStats(currentChapterId);
-  
+
   let correct = 0;
   let incorrect = 0;
   let unattempted = 0;
-  
+
   // NEW: UPSC specific trackers
   let sillyMistakes = 0;
   let hardSuccess = 0;
@@ -463,10 +489,10 @@ async function renderReviewMode(resultData) {
   currentQuizData.forEach((q, i) => {
     const uAns = userAnswers[i];
     const correctIndex = getCorrectIndex(q);
-    
+
     // Community accuracy calculation for Silly Mistake vs Hard Success flagging
-    const commCorrect = (currentReviewStats?.correctCounts?.[i] || 0);
-    const commTotal = (currentReviewStats?.totalAttempts || 1);
+    const commCorrect = currentReviewStats?.correctCounts?.[i] || 0;
+    const commTotal = currentReviewStats?.totalAttempts || 1;
     const commAccuracy = (commCorrect / commTotal) * 100;
 
     if (!uAns) {
@@ -481,12 +507,16 @@ async function renderReviewMode(resultData) {
   });
 
   const totalQuestions = currentQuizData.length;
-  const score = resultData ? resultData.score : (correct * 2 - incorrect * 0.66).toFixed(2);
+  const score = resultData
+    ? resultData.score
+    : (correct * 2 - incorrect * 0.66).toFixed(2);
   const totalMarks = totalQuestions * 2;
-  
+
   // Advanced Stats Calculation
   const marksLost = (incorrect * 0.66).toFixed(2);
-  const accuracyRate = ((correct / (correct + incorrect)) * 100 || 0).toFixed(1);
+  const accuracyRate = ((correct / (correct + incorrect)) * 100 || 0).toFixed(
+    1
+  );
 
   const content = document.getElementById("quiz-content");
 
@@ -543,8 +573,16 @@ async function renderReviewMode(resultData) {
                         <div class="alert alert-info border-0 shadow-sm h-100">
                             <h6 class="fw-bold"><i class="fas fa-lightbulb me-2"></i>Strategy Insight</h6>
                             <p class="small mb-0">
-                                ${accuracyRate < 70 ? "Your accuracy is below threshold. Focus on elimination techniques." : "Good precision. You are making calculated attempts."}
-                                ${sillyMistakes > 2 ? `You missed <strong>${sillyMistakes} basic questions</strong> that 65% of students got right. Tighten your fundamentals.` : "You handled the 'easy' questions with professional precision."}
+                                ${
+                                  accuracyRate < 70
+                                    ? "Your accuracy is below threshold. Focus on elimination techniques."
+                                    : "Good precision. You are making calculated attempts."
+                                }
+                                ${
+                                  sillyMistakes > 2
+                                    ? `You missed <strong>${sillyMistakes} basic questions</strong> that 65% of students got right. Tighten your fundamentals.`
+                                    : "You handled the 'easy' questions with professional precision."
+                                }
                             </p>
                         </div>
                     </div>
@@ -593,7 +631,10 @@ async function renderReviewMode(resultData) {
 
   const myScore = resultData ? resultData.scorePercent : 0;
   const betterThan = stats.allScores.filter((s) => s < myScore).length;
-  const percentile = stats.totalAttempts > 0 ? ((betterThan / stats.totalAttempts) * 100).toFixed(0) : 0;
+  const percentile =
+    stats.totalAttempts > 0
+      ? ((betterThan / stats.totalAttempts) * 100).toFixed(0)
+      : 0;
 
   container.innerHTML = `
         <div class="col-md-4 mb-3 mb-md-0 text-center">
@@ -626,8 +667,16 @@ async function renderReviewMode(resultData) {
             myScore.toFixed(1),
             stats.highest.toFixed(1),
           ],
-          backgroundColor: ["rgba(108, 117, 125, 0.5)", "rgba(59, 130, 246, 0.8)", "rgba(245, 158, 11, 0.8)"],
-          borderColor: ["rgba(108, 117, 125, 1)", "rgba(30, 58, 138, 1)", "rgba(245, 158, 11, 1)"],
+          backgroundColor: [
+            "rgba(108, 117, 125, 0.5)",
+            "rgba(59, 130, 246, 0.8)",
+            "rgba(245, 158, 11, 0.8)",
+          ],
+          borderColor: [
+            "rgba(108, 117, 125, 1)",
+            "rgba(30, 58, 138, 1)",
+            "rgba(245, 158, 11, 1)",
+          ],
           borderWidth: 1,
           borderRadius: 5,
         },
@@ -639,7 +688,12 @@ async function renderReviewMode(resultData) {
       maintainAspectRatio: false,
       plugins: { legend: { display: false } },
       scales: {
-        x: { beginAtZero: true, max: 100, grid: { display: false }, ticks: { color: textColor } },
+        x: {
+          beginAtZero: true,
+          max: 100,
+          grid: { display: false },
+          ticks: { color: textColor },
+        },
         y: { grid: { display: false }, ticks: { color: textColor } },
       },
     },
@@ -688,11 +742,19 @@ function renderReviewQuestions(filterType) {
     let statsHtml = "";
     if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
       const total = currentReviewStats.totalAttempts;
-      const correctCount = (currentReviewStats.correctCounts && currentReviewStats.correctCounts[index]) || 0;
-      const attemptedCount = (currentReviewStats.attemptedCounts && currentReviewStats.attemptedCounts[index]) || 0;
+      const correctCount =
+        (currentReviewStats.correctCounts &&
+          currentReviewStats.correctCounts[index]) ||
+        0;
+      const attemptedCount =
+        (currentReviewStats.attemptedCounts &&
+          currentReviewStats.attemptedCounts[index]) ||
+        0;
 
       const pCorrect = Math.round((correctCount / total) * 100);
-      const pIncorrect = Math.round(((attemptedCount - correctCount) / total) * 100);
+      const pIncorrect = Math.round(
+        ((attemptedCount - correctCount) / total) * 100
+      );
       const pUnattempted = 100 - pCorrect - pIncorrect;
 
       const textColorClass = pCorrect >= 50 ? "text-success" : "text-danger";
@@ -722,10 +784,12 @@ function renderReviewQuestions(filterType) {
       let icon = "";
 
       if (optIdx === correctIndex) {
-        optionClass = "option p-3 mb-2 border rounded bg-success-subtle border-success fw-bold text-success";
+        optionClass =
+          "option p-3 mb-2 border rounded bg-success-subtle border-success fw-bold text-success";
         icon = "✅";
       } else if (uAns && uAns.answer === optIdx && status === "incorrect") {
-        optionClass = "option p-3 mb-2 border rounded bg-danger-subtle border-danger text-danger";
+        optionClass =
+          "option p-3 mb-2 border rounded bg-danger-subtle border-danger text-danger";
         icon = "❌";
       }
 
@@ -737,15 +801,21 @@ function renderReviewQuestions(filterType) {
     card.innerHTML = `
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h6 class="text-muted fw-bold m-0">Question ${index + 1}</h6>
+                    <h6 class="text-muted fw-bold m-0">Question ${
+                      index + 1
+                    }</h6>
                     ${badgeHtml}
                 </div>
                 ${statsHtml} 
-                <p class="fs-5 fw-medium mb-3">${question.text ? question.text.replace(/\n/g, "<br>") : ""}</p>
+                <p class="fs-5 fw-medium mb-3">${
+                  question.text ? question.text.replace(/\n/g, "<br>") : ""
+                }</p>
                 <div class="mb-3">${optionsHtml}</div>
                 <div class="explanation mt-3 shadow-sm">
                     <strong>💡 Explanation:</strong>
-                    <div class="mt-1 small">${question.explanation || "No explanation provided."}</div>
+                    <div class="mt-1 small">${
+                      question.explanation || "No explanation provided."
+                    }</div>
                 </div>
             </div>
         `;
@@ -789,7 +859,12 @@ function updateTimerDisplay(element, seconds) {
 
 function renderQuizLayout(title) {
   document.getElementById("quiz-content").innerHTML = `
-        <h4 class="text-center mb-4 fw-bold text-primary">${title}</h4>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="fw-bold text-primary m-0">${title}</h4>
+            <button id="mark-review-btn" class="btn btn-outline-warning btn-sm fw-bold shadow-sm" onclick="toggleMarkForReview()">
+                <i class="bi bi-bookmark-star"></i> Mark for Review
+            </button>
+        </div>
         <div id="question-container"></div>
         <div class="d-flex justify-content-between mt-4">
             <button id="prev-btn" class="btn btn-secondary-custom px-4 ">Previous</button>
@@ -817,6 +892,18 @@ function renderQuestion() {
   container.innerHTML = "";
   const question = currentQuizData[currentQuestionIndex];
   const correctIndex = getCorrectIndex(question);
+
+  // Update Mark/Unmark button state
+  const markBtn = document.getElementById("mark-review-btn");
+  if (markBtn) {
+    if (markedForReview[currentQuestionIndex]) {
+      markBtn.innerHTML = `<i class="bi bi-bookmark-check-fill"></i> Unmark Review`;
+      markBtn.classList.replace("btn-outline-warning", "btn-warning");
+    } else {
+      markBtn.innerHTML = `<i class="bi bi-bookmark-star"></i> Mark for Review`;
+      markBtn.classList.replace("btn-warning", "btn-outline-warning");
+    }
+  }
 
   const div = document.createElement("div");
   div.className = "question";
@@ -855,7 +942,10 @@ function renderQuestion() {
   container.appendChild(div);
   updateButtonStates();
   if (quizSubmitted) showFeedbackText(correctIndex);
-  else document.getElementById("question-feedback").textContent = "";
+  else {
+    const feedback = document.getElementById("question-feedback");
+    if (feedback) feedback.textContent = "";
+  }
 }
 
 function showFeedbackText(correctIndex) {
@@ -916,7 +1006,10 @@ function updateNavHighlights() {
   document.querySelectorAll(".nav-item").forEach((item, i) => {
     item.className = "nav-item shadow-sm";
     if (i === currentQuestionIndex) item.classList.add("active");
+    
     const uAns = userAnswers[i];
+    const isMarked = markedForReview[i]; // NEW
+
     if (quizSubmitted) {
       const correctIndex = getCorrectIndex(currentQuizData[i]);
       if (!uAns) item.classList.add("unattempted");
@@ -924,10 +1017,10 @@ function updateNavHighlights() {
       else item.classList.add("incorrect-nav");
     } else {
       if (uAns) item.classList.add("attempted");
+      if (isMarked) item.classList.add("marked-nav"); // NEW: Apply purple highlight
     }
   });
 }
-
 /* =========================================
    7. SUBMIT & STATISTICS
    ========================================= */
@@ -941,7 +1034,9 @@ function submitAll(forceSubmit = false) {
   clearQuizProgress(currentChapterId);
 
   let score = 0;
-  let correct = 0, incorrect = 0, unattempted = 0;
+  let correct = 0,
+    incorrect = 0,
+    unattempted = 0;
   const totalQ = currentQuizData.length;
 
   currentQuizData.forEach((q, i) => {
@@ -965,7 +1060,8 @@ function submitAll(forceSubmit = false) {
 
   const finalScore = parseFloat(score.toFixed(2));
   const totalMarks = totalQ * 2;
-  const percentage = totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
+  const percentage =
+    totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
 
   const leaderboardEntry = {
     userEmail: currentUser ? currentUser.email : "guest",
@@ -1006,18 +1102,28 @@ function submitAll(forceSubmit = false) {
   reviewBtn.onclick = () => {
     const subjectPrefix = currentSubject.replace(/\s+/g, "_") + "_";
     const originalChapId = currentChapterId.replace(subjectPrefix, "");
-    loadQuiz(currentSubject, originalChapId, encodeURIComponent(currentChapterName), true, resultObject, "chapters");
+    loadQuiz(
+      currentSubject,
+      originalChapId,
+      encodeURIComponent(currentChapterName),
+      true,
+      resultObject,
+      "chapters"
+    );
   };
 
   actionsDiv.appendChild(reviewBtn);
-  if (document.getElementById("final-submit-btn")) document.getElementById("final-submit-btn").style.display = "none";
-  if (document.getElementById("clear-btn")) document.getElementById("clear-btn").disabled = true;
+  if (document.getElementById("final-submit-btn"))
+    document.getElementById("final-submit-btn").style.display = "none";
+  if (document.getElementById("clear-btn"))
+    document.getElementById("clear-btn").disabled = true;
 
   renderQuestion();
   updateNavHighlights();
 
   if (currentUser) {
-    db.collection("results").add({ ...resultObject })
+    db.collection("results")
+      .add({ ...resultObject })
       .then(async () => {
         userHistory.unshift({ ...resultObject, timestamp: new Date() });
         if (userHistory.length > 20) userHistory.pop();
@@ -1034,12 +1140,23 @@ function submitAll(forceSubmit = false) {
             const newScore = parseFloat(percentage);
 
             if (!sfDoc.exists) {
-              const initCorrectCounts = currentQuizData.map((q, i) => (userAnswers[i] && userAnswers[i].answer === getCorrectIndex(q) ? 1 : 0));
-              const initAttemptedCounts = currentQuizData.map((q, i) => (userAnswers[i] ? 1 : 0));
+              const initCorrectCounts = currentQuizData.map((q, i) =>
+                userAnswers[i] && userAnswers[i].answer === getCorrectIndex(q)
+                  ? 1
+                  : 0
+              );
+              const initAttemptedCounts = currentQuizData.map((q, i) =>
+                userAnswers[i] ? 1 : 0
+              );
               transaction.set(statsRef, {
-                totalScore: newScore, totalAttempts: 1, average: newScore, highestScore: newScore,
-                allScores: [newScore], leaderboard: [leaderboardEntry],
-                correctCounts: initCorrectCounts, attemptedCounts: initAttemptedCounts,
+                totalScore: newScore,
+                totalAttempts: 1,
+                average: newScore,
+                highestScore: newScore,
+                allScores: [newScore],
+                leaderboard: [leaderboardEntry],
+                correctCounts: initCorrectCounts,
+                attemptedCounts: initAttemptedCounts,
               });
             } else {
               const data = sfDoc.data();
@@ -1047,23 +1164,31 @@ function submitAll(forceSubmit = false) {
               const newAvg = ((data.totalScore || 0) + newScore) / newAttempts;
               let currentLeaderboard = data.leaderboard || [];
               currentLeaderboard.push(leaderboardEntry);
-              currentLeaderboard.sort((a, b) => b.scorePercent - a.scorePercent);
-              if (currentLeaderboard.length > 10) currentLeaderboard = currentLeaderboard.slice(0, 10);
+              currentLeaderboard.sort(
+                (a, b) => b.scorePercent - a.scorePercent
+              );
+              if (currentLeaderboard.length > 10)
+                currentLeaderboard = currentLeaderboard.slice(0, 10);
 
               let cCounts = data.correctCounts || [];
               let aCounts = data.attemptedCounts || [];
               currentQuizData.forEach((q, i) => {
                 if (userAnswers[i]) {
                   aCounts[i] = (aCounts[i] || 0) + 1;
-                  if (userAnswers[i].answer === getCorrectIndex(q)) cCounts[i] = (cCounts[i] || 0) + 1;
+                  if (userAnswers[i].answer === getCorrectIndex(q))
+                    cCounts[i] = (cCounts[i] || 0) + 1;
                 }
               });
 
               transaction.update(statsRef, {
-                totalScore: (data.totalScore || 0) + newScore, totalAttempts: newAttempts,
-                average: newAvg, highestScore: Math.max(data.highestScore || 0, newScore),
-                allScores: [...(data.allScores || []), newScore], leaderboard: currentLeaderboard,
-                correctCounts: cCounts, attemptedCounts: aCounts,
+                totalScore: (data.totalScore || 0) + newScore,
+                totalAttempts: newAttempts,
+                average: newAvg,
+                highestScore: Math.max(data.highestScore || 0, newScore),
+                allScores: [...(data.allScores || []), newScore],
+                leaderboard: currentLeaderboard,
+                correctCounts: cCounts,
+                attemptedCounts: aCounts,
               });
             }
           });
@@ -1074,11 +1199,37 @@ function submitAll(forceSubmit = false) {
 
         const stats = await getGlobalStats(currentChapterId);
         if (stats) {
-          const betterThan = stats.allScores.filter((s) => s < parseFloat(percentage)).length;
-          const percentile = stats.totalAttempts > 0 ? ((betterThan / stats.totalAttempts) * 100).toFixed(0) : 0;
+          const betterThan = stats.allScores.filter(
+            (s) => s < parseFloat(percentage)
+          ).length;
+          const percentile =
+            stats.totalAttempts > 0
+              ? ((betterThan / stats.totalAttempts) * 100).toFixed(0)
+              : 0;
           if (document.getElementById("stats-loading"))
-            document.getElementById("stats-loading").innerHTML = `🌍 Performance: Top <strong>${100 - percentile}%</strong>. (Avg: ${stats.avg.toFixed(1)}%)`;
+            document.getElementById(
+              "stats-loading"
+            ).innerHTML = `🌍 Performance: Top <strong>${
+              100 - percentile
+            }%</strong>. (Avg: ${stats.avg.toFixed(1)}%)`;
         }
       });
   }
+}
+
+
+function toggleMarkForReview() {
+  if (quizSubmitted) return;
+  
+  if (markedForReview[currentQuestionIndex]) {
+    delete markedForReview[currentQuestionIndex];
+    toastr.info("Removed from Review");
+  } else {
+    markedForReview[currentQuestionIndex] = true;
+    toastr.success("Marked for Review");
+  }
+  
+  renderQuestion(); // Refresh the UI to update button text
+  updateNavHighlights(); // Refresh palette colors
+  saveQuizProgress(); // Save state
 }

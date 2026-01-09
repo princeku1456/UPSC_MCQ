@@ -564,3 +564,33 @@ body {
     opacity: 0;
     visibility: hidden;
 }
+
+/* Question Palette: Marked for Review State (Purple) */
+.nav-item.marked-nav {
+    background-color: #7e22ce !important; /* Vibrant Purple */
+    color: #ffffff !important;
+    border-color: #6b21a8 !important;
+    box-shadow: 0 4px 10px rgba(126, 34, 206, 0.4) !important;
+    position: relative;
+}
+
+/* Star indicator for marked questions */
+.nav-item.marked-nav::after {
+    content: "★";
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    font-size: 10px;
+    color: #fbbf24; /* Gold star for high visibility on purple */
+}
+
+/* Gradient for questions that are both Answered (Blue) and Marked (Purple) */
+.nav-item.attempted.marked-nav {
+    background: linear-gradient(135deg, #3b82f6 50%, #7e22ce 50%) !important;
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .nav-item.marked-nav {
+    background-color: #9333ea !important; /* Lighter Purple for dark mode */
+    border-color: #7e22ce !important;
+}

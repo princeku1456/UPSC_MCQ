@@ -9,6 +9,7 @@ let currentUser = null;
 let currentSubject = "";
 let currentChapterId = "";
 let currentChapterName = "";
+let markedForReview = {};
 let currentQuizData = [];
 let currentQuestionIndex = 0;
 let userAnswers = {};
