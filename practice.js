@@ -233,11 +233,13 @@ function setupPracticeLayout() {
 
   document.getElementById("quiz-nav").innerHTML = `
         <div class="nav-header">Question Palette</div>
+        <div class="timer-container shadow-sm border-info">
+            <span class="timer-label">Session Status</span>
+            <div id="timer-display" class="timer-value" style="font-size: 1.2rem; font-family: inherit;">Practice Mode</div>
+        </div>
         <div id="practice-nav-container" class="nav-grid"></div>
         <button id="practice-submit-btn" class="btn btn-secondary-custom w-100 mt-4 rounded-pill py-2 fw-bold text-white" onclick="submitPractice()">Finish Practice</button>
     `;
-
-  document.getElementById("timer-display").textContent = "Practice Mode";
 }
 
 function renderPracticeQuestion() {
