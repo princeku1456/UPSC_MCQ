@@ -4,16 +4,38 @@ const db = firebase.firestore();
 // REDUCED READS: Memory cache for admin analysis
 const adminAnalysisCache = {};
 
+// Global variable for quiz structure
+let allQuizData = null;
+
+/**
+ * Fetches the quiz manifest from Firestore (matching quiz.js logic)
+ */
+async function fetchQuizManifest() {
+  try {
+    const doc = await db.collection("quiz_metadata").doc("quiz_manifest").get();
+    if (doc.exists) {
+      allQuizData = doc.data();
+      return allQuizData;
+    } else {
+      toastr.error("Quiz manifest not found in Firestore.");
+    }
+  } catch (error) {
+    console.error("Error fetching manifest:", error);
+    toastr.error("Failed to load subject list.");
+  }
+  return null;
+}
+
 /* --- Auth & UI Management --- */
 auth.onAuthStateChanged((user) => {
   if (user) {
     db.collection("admins")
       .doc(user.uid)
       .get()
-      .then((doc) => {
+      .then(async (doc) => { // Added async
         if (doc.exists) {
           showDashboard();
-          loadSubjects();
+          await loadSubjects(); // Call the updated loader
         } else {
           auth.signOut();
           showLogin();
@@ -49,15 +71,34 @@ function logoutAdmin() {
 }
 
 /* --- Data Selection --- */
-function loadSubjects() {
+async function loadSubjects() {
   const subSelect = document.getElementById("subject-select");
+  subSelect.innerHTML = '<option value="">Loading Subjects...</option>';
+
+  // Fetch manifest if not already loaded
+  if (!allQuizData) {
+    await fetchQuizManifest();
+  }
+
+  if (!allQuizData) {
+    subSelect.innerHTML = '<option value="">Error loading data</option>';
+    return;
+  }
+
   subSelect.innerHTML = '<option value="">-- Choose Subject --</option>';
-  Object.keys(allQuizData).forEach((sub) => {
+  
+  // Sort subjects alphabetically/numerically to match the user portal
+  const sortedSubjects = Object.keys(allQuizData).sort((a, b) => 
+    a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
+  );
+
+  sortedSubjects.forEach((sub) => {
     const opt = document.createElement("option");
     opt.value = sub;
     opt.textContent = sub;
     subSelect.appendChild(opt);
   });
+  
   subSelect.addEventListener("change", loadChapters);
 }
 
@@ -65,12 +106,20 @@ function loadChapters() {
   const sub = document.getElementById("subject-select").value;
   const chapSelect = document.getElementById("chapter-select");
   chapSelect.innerHTML = '<option value="">-- Choose Test --</option>';
-  if (!sub) {
+  
+  if (!sub || !allQuizData[sub]) {
     chapSelect.disabled = true;
     return;
   }
-  Object.keys(allQuizData[sub]).forEach((chapId) => {
+
+  // Sort chapters numerically (e.g., Test-1, Test-2)
+  const sortedChapters = Object.keys(allQuizData[sub]).sort((a, b) => 
+    a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
+  );
+
+  sortedChapters.forEach((chapId) => {
     const opt = document.createElement("option");
+    // ID generation logic matching quiz.js
     opt.value = sub.replace(/\s+/g, "_") + "_" + chapId;
     opt.textContent = chapId;
     chapSelect.appendChild(opt);
