@@ -832,7 +832,7 @@ function renderReviewQuestions(filterType) {
    ========================================= */
 
 function startTimer(numQuestions) {
-  let timeLeft = Math.floor(numQuestions * 1.8 * 60);
+  let timeLeft = Math.floor(numQuestions * 1.2 * 60);
   const display = document.getElementById("timer-display");
   updateTimerDisplay(display, timeLeft);
 
@@ -852,9 +852,14 @@ function updateTimerDisplay(element, seconds) {
   if (!element) return;
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
-  element.textContent = `⏱ ${m}:${s < 10 ? "0" : ""}${s}`;
-  if (seconds < 60) element.classList.add("text-danger");
-  else element.classList.remove("text-danger");
+  element.textContent = `${m}:${s < 10 ? "0" : ""}${s}`;
+  
+  // Add pulsing effect if less than 1 minute remaining
+  if (seconds < 60) {
+    element.classList.add("low-time");
+  } else {
+    element.classList.remove("low-time");
+  }
 }
 
 function renderQuizLayout(title) {
@@ -877,6 +882,10 @@ function renderQuizLayout(title) {
 
   document.getElementById("quiz-nav").innerHTML = `
         <div class="nav-header">Question Palette</div>
+        <div class="timer-container shadow-sm">
+            <span class="timer-label">Time Remaining</span>
+            <div id="timer-display" class="timer-value">00:00</div>
+        </div>
         <div id="nav-container" class="nav-grid"></div>
         <button id="final-submit-btn" class="btn btn-success w-100 mt-4 rounded-pill py-2 fw-bold">Submit Test</button>
     `;

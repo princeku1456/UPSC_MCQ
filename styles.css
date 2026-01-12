@@ -594,3 +594,53 @@ body {
     background-color: #9333ea !important; /* Lighter Purple for dark mode */
     border-color: #7e22ce !important;
 }
+
+/* ============================
+   MODERN GLASS TIMER DESIGN
+   ============================ */
+.timer-container {
+    background: linear-gradient(135deg, var(--bg-card) 0%, var(--option-hover) 100%);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 25px 15px;
+    text-align: center;
+    margin-bottom: 25px;
+    box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.timer-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: var(--primary-color);
+    background: var(--bg-body);
+    padding: 4px 12px;
+    border-radius: 50px;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+}
+
+.timer-value {
+    font-family: 'Poppins', sans-serif; /* Cleaner font for this look */
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 2px 2px 0px var(--border-color);
+}
+
+.timer-value.low-time {
+    color: #ef4444 !important;
+    text-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+    animation: timer-pulse-soft 1s infinite;
+}
+
+@keyframes timer-pulse-soft {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.02); opacity: 0.8; }
+}
