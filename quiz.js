@@ -848,7 +848,7 @@ function updateTimerDisplay(element, seconds) {
   element.textContent = `${m}:${s < 10 ? "0" : ""}${s}`;
   
   // Add pulsing effect if less than 1 minute remaining
-  if (seconds < 60) {
+  if (seconds < 180) {
     element.classList.add("low-time");
   } else {
     element.classList.remove("low-time");
