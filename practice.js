@@ -24,6 +24,48 @@ async function fetchPracticeManifest() {
     console.error("Error fetching practice manifest:", error);
   }
 }
+
+
+/**
+ * Starts the timer for Practice Mode
+ */
+function startPracticeTimer(limit) {
+  if (quizTimerInterval) clearInterval(quizTimerInterval);
+
+  let timeLeft = Math.floor(limit * 1.2 * 60); // 1.2 minutes per question (matching quiz logic)
+  const display = document.getElementById("timer-display");
+  
+  updatePracticeTimerDisplay(display, timeLeft);
+
+  quizTimerInterval = setInterval(() => {
+    timeLeft--;
+    updatePracticeTimerDisplay(display, timeLeft);
+
+    if (timeLeft <= 0) {
+      clearInterval(quizTimerInterval);
+      toastr.warning("Time's up! Finishing practice session...");
+      submitPractice(true); // Force submit when time runs out
+    }
+  }, 1000);
+}
+
+/**
+ * Updates the timer UI
+ */
+function updatePracticeTimerDisplay(element, seconds) {
+  if (!element) return;
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  element.textContent = `${m}:${s < 10 ? "0" : ""}${s}`;
+
+  // Add red pulsing effect when time is low
+  if (seconds < 180) {
+    element.classList.add("low-time");
+  } else {
+    element.classList.remove("low-time");
+  }
+}
+
 /**
  * Entry point from Dashboard - Renders the Dropdown Selection UI
  */
@@ -204,6 +246,7 @@ async function loadPracticeQuiz(subject, chapter, limit) {
     setupPracticeLayout();
     renderPracticeQuestion();
     renderPracticeNav();
+    startPracticeTimer(limit);
   } catch (error) {
     console.error("Fetch Error:", error);
     toastr.error("Failed to load questions.");
@@ -230,8 +273,8 @@ function setupPracticeLayout() {
   document.getElementById("quiz-nav").innerHTML = `
         <div class="nav-header">Question Palette</div>
         <div class="timer-container shadow-sm border-info">
-            <span class="timer-label">Session Status</span>
-            <div id="timer-display" class="timer-value" style="font-size: 1.2rem; font-family: inherit;">Practice Mode</div>
+            <span class="timer-label">Time Remaining</span>
+            <div id="timer-display" class="timer-value">00:00</div>
         </div>
         <div id="practice-nav-container" class="nav-grid"></div>
         <button id="practice-submit-btn" class="btn btn-secondary-custom w-100 mt-4 rounded-pill py-2 fw-bold text-white" onclick="submitPractice()">Finish Practice</button>
@@ -365,8 +408,11 @@ function renderPracticeNav() {
   updatePracticeNavHighlights();
 }
 
-function submitPractice() {
-  if (!confirm("Finish this practice session?")) return;
+function submitPractice(forceSubmit = false) {
+  if (!forceSubmit && !confirm("Finish this practice session?")) return;
+  
+  // Clear the timer interval immediately on submission
+  if (quizTimerInterval) clearInterval(quizTimerInterval);
   practiceSubmitted = true;
 
   let score = 0;
