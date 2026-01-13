@@ -230,6 +230,9 @@ function getCorrectIndex(question) {
   return -1;
 }
 
+/* =========================================
+   QUIZ CORE (Updated loadQuiz)
+   ========================================= */
 async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastData = null, source = null) {
   if (!currentUser || !currentUser.emailVerified) return showHome();
   isPracticeMode = false;
@@ -244,7 +247,6 @@ async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, 
   document.getElementById("quiz-section").style.display = "block";
 
   const quizContent = document.getElementById("quiz-content");
-
   quizContent.innerHTML = `
         <div class="text-center py-5">
             <div class="spinner-border text-primary" role="status"></div>
@@ -252,31 +254,24 @@ async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, 
         </div>`;
 
   try {
-    const cacheKey = "quiz_cache_" + currentChapterId;
-
+    // Check session memory cache first
     if (quizDataCache[currentChapterId]) {
       currentQuizData = quizDataCache[currentChapterId];
     } else {
-      const localCached = localStorage.getItem(cacheKey);
-      if (localCached) {
-        currentQuizData = JSON.parse(localCached);
-        quizDataCache[currentChapterId] = currentQuizData;
-      } else {
-        const doc = await db.collection("quizzes").doc(currentChapterId).get();
-        if (!doc.exists) {
-          toastr.error("Quiz questions not found in database!");
-          showDashboard();
-          return;
-        }
-        currentQuizData = doc.data().questions;
-        quizDataCache[currentChapterId] = currentQuizData;
-        localStorage.setItem(cacheKey, JSON.stringify(currentQuizData));
+      // Fetch directly from Firestore (auto-uses IndexedDB cache)
+      const doc = await db.collection("quizzes").doc(currentChapterId).get();
+      if (!doc.exists) {
+        toastr.error("Quiz questions not found in database!");
+        showDashboard();
+        return;
       }
+      currentQuizData = doc.data().questions;
+      quizDataCache[currentChapterId] = currentQuizData;
     }
 
     currentQuestionIndex = 0;
     userAnswers = {};
-    markedForReview = {}; // NEW: Reset for new test
+    markedForReview = {}; 
     quizSubmitted = false;
 
     if (!reviewMode) {
@@ -286,14 +281,14 @@ async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, 
         const oneDay = 24 * 60 * 60 * 1000;
         if (new Date().getTime() - parsedProgress.timestamp < oneDay) {
           userAnswers = parsedProgress.userAnswers || {};
-          markedForReview = parsedProgress.markedForReview || {}; // NEW: Restore marks
+          markedForReview = parsedProgress.markedForReview || {};
           currentQuestionIndex = parsedProgress.lastQuestionIndex || 0;
           toastr.info("Restored your previous progress.");
         }
       }
     }
 
-    // ... Rest of the function (timer initialization, etc.)
+    // Timer and UI initialization
     const timerDisplay = document.getElementById("timer-display");
     if (timerDisplay) {
       timerDisplay.textContent = "";
@@ -307,7 +302,6 @@ async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, 
     }
 
     const quizNav = document.getElementById("quiz-nav");
-
     if (isReviewMode) {
       quizContent.parentElement.className = "col-12";
       quizNav.parentElement.style.display = "none";
@@ -315,7 +309,6 @@ async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, 
     } else {
       quizContent.parentElement.className = "col-lg-8 mb-4";
       quizNav.parentElement.style.display = "block";
-
       renderQuizLayout(currentChapterName);
       renderQuestion();
       renderNav();
