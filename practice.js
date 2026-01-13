@@ -152,12 +152,15 @@ function handleGeneratePractice() {
 /**
  * Fetches questions from Firebase and randomizes selection
  */
+/* =========================================
+   PRACTICE MODE LOGIC (Updated loadPracticeQuiz)
+   ========================================= */
 async function loadPracticeQuiz(subject, chapter, limit) {
   practiceSubject = subject;
   practiceChapter = chapter === "all" ? "All Topics" : chapter;
   practiceQuestionLimit = limit;
   practiceSubmitted = false;
-  practiceMarkedForReview = {}; // NEW: Reset marks for new session
+  practiceMarkedForReview = {}; 
 
   hideAllSections();
   document.getElementById("quiz-section").style.display = "block";
@@ -174,24 +177,17 @@ async function loadPracticeQuiz(subject, chapter, limit) {
 
     for (const chapId of chapterIds) {
       const docId = subject.replace(/\s+/g, "_") + "_" + chapId;
-      const cacheKey = `practice_cache_${docId}`;
 
+      // Check session memory cache
       if (practiceDataCache[docId]) {
         allQuestions = allQuestions.concat(practiceDataCache[docId]);
       } else {
-        const localCached = localStorage.getItem(cacheKey);
-        if (localCached) {
-          const parsed = JSON.parse(localCached);
-          practiceDataCache[docId] = parsed;
-          allQuestions = allQuestions.concat(parsed);
-        } else {
-          const doc = await db.collection("practice_mcqs").doc(docId).get();
-          if (doc.exists) {
-            const data = doc.data().questions || [];
-            practiceDataCache[docId] = data;
-            localStorage.setItem(cacheKey, JSON.stringify(data));
-            allQuestions = allQuestions.concat(data);
-          }
+        // Fetch from Firestore (auto-uses IndexedDB cache)
+        const doc = await db.collection("practice_mcqs").doc(docId).get();
+        if (doc.exists) {
+          const data = doc.data().questions || [];
+          practiceDataCache[docId] = data;
+          allQuestions = allQuestions.concat(data);
         }
       }
     }

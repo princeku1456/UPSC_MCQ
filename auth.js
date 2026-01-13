@@ -36,6 +36,9 @@ let currentReviewStats = null;
 /**
  * Checks if it's a new day and fetches all questions if necessary.
  */
+/* =========================================
+   MORNING SYNC LOGIC (Updated)
+   ========================================= */
 async function performMorningSync() {
   const today = new Date().toDateString();
   const lastSync = localStorage.getItem("last_morning_sync");
@@ -43,52 +46,17 @@ async function performMorningSync() {
   // Only run if we haven't synced today
   if (lastSync === today) return;
 
-  console.log("🌞 Good morning! Performing daily question refresh...");
+  console.log("🌞 Good morning! Refreshing manifests...");
 
   try {
-    // 1. Refresh Manifests first to get current subject/chapter lists
+    // Refresh Manifests only to get current subject/chapter lists
+    // Firestore's internal persistence handles question caching automatically
     await fetchQuizManifest();
     await fetchPracticeManifest();
 
-    // 2. Fetch and Cache All Quiz Questions
-    if (window.allQuizData) {
-      for (const subject in window.allQuizData) {
-        const chapters = window.allQuizData[subject];
-        for (const chapId in chapters) {
-          const fullId = subject.replace(/\s+/g, "_") + "_" + chapId;
-          const doc = await db.collection("quizzes").doc(fullId).get();
-          if (doc.exists) {
-            localStorage.setItem(
-              "quiz_cache_" + fullId,
-              JSON.stringify(doc.data().questions)
-            );
-          }
-        }
-      }
-    }
-
-    // 3. Fetch and Cache All Practice Questions
-    if (window.allPracticeData) {
-      for (const subject in window.allPracticeData) {
-        const chapters = window.allPracticeData[subject];
-        for (const chapId in chapters) {
-          const fullId = subject.replace(/\s+/g, "_") + "_" + chapId;
-          const doc = await db.collection("practice_mcqs").doc(fullId).get();
-          if (doc.exists) {
-            // Save to the key format expected by practice.js
-            localStorage.setItem(
-              "practice_cache_" + fullId,
-              JSON.stringify(doc.data().questions)
-            );
-          }
-        }
-      }
-    }
-
-    // Update sync date and notify user
+    // Update sync date
     localStorage.setItem("last_morning_sync", today);
-    toastr.success("Daily sync complete! All questions are now up to date.");
-    console.log("✅ Daily sync successful.");
+    console.log("✅ Daily manifest sync successful.");
   } catch (error) {
     console.error("Morning sync failed:", error);
   }
