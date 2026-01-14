@@ -664,3 +664,41 @@ body {
     0%, 100% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.02); opacity: 0.8; }
 }
+
+.progress-bar {
+    transition: width 0.6s ease;
+    overflow: visible; /* Ensures text is seen */
+    white-space: nowrap;
+}
+
+/* Ensure white text for darker bars */
+.bg-success, .bg-danger {
+    color: #ffffff !important;
+}
+
+[data-theme="dark"] .progress {
+    background-color: var(--border-color); /* Better contrast in dark mode */
+}
+
+/* Custom Community Stats Palette */
+/* High-Contrast Community Stats Palette */
+.stats-bar-correct {
+    background-color: #16a34a !important; /* Vibrant Green */
+    color: #ffffff !important;
+}
+
+.stats-bar-incorrect {
+    background-color: #dc2626 !important; /* Vibrant Red */
+    color: #ffffff !important;
+}
+
+.stats-bar-left {
+    background-color: #facc15 !important; /* Vibrant Yellow */
+    color: #000000 !important; /* Dark text for better contrast on yellow */
+}
+
+.progress-bar-text {
+    font-weight: 700;
+    font-size: 0.85rem;
+    white-space: nowrap;
+}
