@@ -746,44 +746,45 @@ function renderReviewQuestions(filterType) {
       borderClass = "border-secondary";
     }
 
-    let statsHtml = "";
-    if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
-      const total = currentReviewStats.totalAttempts;
-      const correctCount =
-        (currentReviewStats.correctCounts &&
-          currentReviewStats.correctCounts[index]) ||
-        0;
-      const attemptedCount =
-        (currentReviewStats.attemptedCounts &&
-          currentReviewStats.attemptedCounts[index]) ||
-        0;
+    // Inside renderReviewQuestions loop...
+// Inside renderReviewQuestions function in quiz.js
+let statsHtml = "";
+if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
+    const total = currentReviewStats.totalAttempts;
+    const correctCount = (currentReviewStats.correctCounts && currentReviewStats.correctCounts[index]) || 0;
+    const attemptedCount = (currentReviewStats.attemptedCounts && currentReviewStats.attemptedCounts[index]) || 0;
 
-      const pCorrect = Math.round((correctCount / total) * 100);
-      const pIncorrect = Math.round(
-        ((attemptedCount - correctCount) / total) * 100
-      );
-      const pUnattempted = 100 - pCorrect - pIncorrect;
+    const pCorrect = Math.round((correctCount / total) * 100);
+    const pIncorrect = Math.round(((attemptedCount - correctCount) / total) * 100);
+    const pUnattempted = 100 - pCorrect - pIncorrect;
 
-      const textColorClass = pCorrect >= 50 ? "text-success" : "text-danger";
-
-      statsHtml = `
-                <div class="mt-2 mb-4 p-3 bg-light bg-opacity-75 rounded-3 border">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <span class="small fw-bold text-uppercase text-secondary" style="letter-spacing: 0.5px;">👥 Community Stats</span>
-                        <span class="fw-bold ${textColorClass}">${pCorrect}% Correct</span>
-                    </div>
-                    <div class="progress shadow-sm" style="height: 40px;">
-                        <div class="progress-bar bg-success border" role="progressbar" style="width: ${pCorrect}%" title="${pCorrect}% Answered Correctly"></div>
-                        <div class="progress-bar bg-danger bg-opacity-75 border" role="progressbar" style="width: ${pIncorrect}%" title="${pIncorrect}% Answered Incorrectly"></div>
-                        <div class="progress-bar bg-secondary bg-opacity-25 border" role="progressbar" style="width: ${pUnattempted}%" title="${pUnattempted}% Skipped"></div>
-                    </div>
-                    <div class="d-flex justify-content-between mt-2 text-muted" style="font-size: 0.75rem;">
-                        <span>${correctCount} students got this right</span>
-                        <span>Based on ${total} attempts</span>
-                    </div>
+    statsHtml = `
+        <div class="mt-2 mb-4 p-3 bg-light bg-opacity-75 rounded-3 border">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <span class="small fw-bold text-uppercase text-secondary" style="letter-spacing: 0.5px;">👥 Community Stats</span>
+                <span class="fw-bold" style="color: #4338ca;">${pCorrect}% Correct</span>
+            </div>
+            <div class="progress shadow-sm" style="height: 30px; background-color: #e2e8f0; border-radius: 8px; overflow: hidden;">
+                <div class="progress-bar stats-bar-correct d-flex align-items-center justify-content-center" 
+                     role="progressbar" style="width: ${pCorrect}%">
+                     <span class="progress-bar-text">${pCorrect > 12 ? pCorrect + '%' : ''}</span>
                 </div>
-            `;
-    }
+                <div class="progress-bar stats-bar-incorrect d-flex align-items-center justify-content-center" 
+                     role="progressbar" style="width: ${pIncorrect}%">
+                     <span class="progress-bar-text">${pIncorrect > 12 ? pIncorrect + '%' : ''}</span>
+                </div>
+                <div class="progress-bar stats-bar-left d-flex align-items-center justify-content-center" 
+                     role="progressbar" style="width: ${pUnattempted}%">
+                     <span class="progress-bar-text">${pUnattempted > 12 ? pUnattempted + '%' : ''}</span>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mt-2 text-muted" style="font-size: 0.7rem;">
+                <span>${correctCount} students correct</span>
+                <span>${total} total attempts</span>
+            </div>
+        </div>
+    `;
+}
 
     let optionsHtml = "";
     question.options.forEach((opt, optIdx) => {
