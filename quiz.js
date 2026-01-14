@@ -661,6 +661,8 @@ async function renderReviewMode(resultData) {
   renderComparisonChart(stats, myScore);
 }
 
+
+
 function filterReview(filterType, btnElement) {
   const buttons = document.querySelectorAll(".btn-group .btn");
   buttons.forEach((btn) => btn.classList.remove("active"));
