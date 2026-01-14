@@ -29,9 +29,7 @@ function saveQuizProgress() {
   localStorage.setItem(`quiz_progress_${currentChapterId}`, JSON.stringify(progressData));
 }
 
-function clearQuizProgress(chapterId) {
-  localStorage.removeItem(`quiz_progress_${chapterId}`);
-}
+
 // --------------------------------------
 
 /**
@@ -472,28 +470,23 @@ function renderLeaderboardHTML(container, data) {
 /**
  * UPDATED: Advanced UPSC Performance Review
  */
-/**
- * UPDATED: Advanced UPSC Performance Review
- * Analyzes results to identify "Hard Successes" and "Silly Mistakes" (Concept Gaps).
- */
 async function renderReviewMode(resultData) {
-  // Pre-fetch global stats to ensure community accuracy data is available
+  // Pre-fetch stats to ensure they are available for community comparison
   currentReviewStats = await getGlobalStats(currentChapterId);
 
   let correct = 0;
   let incorrect = 0;
   let unattempted = 0;
 
-  // UPSC specific trackers
+  // NEW: UPSC specific trackers
   let sillyMistakes = 0;
-  let missedEasyQNumbers = []; // Tracks specific question numbers for Concept Gaps
   let hardSuccess = 0;
-
+  let missedEasyQNumbers = []; 
   currentQuizData.forEach((q, i) => {
     const uAns = userAnswers[i];
     const correctIndex = getCorrectIndex(q);
 
-    // Community accuracy calculation for flagging mistakes
+    // Community accuracy calculation for Silly Mistake vs Hard Success flagging
     const commCorrect = currentReviewStats?.correctCounts?.[i] || 0;
     const commTotal = currentReviewStats?.totalAttempts || 1;
     const commAccuracy = (commCorrect / commTotal) * 100;
@@ -521,7 +514,9 @@ async function renderReviewMode(resultData) {
 
   // Advanced Stats Calculation
   const marksLost = (incorrect * 0.66).toFixed(2);
-  const accuracyRate = ((correct / (correct + incorrect)) * 100 || 0).toFixed(1);
+  const accuracyRate = ((correct / (correct + incorrect)) * 100 || 0).toFixed(
+    1
+  );
 
   const content = document.getElementById("quiz-content");
 
@@ -545,24 +540,24 @@ async function renderReviewMode(resultData) {
                 
                 <div class="row g-3 text-center mb-4">
                     <div class="col-6 col-md-3">
-                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary h-100">
+                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary">
                             <h6 class="text-uppercase text-muted small fw-bold mb-1">Accuracy</h6>
                             <h3 class="fw-bold text-dark m-0">${accuracyRate}%</h3>
                             <small class="text-muted">on attempted</small>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger h-100">
+                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger">
                             <h6 class="text-uppercase text-muted small fw-bold mb-1">Negative Loss</h6>
                             <h3 class="fw-bold text-danger m-0">-${marksLost}</h3>
                             <small class="text-muted">marks lost</small>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning h-100">
+                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning">
                             <h6 class="text-uppercase text-muted small fw-bold mb-1">Concept Gaps</h6>
                             <h3 class="fw-bold text-warning m-0">${sillyMistakes}</h3>
-                            <small class="text-muted d-block">
+                             <small class="text-muted d-block">
                                 ${missedEasyQNumbers.length > 0 
                                     ? `Easy Qs Missed -- <span class="text-danger fw-bold">"${missedEasyQNumbers.join(", ")}"</span>` 
                                     : 'No Easy Qs Missed'}
@@ -570,7 +565,7 @@ async function renderReviewMode(resultData) {
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <div class="p-3 bg-primary text-white rounded shadow-sm h-100">
+                        <div class="p-3 bg-primary text-white rounded shadow-sm">
                             <h6 class="text-white-50 text-uppercase small fw-bold mb-1">Final Score</h6>
                             <h3 class="fw-bold m-0">${score} <span class="fs-6 text-white-50">/ ${totalMarks}</span></h3>
                         </div>
@@ -658,10 +653,56 @@ async function renderReviewMode(resultData) {
         </div>
     `;
 
-  renderComparisonChart(stats, myScore);
+  const ctx = document.getElementById("comparisonChart");
+  if (comparisonChartInstance) comparisonChartInstance.destroy();
+
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  const textColor = isDark ? "#e5e7eb" : "#666";
+
+  comparisonChartInstance = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["Global Avg", "Your Score", "Topper"],
+      datasets: [
+        {
+          label: "Score (%)",
+          data: [
+            stats.avg.toFixed(1),
+            myScore.toFixed(1),
+            stats.highest.toFixed(1),
+          ],
+          backgroundColor: [
+            "rgba(108, 117, 125, 0.5)",
+            "rgba(59, 130, 246, 0.8)",
+            "rgba(245, 158, 11, 0.8)",
+          ],
+          borderColor: [
+            "rgba(108, 117, 125, 1)",
+            "rgba(30, 58, 138, 1)",
+            "rgba(245, 158, 11, 1)",
+          ],
+          borderWidth: 1,
+          borderRadius: 5,
+        },
+      ],
+    },
+    options: {
+      indexAxis: "y",
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: {
+          beginAtZero: true,
+          max: 100,
+          grid: { display: false },
+          ticks: { color: textColor },
+        },
+        y: { grid: { display: false }, ticks: { color: textColor } },
+      },
+    },
+  });
 }
-
-
 
 function filterReview(filterType, btnElement) {
   const buttons = document.querySelectorAll(".btn-group .btn");
