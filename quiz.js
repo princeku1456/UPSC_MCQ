@@ -916,7 +916,7 @@ function renderQuizLayout(title) {
   document.getElementById("quiz-content").innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h4 class="fw-bold text-primary m-0">${title}</h4>
-            <button id="mark-review-btn" class="btn btn-outline-warning btn-sm fw-bold shadow-sm" onclick="toggleMarkForReview()">
+            <button id="mark-review-btn" class="btn btn-primary-custom btn-sm fw-bold shadow-sm" onclick="toggleMarkForReview()">
                 <i class="bi bi-bookmark-star"></i> Mark for Review
             </button>
         </div>
@@ -944,7 +944,7 @@ function renderQuizLayout(title) {
         </button>
     </div>
     <div id="nav-container" class="nav-grid"></div>
-    <button id="final-submit-btn" class="btn btn-success w-100 mt-4 rounded-pill py-2 fw-bold">Submit Test</button>
+    <button id="final-submit-btn" class="btn btn-success-custom w-100 mt-4 py-2 fw-bold">Submit Test</button>
 `;
 
   document.getElementById("prev-btn").addEventListener("click", () => navigateQuestions(-1));
@@ -964,10 +964,10 @@ function renderQuestion() {
   if (markBtn) {
     if (markedForReview[currentQuestionIndex]) {
       markBtn.innerHTML = `<i class="bi bi-bookmark-check-fill"></i> Unmark Review`;
-      markBtn.classList.replace("btn-outline-warning", "btn-warning");
+      markBtn.classList.replace("btn-secondary-custom", "btn-primary-custom");
     } else {
       markBtn.innerHTML = `<i class="bi bi-bookmark-star"></i> Mark for Review`;
-      markBtn.classList.replace("btn-warning", "btn-outline-warning");
+      markBtn.classList.replace("btn-primary-custom", "btn-secondary-custom");
     }
   }
 
