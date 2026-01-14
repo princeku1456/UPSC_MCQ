@@ -14,17 +14,21 @@ async function fetchQuizManifest() {
     console.error("Error fetching quiz manifest:", error);
   }
 }
-// --- HELPER FUNCTIONS FOR AUTO-SAVE ---
+/**
+ * Saves current quiz state, now including the timer
+ */
 function saveQuizProgress() {
   if (!currentChapterId || quizSubmitted || isReviewMode) return;
   const progressData = {
     userAnswers: userAnswers,
-    markedForReview: markedForReview, // NEW: Persist marks
+    markedForReview: markedForReview,
     lastQuestionIndex: currentQuestionIndex,
+    remainingTime: currentTimerSeconds, // Save the current timer state
     timestamp: new Date().getTime()
   };
   localStorage.setItem(`quiz_progress_${currentChapterId}`, JSON.stringify(progressData));
 }
+
 function clearQuizProgress(chapterId) {
   localStorage.removeItem(`quiz_progress_${chapterId}`);
 }
@@ -242,7 +246,7 @@ async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, 
 
   isReviewMode = reviewMode;
   reviewSource = source;
-
+  let savedTime = null;
   hideAllSections();
   document.getElementById("quiz-section").style.display = "block";
 
@@ -283,7 +287,8 @@ async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, 
           userAnswers = parsedProgress.userAnswers || {};
           markedForReview = parsedProgress.markedForReview || {};
           currentQuestionIndex = parsedProgress.lastQuestionIndex || 0;
-          toastr.info("Restored your previous progress.");
+          savedTime = parsedProgress.remainingTime; // Restore the time value
+        toastr.info("Restored your previous progress and time.");
         }
       }
     }
@@ -312,7 +317,7 @@ async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, 
       renderQuizLayout(currentChapterName);
       renderQuestion();
       renderNav();
-      startTimer(currentQuizData.length);
+      startTimer(currentQuizData.length, savedTime);
     }
   } catch (error) {
     console.error("Firebase fetch error:", error);
@@ -467,23 +472,28 @@ function renderLeaderboardHTML(container, data) {
 /**
  * UPDATED: Advanced UPSC Performance Review
  */
+/**
+ * UPDATED: Advanced UPSC Performance Review
+ * Analyzes results to identify "Hard Successes" and "Silly Mistakes" (Concept Gaps).
+ */
 async function renderReviewMode(resultData) {
-  // Pre-fetch stats to ensure they are available for community comparison
+  // Pre-fetch global stats to ensure community accuracy data is available
   currentReviewStats = await getGlobalStats(currentChapterId);
 
   let correct = 0;
   let incorrect = 0;
   let unattempted = 0;
 
-  // NEW: UPSC specific trackers
+  // UPSC specific trackers
   let sillyMistakes = 0;
+  let missedEasyQNumbers = []; // Tracks specific question numbers for Concept Gaps
   let hardSuccess = 0;
 
   currentQuizData.forEach((q, i) => {
     const uAns = userAnswers[i];
     const correctIndex = getCorrectIndex(q);
 
-    // Community accuracy calculation for Silly Mistake vs Hard Success flagging
+    // Community accuracy calculation for flagging mistakes
     const commCorrect = currentReviewStats?.correctCounts?.[i] || 0;
     const commTotal = currentReviewStats?.totalAttempts || 1;
     const commAccuracy = (commCorrect / commTotal) * 100;
@@ -492,10 +502,14 @@ async function renderReviewMode(resultData) {
       unattempted++;
     } else if (uAns.answer === correctIndex) {
       correct++;
-      if (commAccuracy < 40) hardSuccess++; // Correct answer on a low-accuracy question
+      if (commAccuracy < 40) hardSuccess++; // Correct on a low-accuracy question
     } else {
       incorrect++;
-      if (commAccuracy > 65) sillyMistakes++; // Wrong answer on a high-accuracy question
+      // Flag if user missed a question that >65% of students got right
+      if (commAccuracy > 65) {
+          sillyMistakes++;
+          missedEasyQNumbers.push(`Q${i + 1}`); 
+      }
     }
   });
 
@@ -507,9 +521,7 @@ async function renderReviewMode(resultData) {
 
   // Advanced Stats Calculation
   const marksLost = (incorrect * 0.66).toFixed(2);
-  const accuracyRate = ((correct / (correct + incorrect)) * 100 || 0).toFixed(
-    1
-  );
+  const accuracyRate = ((correct / (correct + incorrect)) * 100 || 0).toFixed(1);
 
   const content = document.getElementById("quiz-content");
 
@@ -533,28 +545,32 @@ async function renderReviewMode(resultData) {
                 
                 <div class="row g-3 text-center mb-4">
                     <div class="col-6 col-md-3">
-                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary">
+                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary h-100">
                             <h6 class="text-uppercase text-muted small fw-bold mb-1">Accuracy</h6>
                             <h3 class="fw-bold text-dark m-0">${accuracyRate}%</h3>
                             <small class="text-muted">on attempted</small>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger">
+                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger h-100">
                             <h6 class="text-uppercase text-muted small fw-bold mb-1">Negative Loss</h6>
                             <h3 class="fw-bold text-danger m-0">-${marksLost}</h3>
                             <small class="text-muted">marks lost</small>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning">
+                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning h-100">
                             <h6 class="text-uppercase text-muted small fw-bold mb-1">Concept Gaps</h6>
                             <h3 class="fw-bold text-warning m-0">${sillyMistakes}</h3>
-                            <small class="text-muted">Easy Qs missed</small>
+                            <small class="text-muted d-block">
+                                ${missedEasyQNumbers.length > 0 
+                                    ? `Easy Qs Missed -- <span class="text-danger fw-bold">"${missedEasyQNumbers.join(", ")}"</span>` 
+                                    : 'No Easy Qs Missed'}
+                            </small>
                         </div>
                     </div>
                     <div class="col-6 col-md-3">
-                        <div class="p-3 bg-primary text-white rounded shadow-sm">
+                        <div class="p-3 bg-primary text-white rounded shadow-sm h-100">
                             <h6 class="text-white-50 text-uppercase small fw-bold mb-1">Final Score</h6>
                             <h3 class="fw-bold m-0">${score} <span class="fs-6 text-white-50">/ ${totalMarks}</span></h3>
                         </div>
@@ -642,55 +658,7 @@ async function renderReviewMode(resultData) {
         </div>
     `;
 
-  const ctx = document.getElementById("comparisonChart");
-  if (comparisonChartInstance) comparisonChartInstance.destroy();
-
-  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-  const textColor = isDark ? "#e5e7eb" : "#666";
-
-  comparisonChartInstance = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: ["Global Avg", "Your Score", "Topper"],
-      datasets: [
-        {
-          label: "Score (%)",
-          data: [
-            stats.avg.toFixed(1),
-            myScore.toFixed(1),
-            stats.highest.toFixed(1),
-          ],
-          backgroundColor: [
-            "rgba(108, 117, 125, 0.5)",
-            "rgba(59, 130, 246, 0.8)",
-            "rgba(245, 158, 11, 0.8)",
-          ],
-          borderColor: [
-            "rgba(108, 117, 125, 1)",
-            "rgba(30, 58, 138, 1)",
-            "rgba(245, 158, 11, 1)",
-          ],
-          borderWidth: 1,
-          borderRadius: 5,
-        },
-      ],
-    },
-    options: {
-      indexAxis: "y",
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: {
-          beginAtZero: true,
-          max: 100,
-          grid: { display: false },
-          ticks: { color: textColor },
-        },
-        y: { grid: { display: false }, ticks: { color: textColor } },
-      },
-    },
-  });
+  renderComparisonChart(stats, myScore);
 }
 
 function filterReview(filterType, btnElement) {
@@ -824,21 +792,64 @@ function renderReviewQuestions(filterType) {
    6. TIMER & NAVIGATION
    ========================================= */
 
-function startTimer(numQuestions) {
-  let timeLeft = Math.floor(numQuestions * 1.2 * 60);
+/**
+ * Starts the timer with persistence support
+ */
+function startTimer(numQuestions, savedTime = null) {
+  // If savedTime is provided from localStorage, use it. 
+  // Otherwise, calculate default (1.2 mins per Q)
+  currentTimerSeconds = (savedTime !== null) ? savedTime : Math.floor(numQuestions * 1.2 * 60);
+  isTimerPaused = false;
+  
   const display = document.getElementById("timer-display");
-  updateTimerDisplay(display, timeLeft);
+  updateTimerDisplay(display, currentTimerSeconds);
+
+  if (quizTimerInterval) clearInterval(quizTimerInterval);
 
   quizTimerInterval = setInterval(() => {
-    timeLeft--;
-    updateTimerDisplay(display, timeLeft);
+    if (!isTimerPaused) {
+      currentTimerSeconds--;
+      updateTimerDisplay(display, currentTimerSeconds);
 
-    if (timeLeft <= 0) {
-      clearInterval(quizTimerInterval);
-      toastr.warning("Time's up! Submitting test...");
-      submitAll(true);
+      // Periodically auto-save the time every second
+      saveQuizProgress();
+
+      if (currentTimerSeconds <= 0) {
+        clearInterval(quizTimerInterval);
+        toastr.warning("Time's up! Submitting test...");
+        submitAll(true);
+      }
     }
   }, 1000);
+}
+
+function toggleTimer() {
+    const btn = document.getElementById("timer-pause-btn");
+    const qContainer = document.getElementById("question-container");
+    if (!btn) return;
+
+    isTimerPaused = !isTimerPaused;
+
+    if (isTimerPaused) {
+        btn.innerHTML = '<i class="bi bi-play-fill"></i> Resume';
+        // Swap specific color classes only
+        btn.classList.replace("btn-secondary-custom", "btn-primary-custom");
+        
+        if (qContainer) {
+            qContainer.style.filter = "blur(8px)";
+            qContainer.style.pointerEvents = "none";
+        }
+        toastr.info("Timer Paused");
+    } else {
+        btn.innerHTML = '<i class="bi bi-pause-fill"></i> Pause';
+        btn.classList.replace("btn-primary-custom", "btn-secondary-custom");
+        
+        if (qContainer) {
+            qContainer.style.filter = "none";
+            qContainer.style.pointerEvents = "all";
+        }
+        toastr.success("Timer Resumed");
+    }
 }
 
 function updateTimerDisplay(element, seconds) {
@@ -874,14 +885,21 @@ function renderQuizLayout(title) {
     `;
 
   document.getElementById("quiz-nav").innerHTML = `
-        <div class="nav-header">Question Palette</div>
-        <div class="timer-container shadow-sm">
-            <span class="timer-label">Time Remaining</span>
-            <div id="timer-display" class="timer-value">00:00</div>
-        </div>
-        <div id="nav-container" class="nav-grid"></div>
-        <button id="final-submit-btn" class="btn btn-success w-100 mt-4 rounded-pill py-2 fw-bold">Submit Test</button>
-    `;
+    <div class="nav-header">Question Palette</div>
+    <div class="timer-container shadow-sm position-relative" style="padding-bottom: 45px !important;">
+        <span class="timer-label">Time Remaining</span>
+        <div id="timer-display" class="timer-value">00:00</div>
+        
+        <button id="timer-pause-btn" 
+                class="btn btn-sm btn-secondary-custom fw-bold position-absolute" 
+                style="bottom: 12px; right: 12px; font-size: 0.85rem; padding: 5px 12px; border-radius: 8px;"
+                onclick="toggleTimer()">
+            <i class="bi bi-pause-fill"></i> Pause
+        </button>
+    </div>
+    <div id="nav-container" class="nav-grid"></div>
+    <button id="final-submit-btn" class="btn btn-success w-100 mt-4 rounded-pill py-2 fw-bold">Submit Test</button>
+`;
 
   document.getElementById("prev-btn").addEventListener("click", () => navigateQuestions(-1));
   document.getElementById("next-btn").addEventListener("click", () => navigateQuestions(1));
