@@ -764,7 +764,7 @@ if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
                 <span class="small fw-bold text-uppercase text-secondary" style="letter-spacing: 0.5px;">👥 Community Stats</span>
                 <span class="fw-bold" style="color: #4338ca;">${pCorrect}% Correct</span>
             </div>
-            <div class="progress shadow-sm" style="height: 30px; background-color: #e2e8f0; border-radius: 8px; overflow: hidden;">
+            <div class="progress shadow-sm" style="height: 40px; background-color: #e2e8f0; border-radius: 8px; overflow: hidden;">
                 <div class="progress-bar stats-bar-correct d-flex align-items-center justify-content-center" 
                      role="progressbar" style="width: ${pCorrect}%">
                      <span class="progress-bar-text">${pCorrect > 12 ? pCorrect + '%' : ''}</span>
