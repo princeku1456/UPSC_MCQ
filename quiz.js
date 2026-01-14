@@ -29,6 +29,9 @@ function saveQuizProgress() {
   localStorage.setItem(`quiz_progress_${currentChapterId}`, JSON.stringify(progressData));
 }
 
+function clearQuizProgress(chapterId) {
+  localStorage.removeItem(`quiz_progress_${chapterId}`);
+}
 
 // --------------------------------------
 
