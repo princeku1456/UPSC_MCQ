@@ -28,7 +28,9 @@ let performanceChartInstance = null;
 let comparisonChartInstance = null;
 let quizTimerInterval = null;
 let currentReviewStats = null;
-
+// Add these to auth.js
+let isTimerPaused = false;
+let currentTimerSeconds = 0;
 /* =========================================
    MORNING SYNC LOGIC
    ========================================= */
