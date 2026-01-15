@@ -128,6 +128,9 @@ function loadChapters() {
 }
 
 /* --- Optimized Analysis Logic with Heat Map Palette --- */
+/* =========================================
+   RE-FETCHING LOGIC: Always get fresh data on Analyze click
+   ========================================= */
 async function loadTestAnalysis() {
   const dbChapterId = document.getElementById("chapter-select").value;
   const container = document.getElementById("analysis-container");
@@ -136,53 +139,50 @@ async function loadTestAnalysis() {
 
   if (!dbChapterId) return toastr.warning("Select Subject and Test.");
 
+  // Clear specific cache for this test so we always get fresh data from Firestore
+  delete adminAnalysisCache[dbChapterId];
+
   emptyState.style.display = "none";
-  layout.style.display = "none";
+  // We keep the layout as is (if already visible) but update the container with a loader
   container.innerHTML =
-    '<div class="text-center py-5"><div class="spinner-border text-primary"></div><p>Aggregating Discussion Data...</p></div>';
+    '<div class="text-center py-5"><div class="spinner-border text-primary"></div><p>Fetching latest discussion data...</p></div>';
 
   try {
     let quizQuestions, statsData, results;
 
-    // REDUCED READS: Check Cache First
-    if (adminAnalysisCache[dbChapterId]) {
-      const cached = adminAnalysisCache[dbChapterId];
-      quizQuestions = cached.questions;
-      statsData = cached.stats;
-      results = cached.results;
-    } else {
-      const [quizDoc, statsDoc, resultsSnap] = await Promise.all([
-        db.collection("quizzes").doc(dbChapterId).get(),
-        db.collection("chapter_stats").doc(dbChapterId).get(),
-        db
-          .collection("results")
-          .where("chapterId", "==", dbChapterId)
-          .orderBy("timestamp", "desc")
-          .limit(100)
-          .get(),
-      ]);
+    // Fetch fresh data from Firestore
+    const [quizDoc, statsDoc, resultsSnap] = await Promise.all([
+      db.collection("quizzes").doc(dbChapterId).get(),
+      db.collection("chapter_stats").doc(dbChapterId).get(),
+      db
+        .collection("results")
+        .where("chapterId", "==", dbChapterId)
+        .orderBy("timestamp", "desc")
+        .limit(100)
+        .get(),
+    ]);
 
-      if (!quizDoc.exists) throw new Error("Quiz content not found.");
+    if (!quizDoc.exists) throw new Error("Quiz content not found.");
 
-      quizQuestions = quizDoc.data().questions;
-      statsData = statsDoc.exists
-        ? statsDoc.data()
-        : { totalAttempts: 0, average: 0 };
-      results = resultsSnap.docs.map((doc) => doc.data());
+    quizQuestions = quizDoc.data().questions;
+    statsData = statsDoc.exists
+      ? statsDoc.data()
+      : { totalAttempts: 0, average: 0 };
+    results = resultsSnap.docs.map((doc) => doc.data());
 
-      // Save to cache
-      adminAnalysisCache[dbChapterId] = {
-        questions: quizQuestions,
-        stats: statsData,
-        results: results,
-      };
-    }
+    // Re-save to cache for any internal logic that might use it
+    adminAnalysisCache[dbChapterId] = {
+      questions: quizQuestions,
+      stats: statsData,
+      results: results,
+    };
 
     container.innerHTML = "";
     layout.style.display = "flex";
 
     const questionAccuracies = calculateAccuracies(quizQuestions, results);
 
+    // Re-render all components with fresh data
     renderPalette(questionAccuracies);
     renderOptimizedLeaderboard(
       container,
@@ -195,7 +195,10 @@ async function loadTestAnalysis() {
       results,
       questionAccuracies
     );
+    
+    toastr.success("Discussion data updated!");
   } catch (error) {
+    console.error("Analysis Fetch Error:", error);
     container.innerHTML = `<div class="alert alert-danger">${error.message}</div>`;
     emptyState.style.display = "block";
   }
@@ -398,4 +401,154 @@ function renderOptimizedLeaderboard(container, leaderboardArr, stats) {
                 </table>
             </div>
         </div>`;
+}
+
+
+/**
+ * Fetches all test attempts for a specific user email
+ */
+async function searchUserAttempts() {
+    const email = document.getElementById("user-search-email").value.trim().toLowerCase();
+    const container = document.getElementById("user-attempts-container");
+    const tbody = document.getElementById("user-attempts-body");
+    const displayEmail = document.getElementById("display-search-email");
+
+    if (!email) return toastr.warning("Please enter a user email.");
+
+    // UI Loading state
+    tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4"><div class="spinner-border spinner-border-sm text-primary"></div> Fetching user records...</td></tr>';
+    container.style.display = "block";
+    displayEmail.textContent = email;
+
+    try {
+        const snapshot = await db.collection("results")
+            .where("userEmail", "==", email)
+            .orderBy("timestamp", "desc")
+            .get();
+
+        if (snapshot.empty) {
+            tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-4">No attempts found for this user.</td></tr>';
+            return;
+        }
+
+        tbody.innerHTML = "";
+        snapshot.forEach(doc => {
+            const data = doc.data();
+            const date = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleDateString() : "N/A";
+            
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+                <td><small class="text-muted">${date}</small></td>
+                <td><span class="fw-bold">${data.subject}</span></td>
+                <td>${data.chapterName}</td>
+                <td><span class="badge bg-primary">${data.scorePercent}%</span></td>
+                <td class="text-end">
+                    <button class="btn btn-outline-danger btn-sm" onclick="deleteAttempt('${doc.id}', '${data.chapterName}')">
+                        <i class="bi bi-trash"></i> Delete
+                    </button>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+    } catch (error) {
+        console.error("Search Error:", error);
+        toastr.error("Error fetching user data. Ensure index is created in Firebase if required.");
+        tbody.innerHTML = '<tr><td colspan="5" class="text-center text-danger">Failed to load data.</td></tr>';
+    }
+}
+
+/**
+ * Deletes a specific result document from Firestore
+ */
+/**
+ * Advanced Delete: Removes the result document and reverts global chapter statistics.
+ */
+async function deleteAttempt(docId, testName) {
+    if (!confirm(`CRITICAL: This will delete the attempt for "${testName}" and RECALCULATE all global class statistics. Proceed?`)) {
+        return;
+    }
+
+    try {
+        // 1. Get the result data first to know what values to subtract from stats
+        const resultRef = db.collection("results").doc(docId);
+        const resultSnap = await resultRef.get();
+
+        if (!resultSnap.exists) {
+            toastr.error("Result record not found.");
+            return;
+        }
+
+        const data = resultSnap.data();
+        const chapterId = data.chapterId;
+        const scorePercent = data.scorePercent;
+        const userAnswers = data.userAnswers || {};
+        const statsRef = db.collection("chapter_stats").doc(chapterId);
+
+        // 2. Run a Transaction to ensure atomic updates
+        await db.runTransaction(async (transaction) => {
+            const statsSnap = await transaction.get(statsRef);
+            
+            // Delete the primary result record
+            transaction.delete(resultRef);
+
+            if (statsSnap.exists) {
+                const stats = statsSnap.data();
+                
+                // Calculate new aggregate values
+                const newAttempts = Math.max(0, (stats.totalAttempts || 1) - 1);
+                const newTotalScore = Math.max(0, (stats.totalScore || 0) - scorePercent);
+                const newAverage = newAttempts > 0 ? newTotalScore / newAttempts : 0;
+
+                // Update allScores array (remove one instance of this score)
+                let newAllScores = [...(stats.allScores || [])];
+                const scoreIndex = newAllScores.indexOf(scorePercent);
+                if (scoreIndex > -1) newAllScores.splice(scoreIndex, 1);
+                
+                const newHighest = newAllScores.length > 0 ? Math.max(...newAllScores) : 0;
+
+                // Update Leaderboard (remove this specific user's entry)
+                let newLeaderboard = (stats.leaderboard || []).filter(entry => {
+                    // Check email and timestamp to ensure we don't delete different attempts by same user
+                    return !(entry.userEmail === data.userEmail && entry.rankTime === data.timestamp?.toDate().toISOString());
+                });
+
+                // Revert Question-wise Counts (correctCounts and attemptedCounts)
+                let cCounts = [...(stats.correctCounts || [])];
+                let aCounts = [...(stats.attemptedCounts || [])];
+
+                // Note: We need the quiz structure to know which index is correct
+                // This assumes quizDataCache or a global quiz reference is available
+                // If not, we use the isCorrect flag stored in userAnswers if available
+                Object.entries(userAnswers).forEach(([idx, ans]) => {
+                    const i = parseInt(idx);
+                    if (aCounts[i] > 0) aCounts[i]--;
+                    if (ans.isCorrect && cCounts[i] > 0) cCounts[i]--;
+                });
+
+                transaction.update(statsRef, {
+                    totalAttempts: newAttempts,
+                    totalScore: newTotalScore,
+                    average: newAverage,
+                    allScores: newAllScores,
+                    highestScore: newHighest,
+                    leaderboard: newLeaderboard,
+                    correctCounts: cCounts,
+                    attemptedCounts: aCounts
+                });
+            }
+        });
+
+        toastr.success("Attempt deleted and global stats updated!");
+        
+        // Refresh UI
+        searchUserAttempts();
+        
+        // Clear local caches to force fresh data on next analysis
+        for (let key in adminAnalysisCache) delete adminAnalysisCache[key];
+
+    } catch (error) {
+        console.error("Delete Transaction Error:", error);
+        toastr.error("Failed to complete full deletion.");
+    }
 }
