@@ -2,25 +2,23 @@
    3. DASHBOARD LOGIC (Stats & Graph)
    ========================================= */
 
+/* =========================================
+   3. DASHBOARD LOGIC (Stats & Graph)
+   ========================================= */
+
 async function loadUserDashboard(forceRefresh = false) {
   if (!currentUser || !currentUser.emailVerified) return;
 
-  // OPTIMIZATION: Load from local cache first to save reads
-  if (!forceRefresh) {
-    const cachedHistory = localStorage.getItem("user_history_cache");
-    if (cachedHistory && userHistory.length === 0) {
-      userHistory = JSON.parse(cachedHistory);
-      renderDashboardUI();
-      if (dashboardDataLoaded) return;
-    }
-  }
-
+  // Use in-memory check to prevent redundant calls during the same session.
+  // We no longer use localStorage because Firestore handles persistence natively.
   if (!forceRefresh && dashboardDataLoaded && userHistory.length > 0) {
     renderDashboardUI();
     return;
   }
 
   try {
+    // Firestore automatically checks its internal IndexedDB cache first.
+    // If the data is available and hasn't changed, it serves it instantly.
     const snapshot = await db
       .collection("results")
       .where("userId", "==", currentUser.uid)
@@ -28,15 +26,10 @@ async function loadUserDashboard(forceRefresh = false) {
       .limit(20)
       .get();
 
-    const results = snapshot.docs.map((doc) => ({
+    userHistory = snapshot.docs.map((doc) => ({
       id: doc.id,
       ...doc.data(),
     }));
-
-    userHistory = results;
-    
-    // OPTIMIZATION: Sync to local storage
-    localStorage.setItem("user_history_cache", JSON.stringify(results));
     
     dashboardDataLoaded = true;
     renderDashboardUI();
@@ -45,7 +38,6 @@ async function loadUserDashboard(forceRefresh = false) {
     toastr.error("Failed to load performance data.");
   }
 }
-
 /**
  * UPDATED: Renders UI with Precision, Negative Drain, and Concept Gap analysis.
  * Removed "Best Subject" logic.

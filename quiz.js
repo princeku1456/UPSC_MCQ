@@ -1194,7 +1194,6 @@ function submitAll(forceSubmit = false) {
       .then(async () => {
         userHistory.unshift({ ...resultObject, timestamp: new Date() });
         if (userHistory.length > 20) userHistory.pop();
-        localStorage.setItem("user_history_cache", JSON.stringify(userHistory));
         dashboardDataLoaded = true;
 
         delete globalStatsCache[currentChapterId];
