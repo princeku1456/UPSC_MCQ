@@ -15,17 +15,13 @@ if (typeof firebase !== "undefined") {
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
 
-    // OPTIMIZATION: Enable Offline Persistence to serve data from local disk cache
-    firebase
-      .firestore()
-      .enablePersistence({ synchronizeTabs: true })
-      .catch((err) => {
-        if (err.code === "failed-precondition") {
-          console.warn("Persistence failed: Multiple tabs open.");
-        } else if (err.code === "unimplemented") {
-          console.warn("Persistence not supported by browser.");
-        }
-      });
+    // OPTIMIZATION: Use modern FirestoreSettings.cache
+    // This reduces reads and allows multi-tab synchronization
+    firebase.firestore().settings({
+      localCache: firebase.firestore.persistentLocalCache({
+        tabManager: firebase.firestore.persistentMultipleTabManager()
+      })
+    });
   }
 } else {
   console.error("Firebase SDK not found!");
