@@ -259,6 +259,22 @@
         <div class="row justify-content-center mb-5">
           <div class="col-12">
             <div class="card border-0 shadow-sm rounded-4 p-4">
+              <h5 class="fw-bold text-primary mb-3">
+                🎯 Overall Confidence Analysis
+              </h5>
+              <div style="position: relative; height: 300px; width: 100%">
+                <canvas id="globalConfidenceChart"></canvas>
+              </div>
+              <p class="small text-muted mt-3 text-center">
+                Aggregate accuracy across all recent tests categorized by
+                confidence level.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+          <div class="col-12">
+            <div class="card border-0 shadow-sm rounded-4 p-4">
               <h5 class="fw-bold text-primary mb-3">📈 Accuracy Trend</h5>
               <div style="position: relative; height: 300px; width: 100%">
                 <canvas id="performanceChart"></canvas>
