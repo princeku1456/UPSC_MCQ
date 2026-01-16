@@ -242,126 +242,105 @@ function renderPalette(accuracies) {
   });
 }
 
+/**
+ * UPDATED: Renders question analysis including user-specific surety percentages
+ */
 function renderQuestionAnalysis(container, questions, results, accuracies) {
   const header = document.createElement("div");
-  header.className =
-    "d-flex justify-content-between align-items-center mb-4 mt-2";
+  header.className = "d-flex justify-content-between align-items-center mb-4 mt-2";
   header.innerHTML = `<h4 class="fw-bold text-dark border-start border-4 border-primary ps-3">📊 Discussion Dashboard</h4>`;
   container.appendChild(header);
 
   questions.forEach((q, qIdx) => {
+    // Each bucket now stores objects containing the username and their surety level
     const optionBuckets = q.options.map(() => []);
     const skippedUsers = [];
-    const correctIndex =
-      typeof q.correctAnswer === "number"
+    const correctIndex = typeof q.correctAnswer === "number"
         ? q.correctAnswer
         : q.options.indexOf(q.correctAnswer);
 
     results.forEach((res) => {
       const userName = res.userEmail ? res.userEmail.split("@")[0] : "Guest";
       const choice = res.userAnswers ? res.userAnswers[qIdx] : null;
-      if (!choice || choice.answer === undefined || choice.answer === -1)
-        skippedUsers.push(userName);
-      else if (optionBuckets[choice.answer])
-        optionBuckets[choice.answer].push(userName);
+      
+      // Extract surety from the saved result data
+      const suretyVal = (choice && choice.surety !== undefined) ? choice.surety + "%" : "N/A";
+
+      if (!choice || choice.answer === undefined || choice.answer === -1) {
+        skippedUsers.push({ name: userName, surety: suretyVal });
+      } else if (optionBuckets[choice.answer]) {
+        optionBuckets[choice.answer].push({ name: userName, surety: suretyVal });
+      }
     });
 
     const accuracy = accuracies[qIdx];
     const card = document.createElement("div");
     card.id = `q-card-${qIdx}`;
-    card.className = `card mb-5 shadow-sm border-0 rounded-4 admin-q-card ${
-      accuracy < 40 ? "high-error" : ""
-    }`;
+    card.className = `card mb-5 shadow-sm border-0 rounded-4 admin-q-card ${accuracy < 40 ? "high-error" : ""}`;
 
     let optionsHtml = "";
     q.options.forEach((opt, oIdx) => {
       const isCorrect = oIdx === correctIndex;
       const users = optionBuckets[oIdx];
-      const percent =
-        results.length > 0
-          ? Math.round((users.length / results.length) * 100)
-          : 0;
+      const percent = results.length > 0 ? Math.round((users.length / results.length) * 100) : 0;
 
       optionsHtml += `
-                <div class="p-3 border rounded-3 mb-2 ${
-                  isCorrect
-                    ? "bg-success bg-opacity-10 border-success"
-                    : "bg-white"
-                }">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <span class="badge ${
-                              isCorrect ? "bg-success" : "bg-secondary"
-                            } me-2">${String.fromCharCode(65 + oIdx)}</span>
-                            <span class="${
-                              isCorrect ? "fw-bold text-success" : ""
-                            }">${opt}</span>
-                        </div>
-                        <span class="fw-bold">${
-                          users.length
-                        } Users (${percent}%)</span>
-                    </div>
-                    <div class="d-flex flex-wrap gap-1 mt-2 user-list-container">
-                        ${users
-                          .map(
-                            (u) => `<span class="badge user-tag">${u}</span>`
-                          )
-                          .join("")}
-                    </div>
-                </div>`;
+        <div class="p-3 border rounded-3 mb-2 ${isCorrect ? "bg-success bg-opacity-10 border-success" : "bg-white"}">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="badge ${isCorrect ? "bg-success" : "bg-secondary"} me-2">${String.fromCharCode(65 + oIdx)}</span>
+                    <span class="${isCorrect ? "fw-bold text-success" : ""}">${opt}</span>
+                </div>
+                <span class="fw-bold text-muted small">${users.length} Users (${percent}%)</span>
+            </div>
+            <div class="d-flex flex-wrap gap-2 mt-2 user-list-container">
+                ${users.map(u => `
+                    <span class="badge user-tag d-flex align-items-center gap-1">
+                        ${u.name} 
+                        <strong class="text-primary" style="font-size: 0.65rem; border-left: 1px solid #ddd; padding-left: 4px;">
+                            ${u.surety}
+                        </strong>
+                    </span>
+                `).join("")}
+            </div>
+        </div>`;
     });
 
     card.innerHTML = `
-            <div class="card-body p-4">
-                <div class="d-flex justify-content-between mb-3">
-                    <span class="badge bg-primary bg-opacity-10 text-primary">Question ${
-                      qIdx + 1
-                    }</span>
-                    <span class="badge bg-light text-dark border">Accuracy: ${accuracy}%</span>
-                </div>
-                <h5 class="fw-bold mb-4">${q.text.replace(/\n/g, "<br>")}</h5>
-                <div class="row g-4">
-                    <div class="col-lg-8">
-                        ${optionsHtml}
-                        <div class="mt-3 p-2 bg-light rounded-3 border-dashed border-2">
-                            <small class="text-muted fw-bold">⚪ SKIPPED (${
-                              skippedUsers.length
-                            })</small>
-                            <div class="d-flex flex-wrap gap-1 mt-1">${
-                              skippedUsers
-                                .map(
-                                  (u) =>
-                                    `<span class="badge user-tag border-secondary text-secondary">${u}</span>`
-                                )
-                                .join("") || "None"
-                            }</div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="explanation-box mb-3">
-                            <h6 class="fw-bold text-warning-emphasis"><i class="bi bi-lightbulb"></i> Explanation:</h6>
-                            <p class="small m-0">${
-                              q.explanation || "No explanation."
-                            }</p>
-                        </div>
-                        <div class="p-3 bg-primary bg-opacity-10 rounded-3">
-                            <small class="fw-bold text-primary d-block mb-1">DISCUSSION TIP</small>
-                            <p class="small m-0 text-primary-emphasis">
-                                ${
-                                  accuracy < 40
-                                    ? "⚠️ Critical concept failure. Address the high error rate."
-                                    : "✅ Concept generally understood."
-                                }
-                                ${
-                                  skippedUsers.length > results.length / 3
-                                    ? " High skip rate detected."
-                                    : ""
-                                }
-                            </p>
+        <div class="card-body p-4">
+            <div class="d-flex justify-content-between mb-3">
+                <span class="badge bg-primary bg-opacity-10 text-primary">Question ${qIdx + 1}</span>
+                <span class="badge bg-light text-dark border">Accuracy: ${accuracy}%</span>
+            </div>
+            <h5 class="fw-bold mb-4">${q.text.replace(/\n/g, "<br>")}</h5>
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    ${optionsHtml}
+                    <div class="mt-3 p-2 bg-light rounded-3 border-dashed border-2">
+                        <small class="text-muted fw-bold">⚪ SKIPPED (${skippedUsers.length})</small>
+                        <div class="d-flex flex-wrap gap-1 mt-1">
+                            ${skippedUsers.map(u => `
+                                <span class="badge user-tag border-secondary text-secondary">
+                                    ${u.name} <small class="ms-1 opacity-50">(${u.surety})</small>
+                                </span>
+                            `).join("") || "None"}
                         </div>
                     </div>
                 </div>
-            </div>`;
+                <div class="col-lg-4">
+                    <div class="explanation-box mb-3">
+                        <h6 class="fw-bold text-warning-emphasis"><i class="bi bi-lightbulb"></i> Explanation:</h6>
+                        <p class="small m-0">${q.explanation || "No explanation."}</p>
+                    </div>
+                    <div class="p-3 bg-primary bg-opacity-10 rounded-3">
+                        <small class="fw-bold text-primary d-block mb-1">DISCUSSION TIP</small>
+                        <p class="small m-0 text-primary-emphasis">
+                            ${accuracy < 40 ? "⚠️ High error rate with mixed confidence." : "✅ Concept generally understood."}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>`;
     container.appendChild(card);
   });
 }

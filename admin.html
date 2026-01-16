@@ -126,6 +126,18 @@
           margin-bottom: 20px;
         }
       }
+      .badge.user-tag {
+        font-size: 0.75rem;
+        background-color: white;
+        color: #475569;
+        border: 1px solid #e2e8f0;
+        padding: 4px 8px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+      }
+
+      .badge.user-tag strong {
+        color: #1e3a8a; /* Your primary navy color for high visibility */
+      }
     </style>
   </head>
   <body class="d-flex flex-column min-vh-100">
@@ -182,7 +194,6 @@
           </div>
         </div>
       </div>
-      
     </section>
 
     <section
@@ -190,41 +201,51 @@
       class="container py-5"
       style="display: none"
     >
-    <div class="card shadow-sm border-0 rounded-4 p-4 mb-5">
-    <h5 class="fw-bold text-primary mb-4">
-        <i class="bi bi-people-fill me-2"></i>Manage User Attempts
-    </h5>
-    <div class="row g-3">
-        <div class="col-md-10">
-            <input type="email" id="user-search-email" class="form-control form-control-lg" placeholder="Enter User Email (e.g. student@gmail.com)">
-        </div>
-        <div class="col-md-2">
-            <button class="btn btn-secondary-custom w-100 py-2 btn-lg" onclick="searchUserAttempts()">
-                Search 🔍
+      <div class="card shadow-sm border-0 rounded-4 p-4 mb-5">
+        <h5 class="fw-bold text-primary mb-4">
+          <i class="bi bi-people-fill me-2"></i>Manage User Attempts
+        </h5>
+        <div class="row g-3">
+          <div class="col-md-10">
+            <input
+              type="email"
+              id="user-search-email"
+              class="form-control form-control-lg"
+              placeholder="Enter User Email (e.g. student@gmail.com)"
+            />
+          </div>
+          <div class="col-md-2">
+            <button
+              class="btn btn-secondary-custom w-100 py-2 btn-lg"
+              onclick="searchUserAttempts()"
+            >
+              Search 🔍
             </button>
+          </div>
         </div>
-    </div>
-    
-    <div id="user-attempts-container" class="mt-4" style="display: none;">
-        <hr>
-        <h6 class="fw-bold mb-3">Attempts for: <span id="display-search-email" class="text-secondary"></span></h6>
-        <div class="table-responsive">
+
+        <div id="user-attempts-container" class="mt-4" style="display: none">
+          <hr />
+          <h6 class="fw-bold mb-3">
+            Attempts for:
+            <span id="display-search-email" class="text-secondary"></span>
+          </h6>
+          <div class="table-responsive">
             <table class="table table-hover align-middle">
-                <thead class="table-light">
-                    <tr>
-                        <th>Date</th>
-                        <th>Subject</th>
-                        <th>Test Name</th>
-                        <th>Score</th>
-                        <th class="text-end">Action</th>
-                    </tr>
-                </thead>
-                <tbody id="user-attempts-body">
-                    </tbody>
+              <thead class="table-light">
+                <tr>
+                  <th>Date</th>
+                  <th>Subject</th>
+                  <th>Test Name</th>
+                  <th>Score</th>
+                  <th class="text-end">Action</th>
+                </tr>
+              </thead>
+              <tbody id="user-attempts-body"></tbody>
             </table>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
       <div class="card shadow-sm border-0 rounded-4 p-4 mb-5">
         <h5 class="fw-bold text-primary mb-4">
           <i class="bi bi-search me-2"></i>Select Test to Analyze
