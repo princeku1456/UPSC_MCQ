@@ -1,4 +1,3 @@
-
 /* =========================================
    4. TAKE TEST LOGIC (Subjects & Chapters)
    ========================================= */
@@ -24,9 +23,12 @@ function saveQuizProgress() {
     markedForReview: markedForReview,
     lastQuestionIndex: currentQuestionIndex,
     remainingTime: currentTimerSeconds, // Save the current timer state
-    timestamp: new Date().getTime()
+    timestamp: new Date().getTime(),
   };
-  localStorage.setItem(`quiz_progress_${currentChapterId}`, JSON.stringify(progressData));
+  localStorage.setItem(
+    `quiz_progress_${currentChapterId}`,
+    JSON.stringify(progressData)
+  );
 }
 
 function clearQuizProgress(chapterId) {
@@ -238,7 +240,14 @@ function getCorrectIndex(question) {
 /* =========================================
    QUIZ CORE (Updated loadQuiz)
    ========================================= */
-async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, pastData = null, source = null) {
+async function loadQuiz(
+  subjectKey,
+  chapterId,
+  chapterName,
+  reviewMode = false,
+  pastData = null,
+  source = null
+) {
   if (!currentUser || !currentUser.emailVerified) return showHome();
   isPracticeMode = false;
   currentSubject = subjectKey;
@@ -276,11 +285,13 @@ async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, 
 
     currentQuestionIndex = 0;
     userAnswers = {};
-    markedForReview = {}; 
+    markedForReview = {};
     quizSubmitted = false;
 
     if (!reviewMode) {
-      const savedProgress = localStorage.getItem(`quiz_progress_${currentChapterId}`);
+      const savedProgress = localStorage.getItem(
+        `quiz_progress_${currentChapterId}`
+      );
       if (savedProgress) {
         const parsedProgress = JSON.parse(savedProgress);
         const oneDay = 24 * 60 * 60 * 1000;
@@ -289,7 +300,7 @@ async function loadQuiz(subjectKey, chapterId, chapterName, reviewMode = false, 
           markedForReview = parsedProgress.markedForReview || {};
           currentQuestionIndex = parsedProgress.lastQuestionIndex || 0;
           savedTime = parsedProgress.remainingTime; // Restore the time value
-        toastr.info("Restored your previous progress and time.");
+          toastr.info("Restored your previous progress and time.");
         }
       }
     }
@@ -476,7 +487,12 @@ function renderLeaderboardHTML(container, data) {
 async function renderReviewMode(resultData) {
   // Pre-fetch stats to ensure they are available for community comparison
   currentReviewStats = await getGlobalStats(currentChapterId);
-
+  let confStats = {
+    100: { total: 0, correct: 0 },
+    75: { total: 0, correct: 0 },
+    50: { total: 0, correct: 0 },
+    0: { total: 0, correct: 0 },
+  };
   let correct = 0;
   let incorrect = 0;
   let unattempted = 0;
@@ -484,7 +500,7 @@ async function renderReviewMode(resultData) {
   // NEW: UPSC specific trackers
   let sillyMistakes = 0;
   let hardSuccess = 0;
-  let missedEasyQNumbers = []; 
+  let missedEasyQNumbers = [];
   currentQuizData.forEach((q, i) => {
     const uAns = userAnswers[i];
     const correctIndex = getCorrectIndex(q);
@@ -493,6 +509,14 @@ async function renderReviewMode(resultData) {
     const commCorrect = currentReviewStats?.correctCounts?.[i] || 0;
     const commTotal = currentReviewStats?.totalAttempts || 1;
     const commAccuracy = (commCorrect / commTotal) * 100;
+    // 2. Track accuracy per confidence level
+    const confidence = uAns?.surety;
+    if (uAns && confidence !== undefined) {
+      confStats[confidence].total++;
+      if (uAns.answer === getCorrectIndex(q)) {
+        confStats[confidence].correct++;
+      }
+    }
 
     if (!uAns) {
       unattempted++;
@@ -503,11 +527,32 @@ async function renderReviewMode(resultData) {
       incorrect++;
       // Flag if user missed a question that >65% of students got right
       if (commAccuracy > 65) {
-          sillyMistakes++;
-          missedEasyQNumbers.push(`Q${i + 1}`); 
+        sillyMistakes++;
+        missedEasyQNumbers.push(`Q${i + 1}`);
       }
     }
   });
+  // 3. Calculate final percentages for the chart
+  const confChartLabels = [
+    "100% Confidence",
+    "75% Confidence",
+    "50% Confidence",
+    "0% Confidence",
+  ];
+  const confChartValues = [
+    confStats[100].total > 0
+      ? ((confStats[100].correct / confStats[100].total) * 100).toFixed(1)
+      : 0,
+    confStats[75].total > 0
+      ? ((confStats[75].correct / confStats[75].total) * 100).toFixed(1)
+      : 0,
+    confStats[50].total > 0
+      ? ((confStats[50].correct / confStats[50].total) * 100).toFixed(1)
+      : 0,
+    confStats[0].total > 0
+      ? ((confStats[0].correct / confStats[0].total) * 100).toFixed(1)
+      : 0,
+  ];
 
   const totalQuestions = currentQuizData.length;
   const score = resultData
@@ -561,9 +606,13 @@ async function renderReviewMode(resultData) {
                             <h6 class="text-uppercase text-muted small fw-bold mb-1">Concept Gaps</h6>
                             <h3 class="fw-bold text-warning m-0">${sillyMistakes}</h3>
                              <small class="text-muted d-block">
-                                ${missedEasyQNumbers.length > 0 
-                                    ? `Easy Qs Missed -- <span class="text-danger fw-bold">"${missedEasyQNumbers.join(", ")}"</span>` 
-                                    : 'No Easy Qs Missed'}
+                                ${
+                                  missedEasyQNumbers.length > 0
+                                    ? `Easy Qs Missed -- <span class="text-danger fw-bold">"${missedEasyQNumbers.join(
+                                        ", "
+                                      )}"</span>`
+                                    : "No Easy Qs Missed"
+                                }
                             </small>
                         </div>
                     </div>
@@ -602,7 +651,6 @@ async function renderReviewMode(resultData) {
                         </div>
                     </div>
                 </div>
-
                 <div id="leaderboard-container" class="mb-4">
                      <div class="text-center py-3">
                         <span class="spinner-border spinner-border-sm text-primary"></span> Loading Leaderboard...
@@ -615,6 +663,13 @@ async function renderReviewMode(resultData) {
                         <p class="text-muted small mt-2">Comparing with other students...</p>
                     </div>
                 </div>
+                <div class="mb-5 mt-5 p-3 rounded border bg-white">
+    <h6 class="fw-bold text-secondary mb-3"><i class="bi bi-graph-up-arrow me-2"></i>Confidence vs Accuracy Analysis</h6>
+    <div style="height: 250px; width: 100%;">
+        <canvas id="confidenceChart"></canvas>
+    </div>
+    <p class="small text-muted mt-2 text-center">Correct attempts as a % of each confidence level.</p>
+</div> 
             </div>
         </div>
         
@@ -705,6 +760,7 @@ async function renderReviewMode(resultData) {
       },
     },
   });
+  renderConfidenceChart(confChartLabels, confChartValues);
 }
 
 function filterReview(filterType, btnElement) {
@@ -735,10 +791,10 @@ function renderReviewQuestions(filterType) {
 
     let badgeHtml = "";
     let borderClass = "";
-    let suretyClass = "surety-0"; 
-    if(userSurety === 100) suretyClass = "surety-100";
-    else if(userSurety === 75) suretyClass = "surety-75";
-    else if(userSurety === 50) suretyClass = "surety-50";
+    let suretyClass = "surety-0";
+    if (userSurety === 100) suretyClass = "surety-100";
+    else if (userSurety === 75) suretyClass = "surety-75";
+    else if (userSurety === 50) suretyClass = "surety-50";
 
     if (status === "correct") {
       badgeHtml = '<span class="badge bg-success mb-2">Correct</span>';
@@ -753,14 +809,22 @@ function renderReviewQuestions(filterType) {
 
     let statsHtml = "";
     if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
-        const total = currentReviewStats.totalAttempts;
-        const correctCount = (currentReviewStats.correctCounts && currentReviewStats.correctCounts[index]) || 0;
-        const attemptedCount = (currentReviewStats.attemptedCounts && currentReviewStats.attemptedCounts[index]) || 0;
-        const pCorrect = Math.round((correctCount / total) * 100);
-        const pIncorrect = Math.round(((attemptedCount - correctCount) / total) * 100);
-        const pUnattempted = 100 - pCorrect - pIncorrect;
+      const total = currentReviewStats.totalAttempts;
+      const correctCount =
+        (currentReviewStats.correctCounts &&
+          currentReviewStats.correctCounts[index]) ||
+        0;
+      const attemptedCount =
+        (currentReviewStats.attemptedCounts &&
+          currentReviewStats.attemptedCounts[index]) ||
+        0;
+      const pCorrect = Math.round((correctCount / total) * 100);
+      const pIncorrect = Math.round(
+        ((attemptedCount - correctCount) / total) * 100
+      );
+      const pUnattempted = 100 - pCorrect - pIncorrect;
 
-        statsHtml = `
+      statsHtml = `
             <div class="mt-2 mb-4 p-3 bg-light bg-opacity-75 rounded-3 border">
                 <div class="d-flex justify-content-between align-items-center mb-2">
                     <span class="small fw-bold text-uppercase text-secondary" style="letter-spacing: 0.5px;">👥 Community Stats</span>
@@ -768,13 +832,19 @@ function renderReviewQuestions(filterType) {
                 </div>
                 <div class="progress shadow-sm" style="height: 40px; background-color: #e2e8f0; border-radius: 8px; overflow: hidden;">
                     <div class="progress-bar stats-bar-correct d-flex align-items-center justify-content-center" role="progressbar" style="width: ${pCorrect}%">
-                         <span class="progress-bar-text">${pCorrect > 12 ? pCorrect + '%' : ''}</span>
+                         <span class="progress-bar-text">${
+                           pCorrect > 12 ? pCorrect + "%" : ""
+                         }</span>
                     </div>
                     <div class="progress-bar stats-bar-incorrect d-flex align-items-center justify-content-center" role="progressbar" style="width: ${pIncorrect}%">
-                         <span class="progress-bar-text">${pIncorrect > 12 ? pIncorrect + '%' : ''}</span>
+                         <span class="progress-bar-text">${
+                           pIncorrect > 12 ? pIncorrect + "%" : ""
+                         }</span>
                     </div>
                     <div class="progress-bar stats-bar-left d-flex align-items-center justify-content-center" role="progressbar" style="width: ${pUnattempted}%">
-                         <span class="progress-bar-text">${pUnattempted > 12 ? pUnattempted + '%' : ''}</span>
+                         <span class="progress-bar-text">${
+                           pUnattempted > 12 ? pUnattempted + "%" : ""
+                         }</span>
                     </div>
                 </div>
             </div>
@@ -786,10 +856,12 @@ function renderReviewQuestions(filterType) {
       let optionClass = "option p-3 mb-2 border rounded";
       let icon = "";
       if (optIdx === correctIndex) {
-        optionClass = "option p-3 mb-2 border rounded bg-success-subtle border-success fw-bold text-success";
+        optionClass =
+          "option p-3 mb-2 border rounded bg-success-subtle border-success fw-bold text-success";
         icon = "✅";
       } else if (uAns && uAns.answer === optIdx && status === "incorrect") {
-        optionClass = "option p-3 mb-2 border rounded bg-danger-subtle border-danger text-danger";
+        optionClass =
+          "option p-3 mb-2 border rounded bg-danger-subtle border-danger text-danger";
         icon = "❌";
       }
       optionsHtml += `<div class="${optionClass}">${icon} <span class="ms-1">${opt}</span></div>`;
@@ -801,17 +873,23 @@ function renderReviewQuestions(filterType) {
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <div>
-                        <h6 class="text-muted fw-bold m-0 d-inline me-2">Question ${index + 1}</h6>
+                        <h6 class="text-muted fw-bold m-0 d-inline me-2">Question ${
+                          index + 1
+                        }</h6>
                         <span class="surety-badge ${suretyClass}">Confidence: ${userSurety}%</span>
                     </div>
                     ${badgeHtml}
                 </div>
                 ${statsHtml} 
-                <p class="fs-5 fw-medium mb-3">${question.text ? question.text.replace(/\n/g, "<br>") : ""}</p>
+                <p class="fs-5 fw-medium mb-3">${
+                  question.text ? question.text.replace(/\n/g, "<br>") : ""
+                }</p>
                 <div class="mb-3">${optionsHtml}</div>
                 <div class="explanation mt-3 shadow-sm">
                     <strong>💡 Explanation:</strong>
-                    <div class="mt-1 small">${question.explanation || "No explanation provided."}</div>
+                    <div class="mt-1 small">${
+                      question.explanation || "No explanation provided."
+                    }</div>
                 </div>
             </div>
         `;
@@ -831,11 +909,12 @@ function renderReviewQuestions(filterType) {
  * Starts the timer with persistence support
  */
 function startTimer(numQuestions, savedTime = null) {
-  // If savedTime is provided from localStorage, use it. 
+  // If savedTime is provided from localStorage, use it.
   // Otherwise, calculate default (1.2 mins per Q)
-  currentTimerSeconds = (savedTime !== null) ? savedTime : Math.floor(numQuestions * 1.2 * 60);
+  currentTimerSeconds =
+    savedTime !== null ? savedTime : Math.floor(numQuestions * 1.2 * 60);
   isTimerPaused = false;
-  
+
   const display = document.getElementById("timer-display");
   updateTimerDisplay(display, currentTimerSeconds);
 
@@ -859,32 +938,32 @@ function startTimer(numQuestions, savedTime = null) {
 }
 
 function toggleTimer() {
-    const btn = document.getElementById("timer-pause-btn");
-    const qContainer = document.getElementById("question-container");
-    if (!btn) return;
+  const btn = document.getElementById("timer-pause-btn");
+  const qContainer = document.getElementById("question-container");
+  if (!btn) return;
 
-    isTimerPaused = !isTimerPaused;
+  isTimerPaused = !isTimerPaused;
 
-    if (isTimerPaused) {
-        btn.innerHTML = '<i class="bi bi-play-fill"></i> Resume';
-        // Swap specific color classes only
-        btn.classList.replace("btn-secondary-custom", "btn-primary-custom");
-        
-        if (qContainer) {
-            qContainer.style.filter = "blur(8px)";
-            qContainer.style.pointerEvents = "none";
-        }
-        toastr.info("Timer Paused");
-    } else {
-        btn.innerHTML = '<i class="bi bi-pause-fill"></i> Pause';
-        btn.classList.replace("btn-primary-custom", "btn-secondary-custom");
-        
-        if (qContainer) {
-            qContainer.style.filter = "none";
-            qContainer.style.pointerEvents = "all";
-        }
-        toastr.success("Timer Resumed");
+  if (isTimerPaused) {
+    btn.innerHTML = '<i class="bi bi-play-fill"></i> Resume';
+    // Swap specific color classes only
+    btn.classList.replace("btn-secondary-custom", "btn-primary-custom");
+
+    if (qContainer) {
+      qContainer.style.filter = "blur(8px)";
+      qContainer.style.pointerEvents = "none";
     }
+    toastr.info("Timer Paused");
+  } else {
+    btn.innerHTML = '<i class="bi bi-pause-fill"></i> Pause';
+    btn.classList.replace("btn-primary-custom", "btn-secondary-custom");
+
+    if (qContainer) {
+      qContainer.style.filter = "none";
+      qContainer.style.pointerEvents = "all";
+    }
+    toastr.success("Timer Resumed");
+  }
 }
 
 function updateTimerDisplay(element, seconds) {
@@ -892,7 +971,7 @@ function updateTimerDisplay(element, seconds) {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
   element.textContent = `${m}:${s < 10 ? "0" : ""}${s}`;
-  
+
   // Add pulsing effect if less than 1 minute remaining
   if (seconds < 180) {
     element.classList.add("low-time");
@@ -936,10 +1015,18 @@ function renderQuizLayout(title) {
     <button id="final-submit-btn" class="btn btn-success-custom w-100 mt-4 py-2 fw-bold">Submit Test</button>
 `;
 
-  document.getElementById("prev-btn").addEventListener("click", () => navigateQuestions(-1));
-  document.getElementById("next-btn").addEventListener("click", () => navigateQuestions(1));
-  document.getElementById("clear-btn").addEventListener("click", clearSelection);
-  document.getElementById("final-submit-btn").addEventListener("click", () => submitAll(false));
+  document
+    .getElementById("prev-btn")
+    .addEventListener("click", () => navigateQuestions(-1));
+  document
+    .getElementById("next-btn")
+    .addEventListener("click", () => navigateQuestions(1));
+  document
+    .getElementById("clear-btn")
+    .addEventListener("click", clearSelection);
+  document
+    .getElementById("final-submit-btn")
+    .addEventListener("click", () => submitAll(false));
 }
 
 function renderQuestion() {
@@ -962,7 +1049,9 @@ function renderQuestion() {
   const div = document.createElement("div");
   div.className = "question";
   const text = question.text ? question.text.replace(/\n/g, "<br>") : "";
-  div.innerHTML = `<p class="mb-3 lead"><strong>Q${currentQuestionIndex + 1}. ${text}</strong></p>`;
+  div.innerHTML = `<p class="mb-3 lead"><strong>Q${
+    currentQuestionIndex + 1
+  }. ${text}</strong></p>`;
 
   question.options.forEach((opt, idx) => {
     const label = document.createElement("label");
@@ -970,15 +1059,19 @@ function renderQuestion() {
     const uAns = userAnswers[currentQuestionIndex];
     const isSelected = uAns && uAns.answer === idx;
 
-    let inputHTML = `<input type="radio" name="q${currentQuestionIndex}" value="${idx}" ${isSelected ? "checked" : ""} ${quizSubmitted ? "disabled" : ""}>`;
+    let inputHTML = `<input type="radio" name="q${currentQuestionIndex}" value="${idx}" ${
+      isSelected ? "checked" : ""
+    } ${quizSubmitted ? "disabled" : ""}>`;
     label.innerHTML = `${inputHTML} <span>${opt}</span>`;
 
     if (quizSubmitted) {
       if (idx === correctIndex) label.classList.add("correct-answer-label");
-      if (isSelected && idx !== correctIndex) label.classList.add("incorrect-answer-label");
+      if (isSelected && idx !== correctIndex)
+        label.classList.add("incorrect-answer-label");
     } else {
       label.querySelector("input").addEventListener("change", () => {
-        if (!userAnswers[currentQuestionIndex]) userAnswers[currentQuestionIndex] = {};
+        if (!userAnswers[currentQuestionIndex])
+          userAnswers[currentQuestionIndex] = {};
         userAnswers[currentQuestionIndex].answer = idx;
         updateNavHighlights();
         saveQuizProgress();
@@ -994,25 +1087,36 @@ function renderQuestion() {
   suretyDiv.innerHTML = `
     <div class="surety-label">Confidence Level</div>
     <div class="surety-matrix shadow-sm">
-        <div class="surety-opt surety-100 ${currentSurety === 100 ? 'selected' : ''}" data-val="100">100%</div>
-        <div class="surety-opt surety-75 ${currentSurety === 75 ? 'selected' : ''}" data-val="75">75%</div>
-        <div class="surety-opt surety-50 ${currentSurety === 50 ? 'selected' : ''}" data-val="50">50%</div>
-        <div class="surety-opt surety-0 ${currentSurety === 0 ? 'selected' : ''}" data-val="0">0%</div>
+        <div class="surety-opt surety-100 ${
+          currentSurety === 100 ? "selected" : ""
+        }" data-val="100">100%</div>
+        <div class="surety-opt surety-75 ${
+          currentSurety === 75 ? "selected" : ""
+        }" data-val="75">75%</div>
+        <div class="surety-opt surety-50 ${
+          currentSurety === 50 ? "selected" : ""
+        }" data-val="50">50%</div>
+        <div class="surety-opt surety-0 ${
+          currentSurety === 0 ? "selected" : ""
+        }" data-val="0">0%</div>
     </div>
   `;
 
   if (!quizSubmitted) {
-    suretyDiv.querySelectorAll(".surety-opt").forEach(opt => {
-        opt.onclick = function() {
-            const val = parseInt(this.getAttribute("data-val"));
-            if (!userAnswers[currentQuestionIndex]) userAnswers[currentQuestionIndex] = { answer: -1 };
-            userAnswers[currentQuestionIndex].surety = val;
-            
-            // Toggle 'selected' class only
-            suretyDiv.querySelectorAll(".surety-opt").forEach(o => o.classList.remove("selected"));
-            this.classList.add("selected");
-            saveQuizProgress();
-        };
+    suretyDiv.querySelectorAll(".surety-opt").forEach((opt) => {
+      opt.onclick = function () {
+        const val = parseInt(this.getAttribute("data-val"));
+        if (!userAnswers[currentQuestionIndex])
+          userAnswers[currentQuestionIndex] = { answer: -1 };
+        userAnswers[currentQuestionIndex].surety = val;
+
+        // Toggle 'selected' class only
+        suretyDiv
+          .querySelectorAll(".surety-opt")
+          .forEach((o) => o.classList.remove("selected"));
+        this.classList.add("selected");
+        saveQuizProgress();
+      };
     });
   }
   div.appendChild(suretyDiv);
@@ -1090,7 +1194,7 @@ function updateNavHighlights() {
   document.querySelectorAll(".nav-item").forEach((item, i) => {
     item.className = "nav-item shadow-sm";
     if (i === currentQuestionIndex) item.classList.add("active");
-    
+
     const uAns = userAnswers[i];
     const isMarked = markedForReview[i]; // NEW
 
@@ -1300,10 +1404,9 @@ function submitAll(forceSubmit = false) {
   }
 }
 
-
 function toggleMarkForReview() {
   if (quizSubmitted) return;
-  
+
   if (markedForReview[currentQuestionIndex]) {
     delete markedForReview[currentQuestionIndex];
     toastr.info("Removed from Review");
@@ -1311,8 +1414,66 @@ function toggleMarkForReview() {
     markedForReview[currentQuestionIndex] = true;
     toastr.success("Marked for Review");
   }
-  
+
   renderQuestion(); // Refresh the UI to update button text
   updateNavHighlights(); // Refresh palette colors
   saveQuizProgress(); // Save state
+}
+
+/**
+ * Helper to render the Confidence vs Accuracy Chart
+ */
+/**
+ * Helper to render the horizontal Confidence vs Accuracy Chart
+ */
+function renderConfidenceChart(labels, values) {
+  const ctx = document.getElementById("confidenceChart");
+  if (!ctx) return;
+  if (window.confidenceChartInstance) window.confidenceChartInstance.destroy();
+
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  const textColor = isDark ? "#e5e7eb" : "#666";
+
+  window.confidenceChartInstance = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: "Accuracy %",
+        data: values,
+        // Colors corresponding to: 100%, 75%, 50%, 0%
+        backgroundColor: ["#10b981", "#6366f1", "#f59e0b", "#ef4444"],
+        // backgroundColor: ["#312e81", "#4f46e5", "#818cf8", "#c7d2fe"],
+        borderRadius: 5,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      indexAxis: 'y', // Switch to horizontal bar graph
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+            callbacks: {
+                label: (context) => ` Accuracy: ${context.raw}%`
+            }
+        }
+      },
+      scales: {
+        x: { 
+          beginAtZero: true, 
+          max: 100, 
+          ticks: { 
+            color: textColor,
+            callback: (val) => val + "%" 
+          } 
+        },
+        y: { 
+          grid: { display: false }, 
+          ticks: { color: textColor } 
+        }
+      }
+    }
+  });
 }
