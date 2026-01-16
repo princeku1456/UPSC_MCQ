@@ -702,3 +702,70 @@ body {
     font-size: 0.85rem;
     white-space: nowrap;
 }
+/* ============================
+   SURETY MATRIX STYLES
+   ============================ */
+.surety-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.surety-matrix {
+    display: flex;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--bg-card);
+}
+
+.surety-opt {
+    flex: 1;
+    padding: 10px 5px;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-right: 1px solid var(--border-color);
+}
+
+.surety-opt:last-child { border-right: none; }
+
+/* Base Colors */
+
+.surety-100 { background-color: #c6e7c1; color: #166534; }
+
+.surety-75  { background-color: #fce4dc; color: #ff4000; }
+
+.surety-50  { background-color: #fff2c2; color: #fa9624; }
+
+.surety-0   { background-color: #d1e5f7; color: #1e40af; }
+
+
+
+/* Selected States (Dark Versions) */
+
+.surety-100.selected { background-color: #166534 !important; color: #ffffff !important; }
+
+.surety-75.selected  { background-color: #ff4000 !important; color: #ffffff !important; }
+
+.surety-50.selected  { background-color: #fa9624 !important; color: #ffffff !important; }
+
+.surety-0.selected   { background-color: #1e40af !important; color: #ffffff !important; }
+
+
+.surety-opt.selected {
+    transform: scale(1.02);
+    z-index: 2;
+}
+
+.surety-badge {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+}

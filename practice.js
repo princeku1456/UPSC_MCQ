@@ -284,62 +284,77 @@ function setupPracticeLayout() {
 function renderPracticeQuestion() {
   const container = document.getElementById("practice-question-container");
   const q = practiceQuizData[practiceCurrentIndex];
-  const cIdx =
-    typeof q.correctAnswer === "number"
-      ? q.correctAnswer
-      : q.options.indexOf(q.correctAnswer);
+  const cIdx = typeof q.correctAnswer === "number" ? q.correctAnswer : q.options.indexOf(q.correctAnswer);
 
-  // Update Mark/Unmark button state for Practice
   const markBtn = document.getElementById("practice-mark-review-btn");
   if (markBtn) {
     if (practiceMarkedForReview[practiceCurrentIndex]) {
       markBtn.innerHTML = `<i class="bi bi-bookmark-fill"></i> Unmark Review`;
-      markBtn.style.backgroundColor = "#7e22ce"; // Purple
+      markBtn.style.backgroundColor = "#7e22ce";
       markBtn.style.color = "#ffffff";
-      markBtn.style.borderColor = "#6b21a8";
     } else {
       markBtn.innerHTML = `<i class="bi bi-bookmark"></i> Mark for Review`;
       markBtn.style.backgroundColor = "transparent";
       markBtn.style.color = "#7e22ce";
-      markBtn.style.borderColor = "#7e22ce";
     }
     markBtn.style.display = practiceSubmitted ? "none" : "block";
   }
 
+  const currentSurety = practiceUserAnswers[practiceCurrentIndex]?.surety;
+
   container.innerHTML = `<div class="question">
-        <p class="mb-3 lead"><strong>Q${
-          practiceCurrentIndex + 1
-        }.</strong> ${q.text.replace(/\n/g, "<br>")}</p>
+        <p class="mb-3 lead"><strong>Q${practiceCurrentIndex + 1}.</strong> ${q.text.replace(/\n/g, "<br>")}</p>
         <div id="practice-options"></div>
+        
+        <div class="mt-4 mb-2 animate-fade-in">
+            <div class="surety-label">Confidence Level</div>
+            <div class="surety-matrix shadow-sm">
+                <div class="surety-opt surety-100 ${currentSurety === 100 ? 'selected' : ''}" data-val="100">100%</div>
+                <div class="surety-opt surety-75 ${currentSurety === 75 ? 'selected' : ''}" data-val="75">75%</div>
+                <div class="surety-opt surety-50 ${currentSurety === 50 ? 'selected' : ''}" data-val="50">50%</div>
+                <div class="surety-opt surety-0 ${currentSurety === 0 ? 'selected' : ''}" data-val="0">0%</div>
+            </div>
+        </div>
     </div>`;
 
   const optionsDiv = container.querySelector("#practice-options");
   q.options.forEach((opt, idx) => {
     const label = document.createElement("label");
     label.className = "option shadow-sm";
-    const isSelected = practiceUserAnswers[practiceCurrentIndex] === idx;
+    const uAns = practiceUserAnswers[practiceCurrentIndex]?.answer;
+    const isSelected = uAns === idx;
 
     if (practiceSubmitted) {
       if (idx === cIdx) label.classList.add("correct-answer-label");
-      if (isSelected && idx !== cIdx)
-        label.classList.add("incorrect-answer-label");
+      if (isSelected && idx !== cIdx) label.classList.add("incorrect-answer-label");
     }
 
-    label.innerHTML = `
-            <input type="radio" name="pQ" value="${idx}" ${
-      isSelected ? "checked" : ""
-    } ${practiceSubmitted ? "disabled" : ""}>
-            <span>${opt}</span>
-        `;
+    label.innerHTML = `<input type="radio" name="pQ" value="${idx}" ${isSelected ? "checked" : ""} ${practiceSubmitted ? "disabled" : ""}><span>${opt}</span>`;
 
     if (!practiceSubmitted) {
       label.querySelector("input").onchange = () => {
-        practiceUserAnswers[practiceCurrentIndex] = idx;
+        if (!practiceUserAnswers[practiceCurrentIndex]) practiceUserAnswers[practiceCurrentIndex] = {};
+        practiceUserAnswers[practiceCurrentIndex].answer = idx;
         updatePracticeNavHighlights();
       };
     }
     optionsDiv.appendChild(label);
   });
+
+  const suretyOpts = container.querySelectorAll(".surety-opt");
+  if (!practiceSubmitted) {
+    suretyOpts.forEach(opt => {
+        opt.onclick = function() {
+            const val = parseInt(this.getAttribute("data-val"));
+            if (!practiceUserAnswers[practiceCurrentIndex]) practiceUserAnswers[practiceCurrentIndex] = { answer: -1 };
+            practiceUserAnswers[practiceCurrentIndex].surety = val;
+            
+            // Only toggle selected class
+            suretyOpts.forEach(o => o.classList.remove("selected"));
+            this.classList.add("selected");
+        };
+    });
+  }
 
   if (practiceSubmitted && q.explanation) {
     const exp = document.createElement("div");
@@ -348,7 +363,6 @@ function renderPracticeQuestion() {
     container.appendChild(exp);
   }
 }
-
 function updatePracticeNavHighlights() {
   document
     .querySelectorAll("#practice-nav-container .nav-item")

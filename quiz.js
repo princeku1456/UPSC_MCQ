@@ -723,6 +723,7 @@ function renderReviewQuestions(filterType) {
   currentQuizData.forEach((question, index) => {
     const correctIndex = getCorrectIndex(question);
     const uAns = userAnswers[index];
+    const userSurety = uAns?.surety !== undefined ? uAns.surety : "N/A";
 
     let status = "unattempted";
     if (uAns) {
@@ -734,6 +735,10 @@ function renderReviewQuestions(filterType) {
 
     let badgeHtml = "";
     let borderClass = "";
+    let suretyClass = "surety-0"; 
+    if(userSurety === 100) suretyClass = "surety-100";
+    else if(userSurety === 75) suretyClass = "surety-75";
+    else if(userSurety === 50) suretyClass = "surety-50";
 
     if (status === "correct") {
       badgeHtml = '<span class="badge bg-success mb-2">Correct</span>';
@@ -746,61 +751,47 @@ function renderReviewQuestions(filterType) {
       borderClass = "border-secondary";
     }
 
-    // Inside renderReviewQuestions loop...
-// Inside renderReviewQuestions function in quiz.js
-let statsHtml = "";
-if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
-    const total = currentReviewStats.totalAttempts;
-    const correctCount = (currentReviewStats.correctCounts && currentReviewStats.correctCounts[index]) || 0;
-    const attemptedCount = (currentReviewStats.attemptedCounts && currentReviewStats.attemptedCounts[index]) || 0;
+    let statsHtml = "";
+    if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
+        const total = currentReviewStats.totalAttempts;
+        const correctCount = (currentReviewStats.correctCounts && currentReviewStats.correctCounts[index]) || 0;
+        const attemptedCount = (currentReviewStats.attemptedCounts && currentReviewStats.attemptedCounts[index]) || 0;
+        const pCorrect = Math.round((correctCount / total) * 100);
+        const pIncorrect = Math.round(((attemptedCount - correctCount) / total) * 100);
+        const pUnattempted = 100 - pCorrect - pIncorrect;
 
-    const pCorrect = Math.round((correctCount / total) * 100);
-    const pIncorrect = Math.round(((attemptedCount - correctCount) / total) * 100);
-    const pUnattempted = 100 - pCorrect - pIncorrect;
-
-    statsHtml = `
-        <div class="mt-2 mb-4 p-3 bg-light bg-opacity-75 rounded-3 border">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <span class="small fw-bold text-uppercase text-secondary" style="letter-spacing: 0.5px;">👥 Community Stats</span>
-                <span class="fw-bold" style="color: #4338ca;">${pCorrect}% Correct</span>
-            </div>
-            <div class="progress shadow-sm" style="height: 40px; background-color: #e2e8f0; border-radius: 8px; overflow: hidden;">
-                <div class="progress-bar stats-bar-correct d-flex align-items-center justify-content-center" 
-                     role="progressbar" style="width: ${pCorrect}%">
-                     <span class="progress-bar-text">${pCorrect > 12 ? pCorrect + '%' : ''}</span>
+        statsHtml = `
+            <div class="mt-2 mb-4 p-3 bg-light bg-opacity-75 rounded-3 border">
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="small fw-bold text-uppercase text-secondary" style="letter-spacing: 0.5px;">👥 Community Stats</span>
+                    <span class="fw-bold" style="color: #4338ca;">${pCorrect}% Correct</span>
                 </div>
-                <div class="progress-bar stats-bar-incorrect d-flex align-items-center justify-content-center" 
-                     role="progressbar" style="width: ${pIncorrect}%">
-                     <span class="progress-bar-text">${pIncorrect > 12 ? pIncorrect + '%' : ''}</span>
-                </div>
-                <div class="progress-bar stats-bar-left d-flex align-items-center justify-content-center" 
-                     role="progressbar" style="width: ${pUnattempted}%">
-                     <span class="progress-bar-text">${pUnattempted > 12 ? pUnattempted + '%' : ''}</span>
+                <div class="progress shadow-sm" style="height: 40px; background-color: #e2e8f0; border-radius: 8px; overflow: hidden;">
+                    <div class="progress-bar stats-bar-correct d-flex align-items-center justify-content-center" role="progressbar" style="width: ${pCorrect}%">
+                         <span class="progress-bar-text">${pCorrect > 12 ? pCorrect + '%' : ''}</span>
+                    </div>
+                    <div class="progress-bar stats-bar-incorrect d-flex align-items-center justify-content-center" role="progressbar" style="width: ${pIncorrect}%">
+                         <span class="progress-bar-text">${pIncorrect > 12 ? pIncorrect + '%' : ''}</span>
+                    </div>
+                    <div class="progress-bar stats-bar-left d-flex align-items-center justify-content-center" role="progressbar" style="width: ${pUnattempted}%">
+                         <span class="progress-bar-text">${pUnattempted > 12 ? pUnattempted + '%' : ''}</span>
+                    </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-between mt-2 text-muted" style="font-size: 0.7rem;">
-                <span>${correctCount} students correct</span>
-                <span>${total} total attempts</span>
-            </div>
-        </div>
-    `;
-}
+        `;
+    }
 
     let optionsHtml = "";
     question.options.forEach((opt, optIdx) => {
       let optionClass = "option p-3 mb-2 border rounded";
       let icon = "";
-
       if (optIdx === correctIndex) {
-        optionClass =
-          "option p-3 mb-2 border rounded bg-success-subtle border-success fw-bold text-success";
+        optionClass = "option p-3 mb-2 border rounded bg-success-subtle border-success fw-bold text-success";
         icon = "✅";
       } else if (uAns && uAns.answer === optIdx && status === "incorrect") {
-        optionClass =
-          "option p-3 mb-2 border rounded bg-danger-subtle border-danger text-danger";
+        optionClass = "option p-3 mb-2 border rounded bg-danger-subtle border-danger text-danger";
         icon = "❌";
       }
-
       optionsHtml += `<div class="${optionClass}">${icon} <span class="ms-1">${opt}</span></div>`;
     });
 
@@ -809,21 +800,18 @@ if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
     card.innerHTML = `
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h6 class="text-muted fw-bold m-0">Question ${
-                      index + 1
-                    }</h6>
+                    <div>
+                        <h6 class="text-muted fw-bold m-0 d-inline me-2">Question ${index + 1}</h6>
+                        <span class="surety-badge ${suretyClass}">Confidence: ${userSurety}%</span>
+                    </div>
                     ${badgeHtml}
                 </div>
                 ${statsHtml} 
-                <p class="fs-5 fw-medium mb-3">${
-                  question.text ? question.text.replace(/\n/g, "<br>") : ""
-                }</p>
+                <p class="fs-5 fw-medium mb-3">${question.text ? question.text.replace(/\n/g, "<br>") : ""}</p>
                 <div class="mb-3">${optionsHtml}</div>
                 <div class="explanation mt-3 shadow-sm">
                     <strong>💡 Explanation:</strong>
-                    <div class="mt-1 small">${
-                      question.explanation || "No explanation provided."
-                    }</div>
+                    <div class="mt-1 small">${question.explanation || "No explanation provided."}</div>
                 </div>
             </div>
         `;
@@ -960,7 +948,6 @@ function renderQuestion() {
   const question = currentQuizData[currentQuestionIndex];
   const correctIndex = getCorrectIndex(question);
 
-  // Update Mark/Unmark button state
   const markBtn = document.getElementById("mark-review-btn");
   if (markBtn) {
     if (markedForReview[currentQuestionIndex]) {
@@ -991,13 +978,44 @@ function renderQuestion() {
       if (isSelected && idx !== correctIndex) label.classList.add("incorrect-answer-label");
     } else {
       label.querySelector("input").addEventListener("change", () => {
-        userAnswers[currentQuestionIndex] = { answer: idx };
+        if (!userAnswers[currentQuestionIndex]) userAnswers[currentQuestionIndex] = {};
+        userAnswers[currentQuestionIndex].answer = idx;
         updateNavHighlights();
         saveQuizProgress();
       });
     }
     div.appendChild(label);
   });
+
+  // --- SURETY MATRIX IMPLEMENTATION ---
+  const currentSurety = userAnswers[currentQuestionIndex]?.surety;
+  const suretyDiv = document.createElement("div");
+  suretyDiv.className = "mt-4 mb-3 animate-fade-in";
+  suretyDiv.innerHTML = `
+    <div class="surety-label">Confidence Level</div>
+    <div class="surety-matrix shadow-sm">
+        <div class="surety-opt surety-100 ${currentSurety === 100 ? 'selected' : ''}" data-val="100">100%</div>
+        <div class="surety-opt surety-75 ${currentSurety === 75 ? 'selected' : ''}" data-val="75">75%</div>
+        <div class="surety-opt surety-50 ${currentSurety === 50 ? 'selected' : ''}" data-val="50">50%</div>
+        <div class="surety-opt surety-0 ${currentSurety === 0 ? 'selected' : ''}" data-val="0">0%</div>
+    </div>
+  `;
+
+  if (!quizSubmitted) {
+    suretyDiv.querySelectorAll(".surety-opt").forEach(opt => {
+        opt.onclick = function() {
+            const val = parseInt(this.getAttribute("data-val"));
+            if (!userAnswers[currentQuestionIndex]) userAnswers[currentQuestionIndex] = { answer: -1 };
+            userAnswers[currentQuestionIndex].surety = val;
+            
+            // Toggle 'selected' class only
+            suretyDiv.querySelectorAll(".surety-opt").forEach(o => o.classList.remove("selected"));
+            this.classList.add("selected");
+            saveQuizProgress();
+        };
+    });
+  }
+  div.appendChild(suretyDiv);
 
   if (quizSubmitted && question.explanation) {
     const exp = document.createElement("div");
@@ -1014,7 +1032,6 @@ function renderQuestion() {
     if (feedback) feedback.textContent = "";
   }
 }
-
 function showFeedbackText(correctIndex) {
   const resultDiv = document.getElementById("question-feedback");
   const uAns = userAnswers[currentQuestionIndex];
