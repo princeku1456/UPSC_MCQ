@@ -45,23 +45,35 @@ async function loadUserDashboard(forceRefresh = false) {
 function renderDashboardUI() {
   const results = userHistory;
 
-  // 1. Calculate Standard Stats
+  // 1. Standard Stats Calculation
   const totalTests = results.length;
   const avgScore = totalTests
     ? (results.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalTests).toFixed(1)
     : 0;
 
-  // 2. Calculate Precision & Negative Drain (Aggregate)
-  let totalCorrect = 0;
-  let totalIncorrect = 0;
-  let totalAttempted = 0;
+  let totalCorrect = 0, totalIncorrect = 0, totalAttempted = 0;
   
+  // Initialize Global Confidence Trackers
+  const confStats = {
+    100: { total: 0, correct: 0 },
+    75: { total: 0, correct: 0 },
+    50: { total: 0, correct: 0 },
+    0: { total: 0, correct: 0 }
+  };
+  
+  // Aggregate data in a single loop to minimize processing
   results.forEach(res => {
     if (res.userAnswers) {
       Object.values(res.userAnswers).forEach(ans => {
         totalAttempted++;
         if (ans.isCorrect) totalCorrect++;
         else totalIncorrect++;
+
+        // Aggregate Confidence Data
+        if (ans.surety !== undefined) {
+          confStats[ans.surety].total++;
+          if (ans.isCorrect) confStats[ans.surety].correct++;
+        }
       });
     }
   });
@@ -71,7 +83,7 @@ function renderDashboardUI() {
   const positiveGain = totalCorrect * 2;
   const negativeDrain = positiveGain ? ((negativeLoss / positiveGain) * 100).toFixed(1) : 0;
 
-  // 3. Update UI Elements
+  // 2. Update UI Elements
   document.getElementById("stat-total-tests").textContent = totalTests;
   document.getElementById("stat-avg-score").textContent = avgScore + "%";
   
@@ -80,11 +92,81 @@ function renderDashboardUI() {
   if (document.getElementById("stat-negative-drain")) 
     document.getElementById("stat-negative-drain").textContent = negativeDrain + "%";
 
-  // 4. Calculate Concept Gap (Async using Global Data)
-  updateConceptGapStat(results);
+  // 3. Prepare Confidence Data for Chart
+  const confValues = [
+    confStats[100].total > 0 ? (confStats[100].correct / confStats[100].total * 100).toFixed(1) : 0,
+    confStats[75].total > 0 ? (confStats[75].correct / confStats[75].total * 100).toFixed(1) : 0,
+    confStats[50].total > 0 ? (confStats[50].correct / confStats[50].total * 100).toFixed(1) : 0,
+    confStats[0].total > 0 ? (confStats[0].correct / confStats[0].total * 100).toFixed(1) : 0
+  ];
 
-  // 5. Render the Chart
+  // 4. Render All Charts
+  updateConceptGapStat(results);
   renderPerformanceChart(results);
+  renderGlobalConfidenceChart(confValues); // New Chart Call
+}
+
+/**
+ * Renders the Horizontal Global Confidence Chart
+ */
+function renderGlobalConfidenceChart(values) {
+  const ctx = document.getElementById("globalConfidenceChart");
+  if (!ctx) return;
+
+  if (globalConfidenceChartInstance) {
+    globalConfidenceChartInstance.destroy();
+  }
+
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  const textColor = isDark ? "#9ca3af" : "#6b7280";
+
+  globalConfidenceChartInstance = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["100% Confidence", "75% Confidence", "50% Confidence", "0% Confidence"],
+      datasets: [
+        {
+          label: "Aggregate Accuracy",
+          data: values,
+          backgroundColor: ["#10b981", "#6366f1", "#f59e0b", "#ef4444"], // Professional Green, Cyan, Amber, Red
+          borderRadius: 6,
+          borderWidth: 0,
+          barThickness: 35
+        },
+      ],
+    },
+    options: {
+      indexAxis: 'y', // Horizontal Bar Graph
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (context) => ` Accuracy: ${context.raw}%`
+          }
+        }
+      },
+      scales: {
+        x: {
+          beginAtZero: true,
+          max: 100,
+          grid: { display: false },
+          ticks: {
+            color: textColor,
+            callback: (val) => val + "%"
+          },
+        },
+        y: {
+          grid: { display: false },
+          ticks: {
+            color: textColor,
+            font: { weight: '600' }
+          },
+        },
+      },
+    },
+  });
 }
 
 /**
