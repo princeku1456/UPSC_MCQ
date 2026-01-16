@@ -1442,8 +1442,9 @@ function renderConfidenceChart(labels, values) {
         label: "Accuracy %",
         data: values,
         // Colors corresponding to: 100%, 75%, 50%, 0%
-        backgroundColor: ["#10b981", "#6366f1", "#f59e0b", "#ef4444"],
+        backgroundColor: ["#c70000", "#f31616", "#f14848", "#ff7979"],
         // backgroundColor: ["#312e81", "#4f46e5", "#818cf8", "#c7d2fe"],
+        // backgroundColor: ["#064e3b", "#059669", "#34d399", "#a7f3d0"],
         borderRadius: 5,
         borderWidth: 1
       }]
