@@ -103,13 +103,14 @@ function renderDashboardUI() {
   // 4. Render All Charts
   updateConceptGapStat(results);
   renderPerformanceChart(results);
-  renderGlobalConfidenceChart(confValues); // New Chart Call
+  renderGlobalConfidenceChart(confValues, confStats); // New Chart Call
 }
 
 /**
  * Renders the Horizontal Global Confidence Chart
  */
-function renderGlobalConfidenceChart(values) {
+// In dashboard.js
+function renderGlobalConfidenceChart(values, stats) { // Added stats
   const ctx = document.getElementById("globalConfidenceChart");
   if (!ctx) return;
 
@@ -128,7 +129,7 @@ function renderGlobalConfidenceChart(values) {
         {
           label: "Aggregate Accuracy",
           data: values,
-          backgroundColor: ["#10b981", "#6366f1", "#f59e0b", "#ef4444"], // Professional Green, Cyan, Amber, Red
+          backgroundColor: ["#10b981", "#6366f1", "#f59e0b", "#ef4444"],
           borderRadius: 6,
           borderWidth: 0,
           barThickness: 35
@@ -136,14 +137,24 @@ function renderGlobalConfidenceChart(values) {
       ],
     },
     options: {
-      indexAxis: 'y', // Horizontal Bar Graph
+      indexAxis: 'y',
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
         tooltip: {
           callbacks: {
-            label: (context) => ` Accuracy: ${context.raw}%`
+            // Updated tooltip callback
+            label: (context) => {
+                const idx = context.dataIndex;
+                const confKey = [100, 75, 50, 0][idx];
+                const s = stats[confKey];
+                return [
+                    ` Accuracy: ${context.raw}%`,
+                    ` Total Attempted: ${s.total}`,
+                    ` Total Correct: ${s.correct}`
+                ];
+            }
           }
         }
       },

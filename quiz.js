@@ -760,7 +760,7 @@ async function renderReviewMode(resultData) {
       },
     },
   });
-  renderConfidenceChart(confChartLabels, confChartValues);
+  renderConfidenceChart(confChartLabels, confChartValues, confStats);
 }
 
 function filterReview(filterType, btnElement) {
@@ -846,6 +846,9 @@ function renderReviewQuestions(filterType) {
                            pUnattempted > 12 ? pUnattempted + "%" : ""
                          }</span>
                     </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mb-2 mt-2">
+                    <span class="fw-bold" style="color: #4338ca;">Total Question Attempts: ${attemptedCount}</span>
                 </div>
             </div>
         `;
@@ -1426,7 +1429,8 @@ function toggleMarkForReview() {
 /**
  * Helper to render the horizontal Confidence vs Accuracy Chart
  */
-function renderConfidenceChart(labels, values) {
+// In quiz.js
+function renderConfidenceChart(labels, values, stats) { // Added stats
   const ctx = document.getElementById("confidenceChart");
   if (!ctx) return;
   if (window.confidenceChartInstance) window.confidenceChartInstance.destroy();
@@ -1441,22 +1445,30 @@ function renderConfidenceChart(labels, values) {
       datasets: [{
         label: "Accuracy %",
         data: values,
-        // Colors corresponding to: 100%, 75%, 50%, 0%
         backgroundColor: ["#10b981", "#6366f1", "#f59e0b", "#ef4444"],
-        // backgroundColor: ["#312e81", "#4f46e5", "#818cf8", "#c7d2fe"],
         borderRadius: 5,
         borderWidth: 1
       }]
     },
     options: {
-      indexAxis: 'y', // Switch to horizontal bar graph
+      indexAxis: 'y',
       responsive: true,
       maintainAspectRatio: false,
       plugins: {
         legend: { display: false },
         tooltip: {
             callbacks: {
-                label: (context) => ` Accuracy: ${context.raw}%`
+                // Updated tooltip callback to show attempted and correct counts
+                label: (context) => {
+                    const idx = context.dataIndex;
+                    const confKey = [100, 75, 50, 0][idx];
+                    const s = stats[confKey];
+                    return [
+                        ` Accuracy: ${context.raw}%`,
+                        ` Total Attempted: ${s.total}`,
+                        ` Total Correct: ${s.correct}`
+                    ];
+                }
             }
         }
       },
