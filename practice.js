@@ -371,7 +371,7 @@ function updatePracticeNavHighlights() {
       if (i === practiceCurrentIndex) item.classList.add("active");
 
       const uAns = practiceUserAnswers[i];
-      const isMarked = practiceMarkedForReview[i]; // NEW
+      const isMarked = practiceMarkedForReview[i];
 
       if (practiceSubmitted) {
         const q = practiceQuizData[i];
@@ -379,15 +379,25 @@ function updatePracticeNavHighlights() {
           typeof q.correctAnswer === "number"
             ? q.correctAnswer
             : q.options.indexOf(q.correctAnswer);
-        if (uAns === undefined) item.classList.add("unattempted");
-        else if (uAns === cIdx) item.classList.add("correct-nav");
-        else item.classList.add("incorrect-nav");
+        
+        // FIX: Compare uAns.answer to cIdx and handle undefined/unselected cases
+        if (!uAns || uAns.answer === undefined || uAns.answer === -1) {
+          item.classList.add("unattempted");
+        } else if (uAns.answer === cIdx) {
+          item.classList.add("correct-nav");
+        } else {
+          item.classList.add("incorrect-nav");
+        }
       } else {
-        if (uAns !== undefined) item.classList.add("attempted");
-        if (isMarked) item.classList.add("marked-nav"); // NEW: Apply Purple
+        // FIX: Mark as attempted only if an option is actually selected
+        if (uAns && uAns.answer !== undefined && uAns.answer !== -1) {
+          item.classList.add("attempted");
+        }
+        if (isMarked) item.classList.add("marked-nav");
       }
     });
 }
+
 
 function navPractice(dir) {
   const next = practiceCurrentIndex + dir;
@@ -425,7 +435,6 @@ function renderPracticeNav() {
 function submitPractice(forceSubmit = false) {
   if (!forceSubmit && !confirm("Finish this practice session?")) return;
   
-  // Clear the timer interval immediately on submission
   if (quizTimerInterval) clearInterval(quizTimerInterval);
   practiceSubmitted = true;
 
@@ -441,8 +450,9 @@ function submitPractice(forceSubmit = false) {
         ? q.correctAnswer
         : q.options.indexOf(q.correctAnswer);
 
-    if (uAns !== undefined) {
-      if (uAns === cIdx) {
+    // FIX: Access .answer for scoring logic
+    if (uAns && uAns.answer !== undefined && uAns.answer !== -1) {
+      if (uAns.answer === cIdx) {
         score += 2;
         correct++;
       } else {
@@ -524,7 +534,6 @@ function submitPractice(forceSubmit = false) {
  */
 function togglePracticeMarkForReview() {
   if (practiceSubmitted) return;
-
   if (practiceMarkedForReview[practiceCurrentIndex]) {
     delete practiceMarkedForReview[practiceCurrentIndex];
     toastr.info("Removed from Review");
