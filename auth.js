@@ -78,34 +78,26 @@ function applyTheme(theme) {
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.setItem("theme", theme);
 
-  // Update button icon
   const themeToggleBtn = document.getElementById("theme-toggle");
   if (themeToggleBtn) {
     themeToggleBtn.textContent = theme === "dark" ? "☀️" : "🌙";
-    themeToggleBtn.title =
-      theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode";
   }
 
-  // Refresh charts if they exist to apply dark mode colors
+  // Refresh Dashboard Charts
   if (performanceChartInstance) {
     renderPerformanceChart(userHistory);
   }
-  if (comparisonChartInstance && currentReviewStats) {
-    // Re-render comparison chart with new theme
-    const ctx = document.getElementById("comparisonChart");
-    if (ctx) {
-      const isDark = theme === "dark";
-      const textColor = isDark ? "#e5e7eb" : "#666";
+  
+  // FIX: Added logic to refresh Global Confidence Chart
+  if (globalConfidenceChartInstance) {
+    renderDashboardUI(); // Re-runs the full UI logic to recalculate colors
+  }
 
-      if (comparisonChartInstance) {
-        comparisonChartInstance.options.scales.x.ticks.color = textColor;
-        comparisonChartInstance.options.scales.y.ticks.color = textColor;
-        comparisonChartInstance.update();
-      }
-    }
+  // Refresh Review Mode Chart
+  if (comparisonChartInstance && currentReviewStats) {
+    renderReviewMode(null); // Triggers re-render with current theme context
   }
 }
-
 /**
  * Toggles between light and dark themes
  */
