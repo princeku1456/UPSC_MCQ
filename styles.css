@@ -47,6 +47,70 @@
 [data-theme="dark"] .dropdown-item { color: var(--text-main); }
 [data-theme="dark"] .dropdown-item:hover { background-color: var(--option-hover); }
 
+
+[data-theme="dark"] .bg-white, 
+[data-theme="dark"] .card,
+[data-theme="dark"] .bg-light { 
+    background-color: var(--bg-card) !important; 
+    color: var(--text-main) !important;
+}
+
+[data-theme="dark"] .text-dark,
+[data-theme="dark"] .text-secondary:not(.badge),
+[data-theme="dark"] .card-title,
+[data-theme="dark"] .form-label { 
+    color: var(--text-main) !important; 
+}
+
+[data-theme="dark"] .text-muted { 
+    color: var(--text-muted) !important; 
+}
+
+[data-theme="dark"] .border,
+[data-theme="dark"] .border-bottom,
+[data-theme="dark"] .border-start { 
+    border-color: var(--border-color) !important; 
+}
+
+[data-theme="dark"] .table {
+    --bs-table-bg: transparent;
+    --bs-table-color: var(--text-main);
+    border-color: var(--border-color);
+}
+
+/* ============================================================
+   FIX: Component Specific Visibility
+   ============================================================ */
+
+/* Surety Matrix - Better visibility in dark mode */
+[data-theme="dark"] .surety-matrix {
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .surety-opt {
+    border-right: 1px solid var(--border-color);
+    filter: brightness(0.8); /* Tone down overly bright colors */
+}
+
+[data-theme="dark"] .surety-opt.selected {
+    filter: brightness(1.1);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+/* Question Palette */
+[data-theme="dark"] .nav-item {
+    background-color: var(--input-bg);
+    color: var(--text-muted);
+}
+
+/* Explanation Box */
+[data-theme="dark"] .explanation {
+    background-color: rgba(245, 158, 11, 0.05);
+    border-left: 4px solid var(--accent-color);
+    color: var(--text-main);
+}
+
+
 body {
     font-family: 'Poppins', sans-serif;
     background-color: var(--bg-body);
