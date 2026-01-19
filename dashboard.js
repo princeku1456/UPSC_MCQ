@@ -23,7 +23,6 @@ async function loadUserDashboard(forceRefresh = false) {
       .collection("results")
       .where("userId", "==", currentUser.uid)
       .orderBy("timestamp", "desc")
-      .limit(20)
       .get();
 
     userHistory = snapshot.docs.map((doc) => ({
