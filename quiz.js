@@ -555,6 +555,7 @@ async function renderReviewMode(resultData) {
   ];
 
   const totalQuestions = currentQuizData.length;
+  const attempted = correct + incorrect;
   const score = resultData
     ? resultData.score
     : (correct * 2 - incorrect * 0.66).toFixed(2);
@@ -620,6 +621,38 @@ async function renderReviewMode(resultData) {
                         <div class="p-3 bg-primary text-white rounded shadow-sm">
                             <h6 class="text-white-50 text-uppercase small fw-bold mb-1">Final Score</h6>
                             <h3 class="fw-bold m-0">${score} <span class="fs-6 text-white-50">/ ${totalMarks}</span></h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-2 mb-4 text-center">
+                    <div class="col-4 col-md">
+                        <div class="p-2 border rounded bg-light">
+                            <small class="text-muted d-block small fw-bold">TOTAL Qs</small>
+                            <span class="fw-bold">${totalQuestions}</span>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md">
+                        <div class="p-2 border rounded bg-light">
+                            <small class="text-muted d-block small fw-bold">ATTEMPTED</small>
+                            <span class="fw-bold text-primary">${attempted}</span>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md">
+                        <div class="p-2 border rounded bg-light">
+                            <small class="text-muted d-block small fw-bold">UNATTEMPTED</small>
+                            <span class="fw-bold text-secondary">${unattempted}</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md">
+                        <div class="p-2 border rounded bg-light border-success-subtle">
+                            <small class="text-success d-block small fw-bold">CORRECT</small>
+                            <span class="fw-bold text-success">${correct}</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md">
+                        <div class="p-2 border rounded bg-light border-danger-subtle">
+                            <small class="text-danger d-block small fw-bold">INCORRECT</small>
+                            <span class="fw-bold text-danger">${incorrect}</span>
                         </div>
                     </div>
                 </div>
