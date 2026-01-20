@@ -11,59 +11,22 @@ let practiceSubject = "";
 let practiceChapter = "";
 const practiceDataCache = {};
 
-async function fetchPracticeManifest() {
-  try {
-    const doc = await db
-      .collection("quiz_metadata")
-      .doc("practice_manifest")
-      .get();
-    if (doc.exists) {
-      window.allPracticeData = doc.data();
-    }
-  } catch (error) {
-    console.error("Error fetching practice manifest:", error);
-  }
-}
-
-
 /**
  * Starts the timer for Practice Mode
  */
 function startPracticeTimer(limit) {
-  if (quizTimerInterval) clearInterval(quizTimerInterval);
+  if (currentQuizTimer) currentQuizTimer.stop();
 
   let timeLeft = Math.floor(limit * 1.2 * 60); // 1.2 minutes per question (matching quiz logic)
-  const display = document.getElementById("timer-display");
   
-  updatePracticeTimerDisplay(display, timeLeft);
-
-  quizTimerInterval = setInterval(() => {
-    timeLeft--;
-    updatePracticeTimerDisplay(display, timeLeft);
-
-    if (timeLeft <= 0) {
-      clearInterval(quizTimerInterval);
-      toastr.warning("Time's up! Finishing practice session...");
-      submitPractice(true); // Force submit when time runs out
+  currentQuizTimer = new QuizTimer("timer-display",
+    null, // No per-tick action needed for practice mode persistence yet
+    () => {
+        toastr.warning("Time's up! Finishing practice session...");
+        submitPractice(true);
     }
-  }, 1000);
-}
-
-/**
- * Updates the timer UI
- */
-function updatePracticeTimerDisplay(element, seconds) {
-  if (!element) return;
-  const m = Math.floor(seconds / 60);
-  const s = seconds % 60;
-  element.textContent = `${m}:${s < 10 ? "0" : ""}${s}`;
-
-  // Add red pulsing effect when time is low
-  if (seconds < 180) {
-    element.classList.add("low-time");
-  } else {
-    element.classList.remove("low-time");
-  }
+  );
+  currentQuizTimer.start(timeLeft);
 }
 
 /**
@@ -86,7 +49,7 @@ function startPracticeSelection() {
  */
 async function renderPracticeUI() {
   if (typeof allPracticeData === "undefined") {
-    await fetchPracticeManifest();
+    await DataManager.fetchPracticeManifest();
   }
   const container = document.getElementById("test-content-container");
 
@@ -219,19 +182,8 @@ async function loadPracticeQuiz(subject, chapter, limit) {
 
     for (const chapId of chapterIds) {
       const docId = subject.replace(/\s+/g, "_") + "_" + chapId;
-
-      // Check session memory cache
-      if (practiceDataCache[docId]) {
-        allQuestions = allQuestions.concat(practiceDataCache[docId]);
-      } else {
-        // Fetch from Firestore (auto-uses IndexedDB cache)
-        const doc = await db.collection("practice_mcqs").doc(docId).get();
-        if (doc.exists) {
-          const data = doc.data().questions || [];
-          practiceDataCache[docId] = data;
-          allQuestions = allQuestions.concat(data);
-        }
-      }
+      const data = await DataManager.fetchPracticeQuestions(docId);
+      allQuestions = allQuestions.concat(data);
     }
 
     if (allQuestions.length === 0)
@@ -435,7 +387,7 @@ function renderPracticeNav() {
 function submitPractice(forceSubmit = false) {
   if (!forceSubmit && !confirm("Finish this practice session?")) return;
   
-  if (quizTimerInterval) clearInterval(quizTimerInterval);
+  if (currentQuizTimer) currentQuizTimer.stop();
   practiceSubmitted = true;
 
   let score = 0;
