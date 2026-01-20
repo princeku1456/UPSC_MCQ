@@ -99,29 +99,29 @@ async function renderSubjects() {
               isCompleted ? "subject-completed" : ""
             }" style="cursor: pointer;">
                 <div class="card-body text-center p-4 d-flex flex-column">
-                    <div class="display-4 mb-3">${
-                      isCompleted ? "🏆" : "📖"
+                    <div class="display-4 mb-3 text-primary">${
+                      isCompleted ? "<i class='bi bi-trophy-fill'></i>" : "<i class='bi bi-book-half'></i>"
                     }</div>
                     ${
                       isCompleted
-                        ? '<div class="badge bg-success mb-2 animate-fade-in">✨ Completed</div>'
+                        ? '<div class="badge bg-success mb-2 animate-fade-in">Completed</div>'
                         : ""
                     }
-                    <h5 class="card-title text-primary fw-bold">${subjectKey}</h5>
-                    <p class="text-muted small mb-3">${completedChaptersCount} / ${totalChapters} Chapters Done</p>
+                    <h5 class="card-title fw-bold mb-1">${subjectKey}</h5>
+                    <p class="text-muted small mb-4">${completedChaptersCount} / ${totalChapters} Chapters</p>
                     <div class="mt-auto">
-                        <div class="progress mb-2" style="height: 25px; background-color: var(--border-color); border-radius: 5px;">
+                        <div class="progress mb-2" style="height: 8px; background-color: var(--border-color); border-radius: 10px;">
                             <div class="progress-bar ${
                               isCompleted ? "bg-success" : ""
                             }" 
                                  role="progressbar" 
                                  style="width: ${progressPercent}%; ${
-      !isCompleted ? "background-color: var(--accent-color);" : ""
-    } border-radius: 5px;">
+      !isCompleted ? "background-color: var(--primary-color);" : ""
+    } border-radius: 10px;">
                             </div>
                         </div>
                         <small class="fw-bold ${
-                          isCompleted ? "text-success" : "text-secondary"
+                          isCompleted ? "text-success" : "text-muted"
                         }">${progressPercent}% Complete</small>
                     </div>
                 </div>
@@ -186,11 +186,11 @@ function renderChapters(subjectKey) {
     }
 
     col.innerHTML = `
-            <div class="card chapter-card h-100 border-0">
+            <div class="card chapter-card h-100">
                 <div class="card-body d-flex flex-column p-4">
-                    <h5 class="card-title fw-bold text-dark">${chapId}</h5>
+                    <h5 class="card-title fw-bold mb-4">${chapId}</h5>
                     <div class="mt-auto">
-                        <button class="btn btn-primary-custom w-100 action-btn">
+                        <button class="btn btn-primary-custom w-100 action-btn shadow-sm">
                             ${startBtnText}
                         </button>
                         ${reviewBtnHtml}
@@ -551,10 +551,10 @@ async function renderReviewMode(resultData) {
   const content = document.getElementById("quiz-content");
 
   content.innerHTML = `
-        <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2 border-bottom pb-3">
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
             <div>
-                <h4 class="fw-bold text-primary m-0">${currentChapterName}</h4>
-                <span class="badge bg-secondary">Performance Review</span>
+                <h4 class="fw-bold m-0">${currentChapterName}</h4>
+                <span class="badge bg-secondary mt-1">Performance Review</span>
             </div>
             <div class="btn-group shadow-sm" role="group">
                 <button class="btn btn-outline-primary active" id="btn-all" onclick="filterReview('all', this)">All</button>
@@ -564,133 +564,114 @@ async function renderReviewMode(resultData) {
             </div>
         </div>
 
-        <div class="card mb-4 border-0 shadow-sm">
-            <div class="card-body">
-                <h5 class="fw-bold card-title mb-3">📊 UPSC Prep Index</h5>
-                
-                <div class="row g-3 text-center mb-4">
-                    <div class="col-6 col-md-3">
-                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary">
-                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Accuracy</h6>
-                            <h3 class="fw-bold text-dark m-0">${accuracyRate}%</h3>
-                            <small class="text-muted">on attempted</small>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger">
-                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Negative Loss</h6>
-                            <h3 class="fw-bold text-danger m-0">-${marksLost}</h3>
-                            <small class="text-muted">marks lost</small>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning">
-                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Concept Gaps</h6>
-                            <h3 class="fw-bold text-warning m-0">${sillyMistakes}</h3>
-                             <small class="text-muted d-block">
-                                ${
-                                  missedEasyQNumbers.length > 0
-                                    ? `Easy Qs Missed -- <span class="text-danger fw-bold">"${missedEasyQNumbers.join(
-                                        ", "
-                                      )}"</span>`
-                                    : "No Easy Qs Missed"
-                                }
-                            </small>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="p-3 bg-primary text-white rounded shadow-sm">
-                            <h6 class="text-white-50 text-uppercase small fw-bold mb-1">Final Score</h6>
-                            <h3 class="fw-bold m-0">${score} <span class="fs-6 text-white-50">/ ${totalMarks}</span></h3>
-                        </div>
-                    </div>
-                </div>
-                <div class="row g-2 mb-4 text-center">
-                    <div class="col-4 col-md">
-                        <div class="p-2 border rounded bg-light">
-                            <small class="text-muted d-block small fw-bold">TOTAL Qs</small>
-                            <span class="fw-bold">${totalQuestions}</span>
-                        </div>
-                    </div>
-                    <div class="col-4 col-md">
-                        <div class="p-2 border rounded bg-light">
-                            <small class="text-muted d-block small fw-bold">ATTEMPTED</small>
-                            <span class="fw-bold text-primary">${attempted}</span>
-                        </div>
-                    </div>
-                    <div class="col-4 col-md">
-                        <div class="p-2 border rounded bg-light">
-                            <small class="text-muted d-block small fw-bold">UNATTEMPTED</small>
-                            <span class="fw-bold text-secondary">${unattempted}</span>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md">
-                        <div class="p-2 border rounded bg-light border-success-subtle">
-                            <small class="text-success d-block small fw-bold">CORRECT</small>
-                            <span class="fw-bold text-success">${correct}</span>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md">
-                        <div class="p-2 border rounded bg-light border-danger-subtle">
-                            <small class="text-danger d-block small fw-bold">INCORRECT</small>
-                            <span class="fw-bold text-danger">${incorrect}</span>
-                        </div>
-                    </div>
-                </div>
+        <div class="card mb-5 border-0 shadow-sm p-4">
+            <h5 class="fw-bold text-primary mb-4"><i class="bi bi-bar-chart-fill me-2"></i>Test Summary</h5>
 
-                <div class="row mb-4 g-3">
-                    <div class="col-md-6">
-                        <div class="alert alert-info border-0 shadow-sm h-100">
-                            <h6 class="fw-bold"><i class="fas fa-lightbulb me-2"></i>Strategy Insight</h6>
-                            <p class="small mb-0">
-                                ${
-                                  accuracyRate < 70
-                                    ? "Your accuracy is below threshold. Focus on elimination techniques."
-                                    : "Good precision. You are making calculated attempts."
-                                }
-                                ${
-                                  sillyMistakes > 2
-                                    ? `You missed <strong>${sillyMistakes} basic questions</strong> that 65% of students got right. Tighten your fundamentals.`
-                                    : "You handled the 'easy' questions with professional precision."
-                                }
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="alert alert-success border-0 shadow-sm h-100">
-                            <h6 class="fw-bold"><i class="fas fa-trophy me-2"></i>Competitive Edge</h6>
-                            <p class="small mb-0">
-                                You solved <strong>${hardSuccess} high-difficulty</strong> questions where the community struggled. This indicates depth in complex topics.
-                            </p>
-                        </div>
+            <div class="row g-4 mb-4">
+                <div class="col-md-3 col-6">
+                    <div class="stats-card">
+                        <h6 class="stats-label">Final Score</h6>
+                        <h2 class="stats-value text-primary">${score} <span class="fs-6 text-muted">/ ${totalMarks}</span></h2>
                     </div>
                 </div>
-                <div id="leaderboard-container" class="mb-4">
-                     <div class="text-center py-3">
-                        <span class="spinner-border spinner-border-sm text-primary"></span> Loading Leaderboard...
+                <div class="col-md-3 col-6">
+                    <div class="stats-card">
+                        <h6 class="stats-label">Accuracy</h6>
+                        <h2 class="stats-value text-success">${accuracyRate}%</h2>
+                        <small class="text-muted">on attempted</small>
                     </div>
                 </div>
+                <div class="col-md-3 col-6">
+                    <div class="stats-card">
+                        <h6 class="stats-label">Negative Loss</h6>
+                        <h2 class="stats-value text-danger">-${marksLost}</h2>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stats-card">
+                        <h6 class="stats-label">Concept Gaps</h6>
+                        <h2 class="stats-value text-warning">${sillyMistakes}</h2>
+                        <small class="text-muted">Easy Qs Missed</small>
+                    </div>
+                </div>
+            </div>
 
-                <div class="row align-items-center pt-3 border-top" id="global-stats-container">
-                    <div class="col-12 text-center py-3">
-                        <div class="spinner-border text-primary" role="status"></div>
-                        <p class="text-muted small mt-2">Comparing with other students...</p>
+            <div class="row g-3 mb-4">
+                 <div class="col-12">
+                    <div class="p-3 bg-light rounded-4 d-flex justify-content-around flex-wrap gap-3 text-center">
+                        <div>
+                            <span class="d-block text-muted small fw-bold">TOTAL Qs</span>
+                            <span class="fw-bold fs-5">${totalQuestions}</span>
+                        </div>
+                        <div>
+                            <span class="d-block text-primary small fw-bold">ATTEMPTED</span>
+                            <span class="fw-bold fs-5 text-primary">${attempted}</span>
+                        </div>
+                        <div>
+                            <span class="d-block text-success small fw-bold">CORRECT</span>
+                            <span class="fw-bold fs-5 text-success">${correct}</span>
+                        </div>
+                        <div>
+                            <span class="d-block text-danger small fw-bold">INCORRECT</span>
+                            <span class="fw-bold fs-5 text-danger">${incorrect}</span>
+                        </div>
+                         <div>
+                            <span class="d-block text-muted small fw-bold">UNATTEMPTED</span>
+                            <span class="fw-bold fs-5 text-muted">${unattempted}</span>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="alert alert-light border shadow-sm h-100 rounded-4">
+                        <h6 class="fw-bold text-primary"><i class="bi bi-lightbulb-fill me-2"></i>Insight</h6>
+                        <p class="small mb-0 text-muted">
+                            ${
+                              accuracyRate < 70
+                                ? "Accuracy is low. Try to eliminate options before guessing."
+                                : "Great precision! You are making calculated choices."
+                            }
+                            ${
+                              sillyMistakes > 2
+                                ? `Watch out! You missed <strong>${sillyMistakes} easy questions</strong>.`
+                                : "You handled the fundamentals well."
+                            }
+                        </p>
                     </div>
                 </div>
-                <div class="mb-5 mt-5 p-3 rounded border bg-white">
-    <h6 class="fw-bold text-secondary mb-3"><i class="bi bi-graph-up-arrow me-2"></i>Confidence vs Accuracy Analysis</h6>
-    <div style="height: 250px; width: 100%;">
-        <canvas id="confidenceChart"></canvas>
-    </div>
-    <p class="small text-muted mt-2 text-center">Correct attempts as a % of each confidence level.</p>
-</div> 
+                <div class="col-md-6">
+                    <div class="alert alert-light border shadow-sm h-100 rounded-4">
+                        <h6 class="fw-bold text-success"><i class="bi bi-trophy-fill me-2"></i>Edge</h6>
+                        <p class="small mb-0 text-muted">
+                            You cracked <strong>${hardSuccess} tough questions</strong> that most students missed.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+             <div class="mt-5 p-4 rounded-4 border bg-white">
+                <h6 class="fw-bold text-muted mb-3">Confidence vs Accuracy</h6>
+                <div style="height: 250px; width: 100%;">
+                    <canvas id="confidenceChart"></canvas>
+                </div>
+            </div>
+
+            <div id="leaderboard-container" class="mt-5"></div>
+
+             <div class="row align-items-center pt-4 border-top mt-4" id="global-stats-container">
+                <div class="col-12 text-center">
+                    <div class="spinner-border text-primary spinner-border-sm" role="status"></div>
+                </div>
             </div>
         </div>
         
+        <h5 class="fw-bold text-primary mb-3 mt-5">Detailed Analysis</h5>
         <div id="review-container"></div>
         
-        <div class="text-center mt-5">
-            <button class="btn btn-primary-custom px-5 shadow py-2" onclick="exitQuiz()">← Back</button>
+        <div class="text-center mt-5 mb-5">
+            <button class="btn btn-primary-custom px-5 py-2 shadow" onclick="exitQuiz()">← Back to Dashboard</button>
         </div>
     `;
 
@@ -885,26 +866,33 @@ function renderReviewQuestions(filterType) {
     });
 
     const card = document.createElement("div");
-    card.className = `card mb-4 shadow-sm border-0 border-start border-5 ${borderClass}`;
+    // New Style: Clean card with a subtle left border color indicating status
+    card.className = `card mb-4 shadow-sm border-0 border-start border-4 ${borderClass}`;
+    // Kept border-start but reduced thickness or reliance on it.
+    // Actually, let's remove the heavy border and use the badge to indicate status,
+    // or keep a very thin left border. Let's stick to the plan: simplified.
+    card.className = `card mb-4 shadow-sm`;
+
+    // To distinguish correct/incorrect visually without the heavy border,
+    // we can use a subtle background on the header or just rely on the badge.
+
     card.innerHTML = `
             <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex justify-content-between align-items-center mb-4">
                     <div>
-                        <h6 class="text-muted fw-bold m-0 d-inline me-2">Question ${
-                          index + 1
-                        }</h6>
-                        <span class="surety-badge ${suretyClass}">Confidence: ${userSurety}%</span>
+                        <span class="text-uppercase small fw-bold text-muted me-2">Question ${index + 1}</span>
+                        <span class="badge bg-light text-dark border">Confidence: ${userSurety}%</span>
                     </div>
                     ${badgeHtml}
                 </div>
                 ${statsHtml} 
-                <p class="fs-5 fw-medium mb-3">${
+                <p class="fs-5 fw-medium mb-4 text-dark">${
                   question.text ? question.text.replace(/\n/g, "<br>") : ""
                 }</p>
-                <div class="mb-3">${optionsHtml}</div>
-                <div class="explanation mt-3 shadow-sm">
-                    <strong>💡 Explanation:</strong>
-                    <div class="mt-1 small">${
+                <div class="mb-4">${optionsHtml}</div>
+                <div class="explanation mt-3">
+                    <strong class="text-primary"><i class="bi bi-lightbulb-fill me-1"></i> Explanation:</strong>
+                    <div class="mt-2 text-secondary">${
                       question.explanation || "No explanation provided."
                     }</div>
                 </div>
@@ -986,16 +974,16 @@ function toggleTimer() {
 function renderQuizLayout(title) {
   document.getElementById("quiz-content").innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4 class="fw-bold text-primary m-0">${title}</h4>
-            <button id="mark-review-btn" class="btn btn-primary-custom btn-sm fw-bold shadow-sm" onclick="toggleMarkForReview()">
-                <i class="bi bi-bookmark-star"></i> Mark for Review
+            <h4 class="fw-bold m-0 text-primary">${title}</h4>
+            <button id="mark-review-btn" class="btn btn-secondary-custom btn-sm fw-bold" onclick="toggleMarkForReview()">
+                <i class="bi bi-bookmark"></i> Mark for Review
             </button>
         </div>
         <div id="question-container"></div>
-        <div class="d-flex justify-content-between mt-4">
-            <button id="prev-btn" class="btn btn-secondary-custom px-4 ">Previous</button>
-            <button id="clear-btn" class="btn btn-primary-custom px-4 ">Clear</button>
-            <button id="next-btn" class="btn btn-secondary-custom px-4 ">Next</button>
+        <div class="d-flex justify-content-between mt-5 gap-3">
+            <button id="prev-btn" class="btn btn-secondary-custom px-4"><i class="bi bi-arrow-left me-1"></i> Prev</button>
+            <button id="clear-btn" class="btn btn-outline-secondary px-4">Clear</button>
+            <button id="next-btn" class="btn btn-primary-custom px-4">Next <i class="bi bi-arrow-right ms-1"></i></button>
         </div>
         <div id="question-feedback" class="mt-3 text-center"></div>
         <div id="result" class="mt-4 text-center"></div>
@@ -1003,19 +991,17 @@ function renderQuizLayout(title) {
 
   document.getElementById("quiz-nav").innerHTML = `
     <div class="nav-header">Question Palette</div>
-    <div class="timer-container shadow-sm position-relative" style="padding-bottom: 45px !important;">
-        <span class="timer-label">Time Remaining</span>
+    <div class="timer-container mb-4">
+        <span class="text-uppercase small fw-bold text-muted d-block mb-1">Time Remaining</span>
         <div id="timer-display" class="timer-value">00:00</div>
-        
-        <button id="timer-pause-btn" 
-                class="btn btn-sm btn-secondary-custom fw-bold position-absolute" 
-                style="bottom: 12px; right: 12px; font-size: 0.85rem; padding: 5px 12px; border-radius: 8px;"
-                onclick="toggleTimer()">
-            <i class="bi bi-pause-fill"></i> Pause
-        </button>
+        <div class="mt-2">
+             <button id="timer-pause-btn" class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="toggleTimer()">
+                <i class="bi bi-pause-fill"></i> Pause
+            </button>
+        </div>
     </div>
     <div id="nav-container" class="nav-grid"></div>
-    <button id="final-submit-btn" class="btn btn-success-custom w-100 mt-4 py-2 fw-bold">Submit Test</button>
+    <button id="final-submit-btn" class="btn btn-success-custom w-100 mt-4 py-3 fw-bold shadow-sm">Submit Test</button>
 `;
 
   document

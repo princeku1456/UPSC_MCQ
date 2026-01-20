@@ -195,13 +195,10 @@ async function updateConceptGapStat(results) {
     el.textContent = gapPercent + "%";
     
     // Dynamic color coding based on threshold
-    const container = el.parentElement;
     if (gapPercent > 15) {
-        container.classList.remove("border-info", "border-success");
-        container.classList.add("border-danger");
+        el.className = "stats-value text-danger";
     } else {
-        container.classList.remove("border-info", "border-danger");
-        container.classList.add("border-success");
+        el.className = "stats-value text-success";
     }
 
   } catch (error) {

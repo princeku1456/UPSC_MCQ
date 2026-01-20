@@ -19,6 +19,8 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Bootstrap Icons (Optional but recommended for modern look) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   </head>
   <body class="d-flex flex-column min-vh-100">
     <div id="global-loader" class="global-loader">
@@ -38,33 +40,34 @@
         </div>
       </div>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-dark main-navbar sticky-top">
+
+    <nav class="navbar navbar-expand-lg main-navbar sticky-top">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#" onclick="handleLogoClick()"
-          >✨ MCQ Practice</a
-        >
+        <a class="navbar-brand" href="#" onclick="handleLogoClick()">✨ MCQ Practice</a>
+
         <div class="d-flex align-items-center gap-3">
           <button
-            class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center"
+            class="btn btn-outline-secondary btn-sm rounded-circle d-flex align-items-center justify-content-center border-0"
             id="theme-toggle"
             onclick="toggleTheme()"
-            style="width: 38px; height: 38px; font-size: 1.2rem"
+            style="width: 40px; height: 40px; font-size: 1.2rem; background: var(--input-bg);"
             title="Toggle Theme"
           >
             🌙
           </button>
+
           <div id="user-profile" style="display: none" class="dropdown">
             <button
-              class="btn btn-link text-white text-decoration-none dropdown-toggle fw-bold"
+              class="btn btn-link text-decoration-none dropdown-toggle fw-bold text-reset"
               type="button"
               data-bs-toggle="dropdown"
             >
               <span id="user-name-display">User</span>
             </button>
-            <ul class="dropdown-menu dropdown-menu-end shadow">
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 mt-2">
               <li>
                 <a class="dropdown-item" href="#" onclick="showDashboard()"
-                  >📊 Dashboard</a
+                  ><i class="bi bi-bar-chart-fill me-2 text-primary"></i>Dashboard</a
                 >
               </li>
               <li><hr class="dropdown-divider" /></li>
@@ -73,7 +76,7 @@
                   class="dropdown-item text-danger"
                   href="#"
                   onclick="logoutUser()"
-                  >🚪 Logout</a
+                  ><i class="bi bi-box-arrow-right me-2"></i>Logout</a
                 >
               </li>
             </ul>
@@ -82,54 +85,57 @@
       </div>
     </nav>
 
-    <section id="hero-section" class="hero" style="margin-top: 100px">
+    <section id="hero-section" class="hero d-flex align-items-center" style="min-height: 80vh;">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 col-lg-5">
-            <div class="card auth-card text-center animate-fade-in">
+            <div class="card auth-card text-center animate-fade-in border-0">
               <div class="card-body p-5">
-                <h3 class="fw-bold text-primary mb-2" id="auth-title">
-                  Welcome Back! 👋
-                </h3>
-                <p class="text-muted mb-4" id="auth-subtitle">
-                  Login to access your dashboard.
-                </p>
+                <div class="mb-4">
+                  <div class="display-4 text-primary mb-3">👋</div>
+                  <h3 class="fw-bold mb-2" id="auth-title" style="color: var(--text-main);">
+                    Welcome Back
+                  </h3>
+                  <p class="text-muted" id="auth-subtitle">
+                    Enter your details to access your portal.
+                  </p>
+                </div>
+
                 <form id="auth-form">
                   <div class="mb-3 text-start">
-                    <label class="form-label text-muted small fw-bold"
-                      >Email Address</label
-                    >
+                    <label class="form-label text-muted small fw-bold text-uppercase ls-1">Email</label>
                     <input
                       type="email"
                       class="form-control form-control-lg"
                       id="auth-email"
+                      placeholder="name@example.com"
                       required
                     />
                   </div>
-                  <div class="mb-3 text-start">
-                    <label class="form-label text-muted small fw-bold"
-                      >Password</label
-                    >
+                  <div class="mb-4 text-start">
+                    <label class="form-label text-muted small fw-bold text-uppercase ls-1">Password</label>
                     <input
                       type="password"
                       class="form-control form-control-lg"
                       id="auth-password"
+                      placeholder="••••••••"
                       required
                     />
                   </div>
                   <button
                     type="submit"
-                    class="btn btn-primary-custom w-100 py-3 mt-3 shadow"
+                    class="btn btn-primary-custom w-100 py-3 shadow-sm"
                     id="auth-submit-btn"
                   >
-                    Login
+                    Login to Dashboard
                   </button>
                 </form>
+
                 <div id="google-auth-container">
                   <div class="d-flex align-items-center my-4">
-                    <hr class="flex-grow-1" />
-                    <span class="mx-2 text-muted small">OR</span>
-                    <hr class="flex-grow-1" />
+                    <hr class="flex-grow-1 border-secondary opacity-10" />
+                    <span class="mx-3 text-muted small text-uppercase">or continue with</span>
+                    <hr class="flex-grow-1 border-secondary opacity-10" />
                   </div>
                   <button
                     type="button"
@@ -140,17 +146,18 @@
                       src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
                       width="18"
                       alt="Google"
-                    />Continue with Google
+                    />Google Account
                   </button>
                 </div>
+
                 <div class="mt-4">
                   <small class="text-muted"
-                    >Don't have an account?
+                    >New here?
                     <a
                       href="#"
-                      class="text-primary fw-bold text-decoration-none"
+                      class="text-primary fw-bold text-decoration-none ms-1"
                       onclick="toggleAuthMode()"
-                      >Register here</a
+                      >Create Account</a
                     ></small
                   >
                 </div>
@@ -167,167 +174,126 @@
       style="display: none; min-height: 90vh"
     >
       <div class="container">
-        <div class="text-center mb-5">
-          <h2 class="fw-bold section-title">My Dashboard</h2>
-          <div class="title-underline mx-auto"></div>
+        <div class="d-flex flex-column align-items-center mb-5">
+          <h2 class="fw-bold section-title mb-2">My Dashboard</h2>
+          <div class="title-underline"></div>
         </div>
-        <div
-          class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-3 mb-5 justify-content-center"
-        >
+
+        <!-- Primary Stats Row -->
+        <div class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 mb-4">
           <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">
-                Tests Taken
-              </h6>
-              <h2 class="fw-bold text-primary mb-0" id="stat-total-tests">0</h2>
+            <div class="stats-card">
+              <h6 class="stats-label">Tests Taken</h6>
+              <h2 class="stats-value text-primary" id="stat-total-tests">0</h2>
             </div>
           </div>
           <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">
-                Avg. Score
-              </h6>
-              <h2 class="fw-bold text-warning mb-0" id="stat-avg-score">0%</h2>
+            <div class="stats-card">
+              <h6 class="stats-label">Avg Score</h6>
+              <h2 class="stats-value text-warning" id="stat-avg-score">0%</h2>
             </div>
           </div>
           <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-start border-4 border-success h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">Precision</h6>
-              <h2 class="fw-bold text-success mb-0" id="stat-precision-rate">
-                0%
-              </h2>
-              <small class="text-muted">Net Accuracy</small>
+            <div class="stats-card">
+              <h6 class="stats-label">Precision</h6>
+              <h2 class="stats-value text-success" id="stat-precision-rate">0%</h2>
             </div>
           </div>
           <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">
-                Neg. Drain
-              </h6>
-              <h2 class="fw-bold text-danger mb-0" id="stat-negative-drain">
-                0%
-              </h2>
-              <small class="text-muted">Marks Lost</small>
+            <div class="stats-card">
+              <h6 class="stats-label">Neg. Drain</h6>
+              <h2 class="stats-value text-danger" id="stat-negative-drain">0%</h2>
             </div>
           </div>
           <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-start border-4 border-info h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">
-                Concept Gap
-              </h6>
-              <h2 class="fw-bold text-info mb-0" id="stat-concept-gap">0%</h2>
-              <small class="text-muted">Easy Qs Missed</small>
+            <div class="stats-card">
+              <h6 class="stats-label">Concept Gap</h6>
+              <h2 class="stats-value text-info" id="stat-concept-gap">0%</h2>
             </div>
           </div>
         </div>
-        <div
-          class="row row-cols-1 row-cols-md-5 g-3 mb-5 justify-content-center"
-        >
+
+        <!-- Secondary Stats Row (Questions Breakdown) -->
+        <div class="row row-cols-2 row-cols-md-5 g-4 mb-5">
           <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-dark h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">Total Qs</h6>
-              <h2 class="fw-bold mb-0" id="stat-all-total">0</h2>
+            <div class="stats-card border-bottom border-primary border-0 border-bottom-4">
+              <h6 class="stats-label">Total Qs</h6>
+              <h2 class="stats-value" id="stat-all-total">0</h2>
             </div>
           </div>
           <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-primary h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">Attempted</h6>
-              <h2 class="fw-bold text-primary mb-0" id="stat-all-attempted">
-                0
-              </h2>
+            <div class="stats-card">
+              <h6 class="stats-label">Attempted</h6>
+              <h2 class="stats-value text-primary" id="stat-all-attempted">0</h2>
             </div>
           </div>
           <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-secondary h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">
-                Unattempted
-              </h6>
-              <h2 class="fw-bold text-secondary mb-0" id="stat-all-unattempted">
-                0
-              </h2>
+            <div class="stats-card">
+              <h6 class="stats-label">Unattempted</h6>
+              <h2 class="stats-value text-muted" id="stat-all-unattempted">0</h2>
             </div>
           </div>
           <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-success h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">Correct</h6>
-              <h2 class="fw-bold text-success mb-0" id="stat-all-correct">0</h2>
+            <div class="stats-card">
+              <h6 class="stats-label">Correct</h6>
+              <h2 class="stats-value text-success" id="stat-all-correct">0</h2>
             </div>
           </div>
           <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-danger h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">Incorrect</h6>
-              <h2 class="fw-bold text-danger mb-0" id="stat-all-incorrect">
-                0
-              </h2>
+            <div class="stats-card">
+              <h6 class="stats-label">Incorrect</h6>
+              <h2 class="stats-value text-danger" id="stat-all-incorrect">0</h2>
             </div>
           </div>
         </div>
-        <div class="row justify-content-center mb-4">
-          <div class="col-md-6">
+
+        <!-- Action Cards -->
+        <div class="row justify-content-center g-4 mb-5">
+          <div class="col-md-6 col-lg-5">
             <div
-              class="card topic-card shadow-sm h-100"
+              class="card topic-card h-100 p-4 text-center"
               style="cursor: pointer"
               onclick="showTestSelection()"
             >
-              <div class="card-body text-center p-4">
-                <div class="display-5 mb-2">🚀</div>
-                <h3 class="fw-bold card-title text-success m-0">Take Test</h3>
+              <div class="card-body">
+                <div class="display-4 mb-3 text-primary"><i class="bi bi-rocket-takeoff-fill"></i></div>
+                <h3 class="fw-bold card-title mb-2">Start New Test</h3>
+                <p class="text-muted small">Select a subject and challenge yourself.</p>
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-6 col-lg-5">
             <div
-              class="card topic-card shadow-sm h-100"
+              class="card topic-card h-100 p-4 text-center"
               style="cursor: pointer"
               onclick="startPracticeSelection()"
             >
-              <div class="card-body text-center p-4">
-                <div class="display-5 mb-2">🎯</div>
-                <h3 class="fw-bold card-title text-info m-0">Practice MCQ</h3>
+              <div class="card-body">
+                <div class="display-4 mb-3 text-info"><i class="bi bi-bullseye"></i></div>
+                <h3 class="fw-bold card-title mb-2">Practice Mode</h3>
+                <p class="text-muted small">Focus on specific topics without time limits.</p>
               </div>
             </div>
           </div>
         </div>
-        <div class="row justify-content-center mb-5">
-          <div class="col-12">
-            <div class="card border-0 shadow-sm rounded-4 p-4">
-              <h5 class="fw-bold text-primary mb-3">
-                🎯 Overall Confidence Analysis
+
+        <!-- Charts Section -->
+        <div class="row g-4 mb-5">
+          <div class="col-lg-6">
+            <div class="card border-0 shadow-sm p-4 h-100">
+              <h5 class="fw-bold text-primary mb-4">
+                <i class="bi bi-pie-chart-fill me-2"></i>Confidence Analysis
               </h5>
               <div style="position: relative; height: 300px; width: 100%">
                 <canvas id="globalConfidenceChart"></canvas>
               </div>
-              <p class="small text-muted mt-3 text-center">
-                Aggregate accuracy across all recent tests categorized by
-                confidence level.
-              </p>
             </div>
           </div>
-        </div>
-        <div class="row justify-content-center mb-5">
-          <div class="col-12">
-            <div class="card border-0 shadow-sm rounded-4 p-4">
-              <h5 class="fw-bold text-primary mb-3">📈 Accuracy Trend</h5>
+          <div class="col-lg-6">
+            <div class="card border-0 shadow-sm p-4 h-100">
+              <h5 class="fw-bold text-primary mb-4">
+                <i class="bi bi-graph-up-arrow me-2"></i>Accuracy Trend
+              </h5>
               <div style="position: relative; height: 300px; width: 100%">
                 <canvas id="performanceChart"></canvas>
               </div>
@@ -344,19 +310,20 @@
     >
       <div class="container"><div id="test-content-container"></div></div>
     </section>
+
     <section id="quiz-section" class="quiz-section py-5" style="display: none">
       <div class="container">
-        <div class="d-flex justify-content-between mb-4">
+        <div class="d-flex align-items-center mb-4">
           <button
             id="quiz-back-btn"
-            class="btn btn-primary-custom px-4 shadow"
+            class="btn btn-secondary-custom px-4 shadow-sm"
             onclick="exitQuiz()"
           >
-            ← Exit
+            <i class="bi bi-arrow-left me-2"></i>Exit
           </button>
         </div>
-        <div class="row">
-          <div class="col-lg-8 mb-4">
+        <div class="row g-4">
+          <div class="col-lg-8">
             <div id="quiz-content" class="quiz-box h-100"></div>
           </div>
           <div class="col-lg-4">

@@ -54,18 +54,18 @@ async function renderPracticeUI() {
   const container = document.getElementById("test-content-container");
 
   container.innerHTML = `
-        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="showDashboard()">← Back to Dashboard</button>
+        <button class="btn btn-secondary-custom px-4 shadow-sm mb-4" onclick="showDashboard()">← Back to Dashboard</button>
         <div class="text-center mb-5">
-            <h2 class="fw-bold section-title text-primary">Practice MCQ</h2>
-            <div class="title-underline mx-auto" style="background: var(--secondary-color)"></div>
+            <h2 class="fw-bold section-title">Practice MCQ</h2>
+            <div class="title-underline mx-auto"></div>
             <p class="text-muted mt-3">Configure your custom practice session below.</p>
         </div>
 
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6">
                 <div class="card border-0 shadow-sm rounded-4 p-4">
-                    <div class="mb-3">
-                        <label class="form-label fw-bold text-muted small">1. Select Subject</label>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-muted small text-uppercase">Subject</label>
                         <select id="practice-subject-select" class="form-select form-select-lg" onchange="updatePracticeTopics()">
                             <option value="" selected disabled>Choose a Subject...</option>
                             ${Object.keys(allPracticeData)
@@ -77,15 +77,15 @@ async function renderPracticeUI() {
                         </select>
                     </div>
 
-                    <div class="mb-3">
-                        <label class="form-label fw-bold text-muted small">2. Select Topic / Chapter</label>
+                    <div class="mb-4">
+                        <label class="form-label fw-bold text-muted small text-uppercase">Topic / Chapter</label>
                         <select id="practice-topic-select" class="form-select form-select-lg" disabled>
                             <option value="" selected disabled>Select Subject first...</option>
                         </select>
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label fw-bold text-muted small">3. Number of Questions</label>
+                        <label class="form-label fw-bold text-muted small text-uppercase">Number of Questions</label>
                         <select id="practice-limit-select" class="form-select form-select-lg">
                             <option value="10" selected>10 Questions</option>
                             <option value="20">20 Questions</option>
@@ -97,8 +97,8 @@ async function renderPracticeUI() {
                             </select>
                     </div>
 
-                    <button class="btn btn-secondary-custom w-100 py-3 fw-bold fs-5" onclick="handleGeneratePractice()">
-                         Generate Practice
+                    <button class="btn btn-primary-custom w-100 py-3 fw-bold fs-5 shadow-sm" onclick="handleGeneratePractice()">
+                         Start Practice
                     </button>
                 </div>
             </div>
@@ -208,28 +208,28 @@ async function loadPracticeQuiz(subject, chapter, limit) {
 function setupPracticeLayout() {
   document.getElementById("quiz-content").innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h4 class="fw-bold text-info m-0">${practiceChapter}</h4>
-            <button id="practice-mark-review-btn" class="btn btn-outline-secondary btn-sm fw-bold shadow-sm" onclick="togglePracticeMarkForReview()">
-                <i class="bi bi-bookmark-star"></i> Mark for Review
+            <h4 class="fw-bold text-primary m-0">${practiceChapter}</h4>
+            <button id="practice-mark-review-btn" class="btn btn-secondary-custom btn-sm fw-bold" onclick="togglePracticeMarkForReview()">
+                <i class="bi bi-bookmark"></i> Mark for Review
             </button>
         </div>
         <div id="practice-result-summary" class="mb-4"></div>
         <div id="practice-question-container"></div>
-        <div class="d-flex justify-content-between mt-4">
-            <button class="btn btn-secondary-custom px-4" onclick="navPractice(-1)">Previous</button>
+        <div class="d-flex justify-content-between mt-5 gap-3">
+            <button class="btn btn-secondary-custom px-4" onclick="navPractice(-1)"><i class="bi bi-arrow-left me-1"></i> Prev</button>
             <button class="btn btn-outline-secondary px-4" id="practice-clear-btn" onclick="clearPracticeSelection()">Clear</button>
-            <button class="btn btn-secondary-custom px-4" onclick="navPractice(1)">Next</button>
+            <button class="btn btn-primary-custom px-4" onclick="navPractice(1)">Next <i class="bi bi-arrow-right ms-1"></i></button>
         </div>
     `;
 
   document.getElementById("quiz-nav").innerHTML = `
         <div class="nav-header">Question Palette</div>
-        <div class="timer-container shadow-sm border-info">
-            <span class="timer-label">Time Remaining</span>
+        <div class="timer-container mb-4">
+            <span class="text-uppercase small fw-bold text-muted d-block mb-1">Time Remaining</span>
             <div id="timer-display" class="timer-value">00:00</div>
         </div>
         <div id="practice-nav-container" class="nav-grid"></div>
-        <button id="practice-submit-btn" class="btn btn-secondary-custom w-100 mt-4 rounded-pill py-2 fw-bold text-white" onclick="submitPractice()">Finish Practice</button>
+        <button id="practice-submit-btn" class="btn btn-success-custom w-100 mt-4 py-3 fw-bold shadow-sm" onclick="submitPractice()">Finish Practice</button>
     `;
 }
 
@@ -428,46 +428,46 @@ function submitPractice(forceSubmit = false) {
 
   document.getElementById("practice-result-summary").innerHTML = `
         <div class="card border-0 shadow-sm rounded-4 p-4 text-center animate-fade-in mb-4">
-            <h4 class="fw-bold text-primary mb-3">Practice Result</h4>
-            <div class="row g-2 mb-3">
-                <div class="col-12 col-md-4">
-                    <div class="p-2 bg-primary text-white rounded shadow-sm">
-                        <small class="text-white-50 d-block text-uppercase fw-bold" style="font-size:0.7rem">Total Score</small>
-                        <h3 class="fw-bold m-0">${score.toFixed(
+            <h4 class="fw-bold text-primary mb-4"><i class="bi bi-check-circle-fill me-2"></i>Practice Complete</h4>
+            <div class="row g-3 mb-4">
+                <div class="col-md-4 col-12">
+                    <div class="stats-card">
+                        <small class="stats-label">Total Score</small>
+                        <h3 class="stats-value text-primary">${score.toFixed(
                           2
-                        )} <span class="fs-6 text-white-50">/ ${totalPossibleMarks}</span></h3>
+                        )} <span class="fs-6 text-muted">/ ${totalPossibleMarks}</span></h3>
                     </div>
                 </div>
-                <div class="col-6 col-md-4">
-                    <div class="p-2 bg-light rounded shadow-sm border-start border-4 border-success">
-                        <small class="text-muted d-block text-uppercase fw-bold" style="font-size:0.7rem">Accuracy</small>
-                        <h4 class="fw-bold m-0 text-success">${accuracy}%</h4>
+                <div class="col-md-4 col-6">
+                    <div class="stats-card">
+                        <small class="stats-label">Accuracy</small>
+                        <h4 class="stats-value text-success">${accuracy}%</h4>
                     </div>
                 </div>
-                <div class="col-6 col-md-4">
-                    <div class="p-2 bg-light rounded shadow-sm border-start border-4 border-danger">
-                        <small class="text-muted d-block text-uppercase fw-bold" style="font-size:0.7rem">Neg. Drain</small>
-                        <h4 class="fw-bold m-0 text-danger">${negativeDrain}%</h4>
+                <div class="col-md-4 col-6">
+                    <div class="stats-card">
+                        <small class="stats-label">Neg. Drain</small>
+                        <h4 class="stats-value text-danger">${negativeDrain}%</h4>
                     </div>
                 </div>
             </div>
             <div class="row g-2">
                 <div class="col-4">
-                    <div class="p-2 bg-light rounded">
-                        <small class="text-muted d-block">Correct</small>
-                        <span class="fw-bold text-success">${correct}</span>
+                    <div class="p-3 bg-light rounded-3">
+                        <small class="text-success d-block fw-bold">Correct</small>
+                        <span class="fw-bold fs-5">${correct}</span>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="p-2 bg-light rounded">
-                        <small class="text-muted d-block">Incorrect</small>
-                        <span class="fw-bold text-danger">${incorrect}</span>
+                    <div class="p-3 bg-light rounded-3">
+                        <small class="text-danger d-block fw-bold">Incorrect</small>
+                        <span class="fw-bold fs-5">${incorrect}</span>
                     </div>
                 </div>
                 <div class="col-4">
-                    <div class="p-2 bg-light rounded">
-                        <small class="text-muted d-block">Skipped</small>
-                        <span class="fw-bold text-secondary">${unattempted}</span>
+                    <div class="p-3 bg-light rounded-3">
+                        <small class="text-muted d-block fw-bold">Skipped</small>
+                        <span class="fw-bold fs-5">${unattempted}</span>
                     </div>
                 </div>
             </div>
