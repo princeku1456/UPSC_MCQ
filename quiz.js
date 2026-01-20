@@ -5,11 +5,35 @@
 /**
  * Saves current quiz state, now including the timer
  */
+function updateQuestionTimer() {
+  if (typeof currentQuestionStartTime === "undefined" || !currentQuestionStartTime || quizSubmitted || isReviewMode) return;
+
+  const now = Date.now();
+  const elapsed = (now - currentQuestionStartTime) / 1000; // seconds
+
+  if (typeof questionTimeSpent === "undefined") questionTimeSpent = {};
+
+  questionTimeSpent[currentQuestionIndex] = (questionTimeSpent[currentQuestionIndex] || 0) + elapsed;
+  currentQuestionStartTime = now;
+}
+
 function saveQuizProgress() {
   if (!currentChapterId || quizSubmitted || isReviewMode) return;
+
+  // Update time for current question without resetting start time (just for saving)
+  let currentQTime = 0;
+  if (typeof currentQuestionStartTime !== "undefined" && currentQuestionStartTime) {
+      currentQTime = (Date.now() - currentQuestionStartTime) / 1000;
+  }
+
+  // Clone to avoid modifying global state directly during save
+  const timeData = { ...(typeof questionTimeSpent !== "undefined" ? questionTimeSpent : {}) };
+  timeData[currentQuestionIndex] = (timeData[currentQuestionIndex] || 0) + currentQTime;
+
   const progressData = {
     userAnswers: userAnswers,
     markedForReview: markedForReview,
+    questionTimeSpent: timeData, // Save time tracking
     lastQuestionIndex: currentQuestionIndex,
     remainingTime: currentTimerSeconds, // Save the current timer state
     timestamp: new Date().getTime(),
@@ -267,6 +291,8 @@ async function loadQuiz(
     currentQuestionIndex = 0;
     userAnswers = {};
     markedForReview = {};
+    questionTimeSpent = {}; // NEW
+    currentQuestionStartTime = null; // NEW
     quizSubmitted = false;
 
     if (!reviewMode) {
@@ -279,6 +305,7 @@ async function loadQuiz(
         if (new Date().getTime() - parsedProgress.timestamp < oneDay) {
           userAnswers = parsedProgress.userAnswers || {};
           markedForReview = parsedProgress.markedForReview || {};
+          questionTimeSpent = parsedProgress.questionTimeSpent || {}; // NEW
           currentQuestionIndex = parsedProgress.lastQuestionIndex || 0;
           savedTime = parsedProgress.remainingTime; // Restore the time value
           toastr.info("Restored your previous progress and time.");
@@ -296,6 +323,7 @@ async function loadQuiz(
 
     if (reviewMode && pastData) {
       userAnswers = pastData.userAnswers || {};
+      questionTimeSpent = pastData.questionTimeSpent || {};
       quizSubmitted = true;
     }
 
@@ -311,6 +339,7 @@ async function loadQuiz(
       renderQuestion();
       renderNav();
       startTimer(currentQuizData.length, savedTime);
+      currentQuestionStartTime = Date.now(); // NEW: Start tracking first question
     }
   } catch (error) {
     console.error("Firebase fetch error:", error);
@@ -822,6 +851,8 @@ function renderReviewQuestions(filterType) {
     }
 
     let statsHtml = "";
+    let difficultyBadge = "";
+
     if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
       const total = currentReviewStats.totalAttempts;
       const correctCount =
@@ -837,6 +868,18 @@ function renderReviewQuestions(filterType) {
         ((attemptedCount - correctCount) / total) * 100
       );
       const pUnattempted = 100 - pCorrect - pIncorrect;
+
+      // Determine Difficulty based on community accuracy
+      let diffLabel = "Medium";
+      let diffColor = "warning"; // yellow/orange
+      if (pCorrect >= 70) {
+          diffLabel = "Easy";
+          diffColor = "success"; // green
+      } else if (pCorrect <= 40) {
+          diffLabel = "Hard";
+          diffColor = "danger"; // red
+      }
+      difficultyBadge = `<span class="badge bg-${diffColor} ms-2">${diffLabel}</span>`;
 
       statsHtml = `
             <div class="mt-2 mb-4 p-3 bg-light bg-opacity-75 rounded-3 border">
@@ -884,16 +927,21 @@ function renderReviewQuestions(filterType) {
       optionsHtml += `<div class="${optionClass}">${icon} <span class="ms-1">${opt}</span></div>`;
     });
 
+    // Time Badge Logic
+    const timeSec = (questionTimeSpent && questionTimeSpent[index]) ? Math.round(questionTimeSpent[index]) : 0;
+    const timeLabel = timeSec < 60 ? `${timeSec}s` : `${Math.floor(timeSec/60)}m ${timeSec%60}s`;
+    const timeBadge = `<span class="badge bg-light text-dark border ms-2">⏱ ${timeLabel}</span>`;
+
     const card = document.createElement("div");
     card.className = `card mb-4 shadow-sm border-0 border-start border-5 ${borderClass}`;
     card.innerHTML = `
             <div class="card-body p-4">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div>
-                        <h6 class="text-muted fw-bold m-0 d-inline me-2">Question ${
-                          index + 1
-                        }</h6>
+                    <div class="d-flex align-items-center flex-wrap gap-2">
+                        <h6 class="text-muted fw-bold m-0 me-2">Question ${index + 1}</h6>
                         <span class="surety-badge ${suretyClass}">Confidence: ${userSurety}%</span>
+                        ${difficultyBadge}
+                        ${timeBadge}
                     </div>
                     ${badgeHtml}
                 </div>
@@ -1160,6 +1208,7 @@ function updateButtonStates() {
 function navigateQuestions(dir) {
   const next = currentQuestionIndex + dir;
   if (next >= 0 && next < currentQuizData.length) {
+    updateQuestionTimer(); // Save time for current question
     currentQuestionIndex = next;
     renderQuestion();
     updateNavHighlights();
@@ -1183,6 +1232,7 @@ function renderNav() {
     item.className = "nav-item shadow-sm";
     item.textContent = i + 1;
     item.onclick = () => {
+      updateQuestionTimer(); // Save time for current question
       currentQuestionIndex = i;
       renderQuestion();
       updateNavHighlights();
@@ -1220,6 +1270,7 @@ function submitAll(forceSubmit = false) {
   if (!forceSubmit && !confirm("Are you sure you want to submit?")) return;
 
   if (currentQuizTimer) currentQuizTimer.stop();
+  updateQuestionTimer(); // Finalize time for the last question
 
   quizSubmitted = true;
   clearQuizProgress(currentChapterId);
@@ -1271,6 +1322,7 @@ function submitAll(forceSubmit = false) {
     totalMarks: totalMarks,
     scorePercent: parseFloat(percentage),
     userAnswers: userAnswers,
+    questionTimeSpent: questionTimeSpent, // Save time per question
     timestamp: firebase.firestore.FieldValue.serverTimestamp(),
   };
 
