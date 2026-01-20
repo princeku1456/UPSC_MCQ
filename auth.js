@@ -28,7 +28,7 @@ let globalStatsCache = {};
 let leaderboardCache = {};
 let performanceChartInstance = null;
 let comparisonChartInstance = null;
-let quizTimerInterval = null;
+let currentQuizTimer = null;
 let currentReviewStats = null;
 // Add these to auth.js
 let isTimerPaused = false;
@@ -55,8 +55,8 @@ async function performMorningSync() {
   try {
     // Refresh Manifests only to get current subject/chapter lists
     // Firestore's internal persistence handles question caching automatically
-    await fetchQuizManifest();
-    await fetchPracticeManifest();
+    await DataManager.fetchQuizManifest(true);
+    await DataManager.fetchPracticeManifest(true);
 
     // Update sync date
     localStorage.setItem("last_morning_sync", today);
@@ -309,7 +309,7 @@ function showTestSelection() {
 }
 
 function exitQuiz() {
-  if (quizTimerInterval) clearInterval(quizTimerInterval);
+  if (currentQuizTimer) currentQuizTimer.stop();
 
   // Check if we are in Practice Mode
   if (isPracticeMode) {

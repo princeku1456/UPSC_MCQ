@@ -1,18 +1,7 @@
 /* =========================================
    4. TAKE TEST LOGIC (Subjects & Chapters)
    ========================================= */
-async function fetchQuizManifest() {
-  try {
-    const doc = await db.collection("quiz_metadata").doc("quiz_manifest").get();
-    if (doc.exists) {
-      window.allQuizData = doc.data(); // Set global variable dynamically
-    } else {
-      console.error("Quiz manifest not found in Firestore");
-    }
-  } catch (error) {
-    console.error("Error fetching quiz manifest:", error);
-  }
-}
+
 /**
  * Saves current quiz state, now including the timer
  */
@@ -57,7 +46,7 @@ async function renderSubjects() {
             <p class="mt-2 text-muted">Loading Subjects from Cloud...</p>
         </div>`;
 
-    await fetchQuizManifest(); // Helper function to get data from Firebase
+    await DataManager.fetchQuizManifest(); // Helper function to get data from Firebase
   }
 
   // Double check if data is now available after fetch
@@ -268,19 +257,11 @@ async function loadQuiz(
         </div>`;
 
   try {
-    // Check session memory cache first
-    if (quizDataCache[currentChapterId]) {
-      currentQuizData = quizDataCache[currentChapterId];
-    } else {
-      // Fetch directly from Firestore (auto-uses IndexedDB cache)
-      const doc = await db.collection("quizzes").doc(currentChapterId).get();
-      if (!doc.exists) {
-        toastr.error("Quiz questions not found in database!");
-        showDashboard();
-        return;
-      }
-      currentQuizData = doc.data().questions;
-      quizDataCache[currentChapterId] = currentQuizData;
+    currentQuizData = await DataManager.fetchQuizQuestions(currentChapterId);
+    if (!currentQuizData) {
+      toastr.error("Quiz questions not found in database!");
+      showDashboard();
+      return;
     }
 
     currentQuestionIndex = 0;
@@ -311,7 +292,7 @@ async function loadQuiz(
       timerDisplay.textContent = "";
       timerDisplay.classList.remove("text-danger");
     }
-    if (quizTimerInterval) clearInterval(quizTimerInterval);
+    if (currentQuizTimer) currentQuizTimer.stop();
 
     if (reviewMode && pastData) {
       userAnswers = pastData.userAnswers || {};
@@ -793,7 +774,7 @@ async function renderReviewMode(resultData) {
       },
     },
   });
-  renderConfidenceChart(confChartLabels, confChartValues, confStats);
+  ChartHelper.renderConfidenceChart(document.getElementById("confidenceChart"), confChartValues, confStats);
 }
 
 function filterReview(filterType, btnElement) {
@@ -951,34 +932,34 @@ function startTimer(numQuestions, savedTime = null) {
     savedTime !== null ? savedTime : Math.floor(numQuestions * 1.2 * 60);
   isTimerPaused = false;
 
-  const display = document.getElementById("timer-display");
-  updateTimerDisplay(display, currentTimerSeconds);
+  if (currentQuizTimer) currentQuizTimer.stop();
 
-  if (quizTimerInterval) clearInterval(quizTimerInterval);
-
-  quizTimerInterval = setInterval(() => {
-    if (!isTimerPaused) {
-      currentTimerSeconds--;
-      updateTimerDisplay(display, currentTimerSeconds);
-
-      // Periodically auto-save the time every second
-      saveQuizProgress();
-
-      if (currentTimerSeconds <= 0) {
-        clearInterval(quizTimerInterval);
-        toastr.warning("Time's up! Submitting test...");
-        submitAll(true);
+  currentQuizTimer = new QuizTimer("timer-display",
+      (seconds) => {
+          currentTimerSeconds = seconds;
+          saveQuizProgress();
+      },
+      () => {
+          toastr.warning("Time's up! Submitting test...");
+          submitAll(true);
       }
-    }
-  }, 1000);
+  );
+
+  currentQuizTimer.start(currentTimerSeconds);
 }
 
 function toggleTimer() {
   const btn = document.getElementById("timer-pause-btn");
   const qContainer = document.getElementById("question-container");
-  if (!btn) return;
+  if (!btn || !currentQuizTimer) return;
 
-  isTimerPaused = !isTimerPaused;
+  if (currentQuizTimer.isPaused) {
+      currentQuizTimer.resume();
+      isTimerPaused = false;
+  } else {
+      currentQuizTimer.pause();
+      isTimerPaused = true;
+  }
 
   if (isTimerPaused) {
     btn.innerHTML = '<i class="bi bi-play-fill"></i> Resume';
@@ -999,20 +980,6 @@ function toggleTimer() {
       qContainer.style.pointerEvents = "all";
     }
     toastr.success("Timer Resumed");
-  }
-}
-
-function updateTimerDisplay(element, seconds) {
-  if (!element) return;
-  const m = Math.floor(seconds / 60);
-  const s = seconds % 60;
-  element.textContent = `${m}:${s < 10 ? "0" : ""}${s}`;
-
-  // Add pulsing effect if less than 1 minute remaining
-  if (seconds < 180) {
-    element.classList.add("low-time");
-  } else {
-    element.classList.remove("low-time");
   }
 }
 
@@ -1252,7 +1219,7 @@ function updateNavHighlights() {
 function submitAll(forceSubmit = false) {
   if (!forceSubmit && !confirm("Are you sure you want to submit?")) return;
 
-  if (quizTimerInterval) clearInterval(quizTimerInterval);
+  if (currentQuizTimer) currentQuizTimer.stop();
 
   quizSubmitted = true;
   clearQuizProgress(currentChapterId);
@@ -1454,71 +1421,4 @@ function toggleMarkForReview() {
   renderQuestion(); // Refresh the UI to update button text
   updateNavHighlights(); // Refresh palette colors
   saveQuizProgress(); // Save state
-}
-
-/**
- * Helper to render the Confidence vs Accuracy Chart
- */
-/**
- * Helper to render the horizontal Confidence vs Accuracy Chart
- */
-// In quiz.js
-function renderConfidenceChart(labels, values, stats) { // Added stats
-  const ctx = document.getElementById("confidenceChart");
-  if (!ctx) return;
-  if (window.confidenceChartInstance) window.confidenceChartInstance.destroy();
-
-  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
-  const textColor = isDark ? "#e5e7eb" : "#666";
-
-  window.confidenceChartInstance = new Chart(ctx, {
-    type: "bar",
-    data: {
-      labels: labels,
-      datasets: [{
-        label: "Accuracy %",
-        data: values,
-        backgroundColor: ["#10b981", "#6366f1", "#f59e0b", "#ef4444"],
-        borderRadius: 5,
-        borderWidth: 1
-      }]
-    },
-    options: {
-      indexAxis: 'y',
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: { display: false },
-        tooltip: {
-            callbacks: {
-                // Updated tooltip callback to show attempted and correct counts
-                label: (context) => {
-                    const idx = context.dataIndex;
-                    const confKey = [100, 75, 50, 0][idx];
-                    const s = stats[confKey];
-                    return [
-                        ` Accuracy: ${context.raw}%`,
-                        ` Total Attempted: ${s.total}`,
-                        ` Total Correct: ${s.correct}`
-                    ];
-                }
-            }
-        }
-      },
-      scales: {
-        x: { 
-          beginAtZero: true, 
-          max: 100, 
-          ticks: { 
-            color: textColor,
-            callback: (val) => val + "%" 
-          } 
-        },
-        y: { 
-          grid: { display: false }, 
-          ticks: { color: textColor } 
-        }
-      }
-    }
-  });
 }

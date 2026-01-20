@@ -7,25 +7,6 @@ const adminAnalysisCache = {};
 // Global variable for quiz structure
 let allQuizData = null;
 
-/**
- * Fetches the quiz manifest from Firestore (matching quiz.js logic)
- */
-async function fetchQuizManifest() {
-  try {
-    const doc = await db.collection("quiz_metadata").doc("quiz_manifest").get();
-    if (doc.exists) {
-      allQuizData = doc.data();
-      return allQuizData;
-    } else {
-      toastr.error("Quiz manifest not found in Firestore.");
-    }
-  } catch (error) {
-    console.error("Error fetching manifest:", error);
-    toastr.error("Failed to load subject list.");
-  }
-  return null;
-}
-
 /* --- Auth & UI Management --- */
 auth.onAuthStateChanged((user) => {
   if (user) {
@@ -77,7 +58,7 @@ async function loadSubjects() {
 
   // Fetch manifest if not already loaded
   if (!allQuizData) {
-    await fetchQuizManifest();
+    allQuizData = await DataManager.fetchQuizManifest();
   }
 
   if (!allQuizData) {
@@ -151,8 +132,8 @@ async function loadTestAnalysis() {
     let quizQuestions, statsData, results;
 
     // Fetch fresh data from Firestore
-    const [quizDoc, statsDoc, resultsSnap] = await Promise.all([
-      db.collection("quizzes").doc(dbChapterId).get(),
+    const [quizData, statsDoc, resultsSnap] = await Promise.all([
+      DataManager.fetchQuizQuestions(dbChapterId),
       db.collection("chapter_stats").doc(dbChapterId).get(),
       db
         .collection("results")
@@ -162,9 +143,9 @@ async function loadTestAnalysis() {
         .get(),
     ]);
 
-    if (!quizDoc.exists) throw new Error("Quiz content not found.");
+    if (!quizData) throw new Error("Quiz content not found.");
 
-    quizQuestions = quizDoc.data().questions;
+    quizQuestions = quizData;
     statsData = statsDoc.exists
       ? statsDoc.data()
       : { totalAttempts: 0, average: 0 };
