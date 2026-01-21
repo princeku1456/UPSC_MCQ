@@ -9,15 +9,25 @@ const firebaseConfig = {
   appId: "1:998675793958:web:d4eeaae3edbaec8b30bee7",
 };
 
-// AI Configuration
-// WARNING: This key is exposed to the client. Restrict it by HTTP Referrer in Google Cloud Console.
-const GEMINI_API_KEY = "AIzaSyBKEG1pxFGUkKmsjfiN1lle2DzGNT0hGZY";
-
 // Initialize Firebase (Compat Version)
 // This checks if the Firebase SDK was loaded successfully in index.html
 if (typeof firebase !== "undefined") {
   if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig);
+
+    // Initialize Remote Config
+    const remoteConfig = firebase.remoteConfig();
+    remoteConfig.settings = {
+      minimumFetchIntervalMillis: 3600000,
+    };
+
+    remoteConfig.defaultConfig = {
+      GEMINI_API_KEY: "AIzaSyBKEG1pxFGUkKmsjfiN1lle2DzGNT0hGZY",
+    };
+
+    remoteConfig.fetchAndActivate().catch((err) => {
+      console.error("Remote config fetch failed", err);
+    });
 
     // OPTIMIZATION: Use modern FirestoreSettings.cache
     // This reduces reads and allows multi-tab synchronization
