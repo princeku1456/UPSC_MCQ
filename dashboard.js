@@ -104,22 +104,27 @@ function renderDashboardUI() {
   document.getElementById("stat-avg-score").textContent = avgScore + "%";
   
   // Update the new cumulative matrix elements
-  if (document.getElementById("stat-all-total"))
-    document.getElementById("stat-all-total").textContent = totalQs;
-  if (document.getElementById("stat-all-attempted"))
-    document.getElementById("stat-all-attempted").textContent = totalAttempted;
-  if (document.getElementById("stat-all-unattempted"))
-    document.getElementById("stat-all-unattempted").textContent = Math.max(0, totalUnattempted);
-  if (document.getElementById("stat-all-correct"))
-    document.getElementById("stat-all-correct").textContent = totalCorrect;
-  if (document.getElementById("stat-all-incorrect"))
-    document.getElementById("stat-all-incorrect").textContent = totalIncorrect;
+  const elTotal = document.getElementById("stat-all-total");
+  if (elTotal) elTotal.textContent = totalQs;
+
+  const elAttempted = document.getElementById("stat-all-attempted");
+  if (elAttempted) elAttempted.textContent = totalAttempted;
+
+  const elUnattempted = document.getElementById("stat-all-unattempted");
+  if (elUnattempted) elUnattempted.textContent = Math.max(0, totalUnattempted);
+
+  const elCorrect = document.getElementById("stat-all-correct");
+  if (elCorrect) elCorrect.textContent = totalCorrect;
+
+  const elIncorrect = document.getElementById("stat-all-incorrect");
+  if (elIncorrect) elIncorrect.textContent = totalIncorrect;
 
   // Update precision and drain stats if elements exist
-  if (document.getElementById("stat-precision-rate")) 
-    document.getElementById("stat-precision-rate").textContent = precisionRate + "%";
-  if (document.getElementById("stat-negative-drain")) 
-    document.getElementById("stat-negative-drain").textContent = negativeDrain + "%";
+  const elPrecision = document.getElementById("stat-precision-rate");
+  if (elPrecision) elPrecision.textContent = precisionRate + "%";
+
+  const elDrain = document.getElementById("stat-negative-drain");
+  if (elDrain) elDrain.textContent = negativeDrain + "%";
 
   // 3. Prepare Confidence Data for Charting
   const confValues = [
