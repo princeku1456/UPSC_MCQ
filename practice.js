@@ -176,15 +176,18 @@ async function loadPracticeQuiz(subject, chapter, limit) {
         </div>`;
 
   try {
-    let allQuestions = [];
     const chapterIds =
       chapter === "all" ? Object.keys(allPracticeData[subject]) : [chapter];
 
-    for (const chapId of chapterIds) {
-      const docId = subject.replace(/\s+/g, "_") + "_" + chapId;
-      const data = await DataManager.fetchPracticeQuestions(docId);
-      allQuestions = allQuestions.concat(data);
-    }
+    // Fetch all selected chapters in parallel for faster loading
+    const promises = chapterIds.map(chapId => {
+        const docId = subject.replace(/\s+/g, "_") + "_" + chapId;
+        return DataManager.fetchPracticeQuestions(docId);
+    });
+
+    // Wait for all fetches to complete, then flatten the array of arrays
+    const results = await Promise.all(promises);
+    const allQuestions = results.flat();
 
     if (allQuestions.length === 0)
       return toastr.error("No questions available.");
