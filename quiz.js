@@ -82,7 +82,7 @@ async function renderSubjects() {
 
   // Clear container and start rendering
   container.innerHTML = `
-        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="router.navigateTo('#/dashboard')">← Back to Dashboard</button>
+        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="showDashboard()">← Back to Dashboard</button>
         <div class="text-center mb-4">
             <h4 class="fw-bold section-title">Select a Subject</h4>
             <div class="title-underline mx-auto"></div>
@@ -151,7 +151,7 @@ async function renderSubjects() {
                 </div>
             </div>`;
 
-    col.onclick = () => router.navigateTo('#/tests/' + encodeURIComponent(subjectKey));
+    col.onclick = () => renderChapters(subjectKey);
     row.appendChild(col);
   });
 }
@@ -167,7 +167,7 @@ function renderChapters(subjectKey) {
 
   // Create the layout for the chapters view
   container.innerHTML = `
-        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="router.navigateTo('#/tests')">← Back to Subjects</button>
+        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="renderSubjects()">← Back to Subjects</button>
         <div class="text-center mb-4">
             <h4 class="fw-bold section-title">Chapters: ${subjectKey}</h4>
             <div class="title-underline mx-auto"></div>
@@ -224,12 +224,7 @@ function renderChapters(subjectKey) {
 
     // Handle Start/Retake Test click
     col.querySelector(".action-btn").onclick = () => {
-      router.navigateTo(
-        '#/quiz/' +
-          encodeURIComponent(subjectKey) +
-          '/' +
-          encodeURIComponent(chapId)
-      );
+      loadQuiz(subjectKey, chapId, encodeURIComponent(chapId));
     };
 
     // Handle Review Performance click if the test was previously completed
