@@ -54,7 +54,7 @@ async function renderPracticeUI() {
   const container = document.getElementById("test-content-container");
 
   container.innerHTML = `
-        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="showDashboard()">← Back to Dashboard</button>
+        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="router.navigateTo('#/dashboard')">← Back to Dashboard</button>
         <div class="text-center mb-5">
             <h2 class="fw-bold section-title text-primary">Practice MCQ</h2>
             <div class="title-underline mx-auto" style="background: var(--secondary-color)"></div>
