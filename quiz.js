@@ -816,6 +816,7 @@ function filterReview(filterType, btnElement) {
 function renderReviewQuestions(filterType) {
   const container = document.getElementById("review-container");
   container.innerHTML = "";
+  const fragment = document.createDocumentFragment();
 
   let visibleCount = 0;
 
@@ -958,8 +959,10 @@ function renderReviewQuestions(filterType) {
                 </div>
             </div>
         `;
-    container.appendChild(card);
+    fragment.appendChild(card);
   });
+
+  container.appendChild(fragment);
 
   if (visibleCount === 0) {
     container.innerHTML = `<div class="alert alert-info text-center">No questions found for this filter.</div>`;
