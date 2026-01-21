@@ -12,12 +12,12 @@
     --input-bg: #f9fafb;
     --option-bg: #ffffff;
     --option-hover: #eff6ff;
-    
+
     /* Original Palette (Royal Navy & Gold) */
-    --primary-color: #1e3a8a;   
-    --secondary-color: #3b82f6; 
-    --accent-color: #f59e0b;    
-    
+    --primary-color: #1e3a8a;
+    --secondary-color: #3b82f6;
+    --accent-color: #f59e0b;
+
     /* Shadows */
     --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
     --hover-shadow: 0 20px 25px -5px rgba(30, 58, 138, 0.15), 0 10px 10px -5px rgba(30, 58, 138, 0.04);
@@ -48,28 +48,28 @@
 [data-theme="dark"] .dropdown-item:hover { background-color: var(--option-hover); }
 
 
-[data-theme="dark"] .bg-white, 
+[data-theme="dark"] .bg-white,
 [data-theme="dark"] .card,
-[data-theme="dark"] .bg-light { 
-    background-color: var(--bg-card) !important; 
+[data-theme="dark"] .bg-light {
+    background-color: var(--bg-card) !important;
     color: var(--text-main) !important;
 }
 
 [data-theme="dark"] .text-dark,
 [data-theme="dark"] .text-secondary:not(.badge),
 [data-theme="dark"] .card-title,
-[data-theme="dark"] .form-label { 
-    color: var(--text-main) !important; 
+[data-theme="dark"] .form-label {
+    color: var(--text-main) !important;
 }
 
-[data-theme="dark"] .text-muted { 
-    color: var(--text-muted) !important; 
+[data-theme="dark"] .text-muted {
+    color: var(--text-muted) !important;
 }
 
 [data-theme="dark"] .border,
 [data-theme="dark"] .border-bottom,
-[data-theme="dark"] .border-start { 
-    border-color: var(--border-color) !important; 
+[data-theme="dark"] .border-start {
+    border-color: var(--border-color) !important;
 }
 
 [data-theme="dark"] .table {
@@ -156,7 +156,7 @@ body {
     --input-bg: #334155;
     --option-bg: #1e293b;
     --option-hover: #334155;
-    
+
     --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
     --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
 }
@@ -172,7 +172,7 @@ body {
    NAVBAR
    ============================ */
 .main-navbar {
-    background: var(--navbar-bg); 
+    background: var(--navbar-bg);
     background: var(--navbar-gradient);
     box-shadow: 0 4px 20px rgba(0,0,0,0.15);
 }
@@ -198,7 +198,7 @@ body {
     border: 1px solid var(--border-color);
     border-radius: 20px;
     background: var(--bg-card); /* Changed from rgba(255,255,255,0.9) */
-    backdrop-filter: blur(12px); 
+    backdrop-filter: blur(12px);
     box-shadow: var(--card-shadow);
 }
 
@@ -280,7 +280,7 @@ body {
     background: linear-gradient(to right, #059669, #047857);
     border: none;
     color: white;
-    border-radius: 8px; 
+    border-radius: 8px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -378,8 +378,8 @@ body {
 }
 
 .history-card.high-score { border-left-color: #10b981; }
-.history-card.avg-score { border-left-color: #f59e0b; } 
-.history-card.low-score { border-left-color: #ef4444; } 
+.history-card.avg-score { border-left-color: #f59e0b; }
+.history-card.low-score { border-left-color: #ef4444; }
 
 /* ============================
    QUIZ LAYOUT
@@ -398,7 +398,7 @@ body {
     border-radius: 12px;
     box-shadow: var(--card-shadow);
     position: sticky;
-    top: 2rem; 
+    top: 2rem;
     border: 1px solid var(--border-color);
 }
 
@@ -417,7 +417,7 @@ body {
 /* Grid for Quiz Navigation Numbers */
 .nav-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); 
+    grid-template-columns: repeat(5, 1fr);
     gap: 8px;
     justify-items: center;
 }
@@ -426,9 +426,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;       
-    aspect-ratio: 1;   
-    max-width: 50px;   
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 50px;
     background-color: var(--input-bg);
     border-radius: 6px;
     cursor: pointer;
@@ -467,7 +467,7 @@ body {
     color: var(--text-main);
     transition: all 0.2s ease;
     position: relative;
-    padding-left: 3.5rem; 
+    padding-left: 3.5rem;
 }
 
 .option:hover {
@@ -836,6 +836,34 @@ body {
 
 /* Increased height for horizontal bar layout to prevent label overlap */
 .confidence-chart-container {
-    height: 200px; 
+    height: 200px;
     width: 100%;
+}
+
+/* ============================
+   AI REVIEW BOX SCROLLING
+   ============================ */
+#ai-review-content {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+/* Custom Scrollbar for AI Review */
+#ai-review-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+#ai-review-content::-webkit-scrollbar-track {
+    background: var(--input-bg);
+    border-radius: 4px;
+}
+
+#ai-review-content::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+#ai-review-content::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
 }
