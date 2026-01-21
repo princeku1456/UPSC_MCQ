@@ -375,8 +375,9 @@ function renderPracticeNav() {
   nav.innerHTML = "";
   practiceQuizData.forEach((_, i) => {
     const item = document.createElement("div");
-    item.className = "nav-item shadow-sm";
+    item.className = "nav-item shadow-sm nav-item-animate";
     item.textContent = i + 1;
+    item.style.setProperty("--animation-delay", `${i * 30}ms`);
     item.onclick = () => {
       practiceCurrentIndex = i;
       renderPracticeQuestion();
