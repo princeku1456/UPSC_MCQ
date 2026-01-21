@@ -336,26 +336,41 @@ async function generateAIReview() {
 
     // Construct Prompt
     const prompt = `
-      You are an expert UPSC exam mentor. Perform a deep-dive analysis of this student's performance data.
+      Act as the **Lead Academic Strategist** for a premier UPSC Civil Services coaching institute. Your objective is to conduct a **Clinical Performance Audit** for a student using the psychometric and academic datasets provided below. 
 
-      **Overall Metrics:**
-      - Total Tests: ${totalTests}
-      - Overall Average Score: ${avgScore}
-      - Net Accuracy (Precision): ${precision}
-      - Negative Drain (Marks lost): ${drain}
-      - Concept Gap (Easy Qs Missed): ${gap}
-      - Weakest Subject: ${weakestSubject}
+      ### **1. STUDENT PERFORMANCE DATASET**
+      **Core Metrics:**
+      - **Stamina (Total Tests):** ${totalTests} (Reliability of data sample)
+      - **Baseline Competency (Avg Score):** ${avgScore}
+      - **Efficiency Index (Precision/Accuracy):** ${precision}
+      - **Risk Impact (Negative Drain):** ${drain}
+      - **Foundational Integrity (Concept Gap):** ${gap} (Critical: Easy questions missed)
+      - **High-Priority Weakness:** ${weakestSubject}
 
-      **Complete Test History:**
+      **Raw Longitudinal History:**
       ${allTestsDetailed}
 
-      **Instructions:**
-      Provide a detailed, personalized strategic review.
-      1.  **Weak Subject Strategy:** Specific advice on how to improve the weakest subject mentioned above.
-      2.  **Response Pattern Analysis:** Analyze the test history to identify trends (e.g. rushing, guesswork, consistency, fatigue).
-      3.  **Actionable Plan:** Give 3 specific tasks for the next study session based on these patterns.
+      ---
 
-      Keep the tone professional, insightful, and strict but encouraging. Use bolding for key terms.
+      ### **2. ANALYTICAL REQUIREMENTS & INSTRUCTIONS**
+      Perform your analysis using a **data-first diagnostic approach**. Your review MUST include:
+
+      #### **A. Root Cause Analysis (RCA): Weakest Subject**
+      Don't just suggest reading more. Diagnose if the failure in **${weakestSubject}** is due to *Conceptual Fog* (fundamental misunderstanding) or *Application Failure* (unable to eliminate options). Provide a 3-step hierarchical fix (Foundational → Applied → Simulated).
+
+      #### **B. Behavioral Response Mapping**
+      Scan the **Longitudinal History** for psychological trends:
+      - **Fatigue Decay:** Do scores drop in later tests or during specific streaks?
+      - **The Guesswork Trap:** Compare 'Precision' vs 'Negative Drain'. Is the student's "Calculated Risk" actually hurting their net gain?
+      - **Volatity vs. Plateau:** Is the student consistently average, or experiencing wild swings in performance?
+
+      #### **C. The 48-Hour Tactical Roadmap**
+      Provide exactly **3 SMART (Specific, Measurable, Achievable, Relevant, Time-bound) Tasks** for the very next study session. These must be hyper-specific (e.g., "Review 50 previous 'Easy' misses" rather than "Study more").
+
+      ### **3. STYLE & TONE CONSTRAINTS**
+      - **Tone:** authoritative, clinical, data-driven, yet high-conviction and encouraging.
+      - **Formatting:** Use **Bold** for critical insights and code blocks or bullet points for specific techniques.
+      - **Goal:** Move the student from "Hard Work" to "Precision Work."
     `;
 
     // Call Gemini API
