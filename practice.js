@@ -179,14 +179,12 @@ async function loadPracticeQuiz(subject, chapter, limit) {
     const chapterIds =
       chapter === "all" ? Object.keys(allPracticeData[subject]) : [chapter];
 
-    // Fetch all selected chapters in parallel for faster loading
-    const promises = chapterIds.map(chapId => {
+    // Fetch all selected chapters with concurrency limit to prevent overwhelming the network/server
+    const CONCURRENCY_LIMIT = 5;
+    const results = await fetchWithConcurrency(chapterIds, CONCURRENCY_LIMIT, (chapId) => {
         const docId = subject.replace(/\s+/g, "_") + "_" + chapId;
         return DataManager.fetchPracticeQuestions(docId);
     });
-
-    // Wait for all fetches to complete, then flatten the array of arrays
-    const results = await Promise.all(promises);
     const allQuestions = results.flat();
 
     if (allQuestions.length === 0)
@@ -500,4 +498,29 @@ function togglePracticeMarkForReview() {
 
   renderPracticeQuestion(); // Refresh button UI
   updatePracticeNavHighlights(); // Refresh palette UI
+}
+
+/**
+ * Helper to fetch data with limited concurrency
+ * @param {Array} items - The array of items to process
+ * @param {number} concurrency - The maximum number of concurrent operations
+ * @param {Function} fn - The async function to execute for each item
+ * @returns {Promise<Array>} - A promise that resolves to an array of results
+ */
+async function fetchWithConcurrency(items, concurrency, fn) {
+    const results = [];
+    const executing = [];
+    for (const item of items) {
+        const p = Promise.resolve().then(() => fn(item));
+        results.push(p);
+
+        if (concurrency <= items.length) {
+            const e = p.then(() => executing.splice(executing.indexOf(e), 1));
+            executing.push(e);
+            if (executing.length >= concurrency) {
+                await Promise.race(executing);
+            }
+        }
+    }
+    return Promise.all(results);
 }
