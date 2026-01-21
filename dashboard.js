@@ -227,9 +227,16 @@ function renderPerformanceChart(data) {
 
 async function generateAIReview() {
   // Use global configuration key
-  const key = GEMINI_API_KEY;
+  const key = await DataManager.fetchGeminiKey();
   const GEMINI_MODEL = "gemini-flash-latest"; // Validated working alias
-
+   
+  if (!key) {
+    toastr.warning("AI Service not configured in Firebase. Please contact admin.");
+    console.error("Missing gemini_api_key in Firestore (app_config/keys)");
+    return;
+  }
+  
+  console.log("Using Gemini Key:", key ? "Loaded" : "MISSING");
   if (!key || key === "YOUR_GEMINI_API_KEY_HERE") {
     toastr.warning("AI Service not configured. Please contact support or check config.js");
     console.error("Missing GEMINI_API_KEY in config.js");
