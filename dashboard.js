@@ -168,10 +168,27 @@ async function updateConceptGapStat(results) {
     const uniqueChapters = [...new Set(results.map(r => r.chapterId))];
     const statsMap = {};
     
-    // Fetch stats for all unique chapters in history in parallel
-    const promises = uniqueChapters.map(async (id) => {
-        const doc = await db.collection("chapter_stats").doc(id).get();
-        if (doc.exists) statsMap[id] = doc.data();
+    // Fetch stats for all unique chapters in history using batched queries
+    // Firestore 'in' query supports up to 10 values per batch
+    const BATCH_SIZE = 10;
+    const chunks = [];
+    for (let i = 0; i < uniqueChapters.length; i += BATCH_SIZE) {
+        chunks.push(uniqueChapters.slice(i, i + BATCH_SIZE));
+    }
+
+    const promises = chunks.map(async (chunk) => {
+        if (!chunk || chunk.length === 0) return;
+        try {
+            const snapshot = await db.collection("chapter_stats")
+                .where('__name__', 'in', chunk)
+                .get();
+
+            snapshot.docs.forEach(doc => {
+                statsMap[doc.id] = doc.data();
+            });
+        } catch (err) {
+            console.error("Error fetching chapter stats chunk:", err);
+        }
     });
     await Promise.all(promises);
 
