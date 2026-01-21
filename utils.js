@@ -14,7 +14,8 @@ const DataManager = {
         quizManifest: null,
         practiceManifest: null,
         quizzes: {},     // Cache for specific quiz/chapter data
-        practice: {}     // Cache for practice questions
+        practice: {},
+        geminiKey: null     // Cache for practice questions
     },
 
     /**
@@ -34,6 +35,24 @@ const DataManager = {
             }
         } catch (error) {
             console.error("Error fetching quiz manifest:", error);
+        }
+        return null;
+    },
+
+    async fetchGeminiKey() {
+        if (this.cache.geminiKey) return this.cache.geminiKey;
+        
+        try {
+            // Recommendation: Store in 'app_config' collection, 'keys' document
+            const doc = await getDb().collection("app_config").doc("keys").get();
+            if (doc.exists) {
+                this.cache.geminiKey = doc.data().gemini_api_key;
+                return this.cache.geminiKey;
+            } else {
+                console.error("API Key document not found in Firestore.");
+            }
+        } catch (error) {
+            console.error("Error fetching Gemini key:", error);
         }
         return null;
     },

@@ -11,7 +11,7 @@ const firebaseConfig = {
 
 // AI Configuration
 // WARNING: This key is exposed to the client. Restrict it by HTTP Referrer in Google Cloud Console.
-const GEMINI_API_KEY = "AIzaSyBKEG1pxFGUkKmsjfiN1lle2DzGNT0hGZY";
+const GEMINI_API_KEY = null;
 
 // Initialize Firebase (Compat Version)
 // This checks if the Firebase SDK was loaded successfully in index.html
