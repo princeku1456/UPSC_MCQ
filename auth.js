@@ -121,14 +121,14 @@ auth.onAuthStateChanged((user) => {
         if (freshUser && !freshUser.emailVerified) {
           currentUser = null;
           updateUIForLogout();
-          router.navigateTo('#/');
+          showHome();
           auth.signOut();
           return;
         }
         currentUser = freshUser;
         updateUIForLogin();
+        showDashboard();
         performMorningSync();
-        router.handleLocation();
       })
       .catch((err) => {
         console.error("Auth sync error:", err);
@@ -141,7 +141,7 @@ auth.onAuthStateChanged((user) => {
     globalStatsCache = {};
     leaderboardCache = {};
     updateUIForLogout();
-    router.handleLocation();
+    showHome();
   }
 });
 
@@ -262,8 +262,8 @@ function updateUIForLogout() {
 }
 
 function handleLogoClick() {
-  if (currentUser && currentUser.emailVerified) router.navigateTo('#/dashboard');
-  else router.navigateTo('#/');
+  if (currentUser && currentUser.emailVerified) showDashboard();
+  else showHome();
 }
 
 function hideAllSections() {
@@ -313,18 +313,20 @@ function exitQuiz() {
 
   // Check if we are in Practice Mode
   if (isPracticeMode) {
-    router.navigateTo('#/practice');
+    startPracticeSelection(); // Practice configuration page par wapas le jayega
     return;
   }
 
   // Regular Quiz Logic
   if (isReviewMode && reviewSource === "performance") {
-    router.navigateTo('#/dashboard');
+    showPerformance();
   } else if (currentSubject && allQuizData[currentSubject]) {
-    router.navigateTo('#/tests/' + encodeURIComponent(currentSubject));
+    hideAllSections();
+    document.getElementById("test-selection-section").style.display = "block";
+    renderChapters(currentSubject);
   } else {
     // Safety Fallback: Agar kuch samajh na aaye toh Dashboard dikhao
-    router.navigateTo('#/dashboard');
+    showDashboard();
   }
 }
 
@@ -340,3 +342,39 @@ function hideGlobalLoader() {
   }
 }
 
+/* --- Modify the existing listener in auth.js --- */
+auth.onAuthStateChanged((user) => {
+  if (user) {
+    user
+      .reload()
+      .then(() => {
+        const freshUser = auth.currentUser;
+        if (freshUser && !freshUser.emailVerified) {
+          currentUser = null;
+          updateUIForLogout();
+          showHome();
+          auth.signOut();
+          hideGlobalLoader(); // Hide loader after handling unverified user
+          return;
+        }
+        currentUser = freshUser;
+        updateUIForLogin();
+        showDashboard();
+        hideGlobalLoader(); // Hide loader after showing dashboard
+      })
+      .catch((err) => {
+        console.error("Auth sync error:", err);
+        auth.signOut();
+        hideGlobalLoader(); // Hide loader even on error
+      });
+  } else {
+    currentUser = null;
+    userHistory = [];
+    dashboardDataLoaded = false;
+    globalStatsCache = {};
+    leaderboardCache = {};
+    updateUIForLogout();
+    showHome();
+    hideGlobalLoader(); // Hide loader after showing login/home
+  }
+});

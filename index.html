@@ -63,7 +63,9 @@
             </button>
             <ul class="dropdown-menu dropdown-menu-end shadow">
               <li>
-                <a class="dropdown-item" href="#/dashboard">📊 Dashboard</a>
+                <a class="dropdown-item" href="#" onclick="showDashboard()"
+                  >📊 Dashboard</a
+                >
               </li>
               <li><hr class="dropdown-divider" /></li>
               <li>
@@ -285,7 +287,7 @@
             <div
               class="card topic-card shadow-sm h-100"
               style="cursor: pointer"
-              onclick="router.navigateTo('#/tests')"
+              onclick="showTestSelection()"
             >
               <div class="card-body text-center p-4">
                 <div class="display-5 mb-2">🚀</div>
@@ -297,7 +299,7 @@
             <div
               class="card topic-card shadow-sm h-100"
               style="cursor: pointer"
-              onclick="router.navigateTo('#/practice')"
+              onclick="startPracticeSelection()"
             >
               <div class="card-body text-center p-4">
                 <div class="display-5 mb-2">🎯</div>
@@ -425,6 +427,5 @@
     <script src="quiz.js"></script>
     <script src="practice.js"></script>
     <script src="dashboard.js"></script>
-    <script src="router.js"></script>
   </body>
 </html>
