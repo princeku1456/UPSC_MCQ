@@ -260,28 +260,72 @@ async function generateAIReview() {
     const drain = document.getElementById("stat-negative-drain").textContent;
     const gap = document.getElementById("stat-concept-gap").textContent;
 
-    // Get recent scores (last 5)
-    const recentScores = userHistory
-      .slice(0, 5)
-      .map((r) => `${r.scorePercent}% (${r.chapterName})`)
-      .join(", ");
+    // --- 1. Subject-wise Analysis ---
+    const subjectStats = {};
+    userHistory.forEach((r) => {
+      if (!subjectStats[r.subject]) {
+        subjectStats[r.subject] = { totalScore: 0, count: 0 };
+      }
+      subjectStats[r.subject].totalScore += r.scorePercent;
+      subjectStats[r.subject].count++;
+    });
+
+    let weakestSubject = "N/A";
+    let weakestScore = 100;
+
+    Object.entries(subjectStats).forEach(([subj, data]) => {
+      const avg = data.totalScore / data.count;
+      if (avg < weakestScore) {
+        weakestScore = avg;
+        weakestSubject = `${subj} (${avg.toFixed(1)}%)`;
+      }
+    });
+
+    // --- 2. Recent Test Deep Dive ---
+    // Analyze last 3 tests in detail
+    const recentTestsDetailed = userHistory.slice(0, 3).map((r) => {
+      let correct = 0,
+        incorrect = 0,
+        unattempted = 0;
+      if (r.userAnswers) {
+        Object.values(r.userAnswers).forEach((ans) => {
+          if (ans.isCorrect) correct++;
+          else incorrect++;
+        });
+      }
+      // Estimate total questions from totalMarks (assuming 2 marks/question)
+      const totalQs = r.totalMarks ? r.totalMarks / 2 : correct + incorrect;
+      unattempted = totalQs - (correct + incorrect);
+
+      return `
+      - Test: ${r.chapterName} (${r.subject})
+        Score: ${r.scorePercent}%
+        Breakdown: ${correct} Correct, ${incorrect} Incorrect, ${unattempted} Unattempted.
+      `;
+    }).join("\n");
 
     // Construct Prompt
     const prompt = `
-      You are an expert UPSC exam mentor. Analyze this student's performance based on the following metrics:
-      - Total Tests Taken: ${totalTests}
-      - Average Score: ${avgScore}
-      - Precision (Net Accuracy): ${precision}
-      - Negative Drain (Marks lost to negative marking): ${drain}
-      - Concept Gap (Easy questions missed): ${gap}
-      - Recent Test Scores: ${recentScores}
+      You are an expert UPSC exam mentor. Perform a deep-dive analysis of this student's performance data.
 
-      Provide a personalized, strategic review in 3 concise bullet points.
-      1. Identify the biggest weakness (e.g., negative marking, concept clarity).
-      2. Highlight a strength or improvement area.
-      3. Give one specific actionable advice for the next test.
+      **Overall Metrics:**
+      - Total Tests: ${totalTests}
+      - Overall Average Score: ${avgScore}
+      - Net Accuracy (Precision): ${precision}
+      - Negative Drain (Marks lost): ${drain}
+      - Concept Gap (Easy Qs Missed): ${gap}
+      - Weakest Subject: ${weakestSubject}
 
-      Keep the tone professional, encouraging, and direct. Use bolding for key terms.
+      **Recent Test Analysis (Last 3 Tests):**
+      ${recentTestsDetailed}
+
+      **Instructions:**
+      Provide a detailed, personalized strategic review.
+      1.  **Weak Subject Strategy:** Specific advice on how to improve the weakest subject mentioned above.
+      2.  **Response Pattern Analysis:** Analyze the recent tests. Are they attempting too many and getting negatives (high incorrect)? Or are they too passive (high unattempted)?
+      3.  **Actionable Plan:** Give 3 specific tasks for the next study session based on these patterns.
+
+      Keep the tone professional, insightful, and strict but encouraging. Use bolding for key terms.
     `;
 
     // Call Gemini API
