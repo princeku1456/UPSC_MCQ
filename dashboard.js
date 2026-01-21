@@ -252,27 +252,54 @@ async function generateAIReview() {
       throw new Error("No test history available to analyze.");
     }
 
-    // Prepare Data Summary
+    // --- 1. Calculate Metrics from Fresh Data ---
     const totalTests = userHistory.length;
-    const avgScore = document.getElementById("stat-avg-score").textContent;
-    const precision =
-      document.getElementById("stat-precision-rate").textContent;
-    const drain = document.getElementById("stat-negative-drain").textContent;
-    const gap = document.getElementById("stat-concept-gap").textContent;
 
-    // --- 1. Subject-wise Analysis ---
+    // Aggregators
+    let totalScoreSum = 0;
+    let totalCorrect = 0;
+    let totalIncorrect = 0;
+    let totalAttempted = 0;
+
+    // Subject Aggregation
     const subjectStats = {};
+
     userHistory.forEach((r) => {
+      totalScoreSum += r.scorePercent;
+
+      // Subject stats
       if (!subjectStats[r.subject]) {
         subjectStats[r.subject] = { totalScore: 0, count: 0 };
       }
       subjectStats[r.subject].totalScore += r.scorePercent;
       subjectStats[r.subject].count++;
+
+      // Answer stats
+      if (r.userAnswers) {
+        Object.values(r.userAnswers).forEach((ans) => {
+          totalAttempted++;
+          if (ans.isCorrect) totalCorrect++;
+          else totalIncorrect++;
+        });
+      }
     });
 
+    // Derived Metrics
+    const avgScore = totalTests ? (totalScoreSum / totalTests).toFixed(1) + "%" : "0%";
+    const precision = totalAttempted ? ((totalCorrect / totalAttempted) * 100).toFixed(1) + "%" : "0%";
+
+    const negativeLoss = totalIncorrect * 0.66;
+    const positiveGain = totalCorrect * 2;
+    const drainVal = positiveGain ? ((negativeLoss / positiveGain) * 100).toFixed(1) : 0;
+    const drain = drainVal + "%";
+
+    // Concept Gap (must rely on DOM or previous async calc as it requires external chapter stats)
+    const gapEl = document.getElementById("stat-concept-gap");
+    const gap = gapEl ? gapEl.textContent : "Pending Analysis";
+
+    // Identify Weakest Subject
     let weakestSubject = "N/A";
     let weakestScore = 100;
-
     Object.entries(subjectStats).forEach(([subj, data]) => {
       const avg = data.totalScore / data.count;
       if (avg < weakestScore) {
@@ -281,9 +308,9 @@ async function generateAIReview() {
       }
     });
 
-    // --- 2. Recent Test Deep Dive ---
-    // Analyze last 3 tests in detail
-    const recentTestsDetailed = userHistory.slice(0, 3).map((r) => {
+    // --- 2. Full History Data Construction ---
+    // Map ALL tests for deep pattern analysis
+    const allTestsDetailed = userHistory.map((r) => {
       let correct = 0,
         incorrect = 0,
         unattempted = 0;
@@ -293,14 +320,16 @@ async function generateAIReview() {
           else incorrect++;
         });
       }
-      // Estimate total questions from totalMarks (assuming 2 marks/question)
+      // Estimate total questions
       const totalQs = r.totalMarks ? r.totalMarks / 2 : correct + incorrect;
-      unattempted = totalQs - (correct + incorrect);
+      unattempted = Math.max(0, totalQs - (correct + incorrect));
+
+      // Format date
+      const dateStr = r.timestamp ? new Date(r.timestamp.seconds * 1000).toLocaleDateString() : "Unknown Date";
 
       return `
-      - Test: ${r.chapterName} (${r.subject})
-        Score: ${r.scorePercent}%
-        Breakdown: ${correct} Correct, ${incorrect} Incorrect, ${unattempted} Unattempted.
+      - ${dateStr}: ${r.chapterName} (${r.subject})
+        Score: ${r.scorePercent}% | Breakdown: ${correct} Correct, ${incorrect} Incorrect, ${unattempted} Unattempted.
       `;
     }).join("\n");
 
@@ -316,13 +345,13 @@ async function generateAIReview() {
       - Concept Gap (Easy Qs Missed): ${gap}
       - Weakest Subject: ${weakestSubject}
 
-      **Recent Test Analysis (Last 3 Tests):**
-      ${recentTestsDetailed}
+      **Complete Test History:**
+      ${allTestsDetailed}
 
       **Instructions:**
       Provide a detailed, personalized strategic review.
       1.  **Weak Subject Strategy:** Specific advice on how to improve the weakest subject mentioned above.
-      2.  **Response Pattern Analysis:** Analyze the recent tests. Are they attempting too many and getting negatives (high incorrect)? Or are they too passive (high unattempted)?
+      2.  **Response Pattern Analysis:** Analyze the test history to identify trends (e.g. rushing, guesswork, consistency, fatigue).
       3.  **Actionable Plan:** Give 3 specific tasks for the next study session based on these patterns.
 
       Keep the tone professional, insightful, and strict but encouraging. Use bolding for key terms.
