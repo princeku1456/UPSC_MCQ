@@ -566,6 +566,25 @@ body {
     border-radius: 20px;
 }
 
+/* ============================
+   ANIMATIONS
+   ============================ */
+@keyframes palette-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.nav-item-animate {
+  animation: palette-fade-in 0.5s ease-out forwards;
+  animation-delay: var(--animation-delay, 0ms);
+  opacity: 0;
+}
+
 /* --- Modern Premium Loader --- */
 .global-loader {
     position: fixed;
