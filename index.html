@@ -338,33 +338,6 @@
                 </p>
               </div>
 
-              <div id="ai-key-container" class="mb-3" style="display: none">
-                <label
-                  for="gemini-api-key"
-                  class="form-label small fw-bold text-muted"
-                  >Enter Google Gemini API Key</label
-                >
-                <div class="input-group">
-                  <input
-                    type="password"
-                    class="form-control"
-                    id="gemini-api-key"
-                    placeholder="Paste your API Key here"
-                  />
-                  <button
-                    class="btn btn-outline-secondary"
-                    type="button"
-                    onclick="saveApiKey()"
-                  >
-                    Save Key
-                  </button>
-                </div>
-                <div class="form-text small">
-                  Your key is stored locally in your browser and never sent to our
-                  servers.
-                </div>
-              </div>
-
               <div class="d-flex gap-2 align-items-center">
                 <button
                   class="btn btn-primary-custom px-4"
@@ -378,14 +351,6 @@
                     id="ai-loading-spinner"
                   ></span>
                   <span id="ai-btn-text">⚡ Analyze My Performance</span>
-                </button>
-                <button
-                  class="btn btn-outline-danger btn-sm"
-                  onclick="clearApiKey()"
-                  id="btn-clear-key"
-                  style="display: none"
-                >
-                  Clear Key
                 </button>
               </div>
             </div>

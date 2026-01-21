@@ -225,52 +225,13 @@ function renderPerformanceChart(data) {
    4. AI MENTOR LOGIC
    ========================================= */
 
-function getStoredApiKey() {
-  return localStorage.getItem("gemini_api_key");
-}
-
-function saveApiKey() {
-  const input = document.getElementById("gemini-api-key");
-  const key = input.value.trim();
-  if (key) {
-    localStorage.setItem("gemini_api_key", key);
-    toastr.success("API Key saved securely.");
-    updateAIUIState();
-  } else {
-    toastr.warning("Please enter a valid API Key.");
-  }
-}
-
-function clearApiKey() {
-  localStorage.removeItem("gemini_api_key");
-  document.getElementById("ai-review-content").innerHTML = `
-    <p>Get a personalized performance review powered by Google Gemini AI. Analyze your weak spots, negative marking patterns, and confidence gaps.</p>
-  `;
-  updateAIUIState();
-  toastr.info("API Key removed.");
-}
-
-function updateAIUIState() {
-  const key = getStoredApiKey();
-  const keyContainer = document.getElementById("ai-key-container");
-  const clearBtn = document.getElementById("btn-clear-key");
-  const generateBtn = document.getElementById("btn-generate-ai");
-
-  if (key) {
-    keyContainer.style.display = "none";
-    clearBtn.style.display = "inline-block";
-    generateBtn.disabled = false;
-  } else {
-    keyContainer.style.display = "block";
-    clearBtn.style.display = "none";
-  }
-}
-
 async function generateAIReview() {
-  const key = getStoredApiKey();
-  if (!key) {
-    toastr.warning("Please enter your Google Gemini API Key first.");
-    document.getElementById("gemini-api-key").focus();
+  // Use global configuration key
+  const key = GEMINI_API_KEY;
+
+  if (!key || key === "YOUR_GEMINI_API_KEY_HERE") {
+    toastr.warning("AI Service not configured. Please contact support or check config.js");
+    console.error("Missing GEMINI_API_KEY in config.js");
     return;
   }
 
@@ -352,19 +313,10 @@ async function generateAIReview() {
   } catch (error) {
     console.error("AI Error:", error);
     toastr.error("AI Analysis Failed: " + error.message);
-    contentDiv.innerHTML = `<p class="text-danger">Failed to generate review. Please check your API Key and try again.</p>`;
-    // If auth error, maybe clear key?
-    if (error.message.includes("API key")) {
-      clearApiKey();
-    }
+    contentDiv.innerHTML = `<p class="text-danger">Failed to generate review. Please check the system configuration.</p>`;
   } finally {
     btn.disabled = false;
     spinner.classList.add("d-none");
     btnText.textContent = "⚡ Analyze My Performance";
   }
 }
-
-// Initialize AI UI state on load
-document.addEventListener("DOMContentLoaded", () => {
-  updateAIUIState();
-});
