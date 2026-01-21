@@ -220,3 +220,103 @@ function renderPerformanceChart(data) {
 
   performanceChartInstance = ChartHelper.renderPerformanceChart(ctx, data);
 }
+
+/* =========================================
+   4. AI MENTOR LOGIC
+   ========================================= */
+
+async function generateAIReview() {
+  // Use global configuration key
+  const key = GEMINI_API_KEY;
+
+  if (!key || key === "YOUR_GEMINI_API_KEY_HERE") {
+    toastr.warning("AI Service not configured. Please contact support or check config.js");
+    console.error("Missing GEMINI_API_KEY in config.js");
+    return;
+  }
+
+  const btn = document.getElementById("btn-generate-ai");
+  const spinner = document.getElementById("ai-loading-spinner");
+  const btnText = document.getElementById("ai-btn-text");
+  const contentDiv = document.getElementById("ai-review-content");
+
+  // UI Loading State
+  btn.disabled = true;
+  spinner.classList.remove("d-none");
+  btnText.textContent = "Analyzing...";
+  contentDiv.innerHTML = `<div class="text-center text-muted"><p>Thinking...</p></div>`;
+
+  try {
+    // Recalculate essentials from userHistory for cleaner data
+    if (!userHistory || userHistory.length === 0) {
+      throw new Error("No test history available to analyze.");
+    }
+
+    // Prepare Data Summary
+    const totalTests = userHistory.length;
+    const avgScore = document.getElementById("stat-avg-score").textContent;
+    const precision =
+      document.getElementById("stat-precision-rate").textContent;
+    const drain = document.getElementById("stat-negative-drain").textContent;
+    const gap = document.getElementById("stat-concept-gap").textContent;
+
+    // Get recent scores (last 5)
+    const recentScores = userHistory
+      .slice(0, 5)
+      .map((r) => `${r.scorePercent}% (${r.chapterName})`)
+      .join(", ");
+
+    // Construct Prompt
+    const prompt = `
+      You are an expert UPSC exam mentor. Analyze this student's performance based on the following metrics:
+      - Total Tests Taken: ${totalTests}
+      - Average Score: ${avgScore}
+      - Precision (Net Accuracy): ${precision}
+      - Negative Drain (Marks lost to negative marking): ${drain}
+      - Concept Gap (Easy questions missed): ${gap}
+      - Recent Test Scores: ${recentScores}
+
+      Provide a personalized, strategic review in 3 concise bullet points.
+      1. Identify the biggest weakness (e.g., negative marking, concept clarity).
+      2. Highlight a strength or improvement area.
+      3. Give one specific actionable advice for the next test.
+
+      Keep the tone professional, encouraging, and direct. Use bolding for key terms.
+    `;
+
+    // Call Gemini API
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: prompt }] }],
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const errData = await response.json();
+      throw new Error(errData.error?.message || "Failed to fetch AI response");
+    }
+
+    const data = await response.json();
+    const aiText = data.candidates[0].content.parts[0].text;
+
+    // Render Response (Simple Markdown to HTML conversion for bold/lists)
+    const formattedText = aiText
+      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
+      .replace(/\n/g, "<br>");
+
+    contentDiv.innerHTML = `<div class="animate-fade-in">${formattedText}</div>`;
+  } catch (error) {
+    console.error("AI Error:", error);
+    toastr.error("AI Analysis Failed: " + error.message);
+    contentDiv.innerHTML = `<p class="text-danger">Failed to generate review. Please check the system configuration.</p>`;
+  } finally {
+    btn.disabled = false;
+    spinner.classList.add("d-none");
+    btnText.textContent = "⚡ Analyze My Performance";
+  }
+}
