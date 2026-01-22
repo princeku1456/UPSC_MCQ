@@ -24,8 +24,6 @@ let userHistory = [];
 let confidenceChartInstance = null; //
 let globalConfidenceChartInstance = null; //
 let dashboardDataLoaded = false;
-let globalStatsCache = {};
-let leaderboardCache = {};
 let performanceChartInstance = null;
 let comparisonChartInstance = null;
 let currentQuizTimer = null;
@@ -138,8 +136,6 @@ auth.onAuthStateChanged((user) => {
     currentUser = null;
     userHistory = [];
     dashboardDataLoaded = false;
-    globalStatsCache = {};
-    leaderboardCache = {};
     updateUIForLogout();
     showHome();
   }
@@ -371,8 +367,6 @@ auth.onAuthStateChanged((user) => {
     currentUser = null;
     userHistory = [];
     dashboardDataLoaded = false;
-    globalStatsCache = {};
-    leaderboardCache = {};
     updateUIForLogout();
     showHome();
     hideGlobalLoader(); // Hide loader after showing login/home

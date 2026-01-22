@@ -7,6 +7,93 @@
 const getDb = () => firebase.firestore();
 
 /* =========================================
+   0. INDEXED DB WRAPPER (To bypass 5MB localStorage limit)
+   ========================================= */
+const DB_CONFIG = {
+    name: 'QuizAppDB',
+    version: 1,
+    storeName: 'app_cache'
+};
+
+const IDB = {
+    dbPromise: null,
+
+    open() {
+        if (this.dbPromise) return this.dbPromise;
+
+        this.dbPromise = new Promise((resolve, reject) => {
+            const request = indexedDB.open(DB_CONFIG.name, DB_CONFIG.version);
+
+            request.onerror = (event) => {
+                console.error("IndexedDB error:", event.target.error);
+                reject("IndexedDB failed to open");
+            };
+
+            request.onsuccess = (event) => {
+                resolve(event.target.result);
+            };
+
+            request.onupgradeneeded = (event) => {
+                const db = event.target.result;
+                if (!db.objectStoreNames.contains(DB_CONFIG.storeName)) {
+                    db.createObjectStore(DB_CONFIG.storeName, { keyPath: 'key' });
+                }
+            };
+        });
+        return this.dbPromise;
+    },
+
+    async get(key) {
+        try {
+            const db = await this.open();
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([DB_CONFIG.storeName], 'readonly');
+                const store = transaction.objectStore(DB_CONFIG.storeName);
+                const request = store.get(key);
+
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        } catch (e) {
+            console.error("IDB Get Error", e);
+            return null;
+        }
+    },
+
+    async set(key, data) {
+        try {
+            const db = await this.open();
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([DB_CONFIG.storeName], 'readwrite');
+                const store = transaction.objectStore(DB_CONFIG.storeName);
+                const request = store.put({ key, ...data });
+
+                request.onsuccess = () => resolve();
+                request.onerror = () => reject(request.error);
+            });
+        } catch (e) {
+            console.error("IDB Set Error", e);
+        }
+    },
+
+    async delete(key) {
+        try {
+            const db = await this.open();
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([DB_CONFIG.storeName], 'readwrite');
+                const store = transaction.objectStore(DB_CONFIG.storeName);
+                const request = store.delete(key);
+
+                request.onsuccess = () => resolve();
+                request.onerror = () => reject(request.error);
+            });
+        } catch (e) {
+            console.error("IDB Delete Error", e);
+        }
+    }
+};
+
+/* =========================================
    1. DATA MANAGER
    ========================================= */
 const DataManager = {
@@ -15,46 +102,93 @@ const DataManager = {
         practiceManifest: null,
         quizzes: {},     // Cache for specific quiz/chapter data
         practice: {},
-        geminiKey: null     // Cache for practice questions
+        geminiKey: null,     // Cache for practice questions
+        globalStats: {} // NEW: In-memory cache for global stats
+    },
+
+    /**
+     * Generic caching wrapper
+     * @param {string} key - Cache key
+     * @param {function} fetcher - Async function to fetch data if cache is miss
+     * @param {number} ttl - Time to live in ms (default 24h)
+     * @param {boolean} forceRefresh - Ignore cache
+     */
+    async fetchWithCache(key, fetcher, ttl = 86400000, forceRefresh = false) {
+        if (!forceRefresh) {
+            const cachedEntry = await IDB.get(key);
+            if (cachedEntry) {
+                const age = Date.now() - cachedEntry.timestamp;
+                if (age < ttl) {
+                    return cachedEntry.data;
+                }
+            }
+        }
+
+        try {
+            const data = await fetcher();
+            if (data !== null && data !== undefined) {
+                await IDB.set(key, {
+                    data: data,
+                    timestamp: Date.now()
+                });
+                return data;
+            }
+        } catch (error) {
+            console.error(`Error fetching data for ${key}:`, error);
+        }
+        return null;
+    },
+
+    /**
+     * Clears a specific cache entry
+     */
+    async invalidateCache(key) {
+        await IDB.delete(key);
     },
 
     /**
      * Fetches the quiz manifest (Subjects & Chapters)
      */
     async fetchQuizManifest(forceRefresh = false) {
+        // Check memory cache first
         if (!forceRefresh && this.cache.quizManifest) {
             return this.cache.quizManifest;
         }
-        try {
-            const doc = await getDb().collection("quiz_metadata").doc("quiz_manifest").get();
-            if (doc.exists) {
-                this.cache.quizManifest = doc.data();
-                // Maintain backward compatibility for existing code that uses global variable
-                window.allQuizData = this.cache.quizManifest;
-                return this.cache.quizManifest;
-            }
-        } catch (error) {
-            console.error("Error fetching quiz manifest:", error);
+
+        const data = await this.fetchWithCache(
+            "quiz_manifest",
+            async () => {
+                const doc = await getDb().collection("quiz_metadata").doc("quiz_manifest").get();
+                return doc.exists ? doc.data() : null;
+            },
+            86400000, // 24 hours
+            forceRefresh
+        );
+
+        if (data) {
+            this.cache.quizManifest = data;
+            // Maintain backward compatibility
+            window.allQuizData = data;
         }
-        return null;
+        return data;
     },
 
     async fetchGeminiKey() {
         if (this.cache.geminiKey) return this.cache.geminiKey;
         
-        try {
-            // Recommendation: Store in 'app_config' collection, 'keys' document
-            const doc = await getDb().collection("app_config").doc("keys").get();
-            if (doc.exists) {
-                this.cache.geminiKey = doc.data().gemini_api_key;
-                return this.cache.geminiKey;
-            } else {
-                console.error("API Key document not found in Firestore.");
-            }
-        } catch (error) {
-            console.error("Error fetching Gemini key:", error);
+        const data = await this.fetchWithCache(
+            "gemini_api_key",
+            async () => {
+                const doc = await getDb().collection("app_config").doc("keys").get();
+                return doc.exists ? doc.data().gemini_api_key : null;
+            },
+            86400000 // 24 hours
+        );
+
+        if (data) {
+            this.cache.geminiKey = data;
         }
-        return null;
+        return data;
     },
 
     /**
@@ -64,18 +198,22 @@ const DataManager = {
         if (!forceRefresh && this.cache.practiceManifest) {
             return this.cache.practiceManifest;
         }
-        try {
-            const doc = await getDb().collection("quiz_metadata").doc("practice_manifest").get();
-            if (doc.exists) {
-                this.cache.practiceManifest = doc.data();
-                // Maintain backward compatibility
-                window.allPracticeData = this.cache.practiceManifest;
-                return this.cache.practiceManifest;
-            }
-        } catch (error) {
-            console.error("Error fetching practice manifest:", error);
+
+        const data = await this.fetchWithCache(
+            "practice_manifest",
+            async () => {
+                const doc = await getDb().collection("quiz_metadata").doc("practice_manifest").get();
+                return doc.exists ? doc.data() : null;
+            },
+            86400000, // 24 hours
+            forceRefresh
+        );
+
+        if (data) {
+            this.cache.practiceManifest = data;
+            window.allPracticeData = data;
         }
-        return null;
+        return data;
     },
 
     /**
@@ -85,18 +223,20 @@ const DataManager = {
         if (this.cache.quizzes[chapterId]) {
             return this.cache.quizzes[chapterId];
         }
-        try {
-            const doc = await getDb().collection("quizzes").doc(chapterId).get();
-            if (doc.exists) {
-                const data = doc.data().questions;
-                this.cache.quizzes[chapterId] = data;
-                return data;
-            }
-        } catch (error) {
-            console.error("Error fetching quiz questions:", error);
-            throw error;
+
+        const data = await this.fetchWithCache(
+            `quiz_questions_${chapterId}`,
+            async () => {
+                const doc = await getDb().collection("quizzes").doc(chapterId).get();
+                return doc.exists ? doc.data().questions : null;
+            },
+            86400000 // 24 hours
+        );
+
+        if (data) {
+            this.cache.quizzes[chapterId] = data;
         }
-        return null;
+        return data;
     },
 
     /**
@@ -106,18 +246,135 @@ const DataManager = {
         if (this.cache.practice[docId]) {
             return this.cache.practice[docId];
         }
-        try {
-            const doc = await getDb().collection("practice_mcqs").doc(docId).get();
-            if (doc.exists) {
-                const data = doc.data().questions || [];
-                this.cache.practice[docId] = data;
-                return data;
-            }
-        } catch (error) {
-            console.error("Error fetching practice questions:", error);
-            throw error;
+
+        const data = await this.fetchWithCache(
+            `practice_questions_${docId}`,
+            async () => {
+                const doc = await getDb().collection("practice_mcqs").doc(docId).get();
+                return doc.exists ? (doc.data().questions || []) : [];
+            },
+            86400000 // 24 hours
+        );
+
+        if (data) {
+            this.cache.practice[docId] = data;
         }
-        return [];
+        return data || [];
+    },
+
+    /**
+     * Fetches global stats for a chapter (NEW)
+     */
+    async fetchGlobalStats(chapterId, forceRefresh = false) {
+        if (!forceRefresh && this.cache.globalStats[chapterId]) {
+            return this.cache.globalStats[chapterId];
+        }
+
+        const data = await this.fetchWithCache(
+            `global_stats_${chapterId}`,
+            async () => {
+                const doc = await getDb().collection("chapter_stats").doc(chapterId).get();
+                if (!doc.exists) return null;
+                const d = doc.data();
+                return {
+                    avg: d.average || 0,
+                    highest: d.highestScore || 0,
+                    totalAttempts: d.totalAttempts || 0,
+                    allScores: d.allScores || [],
+                    leaderboard: d.leaderboard || [],
+                    correctCounts: d.correctCounts || [],
+                    attemptedCounts: d.attemptedCounts || []
+                };
+            },
+            3600000, // 1 hour TTL
+            forceRefresh
+        );
+
+        if (data) {
+            this.cache.globalStats[chapterId] = data;
+        }
+        return data;
+    },
+
+    /**
+     * Syncs user history incrementally
+     */
+    async syncUserHistory(userId, forceRefresh = false) {
+        const cacheKey = `user_history_${userId}`;
+        let cachedData = null;
+
+        // 1. Try to load from IDB
+        if (!forceRefresh) {
+            const entry = await IDB.get(cacheKey);
+            if (entry) {
+                cachedData = entry.data; // This is the array of history items
+            }
+        }
+
+        // 2. Determine latest timestamp
+        let lastTimestamp = null;
+        if (cachedData && cachedData.length > 0) {
+            // Assuming sorted by timestamp desc, so index 0 is latest
+            const latestItem = cachedData[0];
+            if (latestItem.timestamp) {
+                // Handle different timestamp formats
+                if (latestItem.timestamp.seconds) {
+                    lastTimestamp = new Date(latestItem.timestamp.seconds * 1000);
+                } else if (typeof latestItem.timestamp === 'string') {
+                    lastTimestamp = new Date(latestItem.timestamp);
+                }
+            }
+        }
+
+        // 3. Query Firestore
+        let query = getDb().collection("results")
+            .where("userId", "==", userId)
+            .orderBy("timestamp", "desc");
+
+        if (lastTimestamp) {
+            // "endBefore" with DESC sort fetches items NEWER than the cursor
+            query = query.endBefore(lastTimestamp);
+        }
+
+        try {
+            const snapshot = await query.get();
+
+            // 4. Merge Data
+            const newDocs = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+
+            if (newDocs.length === 0) {
+                console.log("No new history to sync.");
+                return cachedData || [];
+            }
+
+            console.log(`Synced ${newDocs.length} new records.`);
+
+            // Deduplicate based on ID (safety against timestamp precision issues)
+            const combined = [...newDocs, ...(cachedData || [])];
+            const unique = [];
+            const ids = new Set();
+            for (const item of combined) {
+                if (!ids.has(item.id)) {
+                    unique.push(item);
+                    ids.add(item.id);
+                }
+            }
+
+            // 5. Update Cache
+            await IDB.set(cacheKey, {
+                data: unique,
+                timestamp: Date.now()
+            });
+
+            return unique;
+
+        } catch (e) {
+            console.error("History Sync Error:", e);
+            return cachedData || [];
+        }
     }
 };
 
@@ -256,6 +513,17 @@ const ChartHelper = {
         const labels = chartData.map((item) => {
             if (item.timestamp && item.timestamp.toDate) {
                 return new Date(item.timestamp.toDate()).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                });
+            } else if (item.timestamp && typeof item.timestamp === 'string') {
+                 // Handle string timestamp from cache
+                 return new Date(item.timestamp).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                });
+            } else if (item.timestamp && item.timestamp.seconds) {
+                 return new Date(item.timestamp.seconds * 1000).toLocaleDateString("en-US", {
                     month: "short",
                     day: "numeric",
                 });

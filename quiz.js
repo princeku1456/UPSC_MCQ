@@ -365,46 +365,10 @@ function reviewTest(resultObj, source = "performance") {
    REVIEW MODE LOGIC, LEADERBOARD & STATS
    ========================================= */
 
-let statsFetchPromises = {};
-
-async function getGlobalStats(chapterId) {
-  if (globalStatsCache[chapterId]) {
-    return globalStatsCache[chapterId];
-  }
-
-  if (statsFetchPromises[chapterId]) return statsFetchPromises[chapterId];
-
-  statsFetchPromises[chapterId] = (async () => {
-    try {
-      const doc = await db.collection("chapter_stats").doc(chapterId).get();
-      if (!doc.exists) return null;
-      const data = doc.data();
-      const stats = {
-        avg: data.average || 0,
-        highest: data.highestScore || 0,
-        totalAttempts: data.totalAttempts || 0,
-        allScores: data.allScores || [],
-        leaderboard: data.leaderboard || [],
-        correctCounts: data.correctCounts || [],
-        attemptedCounts: data.attemptedCounts || [],
-      };
-      globalStatsCache[chapterId] = stats;
-      return stats;
-    } catch (e) {
-      console.error("Error fetching global stats", e);
-      return null;
-    } finally {
-      delete statsFetchPromises[chapterId];
-    }
-  })();
-
-  return statsFetchPromises[chapterId];
-}
-
 async function loadLeaderboard(chapterId) {
   const container = document.getElementById("leaderboard-container");
   if (!container) return;
-  const stats = await getGlobalStats(chapterId);
+  const stats = await DataManager.fetchGlobalStats(chapterId);
   if (stats && stats.leaderboard) {
     renderLeaderboardHTML(container, stats.leaderboard);
   } else {
@@ -496,7 +460,7 @@ function renderLeaderboardHTML(container, data) {
  */
 async function renderReviewMode(resultData) {
   // Pre-fetch stats to ensure they are available for community comparison
-  currentReviewStats = await getGlobalStats(currentChapterId);
+  currentReviewStats = await DataManager.fetchGlobalStats(currentChapterId);
   let confStats = {
     100: { total: 0, correct: 0 },
     75: { total: 0, correct: 0 },
@@ -1373,8 +1337,9 @@ function submitAll(forceSubmit = false) {
         if (userHistory.length > 20) userHistory.pop();
         dashboardDataLoaded = true;
 
-        delete globalStatsCache[currentChapterId];
-        delete leaderboardCache[currentChapterId];
+        // Invalidate caches
+        await DataManager.invalidateCache(`global_stats_${currentChapterId}`);
+        await DataManager.invalidateCache(`user_history_${currentUser.uid}`);
 
         const statsRef = db.collection("chapter_stats").doc(currentChapterId);
         try {
@@ -1440,7 +1405,7 @@ function submitAll(forceSubmit = false) {
           console.error("Stats update failed:", e);
         }
 
-        const stats = await getGlobalStats(currentChapterId);
+        const stats = await DataManager.fetchGlobalStats(currentChapterId, true);
         if (stats) {
           const betterThan = stats.allScores.filter(
             (s) => s < parseFloat(percentage)
