@@ -1338,9 +1338,8 @@ function submitAll(forceSubmit = false) {
         dashboardDataLoaded = true;
 
         // Invalidate caches
-        DataManager.invalidateCache(`global_stats_${currentChapterId}`);
-        DataManager.invalidateCache(`user_history_${currentUser.uid}`);
-        delete leaderboardCache[currentChapterId];
+        await DataManager.invalidateCache(`global_stats_${currentChapterId}`);
+        await DataManager.invalidateCache(`user_history_${currentUser.uid}`);
 
         const statsRef = db.collection("chapter_stats").doc(currentChapterId);
         try {
