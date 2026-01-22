@@ -16,29 +16,12 @@ async function loadUserDashboard(forceRefresh = false) {
   }
 
   try {
-    const fetchHistory = async () => {
-        const snapshot = await db
-          .collection("results")
-          .where("userId", "==", currentUser.uid)
-          .orderBy("timestamp", "desc")
-          .get();
-    
-        return snapshot.docs.map((doc) => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-    };
+    // Incrementally sync user history (Smart Sync)
+    // This fetches only new records if local cache exists
+    const historyData = await DataManager.syncUserHistory(currentUser.uid, forceRefresh);
 
-    // Cache user history for 30 minutes to reduce reads
-    const cachedHistory = await DataManager.fetchWithCache(
-        `user_history_${currentUser.uid}`,
-        fetchHistory,
-        1800000, // 30 minutes
-        forceRefresh
-    );
-
-    if (cachedHistory) {
-        userHistory = cachedHistory;
+    if (historyData) {
+        userHistory = historyData;
         dashboardDataLoaded = true;
         renderDashboardUI();
     }

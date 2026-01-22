@@ -294,6 +294,87 @@ const DataManager = {
             this.cache.globalStats[chapterId] = data;
         }
         return data;
+    },
+
+    /**
+     * Syncs user history incrementally
+     */
+    async syncUserHistory(userId, forceRefresh = false) {
+        const cacheKey = `user_history_${userId}`;
+        let cachedData = null;
+
+        // 1. Try to load from IDB
+        if (!forceRefresh) {
+            const entry = await IDB.get(cacheKey);
+            if (entry) {
+                cachedData = entry.data; // This is the array of history items
+            }
+        }
+
+        // 2. Determine latest timestamp
+        let lastTimestamp = null;
+        if (cachedData && cachedData.length > 0) {
+            // Assuming sorted by timestamp desc, so index 0 is latest
+            const latestItem = cachedData[0];
+            if (latestItem.timestamp) {
+                // Handle different timestamp formats
+                if (latestItem.timestamp.seconds) {
+                    lastTimestamp = new Date(latestItem.timestamp.seconds * 1000);
+                } else if (typeof latestItem.timestamp === 'string') {
+                    lastTimestamp = new Date(latestItem.timestamp);
+                }
+            }
+        }
+
+        // 3. Query Firestore
+        let query = getDb().collection("results")
+            .where("userId", "==", userId)
+            .orderBy("timestamp", "desc");
+
+        if (lastTimestamp) {
+            // "endBefore" with DESC sort fetches items NEWER than the cursor
+            query = query.endBefore(lastTimestamp);
+        }
+
+        try {
+            const snapshot = await query.get();
+
+            // 4. Merge Data
+            const newDocs = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+
+            if (newDocs.length === 0) {
+                console.log("No new history to sync.");
+                return cachedData || [];
+            }
+
+            console.log(`Synced ${newDocs.length} new records.`);
+
+            // Deduplicate based on ID (safety against timestamp precision issues)
+            const combined = [...newDocs, ...(cachedData || [])];
+            const unique = [];
+            const ids = new Set();
+            for (const item of combined) {
+                if (!ids.has(item.id)) {
+                    unique.push(item);
+                    ids.add(item.id);
+                }
+            }
+
+            // 5. Update Cache
+            await IDB.set(cacheKey, {
+                data: unique,
+                timestamp: Date.now()
+            });
+
+            return unique;
+
+        } catch (e) {
+            console.error("History Sync Error:", e);
+            return cachedData || [];
+        }
     }
 };
 
