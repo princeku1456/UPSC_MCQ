@@ -45,15 +45,14 @@
         >
         <div class="d-flex align-items-center gap-3">
           <button
-            class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center"
+            class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center theme-toggle-btn"
             id="theme-toggle"
             onclick="toggleTheme()"
-            style="width: 38px; height: 38px; font-size: 1.2rem"
             title="Toggle Theme"
           >
             🌙
           </button>
-          <div id="user-profile" style="display: none" class="dropdown">
+          <div id="user-profile" class="dropdown d-none">
             <button
               class="btn btn-link text-white text-decoration-none dropdown-toggle fw-bold"
               type="button"
@@ -82,7 +81,7 @@
       </div>
     </nav>
 
-    <section id="hero-section" class="hero" style="margin-top: 100px">
+    <section id="hero-section" class="hero mt-navbar-offset">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 col-lg-5">
@@ -163,8 +162,7 @@
 
     <section
       id="dashboard-section"
-      class="py-5"
-      style="display: none; min-height: 90vh"
+      class="py-5 section-min-vh-90 d-none"
     >
       <div class="container">
         <div class="text-center mb-5">
@@ -285,8 +283,7 @@
         <div class="row justify-content-center mb-4">
           <div class="col-md-6">
             <div
-              class="card topic-card shadow-sm h-100"
-              style="cursor: pointer"
+              class="card topic-card shadow-sm h-100 cursor-pointer"
               onclick="showTestSelection()"
             >
               <div class="card-body text-center p-4">
@@ -297,8 +294,7 @@
           </div>
           <div class="col-md-6">
             <div
-              class="card topic-card shadow-sm h-100"
-              style="cursor: pointer"
+              class="card topic-card shadow-sm h-100 cursor-pointer"
               onclick="startPracticeSelection()"
             >
               <div class="card-body text-center p-4">
@@ -311,15 +307,7 @@
         <div class="row justify-content-center mb-5">
           <div class="col-12">
             <div
-              class="card border-0 shadow-sm rounded-4 p-4"
-              style="
-                background: linear-gradient(
-                  135deg,
-                  var(--bg-card) 0%,
-                  var(--option-hover) 100%
-                );
-                border: 1px solid var(--border-color);
-              "
+              class="card border-0 shadow-sm rounded-4 p-4 ai-mentor-card"
             >
               <div
                 class="d-flex justify-content-between align-items-center mb-3"
@@ -363,7 +351,7 @@
               <h5 class="fw-bold text-primary mb-3">
                 🎯 Overall Confidence Analysis
               </h5>
-              <div style="position: relative; height: 300px; width: 100%">
+              <div class="chart-wrapper">
                 <canvas id="globalConfidenceChart"></canvas>
               </div>
               <p class="small text-muted mt-3 text-center">
@@ -377,7 +365,7 @@
           <div class="col-12">
             <div class="card border-0 shadow-sm rounded-4 p-4">
               <h5 class="fw-bold text-primary mb-3">📈 Accuracy Trend</h5>
-              <div style="position: relative; height: 300px; width: 100%">
+              <div class="chart-wrapper">
                 <canvas id="performanceChart"></canvas>
               </div>
             </div>
@@ -388,12 +376,11 @@
 
     <section
       id="test-selection-section"
-      class="py-5"
-      style="display: none; min-height: 90vh"
+      class="py-5 section-min-vh-90 d-none"
     >
       <div class="container"><div id="test-content-container"></div></div>
     </section>
-    <section id="quiz-section" class="quiz-section py-5" style="display: none">
+    <section id="quiz-section" class="quiz-section py-5 d-none">
       <div class="container">
         <div class="d-flex justify-content-between mb-4">
           <button

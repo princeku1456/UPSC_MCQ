@@ -252,13 +252,13 @@ function logoutUser() {
 }
 
 function updateUIForLogin() {
-  document.getElementById("user-profile").style.display = "block";
+  document.getElementById("user-profile").classList.remove("d-none");
   const userName = currentUser.email ? currentUser.email.split("@")[0] : "User";
   document.getElementById("user-name-display").textContent = userName;
 }
 
 function updateUIForLogout() {
-  document.getElementById("user-profile").style.display = "none";
+  document.getElementById("user-profile").classList.add("d-none");
 }
 
 function handleLogoClick() {
@@ -276,20 +276,26 @@ function hideAllSections() {
   ];
   sections.forEach((id) => {
     const el = document.getElementById(id);
-    if (el) el.style.display = "none";
+    if (el) {
+        el.classList.add("d-none");
+        el.classList.remove("d-flex");
+        el.style.display = "";
+    }
   });
 }
 
 function showHome() {
   hideAllSections();
-  document.getElementById("hero-section").style.display = "flex";
+  const el = document.getElementById("hero-section");
+  el.classList.remove("d-none");
+  el.classList.add("d-flex");
 }
 
 function showDashboard() {
   if (!currentUser || !currentUser.emailVerified) return showHome();
   isPracticeMode = false;
   hideAllSections();
-  document.getElementById("dashboard-section").style.display = "block";
+  document.getElementById("dashboard-section").classList.remove("d-none");
   loadUserDashboard();
 }
 
@@ -297,14 +303,14 @@ function showPerformance() {
   if (!currentUser || !currentUser.emailVerified) return showHome();
   isPracticeMode = false;
   hideAllSections();
-  document.getElementById("performance-section").style.display = "block";
+  document.getElementById("performance-section").classList.remove("d-none");
 }
 
 function showTestSelection() {
   if (!currentUser || !currentUser.emailVerified) return showHome();
   isPracticeMode = false;
   hideAllSections();
-  document.getElementById("test-selection-section").style.display = "block";
+  document.getElementById("test-selection-section").classList.remove("d-none");
   renderSubjects(); // This will now fetch data if it's missing
 }
 
@@ -322,7 +328,7 @@ function exitQuiz() {
     showPerformance();
   } else if (currentSubject && allQuizData[currentSubject]) {
     hideAllSections();
-    document.getElementById("test-selection-section").style.display = "block";
+    document.getElementById("test-selection-section").classList.remove("d-none");
     renderChapters(currentSubject);
   } else {
     // Safety Fallback: Agar kuch samajh na aaye toh Dashboard dikhao
@@ -337,7 +343,8 @@ function hideGlobalLoader() {
     loader.classList.add("loader-hidden");
     // Completely remove from layout after transition
     setTimeout(() => {
-      loader.style.display = "none";
+      loader.classList.add("d-none");
+      loader.style.display = "";
     }, 500);
   }
 }

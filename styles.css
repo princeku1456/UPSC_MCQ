@@ -886,3 +886,53 @@ body {
 #ai-review-content::-webkit-scrollbar-thumb:hover {
     background: var(--text-muted);
 }
+
+/* ============================
+   REFACTORED UTILITIES
+   ============================ */
+
+/* Replaces style="margin-top: 100px" */
+.mt-navbar-offset {
+    margin-top: 6rem; /* approx 96px */
+}
+
+/* Replaces style="width: 38px; height: 38px; font-size: 1.2rem" */
+.theme-toggle-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2rem;
+}
+
+/* Replaces style="min-height: 90vh" */
+.section-min-vh-90 {
+    min-height: 90vh;
+}
+
+/* Replaces style="cursor: pointer" */
+.cursor-pointer {
+    cursor: pointer;
+}
+
+/* Replaces style="position: relative; height: 300px; width: 100%" */
+.chart-wrapper {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* Replaces inline style on AI Mentor Card */
+.ai-mentor-card {
+    background: linear-gradient(
+        135deg,
+        var(--bg-card) 0%,
+        var(--option-hover) 100%
+    );
+    border: 1px solid var(--border-color);
+}
+
+/* Mobile Responsiveness for Navbar Offset */
+@media (max-width: 768px) {
+    .mt-navbar-offset {
+        margin-top: 5rem;
+    }
+}
