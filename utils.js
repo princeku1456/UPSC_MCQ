@@ -314,17 +314,25 @@ const DataManager = {
         // 2. Determine latest timestamp
         let lastTimestamp = null;
         if (cachedData && cachedData.length > 0) {
-            // Assuming sorted by timestamp desc, so index 0 is latest
-            const latestItem = cachedData[0];
-            if (latestItem.timestamp) {
-                // Handle different timestamp formats
-                if (latestItem.timestamp.seconds) {
-                    lastTimestamp = new Date(latestItem.timestamp.seconds * 1000);
-                } else if (typeof latestItem.timestamp === 'string') {
-                    lastTimestamp = new Date(latestItem.timestamp);
+            // Use 'reduce' to safely find the max timestamp, in case IDB order isn't guaranteed
+            const maxDate = cachedData.reduce((max, item) => {
+                let current = null;
+                if (item.timestamp) {
+                    if (item.timestamp.seconds) {
+                         current = new Date(item.timestamp.seconds * 1000);
+                    } else if (typeof item.timestamp === 'string') {
+                         current = new Date(item.timestamp);
+                    }
                 }
+                return (current && (!max || current > max)) ? current : max;
+            }, null);
+
+            if (maxDate) {
+                lastTimestamp = maxDate;
             }
         }
+
+        console.log("Last Sync Timestamp:", lastTimestamp);
 
         // 3. Query Firestore
         let query = getDb().collection("results")
@@ -333,11 +341,14 @@ const DataManager = {
 
         if (lastTimestamp) {
             // "endBefore" with DESC sort fetches items NEWER than the cursor
+            // Important: endBefore requires the actual value or DocumentSnapshot.
+            // If passing a Date object, ensure it matches the Firestore field type exactly.
             query = query.endBefore(lastTimestamp);
         }
 
         try {
             const snapshot = await query.get();
+            console.log("Firestore Snapshot Size:", snapshot.size);
 
             // 4. Merge Data
             const newDocs = snapshot.docs.map(doc => ({
