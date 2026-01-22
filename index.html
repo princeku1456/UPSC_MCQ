@@ -50,6 +50,7 @@
             onclick="toggleTheme()"
             style="width: 38px; height: 38px; font-size: 1.2rem"
             title="Toggle Theme"
+            aria-label="Toggle Theme"
           >
             🌙
           </button>
@@ -96,7 +97,7 @@
                 </p>
                 <form id="auth-form">
                   <div class="mb-3 text-start">
-                    <label class="form-label text-muted small fw-bold"
+                    <label for="auth-email" class="form-label text-muted small fw-bold"
                       >Email Address</label
                     >
                     <input
@@ -107,7 +108,7 @@
                     />
                   </div>
                   <div class="mb-3 text-start">
-                    <label class="form-label text-muted small fw-bold"
+                    <label for="auth-password" class="form-label text-muted small fw-bold"
                       >Password</label
                     >
                     <input
@@ -288,6 +289,9 @@
               class="card topic-card shadow-sm h-100"
               style="cursor: pointer"
               onclick="showTestSelection()"
+              role="button"
+              tabindex="0"
+              onkeydown="if(event.key === 'Enter' || event.key === ' ') { showTestSelection(); event.preventDefault(); }"
             >
               <div class="card-body text-center p-4">
                 <div class="display-5 mb-2">🚀</div>
@@ -300,6 +304,9 @@
               class="card topic-card shadow-sm h-100"
               style="cursor: pointer"
               onclick="startPracticeSelection()"
+              role="button"
+              tabindex="0"
+              onkeydown="if(event.key === 'Enter' || event.key === ' ') { startPracticeSelection(); event.preventDefault(); }"
             >
               <div class="card-body text-center p-4">
                 <div class="display-5 mb-2">🎯</div>
