@@ -15,46 +15,102 @@ const DataManager = {
         practiceManifest: null,
         quizzes: {},     // Cache for specific quiz/chapter data
         practice: {},
-        geminiKey: null     // Cache for practice questions
+        geminiKey: null,     // Cache for practice questions
+        globalStats: {} // NEW: In-memory cache for global stats
+    },
+
+    /**
+     * Generic caching wrapper
+     * @param {string} key - localStorage key
+     * @param {function} fetcher - Async function to fetch data if cache is miss
+     * @param {number} ttl - Time to live in ms (default 24h)
+     * @param {boolean} forceRefresh - Ignore cache
+     */
+    async fetchWithCache(key, fetcher, ttl = 86400000, forceRefresh = false) {
+        if (!forceRefresh) {
+            const cached = localStorage.getItem(key);
+            if (cached) {
+                try {
+                    const parsed = JSON.parse(cached);
+                    const age = Date.now() - parsed.timestamp;
+                    if (age < ttl) {
+                        return parsed.data;
+                    }
+                } catch (e) {
+                    console.warn(`Cache parse error for ${key}`, e);
+                }
+            }
+        }
+
+        try {
+            const data = await fetcher();
+            if (data !== null && data !== undefined) {
+                try {
+                    localStorage.setItem(key, JSON.stringify({
+                        data: data,
+                        timestamp: Date.now()
+                    }));
+                } catch (e) {
+                    console.warn("Storage quota exceeded or error", e);
+                }
+                return data;
+            }
+        } catch (error) {
+            console.error(`Error fetching data for ${key}:`, error);
+        }
+        return null;
+    },
+
+    /**
+     * Clears a specific cache entry
+     */
+    invalidateCache(key) {
+        localStorage.removeItem(key);
     },
 
     /**
      * Fetches the quiz manifest (Subjects & Chapters)
      */
     async fetchQuizManifest(forceRefresh = false) {
+        // Check memory cache first
         if (!forceRefresh && this.cache.quizManifest) {
             return this.cache.quizManifest;
         }
-        try {
-            const doc = await getDb().collection("quiz_metadata").doc("quiz_manifest").get();
-            if (doc.exists) {
-                this.cache.quizManifest = doc.data();
-                // Maintain backward compatibility for existing code that uses global variable
-                window.allQuizData = this.cache.quizManifest;
-                return this.cache.quizManifest;
-            }
-        } catch (error) {
-            console.error("Error fetching quiz manifest:", error);
+
+        const data = await this.fetchWithCache(
+            "quiz_manifest",
+            async () => {
+                const doc = await getDb().collection("quiz_metadata").doc("quiz_manifest").get();
+                return doc.exists ? doc.data() : null;
+            },
+            86400000, // 24 hours
+            forceRefresh
+        );
+
+        if (data) {
+            this.cache.quizManifest = data;
+            // Maintain backward compatibility
+            window.allQuizData = data;
         }
-        return null;
+        return data;
     },
 
     async fetchGeminiKey() {
         if (this.cache.geminiKey) return this.cache.geminiKey;
         
-        try {
-            // Recommendation: Store in 'app_config' collection, 'keys' document
-            const doc = await getDb().collection("app_config").doc("keys").get();
-            if (doc.exists) {
-                this.cache.geminiKey = doc.data().gemini_api_key;
-                return this.cache.geminiKey;
-            } else {
-                console.error("API Key document not found in Firestore.");
-            }
-        } catch (error) {
-            console.error("Error fetching Gemini key:", error);
+        const data = await this.fetchWithCache(
+            "gemini_api_key",
+            async () => {
+                const doc = await getDb().collection("app_config").doc("keys").get();
+                return doc.exists ? doc.data().gemini_api_key : null;
+            },
+            86400000 // 24 hours
+        );
+
+        if (data) {
+            this.cache.geminiKey = data;
         }
-        return null;
+        return data;
     },
 
     /**
@@ -64,18 +120,22 @@ const DataManager = {
         if (!forceRefresh && this.cache.practiceManifest) {
             return this.cache.practiceManifest;
         }
-        try {
-            const doc = await getDb().collection("quiz_metadata").doc("practice_manifest").get();
-            if (doc.exists) {
-                this.cache.practiceManifest = doc.data();
-                // Maintain backward compatibility
-                window.allPracticeData = this.cache.practiceManifest;
-                return this.cache.practiceManifest;
-            }
-        } catch (error) {
-            console.error("Error fetching practice manifest:", error);
+
+        const data = await this.fetchWithCache(
+            "practice_manifest",
+            async () => {
+                const doc = await getDb().collection("quiz_metadata").doc("practice_manifest").get();
+                return doc.exists ? doc.data() : null;
+            },
+            86400000, // 24 hours
+            forceRefresh
+        );
+
+        if (data) {
+            this.cache.practiceManifest = data;
+            window.allPracticeData = data;
         }
-        return null;
+        return data;
     },
 
     /**
@@ -85,18 +145,20 @@ const DataManager = {
         if (this.cache.quizzes[chapterId]) {
             return this.cache.quizzes[chapterId];
         }
-        try {
-            const doc = await getDb().collection("quizzes").doc(chapterId).get();
-            if (doc.exists) {
-                const data = doc.data().questions;
-                this.cache.quizzes[chapterId] = data;
-                return data;
-            }
-        } catch (error) {
-            console.error("Error fetching quiz questions:", error);
-            throw error;
+
+        const data = await this.fetchWithCache(
+            `quiz_questions_${chapterId}`,
+            async () => {
+                const doc = await getDb().collection("quizzes").doc(chapterId).get();
+                return doc.exists ? doc.data().questions : null;
+            },
+            86400000 // 24 hours
+        );
+
+        if (data) {
+            this.cache.quizzes[chapterId] = data;
         }
-        return null;
+        return data;
     },
 
     /**
@@ -106,18 +168,54 @@ const DataManager = {
         if (this.cache.practice[docId]) {
             return this.cache.practice[docId];
         }
-        try {
-            const doc = await getDb().collection("practice_mcqs").doc(docId).get();
-            if (doc.exists) {
-                const data = doc.data().questions || [];
-                this.cache.practice[docId] = data;
-                return data;
-            }
-        } catch (error) {
-            console.error("Error fetching practice questions:", error);
-            throw error;
+
+        const data = await this.fetchWithCache(
+            `practice_questions_${docId}`,
+            async () => {
+                const doc = await getDb().collection("practice_mcqs").doc(docId).get();
+                return doc.exists ? (doc.data().questions || []) : [];
+            },
+            86400000 // 24 hours
+        );
+
+        if (data) {
+            this.cache.practice[docId] = data;
         }
-        return [];
+        return data || [];
+    },
+
+    /**
+     * Fetches global stats for a chapter (NEW)
+     */
+    async fetchGlobalStats(chapterId, forceRefresh = false) {
+        if (!forceRefresh && this.cache.globalStats[chapterId]) {
+            return this.cache.globalStats[chapterId];
+        }
+
+        const data = await this.fetchWithCache(
+            `global_stats_${chapterId}`,
+            async () => {
+                const doc = await getDb().collection("chapter_stats").doc(chapterId).get();
+                if (!doc.exists) return null;
+                const d = doc.data();
+                return {
+                    avg: d.average || 0,
+                    highest: d.highestScore || 0,
+                    totalAttempts: d.totalAttempts || 0,
+                    allScores: d.allScores || [],
+                    leaderboard: d.leaderboard || [],
+                    correctCounts: d.correctCounts || [],
+                    attemptedCounts: d.attemptedCounts || []
+                };
+            },
+            3600000, // 1 hour TTL
+            forceRefresh
+        );
+
+        if (data) {
+            this.cache.globalStats[chapterId] = data;
+        }
+        return data;
     }
 };
 
@@ -256,6 +354,17 @@ const ChartHelper = {
         const labels = chartData.map((item) => {
             if (item.timestamp && item.timestamp.toDate) {
                 return new Date(item.timestamp.toDate()).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                });
+            } else if (item.timestamp && typeof item.timestamp === 'string') {
+                 // Handle string timestamp from cache
+                 return new Date(item.timestamp).toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                });
+            } else if (item.timestamp && item.timestamp.seconds) {
+                 return new Date(item.timestamp.seconds * 1000).toLocaleDateString("en-US", {
                     month: "short",
                     day: "numeric",
                 });

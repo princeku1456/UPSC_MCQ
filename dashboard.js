@@ -10,28 +10,38 @@ async function loadUserDashboard(forceRefresh = false) {
   if (!currentUser || !currentUser.emailVerified) return;
 
   // Use in-memory check to prevent redundant calls during the same session.
-  // We no longer use localStorage because Firestore handles persistence natively.
   if (!forceRefresh && dashboardDataLoaded && userHistory.length > 0) {
     renderDashboardUI();
     return;
   }
 
   try {
-    // Firestore automatically checks its internal IndexedDB cache first.
-    // If the data is available and hasn't changed, it serves it instantly.
-    const snapshot = await db
-      .collection("results")
-      .where("userId", "==", currentUser.uid)
-      .orderBy("timestamp", "desc")
-      .get();
-
-    userHistory = snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    const fetchHistory = async () => {
+        const snapshot = await db
+          .collection("results")
+          .where("userId", "==", currentUser.uid)
+          .orderBy("timestamp", "desc")
+          .get();
     
-    dashboardDataLoaded = true;
-    renderDashboardUI();
+        return snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+    };
+
+    // Cache user history for 30 minutes to reduce reads
+    const cachedHistory = await DataManager.fetchWithCache(
+        `user_history_${currentUser.uid}`,
+        fetchHistory,
+        1800000, // 30 minutes
+        forceRefresh
+    );
+
+    if (cachedHistory) {
+        userHistory = cachedHistory;
+        dashboardDataLoaded = true;
+        renderDashboardUI();
+    }
   } catch (error) {
     console.error("Error loading dashboard:", error);
     toastr.error("Failed to load performance data.");
@@ -168,10 +178,10 @@ async function updateConceptGapStat(results) {
     const uniqueChapters = [...new Set(results.map(r => r.chapterId))];
     const statsMap = {};
     
-    // Fetch stats for all unique chapters in history in parallel
+    // Fetch stats for all unique chapters in history in parallel using Cache
     const promises = uniqueChapters.map(async (id) => {
-        const doc = await db.collection("chapter_stats").doc(id).get();
-        if (doc.exists) statsMap[id] = doc.data();
+        const stats = await DataManager.fetchGlobalStats(id);
+        if (stats) statsMap[id] = stats;
     });
     await Promise.all(promises);
 
