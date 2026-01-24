@@ -307,6 +307,9 @@ function showTestSelection() {
 function exitQuiz() {
   if (currentQuizTimer) currentQuizTimer.stop();
 
+  // PALETTE: Clean up global quiz listeners
+  if (typeof cleanupQuiz === 'function') cleanupQuiz();
+
   // Check if we are in Practice Mode
   if (isPracticeMode) {
     startPracticeSelection(); // Practice configuration page par wapas le jayega

@@ -340,6 +340,9 @@ async function loadQuiz(
       renderNav();
       startTimer(currentQuizData.length, savedTime);
       currentQuestionStartTime = Date.now(); // NEW: Start tracking first question
+
+      // PALETTE: Enable keyboard shortcuts
+      document.addEventListener("keydown", handleQuizKeydown);
     }
   } catch (error) {
     console.error("Firebase fetch error:", error);
@@ -1009,6 +1012,9 @@ function renderQuizLayout(title) {
             <button id="clear-btn" class="btn btn-primary-custom px-4 ">Clear</button>
             <button id="next-btn" class="btn btn-secondary-custom px-4 ">Next</button>
         </div>
+        <div class="text-center mt-2 d-none d-md-block">
+             <small class="text-muted"><kbd>←</kbd> <kbd>→</kbd> to navigate &nbsp;•&nbsp; <kbd>1</kbd>-<kbd>4</kbd> to select</small>
+        </div>
         <div id="question-feedback" class="mt-3 text-center"></div>
         <div id="result" class="mt-4 text-center"></div>
     `;
@@ -1196,12 +1202,26 @@ function renderNav() {
     item.className = "nav-item shadow-sm nav-item-animate";
     item.textContent = i + 1;
     item.style.setProperty("--animation-delay", `${i * 30}ms`);
-    item.onclick = () => {
+
+    // PALETTE: Accessibility & Keyboard Support
+    item.tabIndex = 0;
+    item.role = "button";
+    item.ariaLabel = `Go to question ${i + 1}`;
+
+    const handleNav = () => {
       updateQuestionTimer(); // Save time for current question
       currentQuestionIndex = i;
       renderQuestion();
       updateNavHighlights();
       saveQuizProgress();
+    };
+
+    item.onclick = handleNav;
+    item.onkeydown = (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            handleNav();
+        }
     };
     nav.appendChild(item);
   });
@@ -1439,4 +1459,45 @@ function toggleMarkForReview() {
   renderQuestion(); // Refresh the UI to update button text
   updateNavHighlights(); // Refresh palette colors
   saveQuizProgress(); // Save state
+}
+
+/* =========================================
+   8. KEYBOARD SHORTCUTS (Palette)
+   ========================================= */
+
+function cleanupQuiz() {
+    document.removeEventListener("keydown", handleQuizKeydown);
+}
+
+function handleQuizKeydown(e) {
+    // Ignore if quiz is not active or user is typing in an input (unlikely here but good practice)
+    if (quizSubmitted || isReviewMode) {
+        if (e.key === "ArrowLeft") navigateQuestions(-1);
+        if (e.key === "ArrowRight") navigateQuestions(1);
+        return;
+    }
+
+    // Check if event target is an input/textarea (though we don't have many)
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+    if (e.key === "ArrowLeft") {
+        navigateQuestions(-1);
+    } else if (e.key === "ArrowRight") {
+        navigateQuestions(1);
+    } else if (["1", "2", "3", "4"].includes(e.key)) {
+        const idx = parseInt(e.key) - 1;
+        // Find the radio button for this option
+        // Radio buttons are named "q{currentQuestionIndex}" and have values 0-3
+        const selector = `input[name="q${currentQuestionIndex}"][value="${idx}"]`;
+        const radio = document.querySelector(selector);
+
+        if (radio && !radio.disabled) {
+            radio.checked = true;
+            // Manually fire the change event
+            radio.dispatchEvent(new Event('change'));
+
+            // Visual feedback focus
+            radio.focus();
+        }
+    }
 }
