@@ -311,7 +311,14 @@ function renderQuestionAnalysis(container, questions, results, accuracies) {
                 <div class="col-lg-4">
                     <div class="explanation-box mb-3">
                         <h6 class="fw-bold text-warning-emphasis"><i class="bi bi-lightbulb"></i> Explanation:</h6>
+                        ${q.explanationImage ? `<div class="my-2"><img src="${q.explanationImage}" class="img-fluid rounded border" alt="Explanation Image"></div>` : ''}
                         <p class="small m-0">${q.explanation || "No explanation."}</p>
+                        ${q.sourceLink || q.videoLink ? `
+                            <div class="mt-2 pt-2 border-top d-flex gap-2">
+                                ${q.sourceLink ? `<a href="${q.sourceLink}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="bi bi-book"></i> Source</a>` : ''}
+                                ${q.videoLink ? `<a href="${q.videoLink}" target="_blank" class="btn btn-sm btn-outline-danger"><i class="bi bi-play-btn"></i> Video</a>` : ''}
+                            </div>
+                        ` : ''}
                     </div>
                     <div class="p-3 bg-primary bg-opacity-10 rounded-3">
                         <small class="fw-bold text-primary d-block mb-1">DISCUSSION TIP</small>

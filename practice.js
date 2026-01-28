@@ -311,10 +311,30 @@ function renderPracticeQuestion() {
     });
   }
 
-  if (practiceSubmitted && q.explanation) {
+  if (practiceSubmitted && (q.explanation || q.explanationImage || q.sourceLink || q.videoLink)) {
     const exp = document.createElement("div");
     exp.className = "explanation shadow-sm mt-3 animate-fade-in";
-    exp.innerHTML = `<strong> Explanation:</strong> <br>${q.explanation}`;
+
+    let content = `<strong> Explanation:</strong>`;
+
+    if (q.explanationImage) {
+        content += `<div class="my-2"><img src="${q.explanationImage}" class="img-fluid rounded border" alt="Explanation Image"></div>`;
+    }
+
+    content += `<div class="mt-1 small">${q.explanation || "No explanation provided."}</div>`;
+
+    if (q.sourceLink || q.videoLink) {
+        content += `<div class="mt-2 pt-2 border-top d-flex gap-2">`;
+        if (q.sourceLink) {
+            content += `<a href="${q.sourceLink}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="bi bi-book"></i> Source</a>`;
+        }
+        if (q.videoLink) {
+            content += `<a href="${q.videoLink}" target="_blank" class="btn btn-sm btn-outline-danger"><i class="bi bi-play-btn"></i> Video</a>`;
+        }
+        content += `</div>`;
+    }
+
+    exp.innerHTML = content;
     container.appendChild(exp);
   }
 }

@@ -916,9 +916,14 @@ function renderReviewQuestions(filterType) {
                 <div class="mb-3">${optionsHtml}</div>
                 <div class="explanation mt-3 shadow-sm">
                     <strong>💡 Explanation:</strong>
-                    <div class="mt-1 small">${
-                      question.explanation || "No explanation provided."
-                    }</div>
+                    ${question.explanationImage ? `<div class="my-2"><img src="${question.explanationImage}" class="img-fluid rounded border" alt="Explanation Image"></div>` : ''}
+                    <div class="mt-1 small">${question.explanation || "No explanation provided."}</div>
+                    ${question.sourceLink || question.videoLink ? `
+                        <div class="mt-2 pt-2 border-top d-flex gap-2">
+                            ${question.sourceLink ? `<a href="${question.sourceLink}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="bi bi-book"></i> Source</a>` : ''}
+                            ${question.videoLink ? `<a href="${question.videoLink}" target="_blank" class="btn btn-sm btn-outline-danger"><i class="bi bi-play-btn"></i> Video</a>` : ''}
+                        </div>
+                    ` : ''}
                 </div>
             </div>
         `;
@@ -1136,10 +1141,30 @@ function renderQuestion() {
   }
   div.appendChild(suretyDiv);
 
-  if (quizSubmitted && question.explanation) {
+  if (quizSubmitted && (question.explanation || question.explanationImage || question.sourceLink || question.videoLink)) {
     const exp = document.createElement("div");
     exp.className = "explanation shadow-sm mt-3";
-    exp.innerHTML = `<strong>💡 Explanation:</strong> <br>${question.explanation}`;
+
+    let content = `<strong>💡 Explanation:</strong>`;
+
+    if (question.explanationImage) {
+        content += `<div class="my-2"><img src="${question.explanationImage}" class="img-fluid rounded border" alt="Explanation Image"></div>`;
+    }
+
+    content += `<div class="mt-1 small">${question.explanation || "No explanation provided."}</div>`;
+
+    if (question.sourceLink || question.videoLink) {
+        content += `<div class="mt-2 pt-2 border-top d-flex gap-2">`;
+        if (question.sourceLink) {
+            content += `<a href="${question.sourceLink}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="bi bi-book"></i> Source</a>`;
+        }
+        if (question.videoLink) {
+            content += `<a href="${question.videoLink}" target="_blank" class="btn btn-sm btn-outline-danger"><i class="bi bi-play-btn"></i> Video</a>`;
+        }
+        content += `</div>`;
+    }
+
+    exp.innerHTML = content;
     div.appendChild(exp);
   }
 
