@@ -631,3 +631,72 @@ const ChartHelper = {
         });
     }
 };
+
+/* =========================================
+   4. TEXT FORMATTER
+   ========================================= */
+const TextFormatter = {
+    formatQuestionText(text) {
+        if (!text) return "";
+
+        // Split by newline to process line by line, handling various line endings
+        const lines = text.split(/\r?\n/);
+        let output = [];
+        let inTable = false;
+        let tableLines = [];
+
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+
+            // Check if line contains pipe separator
+            if (line.includes('|')) {
+                if (!inTable) {
+                    inTable = true;
+                    tableLines = [];
+                }
+                tableLines.push(line);
+            } else {
+                if (inTable) {
+                    output.push(this.renderTable(tableLines));
+                    inTable = false;
+                    tableLines = [];
+                }
+                output.push(line);
+            }
+        }
+
+        // Handle case where table is at the end
+        if (inTable) {
+            output.push(this.renderTable(tableLines));
+        }
+
+        return output.join('<br>');
+    },
+
+    renderTable(lines) {
+        if (lines.length === 0) return "";
+
+        let html = '<div class="table-responsive my-3"><table class="table table-bordered table-sm table-hover align-middle mb-0"><thead>';
+
+        // First line is header
+        const headers = lines[0].split('|');
+        html += '<tr class="table-light">';
+        headers.forEach(h => {
+            html += `<th class="fw-bold text-secondary text-uppercase small" scope="col">${h.trim()}</th>`;
+        });
+        html += '</tr></thead><tbody>';
+
+        // Remaining lines are body
+        for (let i = 1; i < lines.length; i++) {
+            const cells = lines[i].split('|');
+            html += '<tr>';
+            cells.forEach(c => {
+                html += `<td>${c.trim()}</td>`;
+            });
+            html += '</tr>';
+        }
+
+        html += '</tbody></table></div>';
+        return html;
+    }
+};

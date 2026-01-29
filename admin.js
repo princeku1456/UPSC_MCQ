@@ -293,7 +293,7 @@ function renderQuestionAnalysis(container, questions, results, accuracies) {
                 <span class="badge bg-primary bg-opacity-10 text-primary">Question ${qIdx + 1}</span>
                 <span class="badge bg-light text-dark border">Accuracy: ${accuracy}%</span>
             </div>
-            <h5 class="fw-bold mb-4">${q.text.replace(/\n/g, "<br>")}</h5>
+            <div class="fw-bold mb-4 h5">${TextFormatter.formatQuestionText(q.text)}</div>
             <div class="row g-4">
                 <div class="col-lg-8">
                     ${optionsHtml}
