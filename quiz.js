@@ -329,8 +329,9 @@ async function loadQuiz(
 
     const quizNav = document.getElementById("quiz-nav");
     if (isReviewMode) {
-      quizContent.parentElement.className = "col-12";
-      quizNav.parentElement.style.display = "none";
+      // Keep the layout consistent: 8 cols for content, 4 cols for sidebar
+      quizContent.parentElement.className = "col-lg-8 mb-4";
+      quizNav.parentElement.style.display = "block";
       renderReviewMode(pastData);
     } else {
       quizContent.parentElement.className = "col-lg-8 mb-4";
@@ -374,6 +375,123 @@ async function loadLeaderboard(chapterId) {
   } else {
     renderLeaderboardHTML(container, []);
   }
+}
+
+function generateDeepDiveStats(quizData, userAnswers, timeData, globalStats) {
+  let stats = {
+      easy: { total: 0, attempted: 0, correct: 0 },
+      medium: { total: 0, attempted: 0, correct: 0 },
+      hard: { total: 0, attempted: 0, correct: 0 }
+  };
+
+  let timeStats = {
+      correct: { total: 0, count: 0, min: 9999, max: 0 },
+      incorrect: { total: 0, count: 0, min: 9999, max: 0 }
+  };
+
+  quizData.forEach((q, i) => {
+      // Difficulty
+      let difficulty = 'medium';
+      if (globalStats && globalStats.correctCounts) {
+          const total = globalStats.totalAttempts || 1;
+          const correct = globalStats.correctCounts[i] || 0;
+          const p = (correct / total) * 100;
+          if (p >= 70) difficulty = 'easy';
+          else if (p <= 40) difficulty = 'hard';
+      }
+
+      stats[difficulty].total++;
+
+      const uAns = userAnswers[i];
+      const time = (timeData && timeData[i]) ? timeData[i] : 0;
+
+      if (uAns) {
+          stats[difficulty].attempted++;
+          const isCorrect = uAns.answer === getCorrectIndex(q);
+
+          if (isCorrect) {
+              stats[difficulty].correct++;
+              timeStats.correct.total += time;
+              timeStats.correct.count++;
+              if (time < timeStats.correct.min) timeStats.correct.min = time;
+              if (time > timeStats.correct.max) timeStats.correct.max = time;
+          } else {
+              timeStats.incorrect.total += time;
+              timeStats.incorrect.count++;
+              if (time < timeStats.incorrect.min) timeStats.incorrect.min = time;
+              if (time > timeStats.incorrect.max) timeStats.incorrect.max = time;
+          }
+      }
+  });
+
+  const getAcc = (s) => s.attempted > 0 ? Math.round((s.correct / s.attempted) * 100) : 0;
+
+  const avgTimeCorrect = timeStats.correct.count > 0 ? (timeStats.correct.total / timeStats.correct.count).toFixed(1) : "0";
+  const avgTimeWrong = timeStats.incorrect.count > 0 ? (timeStats.incorrect.total / timeStats.incorrect.count).toFixed(1) : "0";
+
+  return `
+      <div class="row g-4 mb-5 border-top pt-4">
+          <div class="col-lg-6">
+              <h6 class="fw-bold text-secondary mb-3">🎯 Performance by Difficulty</h6>
+              <div class="table-responsive">
+                  <table class="table table-sm table-bordered text-center align-middle">
+                      <thead class="table-light">
+                          <tr>
+                              <th>Level</th>
+                              <th>Total</th>
+                              <th>Attempted</th>
+                              <th>Accuracy</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td><span class="badge bg-success">Easy</span></td>
+                              <td>${stats.easy.total}</td>
+                              <td>${stats.easy.attempted}</td>
+                              <td class="${getAcc(stats.easy) < 50 ? 'text-danger' : 'text-success'} fw-bold">${getAcc(stats.easy)}%</td>
+                          </tr>
+                          <tr>
+                              <td><span class="badge bg-warning text-dark">Medium</span></td>
+                              <td>${stats.medium.total}</td>
+                              <td>${stats.medium.attempted}</td>
+                              <td class="${getAcc(stats.medium) < 50 ? 'text-danger' : 'text-success'} fw-bold">${getAcc(stats.medium)}%</td>
+                          </tr>
+                          <tr>
+                              <td><span class="badge bg-danger">Hard</span></td>
+                              <td>${stats.hard.total}</td>
+                              <td>${stats.hard.attempted}</td>
+                              <td class="${getAcc(stats.hard) < 50 ? 'text-danger' : 'text-success'} fw-bold">${getAcc(stats.hard)}%</td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+          <div class="col-lg-6">
+              <h6 class="fw-bold text-secondary mb-3">⏱️ Time Analysis</h6>
+              <div class="row g-2">
+                  <div class="col-6">
+                      <div class="p-3 border rounded bg-success-subtle h-100">
+                          <small class="text-success fw-bold d-block">Avg Time (Correct)</small>
+                          <span class="h4 fw-bold text-dark">${avgTimeCorrect}s</span>
+                      </div>
+                  </div>
+                  <div class="col-6">
+                      <div class="p-3 border rounded bg-danger-subtle h-100">
+                          <small class="text-danger fw-bold d-block">Avg Time (Wrong)</small>
+                          <span class="h4 fw-bold text-dark">${avgTimeWrong}s</span>
+                      </div>
+                  </div>
+                  <div class="col-12">
+                     <div class="p-2 small text-muted bg-light rounded border">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Fastest Wrong: <strong>${timeStats.incorrect.min === 9999 ? '-' : timeStats.incorrect.min.toFixed(1) + 's'}</strong>
+                        | Slowest Correct: <strong>${timeStats.correct.max === 0 ? '-' : timeStats.correct.max.toFixed(1) + 's'}</strong>
+                     </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  `;
 }
 
 function renderLeaderboardHTML(container, data) {
@@ -541,6 +659,8 @@ async function renderReviewMode(resultData) {
     1
   );
 
+  const deepDiveHtml = generateDeepDiveStats(currentQuizData, userAnswers, questionTimeSpent, currentReviewStats);
+
   const content = document.getElementById("quiz-content");
 
   content.innerHTML = `
@@ -677,6 +797,7 @@ async function renderReviewMode(resultData) {
     </div>
     <p class="small text-muted mt-2 text-center">Correct attempts as a % of each confidence level.</p>
 </div> 
+${deepDiveHtml}
             </div>
         </div>
         
@@ -688,6 +809,7 @@ async function renderReviewMode(resultData) {
     `;
 
   filterReview("all", document.getElementById("btn-all"));
+  renderReviewNav();
   loadLeaderboard(currentChapterId);
 
   const stats = currentReviewStats;
@@ -897,6 +1019,7 @@ function renderReviewQuestions(filterType) {
     const timeBadge = `<span class="badge bg-light text-dark border ms-2">⏱ ${timeLabel}</span>`;
 
     const card = document.createElement("div");
+    card.id = `review-q-${index}`; // ID for navigation
     card.className = `card mb-4 shadow-sm border-0 border-start border-5 ${borderClass}`;
     card.innerHTML = `
             <div class="card-body p-4">
@@ -926,6 +1049,58 @@ function renderReviewQuestions(filterType) {
   if (visibleCount === 0) {
     container.innerHTML = `<div class="alert alert-info text-center">No questions found for this filter.</div>`;
   }
+}
+
+function renderReviewNav() {
+  const navContainer = document.getElementById("quiz-nav");
+  if (!navContainer) return;
+
+  navContainer.innerHTML = `
+      <div class="nav-header">Question Palette</div>
+      <div class="mb-3 px-3">
+          <small class="text-muted">Click to jump to question</small>
+      </div>
+      <div id="review-nav-grid" class="nav-grid"></div>
+
+      <div class="mt-4 px-3">
+        <div class="d-flex align-items-center mb-2"><span class="badge bg-success me-2" style="width: 20px; height: 20px;"> </span> Correct</div>
+        <div class="d-flex align-items-center mb-2"><span class="badge bg-danger me-2" style="width: 20px; height: 20px;"> </span> Incorrect</div>
+        <div class="d-flex align-items-center mb-2"><span class="badge bg-secondary me-2" style="width: 20px; height: 20px;"> </span> Unattempted</div>
+      </div>
+  `;
+
+  const grid = document.getElementById("review-nav-grid");
+
+  currentQuizData.forEach((q, i) => {
+      const uAns = userAnswers[i];
+      const correctIdx = getCorrectIndex(q);
+
+      let statusClass = "unattempted";
+      if (uAns) {
+          if (uAns.answer === correctIdx) statusClass = "correct-nav";
+          else statusClass = "incorrect-nav";
+      }
+
+      const btn = document.createElement("div");
+      btn.className = `nav-item shadow-sm ${statusClass}`;
+      btn.textContent = i + 1;
+      btn.onclick = () => {
+          const el = document.getElementById(`review-q-${i}`);
+          if (el) {
+              el.scrollIntoView({ behavior: "smooth", block: "center" });
+              el.style.transition = "transform 0.3s, box-shadow 0.3s";
+              el.style.transform = "scale(1.02)";
+              el.classList.remove("shadow-sm");
+              el.classList.add("shadow-lg");
+              setTimeout(() => {
+                  el.style.transform = "scale(1)";
+                  el.classList.remove("shadow-lg");
+                  el.classList.add("shadow-sm");
+              }, 1500);
+          }
+      };
+      grid.appendChild(btn);
+  });
 }
 
 /* =========================================
