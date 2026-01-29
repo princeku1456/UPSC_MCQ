@@ -910,9 +910,7 @@ function renderReviewQuestions(filterType) {
                     ${badgeHtml}
                 </div>
                 ${statsHtml} 
-                <p class="fs-5 fw-medium mb-3">${
-                  question.text ? question.text.replace(/\n/g, "<br>") : ""
-                }</p>
+                <div class="fs-5 fw-medium mb-3">${TextFormatter.formatQuestionText(question.text)}</div>
                 <div class="mb-3">${optionsHtml}</div>
                 <div class="explanation mt-3 shadow-sm">
                     <strong>💡 Explanation:</strong>
@@ -1063,10 +1061,10 @@ function renderQuestion() {
 
   const div = document.createElement("div");
   div.className = "question";
-  const text = question.text ? question.text.replace(/\n/g, "<br>") : "";
-  div.innerHTML = `<p class="mb-3 lead"><strong>Q${
+  const formattedText = TextFormatter.formatQuestionText(question.text);
+  div.innerHTML = `<div class="mb-3 lead fw-bold">Q${
     currentQuestionIndex + 1
-  }. ${text}</strong></p>`;
+  }. ${formattedText}</div>`;
 
   question.options.forEach((opt, idx) => {
     const label = document.createElement("label");
