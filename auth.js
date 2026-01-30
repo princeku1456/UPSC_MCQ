@@ -42,13 +42,7 @@ let currentTimerSeconds = 0;
    MORNING SYNC LOGIC (Updated)
    ========================================= */
 async function performMorningSync() {
-  const today = new Date().toDateString();
-  const lastSync = localStorage.getItem("last_morning_sync");
-
-  // Only run if we haven't synced today
-  if (lastSync === today) return;
-
-  console.log("🌞 Good morning! Refreshing manifests...");
+  console.log("🌞 Refreshing manifests...");
 
   try {
     // Refresh Manifests only to get current subject/chapter lists
@@ -56,9 +50,7 @@ async function performMorningSync() {
     await DataManager.fetchQuizManifest(true);
     await DataManager.fetchPracticeManifest(true);
 
-    // Update sync date
-    localStorage.setItem("last_morning_sync", today);
-    console.log("✅ Daily manifest sync successful.");
+    console.log("✅ Manifest sync successful.");
   } catch (error) {
     console.error("Morning sync failed:", error);
   }
@@ -121,16 +113,19 @@ auth.onAuthStateChanged((user) => {
           updateUIForLogout();
           showHome();
           auth.signOut();
+          hideGlobalLoader();
           return;
         }
         currentUser = freshUser;
         updateUIForLogin();
         showDashboard();
         performMorningSync();
+        hideGlobalLoader();
       })
       .catch((err) => {
         console.error("Auth sync error:", err);
         auth.signOut();
+        hideGlobalLoader();
       });
   } else {
     currentUser = null;
@@ -138,6 +133,7 @@ auth.onAuthStateChanged((user) => {
     dashboardDataLoaded = false;
     updateUIForLogout();
     showHome();
+    hideGlobalLoader();
   }
 });
 
@@ -338,37 +334,3 @@ function hideGlobalLoader() {
   }
 }
 
-/* --- Modify the existing listener in auth.js --- */
-auth.onAuthStateChanged((user) => {
-  if (user) {
-    user
-      .reload()
-      .then(() => {
-        const freshUser = auth.currentUser;
-        if (freshUser && !freshUser.emailVerified) {
-          currentUser = null;
-          updateUIForLogout();
-          showHome();
-          auth.signOut();
-          hideGlobalLoader(); // Hide loader after handling unverified user
-          return;
-        }
-        currentUser = freshUser;
-        updateUIForLogin();
-        showDashboard();
-        hideGlobalLoader(); // Hide loader after showing dashboard
-      })
-      .catch((err) => {
-        console.error("Auth sync error:", err);
-        auth.signOut();
-        hideGlobalLoader(); // Hide loader even on error
-      });
-  } else {
-    currentUser = null;
-    userHistory = [];
-    dashboardDataLoaded = false;
-    updateUIForLogout();
-    showHome();
-    hideGlobalLoader(); // Hide loader after showing login/home
-  }
-});
