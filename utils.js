@@ -90,6 +90,23 @@ const IDB = {
         } catch (e) {
             console.error("IDB Delete Error", e);
         }
+    },
+
+    async getAllKeys() {
+        try {
+            const db = await this.open();
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction([DB_CONFIG.storeName], 'readonly');
+                const store = transaction.objectStore(DB_CONFIG.storeName);
+                const request = store.getAllKeys();
+
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        } catch (e) {
+            console.error("IDB GetAllKeys Error", e);
+            return [];
+        }
     }
 };
 
@@ -144,6 +161,20 @@ const DataManager = {
      */
     async invalidateCache(key) {
         await IDB.delete(key);
+    },
+
+    /**
+     * Clears all cache entries starting with a prefix
+     */
+    async invalidateCacheByPrefix(prefix) {
+        const keys = await IDB.getAllKeys();
+        const promises = [];
+        keys.forEach(key => {
+            if (typeof key === 'string' && key.startsWith(prefix)) {
+                promises.push(IDB.delete(key));
+            }
+        });
+        await Promise.all(promises);
     },
 
     /**
