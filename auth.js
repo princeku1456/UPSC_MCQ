@@ -42,15 +42,20 @@ let currentTimerSeconds = 0;
    MORNING SYNC LOGIC (Updated)
    ========================================= */
 async function performMorningSync() {
-  console.log("🌞 Refreshing manifests...");
+  console.log("🌞 Refreshing manifests and clearing cache...");
 
   try {
-    // Refresh Manifests only to get current subject/chapter lists
-    // Firestore's internal persistence handles question caching automatically
+    // 1. Force Refresh Manifests (Subjects & Chapters)
     await DataManager.fetchQuizManifest(true);
     await DataManager.fetchPracticeManifest(true);
 
-    console.log("✅ Manifest sync successful.");
+    // 2. Clear Question & Stats Cache to ensure fresh content on reload
+    // This addresses the user requirement: "Refresh page = Get new data"
+    await DataManager.invalidateCacheByPrefix("quiz_questions_");
+    await DataManager.invalidateCacheByPrefix("practice_questions_");
+    await DataManager.invalidateCacheByPrefix("global_stats_");
+
+    console.log("✅ Sync complete. Cache invalidated.");
   } catch (error) {
     console.error("Morning sync failed:", error);
   }
