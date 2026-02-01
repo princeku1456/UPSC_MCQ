@@ -731,3 +731,15 @@ const TextFormatter = {
         return html;
     }
 };
+
+/* =========================================
+   5. SHARED HELPERS
+   ========================================= */
+
+function getCorrectIndex(question) {
+  if (typeof question.correctAnswer === "number") return question.correctAnswer;
+  const optionIndex = question.options.indexOf(question.correctAnswer);
+  if (optionIndex !== -1) return optionIndex;
+  if (!isNaN(question.correctAnswer)) return Number(question.correctAnswer);
+  return -1;
+}

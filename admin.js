@@ -187,10 +187,7 @@ async function loadTestAnalysis() {
 
 function calculateAccuracies(questions, results) {
   return questions.map((q, qIdx) => {
-    const correctIndex =
-      typeof q.correctAnswer === "number"
-        ? q.correctAnswer
-        : q.options.indexOf(q.correctAnswer);
+    const correctIndex = getCorrectIndex(q);
     let correctCount = 0;
     results.forEach((res) => {
       const choice = res.userAnswers ? res.userAnswers[qIdx] : null;
@@ -236,9 +233,7 @@ function renderQuestionAnalysis(container, questions, results, accuracies) {
     // Each bucket now stores objects containing the username and their surety level
     const optionBuckets = q.options.map(() => []);
     const skippedUsers = [];
-    const correctIndex = typeof q.correctAnswer === "number"
-        ? q.correctAnswer
-        : q.options.indexOf(q.correctAnswer);
+    const correctIndex = getCorrectIndex(q);
 
     results.forEach((res) => {
       const userName = res.userEmail ? res.userEmail.split("@")[0] : "Guest";
