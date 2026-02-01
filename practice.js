@@ -400,7 +400,6 @@ function submitPractice(forceSubmit = false) {
     const uAns = practiceUserAnswers[i];
     const cIdx = getCorrectIndex(q);
 
-    // Access .answer for scoring logic
     if (uAns && uAns.answer !== undefined && uAns.answer !== -1) {
       if (uAns.answer === cIdx) {
         score += 2;
