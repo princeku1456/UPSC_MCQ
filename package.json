@@ -1,0 +1,24 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "admin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/princeku1456/UPSC_MCQ.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/princeku1456/UPSC_MCQ/issues"
+  },
+  "homepage": "https://github.com/princeku1456/UPSC_MCQ#readme",
+  "dependencies": {
+    "playwright": "^1.58.1"
+  }
+}
