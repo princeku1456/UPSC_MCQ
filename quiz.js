@@ -1268,11 +1268,13 @@ function submitAll(forceSubmit = false) {
   const percentage =
     totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
 
+  const now = new Date();
+
   const leaderboardEntry = {
     userEmail: currentUser ? currentUser.email : "guest",
     scorePercent: parseFloat(percentage),
     score: finalScore,
-    rankTime: new Date().toISOString(),
+    rankTime: now.toISOString(),
   };
 
   const resultObject = {
@@ -1286,7 +1288,7 @@ function submitAll(forceSubmit = false) {
     scorePercent: parseFloat(percentage),
     userAnswers: userAnswers,
     questionTimeSpent: questionTimeSpent, // Save time per question
-    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    timestamp: now,
   };
 
   document.getElementById("result").innerHTML = `
@@ -1330,8 +1332,9 @@ function submitAll(forceSubmit = false) {
   if (currentUser) {
     db.collection("results")
       .add({ ...resultObject })
-      .then(async () => {
-        userHistory.unshift({ ...resultObject, timestamp: new Date() });
+      .then(async (docRef) => {
+        leaderboardEntry.resultId = docRef.id;
+        userHistory.unshift({ ...resultObject, timestamp: now });
         if (userHistory.length > 20) userHistory.pop();
         dashboardDataLoaded = true;
 
