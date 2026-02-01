@@ -79,13 +79,8 @@ function applyTheme(theme) {
   }
 
   // Refresh Dashboard Charts
-  if (performanceChartInstance) {
-    renderPerformanceChart(userHistory);
-  }
-  
-  // FIX: Added logic to refresh Global Confidence Chart
-  if (globalConfidenceChartInstance) {
-    renderDashboardUI(); // Re-runs the full UI logic to recalculate colors
+  if (typeof refreshDashboardChartsOnly === 'function') {
+    refreshDashboardChartsOnly();
   }
 
   // Refresh Review Mode Chart

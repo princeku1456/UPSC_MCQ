@@ -35,6 +35,63 @@ async function loadUserDashboard(forceRefresh = false) {
  * Removed "Best Subject" logic.
  */
 /**
+ * Calculates confidence statistics from user history results.
+ * @param {Array} results - The user history array.
+ * @returns {Object} { confValues, confStats }
+ */
+function calculateConfidenceStats(results) {
+  // Initialize Global Confidence Trackers
+  const confStats = {
+    100: { total: 0, correct: 0 },
+    75: { total: 0, correct: 0 },
+    50: { total: 0, correct: 0 },
+    0: { total: 0, correct: 0 }
+  };
+
+  // Aggregate data from all tests
+  results.forEach(res => {
+    if (res.userAnswers) {
+      Object.values(res.userAnswers).forEach(ans => {
+        // Aggregate Confidence Data for charts
+        if (ans.surety !== undefined) {
+          confStats[ans.surety].total++;
+          if (ans.isCorrect) confStats[ans.surety].correct++;
+        }
+      });
+    }
+  });
+
+  // Prepare Confidence Data for Charting
+  const confValues = [
+    confStats[100].total > 0 ? (confStats[100].correct / confStats[100].total * 100).toFixed(1) : 0,
+    confStats[75].total > 0 ? (confStats[75].correct / confStats[75].total * 100).toFixed(1) : 0,
+    confStats[50].total > 0 ? (confStats[50].correct / confStats[50].total * 100).toFixed(1) : 0,
+    confStats[0].total > 0 ? (confStats[0].correct / confStats[0].total * 100).toFixed(1) : 0
+  ];
+
+  return { confValues, confStats };
+}
+
+/**
+ * Refreshes only the dashboard charts without re-running full UI logic.
+ * Useful for theme changes.
+ */
+function refreshDashboardChartsOnly() {
+    if (!userHistory || userHistory.length === 0) return;
+
+    // Refresh Performance Chart
+    if (performanceChartInstance) {
+        renderPerformanceChart(userHistory);
+    }
+
+    // Refresh Global Confidence Chart
+    if (globalConfidenceChartInstance) {
+         const { confValues, confStats } = calculateConfidenceStats(userHistory);
+         renderGlobalConfidenceChart(confValues, confStats);
+    }
+}
+
+/**
  * Renders UI with Cumulative Metrics, Precision, Negative Drain, 
  * and Concept Gap analysis based on user history.
  */
@@ -53,14 +110,6 @@ function renderDashboardUI() {
       totalAttempted = 0, 
       totalQs = 0;
   
-  // Initialize Global Confidence Trackers
-  const confStats = {
-    100: { total: 0, correct: 0 },
-    75: { total: 0, correct: 0 },
-    50: { total: 0, correct: 0 },
-    0: { total: 0, correct: 0 }
-  };
-  
   // Aggregate data from all tests in a single loop
   results.forEach(res => {
     // Accumulate total possible questions (assuming 2 marks per question)
@@ -73,12 +122,6 @@ function renderDashboardUI() {
         totalAttempted++;
         if (ans.isCorrect) totalCorrect++;
         else totalIncorrect++;
-
-        // Aggregate Confidence Data for charts
-        if (ans.surety !== undefined) {
-          confStats[ans.surety].total++;
-          if (ans.isCorrect) confStats[ans.surety].correct++;
-        }
       });
     }
   });
@@ -120,12 +163,7 @@ function renderDashboardUI() {
   if (elDrain) elDrain.textContent = negativeDrain + "%";
 
   // 3. Prepare Confidence Data for Charting
-  const confValues = [
-    confStats[100].total > 0 ? (confStats[100].correct / confStats[100].total * 100).toFixed(1) : 0,
-    confStats[75].total > 0 ? (confStats[75].correct / confStats[75].total * 100).toFixed(1) : 0,
-    confStats[50].total > 0 ? (confStats[50].correct / confStats[50].total * 100).toFixed(1) : 0,
-    confStats[0].total > 0 ? (confStats[0].correct / confStats[0].total * 100).toFixed(1) : 0
-  ];
+  const { confValues, confStats } = calculateConfidenceStats(results);
 
   // 4. Render All Graphs and Advanced Analysis
   updateConceptGapStat(results);
