@@ -469,8 +469,27 @@ async function deleteAttempt(docId, testName) {
 
                 // Update Leaderboard (remove this specific user's entry)
                 let newLeaderboard = (stats.leaderboard || []).filter(entry => {
-                    // Check email and timestamp to ensure we don't delete different attempts by same user
-                    return !(entry.userEmail === data.userEmail && entry.rankTime === data.timestamp?.toDate().toISOString());
+                    // 1. Primary Check: If we have a linked Result ID (new system), match exactly
+                    if (entry.resultId && entry.resultId === docId) {
+                        return false; // Remove this entry
+                    }
+
+                    // 2. Fallback Check: For legacy data, match Email + Score + Approximate Time
+                    if (entry.userEmail === data.userEmail) {
+                        const scoreMatch = Math.abs(entry.scorePercent - scorePercent) < 0.1;
+
+                        // Time match: entry.rankTime is ISO String, data.timestamp is Firestore Timestamp
+                        const entryTime = new Date(entry.rankTime).getTime();
+                        const dataTime = data.timestamp ? data.timestamp.toDate().getTime() : 0;
+                        const timeDiff = Math.abs(entryTime - dataTime);
+                        const timeMatch = timeDiff < 5000; // 5 seconds tolerance
+
+                        if (scoreMatch && timeMatch) {
+                            return false; // Remove this entry
+                        }
+                    }
+
+                    return true; // Keep this entry
                 });
 
                 // Revert Question-wise Counts (correctCounts and attemptedCounts)
