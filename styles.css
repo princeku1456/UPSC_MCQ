@@ -886,3 +886,22 @@ body {
 #ai-review-content::-webkit-scrollbar-thumb:hover {
     background: var(--text-muted);
 }
+
+/* ============================
+   ACCESSIBILITY IMPROVEMENTS
+   ============================ */
+/* Ensure visible focus for keyboard navigation on custom interactive elements */
+[role="button"]:focus,
+[tabindex="0"]:focus {
+    outline: 3px solid var(--secondary-color);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.3);
+    z-index: 10; /* Ensure focus ring is on top */
+}
+
+/* Remove default outline for mouse users if desired, but keep for keyboard */
+[role="button"]:focus:not(:focus-visible),
+[tabindex="0"]:focus:not(:focus-visible) {
+    outline: none;
+    box-shadow: none;
+}

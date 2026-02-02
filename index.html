@@ -288,6 +288,10 @@
               class="card topic-card shadow-sm h-100"
               style="cursor: pointer"
               onclick="showTestSelection()"
+              role="button"
+              tabindex="0"
+              aria-label="Take Test"
+              onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}"
             >
               <div class="card-body text-center p-4">
                 <div class="display-5 mb-2">🚀</div>
@@ -300,6 +304,10 @@
               class="card topic-card shadow-sm h-100"
               style="cursor: pointer"
               onclick="startPracticeSelection()"
+              role="button"
+              tabindex="0"
+              aria-label="Practice MCQ"
+              onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}"
             >
               <div class="card-body text-center p-4">
                 <div class="display-5 mb-2">🎯</div>

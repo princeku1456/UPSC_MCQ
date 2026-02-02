@@ -212,6 +212,18 @@ function renderPalette(accuracies) {
     item.className = `palette-item ${heatClass}`;
     item.textContent = i + 1;
     item.title = `Accuracy: ${acc}%`;
+
+    // Accessibility Attributes
+    item.setAttribute("role", "button");
+    item.setAttribute("tabindex", "0");
+    item.setAttribute("aria-label", `Question ${i + 1}: ${acc}% Accuracy`);
+    item.onkeydown = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            item.click();
+        }
+    };
+
     item.onclick = () => {
       const el = document.getElementById(`q-card-${i}`);
       if (el) el.scrollIntoView({ behavior: "smooth" });
