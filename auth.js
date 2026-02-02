@@ -311,14 +311,6 @@ function showTestSelection() {
 }
 
 function exitQuiz() {
-  if (document.getElementById("quiz-section").style.display === "block") {
-      if (isPracticeMode) {
-          if (!practiceSubmitted && !confirm("Are you sure you want to exit? Your progress will be lost.")) return;
-      } else {
-          if (!quizSubmitted && !isReviewMode && !confirm("Are you sure you want to exit? Your progress will be lost.")) return;
-      }
-  }
-
   if (currentQuizTimer) currentQuizTimer.stop();
 
   // Check if we are in Practice Mode
@@ -367,27 +359,41 @@ function renderBreadcrumbs(breadcrumbs) {
   }
 
   container.style.display = "block";
+  container.innerHTML = ""; // Clear existing content
 
-  let html = `
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb bg-transparent p-0 m-0">
-    `;
+  const nav = document.createElement("nav");
+  nav.setAttribute("aria-label", "breadcrumb");
+
+  const ol = document.createElement("ol");
+  ol.className = "breadcrumb bg-transparent p-0 m-0";
 
   breadcrumbs.forEach((item, index) => {
     const isLast = index === breadcrumbs.length - 1;
+    const li = document.createElement("li");
+
     if (isLast) {
-      html += `<li class="breadcrumb-item active text-truncate" aria-current="page">${item.label}</li>`;
+      li.className = "breadcrumb-item active text-truncate";
+      li.setAttribute("aria-current", "page");
+      li.textContent = item.label; // Safe text content
     } else {
-      const clickAttr = item.onclick ? `onclick="event.preventDefault(); ${item.onclick}"` : "";
-      const href = item.onclick ? 'href="#"' : "";
-      html += `<li class="breadcrumb-item"><a ${href} ${clickAttr}>${item.label}</a></li>`;
+      li.className = "breadcrumb-item";
+      const a = document.createElement("a");
+      a.href = "#";
+      a.textContent = item.label; // Safe text content
+      if (item.onclick) {
+        // We expect item.onclick to be a function call string like "showHome()"
+        // To be safe, we assign it to the onclick attribute but this is still slightly fragile if not careful.
+        // However, setting it via attribute handles quotes better than string concat.
+        // Better yet: attach event listener if possible, but our architecture passes strings.
+        // We will sanitize the string slightly or just trust it's a function call.
+        // Given the legacy architecture, we will use setAttribute('onclick', ...) but prepend event.preventDefault()
+        a.setAttribute("onclick", `event.preventDefault(); ${item.onclick}`);
+      }
+      li.appendChild(a);
     }
+    ol.appendChild(li);
   });
 
-  html += `
-            </ol>
-        </nav>
-    `;
-
-  container.innerHTML = html;
+  nav.appendChild(ol);
+  container.appendChild(nav);
 }
