@@ -424,6 +424,92 @@
       </div>
     </section>
 
+
+    <!-- Start Quiz Modal -->
+    <div
+      class="modal fade"
+      id="startQuizModal"
+      tabindex="-1"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+          <div class="modal-header border-0 bg-light rounded-top-4">
+            <h5 class="modal-title fw-bold text-primary" id="startQuizModalLabel">
+              Ready to Start?
+            </h5>
+          </div>
+          <div class="modal-body p-4 text-center">
+            <div class="mb-4">
+              <div class="display-1 mb-3">📝</div>
+              <h4 class="fw-bold mb-2" id="start-modal-subject">
+                Subject Name
+              </h4>
+              <p class="text-muted" id="start-modal-chapter">Chapter Name</p>
+            </div>
+
+            <div class="row g-3 justify-content-center mb-4">
+              <div class="col-6">
+                <div class="p-3 bg-light rounded-3 border">
+                  <small
+                    class="text-muted d-block text-uppercase fw-bold"
+                    style="font-size: 0.7rem"
+                    >Questions</small
+                  >
+                  <span
+                    class="fs-4 fw-bold text-dark"
+                    id="start-modal-questions"
+                    >0</span
+                  >
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="p-3 bg-light rounded-3 border">
+                  <small
+                    class="text-muted d-block text-uppercase fw-bold"
+                    style="font-size: 0.7rem"
+                    >Duration</small
+                  >
+                  <span class="fs-4 fw-bold text-dark" id="start-modal-duration"
+                    >0m</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="alert alert-info border-0 d-flex align-items-center"
+              role="alert"
+            >
+              <i class="bi bi-info-circle-fill me-2 fs-5"></i>
+              <div class="small text-start">
+                Once you start, the timer will begin. Good luck!
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-0 justify-content-center pb-4">
+            <button
+              type="button"
+              class="btn btn-secondary-custom px-4"
+              data-bs-dismiss="modal"
+              onclick="showDashboard()"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary-custom px-5 shadow pulse-button"
+              id="start-quiz-btn"
+            >
+              🚀 Start Test
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>

@@ -260,6 +260,63 @@ function renderChapters(subjectKey) {
 /* =========================================
    QUIZ CORE (Updated loadQuiz)
    ========================================= */
+function startQuizExecution(savedTime) {
+  const quizContent = document.getElementById("quiz-content");
+  const quizNav = document.getElementById("quiz-nav");
+
+  quizContent.parentElement.className = "col-lg-8 mb-4";
+  quizNav.parentElement.style.display = "block";
+  renderQuizLayout(currentChapterName);
+  renderQuestion();
+  renderNav();
+  startTimer(currentQuizData.length, savedTime);
+  currentQuestionStartTime = Date.now(); // NEW: Start tracking first question
+}
+
+function showStartModal(subject, chapter) {
+    document.getElementById('start-modal-subject').textContent = subject;
+    document.getElementById('start-modal-chapter').textContent = chapter;
+
+    // Set loading state
+    document.getElementById('start-modal-questions').innerHTML = '<span class="spinner-border spinner-border-sm text-primary" role="status"></span>';
+    document.getElementById('start-modal-duration').innerHTML = '<span class="spinner-border spinner-border-sm text-primary" role="status"></span>';
+
+    const startBtn = document.getElementById('start-quiz-btn');
+    startBtn.disabled = true;
+    startBtn.classList.add('disabled');
+
+    // Set Cancel action to go back to chapters
+    const cancelBtn = document.querySelector('#startQuizModal .btn-secondary-custom');
+    cancelBtn.onclick = function() {
+        hideAllSections();
+        document.getElementById("test-selection-section").style.display = "block";
+        renderChapters(subject);
+    };
+
+    const modalEl = document.getElementById('startQuizModal');
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+}
+
+function updateStartModal(numQuestions, savedTime) {
+    document.getElementById('start-modal-questions').textContent = numQuestions;
+
+    // Calculate duration: 1.2 min per question
+    const durationMin = Math.ceil(numQuestions * 1.2);
+    document.getElementById('start-modal-duration').textContent = durationMin + "m";
+
+    const startBtn = document.getElementById('start-quiz-btn');
+    startBtn.disabled = false;
+    startBtn.classList.remove('disabled');
+
+    startBtn.onclick = function() {
+        const modalEl = document.getElementById('startQuizModal');
+        const modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+        modal.hide();
+        startQuizExecution(savedTime);
+    };
+}
+
 async function loadQuiz(
   subjectKey,
   chapterId,
@@ -277,8 +334,16 @@ async function loadQuiz(
   isReviewMode = reviewMode;
   reviewSource = source;
   let savedTime = null;
-  hideAllSections();
-  document.getElementById("quiz-section").style.display = "block";
+
+  // Show Modal immediately in Take Test mode
+  if (!reviewMode) {
+      // Ensure timer is stopped before showing modal
+      if (currentQuizTimer) currentQuizTimer.stop();
+      showStartModal(currentSubject, currentChapterName);
+  } else {
+      hideAllSections();
+      document.getElementById("quiz-section").style.display = "block";
+  }
 
   // Set Breadcrumbs based on mode
   if (reviewMode) {
@@ -319,6 +384,11 @@ async function loadQuiz(
     currentQuizData = await DataManager.fetchQuizQuestions(currentChapterId);
     if (!currentQuizData) {
       toastr.error("Quiz questions not found in database!");
+      if (!reviewMode) {
+          const modalEl = document.getElementById('startQuizModal');
+          const modal = bootstrap.Modal.getInstance(modalEl);
+          if (modal) modal.hide();
+      }
       showDashboard();
       return;
     }
@@ -368,13 +438,9 @@ async function loadQuiz(
       quizNav.parentElement.style.display = "none";
       renderReviewMode(pastData);
     } else {
-      quizContent.parentElement.className = "col-lg-8 mb-4";
-      quizNav.parentElement.style.display = "block";
-      renderQuizLayout(currentChapterName);
-      renderQuestion();
-      renderNav();
-      startTimer(currentQuizData.length, savedTime);
-      currentQuestionStartTime = Date.now(); // NEW: Start tracking first question
+      hideAllSections();
+      document.getElementById("quiz-section").style.display = "block";
+      updateStartModal(currentQuizData.length, savedTime);
     }
   } catch (error) {
     console.error("Firebase fetch error:", error);
