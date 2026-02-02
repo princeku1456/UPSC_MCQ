@@ -467,6 +467,14 @@ async function renderReviewMode(resultData) {
   let sillyMistakes = 0;
   let hardSuccess = 0;
   let missedEasyQNumbers = [];
+
+  // Difficulty Stats
+  let difficultyStats = {
+      Easy: { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
+      Medium: { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
+      Hard: { total: 0, correct: 0, incorrect: 0, unattempted: 0 }
+  };
+
   currentQuizData.forEach((q, i) => {
     const uAns = userAnswers[i];
     const correctIndex = getCorrectIndex(q);
@@ -475,6 +483,21 @@ async function renderReviewMode(resultData) {
     const commCorrect = currentReviewStats?.correctCounts?.[i] || 0;
     const commTotal = currentReviewStats?.totalAttempts || 1;
     const commAccuracy = (commCorrect / commTotal) * 100;
+
+    // Determine Difficulty
+    let diffLabel = "Medium";
+    if (commAccuracy >= 70) diffLabel = "Easy";
+    else if (commAccuracy <= 40) diffLabel = "Hard";
+
+    difficultyStats[diffLabel].total++;
+    if (!uAns) {
+        difficultyStats[diffLabel].unattempted++;
+    } else if (uAns.answer === correctIndex) {
+        difficultyStats[diffLabel].correct++;
+    } else {
+        difficultyStats[diffLabel].incorrect++;
+    }
+
     // 2. Track accuracy per confidence level
     const confidence = uAns?.surety;
     if (uAns && confidence !== undefined) {
@@ -532,6 +555,52 @@ async function renderReviewMode(resultData) {
   const accuracyRate = ((correct / (correct + incorrect)) * 100 || 0).toFixed(
     1
   );
+
+  // Generate Difficulty Matrix HTML
+  const difficultyRows = ['Easy', 'Medium', 'Hard'].map(level => {
+      const stats = difficultyStats[level];
+      const acc = stats.total > 0 ? ((stats.correct / stats.total) * 100).toFixed(1) : 0;
+      let badgeClass = 'bg-secondary';
+      if (level === 'Easy') badgeClass = 'bg-success';
+      if (level === 'Medium') badgeClass = 'bg-warning text-dark';
+      if (level === 'Hard') badgeClass = 'bg-danger';
+
+      return `
+          <tr>
+              <td><span class="badge ${badgeClass}">${level}</span></td>
+              <td class="text-center">${stats.total}</td>
+              <td class="text-center text-success fw-bold">${stats.correct}</td>
+              <td class="text-center text-danger fw-bold">${stats.incorrect}</td>
+              <td class="text-center text-muted">${stats.unattempted}</td>
+              <td class="text-end fw-bold">${acc}%</td>
+          </tr>
+      `;
+  }).join('');
+
+  const difficultyMatrixHtml = `
+      <div class="card mb-4 border-0 shadow-sm">
+          <div class="card-header bg-white border-bottom py-2">
+              <h6 class="fw-bold text-primary m-0">🎯 Performance by Difficulty</h6>
+          </div>
+          <div class="table-responsive">
+              <table class="table table-hover mb-0 align-middle">
+                  <thead class="table-light small text-muted">
+                      <tr>
+                          <th>Difficulty</th>
+                          <th class="text-center">Total</th>
+                          <th class="text-center">Correct</th>
+                          <th class="text-center">Incorrect</th>
+                          <th class="text-center">Unattempted</th>
+                          <th class="text-end">Accuracy</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      ${difficultyRows}
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  `;
 
   const content = document.getElementById("quiz-content");
 
@@ -622,6 +691,8 @@ async function renderReviewMode(resultData) {
                         </div>
                     </div>
                 </div>
+
+                ${difficultyMatrixHtml}
 
                 <div class="row mb-4 g-3">
                     <div class="col-md-6">
