@@ -121,7 +121,11 @@ async function renderSubjects() {
     col.innerHTML = `
             <div class="card topic-card h-100 ${
               isCompleted ? "subject-completed" : ""
-            }" style="cursor: pointer;">
+            }" style="cursor: pointer;"
+               role="button"
+               tabindex="0"
+               aria-label="Select Subject: ${subjectKey}"
+               onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">
                 <div class="card-body text-center p-4 d-flex flex-column">
                     <div class="display-4 mb-3">${
                       isCompleted ? "🏆" : "📖"
@@ -1162,19 +1166,26 @@ function renderQuestion() {
   suretyDiv.className = "mt-4 mb-3 animate-fade-in";
   suretyDiv.innerHTML = `
     <div class="surety-label">Confidence Level</div>
-    <div class="surety-matrix shadow-sm">
+    <div class="surety-matrix shadow-sm" role="radiogroup" aria-label="Confidence Level">
         <div class="surety-opt surety-100 ${
           currentSurety === 100 ? "selected" : ""
-        }" data-val="100">100%</div>
+        }" data-val="100" role="radio" tabindex="0" aria-checked="${currentSurety === 100}" aria-label="100% Confidence"
+        onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">100%</div>
+
         <div class="surety-opt surety-75 ${
           currentSurety === 75 ? "selected" : ""
-        }" data-val="75">75%</div>
+        }" data-val="75" role="radio" tabindex="0" aria-checked="${currentSurety === 75}" aria-label="75% Confidence"
+        onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">75%</div>
+
         <div class="surety-opt surety-50 ${
           currentSurety === 50 ? "selected" : ""
-        }" data-val="50">50%</div>
+        }" data-val="50" role="radio" tabindex="0" aria-checked="${currentSurety === 50}" aria-label="50% Confidence"
+        onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">50%</div>
+
         <div class="surety-opt surety-0 ${
           currentSurety === 0 ? "selected" : ""
-        }" data-val="0">0%</div>
+        }" data-val="0" role="radio" tabindex="0" aria-checked="${currentSurety === 0}" aria-label="0% Confidence"
+        onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">0%</div>
     </div>
   `;
 
@@ -1186,11 +1197,13 @@ function renderQuestion() {
           userAnswers[currentQuestionIndex] = { answer: -1 };
         userAnswers[currentQuestionIndex].surety = val;
 
-        // Toggle 'selected' class only
-        suretyDiv
-          .querySelectorAll(".surety-opt")
-          .forEach((o) => o.classList.remove("selected"));
+        // Toggle 'selected' class and aria-checked
+        suretyDiv.querySelectorAll(".surety-opt").forEach((o) => {
+            o.classList.remove("selected");
+            o.setAttribute("aria-checked", "false");
+        });
         this.classList.add("selected");
+        this.setAttribute("aria-checked", "true");
         saveQuizProgress();
       };
     });
@@ -1257,6 +1270,18 @@ function renderNav() {
     item.className = "nav-item shadow-sm nav-item-animate";
     item.textContent = i + 1;
     item.style.setProperty("--animation-delay", `${i * 30}ms`);
+
+    // Accessibility Attributes
+    item.setAttribute("role", "button");
+    item.setAttribute("tabindex", "0");
+    item.setAttribute("aria-label", `Question ${i + 1}`);
+    item.onkeydown = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            item.click();
+        }
+    };
+
     item.onclick = () => {
       updateQuestionTimer(); // Save time for current question
       currentQuestionIndex = i;
