@@ -337,6 +337,8 @@ async function loadQuiz(
 
   // Show Modal immediately in Take Test mode
   if (!reviewMode) {
+      // Ensure timer is stopped before showing modal
+      if (currentQuizTimer) currentQuizTimer.stop();
       showStartModal(currentSubject, currentChapterName);
   } else {
       hideAllSections();
