@@ -4,6 +4,9 @@ const db = firebase.firestore();
 // REDUCED READS: Memory cache for admin analysis
 const adminAnalysisCache = {};
 
+// Cache for user search results to enable "View" functionality
+let lastSearchResults = {};
+
 // Global variable for quiz structure
 let allQuizData = null;
 
@@ -398,9 +401,15 @@ async function searchUserAttempts() {
             return;
         }
 
+        // Reset cache
+        lastSearchResults = {};
+
         tbody.innerHTML = "";
         snapshot.forEach(doc => {
             const data = doc.data();
+            // Store for view functionality
+            lastSearchResults[doc.id] = data;
+
             const date = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleDateString() : "N/A";
             
             const tr = document.createElement("tr");
@@ -410,6 +419,9 @@ async function searchUserAttempts() {
                 <td>${data.chapterName}</td>
                 <td><span class="badge bg-primary">${data.scorePercent}%</span></td>
                 <td class="text-end">
+                    <button class="btn btn-outline-primary btn-sm me-2" onclick="viewAttempt('${doc.id}')">
+                        <i class="bi bi-eye"></i> View
+                    </button>
                     <button class="btn btn-outline-danger btn-sm" onclick="deleteAttempt('${doc.id}', '${data.chapterName}')">
                         <i class="bi bi-trash"></i> Delete
                     </button>
@@ -422,6 +434,107 @@ async function searchUserAttempts() {
         console.error("Search Error:", error);
         toastr.error("Error fetching user data. Ensure index is created in Firebase if required.");
         tbody.innerHTML = '<tr><td colspan="5" class="text-center text-danger">Failed to load data.</td></tr>';
+    }
+}
+
+async function viewAttempt(docId) {
+    const attempt = lastSearchResults[docId];
+    if (!attempt) return toastr.error("Attempt data not found in cache.");
+
+    // Show Modal
+    const modalEl = document.getElementById('viewAttemptModal');
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+    modal.show();
+
+    const body = document.getElementById('viewAttemptModalBody');
+    body.innerHTML = `
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2 text-muted">Loading Questions for ${attempt.chapterName}...</p>
+        </div>`;
+
+    try {
+        // Fetch Questions
+        const questions = await DataManager.fetchQuizQuestions(attempt.chapterId);
+        if (!questions) {
+             body.innerHTML = `<div class="alert alert-danger">Questions for this test not found.</div>`;
+             return;
+        }
+
+        let content = `
+            <div class="mb-4 pb-3 border-bottom">
+                <h5 class="fw-bold text-primary">${attempt.chapterName}</h5>
+                <div class="d-flex gap-3 text-muted small">
+                    <span><i class="bi bi-calendar"></i> ${new Date(attempt.timestamp.toDate()).toLocaleString()}</span>
+                    <span><i class="bi bi-trophy"></i> Score: ${attempt.scorePercent}%</span>
+                </div>
+            </div>
+            <div class="vstack gap-4">
+        `;
+
+        questions.forEach((q, index) => {
+            const uAns = attempt.userAnswers ? attempt.userAnswers[index] : null;
+            const correctIndex = getCorrectIndex(q);
+            const userChoice = uAns ? uAns.answer : -1;
+            const surety = uAns ? uAns.surety : null;
+
+            // Determine status
+            let statusBadge = '<span class="badge bg-secondary">Unattempted</span>';
+            let borderClass = 'border-secondary';
+
+            if (uAns) {
+                if (userChoice === correctIndex) {
+                    statusBadge = '<span class="badge bg-success">Correct</span>';
+                    borderClass = 'border-success';
+                } else {
+                    statusBadge = '<span class="badge bg-danger">Incorrect</span>';
+                    borderClass = 'border-danger';
+                }
+            }
+
+            let optionsHtml = '';
+            q.options.forEach((opt, oIdx) => {
+                let itemClass = "p-2 mb-1 rounded border";
+                let icon = "";
+
+                if (oIdx === correctIndex) {
+                    itemClass += " bg-success bg-opacity-10 border-success text-success fw-bold";
+                    icon = "✅";
+                } else if (oIdx === userChoice) {
+                    itemClass += " bg-danger bg-opacity-10 border-danger text-danger fw-bold";
+                    icon = "❌";
+                }
+
+                optionsHtml += `<div class="${itemClass}">${icon} ${opt}</div>`;
+            });
+
+            content += `
+                <div class="card border-0 shadow-sm border-start border-4 ${borderClass}">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="fw-bold text-muted small">Q${index + 1}</span>
+                            <div class="d-flex gap-2">
+                                ${surety !== null ? `<span class="badge bg-info text-dark">Confidence: ${surety}%</span>` : ''}
+                                ${statusBadge}
+                            </div>
+                        </div>
+                        <div class="mb-3 fw-bold">${TextFormatter.formatQuestionText(q.text)}</div>
+                        <div class="mb-3">${optionsHtml}</div>
+                         <div class="bg-light p-3 rounded small">
+                            <strong>💡 Explanation:</strong>
+                            <div class="mt-1">${q.explanation || 'N/A'}</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        content += '</div>';
+        body.innerHTML = content;
+
+    } catch (e) {
+        console.error("View Attempt Error:", e);
+        body.innerHTML = `<div class="alert alert-danger">Error loading details: ${e.message}</div>`;
     }
 }
 

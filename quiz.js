@@ -1565,6 +1565,12 @@ function submitAll(forceSubmit = false) {
               const newAttempts = (data.totalAttempts || 0) + 1;
               const newAvg = ((data.totalScore || 0) + newScore) / newAttempts;
               let currentLeaderboard = data.leaderboard || [];
+
+              // Remove any existing entry for this user to ensure only the latest attempt is recorded
+              if (leaderboardEntry.userEmail) {
+                 currentLeaderboard = currentLeaderboard.filter(e => e.userEmail !== leaderboardEntry.userEmail);
+              }
+
               currentLeaderboard.push(leaderboardEntry);
               currentLeaderboard.sort(
                 (a, b) => b.scorePercent - a.scorePercent
