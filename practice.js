@@ -239,7 +239,7 @@ function setupPracticeLayout() {
 function renderPracticeQuestion() {
   const container = document.getElementById("practice-question-container");
   const q = practiceQuizData[practiceCurrentIndex];
-  const cIdx = typeof q.correctAnswer === "number" ? q.correctAnswer : q.options.indexOf(q.correctAnswer);
+  const cIdx = getCorrectIndex(q);
 
   const markBtn = document.getElementById("practice-mark-review-btn");
   if (markBtn) {
@@ -330,12 +330,9 @@ function updatePracticeNavHighlights() {
 
       if (practiceSubmitted) {
         const q = practiceQuizData[i];
-        const cIdx =
-          typeof q.correctAnswer === "number"
-            ? q.correctAnswer
-            : q.options.indexOf(q.correctAnswer);
+        const cIdx = getCorrectIndex(q);
         
-        // FIX: Compare uAns.answer to cIdx and handle undefined/unselected cases
+        // Compare uAns.answer to cIdx and handle undefined/unselected cases
         if (!uAns || uAns.answer === undefined || uAns.answer === -1) {
           item.classList.add("unattempted");
         } else if (uAns.answer === cIdx) {
@@ -344,7 +341,7 @@ function updatePracticeNavHighlights() {
           item.classList.add("incorrect-nav");
         }
       } else {
-        // FIX: Mark as attempted only if an option is actually selected
+        // Mark as attempted only if an option is actually selected
         if (uAns && uAns.answer !== undefined && uAns.answer !== -1) {
           item.classList.add("attempted");
         }
@@ -401,12 +398,8 @@ function submitPractice(forceSubmit = false) {
 
   practiceQuizData.forEach((q, i) => {
     const uAns = practiceUserAnswers[i];
-    const cIdx =
-      typeof q.correctAnswer === "number"
-        ? q.correctAnswer
-        : q.options.indexOf(q.correctAnswer);
+    const cIdx = getCorrectIndex(q);
 
-    // FIX: Access .answer for scoring logic
     if (uAns && uAns.answer !== undefined && uAns.answer !== -1) {
       if (uAns.answer === cIdx) {
         score += 2;

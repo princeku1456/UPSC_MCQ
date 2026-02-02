@@ -242,14 +242,6 @@ function renderChapters(subjectKey) {
    5. QUIZ CORE
    ========================================= */
 
-function getCorrectIndex(question) {
-  if (typeof question.correctAnswer === "number") return question.correctAnswer;
-  const optionIndex = question.options.indexOf(question.correctAnswer);
-  if (optionIndex !== -1) return optionIndex;
-  if (!isNaN(question.correctAnswer)) return Number(question.correctAnswer);
-  return -1;
-}
-
 /* =========================================
    QUIZ CORE (Updated loadQuiz)
    ========================================= */
@@ -1443,11 +1435,13 @@ function submitAll(forceSubmit = false) {
   const percentage =
     totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
 
+  const now = new Date();
+
   const leaderboardEntry = {
     userEmail: currentUser ? currentUser.email : "guest",
     scorePercent: parseFloat(percentage),
     score: finalScore,
-    rankTime: new Date().toISOString(),
+    rankTime: now.toISOString(),
   };
 
   const resultObject = {
@@ -1461,7 +1455,7 @@ function submitAll(forceSubmit = false) {
     scorePercent: parseFloat(percentage),
     userAnswers: userAnswers,
     questionTimeSpent: questionTimeSpent, // Save time per question
-    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    timestamp: now,
   };
 
   document.getElementById("result").innerHTML = `
@@ -1505,8 +1499,9 @@ function submitAll(forceSubmit = false) {
   if (currentUser) {
     db.collection("results")
       .add({ ...resultObject })
-      .then(async () => {
-        userHistory.unshift({ ...resultObject, timestamp: new Date() });
+      .then(async (docRef) => {
+        leaderboardEntry.resultId = docRef.id;
+        userHistory.unshift({ ...resultObject, timestamp: now });
         if (userHistory.length > 20) userHistory.pop();
         dashboardDataLoaded = true;
 
