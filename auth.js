@@ -275,6 +275,7 @@ function hideAllSections() {
 function showHome() {
   hideAllSections();
   document.getElementById("hero-section").style.display = "flex";
+  renderBreadcrumbs([]);
 }
 
 function showDashboard() {
@@ -283,6 +284,10 @@ function showDashboard() {
   hideAllSections();
   document.getElementById("dashboard-section").style.display = "block";
   loadUserDashboard();
+  renderBreadcrumbs([
+      { label: 'Home', onclick: 'showHome()' },
+      { label: 'Dashboard' }
+  ]);
 }
 
 function showPerformance() {
@@ -290,6 +295,11 @@ function showPerformance() {
   isPracticeMode = false;
   hideAllSections();
   document.getElementById("performance-section").style.display = "block";
+  renderBreadcrumbs([
+      { label: 'Home', onclick: 'showHome()' },
+      { label: 'Dashboard', onclick: 'showDashboard()' },
+      { label: 'Performance' }
+  ]);
 }
 
 function showTestSelection() {
@@ -301,6 +311,14 @@ function showTestSelection() {
 }
 
 function exitQuiz() {
+  if (document.getElementById("quiz-section").style.display === "block") {
+      if (isPracticeMode) {
+          if (!practiceSubmitted && !confirm("Are you sure you want to exit? Your progress will be lost.")) return;
+      } else {
+          if (!quizSubmitted && !isReviewMode && !confirm("Are you sure you want to exit? Your progress will be lost.")) return;
+      }
+  }
+
   if (currentQuizTimer) currentQuizTimer.stop();
 
   // Check if we are in Practice Mode
@@ -334,3 +352,42 @@ function hideGlobalLoader() {
   }
 }
 
+
+/* =========================================
+   BREADCRUMBS UTILITY
+   ========================================= */
+function renderBreadcrumbs(breadcrumbs) {
+  const container = document.getElementById("breadcrumb-container");
+  if (!container) return;
+
+  if (!breadcrumbs || breadcrumbs.length === 0) {
+    container.style.display = "none";
+    container.innerHTML = "";
+    return;
+  }
+
+  container.style.display = "block";
+
+  let html = `
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-transparent p-0 m-0">
+    `;
+
+  breadcrumbs.forEach((item, index) => {
+    const isLast = index === breadcrumbs.length - 1;
+    if (isLast) {
+      html += `<li class="breadcrumb-item active text-truncate" aria-current="page">${item.label}</li>`;
+    } else {
+      const clickAttr = item.onclick ? `onclick="event.preventDefault(); ${item.onclick}"` : "";
+      const href = item.onclick ? 'href="#"' : "";
+      html += `<li class="breadcrumb-item"><a ${href} ${clickAttr}>${item.label}</a></li>`;
+    }
+  });
+
+  html += `
+            </ol>
+        </nav>
+    `;
+
+  container.innerHTML = html;
+}
