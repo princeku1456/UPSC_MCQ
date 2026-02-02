@@ -260,6 +260,41 @@ function renderChapters(subjectKey) {
 /* =========================================
    QUIZ CORE (Updated loadQuiz)
    ========================================= */
+function startQuizExecution(savedTime) {
+  const quizContent = document.getElementById("quiz-content");
+  const quizNav = document.getElementById("quiz-nav");
+
+  quizContent.parentElement.className = "col-lg-8 mb-4";
+  quizNav.parentElement.style.display = "block";
+  renderQuizLayout(currentChapterName);
+  renderQuestion();
+  renderNav();
+  startTimer(currentQuizData.length, savedTime);
+  currentQuestionStartTime = Date.now(); // NEW: Start tracking first question
+}
+
+function showStartModal(subject, chapter, numQuestions, savedTime) {
+    document.getElementById('start-modal-subject').textContent = subject;
+    document.getElementById('start-modal-chapter').textContent = chapter;
+    document.getElementById('start-modal-questions').textContent = numQuestions;
+
+    // Calculate duration: 1.2 min per question
+    const durationMin = Math.ceil(numQuestions * 1.2);
+    document.getElementById('start-modal-duration').textContent = durationMin + "m";
+
+    const startBtn = document.getElementById('start-quiz-btn');
+    startBtn.onclick = function() {
+        const modalEl = document.getElementById('startQuizModal');
+        const modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
+        modal.hide();
+        startQuizExecution(savedTime);
+    };
+
+    const modalEl = document.getElementById('startQuizModal');
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+}
+
 async function loadQuiz(
   subjectKey,
   chapterId,
@@ -368,13 +403,7 @@ async function loadQuiz(
       quizNav.parentElement.style.display = "none";
       renderReviewMode(pastData);
     } else {
-      quizContent.parentElement.className = "col-lg-8 mb-4";
-      quizNav.parentElement.style.display = "block";
-      renderQuizLayout(currentChapterName);
-      renderQuestion();
-      renderNav();
-      startTimer(currentQuizData.length, savedTime);
-      currentQuestionStartTime = Date.now(); // NEW: Start tracking first question
+      showStartModal(currentSubject, currentChapterName, currentQuizData.length, savedTime);
     }
   } catch (error) {
     console.error("Firebase fetch error:", error);
