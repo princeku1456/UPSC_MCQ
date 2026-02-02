@@ -60,6 +60,11 @@ function clearQuizProgress(chapterId) {
  * UPDATED: Fetches manifest from Firestore if missing, then renders subjects.
  */
 async function renderSubjects() {
+  renderBreadcrumbs([
+      { label: 'Home', onclick: 'showHome()' },
+      { label: 'Dashboard', onclick: 'showDashboard()' },
+      { label: 'Take Test' }
+  ]);
   const container = document.getElementById("test-content-container");
 
   // If data isn't loaded yet, fetch it from Firestore
@@ -167,6 +172,12 @@ async function renderSubjects() {
  * UPDATED: Renders chapters for a selected subject in sorted order.
  */
 function renderChapters(subjectKey) {
+  renderBreadcrumbs([
+      { label: 'Home', onclick: 'showHome()' },
+      { label: 'Dashboard', onclick: 'showDashboard()' },
+      { label: 'Take Test', onclick: 'renderSubjects()' },
+      { label: subjectKey }
+  ]);
   const container = document.getElementById("test-content-container");
 
   // Create the layout for the chapters view
@@ -268,6 +279,34 @@ async function loadQuiz(
   let savedTime = null;
   hideAllSections();
   document.getElementById("quiz-section").style.display = "block";
+
+  // Set Breadcrumbs based on mode
+  if (reviewMode) {
+      if (source === 'performance') {
+          renderBreadcrumbs([
+              { label: 'Home', onclick: 'showHome()' },
+              { label: 'Dashboard', onclick: 'showDashboard()' },
+              { label: 'Performance', onclick: 'showPerformance()' },
+              { label: 'Review: ' + currentChapterName }
+          ]);
+      } else {
+          renderBreadcrumbs([
+              { label: 'Home', onclick: 'showHome()' },
+              { label: 'Dashboard', onclick: 'showDashboard()' },
+              { label: 'Take Test', onclick: 'renderSubjects()' },
+              { label: currentSubject, onclick: `renderChapters('${currentSubject}')` },
+              { label: 'Review: ' + currentChapterName }
+          ]);
+      }
+  } else {
+      renderBreadcrumbs([
+          { label: 'Home', onclick: 'showHome()' },
+          { label: 'Dashboard', onclick: 'showDashboard()' },
+          { label: 'Take Test', onclick: 'renderSubjects()' },
+          { label: currentSubject, onclick: `renderChapters('${currentSubject}')` },
+          { label: currentChapterName }
+      ]);
+  }
 
   const quizContent = document.getElementById("quiz-content");
   quizContent.innerHTML = `

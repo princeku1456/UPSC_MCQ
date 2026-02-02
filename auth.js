@@ -275,6 +275,7 @@ function hideAllSections() {
 function showHome() {
   hideAllSections();
   document.getElementById("hero-section").style.display = "flex";
+  renderBreadcrumbs([]);
 }
 
 function showDashboard() {
@@ -283,6 +284,10 @@ function showDashboard() {
   hideAllSections();
   document.getElementById("dashboard-section").style.display = "block";
   loadUserDashboard();
+  renderBreadcrumbs([
+      { label: 'Home', onclick: 'showHome()' },
+      { label: 'Dashboard' }
+  ]);
 }
 
 function showPerformance() {
@@ -290,6 +295,11 @@ function showPerformance() {
   isPracticeMode = false;
   hideAllSections();
   document.getElementById("performance-section").style.display = "block";
+  renderBreadcrumbs([
+      { label: 'Home', onclick: 'showHome()' },
+      { label: 'Dashboard', onclick: 'showDashboard()' },
+      { label: 'Performance' }
+  ]);
 }
 
 function showTestSelection() {
@@ -334,3 +344,56 @@ function hideGlobalLoader() {
   }
 }
 
+
+/* =========================================
+   BREADCRUMBS UTILITY
+   ========================================= */
+function renderBreadcrumbs(breadcrumbs) {
+  const container = document.getElementById("breadcrumb-container");
+  if (!container) return;
+
+  if (!breadcrumbs || breadcrumbs.length === 0) {
+    container.style.display = "none";
+    container.innerHTML = "";
+    return;
+  }
+
+  container.style.display = "block";
+  container.innerHTML = ""; // Clear existing content
+
+  const nav = document.createElement("nav");
+  nav.setAttribute("aria-label", "breadcrumb");
+
+  const ol = document.createElement("ol");
+  ol.className = "breadcrumb bg-transparent p-0 m-0";
+
+  breadcrumbs.forEach((item, index) => {
+    const isLast = index === breadcrumbs.length - 1;
+    const li = document.createElement("li");
+
+    if (isLast) {
+      li.className = "breadcrumb-item active text-truncate";
+      li.setAttribute("aria-current", "page");
+      li.textContent = item.label; // Safe text content
+    } else {
+      li.className = "breadcrumb-item";
+      const a = document.createElement("a");
+      a.href = "#";
+      a.textContent = item.label; // Safe text content
+      if (item.onclick) {
+        // We expect item.onclick to be a function call string like "showHome()"
+        // To be safe, we assign it to the onclick attribute but this is still slightly fragile if not careful.
+        // However, setting it via attribute handles quotes better than string concat.
+        // Better yet: attach event listener if possible, but our architecture passes strings.
+        // We will sanitize the string slightly or just trust it's a function call.
+        // Given the legacy architecture, we will use setAttribute('onclick', ...) but prepend event.preventDefault()
+        a.setAttribute("onclick", `event.preventDefault(); ${item.onclick}`);
+      }
+      li.appendChild(a);
+    }
+    ol.appendChild(li);
+  });
+
+  nav.appendChild(ol);
+  container.appendChild(nav);
+}

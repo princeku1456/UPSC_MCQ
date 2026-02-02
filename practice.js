@@ -37,6 +37,11 @@ function startPracticeSelection() {
   practiceSubmitted = false;
   hideAllSections();
   document.getElementById("test-selection-section").style.display = "block";
+  renderBreadcrumbs([
+      { label: 'Home', onclick: 'showHome()' },
+      { label: 'Dashboard', onclick: 'showDashboard()' },
+      { label: 'Practice' }
+  ]);
   renderPracticeUI();
 }
 
@@ -169,6 +174,14 @@ async function loadPracticeQuiz(subject, chapter, limit) {
 
   hideAllSections();
   document.getElementById("quiz-section").style.display = "block";
+
+  renderBreadcrumbs([
+      { label: 'Home', onclick: 'showHome()' },
+      { label: 'Dashboard', onclick: 'showDashboard()' },
+      { label: 'Practice', onclick: 'startPracticeSelection()' },
+      { label: subject + ' - ' + (chapter === 'all' ? 'All Topics' : chapter) }
+  ]);
+
   document.getElementById("quiz-content").innerHTML = `
         <div class="text-center py-5">
             <div class="spinner-border text-info" role="status"></div>
