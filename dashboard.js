@@ -305,6 +305,17 @@ async function generateAIReview() {
     let totalIncorrect = 0;
     let totalAttempted = 0;
 
+    // Behavioral Metrics (Confidence & Time)
+    let blindSpotCount = 0;
+    let totalHighSurety = 0;
+    let imposterCount = 0;
+
+    // Time Tracking
+    let totalTimeCorrect = 0;
+    let countTimeCorrect = 0;
+    let totalTimeIncorrect = 0;
+    let countTimeIncorrect = 0;
+
     // Subject Aggregation
     const subjectStats = {};
 
@@ -320,10 +331,34 @@ async function generateAIReview() {
 
       // Answer stats
       if (r.userAnswers) {
-        Object.values(r.userAnswers).forEach((ans) => {
+        Object.entries(r.userAnswers).forEach(([qIdx, ans]) => {
           totalAttempted++;
           if (ans.isCorrect) totalCorrect++;
           else totalIncorrect++;
+
+          // Confidence Analysis
+          const surety = ans.surety;
+          if (surety !== undefined) {
+              if (surety === 100) {
+                  totalHighSurety++;
+                  if (!ans.isCorrect) blindSpotCount++;
+              }
+              if ((surety === 0 || surety === 50) && ans.isCorrect) {
+                  imposterCount++;
+              }
+          }
+
+          // Time Analysis
+          if (r.questionTimeSpent && r.questionTimeSpent[qIdx] !== undefined) {
+              const time = r.questionTimeSpent[qIdx];
+              if (ans.isCorrect) {
+                  totalTimeCorrect += time;
+                  countTimeCorrect++;
+              } else {
+                  totalTimeIncorrect += time;
+                  countTimeIncorrect++;
+              }
+          }
         });
       }
     });
@@ -336,6 +371,11 @@ async function generateAIReview() {
     const positiveGain = totalCorrect * 2;
     const drainVal = positiveGain ? ((negativeLoss / positiveGain) * 100).toFixed(1) : 0;
     const drain = drainVal + "%";
+
+    // Behavioral Derived Metrics
+    const blindSpotRate = totalHighSurety ? ((blindSpotCount / totalHighSurety) * 100).toFixed(1) + "%" : "0%";
+    const avgTimeCorrect = countTimeCorrect ? (totalTimeCorrect / countTimeCorrect).toFixed(1) + "s" : "N/A";
+    const avgTimeIncorrect = countTimeIncorrect ? (totalTimeIncorrect / countTimeIncorrect).toFixed(1) + "s" : "N/A";
 
     // Concept Gap (must rely on DOM or previous async calc as it requires external chapter stats)
     const gapEl = document.getElementById("stat-concept-gap");
@@ -383,12 +423,17 @@ async function generateAIReview() {
 
       ### **1. STUDENT PERFORMANCE DATASET**
       **Core Metrics:**
-      - **Stamina (Total Tests):** ${totalTests} (Reliability of data sample)
+      - **Stamina (Total Tests):** ${totalTests}
       - **Baseline Competency (Avg Score):** ${avgScore}
       - **Efficiency Index (Precision/Accuracy):** ${precision}
       - **Risk Impact (Negative Drain):** ${drain}
-      - **Foundational Integrity (Concept Gap):** ${gap} (Critical: Easy questions missed)
+      - **Foundational Integrity (Concept Gap):** ${gap}
       - **High-Priority Weakness:** ${weakestSubject}
+
+      **Behavioral Diagnostics (New & Critical):**
+      - **Blind Spot Rate:** ${blindSpotRate} (High Confidence but Incorrect). High values indicate dangerous misconceptions.
+      - **Imposter Syndrome:** ${imposterCount} questions marked 'Low Confidence' but answered correctly. Indicates lack of self-trust.
+      - **Time Management:** Avg Time Correct: ${avgTimeCorrect} vs. Avg Time Incorrect: ${avgTimeIncorrect}. (Fast errors = careless; Slow errors = conceptual struggle).
 
       **Raw Longitudinal History:**
       ${allTestsDetailed}
@@ -399,13 +444,12 @@ async function generateAIReview() {
       Perform your analysis using a **data-first diagnostic approach**. Your review MUST include:
 
       #### **A. Root Cause Analysis (RCA): Weakest Subject**
-      Don't just suggest reading more. Diagnose if the failure in **${weakestSubject}** is due to *Conceptual Fog* (fundamental misunderstanding) or *Application Failure* (unable to eliminate options). Provide a 3-step hierarchical fix (Foundational → Applied → Simulated).
+      Don't just suggest reading more. Diagnose if the failure in **${weakestSubject}** is due to *Conceptual Fog* (fundamental misunderstanding) or *Application Failure* (unable to eliminate options). Provide a 3-step hierarchical fix.
 
-      #### **B. Behavioral Response Mapping**
-      Scan the **Longitudinal History** for psychological trends:
-      - **Fatigue Decay:** Do scores drop in later tests or during specific streaks?
+      #### **B. Behavioral Response Mapping (Psychometric Analysis)**
+      - **The Confidence Trap:** Analyze the **Blind Spot Rate** (${blindSpotRate}). If >15%, the student is confidently wrong. Prescribe "Unlearning" techniques.
+      - **Speed Analysis:** Compare Time Correct (${avgTimeCorrect}) vs Time Incorrect (${avgTimeIncorrect}). Are they rushing into errors or getting stuck?
       - **The Guesswork Trap:** Compare 'Precision' vs 'Negative Drain'. Is the student's "Calculated Risk" actually hurting their net gain?
-      - **Volatity vs. Plateau:** Is the student consistently average, or experiencing wild swings in performance?
 
       #### **C. The 48-Hour Tactical Roadmap**
       Provide exactly **3 SMART (Specific, Measurable, Achievable, Relevant, Time-bound) Tasks** for the very next study session. These must be hyper-specific (e.g., "Review 50 previous 'Easy' misses" rather than "Study more").
