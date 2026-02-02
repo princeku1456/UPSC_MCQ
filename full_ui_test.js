@@ -7,12 +7,13 @@ const { exec } = require('child_process');
 async function run() {
   console.log('Starting UI Test...');
 
-  // Start server
-  const serverProcess = exec('python3 -m http.server 8080');
-  console.log('Server started on port 8080');
+  // Start server (use 'python' on Windows, 'python3' on Linux/Mac)
+  const serverProcess = exec('python -m http.server 8080');
+  console.log('Server starting on port 8080...');
 
-  // Give server a moment to start
-  await new Promise(resolve => setTimeout(resolve, 2000));
+  // Give server time to fully start
+  await new Promise(resolve => setTimeout(resolve, 3000));
+  console.log('Server started on port 8080');
 
   const browser = await chromium.launch({ headless: true });
   const context = await browser.newContext();
