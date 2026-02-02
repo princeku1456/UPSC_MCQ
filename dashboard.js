@@ -480,12 +480,11 @@ async function generateAIReview() {
     const data = await response.json();
     const aiText = data.candidates[0].content.parts[0].text;
 
-    // Render Response (Simple Markdown to HTML conversion for bold/lists)
-    const formattedText = aiText
-      .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>")
-      .replace(/\n/g, "<br>");
+    // Render Response using marked.js for full Markdown support
+    // @ts-ignore
+    const formattedText = marked.parse(aiText);
 
-    contentDiv.innerHTML = `<div class="animate-fade-in">${formattedText}</div>`;
+    contentDiv.innerHTML = `<div class="animate-fade-in markdown-content">${formattedText}</div>`;
   } catch (error) {
     console.error("AI Error:", error);
     toastr.error("AI Analysis Failed: " + error.message);
