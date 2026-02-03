@@ -106,7 +106,7 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     user
       .reload()
-      .then(() => {
+      .then(async () => {
         const freshUser = auth.currentUser;
         if (freshUser && !freshUser.emailVerified) {
           currentUser = null;
@@ -120,6 +120,9 @@ auth.onAuthStateChanged((user) => {
         updateUIForLogin();
         showDashboard();
         performMorningSync();
+        if (typeof OnboardingManager !== 'undefined') {
+            await OnboardingManager.checkOnboardingStatus(currentUser);
+        }
         hideGlobalLoader();
       })
       .catch((err) => {

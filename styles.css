@@ -1023,3 +1023,21 @@ body {
     font-style: italic;
     color: var(--text-muted);
 }
+
+/* ============================
+   ONBOARDING
+   ============================ */
+/* Onboarding Dots */
+.dot {
+    height: 10px;
+    width: 10px;
+    background-color: var(--border-color);
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.dot.active {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+}

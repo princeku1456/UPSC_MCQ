@@ -511,6 +511,31 @@
       </div>
     </div>
 
+    <!-- Onboarding Modal -->
+    <div class="modal fade" id="onboardingModal" tabindex="-1" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 text-center p-4">
+                <div class="modal-body">
+                    <div class="display-1 mb-3" id="onboarding-icon">👋</div>
+                    <h3 class="fw-bold text-primary mb-3" id="onboarding-title">Welcome!</h3>
+                    <p class="text-muted mb-4 lead" id="onboarding-content">Let's get you started.</p>
+
+                    <div class="d-flex justify-content-center gap-2 mb-4" id="onboarding-dots">
+                        <!-- Dots injected via JS -->
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-secondary rounded-pill px-4" id="onboarding-prev" onclick="OnboardingManager.prevStep()">Previous</button>
+                        <div>
+                            <button class="btn btn-primary-custom rounded-pill px-4" id="onboarding-next" onclick="OnboardingManager.nextStep()">Next</button>
+                            <button class="btn btn-success-custom rounded-pill px-4" id="onboarding-finish" style="display: none;" onclick="OnboardingManager.completeOnboarding()">Get Started 🚀</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
@@ -519,6 +544,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <script src="utils.js?v=1.1"></script>
+    <script src="onboarding.js?v=1.1"></script>
     <script src="auth.js?v=1.1"></script>
     <script src="quiz.js?v=1.1"></script>
     <script src="practice.js?v=1.1"></script>
