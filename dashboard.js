@@ -169,6 +169,133 @@ function renderDashboardUI() {
   updateConceptGapStat(results);
   renderPerformanceChart(results);
   renderGlobalConfidenceChart(confValues, confStats);
+
+  // 5. Render Next Action Card
+  renderNextActionCard(determineNextAction(results));
+}
+
+/**
+ * Determines the next best action for the user based on their history.
+ * @param {Array} history - The user's quiz history.
+ * @returns {Object} Action object { type, title, desc, btnText, action }
+ */
+function determineNextAction(history) {
+    // Scenario 1: New User
+    if (!history || history.length === 0) {
+        return {
+            type: 'START',
+            title: 'Start Your Journey 🚀',
+            desc: 'Take your first test to establish a baseline performance.',
+            btnText: 'Start First Test',
+            action: 'showTestSelection()'
+        };
+    }
+
+    // Scenario 2: Review Needed (Last test < 60% and taken recently)
+    const lastTest = history[0];
+
+    let dateObj;
+    if (lastTest.timestamp) {
+        if (lastTest.timestamp.toDate) dateObj = lastTest.timestamp.toDate();
+        else if (lastTest.timestamp.seconds) dateObj = new Date(lastTest.timestamp.seconds * 1000);
+        else dateObj = new Date(lastTest.timestamp);
+    }
+
+    const isRecent = dateObj ? (new Date() - dateObj) < (24 * 60 * 60 * 1000) : false;
+
+    if (isRecent && lastTest.scorePercent < 60) {
+        return {
+            type: 'REVIEW',
+            title: 'Review Recent Mistake ⚠️',
+            desc: `You scored ${lastTest.scorePercent}% on ${lastTest.chapterName}. Review now to close the gap.`,
+            btnText: 'Review Test',
+            action: `reviewTest(userHistory[0], 'dashboard')`
+        };
+    }
+
+    // Scenario 3: Improve Weakest Subject
+    const subjectStats = {};
+    history.forEach(h => {
+        if (!subjectStats[h.subject]) subjectStats[h.subject] = { total: 0, count: 0 };
+        subjectStats[h.subject].total += h.scorePercent;
+        subjectStats[h.subject].count++;
+    });
+
+    let weakSubject = null;
+    let minAvg = 100;
+
+    Object.entries(subjectStats).forEach(([subj, stats]) => {
+        if (stats.count >= 2) { // Minimum 2 tests to establish a trend
+            const avg = stats.total / stats.count;
+            if (avg < 60 && avg < minAvg) {
+                minAvg = avg;
+                weakSubject = subj;
+            }
+        }
+    });
+
+    if (weakSubject) {
+        return {
+            type: 'IMPROVE',
+            title: `Focus on ${weakSubject} 📉`,
+            desc: `Your average score in this subject is ${minAvg.toFixed(1)}%. Improve it now!`,
+            btnText: 'Improve Score',
+            action: `renderChapters('${weakSubject}')`
+        };
+    }
+
+    // Scenario 4: Default Challenge
+    return {
+        type: 'CHALLENGE',
+        title: 'Keep the Momentum! 🔥',
+        desc: 'You are doing great. Ready for the next challenge?',
+        btnText: 'Take Next Test',
+        action: 'showTestSelection()'
+    };
+}
+
+/**
+ * Renders the "Next Action" card into the dashboard.
+ */
+function renderNextActionCard(actionData) {
+    const container = document.getElementById("dashboard-next-action-container");
+    if (!container) return;
+
+    let icon = "🚀";
+    if (actionData.type === 'REVIEW') icon = "🧐";
+    else if (actionData.type === 'IMPROVE') icon = "📈";
+
+    container.innerHTML = `
+        <div class="card border-0 shadow next-action-card text-white overflow-hidden" style="position: relative;">
+            <div class="card-body p-4 d-flex justify-content-between align-items-center flex-wrap gap-3">
+                <div style="z-index: 1;">
+                    <h6 class="text-uppercase mb-2" style="opacity: 0.9; font-size: 0.85rem; letter-spacing: 1px;">Recommended for You</h6>
+                    <h3 class="fw-bold mb-2">${actionData.title}</h3>
+                    <p class="mb-0" style="opacity: 0.9; max-width: 500px;">${actionData.desc}</p>
+                </div>
+                <div style="z-index: 1;">
+                    <button class="btn btn-light text-primary fw-bold px-4 py-2 shadow-sm"
+                        onclick="${actionData.action}">
+                        ${actionData.btnText}
+                    </button>
+                </div>
+
+                <div style="position: absolute; right: -20px; bottom: -20px; font-size: 8rem; opacity: 0.1; transform: rotate(-15deg); user-select: none;">
+                    ${icon}
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Set dynamic gradients directly via JS to avoid complex CSS selectors
+    const card = container.querySelector('.card');
+    if (actionData.type === 'REVIEW') {
+         card.style.background = "linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)";
+    } else if (actionData.type === 'IMPROVE') {
+         card.style.background = "linear-gradient(135deg, #f59e0b 0%, #d97706 100%)";
+    } else {
+         card.style.background = "linear-gradient(135deg, #2563eb 0%, #1e40af 100%)";
+    }
 }
 
 /**

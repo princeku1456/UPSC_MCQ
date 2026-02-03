@@ -1023,3 +1023,25 @@ body {
     font-style: italic;
     color: var(--text-muted);
 }
+
+/* ============================
+   NEXT ACTION CARD
+   ============================ */
+.next-action-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.next-action-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2) !important;
+}
+
+[data-theme="dark"] .next-action-card .btn-light {
+    background-color: #1e293b;
+    color: #fff !important;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+[data-theme="dark"] .next-action-card .btn-light:hover {
+    background-color: #334155;
+}

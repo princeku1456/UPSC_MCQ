@@ -171,7 +171,7 @@ async function renderSubjects() {
 /**
  * UPDATED: Renders chapters for a selected subject in sorted order.
  */
-function renderChapters(subjectKey) {
+async function renderChapters(subjectKey) {
   renderBreadcrumbs([
       { label: 'Home', onclick: 'showHome()' },
       { label: 'Dashboard', onclick: 'showDashboard()' },
@@ -179,6 +179,22 @@ function renderChapters(subjectKey) {
       { label: subjectKey }
   ]);
   const container = document.getElementById("test-content-container");
+
+  // SAFETY CHECK: If data isn't loaded yet (e.g. direct navigation), fetch it from Firestore
+  if (typeof allQuizData === "undefined" || !allQuizData) {
+     container.innerHTML = `
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2 text-muted">Loading Chapters...</p>
+        </div>`;
+     await DataManager.fetchQuizManifest();
+  }
+
+  // Double check if data is available
+  if (typeof allQuizData === "undefined" || !allQuizData || !allQuizData[subjectKey]) {
+      container.innerHTML = '<div class="alert alert-danger text-center">Failed to load chapter data. Please try again.</div>';
+      return;
+  }
 
   // Create the layout for the chapters view
   container.innerHTML = `
