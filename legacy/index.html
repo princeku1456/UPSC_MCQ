@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Practice MCQs - User Portal</title>
+    <link rel="icon" type="image/x-icon" href="favicon.svg" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="styles.css?v=1.2" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <div id="global-loader" class="global-loader">
+      <div class="loader-wrapper">
+        <div class="premium-loader">
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <span class="loader-icon">✨</span>
+        </div>
+        <div class="loader-text-container">
+          <h5 class="loader-title">MCQ Practice</h5>
+          <div class="loader-status">
+            <span class="dot-pulse"></span>
+            Initializing secure session
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-dark main-navbar sticky-top">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#" onclick="handleLogoClick()"
+          >✨ MCQ Practice</a
+        >
+        <div class="d-flex align-items-center gap-3">
+          <button
+            class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center"
+            id="theme-toggle"
+            onclick="toggleTheme()"
+            style="width: 38px; height: 38px; font-size: 1.2rem"
+            title="Toggle Theme"
+          >
+            🌙
+          </button>
+          <div id="user-profile" style="display: none" class="dropdown">
+            <button
+              class="btn btn-link text-white text-decoration-none dropdown-toggle fw-bold"
+              type="button"
+              data-bs-toggle="dropdown"
+            >
+              <span id="user-name-display">User</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow">
+              <li>
+                <a class="dropdown-item" href="#" onclick="showDashboard()"
+                  >📊 Dashboard</a
+                >
+              </li>
+              <li><hr class="dropdown-divider" /></li>
+              <li>
+                <a
+                  class="dropdown-item text-danger"
+                  href="#"
+                  onclick="logoutUser()"
+                  >🚪 Logout</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div id="breadcrumb-container" class="container mt-3" style="display: none;"></div>
+    <section id="hero-section" class="hero" style="margin-top: 100px">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-5">
+            <div class="card auth-card text-center animate-fade-in">
+              <div class="card-body p-5">
+                <h3 class="fw-bold text-primary mb-2" id="auth-title">
+                  Welcome Back! 👋
+                </h3>
+                <p class="text-muted mb-4" id="auth-subtitle">
+                  Login to access your dashboard.
+                </p>
+                <form id="auth-form">
+                  <div class="mb-3 text-start">
+                    <label class="form-label text-muted small fw-bold"
+                      >Email Address</label
+                    >
+                    <input
+                      type="email"
+                      class="form-control form-control-lg"
+                      id="auth-email"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3 text-start">
+                    <label class="form-label text-muted small fw-bold"
+                      >Password</label
+                    >
+                    <input
+                      type="password"
+                      class="form-control form-control-lg"
+                      id="auth-password"
+                      required
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    class="btn btn-primary-custom w-100 py-3 mt-3 shadow"
+                    id="auth-submit-btn"
+                  >
+                    Login
+                  </button>
+                </form>
+                <div id="google-auth-container">
+                  <div class="d-flex align-items-center my-4">
+                    <hr class="flex-grow-1" />
+                    <span class="mx-2 text-muted small">OR</span>
+                    <hr class="flex-grow-1" />
+                  </div>
+                  <button
+                    type="button"
+                    class="btn btn-secondary-custom w-100 py-2 d-flex align-items-center justify-content-center gap-2"
+                    onclick="signInWithGoogle()"
+                  >
+                    <img
+                      src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                      width="18"
+                      alt="Google"
+                    />Continue with Google
+                  </button>
+                </div>
+                <div class="mt-4">
+                  <small class="text-muted"
+                    >Don't have an account?
+                    <a
+                      href="#"
+                      class="text-primary fw-bold text-decoration-none"
+                      onclick="toggleAuthMode()"
+                      >Register here</a
+                    ></small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="dashboard-section"
+      class="py-5"
+      style="display: none; min-height: 90vh"
+    >
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2 class="fw-bold section-title">My Dashboard</h2>
+          <div class="title-underline mx-auto"></div>
+        </div>
+        <div
+          class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-3 mb-5 justify-content-center"
+        >
+          <div class="col">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary h-100"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">
+                Tests Taken
+              </h6>
+              <h2 class="fw-bold text-primary mb-0" id="stat-total-tests">0</h2>
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning h-100"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">
+                Avg. Score
+              </h6>
+              <h2 class="fw-bold text-warning mb-0" id="stat-avg-score">0%</h2>
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-start border-4 border-success h-100"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">Precision</h6>
+              <h2 class="fw-bold text-success mb-0" id="stat-precision-rate">
+                0%
+              </h2>
+              <small class="text-muted">Net Accuracy</small>
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger h-100"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">
+                Neg. Drain
+              </h6>
+              <h2 class="fw-bold text-danger mb-0" id="stat-negative-drain">
+                0%
+              </h2>
+              <small class="text-muted">Marks Lost</small>
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-start border-4 border-info h-100"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">
+                Concept Gap
+              </h6>
+              <h2 class="fw-bold text-info mb-0" id="stat-concept-gap">0%</h2>
+              <small class="text-muted">Easy Qs Missed</small>
+            </div>
+          </div>
+        </div>
+        <div
+          class="row row-cols-1 row-cols-md-5 g-3 mb-5 justify-content-center"
+        >
+          <div class="col">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-dark h-100"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">Total Qs</h6>
+              <h2 class="fw-bold mb-0" id="stat-all-total">0</h2>
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-primary h-100"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">Attempted</h6>
+              <h2 class="fw-bold text-primary mb-0" id="stat-all-attempted">
+                0
+              </h2>
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-secondary h-100"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">
+                Unattempted
+              </h6>
+              <h2 class="fw-bold text-secondary mb-0" id="stat-all-unattempted">
+                0
+              </h2>
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-success h-100"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">Correct</h6>
+              <h2 class="fw-bold text-success mb-0" id="stat-all-correct">0</h2>
+            </div>
+          </div>
+          <div class="col">
+            <div
+              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-danger h-100"
+            >
+              <h6 class="text-muted text-uppercase small fw-bold">Incorrect</h6>
+              <h2 class="fw-bold text-danger mb-0" id="stat-all-incorrect">
+                0
+              </h2>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mb-4">
+          <div class="col-md-6">
+            <div
+              class="card topic-card shadow-sm h-100"
+              style="cursor: pointer"
+              onclick="showTestSelection()"
+              role="button"
+              tabindex="0"
+              aria-label="Take Test"
+              onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}"
+            >
+              <div class="card-body text-center p-4">
+                <div class="display-5 mb-2">🚀</div>
+                <h3 class="fw-bold card-title text-success m-0">Take Test</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div
+              class="card topic-card shadow-sm h-100"
+              style="cursor: pointer"
+              onclick="startPracticeSelection()"
+              role="button"
+              tabindex="0"
+              aria-label="Practice MCQ"
+              onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}"
+            >
+              <div class="card-body text-center p-4">
+                <div class="display-5 mb-2">🎯</div>
+                <h3 class="fw-bold card-title text-info m-0">Practice MCQ</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+          <div class="col-12">
+            <div
+              class="card border-0 shadow-sm rounded-4 p-4"
+              style="
+                background: linear-gradient(
+                  135deg,
+                  var(--bg-card) 0%,
+                  var(--option-hover) 100%
+                );
+                border: 1px solid var(--border-color);
+              "
+            >
+              <div
+                class="d-flex justify-content-between align-items-center mb-3"
+              >
+                <h5 class="fw-bold text-primary mb-0">
+                  ✨ AI Personalized Mentor
+                </h5>
+                <span class="badge bg-primary rounded-pill">Gemini</span>
+              </div>
+
+              <div id="ai-review-content" class="mb-3 text-muted">
+                <p>
+                  Get a personalized performance review powered by Google Gemini
+                  AI. Analyze your weak spots, negative marking patterns, and
+                  confidence gaps.
+                </p>
+              </div>
+
+              <div class="d-flex gap-2 align-items-center">
+                <button
+                  class="btn btn-primary-custom px-4"
+                  onclick="generateAIReview()"
+                  id="btn-generate-ai"
+                >
+                  <span
+                    class="spinner-border spinner-border-sm d-none"
+                    role="status"
+                    aria-hidden="true"
+                    id="ai-loading-spinner"
+                  ></span>
+                  <span id="ai-btn-text">⚡ Analyze My Performance</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row justify-content-center mb-5">
+          <div class="col-12">
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+              <h5 class="fw-bold text-primary mb-3">
+                🎯 Overall Confidence Analysis
+              </h5>
+              <div style="position: relative; height: 300px; width: 100%">
+                <canvas id="globalConfidenceChart"></canvas>
+              </div>
+              <p class="small text-muted mt-3 text-center">
+                Aggregate accuracy across all recent tests categorized by
+                confidence level.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+          <div class="col-12">
+            <div class="card border-0 shadow-sm rounded-4 p-4">
+              <h5 class="fw-bold text-primary mb-3">📈 Accuracy Trend</h5>
+              <div style="position: relative; height: 300px; width: 100%">
+                <canvas id="performanceChart"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="test-selection-section"
+      class="py-5"
+      style="display: none; min-height: 90vh"
+    >
+      <div class="container"><div id="test-content-container"></div></div>
+    </section>
+    <section id="quiz-section" class="quiz-section py-5" style="display: none">
+      <div class="container">
+        <div class="d-flex justify-content-between mb-4">
+          <button
+            id="quiz-back-btn"
+            class="btn btn-primary-custom px-4 shadow"
+            onclick="exitQuiz()"
+          >
+            ← Exit
+          </button>
+        </div>
+        <div class="row">
+          <div class="col-lg-8 mb-4">
+            <div id="quiz-content" class="quiz-box h-100"></div>
+          </div>
+          <div class="col-lg-4">
+            <div id="quiz-nav" class="quiz-nav-sidebar"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Start Quiz Modal -->
+    <div
+      class="modal fade"
+      id="startQuizModal"
+      tabindex="-1"
+      aria-hidden="true"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+          <div class="modal-header border-0 bg-light rounded-top-4">
+            <h5 class="modal-title fw-bold text-primary" id="startQuizModalLabel">
+              Ready to Start?
+            </h5>
+          </div>
+          <div class="modal-body p-4 text-center">
+            <div class="mb-4">
+              <div class="display-1 mb-3">📝</div>
+              <h4 class="fw-bold mb-2" id="start-modal-subject">
+                Subject Name
+              </h4>
+              <p class="text-muted" id="start-modal-chapter">Chapter Name</p>
+            </div>
+
+            <div class="row g-3 justify-content-center mb-4">
+              <div class="col-6">
+                <div class="p-3 bg-light rounded-3 border">
+                  <small
+                    class="text-muted d-block text-uppercase fw-bold"
+                    style="font-size: 0.7rem"
+                    >Questions</small
+                  >
+                  <span
+                    class="fs-4 fw-bold text-dark"
+                    id="start-modal-questions"
+                    >0</span
+                  >
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="p-3 bg-light rounded-3 border">
+                  <small
+                    class="text-muted d-block text-uppercase fw-bold"
+                    style="font-size: 0.7rem"
+                    >Duration</small
+                  >
+                  <span class="fs-4 fw-bold text-dark" id="start-modal-duration"
+                    >0m</span
+                  >
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="alert alert-info border-0 d-flex align-items-center"
+              role="alert"
+            >
+              <i class="bi bi-info-circle-fill me-2 fs-5"></i>
+              <div class="small text-start">
+                Once you start, the timer will begin. Good luck!
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-0 justify-content-center pb-4">
+            <button
+              type="button"
+              class="btn btn-secondary-custom px-4"
+              data-bs-dismiss="modal"
+              onclick="showDashboard()"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary-custom px-5 shadow pulse-button"
+              id="start-quiz-btn"
+            >
+              🚀 Start Test
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="config.js?v=1.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="utils.js?v=1.1"></script>
+    <script src="auth.js?v=1.1"></script>
+    <script src="quiz.js?v=1.1"></script>
+    <script src="practice.js?v=1.1"></script>
+    <script src="dashboard.js?v=1.1"></script>
+  </body>
+</html>
