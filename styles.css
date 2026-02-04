@@ -210,17 +210,34 @@ body {
     padding: 0.5rem;
     border-radius: 50px;
     display: inline-flex;
+    flex-wrap: wrap; /* Ensure wrapping on small screens */
+    justify-content: center;
     box-shadow: var(--card-shadow);
     gap: 0.5rem;
     border: 1px solid var(--border-color);
+    max-width: 100%; /* Prevent overflow */
 }
 
 .nav-pills .nav-link {
     color: var(--text-main);
     border-radius: 50px;
-    padding: 10px 25px;
+    padding: 10px 20px; /* Reduced side padding slightly */
     font-weight: 600;
     transition: all 0.3s ease;
+    white-space: nowrap; /* Prevent text wrap inside button if possible, but container wraps */
+}
+
+@media (max-width: 576px) {
+    .nav-pills {
+        border-radius: 20px; /* Less rounded on mobile if it wraps */
+        width: 100%;
+    }
+    .nav-pills .nav-link {
+        flex: 1 1 auto; /* Allow buttons to grow/shrink */
+        text-align: center;
+        padding: 8px 15px;
+        font-size: 0.85rem;
+    }
 }
 
 .nav-pills .nav-link:hover {
