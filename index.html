@@ -403,25 +403,28 @@
         <div class="row justify-content-center mb-5">
           <div class="col-12">
             <div class="card border-0 shadow-sm rounded-4 p-4">
-              <h5 class="fw-bold text-primary mb-3">
-                🎯 Overall Confidence Analysis
-              </h5>
-              <div style="position: relative; height: 300px; width: 100%">
-                <canvas id="globalConfidenceChart"></canvas>
+              <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                 <h5 class="fw-bold text-primary mb-0" id="main-chart-title">📈 Accuracy Trend</h5>
+                 <div class="btn-group shadow-sm" role="group">
+                    <button type="button" class="btn btn-outline-primary active btn-sm px-3" id="btn-chart-accuracy" onclick="toggleMainChart('accuracy')">Accuracy</button>
+                    <button type="button" class="btn btn-outline-primary btn-sm px-3" id="btn-chart-confidence" onclick="toggleMainChart('confidence')">Confidence</button>
+                 </div>
               </div>
-              <p class="small text-muted mt-3 text-center">
-                Aggregate accuracy across all recent tests categorized by
-                confidence level.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center mb-5">
-          <div class="col-12">
-            <div class="card border-0 shadow-sm rounded-4 p-4">
-              <h5 class="fw-bold text-primary mb-3">📈 Accuracy Trend</h5>
-              <div style="position: relative; height: 300px; width: 100%">
-                <canvas id="performanceChart"></canvas>
+
+              <div id="accuracy-chart-container" class="chart-view-container animate-fade-in">
+                  <div style="position: relative; height: 300px; width: 100%">
+                    <canvas id="performanceChart"></canvas>
+                  </div>
+              </div>
+
+              <div id="confidence-chart-container" class="chart-view-container animate-fade-in" style="display: none;">
+                  <div style="position: relative; height: 300px; width: 100%">
+                    <canvas id="globalConfidenceChart"></canvas>
+                  </div>
+                  <p class="small text-muted mt-3 text-center">
+                    Aggregate accuracy across all recent tests categorized by
+                    confidence level.
+                  </p>
               </div>
             </div>
           </div>

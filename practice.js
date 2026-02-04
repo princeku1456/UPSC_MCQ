@@ -480,7 +480,8 @@ function submitPractice(forceSubmit = false) {
 
             // Update local state for immediate Dashboard reflection
             if (typeof practiceHistory !== 'undefined') {
-                practiceHistory.unshift({ id: docRef.id, ...resultData });
+                // Use current date for local state, as serverTimestamp() is a sentinel
+                practiceHistory.unshift({ id: docRef.id, ...resultData, timestamp: new Date() });
             }
 
             // Invalidate cache so next reload fetches fresh data

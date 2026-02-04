@@ -486,3 +486,29 @@ async function generateAIReview() {
     btnText.textContent = "⚡ Analyze My Performance";
   }
 }
+
+function toggleMainChart(viewType) {
+    const accBtn = document.getElementById("btn-chart-accuracy");
+    const confBtn = document.getElementById("btn-chart-confidence");
+    const accContainer = document.getElementById("accuracy-chart-container");
+    const confContainer = document.getElementById("confidence-chart-container");
+    const title = document.getElementById("main-chart-title");
+
+    if (viewType === 'accuracy') {
+        accBtn.classList.add("active");
+        confBtn.classList.remove("active");
+
+        accContainer.style.display = "block";
+        confContainer.style.display = "none";
+
+        title.textContent = "📈 Accuracy Trend";
+    } else {
+        confBtn.classList.add("active");
+        accBtn.classList.remove("active");
+
+        confContainer.style.display = "block";
+        accContainer.style.display = "none";
+
+        title.textContent = "🎯 Overall Confidence Analysis";
+    }
+}
