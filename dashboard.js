@@ -10,7 +10,8 @@ async function loadUserDashboard(forceRefresh = false) {
   if (!currentUser || !currentUser.emailVerified) return;
 
   // Use in-memory check to prevent redundant calls during the same session.
-  if (!forceRefresh && dashboardDataLoaded && userHistory.length > 0) {
+  // Check if either history is populated or if we have attempted to load (dashboardDataLoaded)
+  if (!forceRefresh && dashboardDataLoaded && (userHistory.length > 0 || practiceHistory.length > 0)) {
     renderDashboardUI();
     return;
   }

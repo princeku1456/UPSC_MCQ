@@ -475,8 +475,16 @@ function submitPractice(forceSubmit = false) {
       };
 
       getDb().collection("practiceResult").add(resultData)
-        .then(() => {
+        .then(async (docRef) => {
             toastr.success("Practice result saved!");
+
+            // Update local state for immediate Dashboard reflection
+            if (typeof practiceHistory !== 'undefined') {
+                practiceHistory.unshift({ id: docRef.id, ...resultData });
+            }
+
+            // Invalidate cache so next reload fetches fresh data
+            await DataManager.invalidateCache(`user_practice_history_${currentUser.uid}`);
         })
         .catch((error) => {
             console.error("Error saving practice result:", error);
