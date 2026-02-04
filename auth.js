@@ -21,8 +21,11 @@ let isPracticeMode = false; // Isse global banayein hain taaki practice.js mein 
 
 const quizDataCache = {};
 let userHistory = [];
+let practiceHistory = [];
 let confidenceChartInstance = null; //
 let globalConfidenceChartInstance = null; //
+let practiceConfidenceChartInstance = null;
+let practicePerformanceChartInstance = null;
 let dashboardDataLoaded = false;
 let performanceChartInstance = null;
 let comparisonChartInstance = null;

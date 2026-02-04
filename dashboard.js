@@ -19,9 +19,16 @@ async function loadUserDashboard(forceRefresh = false) {
     // Incrementally sync user history (Smart Sync)
     // This fetches only new records if local cache exists
     const historyData = await DataManager.syncUserHistory(currentUser.uid, forceRefresh);
+    const practiceData = await DataManager.syncPracticeHistory(currentUser.uid, forceRefresh);
 
     if (historyData) {
         userHistory = historyData;
+    }
+    if (practiceData) {
+        practiceHistory = practiceData;
+    }
+
+    if (historyData || practiceData) {
         dashboardDataLoaded = true;
         renderDashboardUI();
     }
@@ -96,12 +103,13 @@ function refreshDashboardChartsOnly() {
  * and Concept Gap analysis based on user history.
  */
 function renderDashboardUI() {
-  const results = userHistory;
+  const combinedHistory = [...userHistory, ...practiceHistory];
+  const results = userHistory; // Keep "results" pointing to quiz history for specific quiz charts
 
-  // 1. Standard Stats Calculation
-  const totalTests = results.length;
+  // 1. Standard Stats Calculation (Using Combined History)
+  const totalTests = combinedHistory.length;
   const avgScore = totalTests
-    ? (results.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalTests).toFixed(1)
+    ? (combinedHistory.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalTests).toFixed(1)
     : 0;
 
   // Initialize accumulators for cumulative metrics
@@ -111,17 +119,23 @@ function renderDashboardUI() {
       totalQs = 0;
   
   // Aggregate data from all tests in a single loop
-  results.forEach(res => {
+  combinedHistory.forEach(res => {
     // Accumulate total possible questions (assuming 2 marks per question)
     if (res.totalMarks) {
       totalQs += (res.totalMarks / 2);
+    } else {
+       // Fallback for practice if totalMarks missing (though we added it)
+       totalQs += (res.correctCount + res.incorrectCount + res.unattemptedCount) || 0;
     }
 
     if (res.userAnswers) {
       Object.values(res.userAnswers).forEach(ans => {
-        totalAttempted++;
-        if (ans.isCorrect) totalCorrect++;
-        else totalIncorrect++;
+        // Only count valid attempts
+        if (ans && (ans.answer !== undefined && ans.answer !== -1)) {
+            totalAttempted++;
+            if (ans.isCorrect) totalCorrect++;
+            else totalIncorrect++;
+        }
       });
     }
   });
@@ -162,13 +176,33 @@ function renderDashboardUI() {
   const elDrain = document.getElementById("stat-negative-drain");
   if (elDrain) elDrain.textContent = negativeDrain + "%";
 
-  // 3. Prepare Confidence Data for Charting
+  // 3. Prepare Confidence Data for Charting (Quiz Only)
   const { confValues, confStats } = calculateConfidenceStats(results);
 
-  // 4. Render All Graphs and Advanced Analysis
+  // 4. Render All Graphs and Advanced Analysis (Quiz Only)
   updateConceptGapStat(results);
   renderPerformanceChart(results);
   renderGlobalConfidenceChart(confValues, confStats);
+
+  // 5. Render Practice Charts
+  renderPracticeCharts(practiceHistory);
+}
+
+function renderPracticeCharts(history) {
+    // Practice Confidence
+    const { confValues, confStats } = calculateConfidenceStats(history);
+    const ctxConf = document.getElementById("practiceConfidenceChart");
+    if (ctxConf) {
+        if (practiceConfidenceChartInstance) practiceConfidenceChartInstance.destroy();
+        practiceConfidenceChartInstance = ChartHelper.renderConfidenceChart(ctxConf, confValues, confStats);
+    }
+
+    // Practice Performance Trend
+    const ctxPerf = document.getElementById("practicePerformanceChart");
+    if (ctxPerf) {
+        if (practicePerformanceChartInstance) practicePerformanceChartInstance.destroy();
+        practicePerformanceChartInstance = ChartHelper.renderPerformanceChart(ctxPerf, history);
+    }
 }
 
 /**

@@ -417,6 +417,94 @@ const DataManager = {
             console.error("History Sync Error:", e);
             return cachedData || [];
         }
+    },
+
+    /**
+     * Syncs practice history incrementally
+     */
+    async syncPracticeHistory(userId, forceRefresh = false) {
+        const cacheKey = `user_practice_history_${userId}`;
+        let cachedData = null;
+
+        // 1. Try to load from IDB
+        if (!forceRefresh) {
+            const entry = await IDB.get(cacheKey);
+            if (entry) {
+                cachedData = entry.data;
+            }
+        }
+
+        // 2. Determine latest timestamp
+        let lastTimestamp = null;
+        if (cachedData && cachedData.length > 0) {
+            const maxDate = cachedData.reduce((max, item) => {
+                let current = null;
+                if (item.timestamp) {
+                    if (item.timestamp.seconds) {
+                         current = new Date(item.timestamp.seconds * 1000);
+                    } else if (typeof item.timestamp === 'string') {
+                         current = new Date(item.timestamp);
+                    }
+                }
+                return (current && (!max || current > max)) ? current : max;
+            }, null);
+
+            if (maxDate) {
+                lastTimestamp = maxDate;
+            }
+        }
+
+        console.log("Last Practice Sync Timestamp:", lastTimestamp);
+
+        // 3. Query Firestore
+        let query = getDb().collection("practiceResult")
+            .where("userId", "==", userId)
+            .orderBy("timestamp", "desc");
+
+        if (lastTimestamp) {
+            query = query.endBefore(lastTimestamp);
+        }
+
+        try {
+            const snapshot = await query.get();
+            console.log("Firestore Practice Snapshot Size:", snapshot.size);
+
+            // 4. Merge Data
+            const newDocs = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
+
+            if (newDocs.length === 0) {
+                console.log("No new practice history to sync.");
+                return cachedData || [];
+            }
+
+            console.log(`Synced ${newDocs.length} new practice records.`);
+
+            // Deduplicate
+            const combined = [...newDocs, ...(cachedData || [])];
+            const unique = [];
+            const ids = new Set();
+            for (const item of combined) {
+                if (!ids.has(item.id)) {
+                    unique.push(item);
+                    ids.add(item.id);
+                }
+            }
+
+            // 5. Update Cache
+            await IDB.set(cacheKey, {
+                data: unique,
+                timestamp: Date.now()
+            });
+
+            return unique;
+
+        } catch (e) {
+            console.error("Practice History Sync Error:", e);
+            return cachedData || [];
+        }
     }
 };
 

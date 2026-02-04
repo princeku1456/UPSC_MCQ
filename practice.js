@@ -434,7 +434,9 @@ function submitPractice(forceSubmit = false) {
     const cIdx = getCorrectIndex(q);
 
     if (uAns && uAns.answer !== undefined && uAns.answer !== -1) {
-      if (uAns.answer === cIdx) {
+      const isCorrect = uAns.answer === cIdx;
+      practiceUserAnswers[i].isCorrect = isCorrect;
+      if (isCorrect) {
         score += 2;
         correct++;
       } else {
@@ -455,6 +457,32 @@ function submitPractice(forceSubmit = false) {
   const negativeDrain = positiveGain
     ? ((negativeLoss / positiveGain) * 100).toFixed(1)
     : 0;
+
+  // Save Result to Firestore
+  if (currentUser) {
+      const resultData = {
+          userId: currentUser.uid,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          subject: practiceSubject,
+          chapterName: practiceChapter, // Store 'All Topics' or specific chapter name
+          chapterId: "practice_session", // Generic ID for practice
+          scorePercent: parseFloat(accuracy),
+          totalMarks: totalPossibleMarks,
+          userAnswers: practiceUserAnswers,
+          correctCount: correct,
+          incorrectCount: incorrect,
+          unattemptedCount: unattempted
+      };
+
+      getDb().collection("practiceResult").add(resultData)
+        .then(() => {
+            toastr.success("Practice result saved!");
+        })
+        .catch((error) => {
+            console.error("Error saving practice result:", error);
+            toastr.error("Failed to save result.");
+        });
+  }
 
   document.getElementById("practice-result-summary").innerHTML = `
         <div class="card border-0 shadow-sm rounded-4 p-4 text-center animate-fade-in mb-4">
