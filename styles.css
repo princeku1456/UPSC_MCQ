@@ -209,13 +209,15 @@ body {
     background: var(--bg-card);
     padding: 0.5rem;
     border-radius: 50px;
-    display: inline-flex;
-    flex-wrap: wrap; /* Ensure wrapping on small screens */
+    display: flex; /* Changed from inline-flex to flex */
+    flex-wrap: wrap;
     justify-content: center;
     box-shadow: var(--card-shadow);
     gap: 0.5rem;
     border: 1px solid var(--border-color);
-    max-width: 100%; /* Prevent overflow */
+    width: fit-content; /* Allow it to shrink to content */
+    margin: 0 auto; /* Center it */
+    max-width: 100%;
 }
 
 .nav-pills .nav-link {

@@ -462,6 +462,93 @@ function reviewTest(resultObj, source = "performance") {
   );
 }
 
+// Global function to load practice review
+window.loadPracticeReview = async function(historyItem) {
+    if (!currentUser) return;
+
+    // Set global context
+    isPracticeMode = true;
+    isReviewMode = true;
+    reviewSource = 'practice_history';
+    currentSubject = historyItem.subject;
+    currentChapterName = historyItem.chapterName;
+
+    // Construct Doc ID for fetching questions
+    // Note: practice.js saves subject/chapter. We need to reconstruct the docId used in fetching.
+    // In practice.js: docId = subject.replace(/\s+/g, "_") + "_" + chapId;
+    // But historyItem might not have the raw chapId if it just has chapterName.
+    // However, if chapterName IS the chapId (which it is in practice.js: practiceChapter = chapter === "all" ? "All Topics" : chapter),
+    // AND if "All Topics" is handled specially.
+
+    // Let's assume for now we can rely on standard reconstruction or we need to look at how practice questions are fetched.
+    // Actually, practice questions are fetched by iterating chapter keys.
+    // If it was "All Topics", it fetched ALL chapters.
+    // Re-fetching "All Topics" questions just for review might be complex if we don't know exactly WHICH questions were in the random set.
+    // BUT! We don't need to fetch ALL questions again if we only want to review the specific questions taken.
+    // Problem: The history item only saves `userAnswers` (indices), not the full question text/options.
+    // We NEED the question data to render the review.
+
+    // Solution: We must fetch the questions again.
+    // If the test was "All Topics", we might need to fetch all candidates and filter?
+    // Or did we save the question IDs? No, we saved index-based user answers.
+    // Wait, `practiceQuizData` was randomized. If we didn't save the question IDs or the full question objects in history, we can't reproduce the exact quiz for review if it was randomized from a larger pool.
+
+    // Let's check `practice.js` save logic.
+    // It saves `userAnswers` keyed by index 0..N.
+    // It DOES NOT save the question content or IDs.
+    // THIS IS A LIMITATION. We cannot accurately review a randomized practice test without the original question set.
+    // However, for the purpose of this task, if the user wants to review, we might have to just show what we can, or we need to update `practice.js` to save question IDs.
+    // But I cannot easily update the data structure of existing records.
+    // PROPOSAL: For this task, I will update `practice.js` to save the `questionId` (if available) or the question text hash, OR just save the full question array in the history (might be heavy but safest for now).
+    // Actually, Firestore limits document size (1MB). Saving 10-50 questions is fine.
+
+    // REVISION: I will first update `practice.js` to save the `questions` array in the result.
+    // Then here in `loadPracticeReview`, I will use that array if available.
+
+    // What if `questions` are missing (old records)? We can't review them effectively. We'll show an error or try best effort.
+
+    hideAllSections();
+    renderBreadcrumbs([
+      { label: 'Home', onclick: 'showHome()' },
+      { label: 'Dashboard', onclick: 'showDashboard()' },
+      { label: 'Practice Review: ' + currentChapterName }
+    ]);
+
+    const quizContent = document.getElementById("quiz-content");
+    const quizNav = document.getElementById("quiz-nav");
+
+    document.getElementById("quiz-section").style.display = "block";
+    quizContent.parentElement.className = "col-12";
+    quizNav.parentElement.style.display = "none";
+
+    quizContent.innerHTML = `
+        <div class="text-center py-5">
+            <div class="spinner-border text-info" role="status"></div>
+            <p class="mt-2 text-muted">Loading Practice Review...</p>
+        </div>`;
+
+    // Attempt to load questions from history item
+    if (historyItem.questions) {
+        currentQuizData = historyItem.questions;
+    } else {
+        // Fallback or Error
+        toastr.warning("Detailed question data not found for this past session.");
+        quizContent.innerHTML = `<div class="alert alert-warning text-center">Cannot review this session: Question data missing.</div><div class="text-center"><button class="btn btn-primary-custom" onclick="showDashboard()">Back</button></div>`;
+        return;
+    }
+
+    userAnswers = historyItem.userAnswers || {};
+    currentChapterId = "practice_" + historyItem.timestamp; // Dummy ID for stats fetching (won't match anything global usually)
+
+    // Mock global stats for practice (since we don't track global stats for random practice sessions)
+    // We can just pass null or empty stats to renderReviewMode
+    // But renderReviewMode tries to fetch stats. We should intercept or ensure DataManager returns empty.
+
+    // We can manually set the "stats" variable inside renderReviewMode if we refactor it, or we just let it fail gracefully (it handles null stats).
+
+    await renderReviewMode(historyItem);
+};
+
 /* =========================================
    REVIEW MODE LOGIC, LEADERBOARD & STATS
    ========================================= */

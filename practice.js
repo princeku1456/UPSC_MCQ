@@ -480,6 +480,7 @@ function submitPractice(forceSubmit = false) {
           totalMarks: totalPossibleMarks,
           scorePercent: parseFloat(((score / totalPossibleMarks) * 100).toFixed(2)),
           userAnswers: detailedAnswers,
+          questions: practiceQuizData, // Save questions for review
           // timestamp is added by DataManager
       };
 

@@ -182,7 +182,83 @@ function renderDashboardUI() {
   const { confValues: pConf, confStats: pStats } = calculateConfidenceStats(practiceHistory);
   renderGlobalConfidenceChart(pConf, pStats, "practiceConfidenceChart");
   renderPerformanceChart(practiceHistory, "practicePerformanceChart");
+
+  // Render Recent Practice Sessions List
+  renderPracticeHistoryList(practiceHistory);
 }
+
+function renderPracticeHistoryList(history) {
+    const container = document.getElementById("tab-practice");
+    // Check if list already exists to avoid duplication if called multiple times
+    let listContainer = document.getElementById("practice-history-list");
+
+    if (!listContainer) {
+        listContainer = document.createElement("div");
+        listContainer.id = "practice-history-list";
+        listContainer.className = "card border-0 shadow-sm rounded-4 p-4 mt-4";
+        container.appendChild(listContainer);
+    }
+
+    if (!history || history.length === 0) {
+        listContainer.innerHTML = `
+            <h5 class="fw-bold text-info mb-3">Recent Practice Sessions</h5>
+            <div class="text-muted text-center py-3">No practice sessions found. Start a practice test!</div>
+        `;
+        return;
+    }
+
+    // Sort by timestamp desc
+    const sortedHistory = [...history].sort((a, b) => {
+        const tA = a.timestamp ? (a.timestamp.seconds || new Date(a.timestamp).getTime()/1000) : 0;
+        const tB = b.timestamp ? (b.timestamp.seconds || new Date(b.timestamp).getTime()/1000) : 0;
+        return tB - tA;
+    });
+
+    const rows = sortedHistory.map((item, index) => {
+        const dateStr = item.timestamp ? new Date((item.timestamp.seconds * 1000) || item.timestamp).toLocaleDateString() : "N/A";
+        return `
+            <tr>
+                <td>${dateStr}</td>
+                <td class="fw-bold text-primary">${item.subject || 'Unknown'}</td>
+                <td>${item.chapterName || 'All Topics'}</td>
+                <td><span class="badge ${item.scorePercent >= 70 ? 'bg-success' : 'bg-warning'}">${item.scorePercent}%</span></td>
+                <td class="text-end">
+                    <button class="btn btn-sm btn-outline-primary" onclick='openPracticeReview(${JSON.stringify(item).replace(/'/g, "&apos;")})'>
+                        Review
+                    </button>
+                </td>
+            </tr>
+        `;
+    }).join("");
+
+    listContainer.innerHTML = `
+        <h5 class="fw-bold text-info mb-3">Recent Practice Sessions</h5>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Topic</th>
+                        <th>Score</th>
+                        <th class="text-end">Action</th>
+                    </tr>
+                </thead>
+                <tbody>${rows}</tbody>
+            </table>
+        </div>
+    `;
+}
+
+// Global function to handle review click
+window.openPracticeReview = function(item) {
+    if (typeof loadPracticeReview === 'function') {
+        loadPracticeReview(item);
+    } else {
+        console.error("loadPracticeReview function not found in global scope");
+        toastr.error("Unable to load review. Please refresh.");
+    }
+};
 
 /**
  * Renders the Horizontal Global Confidence Chart
