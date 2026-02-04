@@ -369,27 +369,59 @@
 
         <div class="row justify-content-center mb-5">
           <div class="col-12">
-            <div class="card border-0 shadow-sm rounded-4 p-4">
-              <h5 class="fw-bold text-primary mb-3">
-                🎯 Overall Confidence Analysis
-              </h5>
-              <div style="position: relative; height: 300px; width: 100%">
-                <canvas id="globalConfidenceChart"></canvas>
-              </div>
-              <p class="small text-muted mt-3 text-center">
-                Aggregate accuracy across all recent tests categorized by
-                confidence level.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="row justify-content-center mb-5">
-          <div class="col-12">
-            <div class="card border-0 shadow-sm rounded-4 p-4">
-              <h5 class="fw-bold text-primary mb-3">📈 Accuracy Trend</h5>
-              <div style="position: relative; height: 300px; width: 100%">
-                <canvas id="performanceChart"></canvas>
-              </div>
+            <!-- TABS NAVIGATION -->
+            <ul class="nav nav-pills mb-4 justify-content-center gap-3" id="dashboard-tabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active fw-bold px-4 shadow-sm" id="quiz-tab" data-bs-toggle="pill" data-bs-target="#tab-quiz" type="button" role="tab" aria-controls="tab-quiz" aria-selected="true">
+                        📝 Quiz Performance
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link fw-bold px-4 shadow-sm" id="practice-tab" data-bs-toggle="pill" data-bs-target="#tab-practice" type="button" role="tab" aria-controls="tab-practice" aria-selected="false">
+                        🎯 Practice Performance
+                    </button>
+                </li>
+            </ul>
+
+            <!-- TAB CONTENT -->
+            <div class="tab-content" id="dashboard-tab-content">
+                <!-- QUIZ TAB -->
+                <div class="tab-pane fade show active" id="tab-quiz" role="tabpanel" aria-labelledby="quiz-tab">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+                        <h5 class="fw-bold text-primary mb-3">🎯 Quiz Confidence Analysis</h5>
+                        <div style="position: relative; height: 300px; width: 100%">
+                            <canvas id="globalConfidenceChart"></canvas>
+                        </div>
+                        <p class="small text-muted mt-3 text-center">
+                            Aggregate accuracy across all recent quizzes.
+                        </p>
+                    </div>
+                    <div class="card border-0 shadow-sm rounded-4 p-4">
+                        <h5 class="fw-bold text-primary mb-3">📈 Quiz Accuracy Trend</h5>
+                        <div style="position: relative; height: 300px; width: 100%">
+                            <canvas id="performanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRACTICE TAB -->
+                <div class="tab-pane fade" id="tab-practice" role="tabpanel" aria-labelledby="practice-tab">
+                    <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+                        <h5 class="fw-bold text-info mb-3">🎯 Practice Confidence Analysis</h5>
+                        <div style="position: relative; height: 300px; width: 100%">
+                            <canvas id="practiceConfidenceChart"></canvas>
+                        </div>
+                        <p class="small text-muted mt-3 text-center">
+                            Aggregate accuracy across all practice sessions.
+                        </p>
+                    </div>
+                    <div class="card border-0 shadow-sm rounded-4 p-4">
+                        <h5 class="fw-bold text-info mb-3">📈 Practice Accuracy Trend</h5>
+                        <div style="position: relative; height: 300px; width: 100%">
+                            <canvas id="practicePerformanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
             </div>
           </div>
         </div>

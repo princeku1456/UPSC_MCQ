@@ -456,6 +456,38 @@ function submitPractice(forceSubmit = false) {
     ? ((negativeLoss / positiveGain) * 100).toFixed(1)
     : 0;
 
+  // SAVE RESULT
+  if (typeof currentUser !== "undefined" && currentUser) {
+      const detailedAnswers = {};
+      practiceQuizData.forEach((q, i) => {
+          const uAns = practiceUserAnswers[i];
+          const cIdx = getCorrectIndex(q);
+
+          if (uAns && uAns.answer !== undefined && uAns.answer !== -1) {
+              detailedAnswers[i] = {
+                  answer: uAns.answer,
+                  surety: uAns.surety || 0,
+                  isCorrect: (uAns.answer === cIdx)
+              };
+          }
+      });
+
+      const resultData = {
+          userId: currentUser.uid,
+          subject: practiceSubject,
+          chapterName: practiceChapter,
+          score: score,
+          totalMarks: totalPossibleMarks,
+          scorePercent: parseFloat(((score / totalPossibleMarks) * 100).toFixed(2)),
+          userAnswers: detailedAnswers,
+          // timestamp is added by DataManager
+      };
+
+      DataManager.savePracticeResult(resultData).then(success => {
+          if (success) toastr.success("Result saved to Practice History");
+      });
+  }
+
   document.getElementById("practice-result-summary").innerHTML = `
         <div class="card border-0 shadow-sm rounded-4 p-4 text-center animate-fade-in mb-4">
             <h4 class="fw-bold text-primary mb-3">Practice Result</h4>

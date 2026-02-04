@@ -6,25 +6,31 @@
    3. DASHBOARD LOGIC (Stats & Graph)
    ========================================= */
 
+let practiceHistory = [];
+const chartInstances = {};
+
 async function loadUserDashboard(forceRefresh = false) {
   if (!currentUser || !currentUser.emailVerified) return;
 
   // Use in-memory check to prevent redundant calls during the same session.
-  if (!forceRefresh && dashboardDataLoaded && userHistory.length > 0) {
+  if (!forceRefresh && dashboardDataLoaded && (userHistory.length > 0 || practiceHistory.length > 0)) {
     renderDashboardUI();
     return;
   }
 
   try {
-    // Incrementally sync user history (Smart Sync)
-    // This fetches only new records if local cache exists
-    const historyData = await DataManager.syncUserHistory(currentUser.uid, forceRefresh);
+    // Fetch both histories
+    const [quizData, practiceData] = await Promise.all([
+        DataManager.fetchQuizHistory(currentUser.uid, forceRefresh),
+        DataManager.fetchPracticeHistory(currentUser.uid, forceRefresh)
+    ]);
 
-    if (historyData) {
-        userHistory = historyData;
-        dashboardDataLoaded = true;
-        renderDashboardUI();
-    }
+    if (quizData) userHistory = quizData;
+    if (practiceData) practiceHistory = practiceData;
+
+    dashboardDataLoaded = true;
+    renderDashboardUI();
+
   } catch (error) {
     console.error("Error loading dashboard:", error);
     toastr.error("Failed to load performance data.");
@@ -77,17 +83,17 @@ function calculateConfidenceStats(results) {
  * Useful for theme changes.
  */
 function refreshDashboardChartsOnly() {
-    if (!userHistory || userHistory.length === 0) return;
-
-    // Refresh Performance Chart
-    if (performanceChartInstance) {
-        renderPerformanceChart(userHistory);
+    // Refresh Quiz Charts
+    if (userHistory && userHistory.length > 0) {
+        renderPerformanceChart(userHistory, "performanceChart");
+        const { confValues, confStats } = calculateConfidenceStats(userHistory);
+        renderGlobalConfidenceChart(confValues, confStats, "globalConfidenceChart");
     }
-
-    // Refresh Global Confidence Chart
-    if (globalConfidenceChartInstance) {
-         const { confValues, confStats } = calculateConfidenceStats(userHistory);
-         renderGlobalConfidenceChart(confValues, confStats);
+    // Refresh Practice Charts
+    if (practiceHistory && practiceHistory.length > 0) {
+        renderPerformanceChart(practiceHistory, "practicePerformanceChart");
+        const { confValues, confStats } = calculateConfidenceStats(practiceHistory);
+        renderGlobalConfidenceChart(confValues, confStats, "practiceConfidenceChart");
     }
 }
 
@@ -96,7 +102,9 @@ function refreshDashboardChartsOnly() {
  * and Concept Gap analysis based on user history.
  */
 function renderDashboardUI() {
-  const results = userHistory;
+  // COMBINE HISTORY FOR TOP STATS
+  const allHistory = [...userHistory, ...practiceHistory];
+  const results = allHistory;
 
   // 1. Standard Stats Calculation
   const totalTests = results.length;
@@ -162,28 +170,33 @@ function renderDashboardUI() {
   const elDrain = document.getElementById("stat-negative-drain");
   if (elDrain) elDrain.textContent = negativeDrain + "%";
 
-  // 3. Prepare Confidence Data for Charting
-  const { confValues, confStats } = calculateConfidenceStats(results);
-
   // 4. Render All Graphs and Advanced Analysis
-  updateConceptGapStat(results);
-  renderPerformanceChart(results);
-  renderGlobalConfidenceChart(confValues, confStats);
+  updateConceptGapStat(results); // Uses combined results for gap analysis? Or just Quiz? Let's use Combined.
+
+  // Render Quiz Charts
+  const { confValues: qConf, confStats: qStats } = calculateConfidenceStats(userHistory);
+  renderGlobalConfidenceChart(qConf, qStats, "globalConfidenceChart");
+  renderPerformanceChart(userHistory, "performanceChart");
+
+  // Render Practice Charts
+  const { confValues: pConf, confStats: pStats } = calculateConfidenceStats(practiceHistory);
+  renderGlobalConfidenceChart(pConf, pStats, "practiceConfidenceChart");
+  renderPerformanceChart(practiceHistory, "practicePerformanceChart");
 }
 
 /**
  * Renders the Horizontal Global Confidence Chart
  */
 // In dashboard.js
-function renderGlobalConfidenceChart(values, stats) { // Added stats
-  const ctx = document.getElementById("globalConfidenceChart");
+function renderGlobalConfidenceChart(values, stats, canvasId = "globalConfidenceChart") {
+  const ctx = document.getElementById(canvasId);
   if (!ctx) return;
 
-  if (globalConfidenceChartInstance) {
-    globalConfidenceChartInstance.destroy();
+  if (chartInstances[canvasId]) {
+    chartInstances[canvasId].destroy();
   }
 
-  globalConfidenceChartInstance = ChartHelper.renderConfidenceChart(ctx, values, stats);
+  chartInstances[canvasId] = ChartHelper.renderConfidenceChart(ctx, values, stats);
 }
 
 /**
@@ -246,15 +259,15 @@ async function updateConceptGapStat(results) {
   }
 }
 
-function renderPerformanceChart(data) {
-  const ctx = document.getElementById("performanceChart");
+function renderPerformanceChart(data, canvasId = "performanceChart") {
+  const ctx = document.getElementById(canvasId);
   if (!ctx) return;
 
-  if (performanceChartInstance) {
-    performanceChartInstance.destroy();
+  if (chartInstances[canvasId]) {
+    chartInstances[canvasId].destroy();
   }
 
-  performanceChartInstance = ChartHelper.renderPerformanceChart(ctx, data);
+  chartInstances[canvasId] = ChartHelper.renderPerformanceChart(ctx, data);
 }
 
 /* =========================================

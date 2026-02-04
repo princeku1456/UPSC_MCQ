@@ -328,10 +328,44 @@ const DataManager = {
     },
 
     /**
-     * Syncs user history incrementally
+     * Saves practice result to Firestore
      */
-    async syncUserHistory(userId, forceRefresh = false) {
-        const cacheKey = `user_history_${userId}`;
+    async savePracticeResult(resultData) {
+        try {
+            await getDb().collection("practiceResult").add({
+                ...resultData,
+                timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            console.log("Practice result saved successfully");
+            // Invalidate practice history cache so next fetch gets new data
+            if (resultData.userId) {
+                // Since we don't have direct key access easily for generic sync,
+                // we'll rely on the next sync to pick it up or invalidating the IDB key.
+                // Or better, since sync is incremental, we just need to make sure
+                // the local cache allows adding the new item.
+                // Actually, for simplicity, we can just let the next sync fetch it.
+                // But to show immediate update without refresh, we might need to handle it in UI.
+            }
+            return true;
+        } catch (error) {
+            console.error("Error saving practice result:", error);
+            return false;
+        }
+    },
+
+    async fetchQuizHistory(userId, forceRefresh = false) {
+        return this.syncHistory(userId, "results", "user_history", forceRefresh);
+    },
+
+    async fetchPracticeHistory(userId, forceRefresh = false) {
+        return this.syncHistory(userId, "practiceResult", "practice_history", forceRefresh);
+    },
+
+    /**
+     * Generic history sync (Replaces syncUserHistory)
+     */
+    async syncHistory(userId, collectionName, cacheKeyPrefix, forceRefresh = false) {
+        const cacheKey = `${cacheKeyPrefix}_${userId}`;
         let cachedData = null;
 
         // 1. Try to load from IDB
@@ -363,23 +397,21 @@ const DataManager = {
             }
         }
 
-        console.log("Last Sync Timestamp:", lastTimestamp);
+        console.log(`Last Sync Timestamp for ${collectionName}:`, lastTimestamp);
 
         // 3. Query Firestore
-        let query = getDb().collection("results")
+        let query = getDb().collection(collectionName)
             .where("userId", "==", userId)
             .orderBy("timestamp", "desc");
 
         if (lastTimestamp) {
             // "endBefore" with DESC sort fetches items NEWER than the cursor
-            // Important: endBefore requires the actual value or DocumentSnapshot.
-            // If passing a Date object, ensure it matches the Firestore field type exactly.
             query = query.endBefore(lastTimestamp);
         }
 
         try {
             const snapshot = await query.get();
-            console.log("Firestore Snapshot Size:", snapshot.size);
+            console.log(`Firestore Snapshot Size (${collectionName}):`, snapshot.size);
 
             // 4. Merge Data
             const newDocs = snapshot.docs.map(doc => ({
@@ -394,7 +426,7 @@ const DataManager = {
 
             console.log(`Synced ${newDocs.length} new records.`);
 
-            // Deduplicate based on ID (safety against timestamp precision issues)
+            // Deduplicate based on ID
             const combined = [...newDocs, ...(cachedData || [])];
             const unique = [];
             const ids = new Set();
@@ -414,9 +446,14 @@ const DataManager = {
             return unique;
 
         } catch (e) {
-            console.error("History Sync Error:", e);
+            console.error(`History Sync Error (${collectionName}):`, e);
             return cachedData || [];
         }
+    },
+
+    // Backward compatibility wrapper
+    async syncUserHistory(userId, forceRefresh = false) {
+        return this.fetchQuizHistory(userId, forceRefresh);
     }
 };
 
