@@ -10,7 +10,8 @@ async function loadUserDashboard(forceRefresh = false) {
   if (!currentUser || !currentUser.emailVerified) return;
 
   // Use in-memory check to prevent redundant calls during the same session.
-  if (!forceRefresh && dashboardDataLoaded && userHistory.length > 0) {
+  // Check if either history is populated or if we have attempted to load (dashboardDataLoaded)
+  if (!forceRefresh && dashboardDataLoaded && (userHistory.length > 0 || practiceHistory.length > 0)) {
     renderDashboardUI();
     return;
   }
@@ -19,9 +20,16 @@ async function loadUserDashboard(forceRefresh = false) {
     // Incrementally sync user history (Smart Sync)
     // This fetches only new records if local cache exists
     const historyData = await DataManager.syncUserHistory(currentUser.uid, forceRefresh);
+    const practiceData = await DataManager.syncPracticeHistory(currentUser.uid, forceRefresh);
 
     if (historyData) {
         userHistory = historyData;
+    }
+    if (practiceData) {
+        practiceHistory = practiceData;
+    }
+
+    if (historyData || practiceData) {
         dashboardDataLoaded = true;
         renderDashboardUI();
     }
@@ -91,17 +99,29 @@ function refreshDashboardChartsOnly() {
     }
 }
 
+function switchDashboardMode(mode) {
+    currentDashboardMode = mode;
+
+    // Update active class on buttons if needed, but the radio inputs handle visual state mostly.
+    // If using custom styling on labels, might need to ensure they update.
+    // The Bootstrap 'btn-check' + label approach handles visual toggle automatically.
+
+    renderDashboardUI();
+}
+
 /**
- * Renders UI with Cumulative Metrics, Precision, Negative Drain, 
- * and Concept Gap analysis based on user history.
+ * Renders UI.
+ * Stats are cumulative (Test + Practice).
+ * Charts are toggled based on currentDashboardMode.
  */
 function renderDashboardUI() {
-  const results = userHistory;
+  const combinedHistory = [...userHistory, ...practiceHistory];
+  const chartData = currentDashboardMode === 'quiz' ? userHistory : practiceHistory;
 
-  // 1. Standard Stats Calculation
-  const totalTests = results.length;
+  // 1. Cumulative Stats Calculation
+  const totalTests = combinedHistory.length;
   const avgScore = totalTests
-    ? (results.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalTests).toFixed(1)
+    ? (combinedHistory.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalTests).toFixed(1)
     : 0;
 
   // Initialize accumulators for cumulative metrics
@@ -110,65 +130,53 @@ function renderDashboardUI() {
       totalAttempted = 0, 
       totalQs = 0;
   
-  // Aggregate data from all tests in a single loop
-  results.forEach(res => {
-    // Accumulate total possible questions (assuming 2 marks per question)
+  // Aggregate data (cumulative)
+  combinedHistory.forEach(res => {
     if (res.totalMarks) {
       totalQs += (res.totalMarks / 2);
+    } else {
+       totalQs += (res.correctCount + res.incorrectCount + res.unattemptedCount) || 0;
     }
 
     if (res.userAnswers) {
       Object.values(res.userAnswers).forEach(ans => {
-        totalAttempted++;
-        if (ans.isCorrect) totalCorrect++;
-        else totalIncorrect++;
+        if (ans && (ans.answer !== undefined && ans.answer !== -1)) {
+            totalAttempted++;
+            if (ans.isCorrect) totalCorrect++;
+            else totalIncorrect++;
+        }
       });
     }
   });
 
-  // Calculate unattempted questions
   const totalUnattempted = totalQs - totalAttempted;
 
-  // Secondary analysis metrics
   const precisionRate = totalAttempted ? ((totalCorrect / totalAttempted) * 100).toFixed(1) : 0;
   const negativeLoss = totalIncorrect * 0.66;
   const positiveGain = totalCorrect * 2;
   const negativeDrain = positiveGain ? ((negativeLoss / positiveGain) * 100).toFixed(1) : 0;
 
-  // 2. Update Standard UI Elements
+  // 2. Update Standard UI Elements (Cumulative)
   document.getElementById("stat-total-tests").textContent = totalTests;
   document.getElementById("stat-avg-score").textContent = avgScore + "%";
   
-  // Update the new cumulative matrix elements
-  const elTotal = document.getElementById("stat-all-total");
-  if (elTotal) elTotal.textContent = totalQs;
+  document.getElementById("stat-all-total").textContent = totalQs;
+  document.getElementById("stat-all-attempted").textContent = totalAttempted;
+  document.getElementById("stat-all-unattempted").textContent = Math.max(0, totalUnattempted);
+  document.getElementById("stat-all-correct").textContent = totalCorrect;
+  document.getElementById("stat-all-incorrect").textContent = totalIncorrect;
 
-  const elAttempted = document.getElementById("stat-all-attempted");
-  if (elAttempted) elAttempted.textContent = totalAttempted;
+  document.getElementById("stat-precision-rate").textContent = precisionRate + "%";
+  document.getElementById("stat-negative-drain").textContent = negativeDrain + "%";
 
-  const elUnattempted = document.getElementById("stat-all-unattempted");
-  if (elUnattempted) elUnattempted.textContent = Math.max(0, totalUnattempted);
+  // 3. Prepare Confidence Data & Render Charts (Toggled Source)
+  const { confValues, confStats } = calculateConfidenceStats(chartData);
 
-  const elCorrect = document.getElementById("stat-all-correct");
-  if (elCorrect) elCorrect.textContent = totalCorrect;
-
-  const elIncorrect = document.getElementById("stat-all-incorrect");
-  if (elIncorrect) elIncorrect.textContent = totalIncorrect;
-
-  // Update precision and drain stats if elements exist
-  const elPrecision = document.getElementById("stat-precision-rate");
-  if (elPrecision) elPrecision.textContent = precisionRate + "%";
-
-  const elDrain = document.getElementById("stat-negative-drain");
-  if (elDrain) elDrain.textContent = negativeDrain + "%";
-
-  // 3. Prepare Confidence Data for Charting
-  const { confValues, confStats } = calculateConfidenceStats(results);
-
-  // 4. Render All Graphs and Advanced Analysis
-  updateConceptGapStat(results);
-  renderPerformanceChart(results);
+  renderPerformanceChart(chartData);
   renderGlobalConfidenceChart(confValues, confStats);
+
+  // Concept Gap Analysis (Cumulative, but practically only Quizzes contribute due to missing global stats for Practice)
+  updateConceptGapStat(combinedHistory);
 }
 
 /**
@@ -450,4 +458,30 @@ async function generateAIReview() {
     spinner.classList.add("d-none");
     btnText.textContent = "⚡ Analyze My Performance";
   }
+}
+
+function toggleMainChart(viewType) {
+    const accBtn = document.getElementById("btn-chart-accuracy");
+    const confBtn = document.getElementById("btn-chart-confidence");
+    const accContainer = document.getElementById("accuracy-chart-container");
+    const confContainer = document.getElementById("confidence-chart-container");
+    const title = document.getElementById("main-chart-title");
+
+    if (viewType === 'accuracy') {
+        accBtn.classList.add("active");
+        confBtn.classList.remove("active");
+
+        accContainer.style.display = "block";
+        confContainer.style.display = "none";
+
+        title.textContent = "📈 Accuracy Trend";
+    } else {
+        confBtn.classList.add("active");
+        accBtn.classList.remove("active");
+
+        confContainer.style.display = "block";
+        accContainer.style.display = "none";
+
+        title.textContent = "🎯 Overall Confidence Analysis";
+    }
 }
