@@ -831,3 +831,41 @@ function getCorrectIndex(question) {
   if (!isNaN(question.correctAnswer)) return Number(question.correctAnswer);
   return -1;
 }
+
+/**
+ * Calculates confidence statistics from user history results.
+ * @param {Array} results - The user history array.
+ * @returns {Object} { confValues, confStats }
+ */
+function calculateConfidenceStats(results) {
+  // Initialize Global Confidence Trackers
+  const confStats = {
+    100: { total: 0, correct: 0 },
+    75: { total: 0, correct: 0 },
+    50: { total: 0, correct: 0 },
+    0: { total: 0, correct: 0 }
+  };
+
+  // Aggregate data from all tests
+  results.forEach(res => {
+    if (res.userAnswers) {
+      Object.values(res.userAnswers).forEach(ans => {
+        // Aggregate Confidence Data for charts
+        if (ans.surety !== undefined) {
+          confStats[ans.surety].total++;
+          if (ans.isCorrect) confStats[ans.surety].correct++;
+        }
+      });
+    }
+  });
+
+  // Prepare Confidence Data for Charting
+  const confValues = [
+    confStats[100].total > 0 ? (confStats[100].correct / confStats[100].total * 100).toFixed(1) : 0,
+    confStats[75].total > 0 ? (confStats[75].correct / confStats[75].total * 100).toFixed(1) : 0,
+    confStats[50].total > 0 ? (confStats[50].correct / confStats[50].total * 100).toFixed(1) : 0,
+    confStats[0].total > 0 ? (confStats[0].correct / confStats[0].total * 100).toFixed(1) : 0
+  ];
+
+  return { confValues, confStats };
+}
