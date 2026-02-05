@@ -169,17 +169,9 @@
       style="display: none; min-height: 90vh"
     >
       <div class="container">
-        <div class="text-center mb-4">
+        <div class="text-center mb-5">
           <h2 class="fw-bold section-title">My Dashboard</h2>
-          <div class="title-underline mx-auto mb-4"></div>
-
-          <div class="btn-group shadow-sm" role="group" aria-label="Dashboard Mode">
-             <input type="radio" class="btn-check" name="dashMode" id="mode-quiz" autocomplete="off" checked onclick="switchDashboardMode('quiz')">
-             <label class="btn btn-outline-primary px-4 fw-bold" for="mode-quiz">Tests</label>
-
-             <input type="radio" class="btn-check" name="dashMode" id="mode-practice" autocomplete="off" onclick="switchDashboardMode('practice')">
-             <label class="btn btn-outline-primary px-4 fw-bold" for="mode-practice">Practice</label>
-          </div>
+          <div class="title-underline mx-auto"></div>
         </div>
         <div
           class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-3 mb-5 justify-content-center"
@@ -326,6 +318,18 @@
             </div>
           </div>
         </div>
+        <div class="row justify-content-center mb-4">
+            <div class="col-12 text-center">
+                <div class="btn-group shadow-sm" role="group" aria-label="Chart Data Source">
+                     <input type="radio" class="btn-check" name="dashMode" id="mode-quiz" autocomplete="off" checked onclick="switchDashboardMode('quiz')">
+                     <label class="btn btn-outline-primary px-4 fw-bold" for="mode-quiz">Tests Analysis</label>
+
+                     <input type="radio" class="btn-check" name="dashMode" id="mode-practice" autocomplete="off" onclick="switchDashboardMode('practice')">
+                     <label class="btn btn-outline-primary px-4 fw-bold" for="mode-practice">Practice Analysis</label>
+                </div>
+            </div>
+        </div>
+
         <div class="row justify-content-center mb-5">
           <div class="col-12">
             <div

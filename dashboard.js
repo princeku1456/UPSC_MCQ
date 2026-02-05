@@ -110,16 +110,18 @@ function switchDashboardMode(mode) {
 }
 
 /**
- * Renders UI based on the selected mode (Tests or Practice).
+ * Renders UI.
+ * Stats are cumulative (Test + Practice).
+ * Charts are toggled based on currentDashboardMode.
  */
 function renderDashboardUI() {
-  const isQuizMode = currentDashboardMode === 'quiz';
-  const data = isQuizMode ? userHistory : practiceHistory;
+  const combinedHistory = [...userHistory, ...practiceHistory];
+  const chartData = currentDashboardMode === 'quiz' ? userHistory : practiceHistory;
 
-  // 1. Stats Calculation
-  const totalTests = data.length;
+  // 1. Cumulative Stats Calculation
+  const totalTests = combinedHistory.length;
   const avgScore = totalTests
-    ? (data.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalTests).toFixed(1)
+    ? (combinedHistory.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalTests).toFixed(1)
     : 0;
 
   // Initialize accumulators for cumulative metrics
@@ -128,8 +130,8 @@ function renderDashboardUI() {
       totalAttempted = 0, 
       totalQs = 0;
   
-  // Aggregate data
-  data.forEach(res => {
+  // Aggregate data (cumulative)
+  combinedHistory.forEach(res => {
     if (res.totalMarks) {
       totalQs += (res.totalMarks / 2);
     } else {
@@ -154,7 +156,7 @@ function renderDashboardUI() {
   const positiveGain = totalCorrect * 2;
   const negativeDrain = positiveGain ? ((negativeLoss / positiveGain) * 100).toFixed(1) : 0;
 
-  // 2. Update Standard UI Elements
+  // 2. Update Standard UI Elements (Cumulative)
   document.getElementById("stat-total-tests").textContent = totalTests;
   document.getElementById("stat-avg-score").textContent = avgScore + "%";
   
@@ -167,23 +169,14 @@ function renderDashboardUI() {
   document.getElementById("stat-precision-rate").textContent = precisionRate + "%";
   document.getElementById("stat-negative-drain").textContent = negativeDrain + "%";
 
-  // 3. Prepare Confidence Data & Render Charts
-  const { confValues, confStats } = calculateConfidenceStats(data);
+  // 3. Prepare Confidence Data & Render Charts (Toggled Source)
+  const { confValues, confStats } = calculateConfidenceStats(chartData);
 
-  renderPerformanceChart(data);
+  renderPerformanceChart(chartData);
   renderGlobalConfidenceChart(confValues, confStats);
 
-  // Concept Gap Analysis (Only relevant for Tests usually, or requires global stats)
-  const conceptGapEl = document.getElementById("stat-concept-gap");
-  if (conceptGapEl) {
-      if (isQuizMode) {
-          updateConceptGapStat(data);
-      } else {
-          conceptGapEl.textContent = "N/A";
-          conceptGapEl.parentElement.classList.remove("border-danger", "border-success");
-          conceptGapEl.parentElement.classList.add("border-info");
-      }
-  }
+  // Concept Gap Analysis (Cumulative, but practically only Quizzes contribute due to missing global stats for Practice)
+  updateConceptGapStat(combinedHistory);
 }
 
 /**
