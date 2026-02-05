@@ -99,18 +99,27 @@ function refreshDashboardChartsOnly() {
     }
 }
 
+function switchDashboardMode(mode) {
+    currentDashboardMode = mode;
+
+    // Update active class on buttons if needed, but the radio inputs handle visual state mostly.
+    // If using custom styling on labels, might need to ensure they update.
+    // The Bootstrap 'btn-check' + label approach handles visual toggle automatically.
+
+    renderDashboardUI();
+}
+
 /**
- * Renders UI with Cumulative Metrics, Precision, Negative Drain, 
- * and Concept Gap analysis based on user history.
+ * Renders UI based on the selected mode (Tests or Practice).
  */
 function renderDashboardUI() {
-  const combinedHistory = [...userHistory, ...practiceHistory];
-  const results = userHistory; // Keep "results" pointing to quiz history for specific quiz charts
+  const isQuizMode = currentDashboardMode === 'quiz';
+  const data = isQuizMode ? userHistory : practiceHistory;
 
-  // 1. Standard Stats Calculation (Using Combined History)
-  const totalTests = combinedHistory.length;
+  // 1. Stats Calculation
+  const totalTests = data.length;
   const avgScore = totalTests
-    ? (combinedHistory.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalTests).toFixed(1)
+    ? (data.reduce((acc, curr) => acc + curr.scorePercent, 0) / totalTests).toFixed(1)
     : 0;
 
   // Initialize accumulators for cumulative metrics
@@ -119,19 +128,16 @@ function renderDashboardUI() {
       totalAttempted = 0, 
       totalQs = 0;
   
-  // Aggregate data from all tests in a single loop
-  combinedHistory.forEach(res => {
-    // Accumulate total possible questions (assuming 2 marks per question)
+  // Aggregate data
+  data.forEach(res => {
     if (res.totalMarks) {
       totalQs += (res.totalMarks / 2);
     } else {
-       // Fallback for practice if totalMarks missing (though we added it)
        totalQs += (res.correctCount + res.incorrectCount + res.unattemptedCount) || 0;
     }
 
     if (res.userAnswers) {
       Object.values(res.userAnswers).forEach(ans => {
-        // Only count valid attempts
         if (ans && (ans.answer !== undefined && ans.answer !== -1)) {
             totalAttempted++;
             if (ans.isCorrect) totalCorrect++;
@@ -141,10 +147,8 @@ function renderDashboardUI() {
     }
   });
 
-  // Calculate unattempted questions
   const totalUnattempted = totalQs - totalAttempted;
 
-  // Secondary analysis metrics
   const precisionRate = totalAttempted ? ((totalCorrect / totalAttempted) * 100).toFixed(1) : 0;
   const negativeLoss = totalIncorrect * 0.66;
   const positiveGain = totalCorrect * 2;
@@ -154,56 +158,32 @@ function renderDashboardUI() {
   document.getElementById("stat-total-tests").textContent = totalTests;
   document.getElementById("stat-avg-score").textContent = avgScore + "%";
   
-  // Update the new cumulative matrix elements
-  const elTotal = document.getElementById("stat-all-total");
-  if (elTotal) elTotal.textContent = totalQs;
+  document.getElementById("stat-all-total").textContent = totalQs;
+  document.getElementById("stat-all-attempted").textContent = totalAttempted;
+  document.getElementById("stat-all-unattempted").textContent = Math.max(0, totalUnattempted);
+  document.getElementById("stat-all-correct").textContent = totalCorrect;
+  document.getElementById("stat-all-incorrect").textContent = totalIncorrect;
 
-  const elAttempted = document.getElementById("stat-all-attempted");
-  if (elAttempted) elAttempted.textContent = totalAttempted;
+  document.getElementById("stat-precision-rate").textContent = precisionRate + "%";
+  document.getElementById("stat-negative-drain").textContent = negativeDrain + "%";
 
-  const elUnattempted = document.getElementById("stat-all-unattempted");
-  if (elUnattempted) elUnattempted.textContent = Math.max(0, totalUnattempted);
+  // 3. Prepare Confidence Data & Render Charts
+  const { confValues, confStats } = calculateConfidenceStats(data);
 
-  const elCorrect = document.getElementById("stat-all-correct");
-  if (elCorrect) elCorrect.textContent = totalCorrect;
-
-  const elIncorrect = document.getElementById("stat-all-incorrect");
-  if (elIncorrect) elIncorrect.textContent = totalIncorrect;
-
-  // Update precision and drain stats if elements exist
-  const elPrecision = document.getElementById("stat-precision-rate");
-  if (elPrecision) elPrecision.textContent = precisionRate + "%";
-
-  const elDrain = document.getElementById("stat-negative-drain");
-  if (elDrain) elDrain.textContent = negativeDrain + "%";
-
-  // 3. Prepare Confidence Data for Charting (Quiz Only)
-  const { confValues, confStats } = calculateConfidenceStats(results);
-
-  // 4. Render All Graphs and Advanced Analysis (Quiz Only)
-  updateConceptGapStat(results);
-  renderPerformanceChart(results);
+  renderPerformanceChart(data);
   renderGlobalConfidenceChart(confValues, confStats);
 
-  // 5. Render Practice Charts
-  renderPracticeCharts(practiceHistory);
-}
-
-function renderPracticeCharts(history) {
-    // Practice Confidence
-    const { confValues, confStats } = calculateConfidenceStats(history);
-    const ctxConf = document.getElementById("practiceConfidenceChart");
-    if (ctxConf) {
-        if (practiceConfidenceChartInstance) practiceConfidenceChartInstance.destroy();
-        practiceConfidenceChartInstance = ChartHelper.renderConfidenceChart(ctxConf, confValues, confStats);
-    }
-
-    // Practice Performance Trend
-    const ctxPerf = document.getElementById("practicePerformanceChart");
-    if (ctxPerf) {
-        if (practicePerformanceChartInstance) practicePerformanceChartInstance.destroy();
-        practicePerformanceChartInstance = ChartHelper.renderPerformanceChart(ctxPerf, history);
-    }
+  // Concept Gap Analysis (Only relevant for Tests usually, or requires global stats)
+  const conceptGapEl = document.getElementById("stat-concept-gap");
+  if (conceptGapEl) {
+      if (isQuizMode) {
+          updateConceptGapStat(data);
+      } else {
+          conceptGapEl.textContent = "N/A";
+          conceptGapEl.parentElement.classList.remove("border-danger", "border-success");
+          conceptGapEl.parentElement.classList.add("border-info");
+      }
+  }
 }
 
 /**

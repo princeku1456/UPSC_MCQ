@@ -18,14 +18,13 @@ let isReviewMode = false;
 let reviewSource = null;
 let isRegistering = false;
 let isPracticeMode = false; // Isse global banayein hain taaki practice.js mein bhi access ho sake
+let currentDashboardMode = 'quiz'; // 'quiz' or 'practice'
 
 const quizDataCache = {};
 let userHistory = [];
 let practiceHistory = [];
 let confidenceChartInstance = null; //
 let globalConfidenceChartInstance = null; //
-let practiceConfidenceChartInstance = null;
-let practicePerformanceChartInstance = null;
 let dashboardDataLoaded = false;
 let performanceChartInstance = null;
 let comparisonChartInstance = null;
