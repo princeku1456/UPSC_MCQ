@@ -1572,8 +1572,17 @@ function submitAll(forceSubmit = false) {
               if (currentLeaderboard.length > 10)
                 currentLeaderboard = currentLeaderboard.slice(0, 10);
 
-              let cCounts = data.correctCounts || [];
-              let aCounts = data.attemptedCounts || [];
+              let cCounts = [...(data.correctCounts || [])];
+              let aCounts = [...(data.attemptedCounts || [])];
+
+              // Densify arrays: Ensure no holes and extend to current length
+              // This prevents Firestore errors with sparse arrays (undefined values)
+              const maxLen = Math.max(cCounts.length, aCounts.length, currentQuizData.length);
+              for (let j = 0; j < maxLen; j++) {
+                  if (cCounts[j] == null) cCounts[j] = 0;
+                  if (aCounts[j] == null) aCounts[j] = 0;
+              }
+
               currentQuizData.forEach((q, i) => {
                 if (userAnswers[i]) {
                   aCounts[i] = (aCounts[i] || 0) + 1;
