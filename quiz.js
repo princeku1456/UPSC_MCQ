@@ -359,7 +359,7 @@ async function loadQuiz(
               { label: 'Home', onclick: 'showHome()' },
               { label: 'Dashboard', onclick: 'showDashboard()' },
               { label: 'Take Test', onclick: 'renderSubjects()' },
-              { label: currentSubject, onclick: `renderChapters('${currentSubject}')` },
+              { label: currentSubject, onclick: `renderChapters(${JSON.stringify(currentSubject)})` },
               { label: 'Review: ' + currentChapterName }
           ]);
       }
@@ -368,7 +368,7 @@ async function loadQuiz(
           { label: 'Home', onclick: 'showHome()' },
           { label: 'Dashboard', onclick: 'showDashboard()' },
           { label: 'Take Test', onclick: 'renderSubjects()' },
-          { label: currentSubject, onclick: `renderChapters('${currentSubject}')` },
+          { label: currentSubject, onclick: `renderChapters(${JSON.stringify(currentSubject)})` },
           { label: currentChapterName }
       ]);
   }
