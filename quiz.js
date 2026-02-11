@@ -267,7 +267,7 @@ function startQuizExecution(savedTime) {
   quizContent.parentElement.className = "col-lg-8 mb-4";
   quizNav.parentElement.style.display = "block";
   renderQuizLayout(currentChapterName);
-  renderQuestion();
+  renderAllQuestions();
   renderNav();
   startTimer(currentQuizData.length, savedTime);
   currentQuestionStartTime = Date.now(); // NEW: Start tracking first question
@@ -1169,17 +1169,8 @@ function renderQuizLayout(title) {
   document.getElementById("quiz-content").innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h4 class="fw-bold text-primary m-0">${title}</h4>
-            <button id="mark-review-btn" class="btn btn-primary-custom btn-sm fw-bold shadow-sm" onclick="toggleMarkForReview()">
-                <i class="bi bi-bookmark-star"></i> Mark for Review
-            </button>
         </div>
         <div id="question-container"></div>
-        <div class="d-flex justify-content-between mt-4">
-            <button id="prev-btn" class="btn btn-secondary-custom px-4 ">Previous</button>
-            <button id="clear-btn" class="btn btn-primary-custom px-4 ">Clear</button>
-            <button id="next-btn" class="btn btn-secondary-custom px-4 ">Next</button>
-        </div>
-        <div id="question-feedback" class="mt-3 text-center"></div>
         <div id="result" class="mt-4 text-center"></div>
     `;
 
@@ -1201,168 +1192,199 @@ function renderQuizLayout(title) {
 `;
 
   document
-    .getElementById("prev-btn")
-    .addEventListener("click", () => navigateQuestions(-1));
-  document
-    .getElementById("next-btn")
-    .addEventListener("click", () => navigateQuestions(1));
-  document
-    .getElementById("clear-btn")
-    .addEventListener("click", clearSelection);
-  document
     .getElementById("final-submit-btn")
     .addEventListener("click", () => submitAll(false));
 }
 
-function renderQuestion() {
+function renderAllQuestions() {
   const container = document.getElementById("question-container");
   container.innerHTML = "";
-  const question = currentQuizData[currentQuestionIndex];
-  const correctIndex = getCorrectIndex(question);
 
-  const markBtn = document.getElementById("mark-review-btn");
-  if (markBtn) {
-    if (markedForReview[currentQuestionIndex]) {
-      markBtn.innerHTML = `<i class="bi bi-bookmark-check-fill"></i> Unmark Review`;
-      markBtn.classList.replace("btn-secondary-custom", "btn-primary-custom");
-    } else {
-      markBtn.innerHTML = `<i class="bi bi-bookmark-star"></i> Mark for Review`;
-      markBtn.classList.replace("btn-primary-custom", "btn-secondary-custom");
-    }
-  }
+  currentQuizData.forEach((question, index) => {
+    const correctIndex = getCorrectIndex(question);
 
-  const div = document.createElement("div");
-  div.className = "question";
-  const formattedText = TextFormatter.formatQuestionText(question.text);
-  div.innerHTML = `<div class="mb-3 lead fw-bold">Q${
-    currentQuestionIndex + 1
-  }. ${formattedText}</div>`;
-
-  question.options.forEach((opt, idx) => {
-    const label = document.createElement("label");
-    label.className = "option shadow-sm";
-    const uAns = userAnswers[currentQuestionIndex];
-    const isSelected = uAns && uAns.answer === idx;
-
-    let inputHTML = `<input type="radio" name="q${currentQuestionIndex}" value="${idx}" ${
-      isSelected ? "checked" : ""
-    } ${quizSubmitted ? "disabled" : ""}>`;
-    label.innerHTML = `${inputHTML} <span>${opt}</span>`;
-
-    if (quizSubmitted) {
-      if (idx === correctIndex) label.classList.add("correct-answer-label");
-      if (isSelected && idx !== correctIndex)
-        label.classList.add("incorrect-answer-label");
-    } else {
-      label.querySelector("input").addEventListener("change", () => {
-        if (!userAnswers[currentQuestionIndex])
-          userAnswers[currentQuestionIndex] = {};
-        userAnswers[currentQuestionIndex].answer = idx;
+    const div = document.createElement("div");
+    div.id = `question-${index}`;
+    div.className = "card mb-4 shadow-sm question-card p-4";
+    div.onclick = () => {
+        updateQuestionTimer();
+        currentQuestionIndex = index;
         updateNavHighlights();
-        saveQuizProgress();
+    };
+
+    // Header
+    const header = document.createElement("div");
+    header.className = "d-flex justify-content-between align-items-center mb-3";
+
+    const title = document.createElement("h6");
+    title.className = "text-muted fw-bold m-0";
+    title.textContent = `Question ${index + 1}`;
+
+    const btnGroup = document.createElement("div");
+    btnGroup.className = "d-flex gap-2";
+
+    const markBtn = document.createElement("button");
+    markBtn.className = "btn btn-sm fw-bold shadow-sm " + (markedForReview[index] ? "btn-primary-custom" : "btn-secondary-custom");
+    markBtn.innerHTML = markedForReview[index] ? `<i class="bi bi-bookmark-check-fill"></i> Unmark` : `<i class="bi bi-bookmark-star"></i> Mark`;
+    markBtn.onclick = (e) => {
+        e.stopPropagation();
+        toggleMarkForReview(index);
+    };
+
+    const clearBtn = document.createElement("button");
+    clearBtn.className = "btn btn-sm btn-outline-secondary";
+    clearBtn.innerHTML = "Clear";
+    clearBtn.disabled = quizSubmitted;
+    clearBtn.onclick = (e) => {
+        e.stopPropagation();
+        clearSelection(index);
+    };
+
+    btnGroup.appendChild(markBtn);
+    btnGroup.appendChild(clearBtn);
+    header.appendChild(title);
+    header.appendChild(btnGroup);
+    div.appendChild(header);
+
+    const formattedText = TextFormatter.formatQuestionText(question.text);
+    const qTextDiv = document.createElement("div");
+    qTextDiv.className = "mb-3 lead fw-bold";
+    qTextDiv.innerHTML = formattedText;
+    div.appendChild(qTextDiv);
+
+    // Options
+    question.options.forEach((opt, idx) => {
+      const label = document.createElement("label");
+      label.className = "option shadow-sm";
+      const uAns = userAnswers[index];
+      const isSelected = uAns && uAns.answer === idx;
+
+      let inputHTML = `<input type="radio" name="q${index}" value="${idx}" ${
+        isSelected ? "checked" : ""
+      } ${quizSubmitted ? "disabled" : ""}>`;
+      label.innerHTML = `${inputHTML} <span>${opt}</span>`;
+
+      if (quizSubmitted) {
+        if (idx === correctIndex) label.classList.add("correct-answer-label");
+        if (isSelected && idx !== correctIndex)
+          label.classList.add("incorrect-answer-label");
+      } else {
+        label.querySelector("input").addEventListener("change", (e) => {
+          // e.stopPropagation(); // Let click bubble to card
+          if (!userAnswers[index])
+            userAnswers[index] = {};
+          userAnswers[index].answer = idx;
+          updateQuestionTimer();
+          currentQuestionIndex = index;
+          updateNavHighlights();
+          saveQuizProgress();
+        });
+      }
+      div.appendChild(label);
+    });
+
+    // Surety
+    const currentSurety = userAnswers[index]?.surety;
+    const suretyDiv = document.createElement("div");
+    suretyDiv.className = "mt-4 mb-3 animate-fade-in";
+    suretyDiv.innerHTML = `
+      <div class="surety-label">Confidence Level</div>
+      <div class="surety-matrix shadow-sm" role="radiogroup" aria-label="Confidence Level">
+          <div class="surety-opt surety-100 ${
+            currentSurety === 100 ? "selected" : ""
+          }" data-val="100" role="radio" tabindex="0" aria-checked="${currentSurety === 100}" aria-label="100% Confidence"
+          onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">100%</div>
+
+          <div class="surety-opt surety-75 ${
+            currentSurety === 75 ? "selected" : ""
+          }" data-val="75" role="radio" tabindex="0" aria-checked="${currentSurety === 75}" aria-label="75% Confidence"
+          onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">75%</div>
+
+          <div class="surety-opt surety-50 ${
+            currentSurety === 50 ? "selected" : ""
+          }" data-val="50" role="radio" tabindex="0" aria-checked="${currentSurety === 50}" aria-label="50% Confidence"
+          onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">50%</div>
+
+          <div class="surety-opt surety-0 ${
+            currentSurety === 0 ? "selected" : ""
+          }" data-val="0" role="radio" tabindex="0" aria-checked="${currentSurety === 0}" aria-label="0% Confidence"
+          onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">0%</div>
+      </div>
+    `;
+
+    if (!quizSubmitted) {
+      suretyDiv.querySelectorAll(".surety-opt").forEach((opt) => {
+        opt.onclick = function (e) {
+          e.stopPropagation();
+          const val = parseInt(this.getAttribute("data-val"));
+          if (!userAnswers[index])
+            userAnswers[index] = { answer: -1 };
+          userAnswers[index].surety = val;
+
+          updateQuestionTimer();
+          currentQuestionIndex = index;
+
+          suretyDiv.querySelectorAll(".surety-opt").forEach((o) => {
+              o.classList.remove("selected");
+              o.setAttribute("aria-checked", "false");
+          });
+          this.classList.add("selected");
+          this.setAttribute("aria-checked", "true");
+          updateNavHighlights(); // For palette color if needed
+          saveQuizProgress();
+        };
       });
     }
-    div.appendChild(label);
+    div.appendChild(suretyDiv);
+
+    // Feedback
+    if (quizSubmitted) {
+       const feedbackDiv = document.createElement("div");
+       feedbackDiv.className = "mt-3 text-center";
+       const uAns = userAnswers[index];
+       if (uAns && uAns.answer === correctIndex)
+         feedbackDiv.innerHTML = `<h5 class="text-success fw-bold">Correct! 🎉</h5>`;
+       else if (uAns)
+         feedbackDiv.innerHTML = `<h5 class="text-danger fw-bold">Incorrect. ❌</h5>`;
+       else
+         feedbackDiv.innerHTML = `<h5 class="text-secondary fw-bold">Unattempted. ⚪</h5>`;
+       div.appendChild(feedbackDiv);
+
+       if (question.explanation) {
+         const exp = document.createElement("div");
+         exp.className = "explanation shadow-sm mt-3";
+         exp.innerHTML = `<strong>💡 Explanation:</strong> <br>${question.explanation}`;
+         div.appendChild(exp);
+       }
+    }
+
+    container.appendChild(div);
   });
 
-  // --- SURETY MATRIX IMPLEMENTATION ---
-  const currentSurety = userAnswers[currentQuestionIndex]?.surety;
-  const suretyDiv = document.createElement("div");
-  suretyDiv.className = "mt-4 mb-3 animate-fade-in";
-  suretyDiv.innerHTML = `
-    <div class="surety-label">Confidence Level</div>
-    <div class="surety-matrix shadow-sm" role="radiogroup" aria-label="Confidence Level">
-        <div class="surety-opt surety-100 ${
-          currentSurety === 100 ? "selected" : ""
-        }" data-val="100" role="radio" tabindex="0" aria-checked="${currentSurety === 100}" aria-label="100% Confidence"
-        onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">100%</div>
-
-        <div class="surety-opt surety-75 ${
-          currentSurety === 75 ? "selected" : ""
-        }" data-val="75" role="radio" tabindex="0" aria-checked="${currentSurety === 75}" aria-label="75% Confidence"
-        onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">75%</div>
-
-        <div class="surety-opt surety-50 ${
-          currentSurety === 50 ? "selected" : ""
-        }" data-val="50" role="radio" tabindex="0" aria-checked="${currentSurety === 50}" aria-label="50% Confidence"
-        onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">50%</div>
-
-        <div class="surety-opt surety-0 ${
-          currentSurety === 0 ? "selected" : ""
-        }" data-val="0" role="radio" tabindex="0" aria-checked="${currentSurety === 0}" aria-label="0% Confidence"
-        onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">0%</div>
-    </div>
-  `;
-
-  if (!quizSubmitted) {
-    suretyDiv.querySelectorAll(".surety-opt").forEach((opt) => {
-      opt.onclick = function () {
-        const val = parseInt(this.getAttribute("data-val"));
-        if (!userAnswers[currentQuestionIndex])
-          userAnswers[currentQuestionIndex] = { answer: -1 };
-        userAnswers[currentQuestionIndex].surety = val;
-
-        // Toggle 'selected' class and aria-checked
-        suretyDiv.querySelectorAll(".surety-opt").forEach((o) => {
-            o.classList.remove("selected");
-            o.setAttribute("aria-checked", "false");
-        });
-        this.classList.add("selected");
-        this.setAttribute("aria-checked", "true");
-        saveQuizProgress();
-      };
-    });
-  }
-  div.appendChild(suretyDiv);
-
-  if (quizSubmitted && question.explanation) {
-    const exp = document.createElement("div");
-    exp.className = "explanation shadow-sm mt-3";
-    exp.innerHTML = `<strong>💡 Explanation:</strong> <br>${question.explanation}`;
-    div.appendChild(exp);
-  }
-
-  container.appendChild(div);
-  updateButtonStates();
-  if (quizSubmitted) showFeedbackText(correctIndex);
-  else {
-    const feedback = document.getElementById("question-feedback");
-    if (feedback) feedback.textContent = "";
-  }
-}
-function showFeedbackText(correctIndex) {
-  const resultDiv = document.getElementById("question-feedback");
-  const uAns = userAnswers[currentQuestionIndex];
-  if (uAns && uAns.answer === correctIndex)
-    resultDiv.innerHTML = `<h5 class="text-success fw-bold">Correct! 🎉</h5>`;
-  else if (uAns)
-    resultDiv.innerHTML = `<h5 class="text-danger fw-bold">Incorrect. ❌</h5>`;
-  else
-    resultDiv.innerHTML = `<h5 class="text-secondary fw-bold">Unattempted. ⚪</h5>`;
+  updateNavHighlights();
 }
 
-function updateButtonStates() {
-  const p = document.getElementById("prev-btn");
-  const n = document.getElementById("next-btn");
-  if (p) p.disabled = currentQuestionIndex === 0;
-  if (n) n.disabled = currentQuestionIndex === currentQuizData.length - 1;
-}
-
-function navigateQuestions(dir) {
-  const next = currentQuestionIndex + dir;
-  if (next >= 0 && next < currentQuizData.length) {
-    updateQuestionTimer(); // Save time for current question
-    currentQuestionIndex = next;
-    renderQuestion();
-    updateNavHighlights();
-    saveQuizProgress();
-  }
-}
-
-function clearSelection() {
+function clearSelection(index) {
   if (quizSubmitted) return;
-  delete userAnswers[currentQuestionIndex];
-  renderQuestion();
+  if (typeof index === 'undefined') index = currentQuestionIndex;
+
+  delete userAnswers[index];
+
+  // Directly update UI
+  const card = document.getElementById(`question-${index}`);
+  if (card) {
+      const radios = card.querySelectorAll(`input[name="q${index}"]`);
+      radios.forEach(r => r.checked = false);
+
+      const suretyOpts = card.querySelectorAll(".surety-opt");
+      suretyOpts.forEach(o => {
+          o.classList.remove("selected");
+          o.setAttribute("aria-checked", "false");
+      });
+  }
+
+  updateQuestionTimer();
+  currentQuestionIndex = index;
   updateNavHighlights();
   saveQuizProgress();
 }
@@ -1388,9 +1410,14 @@ function renderNav() {
     };
 
     item.onclick = () => {
-      updateQuestionTimer(); // Save time for current question
+      updateQuestionTimer();
       currentQuestionIndex = i;
-      renderQuestion();
+
+      const el = document.getElementById(`question-${i}`);
+      if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
       updateNavHighlights();
       saveQuizProgress();
     };
@@ -1519,7 +1546,7 @@ function submitAll(forceSubmit = false) {
   if (document.getElementById("clear-btn"))
     document.getElementById("clear-btn").disabled = true;
 
-  renderQuestion();
+  renderAllQuestions();
   updateNavHighlights();
 
   if (currentUser) {
@@ -1628,18 +1655,27 @@ function submitAll(forceSubmit = false) {
   }
 }
 
-function toggleMarkForReview() {
+function toggleMarkForReview(index) {
   if (quizSubmitted) return;
+  if (typeof index === 'undefined') index = currentQuestionIndex;
 
-  if (markedForReview[currentQuestionIndex]) {
-    delete markedForReview[currentQuestionIndex];
+  if (markedForReview[index]) {
+    delete markedForReview[index];
     toastr.info("Removed from Review");
   } else {
-    markedForReview[currentQuestionIndex] = true;
+    markedForReview[index] = true;
     toastr.success("Marked for Review");
   }
 
-  renderQuestion(); // Refresh the UI to update button text
-  updateNavHighlights(); // Refresh palette colors
-  saveQuizProgress(); // Save state
+  const card = document.getElementById(`question-${index}`);
+  if (card) {
+      const btn = card.querySelector("button");
+      if (btn) {
+          btn.className = "btn btn-sm fw-bold shadow-sm " + (markedForReview[index] ? "btn-primary-custom" : "btn-secondary-custom");
+          btn.innerHTML = markedForReview[index] ? `<i class="bi bi-bookmark-check-fill"></i> Unmark` : `<i class="bi bi-bookmark-star"></i> Mark`;
+      }
+  }
+
+  updateNavHighlights();
+  saveQuizProgress();
 }

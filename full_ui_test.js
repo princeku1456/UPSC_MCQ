@@ -161,17 +161,17 @@ async function run() {
     }
 
     // Answer Q1 Correctly (Index 0)
-    await page.click('input[value="0"]');
+    await page.click('input[name="q0"][value="0"]');
 
     // Set Confidence (optional, but good for coverage)
-    await page.click('.surety-100');
+    await page.click('#question-0 .surety-100');
 
-    await page.click('#next-btn');
-    console.log('✅ Navigated to Next Question.');
+    // Scroll to Q2
+    await page.locator('#question-1').scrollIntoViewIfNeeded();
 
     // Answer Q2 Incorrectly (Index 0, correct is 1)
-    await page.click('input[value="0"]');
-    await page.click('.surety-50');
+    await page.click('input[name="q1"][value="0"]');
+    await page.click('#question-1 .surety-50');
 
     // Submit
     console.log('Submitting Test...');
