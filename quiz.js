@@ -590,13 +590,12 @@ async function renderReviewMode(resultData) {
 
     // Community accuracy calculation for Silly Mistake vs Hard Success flagging
     const commCorrect = currentReviewStats?.correctCounts?.[i] || 0;
-    const commTotal = currentReviewStats?.totalAttempts || 1;
-    const commAccuracy = (commCorrect / commTotal) * 100;
+    const commTotal = currentReviewStats?.totalAttempts || 0;
 
     // Determine Difficulty
-    let diffLabel = "Medium";
-    if (commAccuracy >= 70) diffLabel = "Easy";
-    else if (commAccuracy <= 40) diffLabel = "Hard";
+    const diffInfo = DifficultyHelper.calculate(commCorrect, commTotal);
+    const diffLabel = diffInfo.label;
+    const commAccuracy = diffInfo.percentage;
 
     difficultyStats[diffLabel].total++;
     if (!uAns) {
@@ -620,7 +619,7 @@ async function renderReviewMode(resultData) {
       unattempted++;
     } else if (uAns.answer === correctIndex) {
       correct++;
-      if (commAccuracy < 40) hardSuccess++; // Correct on a low-accuracy question
+      if (diffLabel === "Hard") hardSuccess++; // Correct on a low-accuracy question
     } else {
       incorrect++;
       // Flag if user missed a question that >65% of students got right
@@ -1006,16 +1005,8 @@ function renderReviewQuestions(filterType) {
       const pUnattempted = 100 - pCorrect - pIncorrect;
 
       // Determine Difficulty based on community accuracy
-      let diffLabel = "Medium";
-      let diffColor = "warning"; // yellow/orange
-      if (pCorrect >= 70) {
-          diffLabel = "Easy";
-          diffColor = "success"; // green
-      } else if (pCorrect <= 40) {
-          diffLabel = "Hard";
-          diffColor = "danger"; // red
-      }
-      difficultyBadge = `<span class="badge bg-${diffColor} ms-2">${diffLabel}</span>`;
+      const diffInfo = DifficultyHelper.calculate(correctCount, total);
+      difficultyBadge = `<span class="badge bg-${diffInfo.color} ms-2">${diffInfo.label}</span>`;
 
       statsHtml = `
             <div class="mt-2 mb-4 p-3 bg-light bg-opacity-75 rounded-3 border">
