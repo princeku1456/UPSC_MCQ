@@ -1005,8 +1005,7 @@ function renderReviewQuestions(filterType) {
       const pUnattempted = 100 - pCorrect - pIncorrect;
 
       // Determine Difficulty based on community accuracy
-      const diffInfo = DifficultyHelper.calculate(correctCount, total);
-      difficultyBadge = `<span class="badge bg-${diffInfo.color} ms-2">${diffInfo.label}</span>`;
+      // Difficulty badge removed from individual questions as per request
 
       statsHtml = `
             <div class="mt-2 mb-4 p-3 bg-light bg-opacity-75 rounded-3 border">
@@ -1067,7 +1066,6 @@ function renderReviewQuestions(filterType) {
                     <div class="d-flex align-items-center flex-wrap gap-2">
                         <h6 class="text-muted fw-bold m-0 me-2">Question ${index + 1}</h6>
                         <span class="surety-badge ${suretyClass}">Confidence: ${userSurety}%</span>
-                        ${difficultyBadge}
                         ${timeBadge}
                     </div>
                     ${badgeHtml}
