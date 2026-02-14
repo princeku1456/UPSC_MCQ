@@ -869,3 +869,30 @@ function calculateConfidenceStats(results) {
 
   return { confValues, confStats };
 }
+
+/* =========================================
+   6. DIFFICULTY HELPER
+   ========================================= */
+const DifficultyHelper = {
+    /**
+     * Calculates difficulty label based on community accuracy.
+     * @param {number} correctCount - Number of correct attempts
+     * @param {number} totalAttempts - Total number of attempts
+     * @returns {Object} { label: "Easy"|"Medium"|"Hard", color: "success"|"warning"|"danger", percentage: number }
+     */
+    calculate(correctCount, totalAttempts) {
+        if (!totalAttempts || totalAttempts <= 0) {
+             return { label: "Medium", color: "warning", percentage: 0 };
+        }
+
+        const percentage = Math.round((correctCount / totalAttempts) * 100);
+
+        if (percentage >= 70) {
+            return { label: "Easy", color: "success", percentage };
+        } else if (percentage <= 40) {
+            return { label: "Hard", color: "danger", percentage };
+        } else {
+            return { label: "Medium", color: "warning", percentage };
+        }
+    }
+};
