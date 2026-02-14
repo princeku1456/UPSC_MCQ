@@ -1031,7 +1031,7 @@ function renderReviewQuestions(filterType) {
                     </div>
                 </div>
                 <div class="d-flex justify-content-between align-items-center mb-2 mt-2">
-                    <span class="fw-bold" style="color: #4338ca;">Total test taken by: ${attemptedCount}</span>
+                    <span class="fw-bold" style="color: #4338ca;">Total test taken by: ${total}</span>
                 </div>
             </div>
         `;
