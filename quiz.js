@@ -986,14 +986,17 @@ function renderReviewQuestions(filterType) {
     }
 
     let statsHtml = "";
-    let difficultyBadge = "";
+
+    // Determine Difficulty Badge (Always calculate to match table logic)
+    // If stats are missing or attempts are 0, DifficultyHelper returns Medium/warning (0%)
+    const commTotal = currentReviewStats?.totalAttempts || 0;
+    const commCorrect = currentReviewStats?.correctCounts?.[index] || 0;
+    const diffInfo = DifficultyHelper.calculate(commCorrect, commTotal);
+    const difficultyBadge = `<span class="badge bg-${diffInfo.color} mb-2 ms-2">${diffInfo.label}</span>`;
 
     if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
       const total = currentReviewStats.totalAttempts;
-      const correctCount =
-        (currentReviewStats.correctCounts &&
-          currentReviewStats.correctCounts[index]) ||
-        0;
+      const correctCount = commCorrect;
       const attemptedCount =
         (currentReviewStats.attemptedCounts &&
           currentReviewStats.attemptedCounts[index]) ||
@@ -1003,9 +1006,6 @@ function renderReviewQuestions(filterType) {
         ((attemptedCount - correctCount) / total) * 100
       );
       const pUnattempted = 100 - pCorrect - pIncorrect;
-
-      // Determine Difficulty based on community accuracy
-      // Difficulty badge removed from individual questions as per request
 
       statsHtml = `
             <div class="mt-2 mb-4 p-3 bg-light bg-opacity-75 rounded-3 border">
@@ -1067,6 +1067,7 @@ function renderReviewQuestions(filterType) {
                         <h6 class="text-muted fw-bold m-0 me-2">Question ${index + 1}</h6>
                         <span class="surety-badge ${suretyClass}">Confidence: ${userSurety}%</span>
                         ${timeBadge}
+                        ${difficultyBadge}
                     </div>
                     ${badgeHtml}
                 </div>
