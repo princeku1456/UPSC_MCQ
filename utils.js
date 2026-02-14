@@ -763,42 +763,63 @@ const TextFormatter = {
         let output = [];
         let inTable = false;
         let tableLines = [];
+        let currentSeparator = null;
 
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
 
-            // Check if line contains pipe separator
-            if (line.includes('|')) {
-                if (!inTable) {
-                    inTable = true;
-                    tableLines = [];
+            // Detect separator
+            let separator = null;
+            if (line.includes('|')) separator = '|';
+            else if (line.includes(' - ') && !line.trim().startsWith('-')) separator = ' - ';
+
+            // If we are already in a table
+            if (inTable) {
+                // Check if the current line continues the table (must have same separator)
+                if (separator === currentSeparator) {
+                     tableLines.push(line);
+                } else {
+                     // End of table
+                     output.push(this.renderTable(tableLines, currentSeparator));
+                     inTable = false;
+                     tableLines = [];
+
+                     // Check if this line starts a NEW table
+                     if (separator) {
+                         inTable = true;
+                         currentSeparator = separator;
+                         tableLines.push(line);
+                     } else {
+                         output.push(line);
+                     }
                 }
-                tableLines.push(line);
             } else {
-                if (inTable) {
-                    output.push(this.renderTable(tableLines));
-                    inTable = false;
-                    tableLines = [];
+                // Not in table, check if we should start one
+                if (separator) {
+                    inTable = true;
+                    currentSeparator = separator;
+                    tableLines.push(line);
+                } else {
+                    output.push(line);
                 }
-                output.push(line);
             }
         }
 
         // Handle case where table is at the end
         if (inTable) {
-            output.push(this.renderTable(tableLines));
+            output.push(this.renderTable(tableLines, currentSeparator));
         }
 
         return output.join('<br>');
     },
 
-    renderTable(lines) {
+    renderTable(lines, separator = '|') {
         if (lines.length === 0) return "";
 
         let html = '<div class="table-responsive my-3"><table class="table table-bordered table-sm table-hover align-middle mb-0"><thead>';
 
         // First line is header
-        const headers = lines[0].split('|');
+        const headers = lines[0].split(separator);
         html += '<tr class="table-light">';
         headers.forEach(h => {
             html += `<th class="fw-bold text-secondary text-uppercase small" scope="col">${h.trim()}</th>`;
@@ -807,7 +828,7 @@ const TextFormatter = {
 
         // Remaining lines are body
         for (let i = 1; i < lines.length; i++) {
-            const cells = lines[i].split('|');
+            const cells = lines[i].split(separator);
             html += '<tr>';
             cells.forEach(c => {
                 html += `<td>${c.trim()}</td>`;
