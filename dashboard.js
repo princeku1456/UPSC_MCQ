@@ -188,11 +188,11 @@ async function updateConceptGapStat(results) {
             if (!ans.isCorrect) {
                 const qIdx = parseInt(index);
                 const commCorrect = (stats.correctCounts && stats.correctCounts[qIdx]) || 0;
-                const commTotal = (stats.attemptedCounts && stats.attemptedCounts[qIdx]) || 1;
-                const commAccuracy = (commCorrect / commTotal) * 100;
+                const commTotal = stats.totalAttempts || 0;
+                const diffInfo = DifficultyHelper.calculate(commCorrect, commTotal);
 
-                // Flag if user missed a question that 65%+ of the community got right
-                if (commAccuracy > 65) sillyMistakes++;
+                // Flag if user missed a question that is classified as Easy
+                if (diffInfo.label === "Easy") sillyMistakes++;
             }
         });
     });

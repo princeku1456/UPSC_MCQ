@@ -622,8 +622,8 @@ async function renderReviewMode(resultData) {
       if (diffLabel === "Hard") hardSuccess++; // Correct on a low-accuracy question
     } else {
       incorrect++;
-      // Flag if user missed a question that >65% of students got right
-      if (commAccuracy > 65) {
+      // Flag if user missed a question that is classified as Easy
+      if (diffLabel === "Easy") {
         sillyMistakes++;
         missedEasyQNumbers.push(`Q${i + 1}`);
       }
