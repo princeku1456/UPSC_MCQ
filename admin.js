@@ -241,14 +241,21 @@ function renderQuestionAnalysis(container, questions, results, accuracies) {
   header.innerHTML = `<h4 class="fw-bold text-dark border-start border-4 border-primary ps-3">📊 Discussion Dashboard</h4>`;
   container.appendChild(header);
 
+  // PERFORMANCE OPTIMIZATION: Pre-calculate user names to avoid redundant string splitting in the nested loop
+  const resultsWithUserNames = results.map(res => ({
+    original: res,
+    userName: res.userEmail ? res.userEmail.split("@")[0] : "Guest"
+  }));
+
   questions.forEach((q, qIdx) => {
     // Each bucket now stores objects containing the username and their surety level
     const optionBuckets = q.options.map(() => []);
     const skippedUsers = [];
     const correctIndex = getCorrectIndex(q);
 
-    results.forEach((res) => {
-      const userName = res.userEmail ? res.userEmail.split("@")[0] : "Guest";
+    resultsWithUserNames.forEach((item) => {
+      const res = item.original;
+      const userName = item.userName;
       const choice = res.userAnswers ? res.userAnswers[qIdx] : null;
       
       // Extract surety from the saved result data
