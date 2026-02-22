@@ -203,6 +203,8 @@ function renderPalette(accuracies) {
   const grid = document.getElementById("admin-palette-grid");
   grid.innerHTML = "";
 
+  const fragment = document.createDocumentFragment();
+
   accuracies.forEach((acc, i) => {
     const item = document.createElement("div");
     let heatClass = "heat-high";
@@ -228,8 +230,9 @@ function renderPalette(accuracies) {
       const el = document.getElementById(`q-card-${i}`);
       if (el) el.scrollIntoView({ behavior: "smooth" });
     };
-    grid.appendChild(item);
+    fragment.appendChild(item);
   });
+  grid.appendChild(fragment);
 }
 
 /**
