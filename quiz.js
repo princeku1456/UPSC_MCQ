@@ -105,6 +105,12 @@ async function renderSubjects() {
     });
   });
 
+  // OPTIMIZATION: Pre-calculate completed chapter IDs for O(1) lookup
+  const completedChapterIds = new Set();
+  if (typeof userHistory !== 'undefined' && userHistory) {
+      userHistory.forEach(h => completedChapterIds.add(h.chapterId));
+  }
+
   sortedSubjectKeys.forEach((subjectKey) => {
     const chapters = allQuizData[subjectKey];
     const totalChapters = Object.keys(chapters).length;
@@ -112,7 +118,7 @@ async function renderSubjects() {
 
     const completedChaptersCount = Object.keys(chapters).filter((chapId) => {
       const fullId = subjectPrefix + chapId;
-      return userHistory && userHistory.some((h) => h.chapterId === fullId);
+      return completedChapterIds.has(fullId);
     }).length;
 
     const progressPercent =
