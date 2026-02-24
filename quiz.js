@@ -1269,9 +1269,15 @@ function renderQuestion() {
   const div = document.createElement("div");
   div.className = "question";
   const formattedText = TextFormatter.formatQuestionText(question.text);
-  div.innerHTML = `<div class="mb-3 lead fw-bold">Q${
-    currentQuestionIndex + 1
-  }. ${formattedText}</div>`;
+
+  // Updated Layout with Feedback Button
+  div.innerHTML = `
+    <div class="d-flex justify-content-between align-items-start mb-3 gap-2">
+        <div class="lead fw-bold" style="flex: 1;">Q${currentQuestionIndex + 1}. ${formattedText}</div>
+        <button class="btn btn-sm btn-outline-danger border-0 opacity-50 feedback-btn" onclick="openFeedbackModal()" title="Report Issue" style="min-width: 40px;">
+            ⚠️
+        </button>
+    </div>`;
 
   question.options.forEach((opt, idx) => {
     const label = document.createElement("label");
@@ -1677,4 +1683,72 @@ function toggleMarkForReview() {
   renderQuestion(); // Refresh the UI to update button text
   updateNavHighlights(); // Refresh palette colors
   saveQuizProgress(); // Save state
+}
+
+/* =========================================
+   8. FEEDBACK SYSTEM
+   ========================================= */
+
+function openFeedbackModal() {
+    const q = currentQuizData[currentQuestionIndex];
+    // Create a unique ID for the question (Chapter + Index)
+    const uniqueQId = `${currentChapterId}_Q${currentQuestionIndex + 1}`;
+
+    document.getElementById('feedback-question-id').value = uniqueQId;
+    document.getElementById('feedback-comment').value = '';
+
+    // Set focus to the first input after modal opens
+    const modalEl = document.getElementById('feedbackModal');
+    modalEl.addEventListener('shown.bs.modal', function () {
+        document.getElementById('feedback-type').focus();
+    }, { once: true });
+
+    const modal = new bootstrap.Modal(modalEl);
+    modal.show();
+}
+
+async function submitFeedback() {
+    if (!currentUser) return toastr.error("You must be logged in.");
+
+    const type = document.getElementById('feedback-type').value;
+    const comment = document.getElementById('feedback-comment').value.trim();
+    const qId = document.getElementById('feedback-question-id').value;
+
+    if (!comment) {
+        toastr.warning("Please provide a brief description of the issue.");
+        document.getElementById('feedback-comment').focus();
+        return;
+    }
+
+    const btn = document.querySelector('#feedbackModal .btn-danger');
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
+
+    try {
+        await db.collection('feedback').add({
+            userId: currentUser.uid,
+            userEmail: currentUser.email,
+            questionId: qId,
+            chapterId: currentChapterId,
+            issueType: type,
+            comment: comment,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            status: 'open',
+            userAgent: navigator.userAgent
+        });
+
+        toastr.success("Report submitted successfully! We'll look into it.");
+
+        const modalEl = document.getElementById('feedbackModal');
+        const modal = bootstrap.Modal.getInstance(modalEl);
+        if (modal) modal.hide();
+
+    } catch (e) {
+        console.error("Feedback Error:", e);
+        toastr.error("Failed to submit report. Please check your connection.");
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+    }
 }

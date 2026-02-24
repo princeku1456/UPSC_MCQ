@@ -8,7 +8,7 @@ async function run() {
   console.log('Starting UI Test...');
 
   // Start server (use 'python' on Windows, 'python3' on Linux/Mac)
-  const serverProcess = exec('python -m http.server 8080');
+  const serverProcess = exec('python3 -m http.server 8080');
   console.log('Server starting on port 8080...');
 
   // Give server time to fully start
@@ -124,6 +124,9 @@ async function run() {
     window.firebase.auth.GoogleAuthProvider = class {};
     window.firebase.firestore.persistentLocalCache = () => ({});
     window.firebase.firestore.persistentMultipleTabManager = () => ({});
+    window.firebase.firestore.FieldValue = {
+        serverTimestamp: () => new Date().toISOString()
+    };
 
     // Add these specifically because they are used in config.js
     window.firebase.apps = [];
@@ -180,6 +183,22 @@ async function run() {
 
     // Set Confidence (optional, but good for coverage)
     await page.click('.surety-100');
+
+    // --- TEST FEEDBACK FEATURE ---
+    console.log('Testing Feedback Button...');
+    const feedbackBtn = page.locator('.feedback-btn');
+    await feedbackBtn.waitFor({ state: 'visible' });
+    await feedbackBtn.click();
+
+    await page.waitForSelector('#feedbackModal', { state: 'visible' });
+    console.log('✅ Feedback Modal Opened.');
+
+    await page.fill('#feedback-comment', 'Test Issue Report');
+    await page.click('#feedbackModal .btn-danger'); // Submit button
+
+    await page.waitForSelector('#toast-container', { timeout: 5000 });
+    console.log('✅ Feedback Submitted Successfully.');
+    // -----------------------------
 
     await page.click('#next-btn');
     console.log('✅ Navigated to Next Question.');
