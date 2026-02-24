@@ -22,7 +22,7 @@ export const Layout: React.FC = () => {
 
   return (
     <div className="d-flex flex-column min-vh-100">
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+      <nav className="navbar navbar-expand-lg navbar-dark main-navbar shadow-sm">
         <div className="container">
           <Link className="navbar-brand fw-bold" to="/">
             <i className="bi bi-mortarboard-fill me-2"></i>UPSC MCQ

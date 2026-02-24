@@ -140,17 +140,15 @@ export const QuizInterface: React.FC<QuizInterfaceProps> = ({ questions, subject
           </button>
         </div>
 
-        <div className="card shadow-sm border-0 mb-4">
-          <div className="card-body p-4">
-            <div className="mb-3 lead fw-bold" dangerouslySetInnerHTML={{ __html: `Q${currentQuestionIndex + 1}. ${TextFormatter.formatQuestionText(currentQuestion.text)}` }}></div>
+        <div className="quiz-box mb-4">
+            <div className="mb-3 question fw-bold" dangerouslySetInnerHTML={{ __html: `Q${currentQuestionIndex + 1}. ${TextFormatter.formatQuestionText(currentQuestion.text)}` }}></div>
 
             <div className="options-list">
               {currentQuestion.options.map((opt, idx) => (
-                <label key={idx} className={`option shadow-sm d-flex align-items-center p-3 mb-2 border rounded ${currentAnswer?.answer === idx ? 'bg-light border-primary' : ''}`} style={{cursor: 'pointer'}}>
+                <label key={idx} className={`option shadow-sm ${currentAnswer?.answer === idx ? 'selected' : ''}`}>
                   <input
                     type="radio"
                     name={`q-${currentQuestionIndex}`}
-                    className="form-check-input me-3"
                     checked={currentAnswer?.answer === idx}
                     onChange={() => handleAnswerSelect(idx)}
                   />
@@ -159,23 +157,21 @@ export const QuizInterface: React.FC<QuizInterfaceProps> = ({ questions, subject
               ))}
             </div>
 
-            <div className="mt-4 animate-fade-in">
-              <label className="form-label fw-bold text-muted small text-uppercase">Confidence Level</label>
-              <div className="btn-group w-100 shadow-sm" role="group">
+            <div className="mt-4 mb-2 animate-fade-in">
+              <div className="surety-label">Confidence Level</div>
+              <div className="surety-matrix shadow-sm" role="radiogroup">
                 {[100, 75, 50, 0].map(val => (
-                  <button
+                  <div
                     key={val}
-                    type="button"
-                    className={`btn ${currentAnswer?.surety === val ? getSuretyColor(val) : 'btn-outline-secondary'}`}
+                    className={`surety-opt surety-${val} ${currentAnswer?.surety === val ? 'selected' : ''}`}
                     onClick={() => handleSuretySelect(val)}
+                    data-val={val}
                   >
                     {val}%
-                  </button>
+                  </div>
                 ))}
               </div>
             </div>
-
-          </div>
         </div>
 
         <div className="d-flex justify-content-between">
@@ -208,65 +204,56 @@ export const QuizInterface: React.FC<QuizInterfaceProps> = ({ questions, subject
 
       {/* Sidebar / Palette */}
       <div className="col-lg-4">
-        <div className="card shadow-sm border-0 mb-3 sticky-top" style={{top: '20px', zIndex: 100}}>
-           <div className="card-header bg-white py-3">
-               <h6 className="mb-0 fw-bold text-muted">Question Palette</h6>
-           </div>
-           <div className="card-body">
-               {/* Timer */}
-               <div className="timer-display text-center mb-4 p-3 bg-light rounded position-relative">
-                   <div className={`display-4 fw-bold ${secondsRemaining < 180 ? 'text-danger' : 'text-dark'}`}>
-                       {Math.floor(secondsRemaining / 60)}:{(secondsRemaining % 60).toString().padStart(2, '0')}
-                   </div>
-                   <small className="text-muted text-uppercase fw-bold">Time Remaining</small>
-                   <button
-                       className="btn btn-sm btn-secondary position-absolute bottom-0 end-0 m-2"
-                       onClick={toggle}
-                   >
-                       <i className={`bi ${isPaused ? 'bi-play-fill' : 'bi-pause-fill'}`}></i> {isPaused ? 'Resume' : 'Pause'}
-                   </button>
+        <div className="quiz-nav-sidebar">
+           <div className="nav-header">Question Palette</div>
+
+           {/* Timer */}
+           <div className="timer-container shadow-sm position-relative" style={{paddingBottom: '45px'}}>
+               <span className="timer-label">Time Remaining</span>
+               <div className={`timer-value ${secondsRemaining < 180 ? 'low-time' : ''}`}>
+                   {Math.floor(secondsRemaining / 60)}:{(secondsRemaining % 60).toString().padStart(2, '0')}
                </div>
 
-               {/* Grid */}
-               <div className="d-flex flex-wrap gap-2 justify-content-center mb-4" style={{maxHeight: '300px', overflowY: 'auto'}}>
-                   {questions.map((_, idx) => {
-                       const isCurrent = idx === currentQuestionIndex;
-                       const uAns = userAnswers[idx];
-                       const isReview = markedForReview[idx];
-
-                       let btnClass = 'btn-outline-secondary';
-                       if (isCurrent) btnClass = 'btn-primary';
-                       else if (isReview) btnClass = 'btn-warning text-white'; // Purple replacement? Warning is yellow/orange.
-                       // Wait, quiz.js used purple for review. Bootstrap warning is yellow.
-                       // I'll stick to btn-warning or custom style.
-                       else if (uAns) btnClass = 'btn-success text-white'; // Attempted
-
-                       return (
-                           <button
-                               key={idx}
-                               className={`btn btn-sm ${btnClass}`}
-                               style={{width: '40px', height: '40px'}}
-                               onClick={() => handleNavigate(idx)}
-                           >
-                               {idx + 1}
-                           </button>
-                       );
-                   })}
-               </div>
-
-               <button className="btn btn-success w-100 fw-bold py-2" onClick={() => submitQuiz(false)}>
-                   Submit Test
+               <button
+                   className="btn btn-sm btn-secondary-custom fw-bold position-absolute"
+                   style={{bottom: '12px', right: '12px', fontSize: '0.85rem', padding: '5px 12px', borderRadius: '8px'}}
+                   onClick={toggle}
+               >
+                   <i className={`bi ${isPaused ? 'bi-play-fill' : 'bi-pause-fill'}`}></i> {isPaused ? 'Resume' : 'Pause'}
                </button>
            </div>
+
+           {/* Grid */}
+           <div className="nav-grid mb-4">
+               {questions.map((_, idx) => {
+                   const isCurrent = idx === currentQuestionIndex;
+                   const uAns = userAnswers[idx];
+                   const isReview = markedForReview[idx];
+
+                   let extraClass = '';
+                   if (isCurrent) extraClass = 'active';
+                   else if (isReview && uAns) extraClass = 'attempted marked-nav';
+                   else if (isReview) extraClass = 'marked-nav';
+                   else if (uAns) extraClass = 'attempted';
+
+                   return (
+                       <div
+                           key={idx}
+                           className={`nav-item shadow-sm ${extraClass}`}
+                           onClick={() => handleNavigate(idx)}
+                           role="button"
+                       >
+                           {idx + 1}
+                       </div>
+                   );
+               })}
+           </div>
+
+           <button className="btn btn-success-custom w-100 fw-bold py-2" onClick={() => submitQuiz(false)}>
+               Submit Test
+           </button>
         </div>
       </div>
     </div>
   );
 };
-
-function getSuretyColor(val: number) {
-    if (val === 100) return 'btn-success';
-    if (val === 75) return 'btn-primary'; // slightly less confident
-    if (val === 50) return 'btn-warning';
-    return 'btn-danger';
-}

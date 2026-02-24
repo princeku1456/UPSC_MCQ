@@ -89,7 +89,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({ result, questions, onExi
                 <h4 className="fw-bold text-primary m-0">{result.chapterName}</h4>
                 <span className="badge bg-secondary">Performance Review</span>
             </div>
-            <button className="btn btn-primary px-4 shadow py-2" onClick={onExit}>← Back</button>
+            <button className="btn btn-primary-custom px-4 shadow py-2" onClick={onExit}>← Back</button>
         </div>
 
         <div className="card mb-4 border-0 shadow-sm">
@@ -212,7 +212,7 @@ export const ReviewMode: React.FC<ReviewModeProps> = ({ result, questions, onExi
         />
 
         <div className="text-center mt-5">
-            <button className="btn btn-primary px-5 shadow py-2" onClick={onExit}>← Back</button>
+            <button className="btn btn-primary-custom px-5 shadow py-2" onClick={onExit}>← Back</button>
         </div>
     </div>
   );

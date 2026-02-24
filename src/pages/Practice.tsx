@@ -75,45 +75,52 @@ export const Practice: React.FC = () => {
   if (!manifest) return <div className="text-center mt-5"><div className="spinner-border text-primary"></div></div>;
 
   return (
-      <div className="container">
+      <div>
           {step === 'config' && (
-              <div className="row justify-content-center">
-                  <div className="col-md-8 col-lg-6">
-                      <div className="card border-0 shadow-sm rounded-4 p-4">
-                          <h4 className="fw-bold text-primary mb-4 text-center">Practice Setup</h4>
+              <>
+                <button className="btn btn-primary-custom px-4 shadow mb-4" onClick={() => window.history.back()}>← Back to Dashboard</button>
+                <div className="text-center mb-5">
+                    <h2 className="fw-bold section-title text-primary">Practice MCQ</h2>
+                    <div className="title-underline mx-auto" style={{background: 'var(--secondary-color)'}}></div>
+                    <p className="text-muted mt-3">Configure your custom practice session below.</p>
+                </div>
 
-                          <div className="mb-3">
-                              <label className="form-label fw-bold">1. Select Subject</label>
-                              <select className="form-select" value={selectedSubject} onChange={e => { setSelectedSubject(e.target.value); setSelectedChapter(''); }}>
-                                  <option value="" disabled>Choose...</option>
-                                  {Object.keys(manifest).map(s => <option key={s} value={s}>{s}</option>)}
-                              </select>
-                          </div>
+                <div className="row justify-content-center">
+                    <div className="col-md-8 col-lg-6">
+                        <div className="card border-0 shadow-sm rounded-4 p-4">
+                            <div className="mb-3">
+                                <label className="form-label fw-bold text-muted small">1. Select Subject</label>
+                                <select className="form-select form-select-lg" value={selectedSubject} onChange={e => { setSelectedSubject(e.target.value); setSelectedChapter(''); }}>
+                                    <option value="" disabled>Choose a Subject...</option>
+                                    {Object.keys(manifest).map(s => <option key={s} value={s}>{s}</option>)}
+                                </select>
+                            </div>
 
-                          <div className="mb-3">
-                              <label className="form-label fw-bold">2. Select Topic</label>
-                              <select className="form-select" value={selectedChapter} onChange={e => setSelectedChapter(e.target.value)} disabled={!selectedSubject}>
-                                  <option value="" disabled>Choose...</option>
-                                  <option value="all">All Topics</option>
-                                  {selectedSubject && manifest[selectedSubject] && Object.keys(manifest[selectedSubject]).map(c => (
-                                      <option key={c} value={c}>{c}</option>
-                                  ))}
-                              </select>
-                          </div>
+                            <div className="mb-3">
+                                <label className="form-label fw-bold text-muted small">2. Select Topic / Chapter</label>
+                                <select className="form-select form-select-lg" value={selectedChapter} onChange={e => setSelectedChapter(e.target.value)} disabled={!selectedSubject}>
+                                    <option value="" disabled>Select Subject first...</option>
+                                    <option value="all">All Topics</option>
+                                    {selectedSubject && manifest[selectedSubject] && Object.keys(manifest[selectedSubject]).map(c => (
+                                        <option key={c} value={c}>{c}</option>
+                                    ))}
+                                </select>
+                            </div>
 
-                          <div className="mb-4">
-                              <label className="form-label fw-bold">3. Question Limit</label>
-                              <select className="form-select" value={questionLimit} onChange={e => setQuestionLimit(parseInt(e.target.value))}>
-                                  {[10, 20, 30, 40, 50, 75, 100].map(n => <option key={n} value={n}>{n} Questions</option>)}
-                              </select>
-                          </div>
+                            <div className="mb-4">
+                                <label className="form-label fw-bold text-muted small">3. Number of Questions</label>
+                                <select className="form-select form-select-lg" value={questionLimit} onChange={e => setQuestionLimit(parseInt(e.target.value))}>
+                                    {[10, 20, 30, 40, 50, 75, 100].map(n => <option key={n} value={n}>{n} Questions</option>)}
+                                </select>
+                            </div>
 
-                          <button className="btn btn-primary w-100 py-2 fw-bold" onClick={handleStart} disabled={!selectedSubject || !selectedChapter}>
-                              Start Practice
-                          </button>
-                      </div>
-                  </div>
-              </div>
+                            <button className="btn btn-secondary-custom w-100 py-3 fw-bold fs-5" onClick={handleStart} disabled={!selectedSubject || !selectedChapter}>
+                                Generate Practice
+                            </button>
+                        </div>
+                    </div>
+                </div>
+              </>
           )}
 
           {step === 'quiz' && (

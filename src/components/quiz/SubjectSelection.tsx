@@ -34,7 +34,7 @@ export const SubjectSelection: React.FC<SubjectSelectionProps> = ({ manifest, us
         return (
           <div key={subject} className="col-md-4 col-lg-3">
             <div
-              className={`card h-100 shadow-sm subject-card ${isCompleted ? 'border-success' : ''}`}
+              className={`card topic-card h-100 ${isCompleted ? 'subject-completed' : ''}`}
               onClick={() => onSelect(subject)}
               role="button"
               style={{cursor: 'pointer', transition: 'transform 0.2s'}}

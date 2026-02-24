@@ -38,19 +38,19 @@ export const ChapterSelection: React.FC<ChapterSelectionProps> = ({ subject, cha
 
         return (
           <div key={chapId} className="col-md-6 col-lg-4">
-            <div className="card h-100 border-0 shadow-sm">
+            <div className="card chapter-card h-100 border-0">
               <div className="card-body d-flex flex-column p-4">
                 <h5 className="card-title fw-bold text-dark">{chapId}</h5>
                 <div className="mt-auto">
                   <button
-                    className="btn btn-primary w-100 mb-2"
+                    className="btn btn-primary-custom w-100 mb-2"
                     onClick={() => onSelect(fullChapterId, chapId)}
                   >
                     {startBtnText}
                   </button>
                   {hasTaken && latestResult && (
                     <button
-                        className="btn btn-outline-secondary w-100"
+                        className="btn btn-secondary-custom w-100 mt-2"
                         onClick={() => onReview(latestResult)}
                     >
                         👁 Review Performance

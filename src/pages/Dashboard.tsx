@@ -152,43 +152,43 @@ export const Dashboard: React.FC = () => {
   const { confValues, confStats } = calculateConfidenceStats(activeData);
 
   return (
-    <div className="container-fluid">
+    <div>
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2 className="fw-bold text-primary">Dashboard</h2>
-        <div className="btn-group" role="group">
-            <button type="button" className={`btn ${dashboardMode === 'quiz' ? 'btn-primary' : 'btn-outline-primary'}`} onClick={() => setDashboardMode('quiz')}>Quiz Stats</button>
-            <button type="button" className={`btn ${dashboardMode === 'practice' ? 'btn-primary' : 'btn-outline-primary'}`} onClick={() => setDashboardMode('practice')}>Practice Stats</button>
+        <h2 className="fw-bold text-primary section-title">Dashboard</h2>
+        <div className="nav-pills">
+            <button className={`nav-link ${dashboardMode === 'quiz' ? 'active' : ''}`} onClick={() => setDashboardMode('quiz')}>Quiz Stats</button>
+            <button className={`nav-link ${dashboardMode === 'practice' ? 'active' : ''}`} onClick={() => setDashboardMode('practice')}>Practice Stats</button>
         </div>
       </div>
 
       {/* Summary Cards */}
       <div className="row g-3 mb-4 text-center">
           <div className="col-md-2 col-6">
-              <div className="card shadow-sm border-0 h-100 py-3">
+              <div className="history-card h-100 py-3">
                   <h6 className="text-muted small text-uppercase fw-bold">Total Tests</h6>
                   <h3 className="fw-bold text-dark mb-0">{totalTests}</h3>
               </div>
           </div>
           <div className="col-md-2 col-6">
-              <div className="card shadow-sm border-0 h-100 py-3">
+              <div className="history-card avg-score h-100 py-3">
                   <h6 className="text-muted small text-uppercase fw-bold">Avg Score</h6>
                   <h3 className="fw-bold text-primary mb-0">{avgScore}%</h3>
               </div>
           </div>
            <div className="col-md-2 col-6">
-              <div className="card shadow-sm border-0 h-100 py-3">
+              <div className="history-card high-score h-100 py-3">
                   <h6 className="text-muted small text-uppercase fw-bold">Precision</h6>
                   <h3 className="fw-bold text-success mb-0">{precisionRate}%</h3>
               </div>
           </div>
           <div className="col-md-2 col-6">
-              <div className="card shadow-sm border-0 h-100 py-3">
+              <div className="history-card low-score h-100 py-3">
                   <h6 className="text-muted small text-uppercase fw-bold">Neg. Drain</h6>
                   <h3 className="fw-bold text-danger mb-0">{negativeDrain}%</h3>
               </div>
           </div>
            <div className="col-md-2 col-12">
-              <div className={`card shadow-sm border-0 h-100 py-3 ${parseFloat(conceptGap) > 15 ? 'border-danger border-2' : 'border-success border-2'}`}>
+              <div className={`history-card h-100 py-3 ${parseFloat(conceptGap) > 15 ? 'low-score' : 'high-score'}`}>
                   <h6 className="text-muted small text-uppercase fw-bold">Concept Gap</h6>
                   <h3 className="fw-bold text-warning mb-0">{conceptGap}</h3>
                   <small className="text-muted" style={{fontSize: '0.7rem'}}>Silly Mistakes (Easy Qs)</small>
