@@ -98,7 +98,7 @@
 }
 
 /* Question Palette */
-[data-theme="dark"] .nav-item {
+[data-theme="dark"] .quiz-nav-item {
     background-color: var(--input-bg);
     color: var(--text-muted);
 }
@@ -422,7 +422,7 @@ body {
     justify-items: center;
 }
 
-.nav-item {
+.quiz-nav-item {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -439,18 +439,18 @@ body {
     transition: all 0.2s ease;
 }
 
-.nav-item:hover {
+.quiz-nav-item:hover {
     background-color: var(--option-hover);
     color: var(--primary-color);
     border-color: var(--secondary-color);
 }
 
 /* Quiz Nav States */
-.nav-item.active { background-color: var(--primary-color); color: #fff; box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.3); border-color: var(--primary-color); }
-.nav-item.attempted { background-color: var(--accent-color); color: #fff; border-color: var(--accent-color); }
-.nav-item.correct-nav { background-color: #16a34a; color: #fff; }
-.nav-item.incorrect-nav { background-color: #dc2626; color: #fff; }
-.nav-item.unattempted { background-color: var(--input-bg); color: var(--text-muted); }
+.quiz-nav-item.active { background-color: var(--primary-color); color: #fff; box-shadow: 0 4px 6px -1px rgba(30, 58, 138, 0.3); border-color: var(--primary-color); }
+.quiz-nav-item.attempted { background-color: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+.quiz-nav-item.correct-nav { background-color: #16a34a; color: #fff; }
+.quiz-nav-item.incorrect-nav { background-color: #dc2626; color: #fff; }
+.quiz-nav-item.unattempted { background-color: var(--input-bg); color: var(--text-muted); }
 
 /* Question Options */
 .question { margin-bottom: 30px; font-size: 1.15rem; color: var(--text-main); }
@@ -669,7 +669,7 @@ body {
 }
 
 /* Question Palette: Marked for Review State (Purple) */
-.nav-item.marked-nav {
+.quiz-nav-item.marked-nav {
     background-color: #7e22ce !important; /* Vibrant Purple */
     color: #ffffff !important;
     border-color: #6b21a8 !important;
@@ -678,7 +678,7 @@ body {
 }
 
 /* Star indicator for marked questions */
-.nav-item.marked-nav::after {
+.quiz-nav-item.marked-nav::after {
     content: "★";
     position: absolute;
     top: 1px;
@@ -688,12 +688,12 @@ body {
 }
 
 /* Gradient for questions that are both Answered (Blue) and Marked (Purple) */
-.nav-item.attempted.marked-nav {
+.quiz-nav-item.attempted.marked-nav {
     background: linear-gradient(135deg, #3b82f6 50%, #7e22ce 50%) !important;
     color: #ffffff !important;
 }
 
-[data-theme="dark"] .nav-item.marked-nav {
+[data-theme="dark"] .quiz-nav-item.marked-nav {
     background-color: #9333ea !important; /* Lighter Purple for dark mode */
     border-color: #7e22ce !important;
 }

@@ -239,7 +239,7 @@ export const QuizInterface: React.FC<QuizInterfaceProps> = ({ questions, subject
                    return (
                        <div
                            key={idx}
-                           className={`nav-item shadow-sm ${extraClass}`}
+                           className={`quiz-nav-item shadow-sm ${extraClass}`}
                            onClick={() => handleNavigate(idx)}
                            role="button"
                        >
