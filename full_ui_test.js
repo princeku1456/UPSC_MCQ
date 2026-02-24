@@ -19,6 +19,10 @@ async function run() {
   const context = await browser.newContext();
   const page = await context.newPage();
 
+  // Console logs
+  page.on('console', msg => console.log('BROWSER LOG:', msg.text()));
+  page.on('pageerror', err => console.log('BROWSER ERROR:', err));
+
   // Mock Dialogs (Alerts/Confirms)
   page.on('dialog', async dialog => {
     console.log(`Dialog message: ${dialog.message()}`);
@@ -148,16 +152,27 @@ async function run() {
     await page.waitForSelector('h5.card-title:has-text("Ancient_India")', { timeout: 5000 });
     console.log('✅ Chapter "Ancient_India" found.');
 
-    await page.click('button:has-text("Start Test")');
+    // Click "Start Test" on the chapter card to open modal
+    await page.click('.chapter-card button:has-text("Start Test")');
+
+    // Wait for the modal button to be ready and click it
+    const modalStartBtn = page.locator('#start-quiz-btn');
+    await modalStartBtn.waitFor({ state: 'visible' });
+    await page.waitForTimeout(500);
+    await modalStartBtn.click();
 
     await page.waitForSelector('#quiz-section', { state: 'visible' });
     console.log('✅ Quiz Section loaded.');
+
+    // Debug content
+    // const content = await page.content();
+    // console.log(content);
 
     const questionText = await page.textContent('.question .lead');
     if (questionText.includes('Red Fort')) {
         console.log('✅ Question 1 verified.');
     } else {
-        throw new Error('Question text mismatch');
+        throw new Error('Question text mismatch: ' + questionText);
     }
 
     // Answer Q1 Correctly (Index 0)
