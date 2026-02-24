@@ -271,7 +271,7 @@ function renderPracticeQuestion() {
   const currentSurety = practiceUserAnswers[practiceCurrentIndex]?.surety;
 
   container.innerHTML = `<div class="question">
-        <div class="mb-3 lead fw-bold">Q${practiceCurrentIndex + 1}. ${TextFormatter.formatQuestionText(q.text)}</div>
+        <div class="mb-3 lead">Q${practiceCurrentIndex + 1}. ${TextFormatter.formatQuestionText(q.text)}</div>
         <div id="practice-options"></div>
         
         <div class="mt-4 mb-2 animate-fade-in">
