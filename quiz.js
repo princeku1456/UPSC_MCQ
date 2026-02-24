@@ -207,6 +207,16 @@ function renderChapters(subjectKey) {
     });
   });
 
+  // OPTIMIZATION: Create O(1) lookup map for user history
+  const latestResultsMap = new Map();
+  if (typeof userHistory !== 'undefined' && userHistory) {
+    userHistory.forEach((h) => {
+      if (!latestResultsMap.has(h.chapterId)) {
+        latestResultsMap.set(h.chapterId, h);
+      }
+    });
+  }
+
   sortedChapterIds.forEach((chapId) => {
     const col = document.createElement("div");
     col.className = "col-md-6 col-lg-4 mb-4";
@@ -215,8 +225,7 @@ function renderChapters(subjectKey) {
     const fullChapterId = subjectPrefix + chapId;
 
     // Check if the user has already taken this test
-    const latestResult =
-      userHistory && userHistory.find((h) => h.chapterId === fullChapterId);
+    const latestResult = latestResultsMap.get(fullChapterId);
     const hasTaken = !!latestResult;
 
     const startBtnText = hasTaken ? "↻ Retake Test" : "🚀 Start Test";
