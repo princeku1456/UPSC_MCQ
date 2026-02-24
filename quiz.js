@@ -956,143 +956,173 @@ function filterReview(filterType, btnElement) {
 
 function renderReviewQuestions(filterType) {
   const container = document.getElementById("review-container");
-  container.innerHTML = "";
 
+  // Check if we need to initialize (first run or re-entry)
+  const existingCards = container.querySelectorAll('.question-card');
+  const isInitialized = existingCards.length === currentQuizData.length && container.dataset.chapterId === currentChapterId;
+
+  if (!isInitialized) {
+      container.innerHTML = "";
+      container.dataset.chapterId = currentChapterId;
+
+      currentQuizData.forEach((question, index) => {
+        const correctIndex = getCorrectIndex(question);
+        const uAns = userAnswers[index];
+        const userSurety = uAns?.surety !== undefined ? uAns.surety : "N/A";
+
+        let status = "unattempted";
+        if (uAns) {
+          status = uAns.answer === correctIndex ? "correct" : "incorrect";
+        }
+
+        let badgeHtml = "";
+        let borderClass = "";
+        let suretyClass = "surety-0";
+        if (userSurety === 100) suretyClass = "surety-100";
+        else if (userSurety === 75) suretyClass = "surety-75";
+        else if (userSurety === 50) suretyClass = "surety-50";
+
+        if (status === "correct") {
+          badgeHtml = '<span class="badge bg-success mb-2">Correct</span>';
+          borderClass = "border-success";
+        } else if (status === "incorrect") {
+          badgeHtml = '<span class="badge bg-danger mb-2">Incorrect</span>';
+          borderClass = "border-danger";
+        } else {
+          badgeHtml = '<span class="badge bg-secondary mb-2">Unattempted</span>';
+          borderClass = "border-secondary";
+        }
+
+        let statsHtml = "";
+
+        // Determine Difficulty Badge (Always calculate to match table logic)
+        // If stats are missing or attempts are 0, DifficultyHelper returns Medium/warning (0%)
+        const commTotal = currentReviewStats?.totalAttempts || 0;
+        const commCorrect = currentReviewStats?.correctCounts?.[index] || 0;
+        const diffInfo = DifficultyHelper.calculate(commCorrect, commTotal);
+        const difficultyBadge = `<span class="badge bg-${diffInfo.color} mb-2 ms-2">${diffInfo.label}</span>`;
+
+        if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
+          const total = currentReviewStats.totalAttempts;
+          const correctCount = commCorrect;
+          const attemptedCount =
+            (currentReviewStats.attemptedCounts &&
+              currentReviewStats.attemptedCounts[index]) ||
+            0;
+          const pCorrect = Math.round((correctCount / total) * 100);
+          const pIncorrect = Math.round(
+            ((attemptedCount - correctCount) / total) * 100
+          );
+          const pUnattempted = 100 - pCorrect - pIncorrect;
+
+          statsHtml = `
+                <div class="mt-2 mb-4 p-3 bg-light bg-opacity-75 rounded-3 border">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="small fw-bold text-uppercase text-secondary" style="letter-spacing: 0.5px;">👥 Community Stats</span>
+                        <span class="fw-bold" style="color: #4338ca;">${pCorrect}% Correct</span>
+                    </div>
+                    <div class="progress shadow-sm" style="height: 40px; background-color: #e2e8f0; border-radius: 8px; overflow: hidden;">
+                        <div class="progress-bar stats-bar-correct d-flex align-items-center justify-content-center" role="progressbar" style="width: ${pCorrect}%">
+                             <span class="progress-bar-text">${
+                               pCorrect > 12 ? pCorrect + "%" : ""
+                             }</span>
+                        </div>
+                        <div class="progress-bar stats-bar-incorrect d-flex align-items-center justify-content-center" role="progressbar" style="width: ${pIncorrect}%">
+                             <span class="progress-bar-text">${
+                               pIncorrect > 12 ? pIncorrect + "%" : ""
+                             }</span>
+                        </div>
+                        <div class="progress-bar stats-bar-left d-flex align-items-center justify-content-center" role="progressbar" style="width: ${pUnattempted}%">
+                             <span class="progress-bar-text">${
+                               pUnattempted > 12 ? pUnattempted + "%" : ""
+                             }</span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mb-2 mt-2">
+                        <span class="fw-bold" style="color: #4338ca;">Total test taken by: ${total}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        let optionsHtml = "";
+        question.options.forEach((opt, optIdx) => {
+          let optionClass = "option p-3 mb-2 border rounded";
+          let icon = "";
+          if (optIdx === correctIndex) {
+            optionClass =
+              "option p-3 mb-2 border rounded bg-success-subtle border-success fw-bold text-success";
+            icon = "✅";
+          } else if (uAns && uAns.answer === optIdx && status === "incorrect") {
+            optionClass =
+              "option p-3 mb-2 border rounded bg-danger-subtle border-danger text-danger";
+            icon = "❌";
+          }
+          optionsHtml += `<div class="${optionClass}">${icon} <span class="ms-1">${opt}</span></div>`;
+        });
+
+        // Time Badge Logic
+        const timeSec = (questionTimeSpent && questionTimeSpent[index]) ? Math.round(questionTimeSpent[index]) : 0;
+        const timeLabel = timeSec < 60 ? `${timeSec}s` : `${Math.floor(timeSec/60)}m ${timeSec%60}s`;
+        const timeBadge = `<span class="badge bg-light text-dark border ms-2">⏱ ${timeLabel}</span>`;
+
+        const card = document.createElement("div");
+        card.className = `card mb-4 shadow-sm border-0 border-start border-5 ${borderClass} question-card`;
+        card.dataset.status = status;
+
+        card.innerHTML = `
+                <div class="card-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="d-flex align-items-center flex-wrap gap-2">
+                            <h6 class="text-muted fw-bold m-0 me-2">Question ${index + 1}</h6>
+                            <span class="surety-badge ${suretyClass}">Confidence: ${userSurety}%</span>
+                            ${timeBadge}
+                            ${difficultyBadge}
+                        </div>
+                        ${badgeHtml}
+                    </div>
+                    ${statsHtml}
+                    <div class="fs-5 fw-medium mb-3">${TextFormatter.formatQuestionText(question.text)}</div>
+                    <div class="mb-3">${optionsHtml}</div>
+                    <div class="explanation mt-3 shadow-sm">
+                        <strong>💡 Explanation:</strong>
+                        <div class="mt-1 small">${
+                          question.explanation || "No explanation provided."
+                        }</div>
+                    </div>
+                </div>
+            `;
+        container.appendChild(card);
+      });
+  }
+
+  // Toggle Visibility
   let visibleCount = 0;
-
-  currentQuizData.forEach((question, index) => {
-    const correctIndex = getCorrectIndex(question);
-    const uAns = userAnswers[index];
-    const userSurety = uAns?.surety !== undefined ? uAns.surety : "N/A";
-
-    let status = "unattempted";
-    if (uAns) {
-      status = uAns.answer === correctIndex ? "correct" : "incorrect";
-    }
-
-    if (filterType !== "all" && status !== filterType) return;
-    visibleCount++;
-
-    let badgeHtml = "";
-    let borderClass = "";
-    let suretyClass = "surety-0";
-    if (userSurety === 100) suretyClass = "surety-100";
-    else if (userSurety === 75) suretyClass = "surety-75";
-    else if (userSurety === 50) suretyClass = "surety-50";
-
-    if (status === "correct") {
-      badgeHtml = '<span class="badge bg-success mb-2">Correct</span>';
-      borderClass = "border-success";
-    } else if (status === "incorrect") {
-      badgeHtml = '<span class="badge bg-danger mb-2">Incorrect</span>';
-      borderClass = "border-danger";
-    } else {
-      badgeHtml = '<span class="badge bg-secondary mb-2">Unattempted</span>';
-      borderClass = "border-secondary";
-    }
-
-    let statsHtml = "";
-
-    // Determine Difficulty Badge (Always calculate to match table logic)
-    // If stats are missing or attempts are 0, DifficultyHelper returns Medium/warning (0%)
-    const commTotal = currentReviewStats?.totalAttempts || 0;
-    const commCorrect = currentReviewStats?.correctCounts?.[index] || 0;
-    const diffInfo = DifficultyHelper.calculate(commCorrect, commTotal);
-    const difficultyBadge = `<span class="badge bg-${diffInfo.color} mb-2 ms-2">${diffInfo.label}</span>`;
-
-    if (currentReviewStats && currentReviewStats.totalAttempts > 0) {
-      const total = currentReviewStats.totalAttempts;
-      const correctCount = commCorrect;
-      const attemptedCount =
-        (currentReviewStats.attemptedCounts &&
-          currentReviewStats.attemptedCounts[index]) ||
-        0;
-      const pCorrect = Math.round((correctCount / total) * 100);
-      const pIncorrect = Math.round(
-        ((attemptedCount - correctCount) / total) * 100
-      );
-      const pUnattempted = 100 - pCorrect - pIncorrect;
-
-      statsHtml = `
-            <div class="mt-2 mb-4 p-3 bg-light bg-opacity-75 rounded-3 border">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <span class="small fw-bold text-uppercase text-secondary" style="letter-spacing: 0.5px;">👥 Community Stats</span>
-                    <span class="fw-bold" style="color: #4338ca;">${pCorrect}% Correct</span>
-                </div>
-                <div class="progress shadow-sm" style="height: 40px; background-color: #e2e8f0; border-radius: 8px; overflow: hidden;">
-                    <div class="progress-bar stats-bar-correct d-flex align-items-center justify-content-center" role="progressbar" style="width: ${pCorrect}%">
-                         <span class="progress-bar-text">${
-                           pCorrect > 12 ? pCorrect + "%" : ""
-                         }</span>
-                    </div>
-                    <div class="progress-bar stats-bar-incorrect d-flex align-items-center justify-content-center" role="progressbar" style="width: ${pIncorrect}%">
-                         <span class="progress-bar-text">${
-                           pIncorrect > 12 ? pIncorrect + "%" : ""
-                         }</span>
-                    </div>
-                    <div class="progress-bar stats-bar-left d-flex align-items-center justify-content-center" role="progressbar" style="width: ${pUnattempted}%">
-                         <span class="progress-bar-text">${
-                           pUnattempted > 12 ? pUnattempted + "%" : ""
-                         }</span>
-                    </div>
-                </div>
-                <div class="d-flex justify-content-between align-items-center mb-2 mt-2">
-                    <span class="fw-bold" style="color: #4338ca;">Total test taken by: ${total}</span>
-                </div>
-            </div>
-        `;
-    }
-
-    let optionsHtml = "";
-    question.options.forEach((opt, optIdx) => {
-      let optionClass = "option p-3 mb-2 border rounded";
-      let icon = "";
-      if (optIdx === correctIndex) {
-        optionClass =
-          "option p-3 mb-2 border rounded bg-success-subtle border-success fw-bold text-success";
-        icon = "✅";
-      } else if (uAns && uAns.answer === optIdx && status === "incorrect") {
-        optionClass =
-          "option p-3 mb-2 border rounded bg-danger-subtle border-danger text-danger";
-        icon = "❌";
+  const cards = container.querySelectorAll('.question-card');
+  cards.forEach(card => {
+      const status = card.dataset.status;
+      if (filterType === 'all' || status === filterType) {
+          card.classList.remove('d-none');
+          visibleCount++;
+      } else {
+          card.classList.add('d-none');
       }
-      optionsHtml += `<div class="${optionClass}">${icon} <span class="ms-1">${opt}</span></div>`;
-    });
-
-    // Time Badge Logic
-    const timeSec = (questionTimeSpent && questionTimeSpent[index]) ? Math.round(questionTimeSpent[index]) : 0;
-    const timeLabel = timeSec < 60 ? `${timeSec}s` : `${Math.floor(timeSec/60)}m ${timeSec%60}s`;
-    const timeBadge = `<span class="badge bg-light text-dark border ms-2">⏱ ${timeLabel}</span>`;
-
-    const card = document.createElement("div");
-    card.className = `card mb-4 shadow-sm border-0 border-start border-5 ${borderClass}`;
-    card.innerHTML = `
-            <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <div class="d-flex align-items-center flex-wrap gap-2">
-                        <h6 class="text-muted fw-bold m-0 me-2">Question ${index + 1}</h6>
-                        <span class="surety-badge ${suretyClass}">Confidence: ${userSurety}%</span>
-                        ${timeBadge}
-                        ${difficultyBadge}
-                    </div>
-                    ${badgeHtml}
-                </div>
-                ${statsHtml} 
-                <div class="fs-5 fw-medium mb-3">${TextFormatter.formatQuestionText(question.text)}</div>
-                <div class="mb-3">${optionsHtml}</div>
-                <div class="explanation mt-3 shadow-sm">
-                    <strong>💡 Explanation:</strong>
-                    <div class="mt-1 small">${
-                      question.explanation || "No explanation provided."
-                    }</div>
-                </div>
-            </div>
-        `;
-    container.appendChild(card);
   });
 
+  // Handle "No questions found"
+  let noQuestionsMsg = container.querySelector('.alert-info-no-questions');
   if (visibleCount === 0) {
-    container.innerHTML = `<div class="alert alert-info text-center">No questions found for this filter.</div>`;
+      if (!noQuestionsMsg) {
+          noQuestionsMsg = document.createElement('div');
+          noQuestionsMsg.className = 'alert alert-info text-center mt-3 alert-info-no-questions';
+          noQuestionsMsg.textContent = 'No questions found for this filter.';
+          container.appendChild(noQuestionsMsg);
+      }
+      noQuestionsMsg.classList.remove('d-none');
+  } else {
+      if (noQuestionsMsg) {
+          noQuestionsMsg.classList.add('d-none');
+      }
   }
 }
 
