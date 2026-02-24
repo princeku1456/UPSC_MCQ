@@ -758,9 +758,6 @@ const TextFormatter = {
     formatQuestionText(text) {
         if (!text) return "";
 
-        // Make "incorrect" bold (case-insensitive)
-        text = text.replace(/incorrect/gi, "<b>incorrect</b>");
-
         // Split by newline to process line by line, handling various line endings
         const lines = text.split(/\r?\n/);
         let output = [];
@@ -775,7 +772,6 @@ const TextFormatter = {
             let separator = null;
             if (line.includes('|')) separator = '|';
             else if (line.includes(' - ') && !line.trim().startsWith('-')) separator = ' - ';
-            else if (line.includes(':')) separator = ':';
 
             // If we are already in a table
             if (inTable) {
