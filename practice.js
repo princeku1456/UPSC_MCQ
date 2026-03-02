@@ -398,6 +398,9 @@ function clearPracticeSelection() {
 function renderPracticeNav() {
   const nav = document.getElementById("practice-nav-container");
   nav.innerHTML = "";
+
+  const fragment = document.createDocumentFragment();
+
   practiceQuizData.forEach((_, i) => {
     const item = document.createElement("div");
     item.className = "nav-item shadow-sm nav-item-animate";
@@ -420,8 +423,10 @@ function renderPracticeNav() {
       renderPracticeQuestion();
       updatePracticeNavHighlights();
     };
-    nav.appendChild(item);
+    fragment.appendChild(item);
   });
+
+  nav.appendChild(fragment);
   updatePracticeNavHighlights();
 }
 
