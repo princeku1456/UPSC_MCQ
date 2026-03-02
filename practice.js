@@ -205,8 +205,15 @@ async function loadPracticeQuiz(subject, chapter, limit) {
     if (allQuestions.length === 0)
       return toastr.error("No questions available.");
 
-    const randomized = [...allQuestions].sort(() => 0.5 - Math.random());
-    practiceQuizData = randomized.slice(0, limit);
+    const randomized = [...allQuestions];
+    const fetchLimit = Math.min(limit, randomized.length);
+    for (let i = 0; i < fetchLimit; i++) {
+      const j = i + Math.floor(Math.random() * (randomized.length - i));
+      const temp = randomized[i];
+      randomized[i] = randomized[j];
+      randomized[j] = temp;
+    }
+    practiceQuizData = randomized.slice(0, fetchLimit);
 
     practiceCurrentIndex = 0;
     practiceUserAnswers = {};
