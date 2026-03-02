@@ -821,19 +821,13 @@ const TextFormatter = {
         // First line is header
         const headers = lines[0].split(separator);
         html += '<tr class="table-light">';
-        headers.forEach(h => {
-            html += `<th class="fw-bold text-secondary text-uppercase small" scope="col">${h.trim()}</th>`;
-        });
+        html += headers.map(h => `<th class="fw-bold text-secondary text-uppercase small" scope="col">${h.trim()}</th>`).join('');
         html += '</tr></thead><tbody>';
 
         // Remaining lines are body
         for (let i = 1; i < lines.length; i++) {
             const cells = lines[i].split(separator);
-            html += '<tr>';
-            cells.forEach(c => {
-                html += `<td>${c.trim()}</td>`;
-            });
-            html += '</tr>';
+            html += `<tr>${cells.map(c => `<td>${c.trim()}</td>`).join('')}</tr>`;
         }
 
         html += '</tbody></table></div>';
