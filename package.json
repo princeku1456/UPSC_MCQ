@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/princeku1456/UPSC_MCQ#readme",
   "dependencies": {
-    "playwright": "^1.58.1"
+    "playwright": "^1.58.2"
   }
 }

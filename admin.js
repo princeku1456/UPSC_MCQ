@@ -98,13 +98,15 @@ function loadChapters() {
     a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
   );
 
+  const fragment = document.createDocumentFragment();
   sortedChapters.forEach((chapId) => {
     const opt = document.createElement("option");
     // ID generation logic matching quiz.js
     opt.value = sub.replace(/\s+/g, "_") + "_" + chapId;
     opt.textContent = chapId;
-    chapSelect.appendChild(opt);
+    fragment.appendChild(opt);
   });
+  chapSelect.appendChild(fragment);
   chapSelect.disabled = false;
 }
 
