@@ -1405,6 +1405,7 @@ function clearSelection() {
 function renderNav() {
   const nav = document.getElementById("nav-container");
   nav.innerHTML = "";
+  const fragment = document.createDocumentFragment();
   currentQuizData.forEach((_, i) => {
     const item = document.createElement("div");
     item.className = "nav-item shadow-sm nav-item-animate";
@@ -1429,8 +1430,9 @@ function renderNav() {
       updateNavHighlights();
       saveQuizProgress();
     };
-    nav.appendChild(item);
+    fragment.appendChild(item);
   });
+  nav.appendChild(fragment);
   updateNavHighlights();
 }
 
