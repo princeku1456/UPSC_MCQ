@@ -217,6 +217,8 @@ function renderChapters(subjectKey) {
     });
   }
 
+  const fragment = document.createDocumentFragment();
+
   sortedChapterIds.forEach((chapId) => {
     const col = document.createElement("div");
     col.className = "col-md-6 col-lg-4 mb-4";
@@ -264,8 +266,10 @@ function renderChapters(subjectKey) {
       };
     }
 
-    row.appendChild(col);
+    fragment.appendChild(col);
   });
+
+  row.appendChild(fragment);
 }
 
 /* =========================================
