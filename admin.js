@@ -73,12 +73,14 @@ async function loadSubjects() {
     a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
   );
 
+  const fragment = document.createDocumentFragment();
   sortedSubjects.forEach((sub) => {
     const opt = document.createElement("option");
     opt.value = sub;
     opt.textContent = sub;
-    subSelect.appendChild(opt);
+    fragment.appendChild(opt);
   });
+  subSelect.appendChild(fragment);
   
   subSelect.addEventListener("change", loadChapters);
 }
