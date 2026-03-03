@@ -73,12 +73,14 @@ async function loadSubjects() {
     a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
   );
 
+  const fragment = document.createDocumentFragment();
   sortedSubjects.forEach((sub) => {
     const opt = document.createElement("option");
     opt.value = sub;
     opt.textContent = sub;
-    subSelect.appendChild(opt);
+    fragment.appendChild(opt);
   });
+  subSelect.appendChild(fragment);
   
   subSelect.addEventListener("change", loadChapters);
 }
@@ -98,13 +100,15 @@ function loadChapters() {
     a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' })
   );
 
+  const fragment = document.createDocumentFragment();
   sortedChapters.forEach((chapId) => {
     const opt = document.createElement("option");
     // ID generation logic matching quiz.js
     opt.value = sub.replace(/\s+/g, "_") + "_" + chapId;
     opt.textContent = chapId;
-    chapSelect.appendChild(opt);
+    fragment.appendChild(opt);
   });
+  chapSelect.appendChild(fragment);
   chapSelect.disabled = false;
 }
 
