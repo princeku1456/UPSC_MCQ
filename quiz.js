@@ -111,6 +111,8 @@ async function renderSubjects() {
       userHistory.forEach(h => completedChapterIds.add(h.chapterId));
   }
 
+  const fragment = document.createDocumentFragment();
+
   sortedSubjectKeys.forEach((subjectKey) => {
     const chapters = allQuizData[subjectKey];
     const totalChapters = Object.keys(chapters).length;
@@ -167,8 +169,10 @@ async function renderSubjects() {
             </div>`;
 
     col.onclick = () => renderChapters(subjectKey);
-    row.appendChild(col);
+    fragment.appendChild(col);
   });
+
+  row.appendChild(fragment);
 }
 
 /**
