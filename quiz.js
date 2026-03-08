@@ -622,7 +622,7 @@ async function renderReviewMode(resultData) {
     const uAns = userAnswers[i];
     const correctIndex = getCorrectIndex(q);
 
-    if (currentChapterName && currentChapterName.includes("FLT Test") && q.subject) {
+    if (q.subject) {
         // Find matching predefined subject (ignoring case/extra spaces just in case)
         const qSubj = q.subject.trim();
         let matchedSubj = Object.keys(subjectStats).find(
@@ -771,9 +771,14 @@ async function renderReviewMode(resultData) {
   `;
 
   let subjectMatrixHtml = "";
-  if (currentChapterName && currentChapterName.includes("FLT Test")) {
+  // Check if any subject stats were collected to decide whether to render the table.
+  // In non-FLT tests, questions may not have a subject field.
+  const hasSubjectStats = Object.values(subjectStats).some(stats => stats.total > 0);
+
+  if (hasSubjectStats) {
       const subjectRows = Object.keys(subjectStats).map(subject => {
           const stats = subjectStats[subject];
+          if (stats.total === 0) return ''; // Skip empty subjects
           const acc = stats.total > 0 ? ((stats.correct / stats.total) * 100).toFixed(1) : 0;
           return `
               <tr>
