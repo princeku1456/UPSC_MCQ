@@ -814,6 +814,9 @@ async function renderReviewMode(resultData) {
                       </tbody>
                   </table>
               </div>
+              <div class="card-body border-top text-center" style="max-height: 400px; display: flex; justify-content: center;">
+                  <canvas id="subjectSpiderChart" style="max-height: 350px; width: 100%; max-width: 500px;"></canvas>
+              </div>
           </div>
       `;
   }
@@ -968,6 +971,75 @@ async function renderReviewMode(resultData) {
     `;
 
   filterReview("all", document.getElementById("btn-all"));
+
+  // --- Render Spider Chart if subject stats exist ---
+  if (hasSubjectStats) {
+      const subjectNames = [];
+      const accuracies = [];
+      const correctAttempts = [];
+
+      Object.keys(subjectStats).forEach(subject => {
+          const stats = subjectStats[subject];
+          if (stats.total > 0) {
+              subjectNames.push(subject);
+              const acc = ((stats.correct / stats.total) * 100).toFixed(1);
+              accuracies.push(acc);
+              correctAttempts.push(stats.correct);
+          }
+      });
+
+      const ctxSpider = document.getElementById('subjectSpiderChart');
+      if (ctxSpider) {
+          new Chart(ctxSpider, {
+              type: 'radar',
+              data: {
+                  labels: subjectNames,
+                  datasets: [
+                      {
+                          label: 'Accuracy (%)',
+                          data: accuracies,
+                          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                          borderColor: 'rgba(54, 162, 235, 1)',
+                          pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                          pointBorderColor: '#fff',
+                          pointHoverBackgroundColor: '#fff',
+                          pointHoverBorderColor: 'rgba(54, 162, 235, 1)',
+                          borderWidth: 2
+                      },
+                      {
+                          label: 'Correct Qs',
+                          data: correctAttempts,
+                          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                          borderColor: 'rgba(75, 192, 192, 1)',
+                          pointBackgroundColor: 'rgba(75, 192, 192, 1)',
+                          pointBorderColor: '#fff',
+                          pointHoverBackgroundColor: '#fff',
+                          pointHoverBorderColor: 'rgba(75, 192, 192, 1)',
+                          borderWidth: 2
+                      }
+                  ]
+              },
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  scales: {
+                      r: {
+                          angleLines: {
+                              display: true
+                          },
+                          suggestedMin: 0
+                      }
+                  },
+                  plugins: {
+                      legend: {
+                          position: 'top',
+                      }
+                  }
+              }
+          });
+      }
+  }
+
   loadLeaderboard(currentChapterId);
 
   const stats = currentReviewStats;
