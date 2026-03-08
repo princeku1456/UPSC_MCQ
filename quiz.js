@@ -982,6 +982,8 @@ function renderReviewQuestions(filterType) {
       container.innerHTML = "";
       container.dataset.chapterId = currentChapterId;
 
+      const fragment = document.createDocumentFragment();
+
       currentQuizData.forEach((question, index) => {
         const correctIndex = getCorrectIndex(question);
         const uAns = userAnswers[index];
@@ -1109,8 +1111,9 @@ function renderReviewQuestions(filterType) {
                     </div>
                 </div>
             `;
-        container.appendChild(card);
+        fragment.appendChild(card);
       });
+      container.appendChild(fragment);
   }
 
   // Toggle Visibility
