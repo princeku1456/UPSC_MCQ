@@ -607,9 +607,46 @@ async function renderReviewMode(resultData) {
       Hard: { total: 0, correct: 0, incorrect: 0, unattempted: 0 }
   };
 
+  // Subject Stats for FLT Test
+  let subjectStats = {
+      "Polity": { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
+      "Economy": { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
+      "History": { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
+      "Geography": { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
+      "Environment": { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
+      "Science and Tech": { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
+      "IR": { total: 0, correct: 0, incorrect: 0, unattempted: 0 }
+  };
+
   currentQuizData.forEach((q, i) => {
     const uAns = userAnswers[i];
     const correctIndex = getCorrectIndex(q);
+
+    if (currentChapterName === "FLT Test" && q.subject) {
+        // Find matching predefined subject (ignoring case/extra spaces just in case)
+        const qSubj = q.subject.trim();
+        let matchedSubj = Object.keys(subjectStats).find(
+            s => s.toLowerCase() === qSubj.toLowerCase()
+        );
+
+        // If it doesn't match perfectly, we can still fall back or just use the exact match
+        // The prompt says "Mark the subject of each question from the following category..."
+        // So we assume it will be one of them. Let's use it as is or default if not found (though prompt implies they will be exactly those).
+        if (!matchedSubj && subjectStats[qSubj]) {
+            matchedSubj = qSubj;
+        }
+
+        if (matchedSubj) {
+            subjectStats[matchedSubj].total++;
+            if (!uAns) {
+                subjectStats[matchedSubj].unattempted++;
+            } else if (uAns.answer === correctIndex) {
+                subjectStats[matchedSubj].correct++;
+            } else {
+                subjectStats[matchedSubj].incorrect++;
+            }
+        }
+    }
 
     // Community accuracy calculation for Silly Mistake vs Hard Success flagging
     const commCorrect = currentReviewStats?.correctCounts?.[i] || 0;
@@ -733,6 +770,49 @@ async function renderReviewMode(resultData) {
       </div>
   `;
 
+  let subjectMatrixHtml = "";
+  if (currentChapterName === "FLT Test") {
+      const subjectRows = Object.keys(subjectStats).map(subject => {
+          const stats = subjectStats[subject];
+          const acc = stats.total > 0 ? ((stats.correct / stats.total) * 100).toFixed(1) : 0;
+          return `
+              <tr>
+                  <td><span class="badge bg-secondary">${subject}</span></td>
+                  <td class="text-center">${stats.total}</td>
+                  <td class="text-center text-success fw-bold">${stats.correct}</td>
+                  <td class="text-center text-danger fw-bold">${stats.incorrect}</td>
+                  <td class="text-center text-muted">${stats.unattempted}</td>
+                  <td class="text-end fw-bold">${acc}%</td>
+              </tr>
+          `;
+      }).join('');
+
+      subjectMatrixHtml = `
+          <div class="card mb-4 border-0 shadow-sm">
+              <div class="card-header bg-white border-bottom py-2">
+                  <h6 class="fw-bold text-primary m-0">📚 Subject-wise Performance</h6>
+              </div>
+              <div class="table-responsive">
+                  <table class="table table-hover mb-0 align-middle">
+                      <thead class="table-light small text-muted">
+                          <tr>
+                              <th>Subject</th>
+                              <th class="text-center">Total</th>
+                              <th class="text-center">Correct</th>
+                              <th class="text-center">Incorrect</th>
+                              <th class="text-center">Unattempted</th>
+                              <th class="text-end">Accuracy</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          ${subjectRows}
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      `;
+  }
+
   const content = document.getElementById("quiz-content");
 
   content.innerHTML = `
@@ -824,6 +904,7 @@ async function renderReviewMode(resultData) {
                 </div>
 
                 ${difficultyMatrixHtml}
+                ${subjectMatrixHtml}
 
                 <div class="row mb-4 g-3">
                     <div class="col-md-6">
