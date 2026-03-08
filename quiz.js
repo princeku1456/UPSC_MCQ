@@ -622,7 +622,7 @@ async function renderReviewMode(resultData) {
     const uAns = userAnswers[i];
     const correctIndex = getCorrectIndex(q);
 
-    if (currentChapterName === "FLT Test" && q.subject) {
+    if (currentChapterName && currentChapterName.includes("FLT Test") && q.subject) {
         // Find matching predefined subject (ignoring case/extra spaces just in case)
         const qSubj = q.subject.trim();
         let matchedSubj = Object.keys(subjectStats).find(
@@ -771,7 +771,7 @@ async function renderReviewMode(resultData) {
   `;
 
   let subjectMatrixHtml = "";
-  if (currentChapterName === "FLT Test") {
+  if (currentChapterName && currentChapterName.includes("FLT Test")) {
       const subjectRows = Object.keys(subjectStats).map(subject => {
           const stats = subjectStats[subject];
           const acc = stats.total > 0 ? ((stats.correct / stats.total) * 100).toFixed(1) : 0;
@@ -1166,6 +1166,9 @@ function renderReviewQuestions(filterType) {
         const timeLabel = timeSec < 60 ? `${timeSec}s` : `${Math.floor(timeSec/60)}m ${timeSec%60}s`;
         const timeBadge = `<span class="badge bg-light text-dark border ms-2">⏱ ${timeLabel}</span>`;
 
+        // Subject Badge Logic
+        const subjectBadge = question.subject ? `<span class="badge bg-info text-dark ms-2">📚 ${question.subject}</span>` : "";
+
         const card = document.createElement("div");
         card.className = `card mb-4 shadow-sm border-0 border-start border-5 ${borderClass} question-card`;
         card.dataset.status = status;
@@ -1178,6 +1181,7 @@ function renderReviewQuestions(filterType) {
                             <span class="surety-badge ${suretyClass}">Confidence: ${userSurety}%</span>
                             ${timeBadge}
                             ${difficultyBadge}
+                            ${subjectBadge}
                         </div>
                         ${badgeHtml}
                     </div>
