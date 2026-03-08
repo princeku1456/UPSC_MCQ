@@ -1257,7 +1257,7 @@ function renderReviewQuestions(filterType) {
         const timeBadge = `<span class="badge bg-light text-dark border ms-2">⏱ ${timeLabel}</span>`;
 
         // Subject Badge Logic
-        const subjectBadge = question.subject ? `<span class="badge bg-info text-dark ms-2">📚 ${question.subject}</span>` : "";
+        const subjectBadge = question.subject ? `<span class="badge bg-success-subtle text-success ms-2">📚 ${question.subject}</span>` : "";
 
         const card = document.createElement("div");
         card.className = `card mb-4 shadow-sm border-0 border-start border-5 ${borderClass} question-card`;
