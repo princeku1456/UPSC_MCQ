@@ -413,6 +413,7 @@ async function searchUserAttempts() {
         }
 
         tbody.innerHTML = "";
+        const fragment = document.createDocumentFragment();
         snapshot.forEach(doc => {
             const data = doc.data();
             const date = data.timestamp ? new Date(data.timestamp.toDate()).toLocaleDateString() : "N/A";
@@ -429,8 +430,9 @@ async function searchUserAttempts() {
                     </button>
                 </td>
             `;
-            tbody.appendChild(tr);
+            fragment.appendChild(tr);
         });
+        tbody.appendChild(fragment);
 
     } catch (error) {
         console.error("Search Error:", error);
