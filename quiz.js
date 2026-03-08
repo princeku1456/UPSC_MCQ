@@ -977,6 +977,7 @@ async function renderReviewMode(resultData) {
       const subjectNames = [];
       const accuracies = [];
       const correctAttempts = [];
+      const incorrectAttempts = [];
 
       Object.keys(subjectStats).forEach(subject => {
           const stats = subjectStats[subject];
@@ -985,6 +986,7 @@ async function renderReviewMode(resultData) {
               const acc = ((stats.correct / stats.total) * 100).toFixed(1);
               accuracies.push(acc);
               correctAttempts.push(stats.correct);
+              incorrectAttempts.push(stats.incorrect);
           }
       });
 
@@ -998,7 +1000,7 @@ async function renderReviewMode(resultData) {
                       {
                           label: 'Accuracy (%)',
                           data: accuracies,
-                          backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                          backgroundColor: 'rgba(54, 162, 235, 0.2)', // Blue
                           borderColor: 'rgba(54, 162, 235, 1)',
                           pointBackgroundColor: 'rgba(54, 162, 235, 1)',
                           pointBorderColor: '#fff',
@@ -1009,12 +1011,23 @@ async function renderReviewMode(resultData) {
                       {
                           label: 'Correct Qs',
                           data: correctAttempts,
-                          backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                          backgroundColor: 'rgba(75, 192, 192, 0.2)', // Greenish
                           borderColor: 'rgba(75, 192, 192, 1)',
                           pointBackgroundColor: 'rgba(75, 192, 192, 1)',
                           pointBorderColor: '#fff',
                           pointHoverBackgroundColor: '#fff',
                           pointHoverBorderColor: 'rgba(75, 192, 192, 1)',
+                          borderWidth: 2
+                      },
+                      {
+                          label: 'Incorrect Qs',
+                          data: incorrectAttempts,
+                          backgroundColor: 'rgba(255, 99, 132, 0.2)', // Red
+                          borderColor: 'rgba(255, 99, 132, 1)',
+                          pointBackgroundColor: 'rgba(255, 99, 132, 1)',
+                          pointBorderColor: '#fff',
+                          pointHoverBackgroundColor: '#fff',
+                          pointHoverBorderColor: 'rgba(255, 99, 132, 1)',
                           borderWidth: 2
                       }
                   ]
@@ -1244,7 +1257,7 @@ function renderReviewQuestions(filterType) {
         const timeBadge = `<span class="badge bg-light text-dark border ms-2">⏱ ${timeLabel}</span>`;
 
         // Subject Badge Logic
-        const subjectBadge = question.subject ? `<span class="badge bg-success-subtle text-success ms-2">📚 ${question.subject}</span>` : "";
+        const subjectBadge = question.subject ? `<span class="badge bg-info text-dark ms-2">📚 ${question.subject}</span>` : "";
 
         const card = document.createElement("div");
         card.className = `card mb-4 shadow-sm border-0 border-start border-5 ${borderClass} question-card`;
