@@ -526,18 +526,17 @@ function renderLeaderboardHTML(container, data) {
   );
   // ---------------------------------------------------------------
 
-  let rows = "";
   let rank = 1;
 
   // Iterate through the filtered and sorted data instead of the raw data
-  filteredSortedData.forEach((entry) => {
+  const rows = filteredSortedData.map((entry) => {
     const email = entry.userEmail || "Guest";
     const rawName = email.split("@")[0];
     const displayName =
       rawName.length > 3 ? rawName.substring(0, 3) + "***" : rawName;
     const isMe = currentUser && entry.userEmail === currentUser.email;
 
-    rows += `
+    return `
             <tr class="${isMe ? "table-warning fw-bold" : ""}">
                 <td class="ps-3 text-secondary">#${rank++}</td>
                 <td>
@@ -560,7 +559,7 @@ function renderLeaderboardHTML(container, data) {
                 </td>
             </tr>
         `;
-  });
+  }).join('');
 
   container.innerHTML = `
         <div class="card border-0 shadow-sm overflow-hidden mt-3">
