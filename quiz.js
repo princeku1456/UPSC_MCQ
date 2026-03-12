@@ -1064,7 +1064,12 @@ async function renderReviewMode(resultData) {
   }
 
   const myScore = resultData ? resultData.scorePercent : 0;
-  const betterThan = stats.allScores.filter((s) => s < myScore).length;
+  let betterThan = 0;
+  for (let i = 0; i < stats.allScores.length; i++) {
+    if (stats.allScores[i] < myScore) {
+      betterThan++;
+    }
+  }
   const percentile =
     stats.totalAttempts > 0
       ? ((betterThan / stats.totalAttempts) * 100).toFixed(0)
