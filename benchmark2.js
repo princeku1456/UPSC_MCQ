@@ -45,16 +45,17 @@ function concatApproach() {
   return rows;
 }
 
-function arrayJoinApproach() {
+function arrayPushJoinApproach() {
+  const rowsArray = [];
   let rank = 1;
-  const rows = filteredSortedData.map((entry) => {
+  filteredSortedData.forEach((entry) => {
     const email = entry.userEmail || "Guest";
     const rawName = email.split("@")[0];
     const displayName =
       rawName.length > 3 ? rawName.substring(0, 3) + "***" : rawName;
     const isMe = currentUser && entry.userEmail === currentUser.email;
 
-    return `
+    rowsArray.push(`
             <tr class="${isMe ? "table-warning fw-bold" : ""}">
                 <td class="ps-3 text-secondary">#${rank++}</td>
                 <td>
@@ -76,15 +77,15 @@ function arrayJoinApproach() {
                     }">${entry.scorePercent}%</span>
                 </td>
             </tr>
-        `;
-  }).join('');
-  return rows;
+        `);
+  });
+  return rowsArray.join('');
 }
 
 // Warmup
 for (let i = 0; i < 100; i++) {
   concatApproach();
-  arrayJoinApproach();
+  arrayPushJoinApproach();
 }
 
 const ITERATIONS = 100;
@@ -98,8 +99,7 @@ console.log(`String concatenation: ${(endConcat - startConcat).toFixed(2)} ms fo
 
 const startArray = performance.now();
 for (let i = 0; i < ITERATIONS; i++) {
-  arrayJoinApproach();
+  arrayPushJoinApproach();
 }
 const endArray = performance.now();
-console.log(`Array join: ${(endArray - startArray).toFixed(2)} ms for ${ITERATIONS} iterations`);
-
+console.log(`Array push + join: ${(endArray - startArray).toFixed(2)} ms for ${ITERATIONS} iterations`);
