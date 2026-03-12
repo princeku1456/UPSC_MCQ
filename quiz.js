@@ -1838,9 +1838,14 @@ function submitAll(forceSubmit = false) {
 
         const stats = await DataManager.fetchGlobalStats(currentChapterId, true);
         if (stats) {
-          const betterThan = stats.allScores.filter(
-            (s) => s < parseFloat(percentage)
-          ).length;
+          let betterThan = 0;
+          const pct = parseFloat(percentage);
+          const allScoresLen = stats.allScores.length;
+          for (let k = 0; k < allScoresLen; k++) {
+            if (stats.allScores[k] < pct) {
+              betterThan++;
+            }
+          }
           const percentile =
             stats.totalAttempts > 0
               ? ((betterThan / stats.totalAttempts) * 100).toFixed(0)
