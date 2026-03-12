@@ -166,7 +166,7 @@ async function updateConceptGapStat(results) {
   el.textContent = "Analyzing...";
 
   try {
-    const uniqueChapters = [...new Set(results.map(r => r.chapterId))];
+    const uniqueChapters = [...results.reduce((acc, r) => acc.add(r.chapterId), new Set())];
     const statsMap = {};
     
     // Fetch stats for all unique chapters in history in parallel using Cache
