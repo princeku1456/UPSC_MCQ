@@ -991,6 +991,11 @@ async function renderReviewMode(resultData) {
 
       const ctxSpider = document.getElementById('subjectSpiderChart');
       if (ctxSpider) {
+          const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+          const textColor = isDark ? "#e5e7eb" : "#666";
+          const gridColor = isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)";
+          const angleLineColor = isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.1)";
+
           new Chart(ctxSpider, {
               type: 'radar',
               data: {
@@ -999,35 +1004,16 @@ async function renderReviewMode(resultData) {
                       {
                           label: 'Accuracy (%)',
                           data: accuracies,
-                          backgroundColor: 'rgba(54, 162, 235, 0.2)', // Blue
-                          borderColor: 'rgba(54, 162, 235, 1)',
-                          pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                          backgroundColor: 'rgba(59, 130, 246, 0.4)', // More vibrant blue fill
+                          borderColor: 'rgba(37, 99, 235, 1)', // Stronger blue border
+                          pointBackgroundColor: 'rgba(37, 99, 235, 1)',
                           pointBorderColor: '#fff',
                           pointHoverBackgroundColor: '#fff',
-                          pointHoverBorderColor: 'rgba(54, 162, 235, 1)',
-                          borderWidth: 2
-                      },
-                      {
-                          label: 'Correct Qs',
-                          data: correctAttempts,
-                          backgroundColor: 'rgba(75, 192, 192, 0.2)', // Greenish
-                          borderColor: 'rgba(75, 192, 192, 1)',
-                          pointBackgroundColor: 'rgba(75, 192, 192, 1)',
-                          pointBorderColor: '#fff',
-                          pointHoverBackgroundColor: '#fff',
-                          pointHoverBorderColor: 'rgba(75, 192, 192, 1)',
-                          borderWidth: 2
-                      },
-                      {
-                          label: 'Incorrect Qs',
-                          data: incorrectAttempts,
-                          backgroundColor: 'rgba(255, 99, 132, 0.2)', // Red
-                          borderColor: 'rgba(255, 99, 132, 1)',
-                          pointBackgroundColor: 'rgba(255, 99, 132, 1)',
-                          pointBorderColor: '#fff',
-                          pointHoverBackgroundColor: '#fff',
-                          pointHoverBorderColor: 'rgba(255, 99, 132, 1)',
-                          borderWidth: 2
+                          pointHoverBorderColor: 'rgba(37, 99, 235, 1)',
+                          borderWidth: 3,
+                          pointRadius: 4,
+                          pointHoverRadius: 6,
+                          fill: true
                       }
                   ]
               },
@@ -1037,14 +1023,47 @@ async function renderReviewMode(resultData) {
                   scales: {
                       r: {
                           angleLines: {
-                              display: true
+                              display: true,
+                              color: angleLineColor
                           },
-                          suggestedMin: 0
+                          grid: {
+                              color: gridColor
+                          },
+                          pointLabels: {
+                              color: textColor,
+                              font: {
+                                  size: 12,
+                                  family: "'Poppins', sans-serif"
+                              }
+                          },
+                          ticks: {
+                              color: textColor,
+                              backdropColor: 'transparent',
+                              z: 1,
+                              stepSize: 20
+                          },
+                          suggestedMin: 0,
+                          suggestedMax: 100
                       }
                   },
                   plugins: {
                       legend: {
-                          position: 'top',
+                          display: false // Hide legend since there's only one dataset now
+                      },
+                      tooltip: {
+                          backgroundColor: isDark ? 'rgba(30, 41, 59, 0.9)' : 'rgba(255, 255, 255, 0.9)',
+                          titleColor: isDark ? '#f8fafc' : '#0f172a',
+                          bodyColor: isDark ? '#cbd5e1' : '#334155',
+                          borderColor: isDark ? '#334155' : '#e2e8f0',
+                          borderWidth: 1,
+                          padding: 10,
+                          boxPadding: 4,
+                          usePointStyle: true,
+                          callbacks: {
+                              label: function(context) {
+                                  return context.dataset.label + ': ' + context.parsed.r + '%';
+                              }
+                          }
                       }
                   }
               }
