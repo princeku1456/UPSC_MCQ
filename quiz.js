@@ -991,60 +991,147 @@ async function renderReviewMode(resultData) {
 
       const ctxSpider = document.getElementById('subjectSpiderChart');
       if (ctxSpider) {
+          const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+          const textColor = isDark ? "#e5e7eb" : "#666";
+          const gridColor = isDark ? "rgba(255, 255, 255, 0.1)" : "rgba(0, 0, 0, 0.1)";
+
           new Chart(ctxSpider, {
-              type: 'radar',
+              type: 'bar',
               data: {
                   labels: subjectNames,
                   datasets: [
                       {
+                          type: 'line',
                           label: 'Accuracy (%)',
                           data: accuracies,
-                          backgroundColor: 'rgba(54, 162, 235, 0.2)', // Blue
-                          borderColor: 'rgba(54, 162, 235, 1)',
-                          pointBackgroundColor: 'rgba(54, 162, 235, 1)',
+                          borderColor: 'rgba(59, 130, 246, 1)',
+                          backgroundColor: 'rgba(59, 130, 246, 1)',
+                          pointBackgroundColor: 'rgba(59, 130, 246, 1)',
                           pointBorderColor: '#fff',
                           pointHoverBackgroundColor: '#fff',
-                          pointHoverBorderColor: 'rgba(54, 162, 235, 1)',
-                          borderWidth: 2
+                          pointHoverBorderColor: 'rgba(59, 130, 246, 1)',
+                          borderWidth: 3,
+                          pointRadius: 4,
+                          pointHoverRadius: 6,
+                          fill: false,
+                          yAxisID: 'y1'
                       },
                       {
+                          type: 'bar',
                           label: 'Correct Qs',
                           data: correctAttempts,
-                          backgroundColor: 'rgba(75, 192, 192, 0.2)', // Greenish
-                          borderColor: 'rgba(75, 192, 192, 1)',
-                          pointBackgroundColor: 'rgba(75, 192, 192, 1)',
-                          pointBorderColor: '#fff',
-                          pointHoverBackgroundColor: '#fff',
-                          pointHoverBorderColor: 'rgba(75, 192, 192, 1)',
-                          borderWidth: 2
+                          backgroundColor: 'rgba(16, 185, 129, 0.8)', // Emerald green
+                          borderColor: 'rgba(16, 185, 129, 1)',
+                          borderWidth: 1,
+                          borderRadius: { topLeft: 4, topRight: 4 },
+                          yAxisID: 'y'
                       },
                       {
+                          type: 'bar',
                           label: 'Incorrect Qs',
                           data: incorrectAttempts,
-                          backgroundColor: 'rgba(255, 99, 132, 0.2)', // Red
-                          borderColor: 'rgba(255, 99, 132, 1)',
-                          pointBackgroundColor: 'rgba(255, 99, 132, 1)',
-                          pointBorderColor: '#fff',
-                          pointHoverBackgroundColor: '#fff',
-                          pointHoverBorderColor: 'rgba(255, 99, 132, 1)',
-                          borderWidth: 2
+                          backgroundColor: 'rgba(239, 68, 68, 0.8)', // Red
+                          borderColor: 'rgba(239, 68, 68, 1)',
+                          borderWidth: 1,
+                          borderRadius: { topLeft: 4, topRight: 4 },
+                          yAxisID: 'y'
                       }
                   ]
               },
               options: {
                   responsive: true,
                   maintainAspectRatio: false,
+                  interaction: {
+                      mode: 'index',
+                      intersect: false,
+                  },
                   scales: {
-                      r: {
-                          angleLines: {
-                              display: true
+                      x: {
+                          stacked: true,
+                          grid: {
+                              display: false
                           },
-                          suggestedMin: 0
+                          ticks: {
+                              color: textColor,
+                              font: {
+                                  family: "'Poppins', sans-serif"
+                              }
+                          }
+                      },
+                      y: {
+                          stacked: true,
+                          type: 'linear',
+                          display: true,
+                          position: 'left',
+                          title: {
+                              display: true,
+                              text: 'Questions Count',
+                              color: textColor,
+                              font: { size: 10 }
+                          },
+                          grid: {
+                              color: gridColor,
+                              drawBorder: false
+                          },
+                          ticks: {
+                              color: textColor,
+                              precision: 0
+                          }
+                      },
+                      y1: {
+                          type: 'linear',
+                          display: true,
+                          position: 'right',
+                          title: {
+                              display: true,
+                              text: 'Accuracy (%)',
+                              color: 'rgba(59, 130, 246, 1)',
+                              font: { size: 10 }
+                          },
+                          grid: {
+                              drawOnChartArea: false // only want the grid lines for one axis to show up
+                          },
+                          ticks: {
+                              color: 'rgba(59, 130, 246, 1)',
+                              suggestedMin: 0,
+                              suggestedMax: 100,
+                              stepSize: 20
+                          }
                       }
                   },
                   plugins: {
                       legend: {
                           position: 'top',
+                          labels: {
+                              color: textColor,
+                              usePointStyle: true,
+                              boxWidth: 8
+                          }
+                      },
+                      tooltip: {
+                          backgroundColor: isDark ? 'rgba(30, 41, 59, 0.95)' : 'rgba(255, 255, 255, 0.95)',
+                          titleColor: isDark ? '#f8fafc' : '#0f172a',
+                          bodyColor: isDark ? '#cbd5e1' : '#334155',
+                          borderColor: isDark ? '#334155' : '#e2e8f0',
+                          borderWidth: 1,
+                          padding: 12,
+                          boxPadding: 6,
+                          usePointStyle: true,
+                          callbacks: {
+                              label: function(context) {
+                                  let label = context.dataset.label || '';
+                                  if (label) {
+                                      label += ': ';
+                                  }
+                                  if (context.parsed.y !== null) {
+                                      label += context.parsed.y;
+                                      if (context.datasetIndex === 0) { // Accuracy is first dataset
+                                          label += '%';
+                                      }
+                                  }
+                                  return label;
+                              }
+                          }
                       }
                   }
               }
