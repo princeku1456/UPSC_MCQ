@@ -726,7 +726,8 @@ async function renderReviewMode(resultData) {
   // Generate Difficulty Matrix HTML
   const difficultyRows = ['Easy', 'Medium', 'Hard'].map(level => {
       const stats = difficultyStats[level];
-      const acc = stats.total > 0 ? ((stats.correct / stats.total) * 100).toFixed(1) : 0;
+      const attempted = stats.correct + stats.incorrect;
+      const acc = attempted > 0 ? ((stats.correct / attempted) * 100).toFixed(1) : 0;
       let badgeClass = 'bg-secondary';
       if (level === 'Easy') badgeClass = 'bg-success';
       if (level === 'Medium') badgeClass = 'bg-warning text-dark';
@@ -778,7 +779,8 @@ async function renderReviewMode(resultData) {
       const subjectRows = Object.keys(subjectStats).map(subject => {
           const stats = subjectStats[subject];
           if (stats.total === 0) return ''; // Skip empty subjects
-          const acc = stats.total > 0 ? ((stats.correct / stats.total) * 100).toFixed(1) : 0;
+          const attempted = stats.correct + stats.incorrect;
+          const acc = attempted > 0 ? ((stats.correct / attempted) * 100).toFixed(1) : 0;
           return `
               <tr>
                   <td><span class="badge bg-secondary">${subject}</span></td>
@@ -983,7 +985,8 @@ async function renderReviewMode(resultData) {
           const stats = subjectStats[subject];
           if (stats.total > 0) {
               subjectNames.push(subject);
-              const acc = ((stats.correct / stats.total) * 100).toFixed(1);
+              const attempted = stats.correct + stats.incorrect;
+              const acc = attempted > 0 ? ((stats.correct / attempted) * 100).toFixed(1) : 0;
               accuracies.push(acc);
               correctAttempts.push(stats.correct);
               incorrectAttempts.push(stats.incorrect);
