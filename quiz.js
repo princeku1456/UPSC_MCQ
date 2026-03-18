@@ -977,6 +977,7 @@ async function renderReviewMode(resultData) {
       const accuracies = [];
       const correctAttempts = [];
       const incorrectAttempts = [];
+      const unattemptedQs = [];
 
       Object.keys(subjectStats).forEach(subject => {
           const stats = subjectStats[subject];
@@ -986,6 +987,7 @@ async function renderReviewMode(resultData) {
               accuracies.push(acc);
               correctAttempts.push(stats.correct);
               incorrectAttempts.push(stats.incorrect);
+              unattemptedQs.push(stats.unattempted);
           }
       });
 
@@ -1023,7 +1025,6 @@ async function renderReviewMode(resultData) {
                           backgroundColor: 'rgba(16, 185, 129, 0.8)', // Emerald green
                           borderColor: 'rgba(16, 185, 129, 1)',
                           borderWidth: 1,
-                          borderRadius: { topLeft: 4, topRight: 4 },
                           yAxisID: 'y'
                       },
                       {
@@ -1032,6 +1033,15 @@ async function renderReviewMode(resultData) {
                           data: incorrectAttempts,
                           backgroundColor: 'rgba(239, 68, 68, 0.8)', // Red
                           borderColor: 'rgba(239, 68, 68, 1)',
+                          borderWidth: 1,
+                          yAxisID: 'y'
+                      },
+                      {
+                          type: 'bar',
+                          label: 'Unattempted Qs',
+                          data: unattemptedQs,
+                          backgroundColor: 'rgba(250, 204, 21, 0.8)', // Yellow
+                          borderColor: 'rgba(250, 204, 21, 1)',
                           borderWidth: 1,
                           borderRadius: { topLeft: 4, topRight: 4 },
                           yAxisID: 'y'
