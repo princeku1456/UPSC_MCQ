@@ -280,13 +280,12 @@ function renderQuestionAnalysis(container, questions, results, accuracies) {
     card.id = `q-card-${qIdx}`;
     card.className = `card mb-5 shadow-sm border-0 rounded-4 admin-q-card ${accuracy < 40 ? "high-error" : ""}`;
 
-    let optionsHtml = "";
-    q.options.forEach((opt, oIdx) => {
+    const optionsHtml = q.options.map((opt, oIdx) => {
       const isCorrect = oIdx === correctIndex;
       const users = optionBuckets[oIdx];
       const percent = results.length > 0 ? Math.round((users.length / results.length) * 100) : 0;
 
-      optionsHtml += `
+      return `
         <div class="p-3 border rounded-3 mb-2 ${isCorrect ? "bg-success bg-opacity-10 border-success" : "bg-white"}">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
@@ -306,7 +305,7 @@ function renderQuestionAnalysis(container, questions, results, accuracies) {
                 `).join("")}
             </div>
         </div>`;
-    });
+    }).join("");
 
     card.innerHTML = `
         <div class="card-body p-4">
