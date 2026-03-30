@@ -315,7 +315,7 @@ function renderQuestionAnalysis(container, questions, results, accuracies) {
             </div>
             <div class="fw-bold mb-4 h5">${TextFormatter.formatQuestionText(q.text)}</div>
             <div class="row g-4">
-                <div class="col-lg-8">
+                <div class="col-12">
                     ${optionsHtml}
                     <div class="mt-3 p-2 bg-light rounded-3 border-dashed border-2">
                         <small class="text-muted fw-bold">⚪ SKIPPED (${skippedUsers.length})</small>
@@ -328,7 +328,7 @@ function renderQuestionAnalysis(container, questions, results, accuracies) {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-12">
                     <div class="explanation-box mb-3">
                         <h6 class="fw-bold text-warning-emphasis"><i class="bi bi-lightbulb"></i> Explanation:</h6>
                         <p class="small m-0">${q.explanation || "No explanation."}</p>
