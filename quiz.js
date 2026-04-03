@@ -824,17 +824,35 @@ async function renderReviewMode(resultData) {
 
   const content = document.getElementById("quiz-content");
 
+  let subjectFilterHtml = "";
+  if (hasSubjectStats) {
+      let options = `<option value="all">All Subjects</option>`;
+      Object.keys(subjectStats).forEach(subject => {
+          if (subjectStats[subject].total > 0) {
+              options += `<option value="${subject}">${subject}</option>`;
+          }
+      });
+      subjectFilterHtml = `
+          <select id="subject-filter" class="form-select w-auto shadow-sm" onchange="filterReviewBySubject()">
+              ${options}
+          </select>
+      `;
+  }
+
   content.innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2 border-bottom pb-3">
             <div>
                 <h4 class="fw-bold text-primary m-0">${currentChapterName}</h4>
                 <span class="badge bg-secondary">Performance Review</span>
             </div>
-            <div class="btn-group shadow-sm" role="group">
-                <button class="btn btn-outline-primary active" id="btn-all" onclick="filterReview('all', this)">All</button>
-                <button class="btn btn-outline-success" id="btn-correct" onclick="filterReview('correct', this)">Correct</button>
-                <button class="btn btn-outline-danger" id="btn-incorrect" onclick="filterReview('incorrect', this)">Incorrect</button>
-                <button class="btn btn-outline-secondary" id="btn-unattempted" onclick="filterReview('unattempted', this)">Unattempted</button>
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+                ${subjectFilterHtml}
+                <div class="btn-group shadow-sm" role="group">
+                    <button class="btn btn-outline-primary active" id="btn-all" onclick="filterReview('all', this)">All</button>
+                    <button class="btn btn-outline-success" id="btn-correct" onclick="filterReview('correct', this)">Correct</button>
+                    <button class="btn btn-outline-danger" id="btn-incorrect" onclick="filterReview('incorrect', this)">Incorrect</button>
+                    <button class="btn btn-outline-secondary" id="btn-unattempted" onclick="filterReview('unattempted', this)">Unattempted</button>
+                </div>
             </div>
         </div>
 
@@ -1246,6 +1264,17 @@ function filterReview(filterType, btnElement) {
   renderReviewQuestions(filterType);
 }
 
+function filterReviewBySubject() {
+    const activeBtn = document.querySelector(".btn-group .btn.active");
+    let filterType = "all";
+    if (activeBtn) {
+        if (activeBtn.id === "btn-correct") filterType = "correct";
+        else if (activeBtn.id === "btn-incorrect") filterType = "incorrect";
+        else if (activeBtn.id === "btn-unattempted") filterType = "unattempted";
+    }
+    renderReviewQuestions(filterType);
+}
+
 function renderReviewQuestions(filterType) {
   const container = document.getElementById("review-container");
 
@@ -1366,6 +1395,7 @@ function renderReviewQuestions(filterType) {
         const card = document.createElement("div");
         card.className = `card mb-4 shadow-sm border-0 border-start border-5 ${borderClass} question-card`;
         card.dataset.status = status;
+        card.dataset.subject = question.subject || "";
 
         card.innerHTML = `
                 <div class="card-body p-4">
@@ -1397,10 +1427,16 @@ function renderReviewQuestions(filterType) {
 
   // Toggle Visibility
   let visibleCount = 0;
+  const subjectFilterValue = document.getElementById('subject-filter')?.value || 'all';
   const cards = container.querySelectorAll('.question-card');
   cards.forEach(card => {
       const status = card.dataset.status;
-      if (filterType === 'all' || status === filterType) {
+      const cardSubject = card.dataset.subject;
+
+      const matchStatus = filterType === 'all' || status === filterType;
+      const matchSubject = subjectFilterValue === 'all' || cardSubject === subjectFilterValue;
+
+      if (matchStatus && matchSubject) {
           card.classList.remove('d-none');
           visibleCount++;
       } else {
