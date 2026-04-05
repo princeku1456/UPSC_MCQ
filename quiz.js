@@ -617,6 +617,12 @@ async function renderReviewMode(resultData) {
       "IR": { total: 0, correct: 0, incorrect: 0, unattempted: 0 }
   };
 
+  const subjectMap = {};
+  const subjectKeys = Object.keys(subjectStats);
+  for (let i = 0; i < subjectKeys.length; i++) {
+      subjectMap[subjectKeys[i].toLowerCase()] = subjectKeys[i];
+  }
+
   currentQuizData.forEach((q, i) => {
     const uAns = userAnswers[i];
     const correctIndex = getCorrectIndex(q);
@@ -624,9 +630,7 @@ async function renderReviewMode(resultData) {
     if (q.subject) {
         // Find matching predefined subject (ignoring case/extra spaces just in case)
         const qSubj = q.subject.trim();
-        let matchedSubj = Object.keys(subjectStats).find(
-            s => s.toLowerCase() === qSubj.toLowerCase()
-        );
+        let matchedSubj = subjectMap[qSubj.toLowerCase()];
 
         // If it doesn't match perfectly, we can still fall back or just use the exact match
         // The prompt says "Mark the subject of each question from the following category..."

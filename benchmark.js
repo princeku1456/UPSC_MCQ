@@ -1,105 +1,73 @@
-const { performance } = require('perf_hooks');
+const subjectStats = {
+    "Polity": { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
+    "Economy": { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
+    "History": { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
+    "Geography": { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
+    "Environment": { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
+    "Science and Tech": { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
+    "IR": { total: 0, correct: 0, incorrect: 0, unattempted: 0 }
+};
 
-// Generate mock data
-const numEntries = 10000;
-const filteredSortedData = Array.from({ length: numEntries }, (_, i) => ({
-  userEmail: `user${i}@example.com`,
-  scorePercent: Math.floor(Math.random() * 100)
-}));
-const currentUser = { email: `user9999@example.com` };
-
-function concatApproach() {
-  let rows = "";
-  let rank = 1;
-  filteredSortedData.forEach((entry) => {
-    const email = entry.userEmail || "Guest";
-    const rawName = email.split("@")[0];
-    const displayName =
-      rawName.length > 3 ? rawName.substring(0, 3) + "***" : rawName;
-    const isMe = currentUser && entry.userEmail === currentUser.email;
-
-    rows += `
-            <tr class="${isMe ? "table-warning fw-bold" : ""}">
-                <td class="ps-3 text-secondary">#${rank++}</td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center me-2 shadow-sm" style="width:24px; height:24px; font-size:10px;">
-                            ${rawName.charAt(0).toUpperCase()}
-                        </div>
-                        <span class="text-dark">${displayName}</span>
-                        ${
-                          isMe
-                            ? '<span class="badge bg-warning text-dark dummy-tag ms-2" style="font-size:0.6rem">YOU</span>'
-                            : ""
-                        }
-                    </div>
-                </td>
-                <td class="text-end pe-3">
-                    <span class="badge ${
-                      entry.scorePercent >= 80 ? "bg-success" : "bg-primary"
-                    }">${entry.scorePercent}%</span>
-                </td>
-            </tr>
-        `;
-  });
-  return rows;
+// Generate 10000 fake questions
+const subjects = ["Polity", " economy", "HISTORY ", "Geography", "Environment", "Science and tech", "IR", "Unknown"];
+const questions = [];
+for (let i = 0; i < 10000; i++) {
+    questions.push({ subject: subjects[i % subjects.length] });
 }
 
-function arrayJoinApproach() {
-  let rank = 1;
-  const rows = filteredSortedData.map((entry) => {
-    const email = entry.userEmail || "Guest";
-    const rawName = email.split("@")[0];
-    const displayName =
-      rawName.length > 3 ? rawName.substring(0, 3) + "***" : rawName;
-    const isMe = currentUser && entry.userEmail === currentUser.email;
+function runBaseline() {
+    let matchedCount = 0;
+    const start = process.hrtime.bigint();
+    for (let i = 0; i < questions.length; i++) {
+        const qSubj = questions[i].subject.trim();
+        let matchedSubj = Object.keys(subjectStats).find(
+            s => s.toLowerCase() === qSubj.toLowerCase()
+        );
 
-    return `
-            <tr class="${isMe ? "table-warning fw-bold" : ""}">
-                <td class="ps-3 text-secondary">#${rank++}</td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center me-2 shadow-sm" style="width:24px; height:24px; font-size:10px;">
-                            ${rawName.charAt(0).toUpperCase()}
-                        </div>
-                        <span class="text-dark">${displayName}</span>
-                        ${
-                          isMe
-                            ? '<span class="badge bg-warning text-dark dummy-tag ms-2" style="font-size:0.6rem">YOU</span>'
-                            : ""
-                        }
-                    </div>
-                </td>
-                <td class="text-end pe-3">
-                    <span class="badge ${
-                      entry.scorePercent >= 80 ? "bg-success" : "bg-primary"
-                    }">${entry.scorePercent}%</span>
-                </td>
-            </tr>
-        `;
-  }).join('');
-  return rows;
+        if (!matchedSubj && subjectStats[qSubj]) {
+            matchedSubj = qSubj;
+        }
+        if (matchedSubj) matchedCount++;
+    }
+    const end = process.hrtime.bigint();
+    return Number(end - start) / 1000000; // ms
+}
+
+function runOptimized() {
+    let matchedCount = 0;
+    const start = process.hrtime.bigint();
+    const subjectMap = {};
+    const keys = Object.keys(subjectStats);
+    for (let i = 0; i < keys.length; i++) {
+        subjectMap[keys[i].toLowerCase()] = keys[i];
+    }
+
+    for (let i = 0; i < questions.length; i++) {
+        const qSubj = questions[i].subject.trim();
+        let matchedSubj = subjectMap[qSubj.toLowerCase()];
+
+        if (!matchedSubj && subjectStats[qSubj]) {
+            matchedSubj = qSubj;
+        }
+        if (matchedSubj) matchedCount++;
+    }
+    const end = process.hrtime.bigint();
+    return Number(end - start) / 1000000; // ms
 }
 
 // Warmup
-for (let i = 0; i < 100; i++) {
-  concatApproach();
-  arrayJoinApproach();
+runBaseline();
+runOptimized();
+
+let baseTime = 0;
+let optTime = 0;
+const iterations = 100;
+
+for (let i = 0; i < iterations; i++) {
+    baseTime += runBaseline();
+    optTime += runOptimized();
 }
 
-const ITERATIONS = 100;
-
-const startConcat = performance.now();
-for (let i = 0; i < ITERATIONS; i++) {
-  concatApproach();
-}
-const endConcat = performance.now();
-console.log(`String concatenation: ${(endConcat - startConcat).toFixed(2)} ms for ${ITERATIONS} iterations`);
-
-const startArray = performance.now();
-for (let i = 0; i < ITERATIONS; i++) {
-  arrayJoinApproach();
-}
-const endArray = performance.now();
-console.log(`Array join: ${(endArray - startArray).toFixed(2)} ms for ${ITERATIONS} iterations`);
-
+console.log(`Baseline Avg: ${(baseTime / iterations).toFixed(3)} ms`);
+console.log(`Optimized Avg: ${(optTime / iterations).toFixed(3)} ms`);
+console.log(`Improvement: ${((1 - (optTime / baseTime)) * 100).toFixed(2)}%`);
