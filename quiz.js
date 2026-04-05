@@ -1368,8 +1368,7 @@ function renderReviewQuestions(filterType) {
             `;
         }
 
-        let optionsHtml = "";
-        question.options.forEach((opt, optIdx) => {
+        let optionsHtml = question.options.map((opt, optIdx) => {
           let optionClass = "option p-3 mb-2 border rounded";
           let icon = "";
           if (optIdx === correctIndex) {
@@ -1381,8 +1380,8 @@ function renderReviewQuestions(filterType) {
               "option p-3 mb-2 border rounded bg-danger-subtle border-danger text-danger";
             icon = "❌";
           }
-          optionsHtml += `<div class="${optionClass}">${icon} <span class="ms-1">${opt}</span></div>`;
-        });
+          return `<div class="${optionClass}">${icon} <span class="ms-1">${opt}</span></div>`;
+        }).join("");
 
         // Time Badge Logic
         const timeSec = (questionTimeSpent && questionTimeSpent[index]) ? Math.round(questionTimeSpent[index]) : 0;
