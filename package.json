@@ -20,6 +20,7 @@
   "homepage": "https://github.com/princeku1456/UPSC_MCQ#readme",
   "dependencies": {
     "benchmark": "^2.1.4",
+    "jsdom": "^29.0.1",
     "playwright": "^1.59.1"
   }
 }

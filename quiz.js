@@ -1656,7 +1656,8 @@ function renderQuestion() {
   `;
 
   if (!quizSubmitted) {
-    suretyDiv.querySelectorAll(".surety-opt").forEach((opt) => {
+    const suretyOpts = suretyDiv.querySelectorAll(".surety-opt");
+    suretyOpts.forEach((opt) => {
       opt.onclick = function () {
         const val = parseInt(this.getAttribute("data-val"));
         if (!userAnswers[currentQuestionIndex])
@@ -1664,7 +1665,7 @@ function renderQuestion() {
         userAnswers[currentQuestionIndex].surety = val;
 
         // Toggle 'selected' class and aria-checked
-        suretyDiv.querySelectorAll(".surety-opt").forEach((o) => {
+        suretyOpts.forEach((o) => {
             o.classList.remove("selected");
             o.setAttribute("aria-checked", "false");
         });
