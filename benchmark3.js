@@ -1,91 +1,78 @@
 const { performance } = require('perf_hooks');
 
-// Generate mock data
-const numEntries = 100000; // Increased to 100k
-const filteredSortedData = Array.from({ length: numEntries }, (_, i) => ({
-  userEmail: `user${i}@example.com`,
-  scorePercent: Math.floor(Math.random() * 100)
-}));
-const currentUser = { email: `user9999@example.com` };
+const questions = [];
+for (let i = 0; i < 10000; i++) {
+  questions.push({
+    options: ["Option A", "Option B", "Option C", "Option D"]
+  });
+}
+const correctIndex = 1;
+const uAns = { answer: 2 };
+const status = "incorrect";
 
-function concatApproach() {
-  let rows = "";
-  let rank = 1;
-  for (let i = 0; i < filteredSortedData.length; i++) {
-    const entry = filteredSortedData[i];
-    const email = entry.userEmail || "Guest";
-    const rawName = email.split("@")[0];
-    const displayName = rawName.length > 3 ? rawName.substring(0, 3) + "***" : rawName;
-    const isMe = currentUser && entry.userEmail === currentUser.email;
-
-    rows += `
-            <tr class="${isMe ? "table-warning fw-bold" : ""}">
-                <td class="ps-3 text-secondary">#${rank++}</td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center me-2 shadow-sm" style="width:24px; height:24px; font-size:10px;">
-                            ${rawName.charAt(0).toUpperCase()}
-                        </div>
-                        <span class="text-dark">${displayName}</span>
-                        ${isMe ? '<span class="badge bg-warning text-dark dummy-tag ms-2" style="font-size:0.6rem">YOU</span>' : ""}
-                    </div>
-                </td>
-                <td class="text-end pe-3">
-                    <span class="badge ${entry.scorePercent >= 80 ? "bg-success" : "bg-primary"}">${entry.scorePercent}%</span>
-                </td>
-            </tr>
-        `;
+function testStringConcatenationForEach() {
+  const start = performance.now();
+  let resultHtml = "";
+  for (let i = 0; i < questions.length; i++) {
+    const question = questions[i];
+    let optionsHtml = "";
+    question.options.forEach((opt, optIdx) => {
+      let optionClass = "option p-3 mb-2 border rounded";
+      let icon = "";
+      if (optIdx === correctIndex) {
+        optionClass =
+          "option p-3 mb-2 border rounded bg-success-subtle border-success fw-bold text-success";
+        icon = "✅";
+      } else if (uAns && uAns.answer === optIdx && status === "incorrect") {
+        optionClass =
+          "option p-3 mb-2 border rounded bg-danger-subtle border-danger text-danger";
+        icon = "❌";
+      }
+      optionsHtml += `<div class="${optionClass}">${icon} <span class="ms-1">${opt}</span></div>`;
+    });
+    resultHtml += optionsHtml;
   }
-  return rows;
+  const end = performance.now();
+  return end - start;
 }
 
-function arrayMapJoinApproach() {
-  const rows = filteredSortedData.map((entry, index) => {
-    const email = entry.userEmail || "Guest";
-    const rawName = email.split("@")[0];
-    const displayName = rawName.length > 3 ? rawName.substring(0, 3) + "***" : rawName;
-    const isMe = currentUser && entry.userEmail === currentUser.email;
-    const rank = index + 1;
-
-    return `
-            <tr class="${isMe ? "table-warning fw-bold" : ""}">
-                <td class="ps-3 text-secondary">#${rank}</td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center me-2 shadow-sm" style="width:24px; height:24px; font-size:10px;">
-                            ${rawName.charAt(0).toUpperCase()}
-                        </div>
-                        <span class="text-dark">${displayName}</span>
-                        ${isMe ? '<span class="badge bg-warning text-dark dummy-tag ms-2" style="font-size:0.6rem">YOU</span>' : ""}
-                    </div>
-                </td>
-                <td class="text-end pe-3">
-                    <span class="badge ${entry.scorePercent >= 80 ? "bg-success" : "bg-primary"}">${entry.scorePercent}%</span>
-                </td>
-            </tr>
-        `;
-  }).join('');
-  return rows;
+function testArrayMapJoin() {
+  const start = performance.now();
+  let resultHtml = "";
+  for (let i = 0; i < questions.length; i++) {
+    const question = questions[i];
+    const optionsHtml = question.options.map((opt, optIdx) => {
+      let optionClass = "option p-3 mb-2 border rounded";
+      let icon = "";
+      if (optIdx === correctIndex) {
+        optionClass =
+          "option p-3 mb-2 border rounded bg-success-subtle border-success fw-bold text-success";
+        icon = "✅";
+      } else if (uAns && uAns.answer === optIdx && status === "incorrect") {
+        optionClass =
+          "option p-3 mb-2 border rounded bg-danger-subtle border-danger text-danger";
+        icon = "❌";
+      }
+      return `<div class="${optionClass}">${icon} <span class="ms-1">${opt}</span></div>`;
+    }).join("");
+    resultHtml += optionsHtml;
+  }
+  const end = performance.now();
+  return end - start;
 }
 
 // Warmup
-for (let i = 0; i < 10; i++) {
-  concatApproach();
-  arrayMapJoinApproach();
+testStringConcatenationForEach();
+testArrayMapJoin();
+
+let concatTime = 0;
+let mapJoinTime = 0;
+const iterations = 100;
+
+for (let i = 0; i < iterations; i++) {
+  concatTime += testStringConcatenationForEach();
+  mapJoinTime += testArrayMapJoin();
 }
 
-const ITERATIONS = 10;
-
-const startConcat = performance.now();
-for (let i = 0; i < ITERATIONS; i++) {
-  concatApproach();
-}
-const endConcat = performance.now();
-console.log(`String concatenation: ${(endConcat - startConcat).toFixed(2)} ms for ${ITERATIONS} iterations`);
-
-const startArray = performance.now();
-for (let i = 0; i < ITERATIONS; i++) {
-  arrayMapJoinApproach();
-}
-const endArray = performance.now();
-console.log(`Array map + join: ${(endArray - startArray).toFixed(2)} ms for ${ITERATIONS} iterations`);
+console.log(`String Concatenation with forEach: ${(concatTime / iterations).toFixed(3)} ms`);
+console.log(`Array Map Join: ${(mapJoinTime / iterations).toFixed(3)} ms`);
