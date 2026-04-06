@@ -79,6 +79,71 @@
 }
 
 /* ============================================================
+   HEATMAP STYLES
+   ============================================================ */
+.heatmap-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.heatmap-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.heatmap-subject {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.heatmap-cells {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+.heatmap-cell {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.heatmap-cell:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 10;
+}
+
+/* Heatmap Colors */
+.heatmap-high {
+    background-color: #10b981; /* Emerald Green (High Accuracy) */
+}
+
+.heatmap-medium {
+    background-color: #f59e0b; /* Amber/Yellow (Medium Accuracy) */
+}
+
+.heatmap-low {
+    background-color: #ef4444; /* Red (Low Accuracy) */
+}
+
+.heatmap-unattempted {
+    background-color: #e5e7eb; /* Light Gray (Unattempted) */
+}
+
+/* Dark Mode Overrides for Heatmap */
+[data-theme="dark"] .heatmap-unattempted {
+    background-color: #374151; /* Dark Gray for Unattempted in Dark Mode */
+    border-color: rgba(255,255,255,0.05);
+}
+
+/* ============================================================
    FIX: Component Specific Visibility
    ============================================================ */
 

@@ -136,6 +136,7 @@ function renderDashboardUI() {
 
   renderPerformanceChart(chartData);
   renderGlobalConfidenceChart(confValues, confStats);
+  renderHeatmap(chartData, currentDashboardMode);
 
   // Concept Gap Analysis (Cumulative, but practically only Quizzes contribute due to missing global stats for Practice)
   updateConceptGapStat(combinedHistory);
@@ -225,6 +226,130 @@ function renderPerformanceChart(data) {
   }
 
   performanceChartInstance = ChartHelper.renderPerformanceChart(ctx, data);
+}
+
+/**
+ * Renders the Subject-wise Heatmap
+ */
+async function renderHeatmap(historyData, mode) {
+  const container = document.getElementById("heatmap-container");
+  if (!container) return;
+
+  if (!historyData || historyData.length === 0) {
+    container.innerHTML = '<div class="text-center text-muted py-4">No data available for heatmap.</div>';
+    return;
+  }
+
+  container.innerHTML = '<div class="text-center text-muted py-4"><div class="spinner-border spinner-border-sm text-primary" role="status"></div> Building Heatmap...</div>';
+
+  try {
+    // 1. Fetch manifest to know all subjects and chapters
+    // The previous implementation was breaking because `full_ui_test.js` or the UI script mock wasn't allowing fetch.
+    // However we do check if `allQuizData` or `allPracticeData` are set by default in the real flow.
+    let manifest;
+    if (mode === 'quiz') {
+      manifest = (typeof allQuizData !== "undefined" && allQuizData) ? allQuizData : await DataManager.fetchQuizManifest();
+    } else {
+      manifest = (typeof allPracticeData !== "undefined" && allPracticeData) ? allPracticeData : await DataManager.fetchPracticeManifest();
+    }
+
+    if (!manifest) {
+      container.innerHTML = '<div class="text-center text-danger py-4">Failed to load manifest for heatmap.</div>';
+      return;
+    }
+
+    // 2. Process history to get latest score per chapter
+    // We want the most recent score for each chapter
+    const latestScores = {};
+    // historyData is already sorted by timestamp desc by Firestore, but we iterate from oldest to newest
+    // or just find the latest. Since it's desc, the first time we see a chapterId, it's the latest.
+
+    // Safety check: ensure historyData is sorted desc just in case
+    const sortedHistory = [...historyData].sort((a, b) => {
+        let tA = a.timestamp?.seconds || (new Date(a.timestamp).getTime() / 1000) || 0;
+        let tB = b.timestamp?.seconds || (new Date(b.timestamp).getTime() / 1000) || 0;
+        return tB - tA; // desc
+    });
+
+    sortedHistory.forEach(res => {
+        if (!latestScores[res.chapterId]) {
+            // Calculate accuracy: correct / attempted
+            let correct = 0;
+            let attempted = 0;
+            if (res.userAnswers) {
+                Object.values(res.userAnswers).forEach(ans => {
+                    if (ans.answer !== undefined && ans.answer !== -1) {
+                        attempted++;
+                        if (ans.isCorrect) correct++;
+                    }
+                });
+            }
+            const accuracy = attempted > 0 ? (correct / attempted) * 100 : 0;
+            latestScores[res.chapterId] = accuracy;
+        }
+    });
+
+    // 3. Build HTML
+    // Sort subjects
+    const sortedSubjects = Object.keys(manifest).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+
+    let html = '<div class="heatmap-grid">';
+
+    sortedSubjects.forEach(subjectKey => {
+        const chapters = manifest[subjectKey];
+        const sortedChapters = Object.keys(chapters).sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+        const subjectPrefix = subjectKey.replace(/\s+/g, "_") + "_";
+
+        html += `<div class="heatmap-row">`;
+        html += `<div class="heatmap-subject fw-bold text-muted">${subjectKey}</div>`;
+        html += `<div class="heatmap-cells d-flex flex-wrap gap-1">`;
+
+        sortedChapters.forEach(chapId => {
+            const fullChapterId = subjectPrefix + chapId;
+            let accuracy = latestScores[fullChapterId];
+            let cellClass = "heatmap-cell heatmap-unattempted";
+            let tooltipText = `${subjectKey} - ${chapId}: Unattempted`;
+            let displayVal = "";
+
+            if (accuracy !== undefined) {
+                accuracy = Math.round(accuracy);
+                if (accuracy >= 80) cellClass = "heatmap-cell heatmap-high";
+                else if (accuracy >= 50) cellClass = "heatmap-cell heatmap-medium";
+                else cellClass = "heatmap-cell heatmap-low";
+
+                tooltipText = `${subjectKey} - ${chapId}: ${accuracy}%`;
+            }
+
+            html += `<div class="${cellClass}" title="${tooltipText}" data-bs-toggle="tooltip"></div>`;
+        });
+
+        html += `</div></div>`;
+    });
+
+    html += '</div>';
+
+    // Add legend
+    html += `
+        <div class="heatmap-legend d-flex justify-content-center gap-3 mt-3 small text-muted">
+            <div class="d-flex align-items-center gap-1"><div class="heatmap-cell heatmap-high"></div> &ge;80%</div>
+            <div class="d-flex align-items-center gap-1"><div class="heatmap-cell heatmap-medium"></div> 50-79%</div>
+            <div class="d-flex align-items-center gap-1"><div class="heatmap-cell heatmap-low"></div> &lt;50%</div>
+            <div class="d-flex align-items-center gap-1"><div class="heatmap-cell heatmap-unattempted"></div> Unattempted</div>
+        </div>
+    `;
+
+    container.innerHTML = html;
+
+    // Initialize tooltips (bootstrap)
+    const tooltipTriggerList = [].slice.call(container.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+
+  } catch (error) {
+    console.error("Error rendering heatmap:", error);
+    container.innerHTML = '<div class="text-center text-danger py-4">Failed to render heatmap.</div>';
+  }
 }
 
 /* =========================================
