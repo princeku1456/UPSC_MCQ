@@ -541,6 +541,17 @@
           </div>
           <div class="modal-body p-4">
             <p class="text-muted small mb-3">Select the tests you want to include in your revision test. Up to 100 questions will be randomly selected from the chosen tests.</p>
+
+            <div class="mb-3">
+              <label for="revision-filter" class="form-label fw-bold text-secondary small">Filter Questions</label>
+              <select class="form-select form-select-sm" id="revision-filter">
+                <option value="all">All Questions</option>
+                <option value="incorrect">Incorrect Only</option>
+                <option value="correct">Correct Only</option>
+                <option value="unattempted">Unattempted Only</option>
+              </select>
+            </div>
+
             <div id="revision-tests-list" class="list-group list-group-flush mb-3">
               <!-- Checkboxes will be injected here -->
             </div>

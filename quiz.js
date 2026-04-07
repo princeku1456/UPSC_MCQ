@@ -330,6 +330,18 @@ async function generateRevisionTest(subjectKey) {
   generateBtn.disabled = true;
   generateBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Generating...';
 
+  const filterType = document.getElementById("revision-filter")?.value || "all";
+
+  // OPTIMIZATION: Create O(1) lookup map for user history to easily find latest attempt for each chapter
+  const latestResultsMap = new Map();
+  if (typeof userHistory !== 'undefined' && userHistory) {
+    userHistory.forEach((h) => {
+      if (!latestResultsMap.has(h.chapterId)) {
+        latestResultsMap.set(h.chapterId, h);
+      }
+    });
+  }
+
   try {
     let combinedQuestions = [];
     const subjectPrefix = subjectKey.replace(/\s+/g, "_") + "_";
@@ -340,17 +352,49 @@ async function generateRevisionTest(subjectKey) {
       const questions = await DataManager.fetchQuizQuestions(fullChapterId);
 
       if (questions && questions.length > 0) {
+        const latestResult = latestResultsMap.get(fullChapterId);
+
         // Tag questions with subject if missing (for potential dashboard analytics)
-        const taggedQuestions = questions.map(q => ({
-            ...q,
-            subject: q.subject || subjectKey
-        }));
+        const taggedQuestions = questions.map((q, qIndex) => {
+            let include = true;
+
+            if (filterType !== "all") {
+                if (!latestResult) {
+                    // If user hasn't attempted this test, all questions are unattempted.
+                    if (filterType === "correct" || filterType === "incorrect") {
+                        include = false;
+                    } else if (filterType === "unattempted") {
+                        include = true;
+                    }
+                } else {
+                    const uAns = latestResult.userAnswers && latestResult.userAnswers[qIndex];
+                    if (!uAns) {
+                        include = (filterType === "unattempted");
+                    } else {
+                        const correctIndex = getCorrectIndex(q);
+                        const isCorrect = uAns.answer === correctIndex;
+                        if (filterType === "correct" && !isCorrect) include = false;
+                        if (filterType === "incorrect" && isCorrect) include = false;
+                        if (filterType === "unattempted") include = false; // Because it was attempted
+                    }
+                }
+            }
+
+            if (include) {
+                return {
+                    ...q,
+                    subject: q.subject || subjectKey
+                };
+            }
+            return null;
+        }).filter(q => q !== null);
+
         combinedQuestions = combinedQuestions.concat(taggedQuestions);
       }
     }
 
     if (combinedQuestions.length === 0) {
-      toastr.error("No questions found in selected tests.");
+      toastr.error("No questions found matching your filter criteria.");
       generateBtn.disabled = false;
       generateBtn.innerHTML = originalText;
       return;
