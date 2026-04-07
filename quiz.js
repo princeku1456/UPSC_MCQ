@@ -193,9 +193,14 @@ function renderChapters(subjectKey) {
   // Create the layout for the chapters view
   container.innerHTML = `
         <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="renderSubjects()">← Back to Subjects</button>
-        <div class="text-center mb-4">
-            <h4 class="fw-bold section-title">Chapters: ${subjectKey}</h4>
-            <div class="title-underline mx-auto"></div>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="text-start">
+                <h4 class="fw-bold section-title mb-1">Chapters: ${subjectKey}</h4>
+                <div class="title-underline"></div>
+            </div>
+            <button class="btn btn-warning shadow-sm fw-bold" onclick="openRevisionModal('${subjectKey}')">
+                <i class="bi bi-journal-text me-1"></i>Create Revision Test
+            </button>
         </div>
         <div class="row" id="chapters-row"></div>
     `;
@@ -277,12 +282,161 @@ function renderChapters(subjectKey) {
 }
 
 /* =========================================
+   REVISION TEST LOGIC
+   ========================================= */
+function openRevisionModal(subjectKey) {
+  const listContainer = document.getElementById("revision-tests-list");
+  listContainer.innerHTML = "";
+
+  const chapters = allQuizData[subjectKey];
+  if (!chapters) return;
+
+  const sortedChapterIds = Object.keys(chapters).sort((a, b) => {
+    return a.localeCompare(b, undefined, {
+      numeric: true,
+      sensitivity: "base",
+    });
+  });
+
+  sortedChapterIds.forEach((chapId) => {
+    const label = document.createElement("label");
+    label.className = "list-group-item d-flex gap-2 align-items-center";
+    label.innerHTML = `
+      <input class="form-check-input flex-shrink-0 revision-checkbox" type="checkbox" value="${chapId}">
+      <span>
+        ${chapId}
+      </span>
+    `;
+    listContainer.appendChild(label);
+  });
+
+  const generateBtn = document.getElementById("generate-revision-btn");
+  generateBtn.onclick = () => generateRevisionTest(subjectKey);
+
+  const modalEl = document.getElementById('revisionTestModal');
+  const modal = new bootstrap.Modal(modalEl);
+  modal.show();
+}
+
+async function generateRevisionTest(subjectKey) {
+  const checkboxes = document.querySelectorAll(".revision-checkbox:checked");
+  if (checkboxes.length === 0) {
+    toastr.warning("Please select at least one test.");
+    return;
+  }
+
+  const generateBtn = document.getElementById("generate-revision-btn");
+  const originalText = generateBtn.innerHTML;
+  generateBtn.disabled = true;
+  generateBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Generating...';
+
+  try {
+    let combinedQuestions = [];
+    const subjectPrefix = subjectKey.replace(/\s+/g, "_") + "_";
+
+    for (let i = 0; i < checkboxes.length; i++) {
+      const chapId = checkboxes[i].value;
+      const fullChapterId = subjectPrefix + chapId;
+      const questions = await DataManager.fetchQuizQuestions(fullChapterId);
+
+      if (questions && questions.length > 0) {
+        // Tag questions with subject if missing (for potential dashboard analytics)
+        const taggedQuestions = questions.map(q => ({
+            ...q,
+            subject: q.subject || subjectKey
+        }));
+        combinedQuestions = combinedQuestions.concat(taggedQuestions);
+      }
+    }
+
+    if (combinedQuestions.length === 0) {
+      toastr.error("No questions found in selected tests.");
+      generateBtn.disabled = false;
+      generateBtn.innerHTML = originalText;
+      return;
+    }
+
+    // Shuffle array using Fisher-Yates
+    for (let i = combinedQuestions.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [combinedQuestions[i], combinedQuestions[j]] = [combinedQuestions[j], combinedQuestions[i]];
+    }
+
+    // Slice up to 100 questions
+    currentQuizData = combinedQuestions.slice(0, 100);
+
+    currentSubject = subjectKey;
+    currentChapterId = "revision_" + Date.now();
+    currentChapterName = "Revision Test";
+
+    // Close modal
+    const modalEl = document.getElementById('revisionTestModal');
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    if (modal) modal.hide();
+
+    // Cleanup state
+    generateBtn.disabled = false;
+    generateBtn.innerHTML = originalText;
+
+    // Proceed to quiz execution
+    startRevisionTestExecution();
+
+  } catch (error) {
+    console.error("Error generating revision test:", error);
+    toastr.error("Failed to generate test.");
+    generateBtn.disabled = false;
+    generateBtn.innerHTML = originalText;
+  }
+}
+
+/* =========================================
    5. QUIZ CORE
    ========================================= */
 
 /* =========================================
    QUIZ CORE (Updated loadQuiz)
    ========================================= */
+function startRevisionTestExecution() {
+  isPracticeMode = false;
+  isReviewMode = false;
+  quizSubmitted = false;
+
+  currentQuestionIndex = 0;
+  userAnswers = {};
+  markedForReview = {};
+  questionTimeSpent = {};
+  currentQuestionStartTime = null;
+
+  hideAllSections();
+  document.getElementById("quiz-section").style.display = "block";
+
+  renderBreadcrumbs([
+      { label: 'Home', onclick: 'showHome()' },
+      { label: 'Dashboard', onclick: 'showDashboard()' },
+      { label: 'Take Test', onclick: 'renderSubjects()' },
+      { label: currentSubject, onclick: `renderChapters('${currentSubject}')` },
+      { label: 'Revision Test' }
+  ]);
+
+  const quizContent = document.getElementById("quiz-content");
+  const quizNav = document.getElementById("quiz-nav");
+
+  quizContent.parentElement.className = "col-lg-8 mb-4";
+  quizNav.parentElement.style.display = "block";
+  renderQuizLayout(currentChapterName);
+  renderQuestion();
+  renderNav();
+
+  const timerDisplay = document.getElementById("timer-display");
+  if (timerDisplay) {
+    timerDisplay.textContent = "";
+    timerDisplay.classList.remove("text-danger");
+  }
+
+  startTimer(currentQuizData.length, null);
+  currentQuestionStartTime = Date.now();
+}
+
 function startQuizExecution(savedTime) {
   const quizContent = document.getElementById("quiz-content");
   const quizNav = document.getElementById("quiz-nav");
@@ -583,7 +737,11 @@ function renderLeaderboardHTML(container, data) {
  */
 async function renderReviewMode(resultData) {
   // Pre-fetch stats to ensure they are available for community comparison
-  currentReviewStats = await DataManager.fetchGlobalStats(currentChapterId);
+  if (currentChapterId.startsWith('revision_')) {
+      currentReviewStats = null;
+  } else {
+      currentReviewStats = await DataManager.fetchGlobalStats(currentChapterId);
+  }
   let confStats = {
     100: { total: 0, correct: 0 },
     75: { total: 0, correct: 0 },
@@ -1898,77 +2056,81 @@ function submitAll(forceSubmit = false) {
         await DataManager.invalidateCache(`global_stats_${currentChapterId}`);
         await DataManager.invalidateCache(`user_history_${currentUser.uid}`);
 
-        const statsRef = db.collection("chapter_stats").doc(currentChapterId);
-        try {
-          await db.runTransaction(async (transaction) => {
-            const sfDoc = await transaction.get(statsRef);
-            const newScore = parseFloat(percentage);
+        if (!currentChapterId.startsWith('revision_')) {
+            const statsRef = db.collection("chapter_stats").doc(currentChapterId);
+            try {
+              await db.runTransaction(async (transaction) => {
+                const sfDoc = await transaction.get(statsRef);
+                const newScore = parseFloat(percentage);
 
-            if (!sfDoc.exists) {
-              const initCorrectCounts = currentQuizData.map((q, i) =>
-                userAnswers[i] && userAnswers[i].answer === getCorrectIndex(q)
-                  ? 1
-                  : 0
-              );
-              const initAttemptedCounts = currentQuizData.map((q, i) =>
-                userAnswers[i] ? 1 : 0
-              );
-              transaction.set(statsRef, {
-                totalScore: newScore,
-                totalAttempts: 1,
-                average: newScore,
-                highestScore: newScore,
-                allScores: [newScore],
-                leaderboard: [leaderboardEntry],
-                correctCounts: initCorrectCounts,
-                attemptedCounts: initAttemptedCounts,
-              });
-            } else {
-              const data = sfDoc.data();
-              const newAttempts = (data.totalAttempts || 0) + 1;
-              const newAvg = ((data.totalScore || 0) + newScore) / newAttempts;
-              let currentLeaderboard = data.leaderboard || [];
-              currentLeaderboard.push(leaderboardEntry);
-              currentLeaderboard.sort(
-                (a, b) => b.scorePercent - a.scorePercent
-              );
-              if (currentLeaderboard.length > 10)
-                currentLeaderboard = currentLeaderboard.slice(0, 10);
+                if (!sfDoc.exists) {
+                  const initCorrectCounts = currentQuizData.map((q, i) =>
+                    userAnswers[i] && userAnswers[i].answer === getCorrectIndex(q)
+                      ? 1
+                      : 0
+                  );
+                  const initAttemptedCounts = currentQuizData.map((q, i) =>
+                    userAnswers[i] ? 1 : 0
+                  );
+                  transaction.set(statsRef, {
+                    totalScore: newScore,
+                    totalAttempts: 1,
+                    average: newScore,
+                    highestScore: newScore,
+                    allScores: [newScore],
+                    leaderboard: [leaderboardEntry],
+                    correctCounts: initCorrectCounts,
+                    attemptedCounts: initAttemptedCounts,
+                  });
+                } else {
+                  const data = sfDoc.data();
+                  const newAttempts = (data.totalAttempts || 0) + 1;
+                  const newAvg = ((data.totalScore || 0) + newScore) / newAttempts;
+                  let currentLeaderboard = data.leaderboard || [];
+                  currentLeaderboard.push(leaderboardEntry);
+                  currentLeaderboard.sort(
+                    (a, b) => b.scorePercent - a.scorePercent
+                  );
+                  if (currentLeaderboard.length > 10)
+                    currentLeaderboard = currentLeaderboard.slice(0, 10);
 
-              let cCounts = [...(data.correctCounts || [])];
-              let aCounts = [...(data.attemptedCounts || [])];
+                  let cCounts = [...(data.correctCounts || [])];
+                  let aCounts = [...(data.attemptedCounts || [])];
 
-              // Densify arrays: Ensure no holes and extend to current length
-              // This prevents Firestore errors with sparse arrays (undefined values)
-              const maxLen = Math.max(cCounts.length, aCounts.length, currentQuizData.length);
-              for (let j = 0; j < maxLen; j++) {
-                  if (cCounts[j] == null) cCounts[j] = 0;
-                  if (aCounts[j] == null) aCounts[j] = 0;
-              }
+                  // Densify arrays: Ensure no holes and extend to current length
+                  // This prevents Firestore errors with sparse arrays (undefined values)
+                  const maxLen = Math.max(cCounts.length, aCounts.length, currentQuizData.length);
+                  for (let j = 0; j < maxLen; j++) {
+                      if (cCounts[j] == null) cCounts[j] = 0;
+                      if (aCounts[j] == null) aCounts[j] = 0;
+                  }
 
-              currentQuizData.forEach((q, i) => {
-                if (userAnswers[i]) {
-                  aCounts[i] = (aCounts[i] || 0) + 1;
-                  if (userAnswers[i].answer === getCorrectIndex(q))
-                    cCounts[i] = (cCounts[i] || 0) + 1;
+                  currentQuizData.forEach((q, i) => {
+                    if (userAnswers[i]) {
+                      aCounts[i] = (aCounts[i] || 0) + 1;
+                      if (userAnswers[i].answer === getCorrectIndex(q))
+                        cCounts[i] = (cCounts[i] || 0) + 1;
+                    }
+                  });
+
+                  transaction.update(statsRef, {
+                    totalScore: (data.totalScore || 0) + newScore,
+                    totalAttempts: newAttempts,
+                    average: newAvg,
+                    highestScore: Math.max(data.highestScore || 0, newScore),
+                    allScores: [...(data.allScores || []), newScore],
+                    leaderboard: currentLeaderboard,
+                    correctCounts: cCounts,
+                    attemptedCounts: aCounts,
+                  });
                 }
               });
-
-              transaction.update(statsRef, {
-                totalScore: (data.totalScore || 0) + newScore,
-                totalAttempts: newAttempts,
-                average: newAvg,
-                highestScore: Math.max(data.highestScore || 0, newScore),
-                allScores: [...(data.allScores || []), newScore],
-                leaderboard: currentLeaderboard,
-                correctCounts: cCounts,
-                attemptedCounts: aCounts,
-              });
+              toastr.success("Result and stats saved!");
+            } catch (e) {
+              console.error("Stats update failed:", e);
             }
-          });
-          toastr.success("Result and stats saved!");
-        } catch (e) {
-          console.error("Stats update failed:", e);
+        } else {
+            toastr.success("Revision test result saved!");
         }
 
         const stats = await DataManager.fetchGlobalStats(currentChapterId, true);
