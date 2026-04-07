@@ -285,8 +285,14 @@ function renderChapters(subjectKey) {
    REVISION TEST LOGIC
    ========================================= */
 function openRevisionModal(subjectKey) {
-  const listContainer = document.getElementById("revision-tests-list");
-  listContainer.innerHTML = "";
+  const selectElement = document.getElementById("revision-tests-select");
+  if (!selectElement) {
+      console.error("revision-tests-select element not found");
+      return;
+  }
+
+  // Clear existing options using jQuery for Select2 compatibility
+  $('#revision-tests-select').empty();
 
   const chapters = allQuizData[subjectKey];
   if (!chapters) return;
@@ -299,28 +305,44 @@ function openRevisionModal(subjectKey) {
   });
 
   sortedChapterIds.forEach((chapId) => {
-    const label = document.createElement("label");
-    label.className = "list-group-item d-flex gap-2 align-items-center";
-    label.innerHTML = `
-      <input class="form-check-input flex-shrink-0 revision-checkbox" type="checkbox" value="${chapId}">
-      <span>
-        ${chapId}
-      </span>
-    `;
-    listContainer.appendChild(label);
+    const option = new Option(chapId, chapId, false, false);
+    $('#revision-tests-select').append(option);
   });
+
+  // Trigger change so Select2 updates its UI
+  $('#revision-tests-select').trigger('change');
 
   const generateBtn = document.getElementById("generate-revision-btn");
   generateBtn.onclick = () => generateRevisionTest(subjectKey);
 
   const modalEl = document.getElementById('revisionTestModal');
   const modal = new bootstrap.Modal(modalEl);
+
+  // Initialize Select2 if not already initialized
+  if (!$('#revision-tests-select').hasClass("select2-hidden-accessible")) {
+      $('#revision-tests-select').select2({
+          dropdownParent: $('#revisionTestModal'),
+          placeholder: "Select tests...",
+          width: '100%',
+          allowClear: true
+      });
+  }
+
+  if (!$('#revision-filter').hasClass("select2-hidden-accessible")) {
+      $('#revision-filter').select2({
+          dropdownParent: $('#revisionTestModal'),
+          placeholder: "Select filter options...",
+          width: '100%',
+          allowClear: true
+      });
+  }
+
   modal.show();
 }
 
 async function generateRevisionTest(subjectKey) {
-  const checkboxes = document.querySelectorAll(".revision-checkbox:checked");
-  if (checkboxes.length === 0) {
+  const selectedTests = $('#revision-tests-select').val() || [];
+  if (selectedTests.length === 0) {
     toastr.warning("Please select at least one test.");
     return;
   }
@@ -330,7 +352,7 @@ async function generateRevisionTest(subjectKey) {
   generateBtn.disabled = true;
   generateBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Generating...';
 
-  const filterType = document.getElementById("revision-filter")?.value || "all";
+  const filterTypes = $('#revision-filter').val() || ["all"];
 
   // OPTIMIZATION: Create O(1) lookup map for user history to easily find latest attempt for each chapter
   const latestResultsMap = new Map();
@@ -346,36 +368,42 @@ async function generateRevisionTest(subjectKey) {
     let combinedQuestions = [];
     const subjectPrefix = subjectKey.replace(/\s+/g, "_") + "_";
 
-    for (let i = 0; i < checkboxes.length; i++) {
-      const chapId = checkboxes[i].value;
+    for (let i = 0; i < selectedTests.length; i++) {
+      const chapId = selectedTests[i];
       const fullChapterId = subjectPrefix + chapId;
       const questions = await DataManager.fetchQuizQuestions(fullChapterId);
 
       if (questions && questions.length > 0) {
         const latestResult = latestResultsMap.get(fullChapterId);
 
-        // Tag questions with subject if missing (for potential dashboard analytics)
+                // Tag questions with subject if missing (for potential dashboard analytics)
         const taggedQuestions = questions.map((q, qIndex) => {
-            let include = true;
+            let include = false;
 
-            if (filterType !== "all") {
+            // If user has not attempted, their data is undefined
+            // If they have attempted, we get from userHistory (latestResult.userAnswers)
+
+            // We use user submitted data (latestResult) instead of guessing
+            if (filterTypes.includes("all")) {
+                include = true;
+            } else {
                 if (!latestResult) {
-                    // If user hasn't attempted this test, all questions are unattempted.
-                    if (filterType === "correct" || filterType === "incorrect") {
-                        include = false;
-                    } else if (filterType === "unattempted") {
+                    // User hasn't attempted this test, all questions are unattempted.
+                    if (filterTypes.includes("unattempted")) {
                         include = true;
                     }
                 } else {
                     const uAns = latestResult.userAnswers && latestResult.userAnswers[qIndex];
                     if (!uAns) {
-                        include = (filterType === "unattempted");
+                        if (filterTypes.includes("unattempted")) {
+                            include = true;
+                        }
                     } else {
                         const correctIndex = getCorrectIndex(q);
                         const isCorrect = uAns.answer === correctIndex;
-                        if (filterType === "correct" && !isCorrect) include = false;
-                        if (filterType === "incorrect" && isCorrect) include = false;
-                        if (filterType === "unattempted") include = false; // Because it was attempted
+
+                        if (filterTypes.includes("correct") && isCorrect) include = true;
+                        if (filterTypes.includes("incorrect") && !isCorrect) include = true;
                     }
                 }
             }
