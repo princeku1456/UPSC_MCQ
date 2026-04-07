@@ -198,7 +198,7 @@ function renderChapters(subjectKey) {
                 <h4 class="fw-bold section-title mb-1">Chapters: ${subjectKey}</h4>
                 <div class="title-underline"></div>
             </div>
-            <button class="btn btn-warning shadow-sm fw-bold" onclick="openRevisionModal('${subjectKey}')">
+            <button class="btn btn-secondary-custom shadow-sm fw-bold" onclick="openRevisionModal('${subjectKey}')">
                 <i class="bi bi-journal-text me-1"></i>Create Revision Test
             </button>
         </div>
