@@ -285,14 +285,8 @@ function renderChapters(subjectKey) {
    REVISION TEST LOGIC
    ========================================= */
 function openRevisionModal(subjectKey) {
-  const selectElement = document.getElementById("revision-tests-select");
-  if (!selectElement) {
-      console.error("revision-tests-select element not found");
-      return;
-  }
-
-  // Clear existing options using jQuery for Select2 compatibility
-  $('#revision-tests-select').empty();
+  const listContainer = document.getElementById("revision-tests-list");
+  listContainer.innerHTML = "";
 
   const chapters = allQuizData[subjectKey];
   if (!chapters) return;
@@ -305,28 +299,22 @@ function openRevisionModal(subjectKey) {
   });
 
   sortedChapterIds.forEach((chapId) => {
-    const option = new Option(chapId, chapId, false, false);
-    $('#revision-tests-select').append(option);
+    const label = document.createElement("label");
+    label.className = "list-group-item d-flex gap-2 align-items-center";
+    label.innerHTML = `
+      <input class="form-check-input flex-shrink-0 revision-checkbox" type="checkbox" value="${chapId}">
+      <span>
+        ${chapId}
+      </span>
+    `;
+    listContainer.appendChild(label);
   });
-
-  // Trigger change so Select2 updates its UI
-  $('#revision-tests-select').trigger('change');
 
   const generateBtn = document.getElementById("generate-revision-btn");
   generateBtn.onclick = () => generateRevisionTest(subjectKey);
 
   const modalEl = document.getElementById('revisionTestModal');
   const modal = new bootstrap.Modal(modalEl);
-
-  // Initialize Select2 if not already initialized
-  if (!$('#revision-tests-select').hasClass("select2-hidden-accessible")) {
-      $('#revision-tests-select').select2({
-          dropdownParent: $('#revisionTestModal'),
-          placeholder: "Select tests...",
-          width: '100%',
-          allowClear: true
-      });
-  }
 
   if (!$('#revision-filter').hasClass("select2-hidden-accessible")) {
       $('#revision-filter').select2({
@@ -341,8 +329,8 @@ function openRevisionModal(subjectKey) {
 }
 
 async function generateRevisionTest(subjectKey) {
-  const selectedTests = $('#revision-tests-select').val() || [];
-  if (selectedTests.length === 0) {
+  const checkboxes = document.querySelectorAll(".revision-checkbox:checked");
+  if (checkboxes.length === 0) {
     toastr.warning("Please select at least one test.");
     return;
   }
@@ -368,8 +356,8 @@ async function generateRevisionTest(subjectKey) {
     let combinedQuestions = [];
     const subjectPrefix = subjectKey.replace(/\s+/g, "_") + "_";
 
-    for (let i = 0; i < selectedTests.length; i++) {
-      const chapId = selectedTests[i];
+    for (let i = 0; i < checkboxes.length; i++) {
+      const chapId = checkboxes[i].value;
       const fullChapterId = subjectPrefix + chapId;
       const questions = await DataManager.fetchQuizQuestions(fullChapterId);
 
