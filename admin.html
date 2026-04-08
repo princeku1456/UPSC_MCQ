@@ -69,7 +69,7 @@
       /* HEAT MAP PALETTE STYLES */
       .admin-palette-sidebar {
         position: sticky;
-        top: 20px;
+        top: 80px;
         background: white;
         border-radius: 15px;
         padding: 20px;
@@ -79,6 +79,9 @@
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 8px;
+        max-height: 60vh;
+        overflow-y: auto;
+        padding-right: 5px;
       }
       .palette-item {
         width: 100%;
