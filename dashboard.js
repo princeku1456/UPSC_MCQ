@@ -277,8 +277,11 @@ async function generateAIReview() {
 
     // Subject Aggregation
     const subjectStats = {};
+    const allTestsDetailedArray = [];
 
-    userHistory.forEach((r) => {
+    // --- Single Pass Data Construction & Aggregation ---
+    for (let i = 0; i < userHistory.length; i++) {
+      const r = userHistory[i];
       totalScoreSum += r.scorePercent;
 
       // Subject stats
@@ -288,15 +291,39 @@ async function generateAIReview() {
       subjectStats[r.subject].totalScore += r.scorePercent;
       subjectStats[r.subject].count++;
 
+      let correct = 0,
+        incorrect = 0,
+        unattempted = 0;
+
       // Answer stats
       if (r.userAnswers) {
-        Object.values(r.userAnswers).forEach((ans) => {
+        for (const key in r.userAnswers) {
+          const ans = r.userAnswers[key];
           totalAttempted++;
-          if (ans.isCorrect) totalCorrect++;
-          else totalIncorrect++;
-        });
+          if (ans.isCorrect) {
+            totalCorrect++;
+            correct++;
+          } else {
+            totalIncorrect++;
+            incorrect++;
+          }
+        }
       }
-    });
+
+      // Estimate total questions
+      const totalQs = r.totalMarks ? r.totalMarks / 2 : correct + incorrect;
+      unattempted = Math.max(0, totalQs - (correct + incorrect));
+
+      // Format date
+      const dateStr = r.timestamp ? new Date(r.timestamp.seconds * 1000).toLocaleDateString() : "Unknown Date";
+
+      allTestsDetailedArray.push(`
+      - ${dateStr}: ${r.chapterName} (${r.subject})
+        Score: ${r.scorePercent}% | Breakdown: ${correct} Correct, ${incorrect} Incorrect, ${unattempted} Unattempted.
+      `);
+    }
+
+    const allTestsDetailed = allTestsDetailedArray.join("\n");
 
     // Derived Metrics
     const avgScore = totalTests ? (totalScoreSum / totalTests).toFixed(1) + "%" : "0%";
@@ -321,31 +348,6 @@ async function generateAIReview() {
         weakestSubject = `${subj} (${avg.toFixed(1)}%)`;
       }
     });
-
-    // --- 2. Full History Data Construction ---
-    // Map ALL tests for deep pattern analysis
-    const allTestsDetailed = userHistory.map((r) => {
-      let correct = 0,
-        incorrect = 0,
-        unattempted = 0;
-      if (r.userAnswers) {
-        Object.values(r.userAnswers).forEach((ans) => {
-          if (ans.isCorrect) correct++;
-          else incorrect++;
-        });
-      }
-      // Estimate total questions
-      const totalQs = r.totalMarks ? r.totalMarks / 2 : correct + incorrect;
-      unattempted = Math.max(0, totalQs - (correct + incorrect));
-
-      // Format date
-      const dateStr = r.timestamp ? new Date(r.timestamp.seconds * 1000).toLocaleDateString() : "Unknown Date";
-
-      return `
-      - ${dateStr}: ${r.chapterName} (${r.subject})
-        Score: ${r.scorePercent}% | Breakdown: ${correct} Correct, ${incorrect} Incorrect, ${unattempted} Unattempted.
-      `;
-    }).join("\n");
 
     // Construct Prompt
     const prompt = `
