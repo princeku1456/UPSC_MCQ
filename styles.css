@@ -1023,3 +1023,14 @@ body {
     font-style: italic;
     color: var(--text-muted);
 }
+
+/* Responsive image and table handling for questions */
+#quiz-content img, .explanation img {
+    max-width: 100%;
+    height: auto;
+}
+#quiz-content table, .explanation table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
