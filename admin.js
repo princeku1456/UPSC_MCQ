@@ -35,6 +35,41 @@ function showLogin() {
 function showDashboard() {
   document.getElementById("admin-login-section").style.display = "none";
   document.getElementById("admin-dashboard-section").style.display = "block";
+  loadAllUserEmails();
+}
+
+/**
+ * Fetches all unique user emails to populate the search datalist
+ */
+async function loadAllUserEmails() {
+  try {
+    const snapshot = await db.collection("results").get();
+    const emails = new Set();
+
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      if (data.userEmail && data.userEmail !== "guest") {
+        emails.add(data.userEmail.toLowerCase());
+      }
+    });
+
+    const datalist = document.getElementById("user-emails-list");
+    if (!datalist) return;
+
+    datalist.innerHTML = "";
+    const sortedEmails = Array.from(emails).sort();
+
+    const fragment = document.createDocumentFragment();
+    sortedEmails.forEach(email => {
+      const option = document.createElement("option");
+      option.value = email;
+      fragment.appendChild(option);
+    });
+
+    datalist.appendChild(fragment);
+  } catch (error) {
+    console.error("Error loading user emails:", error);
+  }
 }
 
 document.getElementById("admin-login-form").addEventListener("submit", (e) => {
