@@ -953,7 +953,7 @@ async function renderReviewMode(resultData) {
               <h6 class="fw-bold text-primary m-0">🎯 Performance by Difficulty</h6>
           </div>
           <div class="table-responsive">
-              <table class="table table-hover mb-0 align-middle">
+              <table class="table table-hover mb-0 align-middle w-100 d-table">
                   <thead class="table-light small text-muted">
                       <tr>
                           <th>Difficulty</th>
@@ -1001,7 +1001,7 @@ async function renderReviewMode(resultData) {
                   <h6 class="fw-bold text-primary m-0">📚 Subject-wise Performance</h6>
               </div>
               <div class="table-responsive">
-                  <table class="table table-hover mb-0 align-middle">
+                  <table class="table table-hover mb-0 align-middle w-100 d-table">
                       <thead class="table-light small text-muted">
                           <tr>
                               <th>Subject</th>
