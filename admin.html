@@ -163,7 +163,7 @@
 
     <section id="admin-login-section" class="container mt-5">
       <div class="row justify-content-center">
-        <div class="col-12 col-md-5">
+        <div class="col-md-5">
           <div class="card shadow border-0 rounded-4 p-4">
             <h3 class="text-center fw-bold text-primary mb-2">Admin Login</h3>
             <form id="admin-login-form">
@@ -209,7 +209,7 @@
           <i class="bi bi-people-fill me-2"></i>Manage User Attempts
         </h5>
         <div class="row g-3">
-          <div class="col-12 col-md-10">
+          <div class="col-md-10">
             <input
               type="email"
               id="user-search-email"
@@ -219,7 +219,7 @@
             />
             <datalist id="user-emails-list"></datalist>
           </div>
-          <div class="col-12 col-md-2 mt-2 mt-md-0">
+          <div class="col-md-2">
             <button
               class="btn btn-secondary-custom w-100 py-2 btn-lg"
               onclick="searchUserAttempts()"
@@ -256,20 +256,20 @@
           <i class="bi bi-search me-2"></i>Select Test to Analyze
         </h5>
         <div class="row g-3">
-          <div class="col-12 col-md-5">
+          <div class="col-md-5">
             <select
               id="subject-select"
               class="form-select form-select-lg"
             ></select>
           </div>
-          <div class="col-12 col-md-5">
+          <div class="col-md-5">
             <select
               id="chapter-select"
               class="form-select form-select-lg"
               disabled
             ></select>
           </div>
-          <div class="col-12 col-md-2 mt-2 mt-md-0">
+          <div class="col-md-2">
             <button
               class="btn btn-primary-custom w-100 py-2 btn-lg"
               onclick="loadTestAnalysis()"
@@ -281,8 +281,8 @@
       </div>
 
       <div id="analysis-main-layout" class="row" style="display: none">
-        <div class="col-12 col-lg-9" id="analysis-container"></div>
-        <div class="col-12 col-lg-3 mt-4 mt-lg-0">
+        <div class="col-lg-9" id="analysis-container"></div>
+        <div class="col-lg-3">
           <div class="admin-palette-sidebar">
             <h6 class="fw-bold mb-3">
               <i class="bi bi-grid-3x3-gap me-2"></i>Heat Map Palette
