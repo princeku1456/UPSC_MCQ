@@ -130,7 +130,7 @@ async function renderSubjects() {
     const isCompleted = progressPercent === 100;
 
     const col = document.createElement("div");
-    col.className = "col-12 col-sm-6 col-md-4 col-lg-3 mb-4";
+    col.className = "col-md-4 col-lg-3 mb-4";
     col.innerHTML = `
             <div class="card topic-card h-100 ${
               isCompleted ? "subject-completed" : ""
