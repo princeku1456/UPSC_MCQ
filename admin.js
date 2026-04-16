@@ -458,6 +458,9 @@ async function searchUserAttempts() {
                 <td>${data.chapterName}</td>
                 <td><span class="badge bg-primary">${data.scorePercent}%</span></td>
                 <td class="text-end">
+                    <button class="btn btn-outline-primary btn-sm me-1" onclick="viewUserAttempt('${doc.id}', '${data.chapterId}', '${data.chapterName}')">
+                        <i class="bi bi-eye"></i> View
+                    </button>
                     <button class="btn btn-outline-danger btn-sm" onclick="deleteAttempt('${doc.id}', '${data.chapterName}')">
                         <i class="bi bi-trash"></i> Delete
                     </button>
@@ -584,5 +587,137 @@ async function deleteAttempt(docId, testName) {
     } catch (error) {
         console.error("Delete Transaction Error:", error);
         toastr.error("Failed to complete full deletion.");
+    }
+}
+/**
+ * Views a specific attempt in a modal.
+ */
+async function viewUserAttempt(docId, chapterId, chapterName) {
+    const modalBody = document.getElementById("user-review-modal-body");
+    const modalTitle = document.getElementById("user-review-modal-title");
+
+    modalTitle.textContent = `Review: ${chapterName}`;
+    modalBody.innerHTML = '<div class="text-center py-5"><div class="spinner-border text-primary"></div><p>Fetching test details...</p></div>';
+
+    const reviewModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('user-review-modal'));
+    reviewModal.show();
+
+    try {
+        // Fetch result and questions in parallel
+        const [resultSnap, questions] = await Promise.all([
+            db.collection("results").doc(docId).get(),
+            DataManager.fetchQuizQuestions(chapterId)
+        ]);
+
+        if (!resultSnap.exists) {
+            throw new Error("Result record not found.");
+        }
+        if (!questions) {
+            throw new Error("Quiz questions not found.");
+        }
+
+        const resultData = resultSnap.data();
+        const userAnswers = resultData.userAnswers || {};
+
+        let html = `
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <div class="card bg-primary text-white border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <h6 class="opacity-75 mb-1">Score</h6>
+                            <h2 class="fw-bold mb-0">${resultData.scorePercent}%</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-success text-white border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <h6 class="opacity-75 mb-1">Attempted On</h6>
+                            <h4 class="fw-bold mb-0">${resultData.timestamp ? new Date(resultData.timestamp.toDate()).toLocaleDateString() : 'N/A'}</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-info text-white border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <h6 class="opacity-75 mb-1">User Email</h6>
+                            <h5 class="fw-bold mb-0 text-truncate" title="${resultData.userEmail}">${resultData.userEmail}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-4">
+        `;
+
+        questions.forEach((q, index) => {
+            const correctIndex = getCorrectIndex(q);
+            const uAns = userAnswers[index];
+            const attempted = uAns !== undefined;
+            const isCorrect = attempted && uAns.answer === correctIndex;
+
+            let statusBadge = '';
+            let borderClass = 'border-secondary';
+
+            if (!attempted) {
+                statusBadge = '<span class="badge bg-secondary mb-2">Unattempted</span>';
+            } else if (isCorrect) {
+                statusBadge = '<span class="badge bg-success mb-2">Correct</span>';
+                borderClass = 'border-success';
+            } else {
+                statusBadge = '<span class="badge bg-danger mb-2">Incorrect</span>';
+                borderClass = 'border-danger';
+            }
+
+            const suretyLabel = attempted && uAns.surety !== undefined ? `<span class="badge bg-info text-dark ms-2">Confidence: ${uAns.surety}%</span>` : '';
+
+            html += `
+                <div class="card mb-4 border-0 shadow-sm border-start border-4 ${borderClass}">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h6 class="fw-bold text-secondary mb-0">Question ${index + 1}</h6>
+                            <div>${statusBadge}${suretyLabel}</div>
+                        </div>
+                        <p class="mb-3 lead" style="font-size: 1.1rem;">${TextFormatter.format(q.question)}</p>
+                        <div class="options-container ps-3">
+            `;
+
+            q.options.forEach((opt, optIdx) => {
+                let optClass = "p-2 mb-2 rounded border";
+                let icon = "";
+
+                if (optIdx === correctIndex) {
+                    optClass += " bg-success text-white border-success";
+                    icon = '<i class="bi bi-check-circle-fill me-2"></i>';
+                } else if (attempted && uAns.answer === optIdx) {
+                    optClass += " bg-danger text-white border-danger";
+                    icon = '<i class="bi bi-x-circle-fill me-2"></i>';
+                } else {
+                    optClass += " bg-white text-dark";
+                    icon = '<i class="bi bi-circle me-2 text-muted"></i>';
+                }
+
+                html += `<div class="${optClass}">${icon}${TextFormatter.format(opt)}</div>`;
+            });
+
+            html += `
+                        </div>
+                        ${q.explanation ? `
+                            <div class="mt-3 p-3 bg-light rounded border-start border-warning border-4">
+                                <h6 class="fw-bold text-warning-emphasis"><i class="bi bi-lightbulb me-1"></i>Explanation</h6>
+                                <div class="small">${TextFormatter.format(q.explanation)}</div>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        });
+
+        html += `</div>`;
+        modalBody.innerHTML = html;
+
+    } catch (error) {
+        console.error("Error loading user attempt details:", error);
+        modalBody.innerHTML = `<div class="alert alert-danger">Error loading details: ${error.message}</div>`;
     }
 }
