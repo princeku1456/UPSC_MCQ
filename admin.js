@@ -53,20 +53,29 @@ async function loadAllUserEmails() {
       }
     });
 
-    const datalist = document.getElementById("user-emails-list");
-    if (!datalist) return;
+    const select = document.getElementById("user-search-email");
+    if (!select) return;
 
-    datalist.innerHTML = "";
+    // Keep the first default option
+    select.innerHTML = '<option value="" disabled selected>Select a User Email...</option>';
     const sortedEmails = Array.from(emails).sort();
 
     const fragment = document.createDocumentFragment();
     sortedEmails.forEach(email => {
       const option = document.createElement("option");
       option.value = email;
+      option.textContent = email;
       fragment.appendChild(option);
     });
 
-    datalist.appendChild(fragment);
+    select.appendChild(fragment);
+
+    // Initialize Select2 after populating
+    $(select).select2({
+      theme: 'bootstrap-5',
+      placeholder: "Select a User Email...",
+      allowClear: true
+    });
   } catch (error) {
     console.error("Error loading user emails:", error);
   }
