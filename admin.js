@@ -678,7 +678,7 @@ async function viewUserAttempt(docId, chapterId, chapterName) {
                             <h6 class="fw-bold text-secondary mb-0">Question ${index + 1}</h6>
                             <div>${statusBadge}${suretyLabel}</div>
                         </div>
-                        <p class="mb-3 lead" style="font-size: 1.1rem;">${TextFormatter.format(q.question)}</p>
+                        <p class="mb-3 lead" style="font-size: 1.1rem;">${TextFormatter.formatQuestionText(q.question)}</p>
                         <div class="options-container ps-3">
             `;
 
@@ -697,7 +697,7 @@ async function viewUserAttempt(docId, chapterId, chapterName) {
                     icon = '<i class="bi bi-circle me-2 text-muted"></i>';
                 }
 
-                html += `<div class="${optClass}">${icon}${TextFormatter.format(opt)}</div>`;
+                html += `<div class="${optClass}">${icon}${TextFormatter.formatQuestionText(opt)}</div>`;
             });
 
             html += `
@@ -705,7 +705,7 @@ async function viewUserAttempt(docId, chapterId, chapterName) {
                         ${q.explanation ? `
                             <div class="mt-3 p-3 bg-light rounded border-start border-warning border-4">
                                 <h6 class="fw-bold text-warning-emphasis"><i class="bi bi-lightbulb me-1"></i>Explanation</h6>
-                                <div class="small">${TextFormatter.format(q.explanation)}</div>
+                                <div class="small">${TextFormatter.formatQuestionText(q.explanation)}</div>
                             </div>
                         ` : ''}
                     </div>
