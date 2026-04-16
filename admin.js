@@ -2,7 +2,7 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 
 // REDUCED READS: Memory cache for admin analysis
-const adminAnalysisCache = {};
+let adminAnalysisCache = {};
 
 // Global variable for quiz structure
 let allQuizData = null;
@@ -591,7 +591,7 @@ async function deleteAttempt(docId, testName) {
         searchUserAttempts();
         
         // Clear local caches to force fresh data on next analysis
-        for (let key in adminAnalysisCache) delete adminAnalysisCache[key];
+        adminAnalysisCache = {};
 
     } catch (error) {
         console.error("Delete Transaction Error:", error);

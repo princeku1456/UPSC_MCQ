@@ -1,105 +1,27 @@
 const { performance } = require('perf_hooks');
 
-// Generate mock data
-const numEntries = 10000;
-const filteredSortedData = Array.from({ length: numEntries }, (_, i) => ({
-  userEmail: `user${i}@example.com`,
-  scorePercent: Math.floor(Math.random() * 100)
-}));
-const currentUser = { email: `user9999@example.com` };
-
-function concatApproach() {
-  let rows = "";
-  let rank = 1;
-  filteredSortedData.forEach((entry) => {
-    const email = entry.userEmail || "Guest";
-    const rawName = email.split("@")[0];
-    const displayName =
-      rawName.length > 3 ? rawName.substring(0, 3) + "***" : rawName;
-    const isMe = currentUser && entry.userEmail === currentUser.email;
-
-    rows += `
-            <tr class="${isMe ? "table-warning fw-bold" : ""}">
-                <td class="ps-3 text-secondary">#${rank++}</td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center me-2 shadow-sm" style="width:24px; height:24px; font-size:10px;">
-                            ${rawName.charAt(0).toUpperCase()}
-                        </div>
-                        <span class="text-dark">${displayName}</span>
-                        ${
-                          isMe
-                            ? '<span class="badge bg-warning text-dark dummy-tag ms-2" style="font-size:0.6rem">YOU</span>'
-                            : ""
-                        }
-                    </div>
-                </td>
-                <td class="text-end pe-3">
-                    <span class="badge ${
-                      entry.scorePercent >= 80 ? "bg-success" : "bg-primary"
-                    }">${entry.scorePercent}%</span>
-                </td>
-            </tr>
-        `;
-  });
-  return rows;
+function testDelete(keysCount) {
+    const cache = {};
+    for (let i = 0; i < keysCount; i++) {
+        cache['key_' + i] = i;
+    }
+    const start = performance.now();
+    for (let key in cache) delete cache[key];
+    const end = performance.now();
+    return end - start;
 }
 
-function arrayJoinApproach() {
-  let rank = 1;
-  const rows = filteredSortedData.map((entry) => {
-    const email = entry.userEmail || "Guest";
-    const rawName = email.split("@")[0];
-    const displayName =
-      rawName.length > 3 ? rawName.substring(0, 3) + "***" : rawName;
-    const isMe = currentUser && entry.userEmail === currentUser.email;
-
-    return `
-            <tr class="${isMe ? "table-warning fw-bold" : ""}">
-                <td class="ps-3 text-secondary">#${rank++}</td>
-                <td>
-                    <div class="d-flex align-items-center">
-                        <div class="rounded-circle bg-secondary text-white d-flex justify-content-center align-items-center me-2 shadow-sm" style="width:24px; height:24px; font-size:10px;">
-                            ${rawName.charAt(0).toUpperCase()}
-                        </div>
-                        <span class="text-dark">${displayName}</span>
-                        ${
-                          isMe
-                            ? '<span class="badge bg-warning text-dark dummy-tag ms-2" style="font-size:0.6rem">YOU</span>'
-                            : ""
-                        }
-                    </div>
-                </td>
-                <td class="text-end pe-3">
-                    <span class="badge ${
-                      entry.scorePercent >= 80 ? "bg-success" : "bg-primary"
-                    }">${entry.scorePercent}%</span>
-                </td>
-            </tr>
-        `;
-  }).join('');
-  return rows;
+function testReassign(keysCount) {
+    let cache = {};
+    for (let i = 0; i < keysCount; i++) {
+        cache['key_' + i] = i;
+    }
+    const start = performance.now();
+    cache = {};
+    const end = performance.now();
+    return end - start;
 }
 
-// Warmup
-for (let i = 0; i < 100; i++) {
-  concatApproach();
-  arrayJoinApproach();
-}
-
-const ITERATIONS = 100;
-
-const startConcat = performance.now();
-for (let i = 0; i < ITERATIONS; i++) {
-  concatApproach();
-}
-const endConcat = performance.now();
-console.log(`String concatenation: ${(endConcat - startConcat).toFixed(2)} ms for ${ITERATIONS} iterations`);
-
-const startArray = performance.now();
-for (let i = 0; i < ITERATIONS; i++) {
-  arrayJoinApproach();
-}
-const endArray = performance.now();
-console.log(`Array join: ${(endArray - startArray).toFixed(2)} ms for ${ITERATIONS} iterations`);
-
+const N = 100000;
+console.log(`Deleting ${N} keys: ${testDelete(N).toFixed(4)} ms`);
+console.log(`Reassigning object with ${N} keys: ${testReassign(N).toFixed(4)} ms`);
