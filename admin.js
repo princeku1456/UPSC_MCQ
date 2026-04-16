@@ -779,12 +779,12 @@ async function viewUserAttempt(docId, chapterId, chapterName) {
 
             html += `
                 <div class="card mb-4 border-0 shadow-sm border-start border-4 ${borderClass} admin-review-q-card" data-status="${statusClass}" ${subjDataAttr}>
-<div class="card-body">
+                    <div class="card-body">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <h6 class="fw-bold text-secondary mb-0">Question ${index + 1}</h6>
                             <div>${statusBadge}${suretyLabel}</div>
                         </div>
-                        <p class="mb-3 lead" style="font-size: 1.1rem;">${TextFormatter.formatQuestionText(q.question)}</p>
+                                <div class="mb-3 lead" style="font-size: 1.1rem;">${TextFormatter.formatQuestionText(q.text || q.question || 'Missing question text')}</div>
                         <div class="options-container ps-3">
             `;
 
