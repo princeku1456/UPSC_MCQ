@@ -89,13 +89,22 @@
 
 [data-theme="dark"] .surety-opt {
     border-right: 1px solid var(--border-color);
-    filter: brightness(0.8); /* Tone down overly bright colors */
+    background-color: transparent;
 }
 
+[data-theme="dark"] .surety-100 { background-color: rgba(22, 101, 52, 0.3); color: #86efac; }
+[data-theme="dark"] .surety-75  { background-color: rgba(153, 27, 27, 0.3); color: #fca5a5; }
+[data-theme="dark"] .surety-50  { background-color: rgba(161, 98, 7, 0.3); color: #fde047; }
+[data-theme="dark"] .surety-0   { background-color: rgba(30, 58, 138, 0.3); color: #93c5fd; }
+
 [data-theme="dark"] .surety-opt.selected {
-    filter: brightness(1.1);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
+
+[data-theme="dark"] .surety-100.selected { background-color: #166534 !important; color: #ffffff !important; }
+[data-theme="dark"] .surety-75.selected  { background-color: #991b1b !important; color: #ffffff !important; }
+[data-theme="dark"] .surety-50.selected  { background-color: #a16207 !important; color: #ffffff !important; }
+[data-theme="dark"] .surety-0.selected   { background-color: #1e3a8a !important; color: #ffffff !important; }
 
 /* Question Palette */
 [data-theme="dark"] .nav-item {
