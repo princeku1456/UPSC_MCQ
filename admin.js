@@ -616,38 +616,140 @@ async function viewUserAttempt(docId, chapterId, chapterName) {
             throw new Error("Quiz questions not found.");
         }
 
+
         const resultData = resultSnap.data();
         const userAnswers = resultData.userAnswers || {};
 
+        let correctCount = 0;
+        let incorrectCount = 0;
+        let unattemptedCount = 0;
+
+        let subjectStats = {};
+
+        questions.forEach((q, index) => {
+            const correctIndex = getCorrectIndex(q);
+            const uAns = userAnswers[index];
+            const attempted = uAns !== undefined;
+            const isCorrect = attempted && uAns.answer === correctIndex;
+
+            if (!attempted) {
+                unattemptedCount++;
+            } else if (isCorrect) {
+                correctCount++;
+            } else {
+                incorrectCount++;
+            }
+
+            if (q.subject) {
+                const subj = q.subject.trim();
+                if (!subjectStats[subj]) {
+                    subjectStats[subj] = { total: 0, correct: 0, incorrect: 0, unattempted: 0 };
+                }
+                subjectStats[subj].total++;
+                if (!attempted) subjectStats[subj].unattempted++;
+                else if (isCorrect) subjectStats[subj].correct++;
+                else subjectStats[subj].incorrect++;
+            }
+        });
+
+        let subjectStatsHtml = '';
+        if (Object.keys(subjectStats).length > 0) {
+            subjectStatsHtml = `
+                <div class="card mb-4 border-0 shadow-sm">
+                    <div class="card-header bg-white fw-bold"><i class="bi bi-bar-chart-fill me-2 text-primary"></i>Subject-wise Performance</div>
+                    <div class="table-responsive">
+                        <table class="table table-sm table-hover mb-0 text-center align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="text-start">Subject</th>
+                                    <th>Total</th>
+                                    <th class="text-success">Correct</th>
+                                    <th class="text-danger">Incorrect</th>
+                                    <th class="text-secondary">Unattempted</th>
+                                    <th>Accuracy</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+            `;
+
+            Object.keys(subjectStats).sort().forEach(subj => {
+                const s = subjectStats[subj];
+                const attempted = s.correct + s.incorrect;
+                const acc = attempted > 0 ? Math.round((s.correct / attempted) * 100) : 0;
+                subjectStatsHtml += `
+                    <tr>
+                        <td class="text-start fw-bold">${subj}</td>
+                        <td>${s.total}</td>
+                        <td class="text-success">${s.correct}</td>
+                        <td class="text-danger">${s.incorrect}</td>
+                        <td class="text-secondary">${s.unattempted}</td>
+                        <td><span class="badge ${acc >= 70 ? 'bg-success' : acc >= 40 ? 'bg-warning text-dark' : 'bg-danger'}">${acc}%</span></td>
+                    </tr>
+                `;
+            });
+            subjectStatsHtml += `</tbody></table></div></div>`;
+        }
+
         let html = `
             <div class="row mb-4">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card bg-primary text-white border-0 shadow-sm h-100">
-                        <div class="card-body text-center">
+                        <div class="card-body text-center p-3">
                             <h6 class="opacity-75 mb-1">Score</h6>
-                            <h2 class="fw-bold mb-0">${resultData.scorePercent}%</h2>
+                            <h3 class="fw-bold mb-0">${resultData.scorePercent}%</h3>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card bg-success text-white border-0 shadow-sm h-100">
-                        <div class="card-body text-center">
-                            <h6 class="opacity-75 mb-1">Attempted On</h6>
-                            <h4 class="fw-bold mb-0">${resultData.timestamp ? new Date(resultData.timestamp.toDate()).toLocaleDateString() : 'N/A'}</h4>
+                        <div class="card-body text-center p-3">
+                            <h6 class="opacity-75 mb-1">Correct</h6>
+                            <h3 class="fw-bold mb-0">${correctCount}</h3>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card bg-info text-white border-0 shadow-sm h-100">
-                        <div class="card-body text-center">
-                            <h6 class="opacity-75 mb-1">User Email</h6>
-                            <h5 class="fw-bold mb-0 text-truncate" title="${resultData.userEmail}">${resultData.userEmail}</h5>
+                <div class="col-md-3">
+                    <div class="card bg-danger text-white border-0 shadow-sm h-100">
+                        <div class="card-body text-center p-3">
+                            <h6 class="opacity-75 mb-1">Incorrect</h6>
+                            <h3 class="fw-bold mb-0">${incorrectCount}</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card bg-secondary text-white border-0 shadow-sm h-100">
+                        <div class="card-body text-center p-3">
+                            <h6 class="opacity-75 mb-1">Unattempted</h6>
+                            <h3 class="fw-bold mb-0">${unattemptedCount}</h3>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-4">
+            ${subjectStatsHtml}
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold m-0">Detailed Analysis</h5>
+                <div class="btn-group btn-group-sm" role="group">
+                    <input type="radio" class="btn-check" name="adminQFilter" id="btnradio-all" autocomplete="off" checked onchange="filterAdminQuestions('all')">
+                    <label class="btn btn-outline-primary" for="btnradio-all">All</label>
+
+                    <input type="radio" class="btn-check" name="adminQFilter" id="btnradio-correct" autocomplete="off" onchange="filterAdminQuestions('correct')">
+                    <label class="btn btn-outline-success" for="btnradio-correct">Correct</label>
+
+                    <input type="radio" class="btn-check" name="adminQFilter" id="btnradio-incorrect" autocomplete="off" onchange="filterAdminQuestions('incorrect')">
+                    <label class="btn btn-outline-danger" for="btnradio-incorrect">Incorrect</label>
+
+                    <input type="radio" class="btn-check" name="adminQFilter" id="btnradio-unattempted" autocomplete="off" onchange="filterAdminQuestions('unattempted')">
+                    <label class="btn btn-outline-secondary" for="btnradio-unattempted">Unattempted</label>
+                </div>
+                <select id="adminSubjFilter" class="form-select form-select-sm w-auto ms-2" onchange="filterAdminQuestions()">
+                    <option value="all">All Subjects</option>
+                    ${Object.keys(subjectStats).sort().map(s => `<option value="${s}">${s}</option>`).join('')}
+                </select>
+            </div>
+
+            <div class="mt-2" id="admin-questions-list">
         `;
 
         questions.forEach((q, index) => {
@@ -658,22 +760,26 @@ async function viewUserAttempt(docId, chapterId, chapterName) {
 
             let statusBadge = '';
             let borderClass = 'border-secondary';
+            let statusClass = 'unattempted';
 
             if (!attempted) {
                 statusBadge = '<span class="badge bg-secondary mb-2">Unattempted</span>';
             } else if (isCorrect) {
                 statusBadge = '<span class="badge bg-success mb-2">Correct</span>';
                 borderClass = 'border-success';
+                statusClass = 'correct';
             } else {
                 statusBadge = '<span class="badge bg-danger mb-2">Incorrect</span>';
                 borderClass = 'border-danger';
+                statusClass = 'incorrect';
             }
 
             const suretyLabel = attempted && uAns.surety !== undefined ? `<span class="badge bg-info text-dark ms-2">Confidence: ${uAns.surety}%</span>` : '';
+            const subjDataAttr = q.subject ? `data-subj="${q.subject.trim()}"` : '';
 
             html += `
-                <div class="card mb-4 border-0 shadow-sm border-start border-4 ${borderClass}">
-                    <div class="card-body">
+                <div class="card mb-4 border-0 shadow-sm border-start border-4 ${borderClass} admin-review-q-card" data-status="${statusClass}" ${subjDataAttr}>
+<div class="card-body">
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <h6 class="fw-bold text-secondary mb-0">Question ${index + 1}</h6>
                             <div>${statusBadge}${suretyLabel}</div>
@@ -720,4 +826,38 @@ async function viewUserAttempt(docId, chapterId, chapterName) {
         console.error("Error loading user attempt details:", error);
         modalBody.innerHTML = `<div class="alert alert-danger">Error loading details: ${error.message}</div>`;
     }
+}
+
+
+function filterAdminQuestions(statusOverride) {
+    let selectedStatus = 'all';
+
+    // Find selected status from radio buttons
+    document.querySelectorAll('input[name="adminQFilter"]').forEach(radio => {
+        if (radio.checked) {
+            selectedStatus = radio.id.replace('btnradio-', '');
+        }
+    });
+
+    // Handle direct click override from radio buttons (because onchange passes 'all', 'correct' etc)
+    if (statusOverride) {
+        selectedStatus = statusOverride;
+    }
+
+    const selectedSubj = document.getElementById('adminSubjFilter') ? document.getElementById('adminSubjFilter').value : 'all';
+
+    const cards = document.querySelectorAll('.admin-review-q-card');
+    cards.forEach(card => {
+        const qStatus = card.getAttribute('data-status');
+        const qSubj = card.getAttribute('data-subj');
+
+        const statusMatch = selectedStatus === 'all' || selectedStatus === qStatus;
+        const subjMatch = selectedSubj === 'all' || selectedSubj === qSubj;
+
+        if (statusMatch && subjMatch) {
+            card.classList.remove('d-none');
+        } else {
+            card.classList.add('d-none');
+        }
+    });
 }
