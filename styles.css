@@ -500,6 +500,14 @@ body {
     font-weight: 700;
 }
 
+[data-theme="dark"] .option:hover {
+    color: #60a5fa; /* Bright blue for better visibility in dark mode */
+}
+
+[data-theme="dark"] .option input[type="radio"]:checked + span {
+    color: #60a5fa; /* Bright blue for better visibility in dark mode */
+}
+
 /* ============================
    UTILITIES & ANIMATION
    ============================ */
