@@ -787,10 +787,10 @@ async function renderReviewMode(resultData) {
       currentReviewStats = await DataManager.fetchGlobalStats(currentChapterId);
   }
   let confStats = {
-    100: { total: 0, correct: 0 },
-    75: { total: 0, correct: 0 },
-    50: { total: 0, correct: 0 },
-    0: { total: 0, correct: 0 },
+    100: { total: 0, correct: 0, incorrect: 0 },
+    75: { total: 0, correct: 0, incorrect: 0 },
+    50: { total: 0, correct: 0, incorrect: 0 },
+    0: { total: 0, correct: 0, incorrect: 0 },
   };
   let correct = 0;
   let incorrect = 0;
@@ -873,6 +873,8 @@ async function renderReviewMode(resultData) {
       confStats[confidence].total++;
       if (uAns.answer === getCorrectIndex(q)) {
         confStats[confidence].correct++;
+      } else {
+        confStats[confidence].incorrect++;
       }
     }
 
@@ -924,6 +926,59 @@ async function renderReviewMode(resultData) {
   const accuracyRate = ((correct / (correct + incorrect)) * 100 || 0).toFixed(
     1
   );
+
+  // Generate Confidence Matrix HTML
+  const confidenceLabels = {
+      100: "100 (Sure)",
+      75: "75 (Unsure about few option)",
+      50: "50 (Choose from one option)",
+      0: "0 (Guess)"
+  };
+
+  const confidenceRows = [100, 75, 50, 0].map(level => {
+      const stats = confStats[level];
+      const attempted = stats.total; // total is actually attempted count for that confidence
+      const acc = attempted > 0 ? ((stats.correct / attempted) * 100).toFixed(1) : 0;
+      let badgeClass = 'bg-secondary';
+      if (level === 100) badgeClass = 'bg-success';
+      if (level === 75) badgeClass = 'bg-info text-dark';
+      if (level === 50) badgeClass = 'bg-warning text-dark';
+      if (level === 0) badgeClass = 'bg-danger';
+
+      return `
+          <tr>
+              <td><span class="badge ${badgeClass}">${confidenceLabels[level]}</span></td>
+              <td class="text-center">${stats.total}</td>
+              <td class="text-center text-success fw-bold">${stats.correct}</td>
+              <td class="text-center text-danger fw-bold">${stats.incorrect}</td>
+              <td class="text-end fw-bold">${acc}%</td>
+          </tr>
+      `;
+  }).join('');
+
+  const confidenceMatrixHtml = `
+      <div class="card mb-4 border-0 shadow-sm">
+          <div class="card-header bg-white border-bottom py-2">
+              <h6 class="fw-bold text-primary m-0">🧠 Confidence × Outcome Matrix</h6>
+          </div>
+          <div class="table-responsive">
+              <table class="table table-hover mb-0 align-middle">
+                  <thead class="table-light small text-muted">
+                      <tr>
+                          <th>Confidence Level</th>
+                          <th class="text-center">Total</th>
+                          <th class="text-center">Correct</th>
+                          <th class="text-center">Incorrect</th>
+                          <th class="text-end">Accuracy</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      ${confidenceRows}
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  `;
 
   // Generate Difficulty Matrix HTML
   const difficultyRows = ['Easy', 'Medium', 'Hard'].map(level => {
@@ -1134,6 +1189,7 @@ async function renderReviewMode(resultData) {
 
                 ${difficultyMatrixHtml}
                 ${subjectMatrixHtml}
+                ${confidenceMatrixHtml}
 
                 <div class="row mb-4 g-3">
                     <div class="col-md-6">
