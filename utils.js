@@ -567,9 +567,9 @@ class QuizTimer {
         this.displayElement.textContent = `${m}:${s < 10 ? "0" : ""}${s}`;
 
         if (this.secondsRemaining < 180) {
-            this.displayElement.classList.add("low-time");
+            this.displayElement.classList.add("timer-pill--low");
         } else {
-            this.displayElement.classList.remove("low-time");
+            this.displayElement.classList.remove("timer-pill--low");
         }
     }
 }
