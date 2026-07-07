@@ -9,8 +9,10 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=IBM+Plex+Mono:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,600;1,400&display=swap"
       rel="stylesheet"
     />
     <link href="styles.css?v=1.2" rel="stylesheet" />
@@ -39,56 +41,33 @@
         </div>
       </div>
     </div>
-    <nav class="navbar navbar-expand-lg navbar-dark main-navbar sticky-top">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="#" onclick="handleLogoClick()"
-          >✨ MCQ Practice</a
-        >
-        <div class="d-flex align-items-center gap-3">
-          <button
-            class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center"
-            id="theme-toggle"
-            onclick="toggleTheme()"
-            style="width: 38px; height: 38px; font-size: 1.2rem"
-            title="Toggle Theme"
-          >
-            🌙
+    <header class="nav">
+      <a href="#" class="nav__brand" onclick="handleLogoClick()">
+        <span class="nav__mark">✨</span> MCQ Practice
+      </a>
+      <div class="nav__right">
+        <button id="theme-toggle" class="nav__icon" onclick="toggleTheme()" title="Toggle Theme">
+          🌙
+        </button>
+        <div id="user-profile" style="display: none" class="dropdown">
+          <button class="nav__icon dropdown-toggle" type="button" data-bs-toggle="dropdown">
+            <span id="user-name-display" class="nav__user">User</span>
           </button>
-          <div id="user-profile" style="display: none" class="dropdown">
-            <button
-              class="btn btn-link text-white text-decoration-none dropdown-toggle fw-bold"
-              type="button"
-              data-bs-toggle="dropdown"
-            >
-              <span id="user-name-display">User</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end shadow">
-              <li>
-                <a class="dropdown-item" href="#" onclick="showDashboard()"
-                  >📊 Dashboard</a
-                >
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a
-                  class="dropdown-item text-danger"
-                  href="#"
-                  onclick="logoutUser()"
-                  >🚪 Logout</a
-                >
-              </li>
-            </ul>
-          </div>
+          <ul class="dropdown-menu dropdown-menu-end shadow">
+            <li><a class="dropdown-item" href="#" onclick="showDashboard()">📊 Dashboard</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser()">🚪 Logout</a></li>
+          </ul>
         </div>
       </div>
-    </nav>
+    </header>
 
     <div id="breadcrumb-container" class="container mt-3" style="display: none;"></div>
-    <section id="hero-section" class="hero" style="margin-top: 100px">
+    <section id="hero-section" class="login">
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8 col-lg-5">
-            <div class="card auth-card text-center animate-fade-in">
+            <div class="card login__card text-center animate-fade-in">
               <div class="card-body p-5">
                 <h3 class="fw-bold text-primary mb-2" id="auth-title">
                   Welcome Back! 👋
@@ -97,31 +76,31 @@
                   Login to access your dashboard.
                 </p>
                 <form id="auth-form">
-                  <div class="mb-3 text-start">
+                  <div class="login__field text-start">
                     <label class="form-label text-muted small fw-bold"
                       >Email Address</label
                     >
-                    <input
+                    <input class="form-control"
                       type="email"
-                      class="form-control form-control-lg"
+
                       id="auth-email"
                       required
                     />
                   </div>
-                  <div class="mb-3 text-start">
+                  <div class="login__field text-start">
                     <label class="form-label text-muted small fw-bold"
                       >Password</label
                     >
-                    <input
+                    <input class="form-control"
                       type="password"
-                      class="form-control form-control-lg"
+
                       id="auth-password"
                       required
                     />
                   </div>
                   <button
                     type="submit"
-                    class="btn btn-primary-custom w-100 py-3 mt-3 shadow"
+                    class="btn btn btn--primary w-100 py-3 mt-3 shadow"
                     id="auth-submit-btn"
                   >
                     Login
@@ -135,7 +114,7 @@
                   </div>
                   <button
                     type="button"
-                    class="btn btn-secondary-custom w-100 py-2 d-flex align-items-center justify-content-center gap-2"
+                    class="btn btn btn--ghost w-100 py-2 d-flex align-items-center justify-content-center gap-2"
                     onclick="signInWithGoogle()"
                   >
                     <img
@@ -174,115 +153,62 @@
           <div class="title-underline mx-auto"></div>
         </div>
         <div
-          class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-3 mb-5 justify-content-center"
+          class="stats-grid mb-5"
         >
-          <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">
+          <div class="stat stat--pen">
+              <div class="stat__sub">
                 Tests Taken
-              </h6>
-              <h2 class="fw-bold text-primary mb-0" id="stat-total-tests">0</h2>
-            </div>
-          </div>
-          <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">
+              </div>
+              <div class="stat__value" id="stat-total-tests">0</div></div>
+          <div class="stat stat--marker">
+              <div class="stat__sub">
                 Avg. Score
-              </h6>
-              <h2 class="fw-bold text-warning mb-0" id="stat-avg-score">0%</h2>
-            </div>
-          </div>
-          <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-start border-4 border-success h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">Precision</h6>
-              <h2 class="fw-bold text-success mb-0" id="stat-precision-rate">
+              </div>
+              <div class="stat__value" id="stat-avg-score">0%</div></div>
+          <div class="stat stat--leaf">
+              <div class="stat__sub">Precision</div>
+              <div class="stat__value" id="stat-precision-rate">
                 0%
-              </h2>
-              <small class="text-muted">Net Accuracy</small>
-            </div>
-          </div>
-          <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">
+              </div><div class="stat__sub">Net Accuracy</div></div>
+          <div class="stat stat--stamp">
+              <div class="stat__sub">
                 Neg. Drain
-              </h6>
-              <h2 class="fw-bold text-danger mb-0" id="stat-negative-drain">
+              </div>
+              <div class="stat__value" id="stat-negative-drain">
                 0%
-              </h2>
-              <small class="text-muted">Marks Lost</small>
-            </div>
-          </div>
-          <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-start border-4 border-info h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">
+              </div><div class="stat__sub">Marks Lost</div></div>
+          <div class="stat">
+              <div class="stat__sub">
                 Concept Gap
-              </h6>
-              <h2 class="fw-bold text-info mb-0" id="stat-concept-gap">0%</h2>
-              <small class="text-muted">Easy Qs Missed</small>
-            </div>
-          </div>
+              </div>
+              <div class="stat__value" id="stat-concept-gap">0%</div><div class="stat__sub">Easy Qs Missed</div></div>
         </div>
         <div
-          class="row row-cols-1 row-cols-md-5 g-3 mb-5 justify-content-center"
+          class="stats-grid mb-5"
         >
-          <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-dark h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">Total Qs</h6>
-              <h2 class="fw-bold mb-0" id="stat-all-total">0</h2>
-            </div>
-          </div>
-          <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-primary h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">Attempted</h6>
-              <h2 class="fw-bold text-primary mb-0" id="stat-all-attempted">
+          <div class="stat">
+              <div class="stat__sub">Total Qs</div>
+              <div class="stat__value" id="stat-all-total">0</div></div>
+          <div class="stat stat--pen">
+              <div class="stat__sub">Attempted</div>
+              <div class="stat__value" id="stat-all-attempted">
                 0
-              </h2>
-            </div>
-          </div>
-          <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-secondary h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">
+              </div></div>
+          <div class="stat">
+              <div class="stat__sub">
                 Unattempted
-              </h6>
-              <h2 class="fw-bold text-secondary mb-0" id="stat-all-unattempted">
+              </div>
+              <div class="stat__value" id="stat-all-unattempted">
                 0
-              </h2>
-            </div>
-          </div>
-          <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-success h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">Correct</h6>
-              <h2 class="fw-bold text-success mb-0" id="stat-all-correct">0</h2>
-            </div>
-          </div>
-          <div class="col">
-            <div
-              class="p-3 bg-white rounded shadow-sm border-bottom border-4 border-danger h-100"
-            >
-              <h6 class="text-muted text-uppercase small fw-bold">Incorrect</h6>
-              <h2 class="fw-bold text-danger mb-0" id="stat-all-incorrect">
+              </div></div>
+          <div class="stat stat--leaf">
+              <div class="stat__sub">Correct</div>
+              <div class="stat__value" id="stat-all-correct">0</div></div>
+          <div class="stat stat--stamp">
+              <div class="stat__sub">Incorrect</div>
+              <div class="stat__value" id="stat-all-incorrect">
                 0
-              </h2>
-            </div>
-          </div>
+              </div></div>
         </div>
         <div class="row justify-content-center mb-4">
           <div class="col-md-6">
@@ -351,7 +277,7 @@
 
               <div class="d-flex gap-2 align-items-center">
                 <button
-                  class="btn btn-primary-custom px-4"
+                  class="btn btn btn--primary px-4"
                   onclick="generateAIReview()"
                   id="btn-generate-ai"
                 >
@@ -371,10 +297,10 @@
         <div class="row justify-content-center mb-4">
             <div class="col-12 text-center">
                 <div class="btn-group shadow-sm" role="group" aria-label="Chart Data Source">
-                     <input type="radio" class="btn-check" name="dashMode" id="mode-quiz" autocomplete="off" checked onclick="switchDashboardMode('quiz')">
+                     <input class="form-control"  type="radio" class="btn-check" name="dashMode" id="mode-quiz" autocomplete="off" checked onclick="switchDashboardMode('quiz')">
                      <label class="btn btn-outline-primary px-4 fw-bold" for="mode-quiz">Tests Analysis</label>
 
-                     <input type="radio" class="btn-check" name="dashMode" id="mode-practice" autocomplete="off" onclick="switchDashboardMode('practice')">
+                     <input class="form-control"  type="radio" class="btn-check" name="dashMode" id="mode-practice" autocomplete="off" onclick="switchDashboardMode('practice')">
                      <label class="btn btn-outline-primary px-4 fw-bold" for="mode-practice">Practice Analysis</label>
                 </div>
             </div>
@@ -421,7 +347,7 @@
         <div class="d-flex justify-content-between mb-4">
           <button
             id="quiz-back-btn"
-            class="btn btn-primary-custom px-4 shadow"
+            class="btn btn btn--primary px-4 shadow"
             onclick="exitQuiz()"
           >
             ← Exit
@@ -506,7 +432,7 @@
           <div class="modal-footer border-0 justify-content-center pb-4">
             <button
               type="button"
-              class="btn btn-secondary-custom px-4"
+              class="btn btn btn--ghost px-4"
               data-bs-dismiss="modal"
               onclick="showDashboard()"
             >
@@ -514,7 +440,7 @@
             </button>
             <button
               type="button"
-              class="btn btn-primary-custom px-5 shadow pulse-button"
+              class="btn btn btn--primary px-5 shadow pulse-button"
               id="start-quiz-btn"
             >
               🚀 Start Test
@@ -559,14 +485,14 @@
           <div class="modal-footer border-0 justify-content-center pb-4">
             <button
               type="button"
-              class="btn btn-secondary-custom px-4"
+              class="btn btn btn--ghost px-4"
               data-bs-dismiss="modal"
             >
               Cancel
             </button>
             <button
               type="button"
-              class="btn btn-primary-custom px-5 shadow"
+              class="btn btn btn--primary px-5 shadow"
               id="generate-revision-btn"
             >
               🚀 Generate Test

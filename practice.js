@@ -59,7 +59,7 @@ async function renderPracticeUI() {
   const container = document.getElementById("test-content-container");
 
   container.innerHTML = `
-        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="showDashboard()">← Back to Dashboard</button>
+        <button class="btn btn btn--primary px-4 shadow mb-4" onclick="showDashboard()">← Back to Dashboard</button>
         <div class="text-center mb-5">
             <h2 class="fw-bold section-title text-primary">Practice MCQ</h2>
             <div class="title-underline mx-auto" style="background: var(--secondary-color)"></div>
@@ -102,7 +102,7 @@ async function renderPracticeUI() {
                             </select>
                     </div>
 
-                    <button class="btn btn-secondary-custom w-100 py-3 fw-bold fs-5" onclick="handleGeneratePractice()">
+                    <button class="btn btn btn--ghost w-100 py-3 fw-bold fs-5" onclick="handleGeneratePractice()">
                          Generate Practice
                     </button>
                 </div>
@@ -239,9 +239,9 @@ function setupPracticeLayout() {
         <div id="practice-result-summary" class="mb-4"></div>
         <div id="practice-question-container"></div>
         <div class="d-flex justify-content-between mt-4">
-            <button class="btn btn-secondary-custom px-4" onclick="navPractice(-1)">Previous</button>
+            <button class="btn btn btn--ghost px-4" onclick="navPractice(-1)">Previous</button>
             <button class="btn btn-outline-secondary px-4" id="practice-clear-btn" onclick="clearPracticeSelection()">Clear</button>
-            <button class="btn btn-secondary-custom px-4" onclick="navPractice(1)">Next</button>
+            <button class="btn btn btn--ghost px-4" onclick="navPractice(1)">Next</button>
         </div>
     `;
 
@@ -252,7 +252,7 @@ function setupPracticeLayout() {
             <div id="timer-display" class="timer-value">00:00</div>
         </div>
         <div id="practice-nav-container" class="nav-grid"></div>
-        <button id="practice-submit-btn" class="btn btn-secondary-custom w-100 mt-4 rounded-pill py-2 fw-bold text-white" onclick="submitPractice()">Finish Practice</button>
+        <button id="practice-submit-btn" class="btn btn btn--ghost w-100 mt-4 rounded-pill py-2 fw-bold text-white" onclick="submitPractice()">Finish Practice</button>
     `;
 }
 
@@ -284,13 +284,13 @@ function renderPracticeQuestion() {
         <div class="mt-4 mb-2 animate-fade-in">
             <div class="surety-label">Confidence Level</div>
             <div class="surety-matrix shadow-sm" role="radiogroup" aria-label="Confidence Level">
-                <div class="surety-opt surety-100 ${currentSurety === 100 ? 'selected' : ''}" data-val="100" role="radio" tabindex="0" aria-checked="${currentSurety === 100}" aria-label="100% Confidence"
+                <div class="confidence__chip surety-100 ${currentSurety === 100 ? 'confidence__chip--on' : ''}" data-val="100" role="radio" tabindex="0" aria-checked="${currentSurety === 100}" aria-label="100% Confidence"
                 onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">100%</div>
-                <div class="surety-opt surety-75 ${currentSurety === 75 ? 'selected' : ''}" data-val="75" role="radio" tabindex="0" aria-checked="${currentSurety === 75}" aria-label="75% Confidence"
+                <div class="confidence__chip surety-75 ${currentSurety === 75 ? 'confidence__chip--on' : ''}" data-val="75" role="radio" tabindex="0" aria-checked="${currentSurety === 75}" aria-label="75% Confidence"
                 onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">75%</div>
-                <div class="surety-opt surety-50 ${currentSurety === 50 ? 'selected' : ''}" data-val="50" role="radio" tabindex="0" aria-checked="${currentSurety === 50}" aria-label="50% Confidence"
+                <div class="confidence__chip surety-50 ${currentSurety === 50 ? 'confidence__chip--on' : ''}" data-val="50" role="radio" tabindex="0" aria-checked="${currentSurety === 50}" aria-label="50% Confidence"
                 onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">50%</div>
-                <div class="surety-opt surety-0 ${currentSurety === 0 ? 'selected' : ''}" data-val="0" role="radio" tabindex="0" aria-checked="${currentSurety === 0}" aria-label="0% Confidence"
+                <div class="confidence__chip surety-0 ${currentSurety === 0 ? 'confidence__chip--on' : ''}" data-val="0" role="radio" tabindex="0" aria-checked="${currentSurety === 0}" aria-label="0% Confidence"
                 onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">0%</div>
             </div>
         </div>
@@ -304,8 +304,8 @@ function renderPracticeQuestion() {
     const isSelected = uAns === idx;
 
     if (practiceSubmitted) {
-      if (idx === cIdx) label.classList.add("correct-answer-label");
-      if (isSelected && idx !== cIdx) label.classList.add("incorrect-answer-label");
+      if (idx === cIdx) label.classList.add("option--correct");
+      if (isSelected && idx !== cIdx) label.classList.add("inoption--correct");
     }
 
     label.innerHTML = `<input type="radio" name="pQ" value="${idx}" ${isSelected ? "checked" : ""} ${practiceSubmitted ? "disabled" : ""}><span>${opt}</span>`;
@@ -320,7 +320,7 @@ function renderPracticeQuestion() {
     optionsDiv.appendChild(label);
   });
 
-  const suretyOpts = container.querySelectorAll(".surety-opt");
+  const suretyOpts = container.querySelectorAll(".confidence__chip");
   if (!practiceSubmitted) {
     suretyOpts.forEach(opt => {
         opt.onclick = function() {
@@ -330,10 +330,10 @@ function renderPracticeQuestion() {
             
             // Only toggle selected class and aria-checked
             suretyOpts.forEach(o => {
-                o.classList.remove("selected");
+                o.classList.remove("confidence__chip--on");
                 o.setAttribute("aria-checked", "false");
             });
-            this.classList.add("selected");
+            this.classList.add("confidence__chip--on");
             this.setAttribute("aria-checked", "true");
         };
     });
@@ -348,10 +348,10 @@ function renderPracticeQuestion() {
 }
 function updatePracticeNavHighlights() {
   document
-    .querySelectorAll("#practice-nav-container .nav-item")
+    .querySelectorAll("#practice-nav-container .palette__cell")
     .forEach((item, i) => {
-      item.className = "nav-item shadow-sm";
-      if (i === practiceCurrentIndex) item.classList.add("active");
+      item.className = "palette__cell shadow-sm";
+      if (i === practiceCurrentIndex) item.classList.add("palette__cell--current");
 
       const uAns = practiceUserAnswers[i];
       const isMarked = practiceMarkedForReview[i];
@@ -371,9 +371,9 @@ function updatePracticeNavHighlights() {
       } else {
         // Mark as attempted only if an option is actually selected
         if (uAns && uAns.answer !== undefined && uAns.answer !== -1) {
-          item.classList.add("attempted");
+          item.classList.add("palette__cell--answered");
         }
-        if (isMarked) item.classList.add("marked-nav");
+        if (isMarked) item.classList.add("palette__cell--marked");
       }
     });
 }
@@ -403,7 +403,7 @@ function renderPracticeNav() {
 
   practiceQuizData.forEach((_, i) => {
     const item = document.createElement("div");
-    item.className = "nav-item shadow-sm nav-item-animate";
+    item.className = "palette__cell shadow-sm ";
     item.textContent = i + 1;
     item.style.setProperty("--animation-delay", `${i * 30}ms`);
 

@@ -87,7 +87,7 @@ async function renderSubjects() {
 
   // Clear container and start rendering
   container.innerHTML = `
-        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="showDashboard()">← Back to Dashboard</button>
+        <button class="btn btn btn--primary px-4 shadow mb-4" onclick="showDashboard()">← Back to Dashboard</button>
         <div class="text-center mb-4">
             <h4 class="fw-bold section-title">Select a Subject</h4>
             <div class="title-underline mx-auto"></div>
@@ -192,13 +192,13 @@ function renderChapters(subjectKey) {
 
   // Create the layout for the chapters view
   container.innerHTML = `
-        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="renderSubjects()">← Back to Subjects</button>
+        <button class="btn btn btn--primary px-4 shadow mb-4" onclick="renderSubjects()">← Back to Subjects</button>
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div class="text-start">
                 <h4 class="fw-bold section-title mb-1">Chapters: ${subjectKey}</h4>
                 <div class="title-underline"></div>
             </div>
-            <button class="btn btn-secondary-custom shadow-sm fw-bold" onclick="openRevisionModal('${subjectKey}')">
+            <button class="btn btn btn--ghost shadow-sm fw-bold" onclick="openRevisionModal('${subjectKey}')">
                 <i class="bi bi-journal-text me-1"></i>Create Revision Test
             </button>
         </div>
@@ -244,7 +244,7 @@ function renderChapters(subjectKey) {
     let reviewBtnHtml = "";
     if (hasTaken) {
       reviewBtnHtml = `
-            <button class="btn btn-secondary-custom w-100 mt-2 review-perf-btn">
+            <button class="btn btn btn--ghost w-100 mt-2 review-perf-btn">
                 👁 Review Performance
             </button>
         `;
@@ -255,7 +255,7 @@ function renderChapters(subjectKey) {
                 <div class="card-body d-flex flex-column p-4">
                     <h5 class="card-title fw-bold text-dark">${chapId}</h5>
                     <div class="mt-auto">
-                        <button class="btn btn-primary-custom w-100 action-btn">
+                        <button class="btn btn btn--primary w-100 action-btn">
                             ${startBtnText}
                         </button>
                         ${reviewBtnHtml}
@@ -507,7 +507,7 @@ function showStartModal(subject, chapter) {
     startBtn.classList.add('disabled');
 
     // Set Cancel action to go back to chapters
-    const cancelBtn = document.querySelector('#startQuizModal .btn-secondary-custom');
+    const cancelBtn = document.querySelector("#startQuizModal .btn--ghost");
     cancelBtn.onclick = function() {
         hideAllSections();
         document.getElementById("test-selection-section").style.display = "block";
@@ -1187,7 +1187,7 @@ async function renderReviewMode(resultData) {
         <div id="review-container"></div>
         
         <div class="text-center mt-5">
-            <button class="btn btn-primary-custom px-5 shadow py-2" onclick="exitQuiz()">← Back</button>
+            <button class="btn btn btn--primary px-5 shadow py-2" onclick="exitQuiz()">← Back</button>
         </div>
     `;
 
@@ -1461,8 +1461,8 @@ async function renderReviewMode(resultData) {
 
 function filterReview(filterType, btnElement) {
   const buttons = document.querySelectorAll(".btn-group .btn");
-  buttons.forEach((btn) => btn.classList.remove("active"));
-  if (btnElement) btnElement.classList.add("active");
+  buttons.forEach((btn) => btn.classList.remove("palette__cell--current"));
+  if (btnElement) btnElement.classList.add("palette__cell--current");
   renderReviewQuestions(filterType);
 }
 
@@ -1709,7 +1709,7 @@ function toggleTimer() {
   if (isTimerPaused) {
     btn.innerHTML = '<i class="bi bi-play-fill"></i> Resume';
     // Swap specific color classes only
-    btn.classList.replace("btn-secondary-custom", "btn-primary-custom");
+    btn.classList.replace("btn--ghost", "btn--primary");
 
     if (qContainer) {
       qContainer.style.filter = "blur(8px)";
@@ -1718,7 +1718,7 @@ function toggleTimer() {
     toastr.info("Timer Paused");
   } else {
     btn.innerHTML = '<i class="bi bi-pause-fill"></i> Pause';
-    btn.classList.replace("btn-primary-custom", "btn-secondary-custom");
+    btn.classList.replace("btn--primary", "btn--ghost");
 
     if (qContainer) {
       qContainer.style.filter = "none";
@@ -1732,15 +1732,15 @@ function renderQuizLayout(title) {
   document.getElementById("quiz-content").innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h4 class="fw-bold text-primary m-0">${title}</h4>
-            <button id="mark-review-btn" class="btn btn-primary-custom btn-sm fw-bold shadow-sm" onclick="toggleMarkForReview()">
+            <button id="mark-review-btn" class="btn btn btn--primary btn-sm fw-bold shadow-sm" onclick="toggleMarkForReview()">
                 <i class="bi bi-bookmark-star"></i> Mark for Review
             </button>
         </div>
         <div id="question-container"></div>
         <div class="d-flex justify-content-between mt-4">
-            <button id="prev-btn" class="btn btn-secondary-custom px-4 ">Previous</button>
-            <button id="clear-btn" class="btn btn-primary-custom px-4 ">Clear</button>
-            <button id="next-btn" class="btn btn-secondary-custom px-4 ">Next</button>
+            <button id="prev-btn" class="btn btn btn--ghost px-4 ">Previous</button>
+            <button id="clear-btn" class="btn btn btn--primary px-4 ">Clear</button>
+            <button id="next-btn" class="btn btn btn--ghost px-4 ">Next</button>
         </div>
         <div id="question-feedback" class="mt-3 text-center"></div>
         <div id="result" class="mt-4 text-center"></div>
@@ -1753,7 +1753,7 @@ function renderQuizLayout(title) {
         <div id="timer-display" class="timer-value">00:00</div>
         
         <button id="timer-pause-btn" 
-                class="btn btn-sm btn-secondary-custom fw-bold position-absolute" 
+                class="btn btn-sm btn btn--ghost fw-bold position-absolute"
                 style="bottom: 12px; right: 12px; font-size: 0.85rem; padding: 5px 12px; border-radius: 8px;"
                 onclick="toggleTimer()">
             <i class="bi bi-pause-fill"></i> Pause
@@ -1787,10 +1787,10 @@ function renderQuestion() {
   if (markBtn) {
     if (markedForReview[currentQuestionIndex]) {
       markBtn.innerHTML = `<i class="bi bi-bookmark-check-fill"></i> Unmark Review`;
-      markBtn.classList.replace("btn-secondary-custom", "btn-primary-custom");
+      markBtn.classList.replace("btn--ghost", "btn--primary");
     } else {
       markBtn.innerHTML = `<i class="bi bi-bookmark-star"></i> Mark for Review`;
-      markBtn.classList.replace("btn-primary-custom", "btn-secondary-custom");
+      markBtn.classList.replace("btn--primary", "btn--ghost");
     }
   }
 
@@ -1813,9 +1813,9 @@ function renderQuestion() {
     label.innerHTML = `${inputHTML} <span>${opt}</span>`;
 
     if (quizSubmitted) {
-      if (idx === correctIndex) label.classList.add("correct-answer-label");
+      if (idx === correctIndex) label.classList.add("option--correct");
       if (isSelected && idx !== correctIndex)
-        label.classList.add("incorrect-answer-label");
+        label.classList.add("inoption--correct");
     } else {
       label.querySelector("input").addEventListener("change", () => {
         if (!userAnswers[currentQuestionIndex])
@@ -1835,22 +1835,22 @@ function renderQuestion() {
   suretyDiv.innerHTML = `
     <div class="surety-label">Confidence Level</div>
     <div class="surety-matrix shadow-sm" role="radiogroup" aria-label="Confidence Level">
-        <div class="surety-opt surety-100 ${
+        <div class="confidence__chip surety-100 ${
           currentSurety === 100 ? "selected" : ""
         }" data-val="100" role="radio" tabindex="0" aria-checked="${currentSurety === 100}" aria-label="100% Confidence"
         onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">100%</div>
 
-        <div class="surety-opt surety-75 ${
+        <div class="confidence__chip surety-75 ${
           currentSurety === 75 ? "selected" : ""
         }" data-val="75" role="radio" tabindex="0" aria-checked="${currentSurety === 75}" aria-label="75% Confidence"
         onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">75%</div>
 
-        <div class="surety-opt surety-50 ${
+        <div class="confidence__chip surety-50 ${
           currentSurety === 50 ? "selected" : ""
         }" data-val="50" role="radio" tabindex="0" aria-checked="${currentSurety === 50}" aria-label="50% Confidence"
         onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">50%</div>
 
-        <div class="surety-opt surety-0 ${
+        <div class="confidence__chip surety-0 ${
           currentSurety === 0 ? "selected" : ""
         }" data-val="0" role="radio" tabindex="0" aria-checked="${currentSurety === 0}" aria-label="0% Confidence"
         onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">0%</div>
@@ -1858,7 +1858,7 @@ function renderQuestion() {
   `;
 
   if (!quizSubmitted) {
-    suretyDiv.querySelectorAll(".surety-opt").forEach((opt) => {
+    suretyDiv.querySelectorAll(".confidence__chip").forEach((opt) => {
       opt.onclick = function () {
         const val = parseInt(this.getAttribute("data-val"));
         if (!userAnswers[currentQuestionIndex])
@@ -1866,11 +1866,11 @@ function renderQuestion() {
         userAnswers[currentQuestionIndex].surety = val;
 
         // Toggle 'selected' class and aria-checked
-        suretyDiv.querySelectorAll(".surety-opt").forEach((o) => {
-            o.classList.remove("selected");
+        suretyDiv.querySelectorAll(".confidence__chip").forEach((o) => {
+            o.classList.remove("confidence__chip--on");
             o.setAttribute("aria-checked", "false");
         });
-        this.classList.add("selected");
+        this.classList.add("confidence__chip--on");
         this.setAttribute("aria-checked", "true");
         saveQuizProgress();
       };
@@ -1936,7 +1936,7 @@ function renderNav() {
   const fragment = document.createDocumentFragment();
   currentQuizData.forEach((_, i) => {
     const item = document.createElement("div");
-    item.className = "nav-item shadow-sm nav-item-animate";
+    item.className = "palette__cell shadow-sm ";
     item.textContent = i + 1;
     item.style.setProperty("--animation-delay", `${i * 30}ms`);
 
@@ -1965,9 +1965,9 @@ function renderNav() {
 }
 
 function updateNavHighlights() {
-  document.querySelectorAll(".nav-item").forEach((item, i) => {
-    item.className = "nav-item shadow-sm";
-    if (i === currentQuestionIndex) item.classList.add("active");
+  document.querySelectorAll(".palette__cell").forEach((item, i) => {
+    item.className = "palette__cell shadow-sm";
+    if (i === currentQuestionIndex) item.classList.add("palette__cell--current");
 
     const uAns = userAnswers[i];
     const isMarked = markedForReview[i]; // NEW
@@ -1978,8 +1978,8 @@ function updateNavHighlights() {
       else if (uAns.answer === correctIndex) item.classList.add("correct-nav");
       else item.classList.add("incorrect-nav");
     } else {
-      if (uAns) item.classList.add("attempted");
-      if (isMarked) item.classList.add("marked-nav"); // NEW: Apply purple highlight
+      if (uAns) item.classList.add("palette__cell--answered");
+      if (isMarked) item.classList.add("palette__cell--marked"); // NEW: Apply purple highlight
     }
   });
 }
@@ -2063,7 +2063,7 @@ function submitAll(forceSubmit = false) {
 
   const actionsDiv = document.getElementById("result-actions");
   const reviewBtn = document.createElement("button");
-  reviewBtn.className = "btn btn-primary-custom px-4 shadow";
+  reviewBtn.className = "btn btn btn--primary px-4 shadow";
   reviewBtn.innerHTML = "👁 Review Performance";
   reviewBtn.onclick = () => {
     const subjectPrefix = currentSubject.replace(/\s+/g, "_") + "_";

@@ -140,7 +140,7 @@ async function run() {
 
     // 2. Start Quiz Flow
     console.log('Starting Test...');
-    await page.click('h3.text-success:has-text("Take Test")'); // .card-title.text-success in topic-card
+    await page.click('.card:has-text("Take Test")'); // .card-title.text-success in topic-card
 
     await page.waitForSelector('#test-selection-section', { state: 'visible' });
     console.log('✅ Test Selection loaded.');
@@ -153,7 +153,7 @@ async function run() {
     console.log('✅ Chapter "Ancient_India" found.');
 
     // Click "Start Test" on the chapter card to open modal
-    await page.click('.chapter-card button:has-text("Start Test")');
+    await page.click('.card button:has-text("Start Test")');
 
     // Wait for the modal button to be ready and click it
     const modalStartBtn = page.locator('#start-quiz-btn');
@@ -179,14 +179,14 @@ async function run() {
     await page.click('input[value="0"]');
 
     // Set Confidence (optional, but good for coverage)
-    await page.click('.surety-100');
+    await page.click('.confidence__chip[data-val="100"]');
 
     await page.click('#next-btn');
     console.log('✅ Navigated to Next Question.');
 
     // Answer Q2 Incorrectly (Index 0, correct is 1)
     await page.click('input[value="0"]');
-    await page.click('.surety-50');
+    await page.click('.confidence__chip[data-val="50"]');
 
     // Submit
     console.log('Submitting Test...');
@@ -203,12 +203,12 @@ async function run() {
 
     // Go back to Dashboard to access Practice Mode
     console.log('Navigating back to Dashboard...');
-    await page.click('.navbar-brand');
+    await page.click('.nav__brand');
     await page.waitForSelector('#dashboard-section', { state: 'visible' });
 
     // 3. Practice Mode
     console.log('Testing Practice Mode...');
-    await page.click('h3.text-info:has-text("Practice MCQ")');
+    await page.click('.card:has-text("Practice MCQ")');
     await page.waitForSelector('#test-selection-section', { state: 'visible' });
     console.log('✅ Practice Selection loaded.');
 

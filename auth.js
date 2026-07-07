@@ -276,7 +276,7 @@ function hideAllSections() {
 
 function showHome() {
   hideAllSections();
-  document.getElementById("hero-section").style.display = "flex";
+  document.getElementById("hero-section").style.display = "grid";
   renderBreadcrumbs([]);
 }
 

@@ -432,16 +432,16 @@ function toggleMainChart(viewType) {
     const title = document.getElementById("main-chart-title");
 
     if (viewType === 'accuracy') {
-        accBtn.classList.add("active");
-        confBtn.classList.remove("active");
+        accBtn.classList.add("palette__cell--current");
+        confBtn.classList.remove("palette__cell--current");
 
         accContainer.style.display = "block";
         confContainer.style.display = "none";
 
         title.textContent = "📈 Accuracy Trend";
     } else {
-        confBtn.classList.add("active");
-        accBtn.classList.remove("active");
+        confBtn.classList.add("palette__cell--current");
+        accBtn.classList.remove("palette__cell--current");
 
         confContainer.style.display = "block";
         accContainer.style.display = "none";
