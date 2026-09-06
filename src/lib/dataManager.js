@@ -21,13 +21,40 @@ const IDB = {
 
   open() {
     if (this.dbPromise) return this.dbPromise;
+
     this.dbPromise = new Promise((resolve, reject) => {
       const request = indexedDB.open(DB_CONFIG.name, DB_CONFIG.version);
+
       request.onerror = (event) => {
         console.error('IndexedDB error:', event.target.error);
+        this.dbPromise = null;
         reject('IndexedDB failed to open');
       };
-      request.onsuccess = (event) => resolve(event.target.result);
+
+      request.onblocked = () => {
+        this.dbPromise = null;
+      };
+
+      request.onsuccess = (event) => {
+        const idb = event.target.result;
+
+        // Reset the cached promise so future calls reopen a fresh connection
+        // if the browser closes this one (tab teardown, HMR, version change).
+        idb.onclose = () => {
+          this.dbPromise = null;
+        };
+        idb.onversionchange = () => {
+          try {
+            idb.close();
+          } catch (e) {
+            // ignore
+          }
+          this.dbPromise = null;
+        };
+
+        resolve(idb);
+      };
+
       request.onupgradeneeded = (event) => {
         const idb = event.target.result;
         if (!idb.objectStoreNames.contains(DB_CONFIG.storeName)) {
@@ -38,16 +65,41 @@ const IDB = {
     return this.dbPromise;
   },
 
+  async withConnection(mode, fn) {
+    let idb;
+    try {
+      idb = await this.open();
+      if (!idb || (typeof idb.objectStoreNames !== 'undefined' && !idb.objectStoreNames.contains(DB_CONFIG.storeName))) {
+        throw new Error('IndexedDB unavailable');
+      }
+    } catch (e) {
+      this.dbPromise = null;
+      try {
+        idb = await this.open();
+      } catch (e2) {
+        throw e;
+      }
+    }
+
+    return new Promise((resolve, reject) => {
+      let transaction;
+      try {
+        transaction = idb.transaction([DB_CONFIG.storeName], mode);
+      } catch (e) {
+        this.dbPromise = null;
+        reject(e);
+        return;
+      }
+      const store = transaction.objectStore(DB_CONFIG.storeName);
+      const request = fn(store, transaction);
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(request.error);
+    });
+  },
+
   async get(key) {
     try {
-      const idb = await this.open();
-      return new Promise((resolve, reject) => {
-        const transaction = idb.transaction([DB_CONFIG.storeName], 'readonly');
-        const store = transaction.objectStore(DB_CONFIG.storeName);
-        const request = store.get(key);
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => reject(request.error);
-      });
+      return await this.withConnection('readonly', (store) => store.get(key));
     } catch (e) {
       console.error('IDB Get Error', e);
       return null;
@@ -56,14 +108,7 @@ const IDB = {
 
   async set(key, data) {
     try {
-      const idb = await this.open();
-      return new Promise((resolve, reject) => {
-        const transaction = idb.transaction([DB_CONFIG.storeName], 'readwrite');
-        const store = transaction.objectStore(DB_CONFIG.storeName);
-        const request = store.put({ key, ...data });
-        request.onsuccess = () => resolve();
-        request.onerror = () => reject(request.error);
-      });
+      await this.withConnection('readwrite', (store) => store.put({ key, ...data }));
     } catch (e) {
       console.error('IDB Set Error', e);
     }
@@ -71,14 +116,7 @@ const IDB = {
 
   async delete(key) {
     try {
-      const idb = await this.open();
-      return new Promise((resolve, reject) => {
-        const transaction = idb.transaction([DB_CONFIG.storeName], 'readwrite');
-        const store = transaction.objectStore(DB_CONFIG.storeName);
-        const request = store.delete(key);
-        request.onsuccess = () => resolve();
-        request.onerror = () => reject(request.error);
-      });
+      await this.withConnection('readwrite', (store) => store.delete(key));
     } catch (e) {
       console.error('IDB Delete Error', e);
     }
@@ -86,14 +124,7 @@ const IDB = {
 
   async getAllKeys() {
     try {
-      const idb = await this.open();
-      return new Promise((resolve, reject) => {
-        const transaction = idb.transaction([DB_CONFIG.storeName], 'readonly');
-        const store = transaction.objectStore(DB_CONFIG.storeName);
-        const request = store.getAllKeys();
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => reject(request.error);
-      });
+      return await this.withConnection('readonly', (store) => store.getAllKeys());
     } catch (e) {
       console.error('IDB GetAllKeys Error', e);
       return [];
