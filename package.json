@@ -1,25 +1,28 @@
 {
-  "name": "app",
+  "name": "upsc-mcq-react",
   "version": "1.0.0",
-  "description": "",
-  "main": "admin.js",
+  "description": "UPSC MCQ Practice Portal (React)",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/princeku1456/UPSC_MCQ.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/princeku1456/UPSC_MCQ/issues"
-  },
-  "homepage": "https://github.com/princeku1456/UPSC_MCQ#readme",
   "dependencies": {
-    "benchmark": "^2.1.4",
-    "playwright": "^1.59.1"
+    "@fortawesome/fontawesome-free": "^6.5.2",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
+    "chart.js": "^4.4.3",
+    "firebase": "^10.12.2",
+    "jquery": "^3.7.1",
+    "marked": "^12.0.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "toastr": "^2.1.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.3.3"
   }
 }
