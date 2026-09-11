@@ -33,7 +33,7 @@ function startPracticeTimer(limit) {
  * Entry point from Dashboard - Renders the Dropdown Selection UI
  */
 function startPracticeSelection() {
-  // isPracticeMode = true;
+  isPracticeMode = true;
   practiceSubmitted = false;
   hideAllSections();
   document.getElementById("test-selection-section").style.display = "block";
