@@ -33,7 +33,7 @@ function startPracticeTimer(limit) {
  * Entry point from Dashboard - Renders the Dropdown Selection UI
  */
 function startPracticeSelection() {
-  // isPracticeMode = true;
+  isPracticeMode = true;
   practiceSubmitted = false;
   hideAllSections();
   document.getElementById("test-selection-section").style.display = "block";
@@ -194,7 +194,7 @@ async function loadPracticeQuiz(subject, chapter, limit) {
 
     // Fetch all selected chapters in parallel for faster loading
     const promises = chapterIds.map(chapId => {
-        const docId = subject.replace(/\s+/g, "_") + "_" + chapId;
+        const docId = subject.replace(/\s+/g, "_") + "_" + chapId.replace(/\s+/g, "_");
         return DataManager.fetchPracticeQuestions(docId);
     });
 

@@ -282,15 +282,19 @@ const DataManager = {
             `practice_questions_${docId}`,
             async () => {
                 const doc = await getDb().collection("practice_mcqs").doc(docId).get();
-                return doc.exists ? (doc.data().questions || []) : [];
+                if (!doc.exists) return null; // don't cache "not found"
+                const questions = doc.data().questions;
+                // Don't cache an empty question list either — treat it the same
+                // as "not found" so a transient/misnamed doc doesn't get stuck
+                // in IndexedDB for 24h once the real data is in place.
+                return (questions && questions.length > 0) ? questions : null;
             },
             86400000 // 24 hours
         );
 
-        if (data) {
-            this.cache.practice[docId] = data;
-        }
-        return data || [];
+        const result = data || [];
+        this.cache.practice[docId] = result;
+        return result;
     },
 
     /**
