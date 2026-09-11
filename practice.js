@@ -53,10 +53,22 @@ function startPracticeSelection() {
  * Renders the consolidated Dropdown interface
  */
 async function renderPracticeUI() {
-  if (typeof allPracticeData === "undefined") {
+  const container = document.getElementById("test-content-container");
+
+  if (typeof allPracticeData === "undefined" || !allPracticeData) {
+    container.innerHTML = `
+        <div class="text-center py-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2 text-muted">Loading Practice Subjects...</p>
+        </div>`;
     await DataManager.fetchPracticeManifest();
   }
-  const container = document.getElementById("test-content-container");
+
+  if (typeof allPracticeData === "undefined" || !allPracticeData) {
+    container.innerHTML =
+      '<div class="alert alert-danger text-center">Failed to load Practice Data!</div>';
+    return;
+  }
 
   container.innerHTML = `
         <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="showDashboard()">← Back to Dashboard</button>
