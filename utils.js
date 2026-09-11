@@ -135,23 +135,33 @@ const DataManager = {
             const cachedEntry = await IDB.get(key);
             if (cachedEntry) {
                 const age = Date.now() - cachedEntry.timestamp;
+                console.log(`[PRACTICE DEBUG] IndexedDB cache found for "${key}", age: ${(age/1000).toFixed(0)}s, ttl: ${(ttl/1000).toFixed(0)}s`);
                 if (age < ttl) {
+                    console.log(`[PRACTICE DEBUG] Using cached value for "${key}":`, cachedEntry.data);
                     return cachedEntry.data;
                 }
+                console.log(`[PRACTICE DEBUG] Cache expired for "${key}", re-fetching.`);
+            } else {
+                console.log(`[PRACTICE DEBUG] No IndexedDB cache entry for "${key}", fetching fresh.`);
             }
+        } else {
+            console.log(`[PRACTICE DEBUG] forceRefresh=true for "${key}", skipping cache.`);
         }
 
         try {
             const data = await fetcher();
+            console.log(`[PRACTICE DEBUG] Fetcher result for "${key}":`, data);
             if (data !== null && data !== undefined) {
                 await IDB.set(key, {
                     data: data,
                     timestamp: Date.now()
                 });
                 return data;
+            } else {
+                console.log(`[PRACTICE DEBUG] Fetcher returned null/undefined for "${key}" — NOT caching.`);
             }
         } catch (error) {
-            console.error(`Error fetching data for ${key}:`, error);
+            console.error(`[PRACTICE DEBUG] Error fetching data for "${key}":`, error);
         }
         return null;
     },
@@ -275,15 +285,20 @@ const DataManager = {
      */
     async fetchPracticeQuestions(docId) {
         if (this.cache.practice[docId]) {
+            console.log(`[PRACTICE DEBUG] fetchPracticeQuestions("${docId}") -> served from in-memory cache, ${this.cache.practice[docId].length} questions`);
             return this.cache.practice[docId];
         }
 
         const data = await this.fetchWithCache(
             `practice_questions_${docId}`,
             async () => {
+                console.log(`[PRACTICE DEBUG] Querying Firestore: practice_mcqs/${docId}`);
                 const doc = await getDb().collection("practice_mcqs").doc(docId).get();
+                console.log(`[PRACTICE DEBUG] Doc "${docId}" exists?`, doc.exists);
                 if (!doc.exists) return null; // don't cache "not found"
                 const questions = doc.data().questions;
+                console.log(`[PRACTICE DEBUG] Doc "${docId}" data:`, doc.data());
+                console.log(`[PRACTICE DEBUG] Doc "${docId}" question count:`, questions ? questions.length : 0);
                 // Don't cache an empty question list either — treat it the same
                 // as "not found" so a transient/misnamed doc doesn't get stuck
                 // in IndexedDB for 24h once the real data is in place.
@@ -293,6 +308,9 @@ const DataManager = {
         );
 
         const result = data || [];
+        if (result.length === 0) {
+            console.warn(`[PRACTICE DEBUG] fetchPracticeQuestions("${docId}") -> returning EMPTY array (doc missing, empty, or fetch failed)`);
+        }
         this.cache.practice[docId] = result;
         return result;
     },

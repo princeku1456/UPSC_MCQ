@@ -166,6 +166,9 @@ function handleGeneratePractice() {
    PRACTICE MODE LOGIC (Updated loadPracticeQuiz)
    ========================================= */
 async function loadPracticeQuiz(subject, chapter, limit) {
+  console.group("%c[PRACTICE DEBUG] loadPracticeQuiz", "color:#2563eb;font-weight:bold;");
+  console.log("Input -> subject:", JSON.stringify(subject), "| chapter:", JSON.stringify(chapter), "| limit:", limit);
+
   practiceSubject = subject;
   practiceChapter = chapter === "all" ? "All Topics" : chapter;
   practiceQuestionLimit = limit;
@@ -189,22 +192,34 @@ async function loadPracticeQuiz(subject, chapter, limit) {
         </div>`;
 
   try {
+    console.log("allPracticeData loaded?", typeof allPracticeData !== "undefined");
+    console.log("allPracticeData:", typeof allPracticeData !== "undefined" ? allPracticeData : "(undefined)");
+    console.log("allPracticeData[subject]:", typeof allPracticeData !== "undefined" ? allPracticeData[subject] : "(n/a)");
+
     const chapterIds =
       chapter === "all" ? Object.keys(allPracticeData[subject]) : [chapter];
+    console.log("Resolved chapterIds to fetch:", chapterIds);
 
     // Fetch all selected chapters in parallel for faster loading
     const promises = chapterIds.map(chapId => {
         const docId = subject.replace(/\s+/g, "_") + "_" + chapId.replace(/\s+/g, "_");
-        console.log("Practice: requesting docId ->", docId, "(subject:", subject, ", chapId:", chapId, ")");
-        return DataManager.fetchPracticeQuestions(docId);
+        console.log("  -> Building docId for chapId", JSON.stringify(chapId), ":", JSON.stringify(docId));
+        return DataManager.fetchPracticeQuestions(docId).then(qs => {
+            console.log(`  -> Result for docId "${docId}":`, qs.length, "questions", qs);
+            return qs;
+        });
     });
 
     // Wait for all fetches to complete, then flatten the array of arrays
     const results = await Promise.all(promises);
     const allQuestions = results.flat();
+    console.log("TOTAL questions fetched across all chapters:", allQuestions.length);
 
-    if (allQuestions.length === 0)
+    if (allQuestions.length === 0) {
+      console.warn("No questions found for any requested docId. Check the docIds logged above against your Firestore 'practice_mcqs' collection document IDs.");
+      console.groupEnd();
       return toastr.error("No questions available.");
+    }
 
     const randomized = [...allQuestions];
     const fetchLimit = Math.min(limit, randomized.length);
@@ -215,6 +230,8 @@ async function loadPracticeQuiz(subject, chapter, limit) {
       randomized[j] = temp;
     }
     practiceQuizData = randomized.slice(0, fetchLimit);
+    console.log("Final practiceQuizData (after shuffle/limit):", practiceQuizData.length, "questions");
+    console.groupEnd();
 
     practiceCurrentIndex = 0;
     practiceUserAnswers = {};
@@ -224,7 +241,8 @@ async function loadPracticeQuiz(subject, chapter, limit) {
     renderPracticeNav();
     startPracticeTimer(limit);
   } catch (error) {
-    console.error("Fetch Error:", error);
+    console.error("[PRACTICE DEBUG] Fetch Error:", error);
+    console.groupEnd();
     toastr.error("Failed to load questions.");
   }
 }
