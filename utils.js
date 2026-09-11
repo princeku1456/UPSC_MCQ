@@ -183,6 +183,7 @@ const DataManager = {
     async fetchQuizManifest(forceRefresh = false) {
         // Check memory cache first
         if (!forceRefresh && this.cache.quizManifest) {
+            if (typeof window !== 'undefined') window.allQuizData = this.cache.quizManifest;
             return this.cache.quizManifest;
         }
 
@@ -227,6 +228,7 @@ const DataManager = {
      */
     async fetchPracticeManifest(forceRefresh = false) {
         if (!forceRefresh && this.cache.practiceManifest) {
+            if (typeof window !== 'undefined') window.allPracticeData = this.cache.practiceManifest;
             return this.cache.practiceManifest;
         }
 
