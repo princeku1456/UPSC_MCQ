@@ -194,7 +194,7 @@ async function loadPracticeQuiz(subject, chapter, limit) {
 
     // Fetch all selected chapters in parallel for faster loading
     const promises = chapterIds.map(chapId => {
-        const docId = subject.replace(/\s+/g, "_") + "_" + chapId;
+        const docId = subject.replace(/\s+/g, "_") + "_" + chapId.replace(/\s+/g, "_");
         return DataManager.fetchPracticeQuestions(docId);
     });
 
