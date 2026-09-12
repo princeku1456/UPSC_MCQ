@@ -1732,8 +1732,8 @@ function renderQuizLayout(title) {
   document.getElementById("quiz-content").innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h4 class="fw-bold text-primary m-0">${title}</h4>
-            <button id="mark-review-btn" class="btn btn-primary-custom btn-sm fw-bold shadow-sm" onclick="toggleMarkForReview()">
-                <i class="bi bi-bookmark-star"></i> Mark for Review
+            <button id="mark-review-btn" class="btn btn-sm shadow-sm" onclick="toggleMarkForReview()" title="Mark for Review" style="width:38px;height:38px;padding:0;font-size:1.15rem;color:#b45309;border:1.5px solid #b45309;background:transparent;display:inline-flex;align-items:center;justify-content:center;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);border-radius:0;">
+                <i class="bi bi-star"></i>
             </button>
         </div>
         <div id="question-container"></div>
@@ -1786,11 +1786,17 @@ function renderQuestion() {
   const markBtn = document.getElementById("mark-review-btn");
   if (markBtn) {
     if (markedForReview[currentQuestionIndex]) {
-      markBtn.innerHTML = `<i class="bi bi-bookmark-check-fill"></i> Unmark Review`;
-      markBtn.classList.replace("btn-secondary-custom", "btn-primary-custom");
+      markBtn.innerHTML = `<i class="bi bi-star-fill"></i>`;
+      markBtn.title = "Unmark Review";
+      markBtn.style.backgroundColor = "#b45309";
+      markBtn.style.color = "#ffffff";
+      markBtn.style.border = "none";
     } else {
-      markBtn.innerHTML = `<i class="bi bi-bookmark-star"></i> Mark for Review`;
-      markBtn.classList.replace("btn-primary-custom", "btn-secondary-custom");
+      markBtn.innerHTML = `<i class="bi bi-star"></i>`;
+      markBtn.title = "Mark for Review";
+      markBtn.style.backgroundColor = "transparent";
+      markBtn.style.color = "#b45309";
+      markBtn.style.border = "1.5px solid #b45309";
     }
   }
 

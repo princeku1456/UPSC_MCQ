@@ -17,7 +17,7 @@ const practiceDataCache = {};
 function startPracticeTimer(limit) {
   if (currentQuizTimer) currentQuizTimer.stop();
 
-  let timeLeft = Math.floor(limit * 1.2 * 60); // 1.2 minutes per question (matching quiz logic)
+  let timeLeft = Math.floor(limit * 2.5 * 60); // 2.5 minutes per question
   
   currentQuizTimer = new QuizTimer("timer-display",
     null, // No per-tick action needed for practice mode persistence yet
@@ -221,15 +221,22 @@ async function loadPracticeQuiz(subject, chapter, limit) {
       return toastr.error("No questions available.");
     }
 
+    // Full Fisher-Yates shuffle on the entire question pool
     const randomized = [...allQuestions];
-    const fetchLimit = Math.min(limit, randomized.length);
-    for (let i = 0; i < fetchLimit; i++) {
-      const j = i + Math.floor(Math.random() * (randomized.length - i));
-      const temp = randomized[i];
-      randomized[i] = randomized[j];
-      randomized[j] = temp;
+    for (let i = randomized.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [randomized[i], randomized[j]] = [randomized[j], randomized[i]];
     }
-    practiceQuizData = randomized.slice(0, fetchLimit);
+
+    const fetchLimit = Math.min(limit, randomized.length);
+
+    // Second shuffle pass on the selected slice for extra randomness
+    const selected = randomized.slice(0, fetchLimit);
+    for (let i = selected.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [selected[i], selected[j]] = [selected[j], selected[i]];
+    }
+    practiceQuizData = selected;
     console.log("Final practiceQuizData (after shuffle/limit):", practiceQuizData.length, "questions");
     console.groupEnd();
 
@@ -251,8 +258,8 @@ function setupPracticeLayout() {
   document.getElementById("quiz-content").innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h4 class="fw-bold text-info m-0">${practiceChapter}</h4>
-            <button id="practice-mark-review-btn" class="btn btn-outline-secondary btn-sm fw-bold shadow-sm" onclick="togglePracticeMarkForReview()">
-                <i class="bi bi-bookmark-star"></i> Mark for Review
+            <button id="practice-mark-review-btn" class="btn btn-sm shadow-sm" onclick="togglePracticeMarkForReview()" title="Mark for Review" style="width:38px;height:38px;padding:0;font-size:1.15rem;color:#b45309;border:1.5px solid #b45309;background:transparent;display:inline-flex;align-items:center;justify-content:center;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);border-radius:0;">
+                <i class="bi bi-star"></i>
             </button>
         </div>
         <div id="practice-result-summary" class="mb-4"></div>
@@ -283,15 +290,21 @@ function renderPracticeQuestion() {
   const markBtn = document.getElementById("practice-mark-review-btn");
   if (markBtn) {
     if (practiceMarkedForReview[practiceCurrentIndex]) {
-      markBtn.innerHTML = `<i class="bi bi-bookmark-fill"></i> Unmark Review`;
-      markBtn.style.backgroundColor = "#7e22ce";
+      markBtn.innerHTML = `<i class="bi bi-star-fill"></i>`;
+      markBtn.title = "Unmark Review";
+      markBtn.style.backgroundColor = "#b45309";
       markBtn.style.color = "#ffffff";
+      markBtn.style.border = "none";
     } else {
-      markBtn.innerHTML = `<i class="bi bi-bookmark"></i> Mark for Review`;
+      markBtn.innerHTML = `<i class="bi bi-star"></i>`;
+      markBtn.title = "Mark for Review";
       markBtn.style.backgroundColor = "transparent";
-      markBtn.style.color = "#7e22ce";
+      markBtn.style.color = "#b45309";
+      markBtn.style.border = "1.5px solid #b45309";
     }
-    markBtn.style.display = practiceSubmitted ? "none" : "block";
+    markBtn.style.display = practiceSubmitted ? "none" : "inline-flex";
+    markBtn.style.alignItems = "center";
+    markBtn.style.justifyContent = "center";
   }
 
   const currentSurety = practiceUserAnswers[practiceCurrentIndex]?.surety;
