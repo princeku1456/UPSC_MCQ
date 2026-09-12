@@ -5,6 +5,23 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 
+/**
+ * Toggles the password field between visible and hidden.
+ */
+function togglePasswordVisibility() {
+  const input = document.getElementById("auth-password");
+  const icon  = document.getElementById("toggle-password-icon");
+  if (input.type === "password") {
+    input.type = "text";
+    icon.textContent = "visibility";       // eye open
+  } else {
+    input.type = "password";
+    icon.textContent = "visibility_lock";  // eye with lock (hidden)
+  }
+}
+
+
+
 let currentUser = null;
 let currentSubject = "";
 let currentChapterId = "";
@@ -162,6 +179,12 @@ function toggleAuthMode() {
   const link = document.querySelector(".card-body small a");
   const title = document.getElementById("auth-title");
   const sub = document.getElementById("auth-subtitle");
+
+  // Reset password visibility on mode switch
+  const pwInput = document.getElementById("auth-password");
+  const pwIcon  = document.getElementById("toggle-password-icon");
+  if (pwInput) pwInput.type = "password";
+  if (pwIcon)  pwIcon.textContent = "visibility_lock";
 
   // We no longer need to find or hide the google-auth-container here
   // because we want it to stay visible in both modes.
