@@ -310,8 +310,10 @@ const DataManager = {
         const result = data || [];
         if (result.length === 0) {
             console.warn(`[PRACTICE DEBUG] fetchPracticeQuestions("${docId}") -> returning EMPTY array (doc missing, empty, or fetch failed)`);
+            // ⚠️ Do NOT store empty arrays in memory cache — let next call retry
+        } else {
+            this.cache.practice[docId] = result;
         }
-        this.cache.practice[docId] = result;
         return result;
     },
 
