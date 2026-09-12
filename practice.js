@@ -17,7 +17,7 @@ const practiceDataCache = {};
 function startPracticeTimer(limit) {
   if (currentQuizTimer) currentQuizTimer.stop();
 
-  let timeLeft = Math.floor(limit * 2.5 * 60); // 2.5 minutes per question
+  let timeLeft = Math.floor(limit * 1.5 * 60); // 2.5 minutes per question
   
   currentQuizTimer = new QuizTimer("timer-display",
     null, // No per-tick action needed for practice mode persistence yet
