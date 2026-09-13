@@ -484,7 +484,7 @@ function submitPractice(forceSubmit = false) {
         score += 2;
         correct++;
       } else {
-        score -= 0.66;
+        score -= 0; // No negative marking in practice mode
         incorrect++;
       }
     } else {
@@ -496,7 +496,7 @@ function submitPractice(forceSubmit = false) {
   const totalPossibleMarks = totalQuestions * 2;
   const accuracy = ((correct / (correct + incorrect)) * 100 || 0).toFixed(1);
 
-  const negativeLoss = incorrect * 0.66;
+  const negativeLoss = incorrect * 0; // No negative marking in practice mode
   const positiveGain = correct * 2;
   const negativeDrain = positiveGain
     ? ((negativeLoss / positiveGain) * 100).toFixed(1)
