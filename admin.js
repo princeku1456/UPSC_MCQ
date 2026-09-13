@@ -234,17 +234,29 @@ async function loadTestAnalysis() {
 }
 
 function calculateAccuracies(questions, results) {
-  return questions.map((q, qIdx) => {
-    const correctIndex = getCorrectIndex(q);
-    let correctCount = 0;
-    results.forEach((res) => {
-      const choice = res.userAnswers ? res.userAnswers[qIdx] : null;
-      if (choice && choice.answer === correctIndex) correctCount++;
-    });
-    return results.length > 0
-      ? Math.round((correctCount / results.length) * 100)
-      : 0;
-  });
+  const correctCounts = new Array(questions.length).fill(0);
+  const correctIndices = questions.map(q => getCorrectIndex(q));
+
+  const resultsLen = results.length;
+  if (resultsLen > 0) {
+    for (let i = 0; i < resultsLen; i++) {
+      const userAnswers = results[i].userAnswers;
+      if (!userAnswers) continue;
+
+      for (const qIdx in userAnswers) {
+        const choice = userAnswers[qIdx];
+        if (choice && choice.answer === correctIndices[qIdx]) {
+          correctCounts[qIdx]++;
+        }
+      }
+    }
+  }
+
+  return questions.map((_, qIdx) =>
+    resultsLen > 0
+      ? Math.round((correctCounts[qIdx] / resultsLen) * 100)
+      : 0
+  );
 }
 
 function renderPalette(accuracies) {
