@@ -329,23 +329,32 @@ function renderPracticeQuestion() {
     </div>`;
 
   const optionsDiv = container.querySelector("#practice-options");
+  const answeredEntry = practiceUserAnswers[practiceCurrentIndex];
+  const answeredIdx =
+    answeredEntry && answeredEntry.answer !== undefined && answeredEntry.answer !== -1
+      ? answeredEntry.answer
+      : null;
+  const isAnswered = answeredIdx !== null;
+
   q.options.forEach((opt, idx) => {
     const label = document.createElement("label");
     label.className = "option shadow-sm";
-    const uAns = practiceUserAnswers[practiceCurrentIndex]?.answer;
-    const isSelected = uAns === idx;
+    const isSelected = isAnswered && answeredIdx === idx;
 
-    if (practiceSubmitted) {
-      if (idx === cIdx) label.classList.add("correct-answer-label");
-      if (isSelected && idx !== cIdx) label.classList.add("incorrect-answer-label");
+    // Reveal answers on submit OR immediately after answering in Practice Mode
+    if (practiceSubmitted || isAnswered) {
+      if (idx === cIdx) label.classList.add("correct");
+      if (isSelected && idx !== cIdx) label.classList.add("incorrect");
     }
 
-    label.innerHTML = `<input type="radio" name="pQ" value="${idx}" ${isSelected ? "checked" : ""} ${practiceSubmitted ? "disabled" : ""}><span>${opt}</span>`;
+    label.innerHTML = `<input type="radio" name="pQ" value="${idx}" ${isSelected ? "checked" : ""} ${practiceSubmitted || isAnswered ? "disabled" : ""}><span>${opt}</span>`;
 
-    if (!practiceSubmitted) {
+    if (!practiceSubmitted && !isAnswered) {
       label.querySelector("input").onchange = () => {
         if (!practiceUserAnswers[practiceCurrentIndex]) practiceUserAnswers[practiceCurrentIndex] = {};
         practiceUserAnswers[practiceCurrentIndex].answer = idx;
+        practiceUserAnswers[practiceCurrentIndex].isCorrect = idx === cIdx;
+        renderPracticeQuestion();
         updatePracticeNavHighlights();
       };
     }
@@ -371,10 +380,10 @@ function renderPracticeQuestion() {
     });
   }
 
-  if (practiceSubmitted && q.explanation) {
+  if ((practiceSubmitted || isAnswered) && q.explanation) {
     const exp = document.createElement("div");
-    exp.className = "explanation shadow-sm mt-3 animate-fade-in";
-    exp.innerHTML = `<strong> Explanation:</strong> <br>${q.explanation}`;
+    exp.className = "explanation-box shadow-sm mt-3 animate-fade-in";
+    exp.innerHTML = `<strong>Explanation:</strong> <br>${q.explanation}`;
     container.appendChild(exp);
   }
 }
