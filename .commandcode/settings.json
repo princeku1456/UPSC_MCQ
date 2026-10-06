@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Shell(node --check practice.js)"
+    ],
+    "deny": [],
+    "defaultMode": "default"
+  }
+}
