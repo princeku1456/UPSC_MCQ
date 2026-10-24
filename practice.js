@@ -57,6 +57,7 @@ async function renderPracticeUI() {
     await DataManager.fetchPracticeManifest();
   }
   const container = document.getElementById("test-content-container");
+  const subjects = (typeof allPracticeData !== "undefined" && allPracticeData) ? Object.keys(allPracticeData) : [];
 
   container.innerHTML = `
         <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="showDashboard()">← Back to Dashboard</button>
@@ -73,7 +74,7 @@ async function renderPracticeUI() {
                         <label class="form-label fw-bold text-muted small">1. Select Subject</label>
                         <select id="practice-subject-select" class="form-select form-select-lg" onchange="updatePracticeTopics()">
                             <option value="" selected disabled>Choose a Subject...</option>
-                            ${Object.keys(allPracticeData)
+                            ${subjects
                               .map(
                                 (subject) =>
                                   `<option value="${subject}">${subject}</option>`
@@ -83,9 +84,15 @@ async function renderPracticeUI() {
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label fw-bold text-muted small">2. Select Topic / Chapter</label>
-                        <select id="practice-topic-select" class="form-select form-select-lg" disabled>
-                            <option value="" selected disabled>Select Subject first...</option>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <label class="form-label fw-bold text-muted small mb-0">2. Select Topic / Chapter</label>
+                            <div>
+                                <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none me-2 select-quick-btn" onclick="selectAllPracticeTopics()">Select All</button>
+                                <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none text-muted select-quick-btn" onclick="clearPracticeTopics()">Clear</button>
+                            </div>
+                        </div>
+                        <select id="practice-topic-select" class="form-select form-select-lg" multiple="multiple" disabled>
+                            <option value="" disabled>Select Subject first...</option>
                         </select>
                     </div>
 
@@ -99,78 +106,150 @@ async function renderPracticeUI() {
                             <option value="50">50 Questions</option>
                             <option value="75">75 Questions</option>
                             <option value="100">100 Questions</option>
-                            </select>
+                        </select>
                     </div>
 
-                    <button class="btn btn-secondary-custom w-100 py-3 fw-bold fs-5" onclick="handleGeneratePractice()">
+                    <button class="btn btn-secondary-custom w-100 py-3 fw-bold fs-5 shadow-sm" onclick="handleGeneratePractice()">
                          Generate Practice
                     </button>
                 </div>
             </div>
         </div>
     `;
+
+  // Initialize Select2 multiselect for Topic
+  $("#practice-topic-select").select2({
+    theme: "bootstrap-5",
+    multiple: true,
+    placeholder: "Select Subject first...",
+    closeOnSelect: false,
+    width: "100%"
+  });
 }
 
 /**
- * Dynamically updates the Topic dropdown based on the selected Subject
- * UPDATED: Maps chapters from allPracticeData
+ * Quick Selection Helpers for Practice Topic Setup
  */
+function selectAllPracticeTopics() {
+  const $topicSelect = $("#practice-topic-select");
+  if ($topicSelect.prop("disabled")) return;
+  const allValues = [];
+  $topicSelect.find("option").each(function () {
+    const val = $(this).val();
+    if (val && val !== "all") {
+      allValues.push(val);
+    }
+  });
+  $topicSelect.val(allValues).trigger("change");
+}
+
+function clearPracticeTopics() {
+  $("#practice-topic-select").val(null).trigger("change");
+}
+
 /**
- * Dynamically updates the Topic dropdown based on the selected Subject
+ * Dynamically updates the Topic dropdown based on selected Subject
  */
 function updatePracticeTopics() {
   const subjectSelect = document.getElementById("practice-subject-select");
-  const topicSelect = document.getElementById("practice-topic-select");
-  const selectedSubject = subjectSelect.value;
+  const $topicSelect = $("#practice-topic-select");
+  const selectedSubject = subjectSelect ? subjectSelect.value : "";
 
-  if (!selectedSubject) return;
+  if (!selectedSubject) {
+    if ($topicSelect.hasClass("select2-hidden-accessible")) {
+      $topicSelect.select2("destroy");
+    }
+    $topicSelect.html('<option value="" disabled>Select Subject first...</option>');
+    $topicSelect.prop("disabled", true);
+    $topicSelect.select2({
+      theme: "bootstrap-5",
+      multiple: true,
+      placeholder: "Select Subject first...",
+      closeOnSelect: false,
+      width: "100%"
+    });
+    return;
+  }
 
-  const chapters = allPracticeData[selectedSubject];
-  // Added "All Topics" option at the beginning of the list
-  topicSelect.innerHTML =
-    `<option value="" selected disabled>Choose a Topic...</option>` +
-    `<option value="all">All Topics</option>` +
-    Object.keys(chapters)
-      .map((chapId) => `<option value="${chapId}">${chapId}</option>`)
-      .join("");
+  const chapters =
+    typeof allPracticeData !== "undefined" && allPracticeData[selectedSubject]
+      ? allPracticeData[selectedSubject]
+      : {};
+  const chapKeys = Object.keys(chapters);
 
-  topicSelect.disabled = false;
+  $topicSelect.prop("disabled", false);
+
+  let optionsHtml = `<option value="all">All Topics (${selectedSubject})</option>`;
+  chapKeys.forEach((chapId) => {
+    optionsHtml += `<option value="${chapId}">${chapId}</option>`;
+  });
+
+  if ($topicSelect.hasClass("select2-hidden-accessible")) {
+    $topicSelect.select2("destroy");
+  }
+  $topicSelect.html(optionsHtml);
+  $topicSelect.select2({
+    theme: "bootstrap-5",
+    multiple: true,
+    placeholder: "Select topic(s)...",
+    closeOnSelect: false,
+    width: "100%"
+  });
+
+  // Handle selecting "all" option inside the dropdown
+  $topicSelect.off("select2:select.allHandler").on("select2:select.allHandler", function (e) {
+    if (e.params && e.params.data && e.params.data.id === "all") {
+      selectAllPracticeTopics();
+    }
+  });
 }
 
 /**
  * Validates selection and triggers the quiz
  */
 function handleGeneratePractice() {
-  const subject = document.getElementById("practice-subject-select").value;
-  const topic = document.getElementById("practice-topic-select").value;
+  const subjectSelect = document.getElementById("practice-subject-select");
+  const subject = subjectSelect ? subjectSelect.value : "";
+
+  const rawTopics = $("#practice-topic-select").val() || [];
+  const selectedTopics = Array.isArray(rawTopics) ? rawTopics : (rawTopics ? [rawTopics] : []);
+
   const limit = parseInt(
     document.getElementById("practice-limit-select").value
   );
 
-  if (!subject || !topic) {
-    toastr.error("Please select both a Subject and a Topic.");
+  if (!subject || selectedTopics.length === 0) {
+    toastr.error("Please select a Subject and at least one Topic.");
     return;
   }
 
-  loadPracticeQuiz(subject, topic, limit);
+  loadPracticeQuiz(subject, selectedTopics, limit);
 }
 
-/**
- * Fetches questions from Firebase
- * UPDATED: Now fetches from "practice_mcqs" collection
- */
 /**
  * Fetches questions from Firebase and randomizes selection
  */
 /* =========================================
    PRACTICE MODE LOGIC (Updated loadPracticeQuiz)
    ========================================= */
-async function loadPracticeQuiz(subject, chapter, limit) {
+async function loadPracticeQuiz(subject, chapters, limit) {
   console.group("%c[PRACTICE DEBUG] loadPracticeQuiz", "color:#2563eb;font-weight:bold;");
-  console.log("Input -> subject:", JSON.stringify(subject), "| chapter:", JSON.stringify(chapter), "| limit:", limit);
+  console.log("Input -> subject:", JSON.stringify(subject), "| chapters:", JSON.stringify(chapters), "| limit:", limit);
 
-  practiceSubject = subject;
-  practiceChapter = chapter === "all" ? "All Topics" : chapter;
+  practiceSubject = Array.isArray(subject) ? subject.join(", ") : subject;
+  const includeAllTopics = chapters.includes("all");
+
+  const displayChapters = chapters
+    .filter((c) => c !== "all")
+    .map((c) => (c.includes(":::") ? c.split(":::")[1] : c));
+
+  practiceChapter =
+    includeAllTopics || displayChapters.length === 0
+      ? "All Topics"
+      : displayChapters.length > 2
+      ? `${displayChapters.slice(0, 2).join(", ")} +${displayChapters.length - 2} more`
+      : displayChapters.join(", ");
+
   practiceQuestionLimit = limit;
   practiceSubmitted = false;
   practiceMarkedForReview = {}; 
@@ -182,7 +261,7 @@ async function loadPracticeQuiz(subject, chapter, limit) {
       { label: 'Home', onclick: 'showHome()' },
       { label: 'Dashboard', onclick: 'showDashboard()' },
       { label: 'Practice', onclick: 'startPracticeSelection()' },
-      { label: subject + ' - ' + (chapter === 'all' ? 'All Topics' : chapter) }
+      { label: practiceSubject + ' - ' + practiceChapter }
   ]);
 
   document.getElementById("quiz-content").innerHTML = `
@@ -193,20 +272,26 @@ async function loadPracticeQuiz(subject, chapter, limit) {
 
   try {
     console.log("allPracticeData loaded?", typeof allPracticeData !== "undefined");
-    console.log("allPracticeData:", typeof allPracticeData !== "undefined" ? allPracticeData : "(undefined)");
-    console.log("allPracticeData[subject]:", typeof allPracticeData !== "undefined" ? allPracticeData[subject] : "(n/a)");
 
-    const chapterIds =
-      chapter === "all" ? Object.keys(allPracticeData[subject]) : [chapter];
+    const chapterIds = includeAllTopics
+      ? Object.keys(allPracticeData[practiceSubject] || {})
+      : chapters.map((c) => (c.includes(":::") ? c.split(":::")[1] : c));
+
     console.log("Resolved chapterIds to fetch:", chapterIds);
 
+    if (chapterIds.length === 0) {
+      console.warn("No chapters found.");
+      console.groupEnd();
+      return toastr.error("No questions available for the selected topic(s).");
+    }
+
     // Fetch all selected chapters in parallel for faster loading
-    const promises = chapterIds.map(chapId => {
-        const docId = subject.replace(/\s+/g, "_") + "_" + chapId.replace(/\s+/g, "_");
+    const promises = chapterIds.map((chapId) => {
+        const docId = practiceSubject.replace(/\s+/g, "_") + "_" + chapId.replace(/\s+/g, "_");
         console.log("  -> Building docId for chapId", JSON.stringify(chapId), ":", JSON.stringify(docId));
-        return DataManager.fetchPracticeQuestions(docId).then(qs => {
-            console.log(`  -> Result for docId "${docId}":`, qs.length, "questions", qs);
-            return qs;
+        return DataManager.fetchPracticeQuestions(docId).then((qs) => {
+            console.log(`  -> Result for docId "${docId}":`, qs ? qs.length : 0, "questions");
+            return qs || [];
         });
     });
 
