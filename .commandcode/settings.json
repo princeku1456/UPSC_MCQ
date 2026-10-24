@@ -1,7 +1,34 @@
 {
   "permissions": {
     "allow": [
-      "Shell(node --check practice.js)"
+      "Shell(node --check practice.js)",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_batch1.js\")",
+      "Shell(node --check borHindi.js)",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_batch2.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_batch3.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_batch4.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_batch5.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_batch6.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_batch7.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_batch8.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_batch9.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_100a.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_100b.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_100c.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_100d.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_fix_dupes.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_100e.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_fix_dupes2.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_100f.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_fix_dupes3.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_100g.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_ch6a.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_fix_dupes4.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_ch6b.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_remaining.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_factual.js\")",
+      "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_computer_acronyms.js\")",
+      "Shell(node --check borComputer.js)"
     ],
     "deny": [],
     "defaultMode": "default"
