@@ -585,7 +585,7 @@ body {
    ============================ */
 .correct-answer-label {
     background-color: #064e3b !important; /* Dark Green for dark mode compat */
-    border: 2px solid #16a34a !important;
+    border: 2px solid #03ff5f !important;
     color: #86efac !important;
 }
 
@@ -598,7 +598,7 @@ body {
 
 .incorrect-answer-label {
     background-color: #7f1d1d !important; /* Dark Red */
-    border: 2px solid #dc2626 !important;
+    border: 2px solid #ff0606 !important;
     color: #fca5a5 !important;
 }
 
