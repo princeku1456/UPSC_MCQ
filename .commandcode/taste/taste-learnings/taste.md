@@ -8,3 +8,4 @@
 - Prefers completing remaining/leftover work in a single consolidated pass ("in one go") rather than many small incremental batches. Confidence: 0.6
 - For large, repetitive content-editing/generation jobs, prefers working in substantially larger batches (~100 items at a time) to finish faster, rather than small ~20-item batches. Confidence: 0.9
 - Prefers concise, direct answers to direct questions (e.g., a simple yes/no status confirmation) rather than lengthy status summaries or unsolicited offers of additional follow-up work. Confidence: 0.6
+- Prefers selected/active states to be unmistakably visible at a glance (e.g., high-contrast ring plus checkmark) rather than subtle highlighting. Confidence: 0.7
