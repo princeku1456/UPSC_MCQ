@@ -138,8 +138,6 @@ async function renderSubjects() {
     return;
   }
 
-  const inProgressIds = getInProgressChapterIds();
-
   const subjects = Object.keys(allQuizData).map((subjectKey) => {
     const chapters = allQuizData[subjectKey];
     const chapterIds = Object.keys(chapters);
@@ -148,10 +146,6 @@ async function renderSubjects() {
     const history = (userHistory || []).filter(
       (h) => h && h.subject === subjectKey
     );
-    const tests = history.length;
-    const avgAcc = tests
-      ? (history.reduce((a, h) => a + (h.scorePercent || 0), 0) / tests).toFixed(0)
-      : null;
     let lastTs = 0;
     history.forEach((h) => {
       const ts = toTimestampMs(h.timestamp);
@@ -165,17 +159,13 @@ async function renderSubjects() {
       chapterIds.length > 0
         ? Math.round((completedCount / chapterIds.length) * 100)
         : 0;
-    const inProgress = chapterIds.some((cid) => inProgressIds.has(prefix + cid));
 
     return {
       subjectKey,
-      tests,
-      avgAcc,
       lastTs,
       completedCount,
       totalChapters: chapterIds.length,
       progressPercent,
-      inProgress,
     };
   });
 
@@ -229,25 +219,14 @@ async function renderSubjects() {
                aria-label="Select Subject: ${s.subjectKey}"
                onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">
                 <div class="card-body text-center p-4 d-flex flex-column">
-                    <div class="display-4 mb-2">${isCompleted ? "🏆" : "📖"}</div>
+                    <div class="display-4 mb-3">${isCompleted ? "🏆" : "📖"}</div>
                     ${
                       isCompleted
-                        ? '<div class="badge bg-success mb-2 animate-fade-in">Completed</div>'
+                        ? '<div class="badge bg-success mb-2 animate-fade-in">✨ Completed</div>'
                         : ""
                     }
                     <h5 class="card-title text-primary fw-bold">${s.subjectKey}</h5>
-                    <p class="text-muted small mb-2">${s.completedCount} / ${s.totalChapters} Chapters Done</p>
-                    <div class="small text-muted mb-2">
-                        ${s.tests} test${s.tests === 1 ? "" : "s"}${
-      s.avgAcc !== null ? " · " + s.avgAcc + "% avg" : ""
-    }
-                    </div>
-                    <p class="small text-muted mb-2">Last: ${formatLastAttempt(s.lastTs)}</p>
-                    ${
-                      s.inProgress
-                        ? '<span class="badge bg-warning text-dark mb-2">Continue</span>'
-                        : ""
-                    }
+                    <p class="text-muted small mb-3">${s.completedCount} / ${s.totalChapters} Chapters Done</p>
                     <div class="mt-auto">
                         <div class="progress mb-2" style="height: 25px; background-color: var(--border-color); border-radius: 5px;">
                             <div class="progress-bar ${
