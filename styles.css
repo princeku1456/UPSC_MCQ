@@ -425,30 +425,8 @@ body {
 .form-control:focus { background-color: var(--input-bg); color: var(--text-main); border-color: var(--secondary-color); box-shadow: none; }
 
 /* ============================
-   DARK MODE OVERRIDES
+   DARK MODE OVERRIDES (consolidated in :root block above)
    ============================ */
-[data-theme="dark"] {
-    --bg-body: #0f172a;         /* Deep dark blue/slate */
-    --bg-card: #1e293b;         /* Darker slate for cards */
-    --text-main: #f3f4f6;       /* Light gray text */
-    --text-muted: #9ca3af;
-    --border-color: #374151;
-    --navbar-bg: #0f172a;
-    --navbar-gradient: linear-gradient(160deg, #0f172a 0%, #020617 100%);
-    --input-bg: #334155;
-    --option-bg: #1e293b;
-    --option-hover: #334155;
-
-    --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-    --hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.7);
-}
-
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-body);
-    color: var(--text-main);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
 
 /* ============================
    NAVBAR
@@ -1508,4 +1486,41 @@ body {
 .option:focus-within {
     outline: 3px solid var(--secondary-color);
     outline-offset: 2px;
+}
+
+/* ============================
+   PHASE 3: SELECTION, DASHBOARD, AUTH
+   ============================ */
+
+/* Theme toggle (P2-2) */
+.theme-toggle-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 1.2rem;
+}
+
+/* Navbar links (P2-4) */
+.main-navbar .nav-link {
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
+}
+.main-navbar .nav-link:hover {
+    color: #ffffff;
+}
+
+/* Auth segmented control (P1-21) */
+#auth-mode-login + .btn,
+#auth-mode-register + .btn {
+    min-height: 44px;
+}
+
+/* Subject/chapter search & filter spacing */
+#subject-search,
+#subject-sort {
+    min-height: 44px;
+}
+
+/* Chapter status chips in cards */
+.chapter-card .badge {
+    font-size: 0.7rem;
 }

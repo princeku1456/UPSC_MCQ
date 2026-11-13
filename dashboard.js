@@ -80,6 +80,15 @@ function renderDashboardUI() {
   const combinedHistory = [...userHistory, ...practiceHistory];
   const chartData = currentDashboardMode === 'quiz' ? userHistory : practiceHistory;
 
+  // Empty state for new users (P1-19)
+  const emptyState = document.getElementById("dashboard-empty-state");
+  if (emptyState) {
+    emptyState.classList.toggle("d-none", combinedHistory.length > 0);
+  }
+
+  // "Continue where you left off" card (P1-18)
+  renderContinueCard();
+
   // 1. Cumulative Stats Calculation
   const totalTests = combinedHistory.length;
   const avgScore = totalTests
@@ -139,6 +148,59 @@ function renderDashboardUI() {
 
   // Concept Gap Analysis (Cumulative, but practically only Quizzes contribute due to missing global stats for Practice)
   updateConceptGapStat(combinedHistory);
+}
+
+/**
+ * Renders the "Continue where you left off" card from saved localStorage
+ * progress entries (P1-18).
+ */
+function renderContinueCard() {
+  const container = document.getElementById("continue-card-container");
+  if (!container) return;
+
+  const entries = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (!key || key.indexOf("quiz_progress_") !== 0) continue;
+    try {
+      const data = JSON.parse(localStorage.getItem(key));
+      const age = Date.now() - (data.timestamp || 0);
+      if (age < 24 * 60 * 60 * 1000) {
+        entries.push({
+          chapterId: key.substring("quiz_progress_".length),
+          subject: data.subject || "",
+          chapterName: data.chapterName || "Test",
+          remainingTime: data.remainingTime || 0,
+          timestamp: data.timestamp || 0,
+        });
+      }
+    } catch (e) {
+      // ignore malformed entries
+    }
+  }
+
+  if (entries.length === 0) {
+    container.innerHTML = "";
+    return;
+  }
+
+  entries.sort((a, b) => b.timestamp - a.timestamp);
+  const entry = entries[0];
+  const minutesLeft = Math.max(0, Math.round(entry.remainingTime / 60));
+
+  container.innerHTML = `
+    <div class="col-12">
+      <div class="card border-0 shadow-sm rounded-4 p-3">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <div>
+            <h6 class="fw-bold text-primary mb-1">Continue where you left off</h6>
+            <p class="text-muted small mb-0">${entry.subject} — ${entry.chapterName} · ${minutesLeft} min left</p>
+          </div>
+          <button class="btn btn-success-custom px-4" onclick="resumeFromDashboard('${entry.chapterId}')">▶ Resume</button>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 /**
@@ -259,6 +321,29 @@ async function generateAIReview() {
   spinner.classList.remove("d-none");
   btnText.textContent = "Analyzing...";
   contentDiv.innerHTML = `<div class="text-center text-muted"><p>Thinking...</p></div>`;
+
+  // Serve a fresh cached review if available (< 1 hour old)
+  try {
+    const cached = JSON.parse(
+      localStorage.getItem(`ai_review_${currentUser.uid}`) || "null"
+    );
+    if (
+      cached &&
+      cached.html &&
+      Date.now() - cached.timestamp < 60 * 60 * 1000
+    ) {
+      contentDiv.innerHTML = `<div class="animate-fade-in markdown-content">${cached.html}</div>`;
+      const metaEl = document.getElementById("ai-review-meta");
+      if (metaEl)
+        metaEl.textContent = `Last review: ${new Date(cached.timestamp).toLocaleString()}`;
+      btn.disabled = false;
+      spinner.classList.add("d-none");
+      btnText.textContent = "⚡ Analyze My Performance";
+      return;
+    }
+  } catch (e) {
+    // ignore cache read errors
+  }
 
   try {
     // Recalculate essentials from userHistory for cleaner data
@@ -413,10 +498,26 @@ async function generateAIReview() {
     const formattedText = marked.parse(aiText);
 
     contentDiv.innerHTML = `<div class="animate-fade-in markdown-content">${formattedText}</div>`;
+
+    // Record the timestamp and cache the result (P1-20)
+    const nowTs = Date.now();
+    const metaEl = document.getElementById("ai-review-meta");
+    if (metaEl)
+      metaEl.textContent = `Last review: ${new Date(nowTs).toLocaleString()}`;
+    try {
+      localStorage.setItem(
+        `ai_review_${currentUser.uid}`,
+        JSON.stringify({ html: formattedText, timestamp: nowTs })
+      );
+    } catch (e) {
+      // ignore cache write errors
+    }
   } catch (error) {
     console.error("AI Error:", error);
     toastr.error("AI Analysis Failed: " + error.message);
-    contentDiv.innerHTML = `<p class="text-danger">Failed to generate review. Please check the system configuration.</p>`;
+    contentDiv.innerHTML = `<div class="alert alert-warning border-0 mb-0"><strong>Couldn't generate review.</strong><br>${error.message}</div>`;
+    const metaEl = document.getElementById("ai-review-meta");
+    if (metaEl) metaEl.textContent = "";
   } finally {
     btn.disabled = false;
     spinner.classList.add("d-none");

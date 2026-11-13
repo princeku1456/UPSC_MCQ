@@ -31,6 +31,8 @@ function saveQuizProgress() {
   timeData[currentQuestionIndex] = (timeData[currentQuestionIndex] || 0) + currentQTime;
 
   const progressData = {
+    subject: currentSubject,
+    chapterName: currentChapterName,
     userAnswers: userAnswers,
     markedForReview: markedForReview,
     questionTimeSpent: timeData, // Save time tracking
@@ -71,6 +73,48 @@ function clearQuizProgress(chapterId) {
 /**
  * UPDATED: Fetches manifest from Firestore if missing, then renders subjects.
  */
+let subjectSortMode = "az";
+let chapterFilterMode = "all";
+let currentChapterSubject = "";
+let revisionSubjectKey = "";
+
+function getChapterQuestionCount(chapters, chapId) {
+  const raw = chapters && chapters[chapId];
+  if (typeof raw === "number") return raw;
+  if (Array.isArray(raw)) return raw.length;
+  if (raw && Array.isArray(raw.questions)) return raw.questions.length;
+  if (raw && typeof raw.questionCount === "number") return raw.questionCount;
+  if (raw && typeof raw.numQuestions === "number") return raw.numQuestions;
+  return null;
+}
+
+function getInProgressChapterIds() {
+  const ids = new Set();
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.indexOf("quiz_progress_") === 0) {
+      ids.add(key.substring("quiz_progress_".length));
+    }
+  }
+  return ids;
+}
+
+function toTimestampMs(ts) {
+  if (!ts) return 0;
+  if (ts.seconds) return ts.seconds * 1000;
+  if (ts.toDate) return ts.toDate().getTime();
+  return new Date(ts).getTime() || 0;
+}
+
+function formatLastAttempt(timestamp) {
+  const ms = toTimestampMs(timestamp);
+  if (!ms) return "—";
+  return new Date(ms).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
+}
+
 async function renderSubjects() {
   renderBreadcrumbs([
       { label: 'Home', onclick: 'showHome()' },
@@ -79,112 +123,170 @@ async function renderSubjects() {
   ]);
   const container = document.getElementById("test-content-container");
 
-  // If data isn't loaded yet, fetch it from Firestore
   if (typeof allQuizData === "undefined" || !allQuizData) {
     container.innerHTML = `
         <div class="text-center py-5">
             <div class="spinner-border text-primary" role="status"></div>
             <p class="mt-2 text-muted">Loading Subjects from Cloud...</p>
         </div>`;
-
-    await DataManager.fetchQuizManifest(); // Helper function to get data from Firebase
+    await DataManager.fetchQuizManifest();
   }
 
-  // Double check if data is now available after fetch
   if (typeof allQuizData === "undefined" || !allQuizData) {
     container.innerHTML =
       '<div class="alert alert-danger text-center">Failed to load Quiz Data from Firebase!</div>';
     return;
   }
 
-  // Clear container and start rendering
+  const inProgressIds = getInProgressChapterIds();
+
+  const subjects = Object.keys(allQuizData).map((subjectKey) => {
+    const chapters = allQuizData[subjectKey];
+    const chapterIds = Object.keys(chapters);
+    const prefix = subjectKey.replace(/\s+/g, "_") + "_";
+
+    const history = (userHistory || []).filter(
+      (h) => h && h.subject === subjectKey
+    );
+    const tests = history.length;
+    const avgAcc = tests
+      ? (history.reduce((a, h) => a + (h.scorePercent || 0), 0) / tests).toFixed(0)
+      : null;
+    let lastTs = 0;
+    history.forEach((h) => {
+      const ts = toTimestampMs(h.timestamp);
+      if (ts > lastTs) lastTs = ts;
+    });
+
+    const completedCount = chapterIds.filter((cid) =>
+      history.some((h) => h.chapterId === prefix + cid)
+    ).length;
+    const progressPercent =
+      chapterIds.length > 0
+        ? Math.round((completedCount / chapterIds.length) * 100)
+        : 0;
+    const inProgress = chapterIds.some((cid) => inProgressIds.has(prefix + cid));
+
+    return {
+      subjectKey,
+      tests,
+      avgAcc,
+      lastTs,
+      completedCount,
+      totalChapters: chapterIds.length,
+      progressPercent,
+      inProgress,
+    };
+  });
+
+  if (subjectSortMode === "progress") {
+    subjects.sort((a, b) => b.progressPercent - a.progressPercent);
+  } else if (subjectSortMode === "recent") {
+    subjects.sort((a, b) => b.lastTs - a.lastTs);
+  } else {
+    subjects.sort((a, b) =>
+      a.subjectKey.localeCompare(b.subjectKey, undefined, {
+        numeric: true,
+        sensitivity: "base",
+      })
+    );
+  }
+
   container.innerHTML = `
-        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="showDashboard()">← Back to Dashboard</button>
         <div class="text-center mb-4">
             <h4 class="fw-bold section-title">Select a Subject</h4>
             <div class="title-underline mx-auto"></div>
+        </div>
+        <div class="row justify-content-center mb-4 g-2">
+            <div class="col-md-8 col-lg-6">
+                <input id="subject-search" class="form-control" type="search" placeholder="Search subjects..." oninput="filterSubjects()">
+            </div>
+            <div class="col-md-4 col-lg-3">
+                <select id="subject-sort" class="form-select" onchange="setSubjectSort(this.value)">
+                    <option value="az" ${subjectSortMode === "az" ? "selected" : ""}>Sort: A–Z</option>
+                    <option value="progress" ${subjectSortMode === "progress" ? "selected" : ""}>Sort: Progress</option>
+                    <option value="recent" ${subjectSortMode === "recent" ? "selected" : ""}>Sort: Recently used</option>
+                </select>
+            </div>
         </div>
         <div class="row justify-content-center g-4" id="subjects-row"></div>
     `;
 
   const row = document.getElementById("subjects-row");
-
-  // Sort and render subjects as before
-  const sortedSubjectKeys = Object.keys(allQuizData).sort((a, b) => {
-    return a.localeCompare(b, undefined, {
-      numeric: true,
-      sensitivity: "base",
-    });
-  });
-
-  // OPTIMIZATION: Pre-calculate completed chapter IDs for O(1) lookup
-  const completedChapterIds = new Set();
-  if (typeof userHistory !== 'undefined' && userHistory) {
-      userHistory.forEach(h => completedChapterIds.add(h.chapterId));
-  }
-
   const fragment = document.createDocumentFragment();
 
-  sortedSubjectKeys.forEach((subjectKey) => {
-    const chapters = allQuizData[subjectKey];
-    const totalChapters = Object.keys(chapters).length;
-    const subjectPrefix = subjectKey.replace(/\s+/g, "_") + "_";
-
-    const completedChaptersCount = Object.keys(chapters).filter((chapId) => {
-      const fullId = subjectPrefix + chapId;
-      return completedChapterIds.has(fullId);
-    }).length;
-
-    const progressPercent =
-      totalChapters > 0
-        ? Math.round((completedChaptersCount / totalChapters) * 100)
-        : 0;
-    const isCompleted = progressPercent === 100;
-
+  subjects.forEach((s) => {
+    const isCompleted = s.progressPercent === 100;
     const col = document.createElement("div");
-    col.className = "col-md-4 col-lg-3 mb-4";
+    col.className = "col-md-4 col-lg-3 mb-4 subject-col";
+    col.dataset.subject = s.subjectKey;
     col.innerHTML = `
             <div class="card topic-card h-100 ${
               isCompleted ? "subject-completed" : ""
             }" style="cursor: pointer;"
                role="button"
                tabindex="0"
-               aria-label="Select Subject: ${subjectKey}"
+               aria-label="Select Subject: ${s.subjectKey}"
                onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">
                 <div class="card-body text-center p-4 d-flex flex-column">
-                    <div class="display-4 mb-3">${
-                      isCompleted ? "🏆" : "📖"
-                    }</div>
+                    <div class="display-4 mb-2">${isCompleted ? "🏆" : "📖"}</div>
                     ${
                       isCompleted
-                        ? '<div class="badge bg-success mb-2 animate-fade-in">✨ Completed</div>'
+                        ? '<div class="badge bg-success mb-2 animate-fade-in">Completed</div>'
                         : ""
                     }
-                    <h5 class="card-title text-primary fw-bold">${subjectKey}</h5>
-                    <p class="text-muted small mb-3">${completedChaptersCount} / ${totalChapters} Chapters Done</p>
+                    <h5 class="card-title text-primary fw-bold">${s.subjectKey}</h5>
+                    <p class="text-muted small mb-2">${s.completedCount} / ${s.totalChapters} Chapters Done</p>
+                    <div class="small text-muted mb-2">
+                        ${s.tests} test${s.tests === 1 ? "" : "s"}${
+      s.avgAcc !== null ? " · " + s.avgAcc + "% avg" : ""
+    }
+                    </div>
+                    <p class="small text-muted mb-2">Last: ${formatLastAttempt(s.lastTs)}</p>
+                    ${
+                      s.inProgress
+                        ? '<span class="badge bg-warning text-dark mb-2">Continue</span>'
+                        : ""
+                    }
                     <div class="mt-auto">
                         <div class="progress mb-2" style="height: 25px; background-color: var(--border-color); border-radius: 5px;">
                             <div class="progress-bar ${
                               isCompleted ? "bg-success" : ""
-                            }" 
-                                 role="progressbar" 
-                                 style="width: ${progressPercent}%; ${
+                            }"
+                                 role="progressbar"
+                                 style="width: ${s.progressPercent}%; ${
       !isCompleted ? "background-color: var(--accent-color);" : ""
     } border-radius: 5px;">
                             </div>
                         </div>
                         <small class="fw-bold ${
                           isCompleted ? "text-success" : "text-secondary"
-                        }">${progressPercent}% Complete</small>
+                        }">${s.progressPercent}% Complete</small>
                     </div>
                 </div>
             </div>`;
 
-    col.onclick = () => renderChapters(subjectKey);
+    col.onclick = () => renderChapters(s.subjectKey);
     fragment.appendChild(col);
   });
 
   row.appendChild(fragment);
+}
+
+function setSubjectSort(mode) {
+  subjectSortMode = mode;
+  renderSubjects();
+}
+
+function filterSubjects() {
+  const q = (document.getElementById("subject-search")?.value || "")
+    .toLowerCase()
+    .trim();
+  document.querySelectorAll("#subjects-row .subject-col").forEach((col) => {
+    const name = col.dataset.subject || "";
+    col.style.display =
+      !q || name.toLowerCase().includes(q) ? "" : "none";
+  });
 }
 
 /**
@@ -194,6 +296,7 @@ async function renderSubjects() {
  * UPDATED: Renders chapters for a selected subject in sorted order.
  */
 function renderChapters(subjectKey) {
+  currentChapterSubject = subjectKey;
   renderBreadcrumbs([
       { label: 'Home', onclick: 'showHome()' },
       { label: 'Dashboard', onclick: 'showDashboard()' },
@@ -202,10 +305,8 @@ function renderChapters(subjectKey) {
   ]);
   const container = document.getElementById("test-content-container");
 
-  // Create the layout for the chapters view
   container.innerHTML = `
-        <button class="btn btn-primary-custom px-4 shadow mb-4" onclick="renderSubjects()">← Back to Subjects</button>
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
             <div class="text-start">
                 <h4 class="fw-bold section-title mb-1">Chapters: ${subjectKey}</h4>
                 <div class="title-underline"></div>
@@ -214,13 +315,18 @@ function renderChapters(subjectKey) {
                 <i class="bi bi-journal-text me-1"></i>Create Revision Test
             </button>
         </div>
+        <div class="d-flex flex-wrap gap-2 mb-4" role="group" aria-label="Filter chapters">
+            <button class="btn btn-sm ${chapterFilterMode === "all" ? "btn-primary-custom" : "btn-outline-secondary"}" onclick="setChapterFilter('all')">All</button>
+            <button class="btn btn-sm ${chapterFilterMode === "new" ? "btn-primary-custom" : "btn-outline-secondary"}" onclick="setChapterFilter('new')">New</button>
+            <button class="btn btn-sm ${chapterFilterMode === "completed" ? "btn-primary-custom" : "btn-outline-secondary"}" onclick="setChapterFilter('completed')">Completed</button>
+            <button class="btn btn-sm ${chapterFilterMode === "in progress" ? "btn-primary-custom" : "btn-outline-secondary"}" onclick="setChapterFilter('in progress')">In progress</button>
+        </div>
         <div class="row" id="chapters-row"></div>
     `;
 
   const row = document.getElementById("chapters-row");
   const chapters = allQuizData[subjectKey];
 
-  // FIX: Sort the chapter IDs numerically before rendering to ensure Test-1, Test-2 order
   const sortedChapterIds = Object.keys(chapters).sort((a, b) => {
     return a.localeCompare(b, undefined, {
       numeric: true,
@@ -228,13 +334,13 @@ function renderChapters(subjectKey) {
     });
   });
 
-  // OPTIMIZATION: Create O(1) lookup map for user history
-  const latestResultsMap = new Map();
-  if (typeof userHistory !== 'undefined' && userHistory) {
+  const inProgressIds = getInProgressChapterIds();
+
+  const chapterAttempts = new Map();
+  if (typeof userHistory !== "undefined" && userHistory) {
     userHistory.forEach((h) => {
-      if (!latestResultsMap.has(h.chapterId)) {
-        latestResultsMap.set(h.chapterId, h);
-      }
+      if (!chapterAttempts.has(h.chapterId)) chapterAttempts.set(h.chapterId, []);
+      chapterAttempts.get(h.chapterId).push(h);
     });
   }
 
@@ -242,61 +348,124 @@ function renderChapters(subjectKey) {
 
   sortedChapterIds.forEach((chapId) => {
     const col = document.createElement("div");
-    col.className = "col-md-6 col-lg-4 mb-4";
+    col.className = "col-md-6 col-lg-4 mb-4 chapter-col";
 
     const subjectPrefix = subjectKey.replace(/\s+/g, "_") + "_";
     const fullChapterId = subjectPrefix + chapId;
 
-    // Check if the user has already taken this test
-    const latestResult = latestResultsMap.get(fullChapterId);
+    const attempts = chapterAttempts.get(fullChapterId) || [];
+    const latestResult = attempts[0] || null;
     const hasTaken = !!latestResult;
+    const bestScore = attempts.length
+      ? Math.max(...attempts.map((a) => a.scorePercent || 0))
+      : null;
 
-    const startBtnText = hasTaken ? "↻ Retake Test" : "🚀 Start Test";
+    const inProgress = inProgressIds.has(fullChapterId);
+    const status = hasTaken ? "completed" : inProgress ? "in progress" : "new";
 
-    let reviewBtnHtml = "";
+    const questionCount = getChapterQuestionCount(chapters, chapId);
+    const durationMin = questionCount
+      ? Math.ceil(questionCount * MARKING_SCHEME.minutesPerQuestion)
+      : null;
+
+    let statusChip = '<span class="badge bg-secondary">New</span>';
+    if (status === "completed") statusChip = '<span class="badge bg-success">Completed</span>';
+    else if (status === "in progress") statusChip = '<span class="badge bg-warning text-dark">In progress</span>';
+
+    let scoreHtml = "";
     if (hasTaken) {
-      reviewBtnHtml = `
-            <button class="btn btn-secondary-custom w-100 mt-2 review-perf-btn">
-                👁 Review Performance
-            </button>
-        `;
+      scoreHtml = `<p class="small text-muted mb-1">Last: ${latestResult.scorePercent}% · Best: ${bestScore}%</p>`;
     }
 
+    let metaHtml = "";
+    if (questionCount) {
+      metaHtml = `<div class="mb-2"><span class="badge bg-light text-dark border me-1">${questionCount} Qs</span><span class="badge bg-light text-dark border">${durationMin}m</span></div>`;
+    }
+
+    let actionHtml = "";
+    if (hasTaken) {
+      actionHtml = `
+            <button class="btn btn-primary-custom w-100 review-perf-btn">👁 Review</button>
+            <button class="btn btn-outline-secondary w-100 mt-2 retake-btn">↻ Retake</button>
+        `;
+    } else {
+      const startLabel = inProgress ? "▶ Continue" : "🚀 Start Test";
+      actionHtml = `<button class="btn btn-primary-custom w-100 action-btn">${startLabel}</button>`;
+    }
+
+    col.dataset.status = status;
     col.innerHTML = `
             <div class="card chapter-card h-100 border-0">
                 <div class="card-body d-flex flex-column p-4">
-                    <h5 class="card-title fw-bold text-dark">${chapId}</h5>
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h5 class="card-title fw-bold text-dark mb-0">${chapId}</h5>
+                        ${statusChip}
+                    </div>
+                    ${metaHtml}
+                    ${scoreHtml}
+                    <p class="small text-muted mb-2">Last attempt: ${formatLastAttempt(
+                      latestResult && latestResult.timestamp
+                    )}</p>
                     <div class="mt-auto">
-                        <button class="btn btn-primary-custom w-100 action-btn">
-                            ${startBtnText}
-                        </button>
-                        ${reviewBtnHtml}
+                        ${actionHtml}
                     </div>
                 </div>
             </div>`;
 
-    // Handle Start/Retake Test click
-    col.querySelector(".action-btn").onclick = () => {
+    const startOrRetake = () => {
       loadQuiz(subjectKey, chapId, encodeURIComponent(chapId));
     };
 
-    // Handle Review Performance click if the test was previously completed
-    if (hasTaken) {
-      col.querySelector(".review-perf-btn").onclick = () => {
-        reviewTest(latestResult, "chapters");
-      };
-    }
+    col.querySelector(".action-btn")?.addEventListener("click", startOrRetake);
+    col.querySelector(".retake-btn")?.addEventListener("click", startOrRetake);
+    col.querySelector(".review-perf-btn")?.addEventListener("click", () => {
+      reviewTest(latestResult, "chapters");
+    });
 
     fragment.appendChild(col);
   });
 
   row.appendChild(fragment);
+  filterChapters();
+}
+
+function setChapterFilter(mode) {
+  chapterFilterMode = mode;
+  renderChapters(currentChapterSubject);
+}
+
+function filterChapters() {
+  document.querySelectorAll("#chapters-row .chapter-col").forEach((col) => {
+    const status = col.dataset.status;
+    col.style.display =
+      chapterFilterMode === "all" || chapterFilterMode === status ? "" : "none";
+  });
+}
+
+function resumeFromDashboard(chapterId) {
+  const raw = localStorage.getItem(`quiz_progress_${chapterId}`);
+  if (!raw) return;
+  let data;
+  try {
+    data = JSON.parse(raw);
+  } catch (e) {
+    return;
+  }
+  const subject = data.subject;
+  const chapterName = data.chapterName || "Test";
+  if (!subject) return;
+  const prefix = subject.replace(/\s+/g, "_") + "_";
+  const originalChapId = chapterId.startsWith(prefix)
+    ? chapterId.substring(prefix.length)
+    : chapterId;
+  loadQuiz(subject, originalChapId, encodeURIComponent(chapterName));
 }
 
 /* =========================================
    REVISION TEST LOGIC
    ========================================= */
 function openRevisionModal(subjectKey) {
+  revisionSubjectKey = subjectKey;
   const listContainer = document.getElementById("revision-tests-list");
   listContainer.innerHTML = "";
 
@@ -319,15 +488,64 @@ function openRevisionModal(subjectKey) {
         ${chapId}
       </span>
     `;
+    label.querySelector("input").addEventListener("change", updateRevisionAvailable);
     listContainer.appendChild(label);
   });
 
   const generateBtn = document.getElementById("generate-revision-btn");
   generateBtn.onclick = () => generateRevisionTest(subjectKey);
+  generateBtn.disabled = false;
+  generateBtn.innerHTML = "🚀 Generate Test";
+
+  updateRevisionAvailable();
 
   const modalEl = document.getElementById('revisionTestModal');
   const modal = new bootstrap.Modal(modalEl);
   modal.show();
+}
+
+function selectAllRevisionTests() {
+  document.querySelectorAll(".revision-checkbox").forEach((cb) => {
+    cb.checked = true;
+  });
+  updateRevisionAvailable();
+}
+
+function clearRevisionTests() {
+  document.querySelectorAll(".revision-checkbox").forEach((cb) => {
+    cb.checked = false;
+  });
+  updateRevisionAvailable();
+}
+
+function updateRevisionAvailable() {
+  const checkboxes = document.querySelectorAll(".revision-checkbox");
+  let selected = 0;
+  let available = 0;
+  const chapters = allQuizData && revisionSubjectKey
+    ? allQuizData[revisionSubjectKey]
+    : null;
+
+  checkboxes.forEach((cb) => {
+    if (cb.checked) {
+      selected++;
+      if (chapters) {
+        const qc = getChapterQuestionCount(chapters, cb.value);
+        if (qc) available += qc;
+      }
+    }
+  });
+
+  const countEl = document.getElementById("revision-selected-count");
+  if (countEl) countEl.textContent = selected + " selected";
+
+  const infoEl = document.getElementById("revision-available-info");
+  if (infoEl) {
+    infoEl.textContent =
+      available > 0
+        ? `${available} questions available across selected tests`
+        : "Select tests to see the available question count.";
+  }
 }
 
 async function generateRevisionTest(subjectKey) {
@@ -343,6 +561,12 @@ async function generateRevisionTest(subjectKey) {
   generateBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Generating...';
 
   const filterType = document.getElementById("revision-filter")?.value || "all";
+  const revisionCount = parseInt(
+    document.getElementById("revision-count")?.value || "50"
+  );
+  const timeMinutes = parseInt(
+    document.getElementById("revision-time")?.value || "60"
+  );
 
   // OPTIMIZATION: Create O(1) lookup map for user history to easily find latest attempt for each chapter
   const latestResultsMap = new Map();
@@ -380,7 +604,7 @@ async function generateRevisionTest(subjectKey) {
                     }
                 } else {
                     const uAns = latestResult.userAnswers && latestResult.userAnswers[qIndex];
-                    if (!uAns) {
+                    if (!isValidAnswer(uAns)) {
                         include = (filterType === "unattempted");
                     } else {
                         const correctIndex = getCorrectIndex(q);
@@ -418,8 +642,8 @@ async function generateRevisionTest(subjectKey) {
         [combinedQuestions[i], combinedQuestions[j]] = [combinedQuestions[j], combinedQuestions[i]];
     }
 
-    // Slice up to 100 questions
-    currentQuizData = combinedQuestions.slice(0, 100);
+    // Slice up to the chosen question count
+    currentQuizData = combinedQuestions.slice(0, revisionCount);
 
     currentSubject = subjectKey;
     currentChapterId = "revision_" + Date.now();
@@ -434,8 +658,8 @@ async function generateRevisionTest(subjectKey) {
     generateBtn.disabled = false;
     generateBtn.innerHTML = originalText;
 
-    // Proceed to quiz execution
-    startRevisionTestExecution();
+    // Proceed to quiz execution with the chosen time limit
+    startRevisionTestExecution(timeMinutes * 60);
 
   } catch (error) {
     console.error("Error generating revision test:", error);
@@ -452,7 +676,7 @@ async function generateRevisionTest(subjectKey) {
 /* =========================================
    QUIZ CORE (Updated loadQuiz)
    ========================================= */
-function startRevisionTestExecution() {
+function startRevisionTestExecution(timeSeconds = null) {
   isPracticeMode = false;
   isReviewMode = false;
   quizSubmitted = false;
@@ -489,7 +713,7 @@ function startRevisionTestExecution() {
     timerDisplay.classList.remove("text-danger");
   }
 
-  startTimer(currentQuizData.length, null);
+  startTimer(currentQuizData.length, timeSeconds);
   currentQuestionStartTime = Date.now();
 }
 

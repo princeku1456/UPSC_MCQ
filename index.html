@@ -54,75 +54,104 @@
         <a class="navbar-brand fw-bold" href="#" onclick="handleLogoClick()"
           >✨ MCQ Practice</a
         >
-        <div class="d-flex align-items-center gap-3">
-          <button
-            class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center"
-            id="theme-toggle"
-            onclick="toggleTheme()"
-            style="width: 38px; height: 38px; font-size: 1.2rem"
-            title="Toggle Theme"
-          >
-            🌙
-          </button>
-          <!-- BOR Compilation Dropdown -->
-          <div class="dropdown">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mainNav"
+          aria-controls="mainNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="showDashboard()">Dashboard</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="showTestSelection()">Take Test</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#" onclick="startPracticeSelection()">Practice</a>
+            </li>
+          </ul>
+          <div class="d-flex align-items-center gap-2 flex-wrap">
             <button
-              class="btn btn-link text-white text-decoration-none dropdown-toggle fw-semibold"
+              class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center theme-toggle-btn"
+              id="theme-toggle"
+              onclick="toggleTheme()"
               type="button"
-              id="bor-dropdown-btn"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              style="border: none; letter-spacing: 0.3px;"
+              aria-label="Toggle theme"
+              aria-pressed="false"
+              title="Toggle Theme"
             >
-              📚 BOR Compilation
+              🌙
             </button>
-            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3" aria-labelledby="bor-dropdown-btn" style="min-width: 200px;">
-              <li>
-                <a
-                  class="dropdown-item py-2 px-3 fw-semibold"
-                  href="https://drive.google.com/file/d/1KIkyfGrZFXn8wW5iOYK5X5bUMZ5OzEG4/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="bi bi-laptop me-2 text-primary"></i>Code-02 BOR Computer
-                </a>
-              </li>
-              <li>
-                <a
-                  class="dropdown-item py-2 px-3 fw-semibold"
-                  href="https://drive.google.com/file/d/1ULAfw34_EWnem171pDoVGaWHXKLa9xg2/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="bi bi-translate me-2 text-success"></i>Code-01 BOR Hindi
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div id="user-profile" style="display: none" class="dropdown">
-            <button
-              class="btn btn-link text-white text-decoration-none dropdown-toggle fw-bold"
-              type="button"
-              data-bs-toggle="dropdown"
-            >
-              <span id="user-name-display">User</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end shadow">
-              <li>
-                <a class="dropdown-item" href="#" onclick="showDashboard()"
-                  >📊 Dashboard</a
-                >
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a
-                  class="dropdown-item text-danger"
-                  href="#"
-                  onclick="logoutUser()"
-                  >🚪 Logout</a
-                >
-              </li>
-            </ul>
+            <!-- Resources Dropdown -->
+            <div class="dropdown">
+              <button
+                class="btn btn-link text-white text-decoration-none dropdown-toggle fw-semibold"
+                type="button"
+                id="resources-dropdown-btn"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="bi bi-collection me-1"></i>Resources
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3"
+                aria-labelledby="resources-dropdown-btn"
+                style="min-width: 200px"
+              >
+                <li>
+                  <a
+                    class="dropdown-item py-2 px-3 fw-semibold"
+                    href="https://drive.google.com/file/d/1KIkyfGrZFXn8wW5iOYK5X5bUMZ5OzEG4/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="bi bi-laptop me-2 text-primary"></i>Code-02 BOR Computer
+                  </a>
+                </li>
+                <li>
+                  <a
+                    class="dropdown-item py-2 px-3 fw-semibold"
+                    href="https://drive.google.com/file/d/1ULAfw34_EWnem171pDoVGaWHXKLa9xg2/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <i class="bi bi-translate me-2 text-success"></i>Code-01 BOR Hindi
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div id="user-profile" style="display: none" class="dropdown">
+              <button
+                class="btn btn-link text-white text-decoration-none dropdown-toggle fw-bold"
+                type="button"
+                data-bs-toggle="dropdown"
+              >
+                <span id="user-name-display">User</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow">
+                <li>
+                  <a class="dropdown-item" href="#" onclick="showDashboard()"
+                    >📊 Dashboard</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a
+                    class="dropdown-item text-danger"
+                    href="#"
+                    onclick="logoutUser()"
+                    >🚪 Logout</a
+                  >
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -135,26 +164,33 @@
           <div class="col-md-8 col-lg-5">
             <div class="card auth-card text-center animate-fade-in">
               <div class="card-body p-5">
+                <div class="btn-group w-100 mb-4" role="group" aria-label="Login or Register">
+                  <input type="radio" class="btn-check" name="authMode" id="auth-mode-login" checked />
+                  <label class="btn btn-outline-primary fw-bold" for="auth-mode-login">Login</label>
+                  <input type="radio" class="btn-check" name="authMode" id="auth-mode-register" />
+                  <label class="btn btn-outline-primary fw-bold" for="auth-mode-register">Register</label>
+                </div>
                 <h3 class="fw-bold text-primary mb-2" id="auth-title">
                   Welcome Back! 👋
                 </h3>
                 <p class="text-muted mb-4" id="auth-subtitle">
                   Login to access your dashboard.
                 </p>
-                <form id="auth-form">
+                <form id="auth-form" novalidate>
                   <div class="mb-3 text-start">
-                    <label class="form-label text-muted small fw-bold"
+                    <label for="auth-email" class="form-label text-muted small fw-bold"
                       >Email Address</label
                     >
                     <input
                       type="email"
                       class="form-control form-control-lg"
                       id="auth-email"
+                      autocomplete="email"
                       required
                     />
                   </div>
                   <div class="mb-3 text-start">
-                    <label class="form-label text-muted small fw-bold"
+                    <label for="auth-password" class="form-label text-muted small fw-bold"
                       >Password</label
                     >
                     <div class="input-group">
@@ -162,6 +198,7 @@
                         type="password"
                         class="form-control form-control-lg"
                         id="auth-password"
+                        autocomplete="current-password"
                         required
                       />
                       <button
@@ -171,21 +208,42 @@
                         onclick="togglePasswordVisibility()"
                         tabindex="-1"
                         title="Show/Hide Password"
-                        style="border-left:0; color:#6c757d; line-height:1;"
+                        aria-label="Show/Hide Password"
                       >
-                        <span class="material-symbols-rounded" id="toggle-password-icon"
-                          style="font-size:1.3rem;vertical-align:middle;">visibility_lock</span>
+                        <i class="bi bi-eye-slash" id="toggle-password-icon"></i>
                       </button>
                     </div>
+                    <div id="auth-password-hint" class="small text-muted mt-1"></div>
                   </div>
+                  <div
+                    id="auth-inline-error"
+                    class="text-danger small text-start mb-2"
+                    style="display: none"
+                  ></div>
                   <button
                     type="submit"
-                    class="btn btn-primary-custom w-100 py-3 mt-3 shadow"
+                    class="btn btn-primary-custom w-100 py-3 mt-2 shadow"
                     id="auth-submit-btn"
                   >
                     Login
                   </button>
                 </form>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                  <a
+                    href="#"
+                    class="small text-primary text-decoration-none"
+                    id="forgot-password-link"
+                    onclick="forgotPassword()"
+                    >Forgot password?</a
+                  >
+                  <a
+                    href="#"
+                    class="small text-primary text-decoration-none d-none"
+                    id="resend-verification-link"
+                    onclick="resendVerification()"
+                    >Resend verification email</a
+                  >
+                </div>
                 <div id="google-auth-container">
                   <div class="d-flex align-items-center my-4">
                     <hr class="flex-grow-1" />
@@ -204,17 +262,6 @@
                     />Continue with Google
                   </button>
                 </div>
-                <div class="mt-4">
-                  <small class="text-muted"
-                    >Don't have an account?
-                    <a
-                      href="#"
-                      class="text-primary fw-bold text-decoration-none"
-                      onclick="toggleAuthMode()"
-                      >Register here</a
-                    ></small
-                  >
-                </div>
               </div>
             </div>
           </div>
@@ -228,9 +275,23 @@
       style="display: none; min-height: 90vh"
     >
       <div class="container">
-        <div class="text-center mb-5">
+        <div class="text-center mb-4">
           <h2 class="fw-bold section-title">My Dashboard</h2>
           <div class="title-underline mx-auto"></div>
+        </div>
+        <div id="continue-card-container" class="row justify-content-center mb-4"></div>
+        <div
+          id="dashboard-empty-state"
+          class="alert alert-light border text-center py-5 d-none"
+        >
+          <div class="display-5 mb-2">🚀</div>
+          <h5 class="fw-bold">Welcome! Take your first test</h5>
+          <p class="text-muted">
+            Your performance stats and analytics will appear here.
+          </p>
+          <button class="btn btn-primary-custom px-4" onclick="showTestSelection()">
+            Take your first test
+          </button>
         </div>
         <div
           class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-3 mb-5 justify-content-center"
@@ -259,7 +320,7 @@
             <div
               class="p-3 bg-white rounded shadow-sm border-start border-4 border-success h-100"
             >
-              <h6 class="text-muted text-uppercase small fw-bold">Precision</h6>
+              <h6 class="text-muted text-uppercase small fw-bold" title="Percentage of attempted questions answered correctly">Precision</h6>
               <h2 class="fw-bold text-success mb-0" id="stat-precision-rate">
                 0%
               </h2>
@@ -270,9 +331,7 @@
             <div
               class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger h-100"
             >
-              <h6 class="text-muted text-uppercase small fw-bold">
-                Neg. Drain
-              </h6>
+              <h6 class="text-muted text-uppercase small fw-bold" title="Marks lost to wrong answers relative to marks gained">Neg. Drain</h6>
               <h2 class="fw-bold text-danger mb-0" id="stat-negative-drain">
                 0%
               </h2>
@@ -283,9 +342,7 @@
             <div
               class="p-3 bg-white rounded shadow-sm border-start border-4 border-info h-100"
             >
-              <h6 class="text-muted text-uppercase small fw-bold">
-                Concept Gap
-              </h6>
+              <h6 class="text-muted text-uppercase small fw-bold" title="Easy questions you missed, indicating gaps in fundamentals">Concept Gap</h6>
               <h2 class="fw-bold text-info mb-0" id="stat-concept-gap">0%</h2>
               <small class="text-muted">Easy Qs Missed</small>
             </div>
@@ -408,7 +465,9 @@
                 </p>
               </div>
 
-              <div class="d-flex gap-2 align-items-center">
+              <div id="ai-review-meta" class="small text-muted mb-2"></div>
+
+              <div class="d-flex gap-2 align-items-center flex-wrap">
                 <button
                   class="btn btn-primary-custom px-4"
                   onclick="generateAIReview()"
@@ -423,6 +482,10 @@
                   <span id="ai-btn-text">⚡ Analyze My Performance</span>
                 </button>
               </div>
+              <p class="small text-muted mt-3 mb-0">
+                <i class="bi bi-info-circle me-1"></i>AI-generated analysis —
+                verify with your notes.
+              </p>
             </div>
           </div>
         </div>
@@ -676,18 +739,47 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body p-4">
-            <p class="text-muted small mb-3">Select the tests you want to include in your revision test. Up to 100 questions will be randomly selected from the chosen tests.</p>
+            <p class="text-muted small mb-3">Build a revision test from questions you've already attempted. Questions are randomly selected from the chosen tests.</p>
+
+            <div class="row g-3 mb-3">
+              <div class="col-6">
+                <label for="revision-filter" class="form-label fw-bold text-secondary small">Filter Questions</label>
+                <select class="form-select form-select-sm" id="revision-filter" onchange="updateRevisionAvailable()">
+                  <option value="all">All Questions</option>
+                  <option value="incorrect">Incorrect Only</option>
+                  <option value="correct">Correct Only</option>
+                  <option value="unattempted">Unattempted Only</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="revision-count" class="form-label fw-bold text-secondary small">Number of Questions</label>
+                <select class="form-select form-select-sm" id="revision-count">
+                  <option value="25">25</option>
+                  <option value="50" selected>50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+            </div>
 
             <div class="mb-3">
-              <label for="revision-filter" class="form-label fw-bold text-secondary small">Filter Questions</label>
-              <select class="form-select form-select-sm" id="revision-filter">
-                <option value="all">All Questions</option>
-                <option value="incorrect">Incorrect Only</option>
-                <option value="correct">Correct Only</option>
-                <option value="unattempted">Unattempted Only</option>
+              <label for="revision-time" class="form-label fw-bold text-secondary small">Time Limit (minutes)</label>
+              <select class="form-select form-select-sm" id="revision-time">
+                <option value="30">30 min</option>
+                <option value="60" selected>60 min</option>
+                <option value="90">90 min</option>
+                <option value="120">120 min</option>
               </select>
             </div>
 
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <label class="form-label fw-bold text-secondary small mb-0">Select Tests</label>
+              <div class="d-flex gap-2 align-items-center">
+                <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none select-quick-btn" onclick="selectAllRevisionTests()">Select all</button>
+                <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none text-muted select-quick-btn" onclick="clearRevisionTests()">Clear</button>
+                <span class="badge bg-primary" id="revision-selected-count">0 selected</span>
+              </div>
+            </div>
+            <div id="revision-available-info" class="small text-muted mb-2"></div>
             <div id="revision-tests-list" class="list-group list-group-flush mb-3">
               <!-- Checkboxes will be injected here -->
             </div>
