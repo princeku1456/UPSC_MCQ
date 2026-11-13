@@ -640,6 +640,14 @@ class QuizTimer {
             this.displayElement.classList.remove("low-time");
             if (mobileTimer) mobileTimer.classList.remove("low-time");
         }
+
+        // Announce only at meaningful thresholds (not every second)
+        const thresholds = [600, 300, 60];
+        if (thresholds.includes(this.secondsRemaining)) {
+            const announce = document.getElementById("timer-announce");
+            if (announce)
+                announce.textContent = `${Math.floor(this.secondsRemaining / 60)} minutes remaining`;
+        }
     }
 }
 

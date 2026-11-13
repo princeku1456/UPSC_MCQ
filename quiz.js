@@ -1831,17 +1831,22 @@ function toggleTimer() {
 
 function renderQuizLayout(title) {
   document.getElementById("quiz-content").innerHTML = `
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
             <h4 class="fw-bold text-primary m-0">${title}</h4>
-            <button id="mark-review-btn" class="btn btn-sm shadow-sm" onclick="toggleMarkForReview()" title="Mark for Review" style="width:38px;height:38px;padding:0;font-size:1.15rem;color:#b45309;border:1.5px solid #b45309;background:transparent;display:inline-flex;align-items:center;justify-content:center;clip-path:polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);border-radius:0;">
-                <i class="bi bi-star"></i>
+            <button id="mark-review-btn" class="btn btn-mark-review" onclick="toggleMarkForReview()" type="button">
+                <i class="bi bi-bookmark"></i>
+                <span id="mark-review-label">Mark for review</span>
             </button>
         </div>
         <div id="question-container"></div>
-        <div class="d-flex justify-content-between mt-4">
-            <button id="prev-btn" class="btn btn-secondary-custom px-4 ">Previous</button>
-            <button id="clear-btn" class="btn btn-primary-custom px-4 ">Clear</button>
-            <button id="next-btn" class="btn btn-secondary-custom px-4 ">Next</button>
+        <div class="quiz-action-row d-flex justify-content-between align-items-center mt-4 gap-2">
+            <button id="prev-btn" class="btn btn-secondary-custom px-4">Previous</button>
+            <div class="quiz-action-spacer"></div>
+            <button id="clear-btn" class="btn btn-outline-secondary px-4">Clear</button>
+            <button id="next-btn" class="btn btn-primary-custom px-4">Save &amp; Next</button>
+        </div>
+        <div class="keyboard-hint small text-muted mt-2 text-center d-none d-md-block">
+            <i class="bi bi-keyboard me-1"></i>1–4 / A–D answer · N/P navigate · M mark · C clear · Shift+S submit
         </div>
         <div id="question-feedback" class="mt-3 text-center"></div>
         <div id="result" class="mt-4 text-center"></div>
@@ -1849,20 +1854,21 @@ function renderQuizLayout(title) {
 
   document.getElementById("quiz-nav").innerHTML = `
     <div class="nav-header">Question Palette</div>
-    <div class="timer-container shadow-sm position-relative" style="padding-bottom: 45px !important;">
+    <div class="timer-container shadow-sm">
         <span class="timer-label">Time Remaining</span>
-        <div id="timer-display" class="timer-value">00:00</div>
-        
-        <button id="timer-pause-btn" 
-                class="btn btn-sm btn-secondary-custom fw-bold position-absolute" 
-                style="bottom: 12px; right: 12px; font-size: 0.85rem; padding: 5px 12px; border-radius: 8px;"
-                onclick="toggleTimer()">
+        <div id="timer-display" class="timer-value" role="timer" aria-label="Time remaining">00:00</div>
+        <button id="timer-pause-btn" class="btn btn-sm btn-secondary-custom fw-bold mt-3" onclick="toggleTimer()" type="button">
             <i class="bi bi-pause-fill"></i> Pause
         </button>
     </div>
     <div id="nav-container" class="nav-grid"></div>
+    <div class="visually-hidden" id="timer-announce" aria-live="polite"></div>
+    ${paletteLegendHTML()}
     <button id="final-submit-btn" class="btn btn-success-custom w-100 mt-4 py-2 fw-bold">Submit Test</button>
-`;
+  `;
+
+  const mobileLegend = document.getElementById("mobile-palette-legend");
+  if (mobileLegend) mobileLegend.innerHTML = paletteLegendHTML();
 
   document
     .getElementById("prev-btn")
@@ -1878,27 +1884,56 @@ function renderQuizLayout(title) {
     .addEventListener("click", () => submitAll(false));
 }
 
+function paletteLegendHTML() {
+  return `
+    <div class="palette-legend mt-3">
+      <div class="d-flex justify-content-between align-items-center mb-2 gap-2">
+        <small class="fw-bold text-muted text-uppercase">Legend</small>
+        <small class="fw-bold palette-counters text-end"></small>
+      </div>
+      <div class="d-flex flex-wrap gap-2">
+        <span class="legend-item"><span class="legend-swatch legend-current"></span>Current</span>
+        <span class="legend-item"><span class="legend-swatch legend-answered"></span>Answered</span>
+        <span class="legend-item"><span class="legend-swatch legend-marked"><i class="bi bi-bookmark-fill"></i></span>Marked</span>
+        <span class="legend-item"><span class="legend-swatch legend-answered-marked"></span>Answered + Marked</span>
+        <span class="legend-item"><span class="legend-swatch legend-not-visited"></span>Not visited</span>
+      </div>
+    </div>
+  `;
+}
+
+function updatePaletteCounters() {
+  let answered = 0;
+  let marked = 0;
+  currentQuizData.forEach((q, i) => {
+    if (isValidAnswer(userAnswers[i])) answered++;
+    if (markedForReview[i]) marked++;
+  });
+  const left = currentQuizData.length - answered;
+  document.querySelectorAll(".palette-counters").forEach((el) => {
+    el.textContent = `${answered} answered · ${marked} marked · ${left} left`;
+  });
+}
+
 function renderQuestion() {
   const container = document.getElementById("question-container");
   container.innerHTML = "";
   const question = currentQuizData[currentQuestionIndex];
   const correctIndex = getCorrectIndex(question);
 
+  // Mark-for-review control state (P1-6)
   const markBtn = document.getElementById("mark-review-btn");
+  const markLabel = document.getElementById("mark-review-label");
   if (markBtn) {
-    if (markedForReview[currentQuestionIndex]) {
-      markBtn.innerHTML = `<i class="bi bi-star-fill"></i>`;
-      markBtn.title = "Unmark Review";
-      markBtn.style.backgroundColor = "#b45309";
-      markBtn.style.color = "#ffffff";
-      markBtn.style.border = "none";
-    } else {
-      markBtn.innerHTML = `<i class="bi bi-star"></i>`;
-      markBtn.title = "Mark for Review";
-      markBtn.style.backgroundColor = "transparent";
-      markBtn.style.color = "#b45309";
-      markBtn.style.border = "1.5px solid #b45309";
-    }
+    const isMarked = !!markedForReview[currentQuestionIndex];
+    markBtn.classList.toggle("marked", isMarked);
+    markBtn.setAttribute("aria-pressed", isMarked ? "true" : "false");
+    markBtn.title = isMarked ? "Unmark for review" : "Mark for review";
+    const icon = markBtn.querySelector("i");
+    if (icon)
+      icon.className = isMarked ? "bi bi-bookmark-fill" : "bi bi-bookmark";
+    if (markLabel)
+      markLabel.textContent = isMarked ? "Marked for review" : "Mark for review";
   }
 
   const div = document.createElement("div");
@@ -1908,16 +1943,24 @@ function renderQuestion() {
     currentQuestionIndex + 1
   }. ${formattedText}</div>`;
 
+  // Options wrapped in a real fieldset for accessibility (P1-9)
+  const fieldset = document.createElement("fieldset");
+  fieldset.className = "question-options-fieldset";
+  const legend = document.createElement("legend");
+  legend.className = "visually-hidden";
+  legend.textContent = `Question ${currentQuestionIndex + 1} options`;
+  fieldset.appendChild(legend);
+
   question.options.forEach((opt, idx) => {
     const label = document.createElement("label");
     label.className = "option shadow-sm";
     const uAns = userAnswers[currentQuestionIndex];
-    const isSelected = uAns && uAns.answer === idx;
+    const isSelected = isValidAnswer(uAns) && uAns.answer === idx;
 
-    let inputHTML = `<input type="radio" name="q${currentQuestionIndex}" value="${idx}" ${
+    label.innerHTML = `<input type="radio" name="q${currentQuestionIndex}" value="${idx}" ${
       isSelected ? "checked" : ""
-    } ${quizSubmitted ? "disabled" : ""}>`;
-    label.innerHTML = `${inputHTML} <span>${opt}</span>`;
+    } ${quizSubmitted ? "disabled" : ""}> <span>${opt}</span>`;
+    if (isSelected) label.classList.add("selected");
 
     if (quizSubmitted) {
       if (idx === correctIndex) label.classList.add("correct-answer-label");
@@ -1931,36 +1974,52 @@ function renderQuestion() {
         updateNavHighlights();
         saveQuizProgress();
       });
+
+      // Clicking the already-selected option deselects it (P1-12)
+      label.addEventListener("click", () => {
+        const cur = userAnswers[currentQuestionIndex];
+        if (isValidAnswer(cur) && cur.answer === idx) {
+          delete cur.answer;
+          renderQuestion();
+          updateNavHighlights();
+          saveQuizProgress();
+        }
+      });
     }
-    div.appendChild(label);
+    fieldset.appendChild(label);
   });
 
-  // --- SURETY MATRIX IMPLEMENTATION ---
+  div.appendChild(fieldset);
+
+  // --- CONFIDENCE SELECTOR (P1-3) ---
+  const suretyOptions = [
+    { val: 100, pct: "100%", word: "Sure" },
+    { val: 75, pct: "75%", word: "Fairly sure" },
+    { val: 50, pct: "50%", word: "Unsure" },
+    { val: 0, pct: "0%", word: "Guess" },
+  ];
   const currentSurety = userAnswers[currentQuestionIndex]?.surety;
   const suretyDiv = document.createElement("div");
   suretyDiv.className = "mt-4 mb-3 animate-fade-in";
   suretyDiv.innerHTML = `
-    <div class="surety-label">Confidence Level</div>
+    <div class="surety-label">
+      Confidence Level
+      <i class="bi bi-question-circle-fill text-muted ms-1" title="Rate how sure you are. Used for your confidence analytics."></i>
+    </div>
     <div class="surety-matrix shadow-sm" role="radiogroup" aria-label="Confidence Level">
-        <div class="surety-opt surety-100 ${
-          currentSurety === 100 ? "selected" : ""
-        }" data-val="100" role="radio" tabindex="0" aria-checked="${currentSurety === 100}" aria-label="100% Confidence"
-        onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">100%</div>
-
-        <div class="surety-opt surety-75 ${
-          currentSurety === 75 ? "selected" : ""
-        }" data-val="75" role="radio" tabindex="0" aria-checked="${currentSurety === 75}" aria-label="75% Confidence"
-        onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">75%</div>
-
-        <div class="surety-opt surety-50 ${
-          currentSurety === 50 ? "selected" : ""
-        }" data-val="50" role="radio" tabindex="0" aria-checked="${currentSurety === 50}" aria-label="50% Confidence"
-        onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">50%</div>
-
-        <div class="surety-opt surety-0 ${
-          currentSurety === 0 ? "selected" : ""
-        }" data-val="0" role="radio" tabindex="0" aria-checked="${currentSurety === 0}" aria-label="0% Confidence"
-        onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">0%</div>
+      ${suretyOptions
+        .map(
+          (o) => `
+        <div class="surety-opt ${
+          currentSurety === o.val ? "selected" : ""
+        }" data-val="${o.val}" role="radio" tabindex="0"
+          aria-checked="${currentSurety === o.val}" aria-label="${o.pct} ${o.word}"
+          onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">
+          <span class="surety-pct">${o.pct}</span>
+          <span class="surety-word">${o.word}</span>
+        </div>`
+        )
+        .join("")}
     </div>
   `;
 
@@ -1994,11 +2053,18 @@ function renderQuestion() {
 
   container.appendChild(div);
   updateButtonStates();
+  updateMobileQuestionLabel();
   if (quizSubmitted) showFeedbackText(correctIndex);
   else {
     const feedback = document.getElementById("question-feedback");
     if (feedback) feedback.textContent = "";
   }
+}
+
+function updateMobileQuestionLabel() {
+  const el = document.getElementById("mobile-q-label");
+  if (el)
+    el.textContent = `Q${currentQuestionIndex + 1}/${currentQuizData.length}`;
 }
 function showFeedbackText(correctIndex) {
   const resultDiv = document.getElementById("question-feedback");
@@ -2037,8 +2103,109 @@ function clearSelection() {
   saveQuizProgress();
 }
 
+/* =========================================
+   KEYBOARD SHORTCUTS (P1-8)
+   ========================================= */
+function isQuizActive() {
+  const qs = document.getElementById("quiz-section");
+  return (
+    !isPracticeMode &&
+    !isReviewMode &&
+    !quizSubmitted &&
+    qs &&
+    qs.style.display !== "none"
+  );
+}
+
+function isAnyModalOpen() {
+  return !!document.querySelector(".modal.show");
+}
+
+function selectOption(idx) {
+  if (quizSubmitted) return;
+  const q = currentQuizData[currentQuestionIndex];
+  if (!q || idx < 0 || idx >= q.options.length) return;
+  if (!userAnswers[currentQuestionIndex])
+    userAnswers[currentQuestionIndex] = {};
+  userAnswers[currentQuestionIndex].answer = idx;
+  renderQuestion();
+  updateNavHighlights();
+  saveQuizProgress();
+}
+
+function handleQuizKeydown(e) {
+  if (!isQuizActive()) return;
+  if (isAnyModalOpen()) return;
+
+  const target = e.target;
+  if (
+    target &&
+    (target.tagName === "INPUT" ||
+      target.tagName === "TEXTAREA" ||
+      target.isContentEditable)
+  )
+    return;
+
+  const key = e.key;
+  const hasModifier = e.ctrlKey || e.metaKey || e.altKey;
+  const optionMap = {
+    "1": 0, "2": 1, "3": 2, "4": 3,
+    a: 0, b: 1, c: 2, d: 3,
+    A: 0, B: 1, C: 2, D: 3,
+  };
+
+  if (!hasModifier && key in optionMap) {
+    e.preventDefault();
+    selectOption(optionMap[key]);
+    return;
+  }
+
+  if (e.shiftKey && !hasModifier && (key === "S" || key === "s")) {
+    e.preventDefault();
+    submitAll(false);
+    return;
+  }
+
+  if (hasModifier) return;
+
+  switch (key) {
+    case "ArrowRight":
+    case "n":
+    case "N":
+      e.preventDefault();
+      navigateQuestions(1);
+      break;
+    case "ArrowLeft":
+    case "p":
+    case "P":
+      e.preventDefault();
+      navigateQuestions(-1);
+      break;
+    case "m":
+    case "M":
+      e.preventDefault();
+      toggleMarkForReview();
+      break;
+    case "c":
+    case "C":
+      e.preventDefault();
+      clearSelection();
+      break;
+  }
+}
+
+document.addEventListener("keydown", handleQuizKeydown);
+
 function renderNav() {
-  const nav = document.getElementById("nav-container");
+  renderNavInto("nav-container");
+  renderNavInto("mobile-nav-container");
+  updateNavHighlights();
+  updatePaletteCounters();
+}
+
+function renderNavInto(containerId) {
+  const nav = document.getElementById(containerId);
+  if (!nav) return;
   nav.innerHTML = "";
   const fragment = document.createDocumentFragment();
   currentQuizData.forEach((_, i) => {
@@ -2047,7 +2214,6 @@ function renderNav() {
     item.textContent = i + 1;
     item.style.setProperty("--animation-delay", `${i * 30}ms`);
 
-    // Accessibility Attributes
     item.setAttribute("role", "button");
     item.setAttribute("tabindex", "0");
     item.setAttribute("aria-label", `Question ${i + 1}`);
@@ -2068,27 +2234,51 @@ function renderNav() {
     fragment.appendChild(item);
   });
   nav.appendChild(fragment);
-  updateNavHighlights();
 }
 
 function updateNavHighlights() {
-  document.querySelectorAll(".nav-item").forEach((item, i) => {
-    item.className = "nav-item shadow-sm";
-    if (i === currentQuestionIndex) item.classList.add("active");
+  const containers = [
+    document.getElementById("nav-container"),
+    document.getElementById("mobile-nav-container"),
+  ];
 
-    const uAns = userAnswers[i];
-    const isMarked = markedForReview[i]; // NEW
+  containers.forEach((container) => {
+    if (!container) return;
+    container.querySelectorAll(".nav-item").forEach((item, i) => {
+      item.className = "nav-item shadow-sm";
+      if (i === currentQuestionIndex) item.classList.add("active");
 
-    if (quizSubmitted) {
-      const correctIndex = getCorrectIndex(currentQuizData[i]);
-      if (!isValidAnswer(uAns)) item.classList.add("unattempted");
-      else if (uAns.answer === correctIndex) item.classList.add("correct-nav");
-      else item.classList.add("incorrect-nav");
-    } else {
-      if (isValidAnswer(uAns)) item.classList.add("attempted");
-      if (isMarked) item.classList.add("marked-nav"); // NEW: Apply purple highlight
-    }
+      const uAns = userAnswers[i];
+      const isMarked = markedForReview[i];
+
+      if (quizSubmitted) {
+        const correctIndex = getCorrectIndex(currentQuizData[i]);
+        if (!isValidAnswer(uAns)) item.classList.add("unattempted");
+        else if (uAns.answer === correctIndex) item.classList.add("correct-nav");
+        else item.classList.add("incorrect-nav");
+      } else {
+        if (isValidAnswer(uAns)) item.classList.add("attempted");
+        if (isMarked) item.classList.add("marked-nav");
+      }
+
+      // Descriptive state for screen readers (P1-9)
+      const parts = [`Question ${i + 1}`];
+      if (i === currentQuestionIndex) parts.push("current");
+      if (isMarked) parts.push("marked");
+      if (quizSubmitted) {
+        if (!isValidAnswer(uAns)) parts.push("unattempted");
+        else if (uAns.answer === getCorrectIndex(currentQuizData[i])) parts.push("correct");
+        else parts.push("incorrect");
+      } else if (isValidAnswer(uAns)) {
+        parts.push("answered");
+      } else {
+        parts.push("not visited");
+      }
+      item.setAttribute("aria-label", parts.join(", "));
+    });
   });
+
+  updatePaletteCounters();
 }
 /* =========================================
    7. SUBMIT & STATISTICS
@@ -2165,16 +2355,36 @@ function submitAll(forceSubmit = false) {
     timestamp: now,
   };
 
+  const marksLost = (incorrect * MARKING_SCHEME.wrongMarks).toFixed(2);
+  const totalTimeSec = Object.values(questionTimeSpent || {}).reduce(
+    (acc, v) => acc + (v || 0),
+    0
+  );
+  const avgTimeSec = totalQ > 0 ? Math.round(totalTimeSec / totalQ) : 0;
+  const timeTakenLabel =
+    totalTimeSec < 60
+      ? `${Math.round(totalTimeSec)}s`
+      : `${Math.floor(totalTimeSec / 60)}m ${Math.round(totalTimeSec % 60)}s`;
+
   document.getElementById("result").innerHTML = `
-        <div class="alert alert-primary mt-3 shadow-sm" role="alert">
-            <h4 class="alert-heading fw-bold">Test Complete! 🏆</h4>
-            <hr>
-            <p>✅ Correct: <strong>${correct}</strong> | ❌ Incorrect: <strong>${incorrect}</strong></p>
-            <p>⚪ Unattempted: <strong>${unattempted}</strong></p>
-            <h3 class="text-primary mt-2">Score: ${finalScore} / ${totalMarks} (${percentage}%)</h3>
-            <div id="stats-loading" class="mt-2 text-muted small"><span class="spinner-border spinner-border-sm"></span> Calculating class standing...</div>
+        <div class="card border-0 shadow-sm mt-3 result-card">
+            <div class="card-body p-4 text-center">
+                <h4 class="fw-bold text-primary mb-1">Test Complete! 🏆</h4>
+                <div class="result-score fw-bold text-primary my-2">
+                    ${finalScore}<span class="fs-5 text-muted"> / ${totalMarks}</span>
+                </div>
+                <p class="fs-5 fw-bold mb-3">${percentage}%</p>
+                <div class="row g-2 mb-3">
+                    <div class="col-4"><div class="p-2 bg-light rounded border"><small class="text-muted d-block">Correct</small><strong class="text-success">${correct}</strong></div></div>
+                    <div class="col-4"><div class="p-2 bg-light rounded border"><small class="text-muted d-block">Incorrect</small><strong class="text-danger">${incorrect}</strong></div></div>
+                    <div class="col-4"><div class="p-2 bg-light rounded border"><small class="text-muted d-block">Unattempted</small><strong class="text-secondary">${unattempted}</strong></div></div>
+                </div>
+                <p class="small text-muted mb-2">You lost <strong class="text-danger">${marksLost} marks</strong> to wrong answers (negative marking).</p>
+                <p class="small text-muted mb-3">Time taken: ${timeTakenLabel} · Avg ${avgTimeSec}s per question</p>
+                <div id="stats-loading" class="mt-2 text-muted small"><span class="spinner-border spinner-border-sm"></span> Calculating class standing...</div>
+            </div>
         </div>
-        <div id="result-actions" class="d-flex justify-content-center gap-2 mt-2"></div>
+        <div id="result-actions" class="d-flex justify-content-center gap-2 mt-3 flex-wrap"></div>
     `;
 
   const actionsDiv = document.getElementById("result-actions");
@@ -2195,6 +2405,20 @@ function submitAll(forceSubmit = false) {
   };
 
   actionsDiv.appendChild(reviewBtn);
+
+  const backBtn = document.createElement("button");
+  backBtn.className = "btn btn-secondary-custom px-4 shadow";
+  backBtn.innerHTML = "← Back to chapters";
+  backBtn.onclick = () => {
+    if (currentSubject && allQuizData && allQuizData[currentSubject]) {
+      hideAllSections();
+      document.getElementById("test-selection-section").style.display = "block";
+      renderChapters(currentSubject);
+    } else {
+      showDashboard();
+    }
+  };
+  actionsDiv.appendChild(backBtn);
 
   // Hide navigation controls now that the test is submitted
   ["final-submit-btn", "prev-btn", "next-btn", "clear-btn"].forEach((id) => {
@@ -2430,13 +2654,25 @@ function toggleMarkForReview() {
 
   if (markedForReview[currentQuestionIndex]) {
     delete markedForReview[currentQuestionIndex];
-    toastr.info("Removed from Review");
   } else {
     markedForReview[currentQuestionIndex] = true;
-    toastr.success("Marked for Review");
   }
 
-  renderQuestion(); // Refresh the UI to update button text
-  updateNavHighlights(); // Refresh palette colors
-  saveQuizProgress(); // Save state
+  updateMarkButton();
+  updateNavHighlights();
+  saveQuizProgress();
+}
+
+function updateMarkButton() {
+  const markBtn = document.getElementById("mark-review-btn");
+  const markLabel = document.getElementById("mark-review-label");
+  if (!markBtn) return;
+  const isMarked = !!markedForReview[currentQuestionIndex];
+  markBtn.classList.toggle("marked", isMarked);
+  markBtn.setAttribute("aria-pressed", isMarked ? "true" : "false");
+  markBtn.title = isMarked ? "Unmark for review" : "Mark for review";
+  const icon = markBtn.querySelector("i");
+  if (icon) icon.className = isMarked ? "bi bi-bookmark-fill" : "bi bi-bookmark";
+  if (markLabel)
+    markLabel.textContent = isMarked ? "Marked for review" : "Mark for review";
 }

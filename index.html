@@ -486,6 +486,29 @@
             ← Exit
           </button>
         </div>
+        <div class="quiz-mobile-header d-lg-none">
+          <button
+            id="mobile-palette-btn"
+            class="btn btn-outline-secondary btn-sm"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#paletteOffcanvas"
+            aria-controls="paletteOffcanvas"
+          >
+            <i class="bi bi-grid-3x3-gap-fill"></i> Palette
+          </button>
+          <span id="mobile-q-label" class="fw-bold">Q1</span>
+          <div class="d-flex align-items-center gap-2">
+            <div id="mobile-timer" class="timer-value timer-mobile" role="timer">00:00</div>
+            <button
+              id="mobile-pause-btn"
+              class="btn btn-sm btn-secondary-custom"
+              onclick="toggleTimer()"
+              type="button"
+            >
+              <i class="bi bi-pause-fill"></i>
+            </button>
+          </div>
+        </div>
         <div class="row">
           <div class="col-lg-8 mb-4">
             <div id="quiz-content" class="quiz-box h-100"></div>
@@ -497,6 +520,29 @@
       </div>
     </section>
 
+    <!-- Mobile Question Palette Offcanvas -->
+    <div
+      class="offcanvas offcanvas-bottom palette-offcanvas d-lg-none"
+      tabindex="-1"
+      id="paletteOffcanvas"
+      aria-labelledby="paletteOffcanvasLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title fw-bold" id="paletteOffcanvasLabel">
+          Question Palette
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <div id="mobile-nav-container" class="nav-grid"></div>
+        <div id="mobile-palette-legend"></div>
+      </div>
+    </div>
 
     <!-- Start Quiz Modal -->
     <div

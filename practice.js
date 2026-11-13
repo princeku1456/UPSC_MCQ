@@ -399,16 +399,18 @@ function renderPracticeQuestion() {
         <div id="practice-options"></div>
         
         <div class="mt-4 mb-2 animate-fade-in">
-            <div class="surety-label">Confidence Level</div>
+            <div class="surety-label">Confidence Level
+                <i class="bi bi-question-circle-fill text-muted ms-1" title="Rate how sure you are. Used for your confidence analytics."></i>
+            </div>
             <div class="surety-matrix shadow-sm" role="radiogroup" aria-label="Confidence Level">
-                <div class="surety-opt surety-100 ${currentSurety === 100 ? 'selected' : ''}" data-val="100" role="radio" tabindex="0" aria-checked="${currentSurety === 100}" aria-label="100% Confidence"
-                onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">100%</div>
-                <div class="surety-opt surety-75 ${currentSurety === 75 ? 'selected' : ''}" data-val="75" role="radio" tabindex="0" aria-checked="${currentSurety === 75}" aria-label="75% Confidence"
-                onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">75%</div>
-                <div class="surety-opt surety-50 ${currentSurety === 50 ? 'selected' : ''}" data-val="50" role="radio" tabindex="0" aria-checked="${currentSurety === 50}" aria-label="50% Confidence"
-                onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">50%</div>
-                <div class="surety-opt surety-0 ${currentSurety === 0 ? 'selected' : ''}" data-val="0" role="radio" tabindex="0" aria-checked="${currentSurety === 0}" aria-label="0% Confidence"
-                onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}">0%</div>
+                <div class="surety-opt ${currentSurety === 100 ? 'selected' : ''}" data-val="100" role="radio" tabindex="0" aria-checked="${currentSurety === 100}" aria-label="100% Sure"
+                onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}"><span class="surety-pct">100%</span><span class="surety-word">Sure</span></div>
+                <div class="surety-opt ${currentSurety === 75 ? 'selected' : ''}" data-val="75" role="radio" tabindex="0" aria-checked="${currentSurety === 75}" aria-label="75% Fairly sure"
+                onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}"><span class="surety-pct">75%</span><span class="surety-word">Fairly sure</span></div>
+                <div class="surety-opt ${currentSurety === 50 ? 'selected' : ''}" data-val="50" role="radio" tabindex="0" aria-checked="${currentSurety === 50}" aria-label="50% Unsure"
+                onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}"><span class="surety-pct">50%</span><span class="surety-word">Unsure</span></div>
+                <div class="surety-opt ${currentSurety === 0 ? 'selected' : ''}" data-val="0" role="radio" tabindex="0" aria-checked="${currentSurety === 0}" aria-label="0% Guess"
+                onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}"><span class="surety-pct">0%</span><span class="surety-word">Guess</span></div>
             </div>
         </div>
     </div>`;
