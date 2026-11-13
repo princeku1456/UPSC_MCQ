@@ -552,14 +552,38 @@
               </div>
             </div>
 
+            <div class="text-start mb-4 p-3 bg-light rounded-3 border">
+              <h6 class="fw-bold text-secondary mb-2">
+                <i class="bi bi-list-check me-1"></i>Test Rules
+              </h6>
+              <ul class="small text-muted mb-0 ps-3">
+                <li>
+                  <span id="rules-correct" class="fw-bold text-success">+2</span>
+                  for each correct answer,
+                  <span id="rules-wrong" class="fw-bold text-danger">−0.66</span>
+                  for each wrong answer, 0 for unattempted.
+                </li>
+                <li>
+                  Rate your <strong>confidence</strong> (how sure you are) after
+                  each answer — it powers your analytics, not your score.
+                </li>
+                <li>
+                  Timer auto-submits when time ends. You can pause up to
+                  <span id="rules-pause" class="fw-bold">3</span> times.
+                </li>
+                <li>Progress is auto-saved; you can resume later.</li>
+              </ul>
+            </div>
+
             <div
-              class="alert alert-info border-0 d-flex align-items-center"
+              id="resume-progress-info"
+              class="alert alert-warning text-start d-none"
               role="alert"
             >
-              <i class="bi bi-info-circle-fill me-2 fs-5"></i>
-              <div class="small text-start">
-                Once you start, the timer will begin. Good luck!
-              </div>
+              <i class="bi bi-exclamation-triangle-fill me-1"></i>
+              You have an unfinished attempt:
+              <strong id="resume-answered-count">0</strong> answered,
+              <strong id="resume-minutes-left">0</strong> min left.
             </div>
           </div>
           <div class="modal-footer border-0 justify-content-center pb-4">
@@ -570,6 +594,13 @@
               onclick="showDashboard()"
             >
               Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-success-custom px-4 d-none"
+              id="resume-quiz-btn"
+            >
+              ▶ Resume
             </button>
             <button
               type="button"
@@ -629,6 +660,138 @@
               id="generate-revision-btn"
             >
               🚀 Generate Test
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Summary Modal -->
+    <div
+      class="modal fade"
+      id="submitSummaryModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+          <div class="modal-header border-0 bg-light rounded-top-4">
+            <h5 class="modal-title fw-bold text-primary">Submit Test?</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="row g-3 text-center mb-3">
+              <div class="col-4">
+                <div class="p-3 bg-light rounded-3 border">
+                  <small class="d-block text-muted text-uppercase fw-bold"
+                    >Answered</small
+                  >
+                  <h4 class="fw-bold text-success mb-0" id="summary-answered">0</h4>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="p-3 bg-light rounded-3 border">
+                  <small class="d-block text-muted text-uppercase fw-bold"
+                    >Unattempted</small
+                  >
+                  <h4 class="fw-bold text-secondary mb-0" id="summary-unattempted">0</h4>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="p-3 bg-light rounded-3 border">
+                  <small class="d-block text-muted text-uppercase fw-bold"
+                    >Marked</small
+                  >
+                  <h4 class="fw-bold text-primary mb-0" id="summary-marked">0</h4>
+                </div>
+              </div>
+            </div>
+            <p class="text-muted small mb-2 text-center">
+              Low-confidence answers (0% or 50%):
+              <strong id="summary-low-confidence">0</strong>
+            </p>
+            <div class="d-flex justify-content-center gap-2 mb-3 flex-wrap">
+              <button
+                type="button"
+                class="btn btn-outline-secondary btn-sm"
+                id="summary-jump-unattempted"
+                onclick="jumpToFirstUnattempted()"
+              >
+                Jump to unattempted
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary btn-sm"
+                id="summary-jump-marked"
+                onclick="jumpToFirstMarked()"
+              >
+                Jump to marked
+              </button>
+            </div>
+          </div>
+          <div class="modal-footer border-0 justify-content-center pb-4">
+            <button
+              type="button"
+              class="btn btn-primary-custom px-4"
+              data-bs-dismiss="modal"
+            >
+              Go back
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger px-5 shadow"
+              onclick="submitAll(true)"
+            >
+              Submit test
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exit Confirmation Modal -->
+    <div
+      class="modal fade"
+      id="exitConfirmModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+          <div class="modal-header border-0 bg-light rounded-top-4">
+            <h5 class="modal-title fw-bold text-primary">Exit Test?</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-4 text-center">
+            <p class="text-muted mb-0">
+              Your progress is saved. Your timer will stop. Exit the test?
+            </p>
+          </div>
+          <div class="modal-footer border-0 justify-content-center pb-4">
+            <button
+              type="button"
+              class="btn btn-primary-custom px-4"
+              data-bs-dismiss="modal"
+            >
+              Stay
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger px-5 shadow"
+              data-bs-dismiss="modal"
+              onclick="performExitQuiz()"
+            >
+              Exit
             </button>
           </div>
         </div>

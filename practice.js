@@ -451,7 +451,7 @@ function renderPracticeQuestion() {
     suretyOpts.forEach(opt => {
         opt.onclick = function() {
             const val = parseInt(this.getAttribute("data-val"));
-            if (!practiceUserAnswers[practiceCurrentIndex]) practiceUserAnswers[practiceCurrentIndex] = { answer: -1 };
+            if (!practiceUserAnswers[practiceCurrentIndex]) practiceUserAnswers[practiceCurrentIndex] = {};
             practiceUserAnswers[practiceCurrentIndex].surety = val;
             
             // Only toggle selected class and aria-checked

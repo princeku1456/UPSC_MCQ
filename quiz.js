@@ -44,6 +44,18 @@ function saveQuizProgress() {
   );
 }
 
+let lastProgressSaveTime = 0;
+
+// Persist at most once every 10s during timer ticks (P0-9).
+// Answer, navigation, mark and visibility events still save immediately.
+function saveQuizProgressThrottled() {
+  const now = Date.now();
+  if (now - lastProgressSaveTime >= 10000) {
+    lastProgressSaveTime = now;
+    saveQuizProgress();
+  }
+}
+
 function clearQuizProgress(chapterId) {
   localStorage.removeItem(`quiz_progress_${chapterId}`);
 }
@@ -494,15 +506,31 @@ function startQuizExecution(savedTime) {
   currentQuestionStartTime = Date.now(); // NEW: Start tracking first question
 }
 
+let pendingResume = null; // Saved progress awaiting an explicit Resume choice
+
 function showStartModal(subject, chapter) {
     document.getElementById('start-modal-subject').textContent = subject;
     document.getElementById('start-modal-chapter').textContent = chapter;
+
+    // Populate rules from the single marking-scheme constant (P0-2)
+    document.getElementById('rules-correct').textContent =
+      "+" + MARKING_SCHEME.correctMarks;
+    document.getElementById('rules-wrong').textContent =
+      "−" + MARKING_SCHEME.wrongMarks;
+    document.getElementById('rules-pause').textContent = MARKING_SCHEME.maxPauses;
+
+    // Reset resume UI to the default "new attempt" state
+    pendingResume = null;
+    document.getElementById('resume-progress-info').classList.add('d-none');
+    const resumeBtn = document.getElementById('resume-quiz-btn');
+    resumeBtn.classList.add('d-none');
+    const startBtn = document.getElementById('start-quiz-btn');
+    startBtn.textContent = '🚀 Start Test';
 
     // Set loading state
     document.getElementById('start-modal-questions').innerHTML = '<span class="spinner-border spinner-border-sm text-primary" role="status"></span>';
     document.getElementById('start-modal-duration').innerHTML = '<span class="spinner-border spinner-border-sm text-primary" role="status"></span>';
 
-    const startBtn = document.getElementById('start-quiz-btn');
     startBtn.disabled = true;
     startBtn.classList.add('disabled');
 
@@ -519,23 +547,65 @@ function showStartModal(subject, chapter) {
     modal.show();
 }
 
-function updateStartModal(numQuestions, savedTime) {
+function updateStartModal(numQuestions, savedTime, resumeInfo = null) {
     document.getElementById('start-modal-questions').textContent = numQuestions;
 
     // Calculate duration: 1.2 min per question
-    const durationMin = Math.ceil(numQuestions * 1.2);
+    const durationMin = Math.ceil(numQuestions * MARKING_SCHEME.minutesPerQuestion);
     document.getElementById('start-modal-duration').textContent = durationMin + "m";
 
     const startBtn = document.getElementById('start-quiz-btn');
+    const resumeBtn = document.getElementById('resume-quiz-btn');
+    const resumeInfoEl = document.getElementById('resume-progress-info');
     startBtn.disabled = false;
     startBtn.classList.remove('disabled');
 
-    startBtn.onclick = function() {
+    const hideModal = () => {
         const modalEl = document.getElementById('startQuizModal');
         const modal = bootstrap.Modal.getInstance(modalEl) || new bootstrap.Modal(modalEl);
         modal.hide();
-        startQuizExecution(savedTime);
     };
+
+    if (resumeInfo) {
+        startBtn.textContent = '↺ Start Fresh';
+        resumeBtn.classList.remove('d-none');
+        resumeInfoEl.classList.remove('d-none');
+        document.getElementById('resume-answered-count').textContent = resumeInfo.answeredCount;
+        document.getElementById('resume-minutes-left').textContent = resumeInfo.minutesLeft;
+
+        resumeBtn.onclick = function() {
+            hideModal();
+            const restoredTime = applyPendingResume();
+            startQuizExecution(restoredTime);
+        };
+
+        startBtn.onclick = function() {
+            hideModal();
+            clearQuizProgress(currentChapterId);
+            pendingResume = null;
+            startQuizExecution(null);
+        };
+    } else {
+        startBtn.textContent = '🚀 Start Test';
+        resumeBtn.classList.add('d-none');
+        resumeInfoEl.classList.add('d-none');
+
+        startBtn.onclick = function() {
+            hideModal();
+            startQuizExecution(savedTime);
+        };
+    }
+}
+
+function applyPendingResume() {
+    if (!pendingResume) return null;
+    const p = pendingResume;
+    userAnswers = p.userAnswers || {};
+    markedForReview = p.markedForReview || {};
+    questionTimeSpent = p.questionTimeSpent || {};
+    currentQuestionIndex = p.lastQuestionIndex || 0;
+    pendingResume = null;
+    return p.remainingTime;
 }
 
 async function loadQuiz(
@@ -621,20 +691,33 @@ async function loadQuiz(
     currentQuestionStartTime = null; // NEW
     quizSubmitted = false;
 
+    let resumeInfo = null;
     if (!reviewMode) {
       const savedProgress = localStorage.getItem(
         `quiz_progress_${currentChapterId}`
       );
       if (savedProgress) {
-        const parsedProgress = JSON.parse(savedProgress);
-        const oneDay = 24 * 60 * 60 * 1000;
-        if (new Date().getTime() - parsedProgress.timestamp < oneDay) {
-          userAnswers = parsedProgress.userAnswers || {};
-          markedForReview = parsedProgress.markedForReview || {};
-          questionTimeSpent = parsedProgress.questionTimeSpent || {}; // NEW
-          currentQuestionIndex = parsedProgress.lastQuestionIndex || 0;
-          savedTime = parsedProgress.remainingTime; // Restore the time value
-          toastr.info("Restored your previous progress and time.");
+        try {
+          const parsedProgress = JSON.parse(savedProgress);
+          const oneDay = 24 * 60 * 60 * 1000;
+          if (new Date().getTime() - parsedProgress.timestamp < oneDay) {
+            pendingResume = parsedProgress;
+            const answers = parsedProgress.userAnswers || {};
+            let answeredCount = 0;
+            Object.values(answers).forEach((a) => {
+              if (isValidAnswer(a)) answeredCount++;
+            });
+            const minutesLeft = Math.max(
+              0,
+              Math.round((parsedProgress.remainingTime || 0) / 60)
+            );
+            resumeInfo = {
+              answeredCount,
+              minutesLeft,
+            };
+          }
+        } catch (e) {
+          console.error("Failed to parse saved progress:", e);
         }
       }
     }
@@ -661,7 +744,7 @@ async function loadQuiz(
     } else {
       hideAllSections();
       document.getElementById("quiz-section").style.display = "block";
-      updateStartModal(currentQuizData.length, savedTime);
+      updateStartModal(currentQuizData.length, savedTime, resumeInfo);
     }
   } catch (error) {
     console.error("Firebase fetch error:", error);
@@ -839,7 +922,7 @@ async function renderReviewMode(resultData) {
 
         if (matchedSubj) {
             subjectStats[matchedSubj].total++;
-            if (!uAns) {
+            if (!isValidAnswer(uAns)) {
                 subjectStats[matchedSubj].unattempted++;
             } else if (uAns.answer === correctIndex) {
                 subjectStats[matchedSubj].correct++;
@@ -859,7 +942,7 @@ async function renderReviewMode(resultData) {
     const commAccuracy = diffInfo.percentage;
 
     difficultyStats[diffLabel].total++;
-    if (!uAns) {
+    if (!isValidAnswer(uAns)) {
         difficultyStats[diffLabel].unattempted++;
     } else if (uAns.answer === correctIndex) {
         difficultyStats[diffLabel].correct++;
@@ -876,7 +959,7 @@ async function renderReviewMode(resultData) {
       }
     }
 
-    if (!uAns) {
+    if (!isValidAnswer(uAns)) {
       unattempted++;
     } else if (uAns.answer === correctIndex) {
       correct++;
@@ -1496,7 +1579,7 @@ function renderReviewQuestions(filterType) {
         const userSurety = uAns?.surety !== undefined ? uAns.surety : "N/A";
 
         let status = "unattempted";
-        if (uAns) {
+        if (isValidAnswer(uAns)) {
           status = uAns.answer === correctIndex ? "correct" : "incorrect";
         }
 
@@ -1671,18 +1754,20 @@ function renderReviewQuestions(filterType) {
  * Starts the timer with persistence support
  */
 function startTimer(numQuestions, savedTime = null) {
-  // If savedTime is provided from localStorage, use it.
-  // Otherwise, calculate default (1.2 mins per Q)
   currentTimerSeconds =
-    savedTime !== null ? savedTime : Math.floor(numQuestions * 1.2 * 60);
+    savedTime !== null
+      ? savedTime
+      : Math.floor(numQuestions * MARKING_SCHEME.minutesPerQuestion * 60);
   isTimerPaused = false;
+  pauseCount = 0;
+  lastProgressSaveTime = 0;
 
   if (currentQuizTimer) currentQuizTimer.stop();
 
   currentQuizTimer = new QuizTimer("timer-display",
       (seconds) => {
           currentTimerSeconds = seconds;
-          saveQuizProgress();
+          saveQuizProgressThrottled();
       },
       () => {
           toastr.warning("Time's up! Submitting test...");
@@ -1695,6 +1780,7 @@ function startTimer(numQuestions, savedTime = null) {
 
 function toggleTimer() {
   const btn = document.getElementById("timer-pause-btn");
+  const mobileBtn = document.getElementById("mobile-pause-btn");
   const qContainer = document.getElementById("question-container");
   if (!btn || !currentQuizTimer) return;
 
@@ -1702,14 +1788,27 @@ function toggleTimer() {
       currentQuizTimer.resume();
       isTimerPaused = false;
   } else {
+      // Default (test) mode is limited; practice/exam policies are handled elsewhere
+      if (
+        !isPracticeMode &&
+        typeof pauseCount !== "undefined" &&
+        pauseCount >= MARKING_SCHEME.maxPauses
+      ) {
+        toastr.warning(
+          `Pause limit reached (${MARKING_SCHEME.maxPauses} pauses allowed).`
+        );
+        return;
+      }
       currentQuizTimer.pause();
       isTimerPaused = true;
+      if (typeof pauseCount !== "undefined") pauseCount++;
   }
 
   if (isTimerPaused) {
     btn.innerHTML = '<i class="bi bi-play-fill"></i> Resume';
-    // Swap specific color classes only
     btn.classList.replace("btn-secondary-custom", "btn-primary-custom");
+    if (mobileBtn)
+      mobileBtn.innerHTML = '<i class="bi bi-play-fill"></i>';
 
     if (qContainer) {
       qContainer.style.filter = "blur(8px)";
@@ -1719,6 +1818,8 @@ function toggleTimer() {
   } else {
     btn.innerHTML = '<i class="bi bi-pause-fill"></i> Pause';
     btn.classList.replace("btn-primary-custom", "btn-secondary-custom");
+    if (mobileBtn)
+      mobileBtn.innerHTML = '<i class="bi bi-pause-fill"></i>';
 
     if (qContainer) {
       qContainer.style.filter = "none";
@@ -1868,7 +1969,7 @@ function renderQuestion() {
       opt.onclick = function () {
         const val = parseInt(this.getAttribute("data-val"));
         if (!userAnswers[currentQuestionIndex])
-          userAnswers[currentQuestionIndex] = { answer: -1 };
+          userAnswers[currentQuestionIndex] = {};
         userAnswers[currentQuestionIndex].surety = val;
 
         // Toggle 'selected' class and aria-checked
@@ -1980,11 +2081,11 @@ function updateNavHighlights() {
 
     if (quizSubmitted) {
       const correctIndex = getCorrectIndex(currentQuizData[i]);
-      if (!uAns) item.classList.add("unattempted");
+      if (!isValidAnswer(uAns)) item.classList.add("unattempted");
       else if (uAns.answer === correctIndex) item.classList.add("correct-nav");
       else item.classList.add("incorrect-nav");
     } else {
-      if (uAns) item.classList.add("attempted");
+      if (isValidAnswer(uAns)) item.classList.add("attempted");
       if (isMarked) item.classList.add("marked-nav"); // NEW: Apply purple highlight
     }
   });
@@ -1994,7 +2095,15 @@ function updateNavHighlights() {
    ========================================= */
 
 function submitAll(forceSubmit = false) {
-  if (!forceSubmit && !confirm("Are you sure you want to submit?")) return;
+  if (!forceSubmit) {
+    openSubmitSummaryModal();
+    return;
+  }
+
+  const summaryModal = bootstrap.Modal.getInstance(
+    document.getElementById("submitSummaryModal")
+  );
+  if (summaryModal) summaryModal.hide();
 
   if (currentQuizTimer) currentQuizTimer.stop();
   updateQuestionTimer(); // Finalize time for the last question
@@ -2012,14 +2121,14 @@ function submitAll(forceSubmit = false) {
     const uAns = userAnswers[i];
     const cIdx = getCorrectIndex(q);
 
-    if (uAns) {
+    if (isValidAnswer(uAns)) {
       const isCorrect = uAns.answer === cIdx;
       userAnswers[i].isCorrect = isCorrect;
       if (isCorrect) {
-        score += 2;
+        score += MARKING_SCHEME.correctMarks;
         correct++;
       } else {
-        score -= 0.66;
+        score -= MARKING_SCHEME.wrongMarks;
         incorrect++;
       }
     } else {
@@ -2028,7 +2137,7 @@ function submitAll(forceSubmit = false) {
   });
 
   const finalScore = parseFloat(score.toFixed(2));
-  const totalMarks = totalQ * 2;
+  const totalMarks = totalQ * MARKING_SCHEME.correctMarks;
   const percentage =
     totalMarks > 0 ? ((finalScore / totalMarks) * 100).toFixed(1) : 0;
 
@@ -2052,6 +2161,7 @@ function submitAll(forceSubmit = false) {
     scorePercent: parseFloat(percentage),
     userAnswers: userAnswers,
     questionTimeSpent: questionTimeSpent, // Save time per question
+    pauseCount: typeof pauseCount !== "undefined" ? pauseCount : 0,
     timestamp: now,
   };
 
@@ -2085,127 +2195,234 @@ function submitAll(forceSubmit = false) {
   };
 
   actionsDiv.appendChild(reviewBtn);
-  if (document.getElementById("final-submit-btn"))
-    document.getElementById("final-submit-btn").style.display = "none";
-  if (document.getElementById("clear-btn"))
-    document.getElementById("clear-btn").disabled = true;
+
+  // Hide navigation controls now that the test is submitted
+  ["final-submit-btn", "prev-btn", "next-btn", "clear-btn"].forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = "none";
+  });
 
   renderQuestion();
   updateNavHighlights();
 
+  // Bring the result card into view (it renders below the action row)
+  document
+    .getElementById("result")
+    .scrollIntoView({ behavior: "smooth", block: "center" });
+
   if (currentUser) {
-    db.collection("results")
-      .add({ ...resultObject })
-      .then(async (docRef) => {
-        leaderboardEntry.resultId = docRef.id;
-        userHistory.unshift({ ...resultObject, timestamp: now });
-        if (userHistory.length > 20) userHistory.pop();
-        dashboardDataLoaded = true;
-
-        // Invalidate caches
-        await DataManager.invalidateCache(`global_stats_${currentChapterId}`);
-        await DataManager.invalidateCache(`user_history_${currentUser.uid}`);
-
-        if (!currentChapterId.startsWith('revision_')) {
-            const statsRef = db.collection("chapter_stats").doc(currentChapterId);
-            try {
-              await db.runTransaction(async (transaction) => {
-                const sfDoc = await transaction.get(statsRef);
-                const newScore = parseFloat(percentage);
-
-                if (!sfDoc.exists) {
-                  const initCorrectCounts = currentQuizData.map((q, i) =>
-                    userAnswers[i] && userAnswers[i].answer === getCorrectIndex(q)
-                      ? 1
-                      : 0
-                  );
-                  const initAttemptedCounts = currentQuizData.map((q, i) =>
-                    userAnswers[i] ? 1 : 0
-                  );
-                  transaction.set(statsRef, {
-                    totalScore: newScore,
-                    totalAttempts: 1,
-                    average: newScore,
-                    highestScore: newScore,
-                    allScores: [newScore],
-                    leaderboard: [leaderboardEntry],
-                    correctCounts: initCorrectCounts,
-                    attemptedCounts: initAttemptedCounts,
-                  });
-                } else {
-                  const data = sfDoc.data();
-                  const newAttempts = (data.totalAttempts || 0) + 1;
-                  const newAvg = ((data.totalScore || 0) + newScore) / newAttempts;
-                  let currentLeaderboard = data.leaderboard || [];
-                  currentLeaderboard.push(leaderboardEntry);
-                  currentLeaderboard.sort(
-                    (a, b) => b.scorePercent - a.scorePercent
-                  );
-                  if (currentLeaderboard.length > 10)
-                    currentLeaderboard = currentLeaderboard.slice(0, 10);
-
-                  let cCounts = [...(data.correctCounts || [])];
-                  let aCounts = [...(data.attemptedCounts || [])];
-
-                  // Densify arrays: Ensure no holes and extend to current length
-                  // This prevents Firestore errors with sparse arrays (undefined values)
-                  const maxLen = Math.max(cCounts.length, aCounts.length, currentQuizData.length);
-                  for (let j = 0; j < maxLen; j++) {
-                      if (cCounts[j] == null) cCounts[j] = 0;
-                      if (aCounts[j] == null) aCounts[j] = 0;
-                  }
-
-                  currentQuizData.forEach((q, i) => {
-                    if (userAnswers[i]) {
-                      aCounts[i] = (aCounts[i] || 0) + 1;
-                      if (userAnswers[i].answer === getCorrectIndex(q))
-                        cCounts[i] = (cCounts[i] || 0) + 1;
-                    }
-                  });
-
-                  transaction.update(statsRef, {
-                    totalScore: (data.totalScore || 0) + newScore,
-                    totalAttempts: newAttempts,
-                    average: newAvg,
-                    highestScore: Math.max(data.highestScore || 0, newScore),
-                    allScores: [...(data.allScores || []), newScore],
-                    leaderboard: currentLeaderboard,
-                    correctCounts: cCounts,
-                    attemptedCounts: aCounts,
-                  });
-                }
-              });
-              toastr.success("Result and stats saved!");
-            } catch (e) {
-              console.error("Stats update failed:", e);
-            }
-        } else {
-            toastr.success("Revision test result saved!");
-        }
-
-        const stats = await DataManager.fetchGlobalStats(currentChapterId, true);
-        if (stats) {
-          let betterThan = 0;
-          const pct = parseFloat(percentage);
-          const allScoresLen = stats.allScores.length;
-          for (let k = 0; k < allScoresLen; k++) {
-            if (stats.allScores[k] < pct) {
-              betterThan++;
-            }
-          }
-          const percentile =
-            stats.totalAttempts > 0
-              ? ((betterThan / stats.totalAttempts) * 100).toFixed(0)
-              : 0;
-          if (document.getElementById("stats-loading"))
-            document.getElementById(
-              "stats-loading"
-            ).innerHTML = `🌍 Performance: Top <strong>${
-              100 - percentile
-            }%</strong>. (Avg: ${stats.avg.toFixed(1)}%)`;
-        }
-      });
+    saveResultToCloud(resultObject, leaderboardEntry, now, percentage);
   }
+}
+
+/**
+ * Persists the result document, updates chapter statistics, and computes
+ * class standing. Includes a timeout for the standing fetch and a retry
+ * affordance if the initial write fails.
+ */
+async function saveResultToCloud(resultObject, leaderboardEntry, now, percentage) {
+  const statsLoadingEl = () => document.getElementById("stats-loading");
+
+  // Fallback if the class-standing fetch hangs or fails silently
+  const statsTimeout = setTimeout(() => {
+    const el = statsLoadingEl();
+    if (el) el.innerHTML = "Couldn't load class standing. Your result is saved.";
+  }, 8000);
+
+  try {
+    const docRef = await db.collection("results").add({ ...resultObject });
+    leaderboardEntry.resultId = docRef.id;
+    userHistory.unshift({ ...resultObject, timestamp: now });
+    if (userHistory.length > 20) userHistory.pop();
+    dashboardDataLoaded = true;
+
+    await DataManager.invalidateCache(`global_stats_${currentChapterId}`);
+    await DataManager.invalidateCache(`user_history_${currentUser.uid}`);
+
+    if (!currentChapterId.startsWith("revision_")) {
+      const statsRef = db.collection("chapter_stats").doc(currentChapterId);
+      try {
+        await db.runTransaction(async (transaction) => {
+          const sfDoc = await transaction.get(statsRef);
+          const newScore = parseFloat(percentage);
+
+          if (!sfDoc.exists) {
+            const initCorrectCounts = currentQuizData.map((q, i) =>
+              isValidAnswer(userAnswers[i]) &&
+              userAnswers[i].answer === getCorrectIndex(q)
+                ? 1
+                : 0
+            );
+            const initAttemptedCounts = currentQuizData.map((q, i) =>
+              isValidAnswer(userAnswers[i]) ? 1 : 0
+            );
+            transaction.set(statsRef, {
+              totalScore: newScore,
+              totalAttempts: 1,
+              average: newScore,
+              highestScore: newScore,
+              allScores: [newScore],
+              leaderboard: [leaderboardEntry],
+              correctCounts: initCorrectCounts,
+              attemptedCounts: initAttemptedCounts,
+            });
+          } else {
+            const data = sfDoc.data();
+            const newAttempts = (data.totalAttempts || 0) + 1;
+            const newAvg = ((data.totalScore || 0) + newScore) / newAttempts;
+            let currentLeaderboard = data.leaderboard || [];
+            currentLeaderboard.push(leaderboardEntry);
+            currentLeaderboard.sort((a, b) => b.scorePercent - a.scorePercent);
+            if (currentLeaderboard.length > 10)
+              currentLeaderboard = currentLeaderboard.slice(0, 10);
+
+            let cCounts = [...(data.correctCounts || [])];
+            let aCounts = [...(data.attemptedCounts || [])];
+
+            const maxLen = Math.max(
+              cCounts.length,
+              aCounts.length,
+              currentQuizData.length
+            );
+            for (let j = 0; j < maxLen; j++) {
+              if (cCounts[j] == null) cCounts[j] = 0;
+              if (aCounts[j] == null) aCounts[j] = 0;
+            }
+
+            currentQuizData.forEach((q, i) => {
+              if (isValidAnswer(userAnswers[i])) {
+                aCounts[i] = (aCounts[i] || 0) + 1;
+                if (userAnswers[i].answer === getCorrectIndex(q))
+                  cCounts[i] = (cCounts[i] || 0) + 1;
+              }
+            });
+
+            transaction.update(statsRef, {
+              totalScore: (data.totalScore || 0) + newScore,
+              totalAttempts: newAttempts,
+              average: newAvg,
+              highestScore: Math.max(data.highestScore || 0, newScore),
+              allScores: [...(data.allScores || []), newScore],
+              leaderboard: currentLeaderboard,
+              correctCounts: cCounts,
+              attemptedCounts: aCounts,
+            });
+          }
+        });
+        toastr.success("Result and stats saved!");
+      } catch (e) {
+        console.error("Stats update failed:", e);
+        toastr.error(
+          "Your result was saved, but class statistics could not be updated."
+        );
+      }
+    } else {
+      toastr.success("Revision test result saved!");
+    }
+
+    const stats = await DataManager.fetchGlobalStats(currentChapterId, true);
+    if (stats) {
+      let betterThan = 0;
+      const pct = parseFloat(percentage);
+      stats.allScores.forEach((s) => {
+        if (s < pct) betterThan++;
+      });
+      const percentile =
+        stats.totalAttempts > 0
+          ? ((betterThan / stats.totalAttempts) * 100).toFixed(0)
+          : 0;
+      const el = statsLoadingEl();
+      if (el)
+        el.innerHTML = `🌍 Performance: Top <strong>${
+          100 - percentile
+        }%</strong>. (Avg: ${stats.avg.toFixed(1)}%)`;
+    }
+  } catch (error) {
+    console.error("Result save failed:", error);
+    const el = statsLoadingEl();
+    if (el) el.innerHTML = "Your result could not be saved to the cloud.";
+    toastr.error("Failed to save result. You can retry below.");
+    showRetrySaveButton(resultObject, leaderboardEntry, now, percentage);
+  } finally {
+    clearTimeout(statsTimeout);
+  }
+}
+
+function showRetrySaveButton(resultObject, leaderboardEntry, now, percentage) {
+  const actionsDiv = document.getElementById("result-actions");
+  if (!actionsDiv || document.getElementById("retry-save-btn")) return;
+
+  const btn = document.createElement("button");
+  btn.id = "retry-save-btn";
+  btn.className = "btn btn-outline-danger px-4 shadow";
+  btn.textContent = "↻ Retry Save";
+  btn.onclick = () => {
+    btn.disabled = true;
+    btn.textContent = "Saving...";
+    saveResultToCloud(resultObject, leaderboardEntry, now, percentage).finally(
+      () => {
+        btn.disabled = false;
+        btn.textContent = "↻ Retry Save";
+      }
+    );
+  };
+  actionsDiv.appendChild(btn);
+}
+
+/**
+ * Builds and shows the submit summary modal (replaces the native confirm()).
+ */
+function openSubmitSummaryModal() {
+  let answered = 0;
+  let unattempted = 0;
+  let marked = 0;
+  let lowConfidence = 0;
+
+  currentQuizData.forEach((q, i) => {
+    const uAns = userAnswers[i];
+    if (isValidAnswer(uAns)) answered++;
+    else unattempted++;
+    if (markedForReview[i]) marked++;
+    const surety = uAns && uAns.surety;
+    if (surety === 0 || surety === 50) lowConfidence++;
+  });
+
+  document.getElementById("summary-answered").textContent = answered;
+  document.getElementById("summary-unattempted").textContent = unattempted;
+  document.getElementById("summary-marked").textContent = marked;
+  document.getElementById("summary-low-confidence").textContent = lowConfidence;
+
+  const jumpUnattempted = document.getElementById("summary-jump-unattempted");
+  const jumpMarked = document.getElementById("summary-jump-marked");
+  jumpUnattempted.style.display = unattempted > 0 ? "" : "none";
+  jumpMarked.style.display = marked > 0 ? "" : "none";
+
+  const modalEl = document.getElementById("submitSummaryModal");
+  const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+  modal.show();
+}
+
+function jumpToFirstUnattempted() {
+  const idx = currentQuizData.findIndex((q, i) => !isValidAnswer(userAnswers[i]));
+  jumpToQuestionIndex(idx);
+}
+
+function jumpToFirstMarked() {
+  const idx = currentQuizData.findIndex((q, i) => markedForReview[i]);
+  jumpToQuestionIndex(idx);
+}
+
+function jumpToQuestionIndex(idx) {
+  if (idx < 0) return;
+  const modal = bootstrap.Modal.getInstance(
+    document.getElementById("submitSummaryModal")
+  );
+  if (modal) modal.hide();
+  updateQuestionTimer();
+  currentQuestionIndex = idx;
+  renderQuestion();
+  updateNavHighlights();
+  saveQuizProgress();
 }
 
 function toggleMarkForReview() {

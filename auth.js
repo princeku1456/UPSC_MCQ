@@ -50,6 +50,7 @@ let currentReviewStats = null;
 // Add these to auth.js
 let isTimerPaused = false;
 let currentTimerSeconds = 0;
+let pauseCount = 0;
 /* =========================================
    MORNING SYNC LOGIC
    ========================================= */
@@ -171,6 +172,21 @@ function signInWithGoogle() {
 document.addEventListener("DOMContentLoaded", () => {
   const savedTheme = localStorage.getItem("theme") || "light";
   applyTheme(savedTheme);
+
+  // Persist quiz progress when the tab is hidden or closed (P0-9)
+  window.addEventListener("beforeunload", () => {
+    if (!quizSubmitted && !isReviewMode) saveQuizProgress();
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (
+      document.visibilityState === "hidden" &&
+      !quizSubmitted &&
+      !isReviewMode
+    ) {
+      updateQuestionTimer();
+      saveQuizProgress();
+    }
+  });
 });
 
 function toggleAuthMode() {
@@ -336,7 +352,30 @@ function showTestSelection() {
 }
 
 function exitQuiz() {
+  const quizSection = document.getElementById("quiz-section");
+  const inProgress =
+    !isPracticeMode &&
+    !isReviewMode &&
+    !quizSubmitted &&
+    quizSection &&
+    quizSection.style.display !== "none" &&
+    currentQuizData &&
+    currentQuizData.length > 0;
+
+  if (inProgress) {
+    const modalEl = document.getElementById("exitConfirmModal");
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+    modal.show();
+    return;
+  }
+
+  performExitQuiz();
+}
+
+function performExitQuiz() {
   if (currentQuizTimer) currentQuizTimer.stop();
+  updateQuestionTimer();
+  saveQuizProgress();
 
   // Check if we are in Practice Mode
   if (isPracticeMode) {
@@ -347,7 +386,7 @@ function exitQuiz() {
   // Regular Quiz Logic
   if (isReviewMode && reviewSource === "performance") {
     showPerformance();
-  } else if (currentSubject && allQuizData[currentSubject]) {
+  } else if (currentSubject && allQuizData && allQuizData[currentSubject]) {
     hideAllSections();
     document.getElementById("test-selection-section").style.display = "block";
     renderChapters(currentSubject);
