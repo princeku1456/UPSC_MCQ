@@ -453,12 +453,23 @@ function resumeFromDashboard(chapterId) {
   }
   const subject = data.subject;
   const chapterName = data.chapterName || "Test";
-  if (!subject) return;
+  if (!subject) {
+    toastr.warning("Couldn't restore this attempt.");
+    return;
+  }
   const prefix = subject.replace(/\s+/g, "_") + "_";
   const originalChapId = chapterId.startsWith(prefix)
     ? chapterId.substring(prefix.length)
     : chapterId;
-  loadQuiz(subject, originalChapId, encodeURIComponent(chapterName));
+  loadQuiz(
+    subject,
+    originalChapId,
+    encodeURIComponent(chapterName),
+    false,
+    null,
+    null,
+    true
+  );
 }
 
 /* =========================================
@@ -838,7 +849,8 @@ async function loadQuiz(
   chapterName,
   reviewMode = false,
   pastData = null,
-  source = null
+  source = null,
+  autoResume = false
 ) {
   if (!currentUser || !currentUser.emailVerified) return showHome();
   isPracticeMode = false;
@@ -850,11 +862,11 @@ async function loadQuiz(
   reviewSource = source;
   let savedTime = null;
 
-  // Show Modal immediately in Take Test mode
+  // Show Modal immediately in Take Test mode (unless auto-resuming)
   if (!reviewMode) {
       // Ensure timer is stopped before showing modal
       if (currentQuizTimer) currentQuizTimer.stop();
-      showStartModal(currentSubject, currentChapterName);
+      if (!autoResume) showStartModal(currentSubject, currentChapterName);
   } else {
       hideAllSections();
       document.getElementById("quiz-section").style.display = "block";
@@ -968,7 +980,14 @@ async function loadQuiz(
     } else {
       hideAllSections();
       document.getElementById("quiz-section").style.display = "block";
-      updateStartModal(currentQuizData.length, savedTime, resumeInfo);
+      if (autoResume && resumeInfo) {
+        // Resume directly without re-showing the start modal
+        const restoredTime = applyPendingResume();
+        startQuizExecution(restoredTime);
+      } else {
+        if (autoResume) showStartModal(currentSubject, currentChapterName);
+        updateStartModal(currentQuizData.length, savedTime, resumeInfo);
+      }
     }
   } catch (error) {
     console.error("Firebase fetch error:", error);

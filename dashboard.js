@@ -164,10 +164,12 @@ function renderContinueCard() {
     if (!key || key.indexOf("quiz_progress_") !== 0) continue;
     try {
       const data = JSON.parse(localStorage.getItem(key));
+      const chapterId = key.substring("quiz_progress_".length);
+      if (chapterId.indexOf("revision_") === 0) continue;
       const age = Date.now() - (data.timestamp || 0);
       if (age < 24 * 60 * 60 * 1000) {
         entries.push({
-          chapterId: key.substring("quiz_progress_".length),
+          chapterId,
           subject: data.subject || "",
           chapterName: data.chapterName || "Test",
           remainingTime: data.remainingTime || 0,
