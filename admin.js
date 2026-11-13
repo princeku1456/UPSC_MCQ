@@ -16,8 +16,9 @@ auth.onAuthStateChanged((user) => {
       .then(async (doc) => { // Added async
         if (doc.exists) {
           showDashboard();
-          await loadSubjects(); // Call the updated loader
+          await loadSubjects();
         } else {
+          toastr.error("Access denied: this account is not an admin.");
           auth.signOut();
           showLogin();
         }
@@ -81,14 +82,34 @@ async function loadAllUserEmails() {
   }
 }
 
+function toggleAdminPassword() {
+  const input = document.getElementById("admin-password");
+  const icon = document.querySelector("#admin-toggle-password i");
+  if (!input || !icon) return;
+  if (input.type === "password") {
+    input.type = "text";
+    icon.className = "bi bi-eye";
+  } else {
+    input.type = "password";
+    icon.className = "bi bi-eye-slash";
+  }
+}
+
 document.getElementById("admin-login-form").addEventListener("submit", (e) => {
   e.preventDefault();
+  const btn = document.getElementById("admin-login-btn");
+  btn.disabled = true;
+  btn.textContent = "Signing in...";
   auth
     .signInWithEmailAndPassword(
       document.getElementById("admin-email").value,
       document.getElementById("admin-password").value
     )
-    .catch((err) => toastr.error(err.message));
+    .catch((err) => {
+      toastr.error(err.message);
+      btn.disabled = false;
+      btn.textContent = "Access Dashboard";
+    });
 });
 
 function logoutAdmin() {
@@ -288,8 +309,9 @@ function renderPalette(accuracies) {
  */
 function renderQuestionAnalysis(container, questions, results, accuracies) {
   const header = document.createElement("div");
-  header.className = "d-flex justify-content-between align-items-center mb-4 mt-2";
-  header.innerHTML = `<h4 class="fw-bold text-dark border-start border-4 border-primary ps-3">📊 Discussion Dashboard</h4>`;
+  header.className = "d-flex justify-content-between align-items-center mb-4 mt-2 flex-wrap gap-2";
+  header.innerHTML = `<h4 class="fw-bold text-dark border-start border-4 border-primary ps-3 mb-0">📊 Discussion Dashboard</h4>
+    <button class="btn btn-outline-danger btn-sm" id="btn-high-error-only" onclick="toggleHighErrorOnly()">Show only high-error</button>`;
   container.appendChild(header);
 
   // PERFORMANCE OPTIMIZATION: Pre-calculate user names to avoid redundant string splitting in the nested loop
@@ -387,6 +409,21 @@ function renderQuestionAnalysis(container, questions, results, accuracies) {
             </div>
         </div>`;
     container.appendChild(card);
+  });
+}
+
+let highErrorOnly = false;
+
+function toggleHighErrorOnly() {
+  highErrorOnly = !highErrorOnly;
+  const btn = document.getElementById("btn-high-error-only");
+  if (btn) btn.classList.toggle("active", highErrorOnly);
+  document.querySelectorAll(".admin-q-card").forEach((card) => {
+    if (highErrorOnly) {
+      card.style.display = card.classList.contains("high-error") ? "" : "none";
+    } else {
+      card.style.display = "";
+    }
   });
 }
 
@@ -488,13 +525,28 @@ async function searchUserAttempts() {
 /**
  * Deletes a specific result document from Firestore
  */
+let pendingDelete = null;
+
+function deleteAttempt(docId, testName) {
+    pendingDelete = { docId, testName };
+    document.getElementById("delete-confirm-test").textContent = testName;
+    const modal = bootstrap.Modal.getOrCreateInstance(
+      document.getElementById("delete-confirm-modal")
+    );
+    modal.show();
+}
+
 /**
  * Advanced Delete: Removes the result document and reverts global chapter statistics.
  */
-async function deleteAttempt(docId, testName) {
-    if (!confirm(`CRITICAL: This will delete the attempt for "${testName}" and RECALCULATE all global class statistics. Proceed?`)) {
-        return;
-    }
+async function confirmDeleteAttempt() {
+    if (!pendingDelete) return;
+    const { docId, testName } = pendingDelete;
+    pendingDelete = null;
+    const modal = bootstrap.Modal.getInstance(
+      document.getElementById("delete-confirm-modal")
+    );
+    if (modal) modal.hide();
 
     try {
         // 1. Get the result data first to know what values to subtract from stats

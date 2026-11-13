@@ -713,6 +713,12 @@ function startQuizExecution(savedTime) {
     ? "practice"
     : "exam";
 
+  trackEvent("test_started", {
+    subject: currentSubject,
+    chapter: currentChapterName,
+    mode: quizMode,
+  });
+
   const quizContent = document.getElementById("quiz-content");
   const quizNav = document.getElementById("quiz-nav");
 
@@ -1090,6 +1096,8 @@ function renderLeaderboardHTML(container, data) {
  * UPDATED: Advanced UPSC Performance Review
  */
 async function renderReviewMode(resultData) {
+  trackEvent("review_viewed", { chapter: currentChapterName });
+
   // Pre-fetch stats to ensure they are available for community comparison
   if (currentChapterId.startsWith('revision_')) {
       currentReviewStats = null;
@@ -2631,6 +2639,12 @@ function submitAll(forceSubmit = false) {
 
   quizSubmitted = true;
   clearQuizProgress(currentChapterId);
+
+  trackEvent("test_submitted", {
+    subject: currentSubject,
+    chapter: currentChapterName,
+    mode: quizMode,
+  });
 
   let score = 0;
   let correct = 0,

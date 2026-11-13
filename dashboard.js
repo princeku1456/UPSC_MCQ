@@ -565,7 +565,7 @@ async function generateAIReview() {
 
     // Render Response using marked.js for full Markdown support
     // @ts-ignore
-    const formattedText = marked.parse(aiText);
+    const formattedText = sanitizeHTML(marked.parse(aiText));
 
     contentDiv.innerHTML = `<div class="animate-fade-in markdown-content">${formattedText}</div>`;
 

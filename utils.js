@@ -25,6 +25,33 @@ function isValidAnswer(uAns) {
     return !!uAns && typeof uAns.answer === "number" && uAns.answer >= 0;
 }
 
+/**
+ * Sanitises an HTML string before it is inserted into the DOM (P3-3).
+ * Uses DOMPurify when available, otherwise returns the input unchanged.
+ */
+function sanitizeHTML(html) {
+    if (typeof html !== "string") return html;
+    if (typeof DOMPurify !== "undefined") {
+        return DOMPurify.sanitize(html);
+    }
+    return html;
+}
+
+/**
+ * Lightweight funnel event tracker (P3-6). Logs to console and forwards to
+ * Google Analytics when gtag is present.
+ */
+function trackEvent(eventName, details) {
+    try {
+        console.log("[analytics]", eventName, details || "");
+        if (typeof gtag === "function") {
+            gtag("event", eventName, details || {});
+        }
+    } catch (e) {
+        // analytics must never break the app
+    }
+}
+
 /* =========================================
    0. INDEXED DB WRAPPER (To bypass 5MB localStorage limit)
    ========================================= */
@@ -887,7 +914,7 @@ const TextFormatter = {
             output.push(this.renderTable(tableLines, currentSeparator));
         }
 
-        return output.join('<br>');
+        return sanitizeHTML(output.join('<br>'));
     },
 
     renderTable(lines, separator = '|') {
