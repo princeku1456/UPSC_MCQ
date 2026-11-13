@@ -77,6 +77,7 @@ let subjectSortMode = "az";
 let chapterFilterMode = "all";
 let currentChapterSubject = "";
 let revisionSubjectKey = "";
+let quizMode = "exam";
 
 function getChapterQuestionCount(chapters, chapId) {
   const raw = chapters && chapters[chapId];
@@ -708,6 +709,10 @@ function startRevisionTestExecution(timeSeconds = null) {
 }
 
 function startQuizExecution(savedTime) {
+  quizMode = document.getElementById("mode-practice")?.checked
+    ? "practice"
+    : "exam";
+
   const quizContent = document.getElementById("quiz-content");
   const quizNav = document.getElementById("quiz-nav");
 
@@ -1106,6 +1111,15 @@ async function renderReviewMode(resultData) {
   let hardSuccess = 0;
   let missedEasyQNumbers = [];
 
+  // Calibration & time trackers (P2-6, P2-7)
+  let sureWrong = 0;
+  let unsureRight = 0;
+  let guessTotal = 0;
+  let guessCorrect = 0;
+  let rushedWrong = 0;
+  let totalTimeSec = 0;
+  let slowestQ = [];
+
   // Difficulty Stats
   let difficultyStats = {
       Easy: { total: 0, correct: 0, incorrect: 0, unattempted: 0 },
@@ -1181,6 +1195,24 @@ async function renderReviewMode(resultData) {
       }
     }
 
+    // Calibration & time analytics (P2-6, P2-7)
+    if (isValidAnswer(uAns)) {
+      const isCorrectAns = uAns.answer === correctIndex;
+      const surety = uAns.surety;
+      if (surety !== undefined) {
+        if (surety >= 75 && !isCorrectAns) sureWrong++;
+        if (surety <= 50 && isCorrectAns) unsureRight++;
+        if (surety === 0) {
+          guessTotal++;
+          if (isCorrectAns) guessCorrect++;
+        }
+      }
+      const t = (questionTimeSpent && questionTimeSpent[i]) || 0;
+      totalTimeSec += t;
+      if (t < 10 && !isCorrectAns) rushedWrong++;
+      slowestQ.push({ idx: i, time: t });
+    }
+
     if (!isValidAnswer(uAns)) {
       unattempted++;
     } else if (uAns.answer === correctIndex) {
@@ -1229,6 +1261,33 @@ async function renderReviewMode(resultData) {
   const accuracyRate = ((correct / (correct + incorrect)) * 100 || 0).toFixed(
     1
   );
+
+  // Calibration & time insights (P2-6, P2-7)
+  const guessAccuracy =
+    guessTotal > 0 ? Math.round((guessCorrect / guessTotal) * 100) : 0;
+  const avgTimeSec =
+    attempted > 0 ? Math.round(totalTimeSec / attempted) : 0;
+  const slowest = [...slowestQ].sort((a, b) => b.time - a.time).slice(0, 3);
+  const slowestLabel = slowest
+    .map((s) => `Q${s.idx + 1} (${Math.round(s.time)}s)`)
+    .join(", ");
+
+  const insightsHtml = `
+    <div class="card mb-4 border-0 shadow-sm">
+      <div class="card-header bg-white border-bottom py-2">
+        <h6 class="fw-bold text-primary m-0">🧠 Calibration & Time Insights</h6>
+      </div>
+      <div class="card-body">
+        <div class="row g-3 text-center">
+          <div class="col-6 col-md-3"><div class="p-2 border rounded bg-light"><small class="text-muted d-block">Sure but wrong</small><strong class="text-danger">${sureWrong}</strong></div></div>
+          <div class="col-6 col-md-3"><div class="p-2 border rounded bg-light"><small class="text-muted d-block">Unsure but right</small><strong class="text-success">${unsureRight}</strong></div></div>
+          <div class="col-6 col-md-3"><div class="p-2 border rounded bg-light"><small class="text-muted d-block">Guess accuracy</small><strong>${guessAccuracy}%</strong></div></div>
+          <div class="col-6 col-md-3"><div class="p-2 border rounded bg-light"><small class="text-muted d-block">Rushed (wrong &lt;10s)</small><strong class="text-warning">${rushedWrong}</strong></div></div>
+        </div>
+        <p class="small text-muted mt-3 mb-0">Avg time per attempted question: <strong>${avgTimeSec}s</strong>. Slowest: ${slowestLabel || "—"}</p>
+      </div>
+    </div>
+  `;
 
   // Generate Difficulty Matrix HTML
   const difficultyRows = ['Easy', 'Medium', 'Hard'].map(level => {
@@ -1359,6 +1418,8 @@ async function renderReviewMode(resultData) {
                     <button class="btn btn-outline-success" id="btn-correct" onclick="filterReview('correct', this)">Correct</button>
                     <button class="btn btn-outline-danger" id="btn-incorrect" onclick="filterReview('incorrect', this)">Incorrect</button>
                     <button class="btn btn-outline-secondary" id="btn-unattempted" onclick="filterReview('unattempted', this)">Unattempted</button>
+                    <button class="btn btn-outline-warning" id="btn-lowconfidence" onclick="filterReview('lowconfidence', this)">Low Confidence</button>
+                    <button class="btn btn-outline-info" id="btn-marked" onclick="filterReview('marked', this)">Marked</button>
                 </div>
             </div>
         </div>
@@ -1439,6 +1500,7 @@ async function renderReviewMode(resultData) {
 
                 ${difficultyMatrixHtml}
                 ${subjectMatrixHtml}
+                ${insightsHtml}
 
                 <div class="row mb-4 g-3">
                     <div class="col-md-6">
@@ -1778,8 +1840,30 @@ function filterReviewBySubject() {
         if (activeBtn.id === "btn-correct") filterType = "correct";
         else if (activeBtn.id === "btn-incorrect") filterType = "incorrect";
         else if (activeBtn.id === "btn-unattempted") filterType = "unattempted";
+        else if (activeBtn.id === "btn-lowconfidence") filterType = "lowconfidence";
+        else if (activeBtn.id === "btn-marked") filterType = "marked";
     }
     renderReviewQuestions(filterType);
+}
+
+function reportQuestionIssue(index) {
+  const q = currentQuizData[index];
+  if (!q) return;
+  getDb()
+    .collection("question_reports")
+    .add({
+      userId: currentUser ? currentUser.uid : "guest",
+      userEmail: currentUser ? currentUser.email : "guest",
+      chapterId: currentChapterId,
+      questionIndex: index,
+      questionText: (q.text || "").substring(0, 500),
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    })
+    .then(() => toastr.success("Issue reported. Thank you!"))
+    .catch((e) => {
+      console.error("Report issue failed:", e);
+      toastr.error("Failed to report issue.");
+    });
 }
 
 function renderReviewQuestions(filterType) {
@@ -1899,10 +1983,15 @@ function renderReviewQuestions(filterType) {
         // Subject Badge Logic
         const subjectBadge = question.subject ? `<span class="badge bg-success-subtle text-success ms-2">📚 ${question.subject}</span>` : "";
 
+        const isLowConf = userSurety === 0 || userSurety === 50;
+        const isMarkedQ = !!markedForReview[index];
+
         const card = document.createElement("div");
         card.className = `card mb-4 shadow-sm border-0 border-start border-5 ${borderClass} question-card`;
         card.dataset.status = status;
         card.dataset.subject = question.subject || "";
+        card.dataset.lowconfidence = isLowConf ? "true" : "false";
+        card.dataset.marked = isMarkedQ ? "true" : "false";
 
         card.innerHTML = `
                 <div class="card-body p-4">
@@ -1925,6 +2014,11 @@ function renderReviewQuestions(filterType) {
                           question.explanation || "No explanation provided."
                         }</div>
                     </div>
+                    <div class="text-end mt-2">
+                        <button class="btn btn-outline-secondary btn-sm" onclick="reportQuestionIssue(${index})">
+                            <i class="bi bi-flag me-1"></i>Report an issue
+                        </button>
+                    </div>
                 </div>
             `;
         fragment.appendChild(card);
@@ -1940,7 +2034,9 @@ function renderReviewQuestions(filterType) {
       const status = card.dataset.status;
       const cardSubject = card.dataset.subject;
 
-      const matchStatus = filterType === 'all' || status === filterType;
+      let matchStatus = filterType === 'all' || status === filterType;
+      if (filterType === 'lowconfidence') matchStatus = card.dataset.lowconfidence === "true";
+      if (filterType === 'marked') matchStatus = card.dataset.marked === "true";
       const matchSubject = subjectFilterValue === 'all' || cardSubject === subjectFilterValue;
 
       if (matchStatus && matchSubject) {
@@ -2010,9 +2106,10 @@ function toggleTimer() {
       currentQuizTimer.resume();
       isTimerPaused = false;
   } else {
-      // Default (test) mode is limited; practice/exam policies are handled elsewhere
+      // Default (test) mode is limited; practice/exam policies are handled here
       if (
         !isPracticeMode &&
+        quizMode === "exam" &&
         typeof pauseCount !== "undefined" &&
         pauseCount >= MARKING_SCHEME.maxPauses
       ) {
@@ -2055,10 +2152,16 @@ function renderQuizLayout(title) {
   document.getElementById("quiz-content").innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
             <h4 class="fw-bold text-primary m-0">${title}</h4>
-            <button id="mark-review-btn" class="btn btn-mark-review" onclick="toggleMarkForReview()" type="button">
-                <i class="bi bi-bookmark"></i>
-                <span id="mark-review-label">Mark for review</span>
-            </button>
+            <div class="d-flex gap-2 flex-wrap">
+                <button id="bookmark-btn" class="btn btn-outline-secondary" onclick="toggleBookmark()" type="button" title="Save to bookmarks">
+                    <i class="bi bi-bookmark-star"></i>
+                    <span id="bookmark-label">Bookmark</span>
+                </button>
+                <button id="mark-review-btn" class="btn btn-mark-review" onclick="toggleMarkForReview()" type="button">
+                    <i class="bi bi-bookmark"></i>
+                    <span id="mark-review-label">Mark for review</span>
+                </button>
+            </div>
         </div>
         <div id="question-container"></div>
         <div class="quiz-action-row d-flex justify-content-between align-items-center mt-4 gap-2">
@@ -2157,6 +2260,7 @@ function renderQuestion() {
     if (markLabel)
       markLabel.textContent = isMarked ? "Marked for review" : "Mark for review";
   }
+  updateBookmarkButton();
 
   const div = document.createElement("div");
   div.className = "question";
@@ -2173,6 +2277,10 @@ function renderQuestion() {
   legend.textContent = `Question ${currentQuestionIndex + 1} options`;
   fieldset.appendChild(legend);
 
+  const currentAns = userAnswers[currentQuestionIndex];
+  const reveal =
+    quizSubmitted || (quizMode === "practice" && isValidAnswer(currentAns));
+
   question.options.forEach((opt, idx) => {
     const label = document.createElement("label");
     label.className = "option shadow-sm";
@@ -2181,10 +2289,10 @@ function renderQuestion() {
 
     label.innerHTML = `<input type="radio" name="q${currentQuestionIndex}" value="${idx}" ${
       isSelected ? "checked" : ""
-    } ${quizSubmitted ? "disabled" : ""}> <span>${opt}</span>`;
+    } ${reveal ? "disabled" : ""}> <span>${opt}</span>`;
     if (isSelected) label.classList.add("selected");
 
-    if (quizSubmitted) {
+    if (reveal) {
       if (idx === correctIndex) label.classList.add("correct-answer-label");
       if (isSelected && idx !== correctIndex)
         label.classList.add("incorrect-answer-label");
@@ -2193,6 +2301,7 @@ function renderQuestion() {
         if (!userAnswers[currentQuestionIndex])
           userAnswers[currentQuestionIndex] = {};
         userAnswers[currentQuestionIndex].answer = idx;
+        if (quizMode === "practice") renderQuestion();
         updateNavHighlights();
         saveQuizProgress();
       });
@@ -2266,7 +2375,7 @@ function renderQuestion() {
   }
   div.appendChild(suretyDiv);
 
-  if (quizSubmitted && question.explanation) {
+  if (reveal && question.explanation) {
     const exp = document.createElement("div");
     exp.className = "explanation shadow-sm mt-3";
     exp.innerHTML = `<strong>💡 Explanation:</strong> <br>${question.explanation}`;
@@ -2276,7 +2385,7 @@ function renderQuestion() {
   container.appendChild(div);
   updateButtonStates();
   updateMobileQuestionLabel();
-  if (quizSubmitted) showFeedbackText(correctIndex);
+  if (reveal) showFeedbackText(correctIndex);
   else {
     const feedback = document.getElementById("question-feedback");
     if (feedback) feedback.textContent = "";
@@ -2574,6 +2683,7 @@ function submitAll(forceSubmit = false) {
     userAnswers: userAnswers,
     questionTimeSpent: questionTimeSpent, // Save time per question
     pauseCount: typeof pauseCount !== "undefined" ? pauseCount : 0,
+    mode: quizMode,
     timestamp: now,
   };
 
@@ -2642,6 +2752,22 @@ function submitAll(forceSubmit = false) {
   };
   actionsDiv.appendChild(backBtn);
 
+  // Retry helpers (P2-8)
+  if (incorrect > 0) {
+    const retryWrongBtn = document.createElement("button");
+    retryWrongBtn.className = "btn btn-outline-danger px-4";
+    retryWrongBtn.innerHTML = `↻ Retry ${incorrect} mistake${incorrect === 1 ? "" : "s"}`;
+    retryWrongBtn.onclick = () => retryFiltered("incorrect");
+    actionsDiv.appendChild(retryWrongBtn);
+  }
+  if (unattempted > 0) {
+    const retrySkipBtn = document.createElement("button");
+    retrySkipBtn.className = "btn btn-outline-secondary px-4";
+    retrySkipBtn.innerHTML = `↻ Retry ${unattempted} unattempted`;
+    retrySkipBtn.onclick = () => retryFiltered("unattempted");
+    actionsDiv.appendChild(retrySkipBtn);
+  }
+
   // Hide navigation controls now that the test is submitted
   ["final-submit-btn", "prev-btn", "next-btn", "clear-btn"].forEach((id) => {
     const el = document.getElementById(id);
@@ -2659,6 +2785,68 @@ function submitAll(forceSubmit = false) {
   if (currentUser) {
     saveResultToCloud(resultObject, leaderboardEntry, now, percentage);
   }
+}
+
+/**
+ * Builds a short retry quiz from incorrect or unattempted questions of the
+ * attempt just completed (P2-8).
+ */
+function retryFiltered(filterType) {
+  const filtered = [];
+  currentQuizData.forEach((q, i) => {
+    const uAns = userAnswers[i];
+    const correctIndex = getCorrectIndex(q);
+    if (filterType === "incorrect") {
+      if (isValidAnswer(uAns) && uAns.answer !== correctIndex)
+        filtered.push({ ...q });
+    } else if (filterType === "unattempted") {
+      if (!isValidAnswer(uAns)) filtered.push({ ...q });
+    }
+  });
+
+  if (filtered.length === 0) {
+    toastr.info("No questions match this filter.");
+    return;
+  }
+
+  for (let i = filtered.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [filtered[i], filtered[j]] = [filtered[j], filtered[i]];
+  }
+
+  currentQuizData = filtered;
+  isPracticeMode = false;
+  isReviewMode = false;
+  quizSubmitted = false;
+  quizMode = "exam";
+  currentQuestionIndex = 0;
+  userAnswers = {};
+  markedForReview = {};
+  questionTimeSpent = {};
+  currentQuestionStartTime = null;
+  currentChapterName =
+    filterType === "incorrect" ? "Retry Mistakes" : "Retry Unattempted";
+  currentChapterId = "retry_" + Date.now();
+
+  hideAllSections();
+  document.getElementById("quiz-section").style.display = "block";
+  renderBreadcrumbs([
+    { label: "Home", onclick: "showHome()" },
+    { label: "Dashboard", onclick: "showDashboard()" },
+    { label: "Take Test", onclick: "renderSubjects()" },
+    { label: currentSubject, onclick: `renderChapters('${currentSubject}')` },
+    { label: currentChapterName },
+  ]);
+
+  const quizContent = document.getElementById("quiz-content");
+  const quizNav = document.getElementById("quiz-nav");
+  quizContent.parentElement.className = "col-lg-8 mb-4";
+  quizNav.parentElement.style.display = "block";
+  renderQuizLayout(currentChapterName);
+  renderQuestion();
+  renderNav();
+  startTimer(currentQuizData.length, null);
+  currentQuestionStartTime = Date.now();
 }
 
 /**
@@ -2897,4 +3085,132 @@ function updateMarkButton() {
   if (icon) icon.className = isMarked ? "bi bi-bookmark-fill" : "bi bi-bookmark";
   if (markLabel)
     markLabel.textContent = isMarked ? "Marked for review" : "Mark for review";
+}
+
+/* =========================================
+   BOOKMARKS (P2-12)
+   ========================================= */
+function getBookmarks() {
+  try {
+    return JSON.parse(localStorage.getItem("user_bookmarks") || "[]");
+  } catch (e) {
+    return [];
+  }
+}
+
+function isBookmarked() {
+  const q = currentQuizData[currentQuestionIndex];
+  if (!q) return false;
+  return getBookmarks().some(
+    (b) => b.chapterId === currentChapterId && b.text === q.text
+  );
+}
+
+function toggleBookmark() {
+  const q = currentQuizData[currentQuestionIndex];
+  if (!q) return;
+  let bookmarks = getBookmarks();
+  const existing = bookmarks.findIndex(
+    (b) => b.chapterId === currentChapterId && b.text === q.text
+  );
+
+  if (existing >= 0) {
+    bookmarks.splice(existing, 1);
+    toastr.info("Bookmark removed");
+  } else {
+    bookmarks.unshift({
+      chapterId: currentChapterId,
+      chapterName: currentChapterName,
+      subject: currentSubject,
+      text: q.text,
+      options: q.options,
+      correctAnswer: q.correctAnswer,
+      explanation: q.explanation,
+      savedAt: Date.now(),
+    });
+    toastr.success("Bookmark saved");
+  }
+
+  localStorage.setItem("user_bookmarks", JSON.stringify(bookmarks));
+  updateBookmarkButton();
+}
+
+function updateBookmarkButton() {
+  const btn = document.getElementById("bookmark-btn");
+  const label = document.getElementById("bookmark-label");
+  if (!btn) return;
+  const bookmarked = isBookmarked();
+  btn.classList.toggle("btn-primary-custom", bookmarked);
+  btn.classList.toggle("btn-outline-secondary", !bookmarked);
+  btn.title = bookmarked ? "Remove bookmark" : "Save to bookmarks";
+  const icon = btn.querySelector("i");
+  if (icon)
+    icon.className = bookmarked ? "bi bi-bookmark-star-fill" : "bi bi-bookmark-star";
+  if (label) label.textContent = bookmarked ? "Bookmarked" : "Bookmark";
+}
+
+function showBookmarks() {
+  const bookmarks = getBookmarks();
+  const container = document.getElementById("test-content-container");
+  hideAllSections();
+  document.getElementById("test-selection-section").style.display = "block";
+  renderBreadcrumbs([
+    { label: "Home", onclick: "showHome()" },
+    { label: "Dashboard", onclick: "showDashboard()" },
+    { label: "My Bookmarks" },
+  ]);
+
+  if (bookmarks.length === 0) {
+    container.innerHTML = `
+      <div class="text-center py-5">
+        <div class="display-1 opacity-25 mb-3">📑</div>
+        <h5 class="text-muted">No bookmarks yet.</h5>
+        <p class="text-muted small">Bookmark questions while taking a test to review them here.</p>
+      </div>`;
+    return;
+  }
+
+  const cards = bookmarks
+    .map((b, i) => {
+      const correctIndex = getCorrectIndex(b);
+      const options = (b.options || [])
+        .map((opt, oi) => {
+          const cls =
+            oi === correctIndex
+              ? "bg-success-subtle border-success fw-bold text-success"
+              : "border";
+          return `<div class="option p-2 mb-2 border rounded ${cls}">${opt}</div>`;
+        })
+        .join("");
+      return `
+        <div class="card mb-4 shadow-sm border-0">
+          <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h6 class="fw-bold text-primary mb-0">${b.subject} — ${b.chapterName}</h6>
+              <button class="btn btn-outline-danger btn-sm" onclick="removeBookmark(${i})"><i class="bi bi-trash"></i></button>
+            </div>
+            <div class="fw-bold mb-3">${TextFormatter.formatQuestionText(b.text)}</div>
+            <div class="mb-3">${options}</div>
+            <div class="explanation shadow-sm mt-2"><strong>💡 Explanation:</strong><div class="mt-1 small">${
+              b.explanation || "No explanation."
+            }</div></div>
+          </div>
+        </div>`;
+    })
+    .join("");
+
+  container.innerHTML = `
+    <div class="text-center mb-4">
+      <h4 class="fw-bold section-title">My Bookmarks</h4>
+      <div class="title-underline mx-auto"></div>
+    </div>
+    ${cards}
+  `;
+}
+
+function removeBookmark(index) {
+  const bookmarks = getBookmarks();
+  bookmarks.splice(index, 1);
+  localStorage.setItem("user_bookmarks", JSON.stringify(bookmarks));
+  showBookmarks();
 }

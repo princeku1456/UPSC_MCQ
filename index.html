@@ -282,6 +282,7 @@
           <div class="title-underline mx-auto"></div>
         </div>
         <div id="continue-card-container" class="row justify-content-center mb-4"></div>
+        <div id="dashboard-insights" class="row justify-content-center mb-4 g-3"></div>
         <div
           id="dashboard-empty-state"
           class="alert alert-light border text-center py-5 d-none"
@@ -403,7 +404,7 @@
           </div>
         </div>
         <div class="row justify-content-center mb-4">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div
               class="card topic-card shadow-sm h-100"
               style="cursor: pointer"
@@ -419,7 +420,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div
               class="card topic-card shadow-sm h-100"
               style="cursor: pointer"
@@ -432,6 +433,22 @@
               <div class="card-body text-center p-4">
                 <div class="display-5 mb-2">🎯</div>
                 <h3 class="fw-bold card-title text-info m-0">Practice MCQ</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div
+              class="card topic-card shadow-sm h-100"
+              style="cursor: pointer"
+              onclick="showBookmarks()"
+              role="button"
+              tabindex="0"
+              aria-label="My Bookmarks"
+              onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}"
+            >
+              <div class="card-body text-center p-4">
+                <div class="display-5 mb-2">📑</div>
+                <h3 class="fw-bold card-title text-primary m-0">My Bookmarks</h3>
               </div>
             </div>
           </div>
@@ -661,6 +678,19 @@
                   >
                 </div>
               </div>
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label fw-bold text-secondary small d-block text-start">Test Mode</label>
+              <div class="btn-group w-100" role="group" aria-label="Test mode">
+                <input type="radio" class="btn-check" name="quizMode" id="mode-exam" checked />
+                <label class="btn btn-outline-primary fw-bold" for="mode-exam">📝 Exam</label>
+                <input type="radio" class="btn-check" name="quizMode" id="mode-practice" />
+                <label class="btn btn-outline-primary fw-bold" for="mode-practice">🎯 Practice</label>
+              </div>
+              <small class="text-muted d-block text-start mt-1" id="mode-hint">
+                Exam: limited pauses, no instant feedback. Practice: instant feedback after each answer.
+              </small>
             </div>
 
             <div class="text-start mb-4 p-3 bg-light rounded-3 border">

@@ -89,6 +89,9 @@ function renderDashboardUI() {
   // "Continue where you left off" card (P1-18)
   renderContinueCard();
 
+  // Streaks & smart recommendation (P2-9, P2-11)
+  renderInsightsCards(userHistory);
+
   // 1. Cumulative Stats Calculation
   const totalTests = combinedHistory.length;
   const avgScore = totalTests
@@ -199,6 +202,71 @@ function renderContinueCard() {
             <p class="text-muted small mb-0">${entry.subject} — ${entry.chapterName} · ${minutesLeft} min left</p>
           </div>
           <button class="btn btn-success-custom px-4" onclick="resumeFromDashboard('${entry.chapterId}')">▶ Resume</button>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+/**
+ * Renders the study streak and a "take this next" recommendation (P2-9, P2-11).
+ */
+function renderInsightsCards(history) {
+  const container = document.getElementById("dashboard-insights");
+  if (!container) return;
+  if (!history || history.length === 0) {
+    container.innerHTML = "";
+    return;
+  }
+
+  // Streak: consecutive days (ending today, or yesterday if none today)
+  const DAY = 24 * 60 * 60 * 1000;
+  const daySet = new Set();
+  history.forEach((h) => {
+    const ms = toTimestampMs(h.timestamp);
+    if (ms) daySet.add(new Date(ms).toDateString());
+  });
+  let cursor = new Date().getTime();
+  if (!daySet.has(new Date(cursor).toDateString())) cursor -= DAY;
+  let streak = 0;
+  while (daySet.has(new Date(cursor).toDateString())) {
+    streak++;
+    cursor -= DAY;
+  }
+
+  // Weakest subject by average score
+  const subjectMap = {};
+  history.forEach((h) => {
+    if (!h.subject) return;
+    if (!subjectMap[h.subject]) subjectMap[h.subject] = { sum: 0, n: 0 };
+    subjectMap[h.subject].sum += h.scorePercent || 0;
+    subjectMap[h.subject].n++;
+  });
+  let weakest = null;
+  Object.entries(subjectMap).forEach(([subj, v]) => {
+    const avg = v.sum / v.n;
+    if (!weakest || avg < weakest.avg) weakest = { subj, avg };
+  });
+
+  container.innerHTML = `
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-body p-3 text-center">
+          <h6 class="fw-bold text-primary mb-2">🔥 Study Streak</h6>
+          <div class="display-5 fw-bold">${streak}</div>
+          <p class="text-muted small mb-0">day${streak === 1 ? "" : "s"} in a row</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm rounded-4 h-100">
+        <div class="card-body p-3">
+          <h6 class="fw-bold text-primary mb-2">🎯 Take this next</h6>
+          ${
+            weakest
+              ? `<p class="text-muted small mb-0">Focus on <strong>${weakest.subj}</strong> (avg ${weakest.avg.toFixed(0)}%).</p>`
+              : `<p class="text-muted small mb-0">Take any test to get a recommendation.</p>`
+          }
         </div>
       </div>
     </div>
