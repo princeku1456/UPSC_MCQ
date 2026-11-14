@@ -7,6 +7,52 @@
 const getDb = () => firebase.firestore();
 
 /* =========================================
+   MARKING SCHEME (single source of truth)
+   ========================================= */
+const MARKING_SCHEME = {
+    correctMarks: 2,
+    wrongMarks: 0.66,
+    unattemptedMarks: 0,
+    minutesPerQuestion: 1.2,
+    maxPauses: 3,
+};
+
+/**
+ * A question counts as attempted only when `answer` is a valid option index.
+ * Confidence-only entries ({ surety: x } with answer -1/undefined) are NOT attempted.
+ */
+function isValidAnswer(uAns) {
+    return !!uAns && typeof uAns.answer === "number" && uAns.answer >= 0;
+}
+
+/**
+ * Sanitises an HTML string before it is inserted into the DOM (P3-3).
+ * Uses DOMPurify when available, otherwise returns the input unchanged.
+ */
+function sanitizeHTML(html) {
+    if (typeof html !== "string") return html;
+    if (typeof DOMPurify !== "undefined") {
+        return DOMPurify.sanitize(html);
+    }
+    return html;
+}
+
+/**
+ * Lightweight funnel event tracker (P3-6). Logs to console and forwards to
+ * Google Analytics when gtag is present.
+ */
+function trackEvent(eventName, details) {
+    try {
+        console.log("[analytics]", eventName, details || "");
+        if (typeof gtag === "function") {
+            gtag("event", eventName, details || {});
+        }
+    } catch (e) {
+        // analytics must never break the app
+    }
+}
+
+/* =========================================
    0. INDEXED DB WRAPPER (To bypass 5MB localStorage limit)
    ========================================= */
 const DB_CONFIG = {
@@ -537,41 +583,60 @@ const DataManager = {
    ========================================= */
 class QuizTimer {
     constructor(displayElementId, onTick, onComplete) {
+        this.displayElementId = displayElementId;
         this.displayElement = document.getElementById(displayElementId);
         this.onTick = onTick;
         this.onComplete = onComplete;
         this.interval = null;
         this.secondsRemaining = 0;
+        this.endAt = null;
         this.isPaused = false;
+        this.pausedRemainingMs = 0;
     }
 
+    /**
+     * Absolute-time based timer. Remaining time is derived from `endAt - Date.now()`
+     * so it stays accurate when the tab is throttled or the device sleeps.
+     */
     start(durationSeconds, startFrom = null) {
         this.stop();
-        this.secondsRemaining = startFrom !== null ? startFrom : durationSeconds;
+        const startSeconds = startFrom !== null ? startFrom : durationSeconds;
+        this.secondsRemaining = Math.max(0, startSeconds);
+        this.endAt = Date.now() + this.secondsRemaining * 1000;
         this.isPaused = false;
         this.updateDisplay();
+        this.interval = setInterval(() => this.tick(), 1000);
+    }
 
-        this.interval = setInterval(() => {
-            if (!this.isPaused) {
-                this.secondsRemaining--;
-                this.updateDisplay();
+    tick() {
+        if (this.isPaused) return;
 
-                if (this.onTick) this.onTick(this.secondsRemaining);
+        const remainingMs = this.endAt - Date.now();
+        const seconds = Math.max(0, Math.ceil(remainingMs / 1000));
 
-                if (this.secondsRemaining <= 0) {
-                    this.stop();
-                    if (this.onComplete) this.onComplete();
-                }
-            }
-        }, 1000);
+        if (seconds !== this.secondsRemaining) {
+            this.secondsRemaining = seconds;
+            this.updateDisplay();
+            if (this.onTick) this.onTick(this.secondsRemaining);
+        }
+
+        if (this.secondsRemaining <= 0) {
+            this.stop();
+            if (this.onComplete) this.onComplete();
+        }
     }
 
     pause() {
+        if (this.isPaused) return;
         this.isPaused = true;
+        this.pausedRemainingMs = Math.max(0, this.endAt - Date.now());
     }
 
     resume() {
+        if (!this.isPaused) return;
         this.isPaused = false;
+        this.endAt = Date.now() + this.pausedRemainingMs;
+        this.tick();
     }
 
     stop() {
@@ -582,18 +647,33 @@ class QuizTimer {
     updateDisplay() {
         if (!this.displayElement) {
              // Try to re-fetch element if it wasn't available at construction
-             this.displayElement = document.getElementById("timer-display");
+             this.displayElement = document.getElementById(this.displayElementId);
              if (!this.displayElement) return;
         }
 
         const m = Math.floor(this.secondsRemaining / 60);
         const s = this.secondsRemaining % 60;
-        this.displayElement.textContent = `${m}:${s < 10 ? "0" : ""}${s}`;
+        const label = `${m}:${s < 10 ? "0" : ""}${s}`;
+        this.displayElement.textContent = label;
+
+        // Keep any mirrored mobile timer in sync
+        const mobileTimer = document.getElementById("mobile-timer");
+        if (mobileTimer) mobileTimer.textContent = label;
 
         if (this.secondsRemaining < 180) {
             this.displayElement.classList.add("low-time");
+            if (mobileTimer) mobileTimer.classList.add("low-time");
         } else {
             this.displayElement.classList.remove("low-time");
+            if (mobileTimer) mobileTimer.classList.remove("low-time");
+        }
+
+        // Announce only at meaningful thresholds (not every second)
+        const thresholds = [600, 300, 60];
+        if (thresholds.includes(this.secondsRemaining)) {
+            const announce = document.getElementById("timer-announce");
+            if (announce)
+                announce.textContent = `${Math.floor(this.secondsRemaining / 60)} minutes remaining`;
         }
     }
 }
@@ -834,7 +914,7 @@ const TextFormatter = {
             output.push(this.renderTable(tableLines, currentSeparator));
         }
 
-        return output.join('<br>');
+        return sanitizeHTML(output.join('<br>'));
     },
 
     renderTable(lines, separator = '|') {
@@ -921,7 +1001,7 @@ const DifficultyHelper = {
      */
     calculate(correctCount, totalAttempts) {
         if (!totalAttempts || totalAttempts <= 0) {
-             return { label: "Medium", color: "warning", percentage: 0 };
+             return { label: "No data", color: "secondary", percentage: 0 };
         }
 
         const percentage = Math.round((correctCount / totalAttempts) * 100);

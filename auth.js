@@ -10,13 +10,14 @@ const googleProvider = new firebase.auth.GoogleAuthProvider();
  */
 function togglePasswordVisibility() {
   const input = document.getElementById("auth-password");
-  const icon  = document.getElementById("toggle-password-icon");
+  const icon = document.getElementById("toggle-password-icon");
+  if (!input || !icon) return;
   if (input.type === "password") {
     input.type = "text";
-    icon.textContent = "visibility";       // eye open
+    icon.className = "bi bi-eye";
   } else {
     input.type = "password";
-    icon.textContent = "visibility_lock";  // eye with lock (hidden)
+    icon.className = "bi bi-eye-slash";
   }
 }
 
@@ -50,6 +51,7 @@ let currentReviewStats = null;
 // Add these to auth.js
 let isTimerPaused = false;
 let currentTimerSeconds = 0;
+let pauseCount = 0;
 /* =========================================
    MORNING SYNC LOGIC
    ========================================= */
@@ -95,6 +97,7 @@ function applyTheme(theme) {
   const themeToggleBtn = document.getElementById("theme-toggle");
   if (themeToggleBtn) {
     themeToggleBtn.textContent = theme === "dark" ? "☀️" : "🌙";
+    themeToggleBtn.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
   }
 
   // Refresh Dashboard Charts
@@ -169,46 +172,136 @@ function signInWithGoogle() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const savedTheme = localStorage.getItem("theme") || "light";
-  applyTheme(savedTheme);
+  const savedTheme = localStorage.getItem("theme");
+  const initialTheme =
+    savedTheme ||
+    (window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light");
+  applyTheme(initialTheme);
+
+  // Wire the Login/Register segmented control (P1-21)
+  document.querySelectorAll('input[name="authMode"]').forEach((radio) => {
+    radio.addEventListener("change", () => {
+      setAuthMode(radio.id === "auth-mode-register" ? "register" : "login");
+    });
+  });
+
+  // Password strength hint (P1-21)
+  const pwInput = document.getElementById("auth-password");
+  if (pwInput) {
+    pwInput.addEventListener("input", () => updatePasswordHint(pwInput.value));
+  }
+
+  // Persist quiz progress when the tab is hidden or closed (P0-9)
+  window.addEventListener("beforeunload", () => {
+    if (!quizSubmitted && !isReviewMode) saveQuizProgress();
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (
+      document.visibilityState === "hidden" &&
+      !quizSubmitted &&
+      !isReviewMode
+    ) {
+      updateQuestionTimer();
+      saveQuizProgress();
+    }
+  });
 });
 
-function toggleAuthMode() {
-  isRegistering = !isRegistering;
+function setAuthMode(mode) {
+  isRegistering = mode === "register";
   const btn = document.getElementById("auth-submit-btn");
-  const link = document.querySelector(".card-body small a");
   const title = document.getElementById("auth-title");
   const sub = document.getElementById("auth-subtitle");
-
-  // Reset password visibility on mode switch
   const pwInput = document.getElementById("auth-password");
-  const pwIcon  = document.getElementById("toggle-password-icon");
-  if (pwInput) pwInput.type = "password";
-  if (pwIcon)  pwIcon.textContent = "visibility_lock";
+  const pwIcon = document.getElementById("toggle-password-icon");
+  const forgotLink = document.getElementById("forgot-password-link");
+  const resendLink = document.getElementById("resend-verification-link");
 
-  // We no longer need to find or hide the google-auth-container here
-  // because we want it to stay visible in both modes.
-
-  if (isRegistering) {
-    title.textContent = "Create Account";
-    sub.textContent = "Join us to start practicing.";
-    btn.textContent = "Register";
-    link.textContent = "Login here";
-  } else {
-    title.textContent = "Welcome Back!";
-    sub.textContent = "Login to access your dashboard.";
-    btn.textContent = "Login";
-    link.textContent = "Register here";
+  if (pwInput) {
+    pwInput.type = "password";
+    pwInput.autocomplete = isRegistering ? "new-password" : "current-password";
   }
+  if (pwIcon) pwIcon.className = "bi bi-eye-slash";
+
+  if (title) title.textContent = isRegistering ? "Create Account" : "Welcome Back!";
+  if (sub) sub.textContent = isRegistering ? "Join us to start practicing." : "Login to access your dashboard.";
+  if (btn) btn.textContent = isRegistering ? "Register" : "Login";
+  if (forgotLink) forgotLink.style.display = isRegistering ? "none" : "";
+  if (resendLink) resendLink.classList.add("d-none");
+
+  clearInlineError();
+  updatePasswordHint(document.getElementById("auth-password")?.value || "");
+}
+
+function showInlineError(message) {
+  const el = document.getElementById("auth-inline-error");
+  if (el) {
+    el.textContent = message;
+    el.style.display = "block";
+  }
+}
+
+function clearInlineError() {
+  const el = document.getElementById("auth-inline-error");
+  if (el) {
+    el.textContent = "";
+    el.style.display = "none";
+  }
+}
+
+function updatePasswordHint(value) {
+  const el = document.getElementById("auth-password-hint");
+  if (!el) return;
+  if (!isRegistering) {
+    el.textContent = "";
+    return;
+  }
+  if (!value) {
+    el.textContent = "Use at least 6 characters.";
+  } else if (value.length < 6) {
+    el.textContent = "Too short — at least 6 characters.";
+  } else if (value.length < 10) {
+    el.textContent = "Fair — add numbers or symbols for strength.";
+  } else {
+    el.textContent = "Strong password.";
+  }
+}
+
+function forgotPassword() {
+  const email = document.getElementById("auth-email").value.trim();
+  if (!email) {
+    showInlineError("Enter your email address to reset your password.");
+    return;
+  }
+  auth
+    .sendPasswordResetEmail(email)
+    .then(() => {
+      toastr.success("Password reset email sent. Check your inbox.");
+      clearInlineError();
+    })
+    .catch((err) => handleAuthError(err));
+}
+
+function resendVerification() {
+  const user = auth.currentUser;
+  if (!user) return;
+  user
+    .sendEmailVerification()
+    .then(() => toastr.success("Verification email sent. Check your inbox."))
+    .catch((err) => handleAuthError(err));
 }
 
 document.getElementById("auth-form").addEventListener("submit", (e) => {
   e.preventDefault();
-  const email = document.getElementById("auth-email").value;
+  clearInlineError();
+  const email = document.getElementById("auth-email").value.trim();
   const pass = document.getElementById("auth-password").value;
 
   if (!email || !pass) {
-    toastr.warning("Please enter both email and password.");
+    showInlineError("Please enter both email and password.");
     return;
   }
 
@@ -221,7 +314,7 @@ document.getElementById("auth-form").addEventListener("submit", (e) => {
           "Account created! Please verify your email (check spam folder), then login."
         );
         document.getElementById("auth-password").value = "";
-        if (isRegistering) toggleAuthMode();
+        setAuthMode("login");
         auth.signOut();
       })
       .catch((err) => handleAuthError(err));
@@ -230,9 +323,11 @@ document.getElementById("auth-form").addEventListener("submit", (e) => {
       .signInWithEmailAndPassword(email, pass)
       .then((userCredential) => {
         if (!userCredential.user.emailVerified) {
-          toastr.error(
-            "Login denied: Email not verified. Please verify your email. (check spam folder)"
+          showInlineError(
+            "Email not verified. Check your inbox (and spam) for the verification link."
           );
+          const resendLink = document.getElementById("resend-verification-link");
+          if (resendLink) resendLink.classList.remove("d-none");
           auth.signOut();
         } else {
           toastr.success("Logged in successfully!");
@@ -243,23 +338,27 @@ document.getElementById("auth-form").addEventListener("submit", (e) => {
 });
 
 function handleAuthError(error) {
+  let msg = error.message || "Authentication failed.";
   switch (error.code) {
     case "auth/email-already-in-use":
-      toastr.error("This email is already registered.");
+      msg = "This email is already registered.";
       break;
     case "auth/weak-password":
-      toastr.error("Password is too weak. Min 6 characters.");
+      msg = "Password is too weak. Use at least 6 characters.";
       break;
     case "auth/user-not-found":
     case "auth/wrong-password":
-      toastr.error("Invalid email or password.");
+      msg = "Invalid email or password.";
+      break;
+    case "auth/invalid-email":
+      msg = "Please enter a valid email address.";
       break;
     case "auth/popup-closed-by-user":
       toastr.info("Login cancelled.");
-      break;
-    default:
-      toastr.error(error.message);
+      return;
   }
+  showInlineError(msg);
+  toastr.error(msg);
 }
 
 function logoutUser() {
@@ -336,7 +435,30 @@ function showTestSelection() {
 }
 
 function exitQuiz() {
+  const quizSection = document.getElementById("quiz-section");
+  const inProgress =
+    !isPracticeMode &&
+    !isReviewMode &&
+    !quizSubmitted &&
+    quizSection &&
+    quizSection.style.display !== "none" &&
+    currentQuizData &&
+    currentQuizData.length > 0;
+
+  if (inProgress) {
+    const modalEl = document.getElementById("exitConfirmModal");
+    const modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+    modal.show();
+    return;
+  }
+
+  performExitQuiz();
+}
+
+function performExitQuiz() {
   if (currentQuizTimer) currentQuizTimer.stop();
+  updateQuestionTimer();
+  saveQuizProgress();
 
   // Check if we are in Practice Mode
   if (isPracticeMode) {
@@ -347,7 +469,7 @@ function exitQuiz() {
   // Regular Quiz Logic
   if (isReviewMode && reviewSource === "performance") {
     showPerformance();
-  } else if (currentSubject && allQuizData[currentSubject]) {
+  } else if (currentSubject && allQuizData && allQuizData[currentSubject]) {
     hideAllSections();
     document.getElementById("test-selection-section").style.display = "block";
     renderChapters(currentSubject);

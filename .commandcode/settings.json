@@ -28,7 +28,15 @@
       "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_remaining.js\")",
       "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_hindi_factual.js\")",
       "Shell(node \"C:\\Users\\princ\\AppData\\Local\\Temp\\commandcode\\E--UPSC-MCQ\\f4ec00cd-040c-4955-8d19-01a512ef019f\\scratchpad\\enhance_computer_acronyms.js\")",
-      "Shell(node --check borComputer.js)"
+      "Shell(node --check borComputer.js)",
+      "Shell(node --check quiz.js)",
+      "Shell(node --check auth.js)",
+      "Shell(node --check utils.js)",
+      "Shell(node --check dashboard.js)",
+      "Shell(git:*)",
+      "powershell",
+      "Shell(node --check admin.js)",
+      "Shell(node --check e2e_smoke.js)"
     ],
     "deny": [],
     "defaultMode": "default"

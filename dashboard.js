@@ -80,6 +80,12 @@ function renderDashboardUI() {
   const combinedHistory = [...userHistory, ...practiceHistory];
   const chartData = currentDashboardMode === 'quiz' ? userHistory : practiceHistory;
 
+  // Empty state for new users (P1-19)
+  const emptyState = document.getElementById("dashboard-empty-state");
+  if (emptyState) {
+    emptyState.classList.toggle("d-none", combinedHistory.length > 0);
+  }
+
   // 1. Cumulative Stats Calculation
   const totalTests = combinedHistory.length;
   const avgScore = totalTests
@@ -260,6 +266,29 @@ async function generateAIReview() {
   btnText.textContent = "Analyzing...";
   contentDiv.innerHTML = `<div class="text-center text-muted"><p>Thinking...</p></div>`;
 
+  // Serve a fresh cached review if available (< 1 hour old)
+  try {
+    const cached = JSON.parse(
+      localStorage.getItem(`ai_review_${currentUser.uid}`) || "null"
+    );
+    if (
+      cached &&
+      cached.html &&
+      Date.now() - cached.timestamp < 60 * 60 * 1000
+    ) {
+      contentDiv.innerHTML = `<div class="animate-fade-in markdown-content">${cached.html}</div>`;
+      const metaEl = document.getElementById("ai-review-meta");
+      if (metaEl)
+        metaEl.textContent = `Last review: ${new Date(cached.timestamp).toLocaleString()}`;
+      btn.disabled = false;
+      spinner.classList.add("d-none");
+      btnText.textContent = "⚡ Analyze My Performance";
+      return;
+    }
+  } catch (e) {
+    // ignore cache read errors
+  }
+
   try {
     // Recalculate essentials from userHistory for cleaner data
     if (!userHistory || userHistory.length === 0) {
@@ -410,13 +439,29 @@ async function generateAIReview() {
 
     // Render Response using marked.js for full Markdown support
     // @ts-ignore
-    const formattedText = marked.parse(aiText);
+    const formattedText = sanitizeHTML(marked.parse(aiText));
 
     contentDiv.innerHTML = `<div class="animate-fade-in markdown-content">${formattedText}</div>`;
+
+    // Record the timestamp and cache the result (P1-20)
+    const nowTs = Date.now();
+    const metaEl = document.getElementById("ai-review-meta");
+    if (metaEl)
+      metaEl.textContent = `Last review: ${new Date(nowTs).toLocaleString()}`;
+    try {
+      localStorage.setItem(
+        `ai_review_${currentUser.uid}`,
+        JSON.stringify({ html: formattedText, timestamp: nowTs })
+      );
+    } catch (e) {
+      // ignore cache write errors
+    }
   } catch (error) {
     console.error("AI Error:", error);
     toastr.error("AI Analysis Failed: " + error.message);
-    contentDiv.innerHTML = `<p class="text-danger">Failed to generate review. Please check the system configuration.</p>`;
+    contentDiv.innerHTML = `<div class="alert alert-warning border-0 mb-0"><strong>Couldn't generate review.</strong><br>${error.message}</div>`;
+    const metaEl = document.getElementById("ai-review-meta");
+    if (metaEl) metaEl.textContent = "";
   } finally {
     btn.disabled = false;
     spinner.classList.add("d-none");

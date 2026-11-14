@@ -15,21 +15,21 @@
     />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
-    <link href="styles.css?v=1.3" rel="stylesheet" />
+    <link href="styles.css?v=2.4" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
   </head>
   <body class="d-flex flex-column min-vh-100">
     <div id="global-loader" class="global-loader">
@@ -54,75 +54,90 @@
         <a class="navbar-brand fw-bold" href="#" onclick="handleLogoClick()"
           >✨ MCQ Practice</a
         >
-        <div class="d-flex align-items-center gap-3">
+        <div class="d-flex align-items-center gap-2">
           <button
-            class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center"
+            class="btn btn-outline-light btn-sm rounded-circle d-flex align-items-center justify-content-center theme-toggle-btn"
             id="theme-toggle"
             onclick="toggleTheme()"
-            style="width: 38px; height: 38px; font-size: 1.2rem"
+            type="button"
+            aria-label="Toggle theme"
+            aria-pressed="false"
             title="Toggle Theme"
           >
             🌙
           </button>
-          <!-- BOR Compilation Dropdown -->
-          <div class="dropdown">
-            <button
-              class="btn btn-link text-white text-decoration-none dropdown-toggle fw-semibold"
-              type="button"
-              id="bor-dropdown-btn"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-              style="border: none; letter-spacing: 0.3px;"
-            >
-              📚 BOR Compilation
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3" aria-labelledby="bor-dropdown-btn" style="min-width: 200px;">
-              <li>
-                <a
-                  class="dropdown-item py-2 px-3 fw-semibold"
-                  href="https://drive.google.com/file/d/1KIkyfGrZFXn8wW5iOYK5X5bUMZ5OzEG4/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="bi bi-laptop me-2 text-primary"></i>Code-02 BOR Computer
-                </a>
-              </li>
-              <li>
-                <a
-                  class="dropdown-item py-2 px-3 fw-semibold"
-                  href="https://drive.google.com/file/d/1ULAfw34_EWnem171pDoVGaWHXKLa9xg2/view?usp=sharing"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <i class="bi bi-translate me-2 text-success"></i>Code-01 BOR Hindi
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div id="user-profile" style="display: none" class="dropdown">
-            <button
-              class="btn btn-link text-white text-decoration-none dropdown-toggle fw-bold"
-              type="button"
-              data-bs-toggle="dropdown"
-            >
-              <span id="user-name-display">User</span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end shadow">
-              <li>
-                <a class="dropdown-item" href="#" onclick="showDashboard()"
-                  >📊 Dashboard</a
-                >
-              </li>
-              <li><hr class="dropdown-divider" /></li>
-              <li>
-                <a
-                  class="dropdown-item text-danger"
-                  href="#"
-                  onclick="logoutUser()"
-                  >🚪 Logout</a
-                >
-              </li>
-            </ul>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNav"
+            aria-controls="mainNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <div class="ms-auto d-flex align-items-center gap-2 flex-wrap">
+            <!-- Navigation Menu Dropdown -->
+            <div class="dropdown">
+              <button
+                class="btn btn-link text-white text-decoration-none dropdown-toggle fw-semibold"
+                type="button"
+                id="nav-menu-btn"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <i class="bi bi-grid-3x3-gap-fill me-1"></i>Menu
+              </button>
+              <ul
+                class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3"
+                aria-labelledby="nav-menu-btn"
+                style="min-width: 200px"
+              >
+                <li>
+                  <a class="dropdown-item py-2 px-3 fw-semibold" href="#" onclick="showDashboard()">
+                    <i class="bi bi-speedometer2 me-2 text-primary"></i>Dashboard
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item py-2 px-3 fw-semibold" href="#" onclick="showTestSelection()">
+                    <i class="bi bi-rocket-takeoff me-2 text-success"></i>Take Test
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item py-2 px-3 fw-semibold" href="#" onclick="startPracticeSelection()">
+                    <i class="bi bi-bullseye me-2 text-info"></i>Practice
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div id="user-profile" style="display: none" class="dropdown">
+              <button
+                class="btn btn-link text-white text-decoration-none dropdown-toggle fw-bold"
+                type="button"
+                data-bs-toggle="dropdown"
+              >
+                <i class="bi bi-person-circle me-1"></i><span id="user-name-display">User</span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end shadow">
+                <li>
+                  <a class="dropdown-item" href="#" onclick="showDashboard()"
+                    ><i class="bi bi-speedometer2 me-2 text-primary"></i>Dashboard</a
+                  >
+                </li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a
+                    class="dropdown-item text-danger"
+                    href="#"
+                    onclick="logoutUser()"
+                    ><i class="bi bi-box-arrow-right me-2"></i>Logout</a
+                  >
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -135,26 +150,33 @@
           <div class="col-md-8 col-lg-5">
             <div class="card auth-card text-center animate-fade-in">
               <div class="card-body p-5">
+                <div class="btn-group w-100 mb-4" role="group" aria-label="Login or Register">
+                  <input type="radio" class="btn-check" name="authMode" id="auth-mode-login" checked />
+                  <label class="btn btn-outline-primary fw-bold" for="auth-mode-login">Login</label>
+                  <input type="radio" class="btn-check" name="authMode" id="auth-mode-register" />
+                  <label class="btn btn-outline-primary fw-bold" for="auth-mode-register">Register</label>
+                </div>
                 <h3 class="fw-bold text-primary mb-2" id="auth-title">
                   Welcome Back! 👋
                 </h3>
                 <p class="text-muted mb-4" id="auth-subtitle">
                   Login to access your dashboard.
                 </p>
-                <form id="auth-form">
+                <form id="auth-form" novalidate>
                   <div class="mb-3 text-start">
-                    <label class="form-label text-muted small fw-bold"
+                    <label for="auth-email" class="form-label text-muted small fw-bold"
                       >Email Address</label
                     >
                     <input
                       type="email"
                       class="form-control form-control-lg"
                       id="auth-email"
+                      autocomplete="email"
                       required
                     />
                   </div>
                   <div class="mb-3 text-start">
-                    <label class="form-label text-muted small fw-bold"
+                    <label for="auth-password" class="form-label text-muted small fw-bold"
                       >Password</label
                     >
                     <div class="input-group">
@@ -162,6 +184,7 @@
                         type="password"
                         class="form-control form-control-lg"
                         id="auth-password"
+                        autocomplete="current-password"
                         required
                       />
                       <button
@@ -171,21 +194,42 @@
                         onclick="togglePasswordVisibility()"
                         tabindex="-1"
                         title="Show/Hide Password"
-                        style="border-left:0; color:#6c757d; line-height:1;"
+                        aria-label="Show/Hide Password"
                       >
-                        <span class="material-symbols-rounded" id="toggle-password-icon"
-                          style="font-size:1.3rem;vertical-align:middle;">visibility_lock</span>
+                        <i class="bi bi-eye-slash" id="toggle-password-icon"></i>
                       </button>
                     </div>
+                    <div id="auth-password-hint" class="small text-muted mt-1"></div>
                   </div>
+                  <div
+                    id="auth-inline-error"
+                    class="text-danger small text-start mb-2"
+                    style="display: none"
+                  ></div>
                   <button
                     type="submit"
-                    class="btn btn-primary-custom w-100 py-3 mt-3 shadow"
+                    class="btn btn-primary-custom w-100 py-3 mt-2 shadow"
                     id="auth-submit-btn"
                   >
                     Login
                   </button>
                 </form>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                  <a
+                    href="#"
+                    class="small text-primary text-decoration-none"
+                    id="forgot-password-link"
+                    onclick="forgotPassword()"
+                    >Forgot password?</a
+                  >
+                  <a
+                    href="#"
+                    class="small text-primary text-decoration-none d-none"
+                    id="resend-verification-link"
+                    onclick="resendVerification()"
+                    >Resend verification email</a
+                  >
+                </div>
                 <div id="google-auth-container">
                   <div class="d-flex align-items-center my-4">
                     <hr class="flex-grow-1" />
@@ -204,17 +248,6 @@
                     />Continue with Google
                   </button>
                 </div>
-                <div class="mt-4">
-                  <small class="text-muted"
-                    >Don't have an account?
-                    <a
-                      href="#"
-                      class="text-primary fw-bold text-decoration-none"
-                      onclick="toggleAuthMode()"
-                      >Register here</a
-                    ></small
-                  >
-                </div>
               </div>
             </div>
           </div>
@@ -228,9 +261,22 @@
       style="display: none; min-height: 90vh"
     >
       <div class="container">
-        <div class="text-center mb-5">
+        <div class="text-center mb-4">
           <h2 class="fw-bold section-title">My Dashboard</h2>
           <div class="title-underline mx-auto"></div>
+        </div>
+        <div
+          id="dashboard-empty-state"
+          class="alert alert-light border text-center py-5 d-none"
+        >
+          <div class="display-5 mb-2">🚀</div>
+          <h5 class="fw-bold">Welcome! Take your first test</h5>
+          <p class="text-muted">
+            Your performance stats and analytics will appear here.
+          </p>
+          <button class="btn btn-primary-custom px-4" onclick="showTestSelection()">
+            Take your first test
+          </button>
         </div>
         <div
           class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-3 mb-5 justify-content-center"
@@ -259,7 +305,7 @@
             <div
               class="p-3 bg-white rounded shadow-sm border-start border-4 border-success h-100"
             >
-              <h6 class="text-muted text-uppercase small fw-bold">Precision</h6>
+              <h6 class="text-muted text-uppercase small fw-bold" title="Percentage of attempted questions answered correctly">Precision</h6>
               <h2 class="fw-bold text-success mb-0" id="stat-precision-rate">
                 0%
               </h2>
@@ -270,9 +316,7 @@
             <div
               class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger h-100"
             >
-              <h6 class="text-muted text-uppercase small fw-bold">
-                Neg. Drain
-              </h6>
+              <h6 class="text-muted text-uppercase small fw-bold" title="Marks lost to wrong answers relative to marks gained">Neg. Drain</h6>
               <h2 class="fw-bold text-danger mb-0" id="stat-negative-drain">
                 0%
               </h2>
@@ -283,9 +327,7 @@
             <div
               class="p-3 bg-white rounded shadow-sm border-start border-4 border-info h-100"
             >
-              <h6 class="text-muted text-uppercase small fw-bold">
-                Concept Gap
-              </h6>
+              <h6 class="text-muted text-uppercase small fw-bold" title="Easy questions you missed, indicating gaps in fundamentals">Concept Gap</h6>
               <h2 class="fw-bold text-info mb-0" id="stat-concept-gap">0%</h2>
               <small class="text-muted">Easy Qs Missed</small>
             </div>
@@ -344,7 +386,7 @@
           </div>
         </div>
         <div class="row justify-content-center mb-4">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div
               class="card topic-card shadow-sm h-100"
               style="cursor: pointer"
@@ -360,7 +402,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div
               class="card topic-card shadow-sm h-100"
               style="cursor: pointer"
@@ -373,6 +415,22 @@
               <div class="card-body text-center p-4">
                 <div class="display-5 mb-2">🎯</div>
                 <h3 class="fw-bold card-title text-info m-0">Practice MCQ</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div
+              class="card topic-card shadow-sm h-100"
+              style="cursor: pointer"
+              onclick="showBookmarks()"
+              role="button"
+              tabindex="0"
+              aria-label="My Bookmarks"
+              onkeydown="if(event.key==='Enter'||event.key===' '){this.click(); event.preventDefault();}"
+            >
+              <div class="card-body text-center p-4">
+                <div class="display-5 mb-2">📑</div>
+                <h3 class="fw-bold card-title text-primary m-0">My Bookmarks</h3>
               </div>
             </div>
           </div>
@@ -408,7 +466,9 @@
                 </p>
               </div>
 
-              <div class="d-flex gap-2 align-items-center">
+              <div id="ai-review-meta" class="small text-muted mb-2"></div>
+
+              <div class="d-flex gap-2 align-items-center flex-wrap">
                 <button
                   class="btn btn-primary-custom px-4"
                   onclick="generateAIReview()"
@@ -423,6 +483,10 @@
                   <span id="ai-btn-text">⚡ Analyze My Performance</span>
                 </button>
               </div>
+              <p class="small text-muted mt-3 mb-0">
+                <i class="bi bi-info-circle me-1"></i>AI-generated analysis —
+                verify with your notes.
+              </p>
             </div>
           </div>
         </div>
@@ -486,6 +550,29 @@
             ← Exit
           </button>
         </div>
+        <div class="quiz-mobile-header d-lg-none">
+          <button
+            id="mobile-palette-btn"
+            class="btn btn-outline-secondary btn-sm"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#paletteOffcanvas"
+            aria-controls="paletteOffcanvas"
+          >
+            <i class="bi bi-grid-3x3-gap-fill"></i> Palette
+          </button>
+          <span id="mobile-q-label" class="fw-bold">Q1</span>
+          <div class="d-flex align-items-center gap-2">
+            <div id="mobile-timer" class="timer-value timer-mobile" role="timer">00:00</div>
+            <button
+              id="mobile-pause-btn"
+              class="btn btn-sm btn-secondary-custom"
+              onclick="toggleTimer()"
+              type="button"
+            >
+              <i class="bi bi-pause-fill"></i>
+            </button>
+          </div>
+        </div>
         <div class="row">
           <div class="col-lg-8 mb-4">
             <div id="quiz-content" class="quiz-box h-100"></div>
@@ -497,6 +584,29 @@
       </div>
     </section>
 
+    <!-- Mobile Question Palette Offcanvas -->
+    <div
+      class="offcanvas offcanvas-bottom palette-offcanvas d-lg-none"
+      tabindex="-1"
+      id="paletteOffcanvas"
+      aria-labelledby="paletteOffcanvasLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title fw-bold" id="paletteOffcanvasLabel">
+          Question Palette
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <div id="mobile-nav-container" class="nav-grid"></div>
+        <div id="mobile-palette-legend"></div>
+      </div>
+    </div>
 
     <!-- Start Quiz Modal -->
     <div
@@ -552,14 +662,49 @@
               </div>
             </div>
 
+            <div class="mb-4">
+              <label class="form-label fw-bold text-secondary small d-block text-start">Test Mode</label>
+              <div class="mode-toggle" role="group" aria-label="Test mode">
+                <button type="button" id="mode-exam-btn" class="mode-toggle-btn active" onclick="setQuizMode('exam')">📝 Exam</button>
+                <button type="button" id="mode-practice-btn" class="mode-toggle-btn" onclick="setQuizMode('practice')">🎯 Practice</button>
+              </div>
+              <small class="text-muted d-block text-start mt-1" id="mode-hint">
+                Exam: no instant feedback. Practice: shows the answer and explanation after each answer.
+              </small>
+            </div>
+
+            <div class="text-start mb-4 p-3 bg-light rounded-3 border">
+              <h6 class="fw-bold text-secondary mb-2">
+                <i class="bi bi-list-check me-1"></i>Test Rules
+              </h6>
+              <ul class="small text-muted mb-0 ps-3">
+                <li>
+                  <span id="rules-correct" class="fw-bold text-success">+2</span>
+                  for each correct answer,
+                  <span id="rules-wrong" class="fw-bold text-danger">−0.66</span>
+                  for each wrong answer, 0 for unattempted.
+                </li>
+                <li>
+                  Rate your <strong>confidence</strong> (how sure you are) after
+                  each answer — it powers your analytics, not your score.
+                </li>
+                <li>
+                  Timer auto-submits when time ends. You can pause up to
+                  <span id="rules-pause" class="fw-bold">3</span> times.
+                </li>
+                <li>Progress is auto-saved; you can resume later.</li>
+              </ul>
+            </div>
+
             <div
-              class="alert alert-info border-0 d-flex align-items-center"
+              id="resume-progress-info"
+              class="alert alert-warning text-start d-none"
               role="alert"
             >
-              <i class="bi bi-info-circle-fill me-2 fs-5"></i>
-              <div class="small text-start">
-                Once you start, the timer will begin. Good luck!
-              </div>
+              <i class="bi bi-exclamation-triangle-fill me-1"></i>
+              You have an unfinished attempt:
+              <strong id="resume-answered-count">0</strong> answered,
+              <strong id="resume-minutes-left">0</strong> min left.
             </div>
           </div>
           <div class="modal-footer border-0 justify-content-center pb-4">
@@ -570,6 +715,13 @@
               onclick="showDashboard()"
             >
               Cancel
+            </button>
+            <button
+              type="button"
+              class="btn btn-success-custom px-4 d-none"
+              id="resume-quiz-btn"
+            >
+              ▶ Resume
             </button>
             <button
               type="button"
@@ -599,18 +751,47 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body p-4">
-            <p class="text-muted small mb-3">Select the tests you want to include in your revision test. Up to 100 questions will be randomly selected from the chosen tests.</p>
+            <p class="text-muted small mb-3">Build a revision test from questions you've already attempted. Questions are randomly selected from the chosen tests.</p>
+
+            <div class="row g-3 mb-3">
+              <div class="col-6">
+                <label for="revision-filter" class="form-label fw-bold text-secondary small">Filter Questions</label>
+                <select class="form-select form-select-sm" id="revision-filter" onchange="updateRevisionAvailable()">
+                  <option value="all">All Questions</option>
+                  <option value="incorrect">Incorrect Only</option>
+                  <option value="correct">Correct Only</option>
+                  <option value="unattempted">Unattempted Only</option>
+                </select>
+              </div>
+              <div class="col-6">
+                <label for="revision-count" class="form-label fw-bold text-secondary small">Number of Questions</label>
+                <select class="form-select form-select-sm" id="revision-count">
+                  <option value="25">25</option>
+                  <option value="50" selected>50</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+            </div>
 
             <div class="mb-3">
-              <label for="revision-filter" class="form-label fw-bold text-secondary small">Filter Questions</label>
-              <select class="form-select form-select-sm" id="revision-filter">
-                <option value="all">All Questions</option>
-                <option value="incorrect">Incorrect Only</option>
-                <option value="correct">Correct Only</option>
-                <option value="unattempted">Unattempted Only</option>
+              <label for="revision-time" class="form-label fw-bold text-secondary small">Time Limit (minutes)</label>
+              <select class="form-select form-select-sm" id="revision-time">
+                <option value="30">30 min</option>
+                <option value="60" selected>60 min</option>
+                <option value="90">90 min</option>
+                <option value="120">120 min</option>
               </select>
             </div>
 
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <label class="form-label fw-bold text-secondary small mb-0">Select Tests</label>
+              <div class="d-flex gap-2 align-items-center">
+                <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none select-quick-btn" onclick="selectAllRevisionTests()">Select all</button>
+                <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none text-muted select-quick-btn" onclick="clearRevisionTests()">Clear</button>
+                <span class="badge bg-primary" id="revision-selected-count">0 selected</span>
+              </div>
+            </div>
+            <div id="revision-available-info" class="small text-muted mb-2"></div>
             <div id="revision-tests-list" class="list-group list-group-flush mb-3">
               <!-- Checkboxes will be injected here -->
             </div>
@@ -635,18 +816,151 @@
       </div>
     </div>
 
+    <!-- Submit Summary Modal -->
+    <div
+      class="modal fade"
+      id="submitSummaryModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+          <div class="modal-header border-0 bg-light rounded-top-4">
+            <h5 class="modal-title fw-bold text-primary">Submit Test?</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-4">
+            <div class="row g-3 text-center mb-3">
+              <div class="col-4">
+                <div class="p-3 bg-light rounded-3 border">
+                  <small class="d-block text-muted text-uppercase fw-bold"
+                    >Answered</small
+                  >
+                  <h4 class="fw-bold text-success mb-0" id="summary-answered">0</h4>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="p-3 bg-light rounded-3 border">
+                  <small class="d-block text-muted text-uppercase fw-bold"
+                    >Unattempted</small
+                  >
+                  <h4 class="fw-bold text-secondary mb-0" id="summary-unattempted">0</h4>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="p-3 bg-light rounded-3 border">
+                  <small class="d-block text-muted text-uppercase fw-bold"
+                    >Marked</small
+                  >
+                  <h4 class="fw-bold text-primary mb-0" id="summary-marked">0</h4>
+                </div>
+              </div>
+            </div>
+            <p class="text-muted small mb-2 text-center">
+              Low-confidence answers (0% or 50%):
+              <strong id="summary-low-confidence">0</strong>
+            </p>
+            <div class="d-flex justify-content-center gap-2 mb-3 flex-wrap">
+              <button
+                type="button"
+                class="btn btn-outline-secondary btn-sm"
+                id="summary-jump-unattempted"
+                onclick="jumpToFirstUnattempted()"
+              >
+                Jump to unattempted
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-secondary btn-sm"
+                id="summary-jump-marked"
+                onclick="jumpToFirstMarked()"
+              >
+                Jump to marked
+              </button>
+            </div>
+          </div>
+          <div class="modal-footer border-0 justify-content-center pb-4">
+            <button
+              type="button"
+              class="btn btn-primary-custom px-4"
+              data-bs-dismiss="modal"
+            >
+              Go back
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger px-5 shadow"
+              onclick="submitAll(true)"
+            >
+              Submit test
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exit Confirmation Modal -->
+    <div
+      class="modal fade"
+      id="exitConfirmModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content border-0 shadow-lg rounded-4">
+          <div class="modal-header border-0 bg-light rounded-top-4">
+            <h5 class="modal-title fw-bold text-primary">Exit Test?</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body p-4 text-center">
+            <p class="text-muted mb-0">
+              Your progress is saved. Your timer will stop. Exit the test?
+            </p>
+          </div>
+          <div class="modal-footer border-0 justify-content-center pb-4">
+            <button
+              type="button"
+              class="btn btn-primary-custom px-4"
+              data-bs-dismiss="modal"
+            >
+              Stay
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger px-5 shadow"
+              data-bs-dismiss="modal"
+              onclick="performExitQuiz()"
+            >
+              Exit
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="config.js?v=1.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="utils.js?v=1.1"></script>
-    <script src="auth.js?v=1.1"></script>
-    <script src="quiz.js?v=1.1"></script>
-    <script src="practice.js?v=1.2"></script>
-    <script src="dashboard.js?v=1.1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.9/purify.min.js"></script>
+    <script src="utils.js?v=1.6"></script>
+    <script src="auth.js?v=1.3"></script>
+    <script src="quiz.js?v=2.5"></script>
+    <script src="practice.js?v=1.3"></script>
+    <script src="dashboard.js?v=1.6"></script>
   </body>
 </html>
