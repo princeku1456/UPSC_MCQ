@@ -1560,19 +1560,36 @@ body {
     min-height: 44px;
 }
 
-/* Test mode selector (Exam/Practice) selected state */
-label[for="mode-exam"].selected,
-label[for="mode-practice"].selected {
+/* Test mode toggle (Exam/Practice) */
+.mode-toggle {
+    display: inline-flex;
+    width: 100%;
+    background: var(--input-bg);
+    border: 1.5px solid var(--border-color);
+    border-radius: 10px;
+    padding: 4px;
+    gap: 4px;
+}
+.mode-toggle-btn {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.mode-toggle-btn.active {
     color: #ffffff !important;
     font-weight: 800;
 }
-label[for="mode-exam"].selected {
+#mode-exam-btn.active {
     background-color: var(--primary-color) !important;
-    border-color: var(--primary-color) !important;
 }
-label[for="mode-practice"].selected {
+#mode-practice-btn.active {
     background-color: #16a34a !important;
-    border-color: #16a34a !important;
 }
 
 /* Subject/chapter search & filter spacing */

@@ -679,10 +679,6 @@ function startRevisionTestExecution(timeSeconds = null) {
 }
 
 function startQuizExecution(savedTime) {
-  quizMode = document.getElementById("mode-practice")?.checked
-    ? "practice"
-    : "exam";
-
   trackEvent("test_started", {
     subject: currentSubject,
     chapter: currentChapterName,
@@ -714,8 +710,8 @@ function showStartModal(subject, chapter) {
       "−" + MARKING_SCHEME.wrongMarks;
     document.getElementById('rules-pause').textContent = MARKING_SCHEME.maxPauses;
 
-    // Highlight the selected test mode button
-    setupModeSelector();
+    // Reset the test mode toggle to Exam and highlight it
+    setQuizMode("exam");
 
     // Reset resume UI to the default "new attempt" state
     pendingResume = null;
@@ -745,21 +741,12 @@ function showStartModal(subject, chapter) {
     modal.show();
 }
 
-function setupModeSelector() {
-    const examRadio = document.getElementById("mode-exam");
-    const practiceRadio = document.getElementById("mode-practice");
-    const examLabel = document.querySelector('label[for="mode-exam"]');
-    const practiceLabel = document.querySelector('label[for="mode-practice"]');
-    if (!examRadio || !practiceRadio || !examLabel || !practiceLabel) return;
-
-    const update = () => {
-        examLabel.classList.toggle("selected", examRadio.checked);
-        practiceLabel.classList.toggle("selected", practiceRadio.checked);
-    };
-
-    examRadio.addEventListener("change", update);
-    practiceRadio.addEventListener("change", update);
-    update();
+function setQuizMode(mode) {
+    quizMode = mode;
+    const examBtn = document.getElementById("mode-exam-btn");
+    const practiceBtn = document.getElementById("mode-practice-btn");
+    if (examBtn) examBtn.classList.toggle("active", mode === "exam");
+    if (practiceBtn) practiceBtn.classList.toggle("active", mode === "practice");
 }
 
 function updateStartModal(numQuestions, savedTime, resumeInfo = null) {

@@ -15,7 +15,7 @@
     />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet" />
-    <link href="styles.css?v=2.0" rel="stylesheet" />
+    <link href="styles.css?v=2.1" rel="stylesheet" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
@@ -680,11 +680,9 @@
 
             <div class="mb-4">
               <label class="form-label fw-bold text-secondary small d-block text-start">Test Mode</label>
-              <div class="btn-group w-100" role="group" aria-label="Test mode">
-                <input type="radio" class="btn-check" name="quizMode" id="mode-exam" checked />
-                <label class="btn btn-outline-primary fw-bold" for="mode-exam">📝 Exam</label>
-                <input type="radio" class="btn-check" name="quizMode" id="mode-practice" />
-                <label class="btn btn-outline-primary fw-bold" for="mode-practice">🎯 Practice</label>
+              <div class="mode-toggle" role="group" aria-label="Test mode">
+                <button type="button" id="mode-exam-btn" class="mode-toggle-btn active" onclick="setQuizMode('exam')">📝 Exam</button>
+                <button type="button" id="mode-practice-btn" class="mode-toggle-btn" onclick="setQuizMode('practice')">🎯 Practice</button>
               </div>
               <small class="text-muted d-block text-start mt-1" id="mode-hint">
                 Exam: no instant feedback. Practice: shows the answer and explanation after each answer.
@@ -977,7 +975,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.9/purify.min.js"></script>
     <script src="utils.js?v=1.5"></script>
     <script src="auth.js?v=1.3"></script>
-    <script src="quiz.js?v=2.0"></script>
+    <script src="quiz.js?v=2.1"></script>
     <script src="practice.js?v=1.3"></script>
     <script src="dashboard.js?v=1.6"></script>
   </body>
