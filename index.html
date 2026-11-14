@@ -79,52 +79,36 @@
           </button>
         </div>
         <div class="collapse navbar-collapse" id="mainNav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link nav-icon" href="#" onclick="showDashboard()" title="Dashboard" aria-label="Dashboard">📊</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-icon" href="#" onclick="showTestSelection()" title="Take Test" aria-label="Take Test">🚀</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-icon" href="#" onclick="startPracticeSelection()" title="Practice" aria-label="Practice">🎯</a>
-            </li>
-          </ul>
-          <div class="d-flex align-items-center gap-2 flex-wrap">
-            <!-- Resources Dropdown -->
+          <div class="ms-auto d-flex align-items-center gap-2 flex-wrap">
+            <!-- Navigation Menu Dropdown -->
             <div class="dropdown">
               <button
                 class="btn btn-link text-white text-decoration-none dropdown-toggle fw-semibold"
                 type="button"
-                id="resources-dropdown-btn"
+                id="nav-menu-btn"
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <i class="bi bi-collection me-1"></i>Resources
+                <i class="bi bi-grid-3x3-gap-fill me-1"></i>Menu
               </button>
               <ul
                 class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3"
-                aria-labelledby="resources-dropdown-btn"
+                aria-labelledby="nav-menu-btn"
                 style="min-width: 200px"
               >
                 <li>
-                  <a
-                    class="dropdown-item py-2 px-3 fw-semibold"
-                    href="https://drive.google.com/file/d/1KIkyfGrZFXn8wW5iOYK5X5bUMZ5OzEG4/view?usp=sharing"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i class="bi bi-laptop me-2 text-primary"></i>Code-02 BOR Computer
+                  <a class="dropdown-item py-2 px-3 fw-semibold" href="#" onclick="showDashboard()">
+                    <i class="bi bi-speedometer2 me-2 text-primary"></i>Dashboard
                   </a>
                 </li>
                 <li>
-                  <a
-                    class="dropdown-item py-2 px-3 fw-semibold"
-                    href="https://drive.google.com/file/d/1ULAfw34_EWnem171pDoVGaWHXKLa9xg2/view?usp=sharing"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <i class="bi bi-translate me-2 text-success"></i>Code-01 BOR Hindi
+                  <a class="dropdown-item py-2 px-3 fw-semibold" href="#" onclick="showTestSelection()">
+                    <i class="bi bi-rocket-takeoff me-2 text-success"></i>Take Test
+                  </a>
+                </li>
+                <li>
+                  <a class="dropdown-item py-2 px-3 fw-semibold" href="#" onclick="startPracticeSelection()">
+                    <i class="bi bi-bullseye me-2 text-info"></i>Practice
                   </a>
                 </li>
               </ul>
