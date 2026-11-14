@@ -8,4 +8,9 @@
 - Prefers completing remaining/leftover work in a single consolidated pass ("in one go") rather than many small incremental batches. Confidence: 0.6
 - For large, repetitive content-editing/generation jobs, prefers working in substantially larger batches (~100 items at a time) to finish faster, rather than small ~20-item batches. Confidence: 0.9
 - Prefers concise, direct answers to direct questions (e.g., a simple yes/no status confirmation) rather than lengthy status summaries or unsolicited offers of additional follow-up work. Confidence: 0.6
-- Prefers selected/active states to be unmistakably visible at a glance (e.g., high-contrast ring plus checkmark) rather than subtle highlighting. Confidence: 0.7
+- Prefers selected/active states to be unmistakably visible at a glance (e.g., high-contrast ring plus checkmark, or a solid fill color on the selected button) rather than subtle highlighting. Confidence: 0.8
+- Prefers icon-based navigation buttons (emoji icons) over text labels, reusing the same icons already used elsewhere (e.g., dashboard) for visual consistency. Confidence: 0.7
+- Prefers consolidating dependent settings into a single mode selector (e.g., Exam/Practice switch alone controls whether answers are shown) instead of adding a separate toggle/checkbox for behavior that is fully determined by the mode. Confidence: 0.6
+- Prefers mutually-exclusive mode/setting selections to be rendered as toggle buttons (segmented toggle switch) that act like a switch, rather than radio-button groups. Confidence: 0.7
+- Dislikes navigation/UI controls (e.g., tab buttons) crammed together into a single tight space; prefers them spread out with clear spacing/gaps. Confidence: 0.7
+- Prefers the performance review page as a single-page layout rather than a tabbed (Summary/Leaderboard/Questions) layout; rejected the tabbed reform and asked for it to be reverted. Confidence: 0.7
