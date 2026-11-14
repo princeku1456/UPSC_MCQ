@@ -1561,16 +1561,16 @@ body {
 }
 
 /* Test mode selector (Exam/Practice) selected state */
-#mode-exam:checked + .btn,
-#mode-practice:checked + .btn {
+label[for="mode-exam"].selected,
+label[for="mode-practice"].selected {
     color: #ffffff !important;
     font-weight: 800;
 }
-#mode-exam:checked + .btn {
+label[for="mode-exam"].selected {
     background-color: var(--primary-color) !important;
     border-color: var(--primary-color) !important;
 }
-#mode-practice:checked + .btn {
+label[for="mode-practice"].selected {
     background-color: #16a34a !important;
     border-color: #16a34a !important;
 }

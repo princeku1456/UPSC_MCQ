@@ -714,6 +714,9 @@ function showStartModal(subject, chapter) {
       "−" + MARKING_SCHEME.wrongMarks;
     document.getElementById('rules-pause').textContent = MARKING_SCHEME.maxPauses;
 
+    // Highlight the selected test mode button
+    setupModeSelector();
+
     // Reset resume UI to the default "new attempt" state
     pendingResume = null;
     document.getElementById('resume-progress-info').classList.add('d-none');
@@ -740,6 +743,23 @@ function showStartModal(subject, chapter) {
     const modalEl = document.getElementById('startQuizModal');
     const modal = new bootstrap.Modal(modalEl);
     modal.show();
+}
+
+function setupModeSelector() {
+    const examRadio = document.getElementById("mode-exam");
+    const practiceRadio = document.getElementById("mode-practice");
+    const examLabel = document.querySelector('label[for="mode-exam"]');
+    const practiceLabel = document.querySelector('label[for="mode-practice"]');
+    if (!examRadio || !practiceRadio || !examLabel || !practiceLabel) return;
+
+    const update = () => {
+        examLabel.classList.toggle("selected", examRadio.checked);
+        practiceLabel.classList.toggle("selected", practiceRadio.checked);
+    };
+
+    examRadio.addEventListener("change", update);
+    practiceRadio.addEventListener("change", update);
+    update();
 }
 
 function updateStartModal(numQuestions, savedTime, resumeInfo = null) {
