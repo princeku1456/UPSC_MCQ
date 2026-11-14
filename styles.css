@@ -1626,13 +1626,29 @@ body {
 }
 
 /* Review tabs */
+.review-tabs {
+    border-bottom: 2px solid var(--border-color);
+    gap: 0.5rem;
+}
 .review-tabs .nav-link {
-    color: var(--text-main);
+    color: var(--text-muted);
     font-weight: 600;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: 8px 8px 0 0;
+    margin-bottom: -2px;
+    white-space: nowrap;
+}
+.review-tabs .nav-link:hover {
+    color: var(--primary-color);
+    background-color: var(--option-hover);
 }
 .review-tabs .nav-link.active {
     color: var(--primary-color);
     font-weight: 700;
+    background-color: var(--bg-card);
+    border-color: var(--border-color);
+    border-bottom-color: var(--bg-card);
 }
 
 /* Print the full review, hiding app chrome */
