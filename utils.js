@@ -1001,7 +1001,7 @@ const DifficultyHelper = {
      */
     calculate(correctCount, totalAttempts) {
         if (!totalAttempts || totalAttempts <= 0) {
-             return { label: "Medium", color: "warning", percentage: 0 };
+             return { label: "No data", color: "secondary", percentage: 0 };
         }
 
         const percentage = Math.round((correctCount / totalAttempts) * 100);
