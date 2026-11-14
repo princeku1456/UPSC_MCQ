@@ -106,6 +106,7 @@ async function renderPracticeUI() {
                             <option value="50">50 Questions</option>
                             <option value="75">75 Questions</option>
                             <option value="100">100 Questions</option>
+                            <option value="all">All Questions</option>
                         </select>
                     </div>
 
@@ -181,7 +182,8 @@ function updatePracticeTopics() {
 
   let optionsHtml = `<option value="all">All Topics (${selectedSubject})</option>`;
   chapKeys.forEach((chapId) => {
-    optionsHtml += `<option value="${chapId}">${chapId}</option>`;
+    const label = chapId.includes(":::") ? chapId.split(":::")[1] : chapId;
+    optionsHtml += `<option value="${chapId}">${label}</option>`;
   });
 
   if ($topicSelect.hasClass("select2-hidden-accessible")) {
@@ -214,9 +216,8 @@ function handleGeneratePractice() {
   const rawTopics = $("#practice-topic-select").val() || [];
   const selectedTopics = Array.isArray(rawTopics) ? rawTopics : (rawTopics ? [rawTopics] : []);
 
-  const limit = parseInt(
-    document.getElementById("practice-limit-select").value
-  );
+  const limitValue = document.getElementById("practice-limit-select").value;
+  const limit = limitValue === "all" ? "all" : parseInt(limitValue);
 
   if (!subject || selectedTopics.length === 0) {
     toastr.error("Please select a Subject and at least one Topic.");
@@ -273,21 +274,23 @@ async function loadPracticeQuiz(subject, chapters, limit) {
   try {
     console.log("allPracticeData loaded?", typeof allPracticeData !== "undefined");
 
-    const chapterIds = includeAllTopics
+    const chapterKeys = includeAllTopics
       ? Object.keys(allPracticeData[practiceSubject] || {})
-      : chapters.map((c) => (c.includes(":::") ? c.split(":::")[1] : c));
+      : chapters.filter((c) => c !== "all");
 
-    console.log("Resolved chapterIds to fetch:", chapterIds);
+    console.log("Resolved chapterKeys to fetch:", chapterKeys);
 
-    if (chapterIds.length === 0) {
+    if (chapterKeys.length === 0) {
       console.warn("No chapters found.");
       console.groupEnd();
       return toastr.error("No questions available for the selected topic(s).");
     }
 
     // Fetch all selected chapters in parallel for faster loading
-    const promises = chapterIds.map((chapId) => {
-        const docId = practiceSubject.replace(/\s+/g, "_") + "_" + chapId.replace(/\s+/g, "_");
+    const promises = chapterKeys.map((chapId) => {
+        const docId = chapId.includes(":::")
+          ? chapId.split(":::")[0]
+          : practiceSubject.replace(/\s+/g, "_") + "_" + chapId.replace(/\s+/g, "_");
         console.log("  -> Building docId for chapId", JSON.stringify(chapId), ":", JSON.stringify(docId));
         return DataManager.fetchPracticeQuestions(docId).then((qs) => {
             console.log(`  -> Result for docId "${docId}":`, qs ? qs.length : 0, "questions");
@@ -297,8 +300,21 @@ async function loadPracticeQuiz(subject, chapters, limit) {
 
     // Wait for all fetches to complete, then flatten the array of arrays
     const results = await Promise.all(promises);
-    const allQuestions = results.flat();
-    console.log("TOTAL questions fetched across all chapters:", allQuestions.length);
+    const flatQuestions = results.flat();
+    console.log("TOTAL questions fetched across all chapters (before dedupe):", flatQuestions.length);
+
+    const seenQuestions = new Set();
+    const allQuestions = flatQuestions.filter((q) => {
+      if (!q || typeof q.text !== "string") return true;
+      const optionSig = Array.isArray(q.options)
+        ? q.options.map((opt) => String(opt).trim().toLowerCase()).join("||")
+        : "";
+      const key = q.text.trim().toLowerCase() + "|" + optionSig;
+      if (seenQuestions.has(key)) return false;
+      seenQuestions.add(key);
+      return true;
+    });
+    console.log("TOTAL questions after dedupe:", allQuestions.length);
 
     if (allQuestions.length === 0) {
       console.warn("No questions found for any requested docId. Check the docIds logged above against your Firestore 'practice_mcqs' collection document IDs.");
@@ -306,22 +322,27 @@ async function loadPracticeQuiz(subject, chapters, limit) {
       return toastr.error("No questions available.");
     }
 
-    // Full Fisher-Yates shuffle on the entire question pool
-    const randomized = [...allQuestions];
-    for (let i = randomized.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [randomized[i], randomized[j]] = [randomized[j], randomized[i]];
-    }
+    if (limit === "all") {
+      practiceQuizData = allQuestions;
+    } else {
+      // Full Fisher-Yates shuffle on the entire question pool
+      const randomized = [...allQuestions];
+      for (let i = randomized.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [randomized[i], randomized[j]] = [randomized[j], randomized[i]];
+      }
 
-    const fetchLimit = Math.min(limit, randomized.length);
+      const fetchLimit = Math.min(limit, randomized.length);
 
-    // Second shuffle pass on the selected slice for extra randomness
-    const selected = randomized.slice(0, fetchLimit);
-    for (let i = selected.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [selected[i], selected[j]] = [selected[j], selected[i]];
+      // Second shuffle pass on the selected slice for extra randomness
+      const selected = randomized.slice(0, fetchLimit);
+      for (let i = selected.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [selected[i], selected[j]] = [selected[j], selected[i]];
+      }
+      practiceQuizData = selected;
     }
-    practiceQuizData = selected;
+    practiceQuestionLimit = practiceQuizData.length;
     console.log("Final practiceQuizData (after shuffle/limit):", practiceQuizData.length, "questions");
     console.groupEnd();
 
@@ -331,7 +352,7 @@ async function loadPracticeQuiz(subject, chapters, limit) {
     setupPracticeLayout();
     renderPracticeQuestion();
     renderPracticeNav();
-    startPracticeTimer(limit);
+    startPracticeTimer(practiceQuestionLimit);
   } catch (error) {
     console.error("[PRACTICE DEBUG] Fetch Error:", error);
     console.groupEnd();
