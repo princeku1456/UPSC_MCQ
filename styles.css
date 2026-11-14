@@ -1531,6 +1531,11 @@ body {
     color: #ffffff;
     background-color: rgba(255, 255, 255, 0.12);
 }
+.main-navbar .navbar-nav .nav-icon {
+    font-size: 1.15rem;
+    line-height: 1;
+    text-align: center;
+}
 
 /* Auth segmented control (P1-21) */
 #auth-mode-login + .btn,
