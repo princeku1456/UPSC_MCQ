@@ -2192,6 +2192,9 @@ function renderQuizLayout(title) {
   document
     .getElementById("final-submit-btn")
     .addEventListener("click", () => submitAll(false));
+
+  // Load per-user bookmarks and refresh the bookmark button state
+  loadUserBookmarks().then(() => updateBookmarkButton());
 }
 
 function paletteLegendHTML() {
@@ -3081,35 +3084,58 @@ function updateMarkButton() {
 /* =========================================
    BOOKMARKS (P2-12)
    ========================================= */
-function getBookmarks() {
+let userBookmarks = []; // in-memory cache of { id, ...bookmark }
+
+async function loadUserBookmarks() {
+  if (!currentUser) {
+    userBookmarks = [];
+    return;
+  }
   try {
-    return JSON.parse(localStorage.getItem("user_bookmarks") || "[]");
+    const snap = await getDb()
+      .collection("bookmarks")
+      .where("userId", "==", currentUser.uid)
+      .get();
+    userBookmarks = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+    userBookmarks.sort((a, b) => (b.savedAtMs || 0) - (a.savedAtMs || 0));
   } catch (e) {
-    return [];
+    console.error("Failed to load bookmarks:", e);
+    userBookmarks = [];
   }
 }
 
 function isBookmarked() {
   const q = currentQuizData[currentQuestionIndex];
   if (!q) return false;
-  return getBookmarks().some(
+  return userBookmarks.some(
     (b) => b.chapterId === currentChapterId && b.text === q.text
   );
 }
 
-function toggleBookmark() {
+async function toggleBookmark() {
   const q = currentQuizData[currentQuestionIndex];
   if (!q) return;
-  let bookmarks = getBookmarks();
-  const existing = bookmarks.findIndex(
+  if (!currentUser) {
+    toastr.warning("Sign in to save bookmarks.");
+    return;
+  }
+
+  const existing = userBookmarks.find(
     (b) => b.chapterId === currentChapterId && b.text === q.text
   );
 
-  if (existing >= 0) {
-    bookmarks.splice(existing, 1);
-    toastr.info("Bookmark removed");
+  if (existing) {
+    try {
+      await getDb().collection("bookmarks").doc(existing.id).delete();
+      userBookmarks = userBookmarks.filter((b) => b.id !== existing.id);
+      toastr.info("Bookmark removed");
+    } catch (e) {
+      console.error(e);
+      toastr.error("Failed to remove bookmark.");
+    }
   } else {
-    bookmarks.unshift({
+    const data = {
+      userId: currentUser.uid,
       chapterId: currentChapterId,
       chapterName: currentChapterName,
       subject: currentSubject,
@@ -3117,12 +3143,18 @@ function toggleBookmark() {
       options: q.options,
       correctAnswer: q.correctAnswer,
       explanation: q.explanation,
-      savedAt: Date.now(),
-    });
-    toastr.success("Bookmark saved");
+      savedAtMs: Date.now(),
+      savedAt: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+    try {
+      const docRef = await getDb().collection("bookmarks").add(data);
+      userBookmarks.unshift({ id: docRef.id, ...data });
+      toastr.success("Bookmark saved");
+    } catch (e) {
+      console.error(e);
+      toastr.error("Failed to save bookmark.");
+    }
   }
-
-  localStorage.setItem("user_bookmarks", JSON.stringify(bookmarks));
   updateBookmarkButton();
 }
 
@@ -3140,8 +3172,9 @@ function updateBookmarkButton() {
   if (label) label.textContent = bookmarked ? "Bookmarked" : "Bookmark";
 }
 
-function showBookmarks() {
-  const bookmarks = getBookmarks();
+async function showBookmarks() {
+  await loadUserBookmarks();
+  const bookmarks = userBookmarks;
   const container = document.getElementById("test-content-container");
   hideAllSections();
   document.getElementById("test-selection-section").style.display = "block";
@@ -3162,7 +3195,7 @@ function showBookmarks() {
   }
 
   const cards = bookmarks
-    .map((b, i) => {
+    .map((b) => {
       const correctIndex = getCorrectIndex(b);
       const options = (b.options || [])
         .map((opt, oi) => {
@@ -3178,7 +3211,7 @@ function showBookmarks() {
           <div class="card-body p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h6 class="fw-bold text-primary mb-0">${b.subject} — ${b.chapterName}</h6>
-              <button class="btn btn-outline-danger btn-sm" onclick="removeBookmark(${i})"><i class="bi bi-trash"></i></button>
+              <button class="btn btn-outline-danger btn-sm" onclick="removeBookmark('${b.id}')"><i class="bi bi-trash"></i></button>
             </div>
             <div class="fw-bold mb-3">${TextFormatter.formatQuestionText(b.text)}</div>
             <div class="mb-3">${options}</div>
@@ -3199,9 +3232,14 @@ function showBookmarks() {
   `;
 }
 
-function removeBookmark(index) {
-  const bookmarks = getBookmarks();
-  bookmarks.splice(index, 1);
-  localStorage.setItem("user_bookmarks", JSON.stringify(bookmarks));
-  showBookmarks();
+async function removeBookmark(id) {
+  if (!id) return;
+  try {
+    await getDb().collection("bookmarks").doc(id).delete();
+    userBookmarks = userBookmarks.filter((b) => b.id !== id);
+    showBookmarks();
+  } catch (e) {
+    console.error(e);
+    toastr.error("Failed to remove bookmark.");
+  }
 }
