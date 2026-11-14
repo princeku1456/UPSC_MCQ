@@ -1517,12 +1517,19 @@ body {
 }
 
 /* Navbar links (P2-4) */
-.main-navbar .nav-link {
-    color: rgba(255, 255, 255, 0.85);
-    font-weight: 600;
+.main-navbar .navbar-nav {
+    gap: 0.35rem;
 }
-.main-navbar .nav-link:hover {
+.main-navbar .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    padding: 0.5rem 0.9rem;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+.main-navbar .navbar-nav .nav-link:hover {
     color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.12);
 }
 
 /* Auth segmented control (P1-21) */
