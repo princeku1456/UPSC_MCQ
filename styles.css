@@ -1513,7 +1513,11 @@ body {
 .theme-toggle-btn {
     width: 38px;
     height: 38px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    line-height: 1;
+    padding: 0;
+    border-radius: 50% !important;
+    flex: 0 0 auto;
 }
 
 /* Navbar links (P2-4) */
@@ -1535,6 +1539,19 @@ body {
     font-size: 1.15rem;
     line-height: 1;
     text-align: center;
+}
+
+/* Consistent styling for navbar dropdown toggles (Resources, profile) */
+.main-navbar .navbar-collapse .dropdown-toggle {
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+.main-navbar .navbar-collapse .dropdown-toggle:hover,
+.main-navbar .navbar-collapse .dropdown-toggle:focus {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.12);
 }
 
 /* Auth segmented control (P1-21) */
