@@ -78,7 +78,6 @@ let chapterFilterMode = "all";
 let currentChapterSubject = "";
 let revisionSubjectKey = "";
 let quizMode = "exam";
-let showAnswersInstantly = true;
 
 function getChapterQuestionCount(chapters, chapId) {
   const raw = chapters && chapters[chapId];
@@ -683,9 +682,6 @@ function startQuizExecution(savedTime) {
   quizMode = document.getElementById("mode-practice")?.checked
     ? "practice"
     : "exam";
-  showAnswersInstantly =
-    quizMode === "practice" &&
-    document.getElementById("instant-answer-toggle")?.checked === true;
 
   trackEvent("test_started", {
     subject: currentSubject,
@@ -718,9 +714,6 @@ function showStartModal(subject, chapter) {
       "−" + MARKING_SCHEME.wrongMarks;
     document.getElementById('rules-pause').textContent = MARKING_SCHEME.maxPauses;
 
-    // Sync the "show answers instantly" toggle with the selected mode
-    setupModeToggle();
-
     // Reset resume UI to the default "new attempt" state
     pendingResume = null;
     document.getElementById('resume-progress-info').classList.add('d-none');
@@ -747,31 +740,6 @@ function showStartModal(subject, chapter) {
     const modalEl = document.getElementById('startQuizModal');
     const modal = new bootstrap.Modal(modalEl);
     modal.show();
-}
-
-function setupModeToggle() {
-    const examRadio = document.getElementById("mode-exam");
-    const practiceRadio = document.getElementById("mode-practice");
-    const toggle = document.getElementById("instant-answer-toggle");
-    const hint = document.getElementById("instant-answer-hint");
-    if (!examRadio || !practiceRadio || !toggle) return;
-
-    const updateToggle = () => {
-        if (practiceRadio.checked) {
-            toggle.disabled = false;
-            toggle.checked = true;
-            if (hint)
-                hint.textContent = "Shows the correct answer and explanation right after you answer.";
-        } else {
-            toggle.disabled = true;
-            toggle.checked = false;
-            if (hint) hint.textContent = "Only available in Practice mode.";
-        }
-    };
-
-    examRadio.addEventListener("change", updateToggle);
-    practiceRadio.addEventListener("change", updateToggle);
-    updateToggle();
 }
 
 function updateStartModal(numQuestions, savedTime, resumeInfo = null) {
@@ -2289,8 +2257,7 @@ function renderQuestion() {
 
   const currentAns = userAnswers[currentQuestionIndex];
   const reveal =
-    quizSubmitted ||
-    (quizMode === "practice" && showAnswersInstantly && isValidAnswer(currentAns));
+    quizSubmitted || (quizMode === "practice" && isValidAnswer(currentAns));
 
   question.options.forEach((opt, idx) => {
     const label = document.createElement("label");
@@ -2312,7 +2279,7 @@ function renderQuestion() {
         if (!userAnswers[currentQuestionIndex])
           userAnswers[currentQuestionIndex] = {};
         userAnswers[currentQuestionIndex].answer = idx;
-        if (quizMode === "practice" && showAnswersInstantly) renderQuestion();
+        if (quizMode === "practice") renderQuestion();
         updateNavHighlights();
         saveQuizProgress();
       });
