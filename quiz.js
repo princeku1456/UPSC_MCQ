@@ -423,36 +423,6 @@ function filterChapters() {
   });
 }
 
-function resumeFromDashboard(chapterId) {
-  const raw = localStorage.getItem(`quiz_progress_${chapterId}`);
-  if (!raw) return;
-  let data;
-  try {
-    data = JSON.parse(raw);
-  } catch (e) {
-    return;
-  }
-  const subject = data.subject;
-  const chapterName = data.chapterName || "Test";
-  if (!subject) {
-    toastr.warning("Couldn't restore this attempt.");
-    return;
-  }
-  const prefix = subject.replace(/\s+/g, "_") + "_";
-  const originalChapId = chapterId.startsWith(prefix)
-    ? chapterId.substring(prefix.length)
-    : chapterId;
-  loadQuiz(
-    subject,
-    originalChapId,
-    encodeURIComponent(chapterName),
-    false,
-    null,
-    null,
-    true
-  );
-}
-
 /* =========================================
    REVISION TEST LOGIC
    ========================================= */
