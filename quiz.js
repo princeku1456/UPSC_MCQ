@@ -78,7 +78,6 @@ let chapterFilterMode = "all";
 let currentChapterSubject = "";
 let revisionSubjectKey = "";
 let quizMode = "exam";
-let currentReviewResult = null;
 
 function getChapterQuestionCount(chapters, chapId) {
   const raw = chapters && chapters[chapId];
@@ -1075,7 +1074,6 @@ function renderLeaderboardHTML(container, data) {
  */
 async function renderReviewMode(resultData) {
   trackEvent("review_viewed", { chapter: currentChapterName });
-  currentReviewResult = resultData;
 
   // Pre-fetch stats to ensure they are available for community comparison
   if (currentChapterId.startsWith('revision_')) {
@@ -1393,182 +1391,158 @@ async function renderReviewMode(resultData) {
       `;
   }
 
-  // Filter counts for the Questions tab (P2-13)
-  let lowConfCount = 0;
-  let markedCount = 0;
-  currentQuizData.forEach((q, i) => {
-    const uAns = userAnswers[i];
-    const surety = uAns && uAns.surety;
-    if (isValidAnswer(uAns) && (surety === 0 || surety === 50)) lowConfCount++;
-    if (markedForReview[i]) markedCount++;
-  });
-
   content.innerHTML = `
         <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2 border-bottom pb-3">
             <div>
                 <h4 class="fw-bold text-primary m-0">${currentChapterName}</h4>
                 <span class="badge bg-secondary">Performance Review</span>
             </div>
-            <div class="d-flex gap-2">
-                <button class="btn btn-outline-secondary btn-sm" onclick="printReview()"><i class="bi bi-printer me-1"></i>Print</button>
-                <button class="btn btn-primary-custom px-3 btn-sm" onclick="exitQuiz()">← Back</button>
+            <div class="d-flex align-items-center gap-2 flex-wrap">
+                ${subjectFilterHtml}
+                <div class="btn-group shadow-sm" role="group">
+                    <button class="btn btn-outline-primary active" id="btn-all" onclick="filterReview('all', this)">All</button>
+                    <button class="btn btn-outline-success" id="btn-correct" onclick="filterReview('correct', this)">Correct</button>
+                    <button class="btn btn-outline-danger" id="btn-incorrect" onclick="filterReview('incorrect', this)">Incorrect</button>
+                    <button class="btn btn-outline-secondary" id="btn-unattempted" onclick="filterReview('unattempted', this)">Unattempted</button>
+                    <button class="btn btn-outline-warning" id="btn-lowconfidence" onclick="filterReview('lowconfidence', this)">Low Confidence</button>
+                    <button class="btn btn-outline-info" id="btn-marked" onclick="filterReview('marked', this)">Marked</button>
+                </div>
             </div>
         </div>
 
-        <ul class="nav nav-tabs nav-fill mb-3 review-tabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="tab-summary-btn" data-bs-toggle="tab" data-bs-target="#tab-summary" type="button" role="tab">Summary</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-leaderboard-btn" data-bs-toggle="tab" data-bs-target="#tab-leaderboard" type="button" role="tab">Leaderboard</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="tab-questions-btn" data-bs-toggle="tab" data-bs-target="#tab-questions" type="button" role="tab">Questions</button>
-            </li>
-        </ul>
+        <div class="card mb-4 border-0 shadow-sm">
+            <div class="card-body">
+                <h5 class="fw-bold card-title mb-3">📊 UPSC Prep Index</h5>
 
-        <div class="tab-content">
-            <div class="tab-pane fade show active" id="tab-summary" role="tabpanel" aria-labelledby="tab-summary-btn">
-                <div class="card mb-4 border-0 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="fw-bold card-title mb-3">📊 UPSC Prep Index</h5>
-
-                        <div class="row g-3 text-center mb-4">
-                            <div class="col-6 col-md-3">
-                                <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary">
-                                    <h6 class="text-uppercase text-muted small fw-bold mb-1">Accuracy</h6>
-                                    <h3 class="fw-bold text-dark m-0">${accuracyRate}%</h3>
-                                    <small class="text-muted">on attempted</small>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger">
-                                    <h6 class="text-uppercase text-muted small fw-bold mb-1">Negative Loss</h6>
-                                    <h3 class="fw-bold text-danger m-0">-${marksLost}</h3>
-                                    <small class="text-muted">marks lost</small>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning">
-                                    <h6 class="text-uppercase text-muted small fw-bold mb-1">Concept Gaps</h6>
-                                    <h3 class="fw-bold text-warning m-0">${sillyMistakes}</h3>
-                                    <small class="text-muted d-block">
-                                        ${
-                                          missedEasyQNumbers.length > 0
-                                            ? `Easy Qs Missed -- <span class="text-danger fw-bold">"${missedEasyQNumbers.join(
-                                                ", "
-                                              )}"</span>`
-                                            : "No Easy Qs Missed"
-                                        }
-                                    </small>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="p-3 bg-primary text-white rounded shadow-sm">
-                                    <h6 class="text-white-50 text-uppercase small fw-bold mb-1">Final Score</h6>
-                                    <h3 class="fw-bold m-0">${score} <span class="fs-6 text-white-50">/ ${totalMarks}</span></h3>
-                                </div>
-                            </div>
+                <div class="row g-3 text-center mb-4">
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-primary">
+                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Accuracy</h6>
+                            <h3 class="fw-bold text-dark m-0">${accuracyRate}%</h3>
+                            <small class="text-muted">on attempted</small>
                         </div>
-                        <div class="row g-2 mb-4 text-center">
-                            <div class="col-4 col-md">
-                                <div class="p-2 border rounded bg-light">
-                                    <small class="text-muted d-block small fw-bold">TOTAL Qs</small>
-                                    <span class="fw-bold">${totalQuestions}</span>
-                                </div>
-                            </div>
-                            <div class="col-4 col-md">
-                                <div class="p-2 border rounded bg-light">
-                                    <small class="text-muted d-block small fw-bold">ATTEMPTED</small>
-                                    <span class="fw-bold text-primary">${attempted}</span>
-                                </div>
-                            </div>
-                            <div class="col-4 col-md">
-                                <div class="p-2 border rounded bg-light">
-                                    <small class="text-muted d-block small fw-bold">UNATTEMPTED</small>
-                                    <span class="fw-bold text-secondary">${unattempted}</span>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md">
-                                <div class="p-2 border rounded bg-light border-success-subtle">
-                                    <small class="text-success d-block small fw-bold">CORRECT</small>
-                                    <span class="fw-bold text-success">${correct}</span>
-                                </div>
-                            </div>
-                            <div class="col-6 col-md">
-                                <div class="p-2 border rounded bg-light border-danger-subtle">
-                                    <small class="text-danger d-block small fw-bold">INCORRECT</small>
-                                    <span class="fw-bold text-danger">${incorrect}</span>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-danger">
+                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Negative Loss</h6>
+                            <h3 class="fw-bold text-danger m-0">-${marksLost}</h3>
+                            <small class="text-muted">marks lost</small>
                         </div>
-
-                        ${difficultyMatrixHtml}
-                        ${subjectMatrixHtml}
-                        ${insightsHtml}
-
-                        <div class="row mb-4 g-3">
-                            <div class="col-md-6">
-                                <div class="alert alert-info border-0 shadow-sm h-100">
-                                    <h6 class="fw-bold"><i class="fas fa-lightbulb me-2"></i>Strategy Insight</h6>
-                                    <p class="small mb-0">
-                                        ${
-                                          accuracyRate < 70
-                                            ? "Your accuracy is below threshold. Focus on elimination techniques."
-                                            : "Good precision. You are making calculated attempts."
-                                        }
-                                        ${
-                                          sillyMistakes > 2
-                                            ? `You missed <strong>${sillyMistakes} basic questions</strong> that 65% of students got right. Tighten your fundamentals.`
-                                            : "You handled the 'easy' questions with professional precision."
-                                        }
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="alert alert-success border-0 shadow-sm h-100">
-                                    <h6 class="fw-bold"><i class="fas fa-trophy me-2"></i>Competitive Edge</h6>
-                                    <p class="small mb-0">
-                                        You solved <strong>${hardSuccess} high-difficulty</strong> questions where the community struggled. This indicates depth in complex topics.
-                                    </p>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 bg-white rounded shadow-sm border-start border-4 border-warning">
+                            <h6 class="text-uppercase text-muted small fw-bold mb-1">Concept Gaps</h6>
+                            <h3 class="fw-bold text-warning m-0">${sillyMistakes}</h3>
+                            <small class="text-muted d-block">
+                                ${
+                                  missedEasyQNumbers.length > 0
+                                    ? `Easy Qs Missed -- <span class="text-danger fw-bold">"${missedEasyQNumbers.join(
+                                        ", "
+                                      )}"</span>`
+                                    : "No Easy Qs Missed"
+                                }
+                            </small>
                         </div>
-
-                        <div class="mb-4 p-3 rounded border bg-white">
-                            <h6 class="fw-bold text-secondary mb-3"><i class="bi bi-graph-up-arrow me-2"></i>Confidence vs Accuracy Analysis</h6>
-                            <div style="height: 250px; width: 100%;">
-                                <canvas id="confidenceChart"></canvas>
-                            </div>
-                            <p class="small text-muted mt-2 text-center">Correct attempts as a % of each confidence level.</p>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="p-3 bg-primary text-white rounded shadow-sm">
+                            <h6 class="text-white-50 text-uppercase small fw-bold mb-1">Final Score</h6>
+                            <h3 class="fw-bold m-0">${score} <span class="fs-6 text-white-50">/ ${totalMarks}</span></h3>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="row g-2 mb-4 text-center">
+                    <div class="col-4 col-md">
+                        <div class="p-2 border rounded bg-light">
+                            <small class="text-muted d-block small fw-bold">TOTAL Qs</small>
+                            <span class="fw-bold">${totalQuestions}</span>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md">
+                        <div class="p-2 border rounded bg-light">
+                            <small class="text-muted d-block small fw-bold">ATTEMPTED</small>
+                            <span class="fw-bold text-primary">${attempted}</span>
+                        </div>
+                    </div>
+                    <div class="col-4 col-md">
+                        <div class="p-2 border rounded bg-light">
+                            <small class="text-muted d-block small fw-bold">UNATTEMPTED</small>
+                            <span class="fw-bold text-secondary">${unattempted}</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md">
+                        <div class="p-2 border rounded bg-light border-success-subtle">
+                            <small class="text-success d-block small fw-bold">CORRECT</small>
+                            <span class="fw-bold text-success">${correct}</span>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md">
+                        <div class="p-2 border rounded bg-light border-danger-subtle">
+                            <small class="text-danger d-block small fw-bold">INCORRECT</small>
+                            <span class="fw-bold text-danger">${incorrect}</span>
+                        </div>
+                    </div>
+                </div>
 
-            <div class="tab-pane fade" id="tab-leaderboard" role="tabpanel" aria-labelledby="tab-leaderboard-btn">
+                ${difficultyMatrixHtml}
+                ${subjectMatrixHtml}
+                ${insightsHtml}
+
+                <div class="row mb-4 g-3">
+                    <div class="col-md-6">
+                        <div class="alert alert-info border-0 shadow-sm h-100">
+                            <h6 class="fw-bold"><i class="fas fa-lightbulb me-2"></i>Strategy Insight</h6>
+                            <p class="small mb-0">
+                                ${
+                                  accuracyRate < 70
+                                    ? "Your accuracy is below threshold. Focus on elimination techniques."
+                                    : "Good precision. You are making calculated attempts."
+                                }
+                                ${
+                                  sillyMistakes > 2
+                                    ? `You missed <strong>${sillyMistakes} basic questions</strong> that 65% of students got right. Tighten your fundamentals.`
+                                    : "You handled the 'easy' questions with professional precision."
+                                }
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="alert alert-success border-0 shadow-sm h-100">
+                            <h6 class="fw-bold"><i class="fas fa-trophy me-2"></i>Competitive Edge</h6>
+                            <p class="small mb-0">
+                                You solved <strong>${hardSuccess} high-difficulty</strong> questions where the community struggled. This indicates depth in complex topics.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
                 <div id="leaderboard-container" class="mb-4">
                     <div class="text-center py-3">
                         <span class="spinner-border spinner-border-sm text-primary"></span> Loading Leaderboard...
                     </div>
                 </div>
-                <div class="row align-items-center pt-3 border-top" id="global-stats-container"></div>
-            </div>
 
-            <div class="tab-pane fade" id="tab-questions" role="tabpanel" aria-labelledby="tab-questions-btn">
-                <div class="d-flex align-items-center gap-2 flex-wrap mb-3 sticky-review-filters">
-                    ${subjectFilterHtml}
-                    <div class="btn-group shadow-sm" role="group">
-                        <button class="btn btn-outline-primary active" id="btn-all" onclick="filterReview('all', this)">All <span class="badge bg-secondary ms-1">${totalQuestions}</span></button>
-                        <button class="btn btn-outline-success" id="btn-correct" onclick="filterReview('correct', this)">Correct <span class="badge bg-secondary ms-1">${correct}</span></button>
-                        <button class="btn btn-outline-danger" id="btn-incorrect" onclick="filterReview('incorrect', this)">Incorrect <span class="badge bg-secondary ms-1">${incorrect}</span></button>
-                        <button class="btn btn-outline-secondary" id="btn-unattempted" onclick="filterReview('unattempted', this)">Unattempted <span class="badge bg-secondary ms-1">${unattempted}</span></button>
-                        <button class="btn btn-outline-warning" id="btn-lowconfidence" onclick="filterReview('lowconfidence', this)">Low Confidence <span class="badge bg-secondary ms-1">${lowConfCount}</span></button>
-                        <button class="btn btn-outline-info" id="btn-marked" onclick="filterReview('marked', this)">Marked <span class="badge bg-secondary ms-1">${markedCount}</span></button>
+                <div class="row align-items-center pt-3 border-top" id="global-stats-container">
+                    <div class="col-12 text-center py-3">
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <p class="text-muted small mt-2">Comparing with other students...</p>
                     </div>
                 </div>
-                <div id="review-container"></div>
+
+                <div class="mb-5 mt-5 p-3 rounded border bg-white">
+                    <h6 class="fw-bold text-secondary mb-3"><i class="bi bi-graph-up-arrow me-2"></i>Confidence vs Accuracy Analysis</h6>
+                    <div style="height: 250px; width: 100%;">
+                        <canvas id="confidenceChart"></canvas>
+                    </div>
+                    <p class="small text-muted mt-2 text-center">Correct attempts as a % of each confidence level.</p>
+                </div>
             </div>
+        </div>
+
+        <div id="review-container"></div>
+
+        <div class="text-center mt-5">
+            <button class="btn btn-primary-custom px-5 shadow py-2" onclick="exitQuiz()">← Back</button>
         </div>
     `;
 
@@ -1755,35 +1729,15 @@ async function renderReviewMode(resultData) {
 
   loadLeaderboard(currentChapterId);
 
-  // Confidence chart is in the Summary tab (visible) — render immediately
-  ChartHelper.renderConfidenceChart(
-    document.getElementById("confidenceChart"),
-    confChartValues,
-    confStats
-  );
-
-  // Comparison chart lives in the Leaderboard tab — render lazily on first show
-  const leaderboardTabBtn = document.getElementById("tab-leaderboard-btn");
-  if (leaderboardTabBtn) {
-    const onShown = () => {
-      renderComparison();
-      leaderboardTabBtn.removeEventListener("shown.bs.tab", onShown);
-    };
-    leaderboardTabBtn.addEventListener("shown.bs.tab", onShown);
-  }
-}
-
-function renderComparison() {
   const stats = currentReviewStats;
   const container = document.getElementById("global-stats-container");
-  if (!container) return;
 
   if (!stats) {
     container.innerHTML = `<div class="col-12 text-center text-muted">Not enough data for global comparison yet.</div>`;
     return;
   }
 
-  const myScore = currentReviewResult ? currentReviewResult.scorePercent : 0;
+  const myScore = resultData ? resultData.scorePercent : 0;
   let betterThan = 0;
   for (let i = 0; i < stats.allScores.length; i++) {
     if (stats.allScores[i] < myScore) {
@@ -1794,12 +1748,11 @@ function renderComparison() {
     stats.totalAttempts > 0
       ? ((betterThan / stats.totalAttempts) * 100).toFixed(0)
       : 0;
-  const rank = stats.totalAttempts > 0 ? stats.totalAttempts - betterThan : 0;
 
   container.innerHTML = `
         <div class="col-md-4 mb-3 mb-md-0 text-center">
             <h6 class="text-uppercase text-muted small fw-bold">Your Rank</h6>
-            <h2 class="fw-bold text-primary">#${rank} <span class="fs-6 text-muted">/ ${stats.totalAttempts}</span></h2>
+            <h2 class="fw-bold text-primary">Top ${100 - percentile}%</h2>
             <p class="small text-muted">Better than ${percentile}% of users</p>
         </div>
         <div class="col-md-8">
@@ -1858,6 +1811,7 @@ function renderComparison() {
       },
     },
   });
+  ChartHelper.renderConfidenceChart(document.getElementById("confidenceChart"), confChartValues, confStats);
 }
 
 function filterReview(filterType, btnElement) {
@@ -1898,10 +1852,6 @@ function reportQuestionIssue(index) {
       console.error("Report issue failed:", e);
       toastr.error("Failed to report issue.");
     });
-}
-
-function printReview() {
-  window.print();
 }
 
 function renderReviewQuestions(filterType) {
