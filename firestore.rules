@@ -1,0 +1,55 @@
+rules_version = '2';
+
+// NOTE: These rules codify the app's CURRENT client-side access model so the
+// hosted React app keeps working. Several of these are intentionally broad and
+// should be tightened later (custom claims for admin, a Cloud Function for
+// chapter_stats and AI/Gemini access). Review before deploying to production.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    // Public quiz content and aggregate stats (read by all signed-in users).
+    match /quiz_metadata/{doc} {
+      allow read: if signedIn();
+    }
+    match /quizzes/{doc} {
+      allow read: if signedIn();
+    }
+    match /practice_mcqs/{doc} {
+      allow read: if signedIn();
+    }
+    match /chapter_stats/{doc} {
+      // Client currently writes aggregate stats/leaderboard in a transaction.
+      // TODO: move result submission to a Cloud Function and restrict this.
+      allow read, update, create: if signedIn();
+    }
+
+    // AI configuration. TODO: proxy Gemini through a Cloud Function instead.
+    match /app_config/{doc} {
+      allow read: if signedIn();
+    }
+
+    // Admin check reads the admins collection by uid.
+    match /admins/{uid} {
+      allow read: if signedIn();
+    }
+
+    // Users can create and read only their own test/practice results.
+    match /results/{doc} {
+      allow read: if signedIn() && resource.data.userId == request.auth.uid;
+      allow create: if signedIn() && request.resource.data.userId == request.auth.uid;
+    }
+    match /practiceResult/{doc} {
+      allow read: if signedIn() && resource.data.userId == request.auth.uid;
+      allow create: if signedIn() && request.resource.data.userId == request.auth.uid;
+    }
+
+    // Nothing else is exposed by default.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

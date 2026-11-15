@@ -1,25 +1,29 @@
 {
-  "name": "app",
-  "version": "1.0.0",
-  "description": "",
-  "main": "admin.js",
+  "name": "upsc-mcq-react",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && firebase deploy"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/princeku1456/UPSC_MCQ.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/princeku1456/UPSC_MCQ/issues"
-  },
-  "homepage": "https://github.com/princeku1456/UPSC_MCQ#readme",
   "dependencies": {
-    "benchmark": "^2.1.4",
-    "playwright": "^1.59.1"
+    "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.4",
+    "dompurify": "^3.1.7",
+    "firebase": "^10.14.0",
+    "marked": "^14.1.2",
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.4",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "react-select": "^5.8.0",
+    "react-toastify": "^10.0.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.2",
+    "vite": "^5.4.8"
   }
 }
