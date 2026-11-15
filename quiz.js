@@ -3195,28 +3195,25 @@ async function showBookmarks() {
 
   const cards = bookmarks
     .map((b) => {
-      const correctIndex = getCorrectIndex(b);
       const options = (b.options || [])
-        .map((opt, oi) => {
-          const cls =
-            oi === correctIndex
-              ? "bg-success-subtle border-success fw-bold text-success"
-              : "border";
-          return `<div class="option p-2 mb-2 border rounded ${cls}">${opt}</div>`;
-        })
+        .map(
+          (opt, oi) => `
+            <label class="option">
+              <input type="radio" name="bm-${b.id}" value="${oi}" onchange="answerBookmark('${b.id}', ${oi})">
+              <span>${opt}</span>
+            </label>`
+        )
         .join("");
       return `
-        <div class="card mb-4 shadow-sm border-0">
+        <div class="card mb-4 shadow-sm border-0" id="bookmark-${b.id}">
           <div class="card-body p-4">
             <div class="d-flex justify-content-between align-items-center mb-2">
               <h6 class="fw-bold text-primary mb-0">${b.subject} — ${b.chapterName}</h6>
               <button class="btn btn-outline-danger btn-sm" onclick="removeBookmark('${b.id}')"><i class="bi bi-trash"></i></button>
             </div>
             <div class="fw-bold mb-3">${TextFormatter.formatQuestionText(b.text)}</div>
-            <div class="mb-3">${options}</div>
-            <div class="explanation shadow-sm mt-2"><strong>💡 Explanation:</strong><div class="mt-1 small">${
-              b.explanation || "No explanation."
-            }</div></div>
+            <div>${options}</div>
+            <div class="bookmark-feedback" id="bookmark-feedback-${b.id}" style="display:none"></div>
           </div>
         </div>`;
     })
@@ -3229,6 +3226,37 @@ async function showBookmarks() {
     </div>
     ${cards}
   `;
+}
+
+function answerBookmark(id, selectedIndex) {
+  const bookmark = userBookmarks.find((b) => b.id === id);
+  const card = document.getElementById(`bookmark-${id}`);
+  if (!bookmark || !card) return;
+
+  const correctIndex = getCorrectIndex(bookmark);
+  card.querySelectorAll(".option").forEach((label, idx) => {
+    const input = label.querySelector("input");
+    if (input) input.disabled = true;
+    label.classList.remove("correct", "incorrect");
+    if (idx === correctIndex) label.classList.add("correct");
+    else if (idx === selectedIndex) label.classList.add("incorrect");
+  });
+
+  const feedback = document.getElementById(`bookmark-feedback-${id}`);
+  if (feedback) {
+    const isCorrect = selectedIndex === correctIndex;
+    feedback.innerHTML = `
+      <div class="explanation shadow-sm mt-3">
+        <strong>${isCorrect ? "✅ Correct!" : "❌ Incorrect."}</strong>
+        <div class="mt-1 small"><strong>Correct answer:</strong> ${
+          bookmark.options[correctIndex]
+        }</div>
+        <div class="mt-1 small"><strong>💡 Explanation:</strong> ${
+          bookmark.explanation || "No explanation."
+        }</div>
+      </div>`;
+    feedback.style.display = "block";
+  }
 }
 
 async function removeBookmark(id) {
