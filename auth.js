@@ -369,12 +369,14 @@ function logoutUser() {
 
 function updateUIForLogin() {
   document.getElementById("user-profile").style.display = "block";
+  document.getElementById("nav-menu").style.display = "block";
   const userName = currentUser.email ? currentUser.email.split("@")[0] : "User";
   document.getElementById("user-name-display").textContent = userName;
 }
 
 function updateUIForLogout() {
   document.getElementById("user-profile").style.display = "none";
+  document.getElementById("nav-menu").style.display = "none";
 }
 
 function handleLogoClick() {
@@ -409,7 +411,6 @@ function showDashboard() {
   document.getElementById("dashboard-section").style.display = "block";
   loadUserDashboard();
   renderBreadcrumbs([
-      { label: 'Home', onclick: 'showHome()' },
       { label: 'Dashboard' }
   ]);
 }
@@ -498,6 +499,8 @@ function hideGlobalLoader() {
 function renderBreadcrumbs(breadcrumbs) {
   const container = document.getElementById("breadcrumb-container");
   if (!container) return;
+
+  breadcrumbs = (breadcrumbs || []).filter((item) => item.label !== "Home");
 
   if (!breadcrumbs || breadcrumbs.length === 0) {
     container.style.display = "none";
