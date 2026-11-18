@@ -654,6 +654,23 @@ function submitPractice(forceSubmit = false) {
         });
   }
 
+  // Auto-bookmark every wrongly answered question for later revision
+  if (currentUser && incorrect > 0 && typeof autoBookmarkWrongQuestions === "function") {
+    const wrongQuestions = practiceQuizData.filter((q, i) => {
+      const uAns = practiceUserAnswers[i];
+      return (
+        uAns && uAns.answer !== undefined && uAns.answer !== -1 &&
+        uAns.answer !== getCorrectIndex(q)
+      );
+    });
+    autoBookmarkWrongQuestions(wrongQuestions, {
+      chapterId: "practice_session",
+      chapterName: practiceChapter,
+      subject: practiceSubject,
+      matchAnyChapter: true,
+    });
+  }
+
   document.getElementById("practice-result-summary").innerHTML = `
         <div class="card border-0 shadow-sm rounded-4 p-4 text-center animate-fade-in mb-4">
             <h4 class="fw-bold text-primary mb-3">Practice Result</h4>
