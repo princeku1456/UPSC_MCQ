@@ -2777,6 +2777,14 @@ function submitAll(forceSubmit = false) {
 
   if (currentUser) {
     saveResultToCloud(resultObject, leaderboardEntry, now, percentage);
+    // Auto-bookmark every wrongly answered question for later revision
+    if (incorrect > 0) {
+      const wrongQuestions = currentQuizData.filter((q, i) => {
+        const uAns = userAnswers[i];
+        return isValidAnswer(uAns) && uAns.answer !== getCorrectIndex(q);
+      });
+      autoBookmarkWrongQuestions(wrongQuestions);
+    }
   }
 }
 
@@ -3155,6 +3163,69 @@ async function toggleBookmark() {
     }
   }
   updateBookmarkButton();
+}
+
+/**
+ * Automatically bookmarks the wrongly answered questions of a just-submitted
+ * test. Skips questions that are already bookmarked (same chapter + text),
+ * and writes everything in one Firestore batch.
+ */
+async function autoBookmarkWrongQuestions(wrongQuestions, meta = {}) {
+  if (!currentUser || !wrongQuestions || wrongQuestions.length === 0) return;
+
+  // Defaults to the current test; practice.js passes its own values.
+  const chapterId = meta.chapterId ?? currentChapterId;
+  const chapterName = meta.chapterName ?? currentChapterName;
+  const subject = meta.subject ?? currentSubject;
+  // Practice sessions mix chapters, so there we match on question text alone.
+  const matchAnyChapter = !!meta.matchAnyChapter;
+
+  try {
+    await loadUserBookmarks(); // make sure the cache is fresh before de-duping
+
+    const toAdd = wrongQuestions.filter(
+      (q) =>
+        !userBookmarks.some(
+          (b) =>
+            b.text === q.text && (matchAnyChapter || b.chapterId === chapterId)
+        )
+    );
+    if (toAdd.length === 0) return;
+
+    const db = getDb();
+    const batch = db.batch();
+    const baseTime = Date.now();
+    const newEntries = [];
+
+    toAdd.forEach((q, i) => {
+      const ref = db.collection("bookmarks").doc();
+      const data = {
+        userId: currentUser.uid,
+        chapterId: chapterId,
+        chapterName: chapterName,
+        subject: subject,
+        text: q.text,
+        options: q.options,
+        correctAnswer: q.correctAnswer,
+        explanation: q.explanation || "",
+        autoAdded: true, // marks bookmarks created from wrong answers
+        savedAtMs: baseTime + i,
+        savedAt: firebase.firestore.FieldValue.serverTimestamp(),
+      };
+      batch.set(ref, data);
+      newEntries.push({ id: ref.id, ...data });
+    });
+
+    await batch.commit();
+
+    userBookmarks = [...newEntries.reverse(), ...userBookmarks];
+    updateBookmarkButton();
+    toastr.info(
+      `${toAdd.length} wrong question${toAdd.length === 1 ? "" : "s"} added to Bookmarks`
+    );
+  } catch (e) {
+    console.error("Auto-bookmark failed:", e);
+  }
 }
 
 function updateBookmarkButton() {
